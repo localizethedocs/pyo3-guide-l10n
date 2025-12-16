@@ -1,0 +1,212 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:56Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/building_and_distribution.md:1
+msgid "Building and Distribution"
+msgstr ""
+
+#: src/building_and_distribution.md:3
+msgid "Python version"
+msgstr ""
+
+#: src/building_and_distribution.md:5
+msgid ""
+"PyO3 uses a build script to determine the Python version and set the correct "
+"linker arguments. By default it uses the `python3` executable. You can "
+"override the Python interpreter by setting `PYO3_PYTHON`, e.g., "
+"`PYO3_PYTHON=python3.6`."
+msgstr ""
+
+#: src/building_and_distribution.md:7
+msgid "Linking"
+msgstr ""
+
+#: src/building_and_distribution.md:9
+msgid ""
+"Different linker arguments must be set for libraries/extension modules and "
+"binaries, which includes both standalone binaries and tests. (More "
+"specifically, binaries must be told where to find libpython and libraries "
+"must not link to libpython for [manylinux](https://www.python.org/dev/peps/"
+"pep-0513/) compliance)."
+msgstr ""
+
+#: src/building_and_distribution.md:11
+msgid ""
+"Since PyO3's build script can't know whether you're building a binary or a "
+"library, you have to activate the `extension-module` feature to get the "
+"build options for a library, or it'll default to binary."
+msgstr ""
+
+#: src/building_and_distribution.md:13
+msgid ""
+"If you have e.g. a library crate and a profiling crate alongside, you need "
+"to use optional features. E.g. you put the following in the library crate:"
+msgstr ""
+
+#: src/building_and_distribution.md:15
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.6\"\n"
+"\n"
+"[lib]\n"
+"name = \"hyperjson\"\n"
+"crate-type = [\"rlib\", \"cdylib\"]\n"
+"\n"
+"[features]\n"
+"default = [\"pyo3/extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:27
+msgid "And this in the profiling crate:"
+msgstr ""
+
+#: src/building_and_distribution.md:29
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"my_main_crate = { path = \"..\", default-features = false }\n"
+"pyo3 = \"0.6\"\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:35
+msgid ""
+"On Linux/macOS you might have to change `LD_LIBRARY_PATH` to include "
+"libpython, while on windows you might need to set `LIB` to include `pythonxy."
+"lib` (where x and y are major and minor version), which is normally either "
+"in the `libs` or `Lib` folder of a Python installation."
+msgstr ""
+
+#: src/building_and_distribution.md:37
+msgid "Distribution"
+msgstr ""
+
+#: src/building_and_distribution.md:39
+msgid ""
+"There are two ways to distribute your module as a Python package: The old, "
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust), and the new, "
+"[maturin](https://github.com/pyo3/maturin). setuptools-rust needs several "
+"configuration files (`setup.py`, `MANIFEST.in`, `build-wheels.sh`, etc.). "
+"maturin doesn't need any configuration files, however it does not support "
+"some functionality of setuptools such as package data ([pyo3/maturin#258]"
+"(https://github.com/PyO3/maturin/issues/258)) and requires a rigid project "
+"structure, while setuptools-rust allows (and sometimes requires) "
+"configuration with python code."
+msgstr ""
+
+#: src/building_and_distribution.md:41
+msgid "Cross Compiling"
+msgstr ""
+
+#: src/building_and_distribution.md:43
+msgid ""
+"Cross compiling PyO3 modules is relatively straightforward and requires a "
+"few pieces of software:"
+msgstr ""
+
+#: src/building_and_distribution.md:45
+msgid "A toolchain for your target."
+msgstr ""
+
+#: src/building_and_distribution.md:46
+msgid ""
+"The appropriate options in your Cargo `.config` for the platform you're "
+"targeting and the toolchain you are using."
+msgstr ""
+
+#: src/building_and_distribution.md:47
+msgid "A Python interpreter that's already been compiled for your target."
+msgstr ""
+
+#: src/building_and_distribution.md:48
+msgid ""
+"A Python interpreter that is built for your host and available through the "
+"`PATH` or setting the [`PYO3_PYTHON`](#python-version) variable."
+msgstr ""
+
+#: src/building_and_distribution.md:49
+msgid "The headers that match the above interpreter."
+msgstr ""
+
+#: src/building_and_distribution.md:51
+msgid ""
+"See https://github.com/japaric/rust-cross for a primer on cross compiling "
+"Rust in general."
+msgstr ""
+
+#: src/building_and_distribution.md:53
+msgid ""
+"After you've obtained the above, you can build a cross compiled PyO3 module "
+"by setting a few extra environment variables:"
+msgstr ""
+
+#: src/building_and_distribution.md:55
+msgid ""
+"`PYO3_CROSS_INCLUDE_DIR`: This variable must be set to the directory "
+"containing the headers for the target's Python interpreter. **It is only "
+"necessary if targeting Windows platforms**"
+msgstr ""
+
+#: src/building_and_distribution.md:56
+msgid ""
+"`PYO3_CROSS_LIB_DIR`: This variable must be set to the directory containing "
+"the target's libpython DSO and the associated `_sysconfigdata*.py` file."
+msgstr ""
+
+#: src/building_and_distribution.md:57
+msgid ""
+"`PYO3_CROSS_PYTHON_VERSION`: This variable must be set if there are multiple "
+"versions of python compiled for a unix machine."
+msgstr ""
+
+#: src/building_and_distribution.md:59
+msgid ""
+"An example might look like the following (assuming your target's sysroot is "
+"at `/home/pyo3/cross/sysroot` and that your target is `armv7`):"
+msgstr ""
+
+#: src/building_and_distribution.md:62 src/building_and_distribution.md:70
+#: src/building_and_distribution.md:78
+msgid "\"/home/pyo3/cross/sysroot/usr/lib\""
+msgstr ""
+
+#: src/building_and_distribution.md:67
+msgid ""
+"If there are multiple python versions at the cross lib directory and you "
+"cannot set a more precise location to include both the `libpython` DSO and "
+"`_sysconfigdata*.py` files, you can set the required version:"
+msgstr ""
+
+#: src/building_and_distribution.md:69
+msgid "3.8"
+msgstr ""
+
+#: src/building_and_distribution.md:75
+msgid "Or another example with the same sys root but building for windows:"
+msgstr ""
+
+#: src/building_and_distribution.md:77
+msgid "\"/home/pyo3/cross/sysroot/usr/include\""
+msgstr ""
+
+#: src/building_and_distribution.md:83
+msgid "Bazel"
+msgstr ""
+
+#: src/building_and_distribution.md:85
+msgid ""
+"For an example of how to build python extensions using Bazel, see https://"
+"github.com/TheButlah/rules_pyo3"
+msgstr ""
