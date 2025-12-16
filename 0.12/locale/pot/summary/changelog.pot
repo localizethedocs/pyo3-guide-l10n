@@ -1,0 +1,1978 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:56Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/changelog.md:1
+msgid "Changelog"
+msgstr ""
+
+#: src/changelog.md:2
+msgid ""
+"All notable changes to this project will be documented in this file. For "
+"help with updating to new PyO3 versions, please see the [migration guide]"
+"(https://pyo3.rs/master/migration.html)."
+msgstr ""
+
+#: src/changelog.md:5
+msgid ""
+"The format is based on [Keep a Changelog](http://keepachangelog.com/"
+"en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver."
+"org/spec/v2.0.0.html)."
+msgstr ""
+
+#: src/changelog.md:8
+msgid ""
+"[0.12.4](https://github.com/pyo3/pyo3/compare/v0.12.3...v0.12.4) - 2020-11-28"
+msgstr ""
+
+#: src/changelog.md:9
+msgid ""
+"Fix reference count bug in implementation of `From<Py<T>>` for `PyObject`, a "
+"regression introduced in PyO3 0.12. [\\#1297](https://github.com/PyO3/pyo3/"
+"pull/1297)"
+msgstr ""
+
+#: src/changelog.md:11
+msgid ""
+"[0.12.3](https://github.com/pyo3/pyo3/compare/v0.12.2...v0.12.3) - 2020-10-12"
+msgstr ""
+
+#: src/changelog.md:12 src/changelog.md:20 src/changelog.md:26
+#: src/changelog.md:79 src/changelog.md:128 src/changelog.md:135
+#: src/changelog.md:165 src/changelog.md:179 src/changelog.md:183
+#: src/changelog.md:220 src/changelog.md:243 src/changelog.md:251
+#: src/changelog.md:264 src/changelog.md:287 src/changelog.md:303
+#: src/changelog.md:364 src/changelog.md:370 src/changelog.md:374
+#: src/changelog.md:409 src/changelog.md:420 src/changelog.md:440
+#: src/changelog.md:458 src/changelog.md:462 src/changelog.md:469
+#: src/changelog.md:481 src/changelog.md:489 src/changelog.md:500
+msgid "Fixed"
+msgstr ""
+
+#: src/changelog.md:13
+msgid ""
+"Fix support for Rust versions 1.39 to 1.44, broken by an incorrect internal "
+"update to paste 1.0 which was done in PyO3 0.12.2. [\\#1234](https://github."
+"com/PyO3/pyo3/pull/1234)"
+msgstr ""
+
+#: src/changelog.md:15
+msgid ""
+"[0.12.2](https://github.com/pyo3/pyo3/compare/v0.12.1...v0.12.2) - 2020-10-12"
+msgstr ""
+
+#: src/changelog.md:16 src/changelog.md:31 src/changelog.md:93
+#: src/changelog.md:100 src/changelog.md:139 src/changelog.md:176
+#: src/changelog.md:188 src/changelog.md:231 src/changelog.md:236
+#: src/changelog.md:248 src/changelog.md:261 src/changelog.md:270
+#: src/changelog.md:291 src/changelog.md:329 src/changelog.md:381
+#: src/changelog.md:444 src/changelog.md:466 src/changelog.md:476
+#: src/changelog.md:504 src/changelog.md:518
+msgid "Added"
+msgstr ""
+
+#: src/changelog.md:17
+msgid ""
+"Add support for keyword-only arguments without default values in "
+"`#[pyfunction]`. [\\#1209](https://github.com/PyO3/pyo3/pull/1209)"
+msgstr ""
+
+#: src/changelog.md:18
+msgid ""
+"Add `Python::check_signals()` as a safe a wrapper for "
+"`PyErr_CheckSignals()`. [\\#1214](https://github.com/PyO3/pyo3/pull/1214)"
+msgstr ""
+
+#: src/changelog.md:21
+msgid ""
+"Fix invalid document for protocol methods. [\\#1169](https://github.com/PyO3/"
+"pyo3/pull/1169)"
+msgstr ""
+
+#: src/changelog.md:22
+msgid ""
+"Hide docs of PyO3 private implementation details in `pyo3::class::methods`. "
+"[\\#1169](https://github.com/PyO3/pyo3/pull/1169)"
+msgstr ""
+
+#: src/changelog.md:23
+msgid ""
+"Fix unnecessary rebuild on PATH changes when the python interpreter is "
+"provided by PYO3_PYTHON. [\\#1231](https://github.com/PyO3/pyo3/pull/1231)"
+msgstr ""
+
+#: src/changelog.md:25
+msgid ""
+"[0.12.1](https://github.com/pyo3/pyo3/compare/v0.12.0...v0.12.1) - 2020-09-16"
+msgstr ""
+
+#: src/changelog.md:27
+msgid ""
+"Fix building for a 32-bit Python on 64-bit Windows with a 64-bit Rust "
+"toolchain. [\\#1179](https://github.com/PyO3/pyo3/pull/1179)"
+msgstr ""
+
+#: src/changelog.md:28
+msgid ""
+"Fix building on platforms where `c_char` is `u8`. [\\#1182](https://github."
+"com/PyO3/pyo3/pull/1182)"
+msgstr ""
+
+#: src/changelog.md:30
+msgid ""
+"[0.12.0](https://github.com/pyo3/pyo3/compare/v0.11.1...v0.12.0) - 2020-09-12"
+msgstr ""
+
+#: src/changelog.md:32
+msgid ""
+"Add FFI definitions `Py_FinalizeEx`, `PyOS_getsig`, and `PyOS_setsig`. "
+"[\\#1021](https://github.com/PyO3/pyo3/pull/1021)"
+msgstr ""
+
+#: src/changelog.md:33
+msgid ""
+"Add `PyString::to_str` for accessing `PyString` as `&str`. [\\#1023](https://"
+"github.com/PyO3/pyo3/pull/1023)"
+msgstr ""
+
+#: src/changelog.md:34
+msgid ""
+"Add `Python::with_gil` for executing a closure with the Python GIL. [\\#1037]"
+"(https://github.com/PyO3/pyo3/pull/1037)"
+msgstr ""
+
+#: src/changelog.md:35
+msgid ""
+"Add type information to failures in `PyAny::downcast()`. [\\#1050](https://"
+"github.com/PyO3/pyo3/pull/1050)"
+msgstr ""
+
+#: src/changelog.md:36
+msgid ""
+"Implement `Debug` for `PyIterator`. [\\#1051](https://github.com/PyO3/pyo3/"
+"pull/1051)"
+msgstr ""
+
+#: src/changelog.md:37
+msgid ""
+"Add `PyBytes::new_with` and `PyByteArray::new_with` for initialising `bytes` "
+"and `bytearray` objects using a closure. [\\#1074](https://github.com/PyO3/"
+"pyo3/pull/1074)"
+msgstr ""
+
+#: src/changelog.md:38
+msgid ""
+"Add `#[derive(FromPyObject)]` macro for enums and structs. [\\#1065](https://"
+"github.com/PyO3/pyo3/pull/1065)"
+msgstr ""
+
+#: src/changelog.md:39
+msgid ""
+"Add `Py::as_ref` and `Py::into_ref` for converting `Py<T>` to `&T`. [\\#1098]"
+"(https://github.com/PyO3/pyo3/pull/1098)"
+msgstr ""
+
+#: src/changelog.md:40
+msgid ""
+"Add ability to return `Result` types other than `PyResult` from "
+"`#[pyfunction]`, `#[pymethod]` and `#[pyproto]` functions. [\\#1106](https://"
+"github.com/PyO3/pyo3/pull/1118)."
+msgstr ""
+
+#: src/changelog.md:41
+msgid ""
+"Implement `ToPyObject`, `IntoPy`, and `FromPyObject` for [hashbrown](https://"
+"crates.io/crates/hashbrown)'s `HashMap` and `HashSet` types (requires the "
+"`hashbrown` feature). [\\#1114](https://github.com/PyO3/pyo3/pull/1114)"
+msgstr ""
+
+#: src/changelog.md:42
+msgid ""
+"Add `#[pyfunction(pass_module)]` and `#[pyfn(pass_module)]` to pass the "
+"module object as the first function argument. [\\#1143](https://github.com/"
+"PyO3/pyo3/pull/1143)"
+msgstr ""
+
+#: src/changelog.md:43
+msgid ""
+"Add `PyModule::add_function` and `PyModule::add_submodule` as typed "
+"alternatives to `PyModule::add_wrapped`. [\\#1143](https://github.com/PyO3/"
+"pyo3/pull/1143)"
+msgstr ""
+
+#: src/changelog.md:44
+msgid ""
+"Add native `PyCFunction` and `PyFunction` types. [\\#1163](https://github."
+"com/PyO3/pyo3/pull/1163)"
+msgstr ""
+
+#: src/changelog.md:46 src/changelog.md:96 src/changelog.md:108
+#: src/changelog.md:150 src/changelog.md:201 src/changelog.md:277
+#: src/changelog.md:298 src/changelog.md:336 src/changelog.md:389
+#: src/changelog.md:417 src/changelog.md:427 src/changelog.md:436
+#: src/changelog.md:448 src/changelog.md:486 src/changelog.md:496
+#: src/changelog.md:513
+msgid "Changed"
+msgstr ""
+
+#: src/changelog.md:47
+msgid ""
+"Rework exception types: [\\#1024](https://github.com/PyO3/pyo3/pull/1024) "
+"[\\#1115](https://github.com/PyO3/pyo3/pull/1115)"
+msgstr ""
+
+#: src/changelog.md:48
+msgid ""
+"Rename exception types from e.g. `RuntimeError` to `PyRuntimeError`. The old "
+"names continue to exist but are deprecated."
+msgstr ""
+
+#: src/changelog.md:49
+msgid ""
+"Exception objects are now accessible as `&T` or `Py<T>`, just like other "
+"Python-native types."
+msgstr ""
+
+#: src/changelog.md:50
+msgid "Rename `PyException::py_err()` to `PyException::new_err()`."
+msgstr ""
+
+#: src/changelog.md:51
+msgid "Rename `PyUnicodeDecodeErr::new_err()` to `PyUnicodeDecodeErr::new()`."
+msgstr ""
+
+#: src/changelog.md:52
+msgid "Remove `PyStopIteration::stop_iteration()`."
+msgstr ""
+
+#: src/changelog.md:53
+msgid ""
+"Require `T: Send` for the return value `T` of `Python::allow_threads`. "
+"[\\#1036](https://github.com/PyO3/pyo3/pull/1036)"
+msgstr ""
+
+#: src/changelog.md:54
+msgid ""
+"Rename `PYTHON_SYS_EXECUTABLE` to `PYO3_PYTHON`. The old name will continue "
+"to work (undocumented) but will be removed in a future release. [\\#1039]"
+"(https://github.com/PyO3/pyo3/pull/1039)"
+msgstr ""
+
+#: src/changelog.md:55
+msgid ""
+"Remove `unsafe` from signature of `PyType::as_type_ptr`. [\\#1047](https://"
+"github.com/PyO3/pyo3/pull/1047)"
+msgstr ""
+
+#: src/changelog.md:56
+msgid ""
+"Change return type of `PyIterator::from_object` to `PyResult<PyIterator>` "
+"(was `Result<PyIterator, PyDowncastError>`). [\\#1051](https://github.com/"
+"PyO3/pyo3/pull/1051)"
+msgstr ""
+
+#: src/changelog.md:57
+msgid ""
+"`IntoPy` is no longer implied by `FromPy`. [\\#1063](https://github.com/PyO3/"
+"pyo3/pull/1063)"
+msgstr ""
+
+#: src/changelog.md:58
+msgid ""
+"Change `PyObject` to be a type alias for `Py<PyAny>`. [\\#1063](https://"
+"github.com/PyO3/pyo3/pull/1063)"
+msgstr ""
+
+#: src/changelog.md:59
+msgid ""
+"Rework `PyErr` to be compatible with the `std::error::Error` trait: [\\#1067]"
+"(https://github.com/PyO3/pyo3/pull/1067) [\\#1115](https://github.com/PyO3/"
+"pyo3/pull/1115)"
+msgstr ""
+
+#: src/changelog.md:60
+msgid ""
+"Implement `Display`, `Error`, `Send` and `Sync` for `PyErr` and "
+"`PyErrArguments`."
+msgstr ""
+
+#: src/changelog.md:61
+msgid "Add `PyErr::instance()` for accessing `PyErr` as `&PyBaseException`."
+msgstr ""
+
+#: src/changelog.md:62
+msgid ""
+"`PyErr`'s fields are now an implementation detail. The equivalent values can "
+"be accessed with `PyErr::ptype()`, `PyErr::pvalue()` and `PyErr::"
+"ptraceback()`."
+msgstr ""
+
+#: src/changelog.md:63
+msgid ""
+"Change receiver of `PyErr::print()` and `PyErr::"
+"print_and_set_sys_last_vars()` to `&self` (was `self`)."
+msgstr ""
+
+#: src/changelog.md:64
+msgid ""
+"Remove `PyErrValue`, `PyErr::from_value`, `PyErr::into_normalized()`, and "
+"`PyErr::normalize()`."
+msgstr ""
+
+#: src/changelog.md:65
+msgid "Remove `PyException::into()`."
+msgstr ""
+
+#: src/changelog.md:66
+msgid "Remove `Into<PyResult<T>>` for `PyErr` and `PyException`."
+msgstr ""
+
+#: src/changelog.md:67
+msgid ""
+"Change methods generated by `#[pyproto]` to return `NotImplemented` if "
+"Python should try a reversed operation. #[1072](https://github.com/PyO3/pyo3/"
+"pull/1072)"
+msgstr ""
+
+#: src/changelog.md:68
+msgid ""
+"Change argument to `PyModule::add` to `impl IntoPy<PyObject>` (was `impl "
+"ToPyObject`). #[1124](https://github.com/PyO3/pyo3/pull/1124)"
+msgstr ""
+
+#: src/changelog.md:70 src/changelog.md:125 src/changelog.md:158
+#: src/changelog.md:211 src/changelog.md:240 src/changelog.md:283
+#: src/changelog.md:358 src/changelog.md:402 src/changelog.md:423
+#: src/changelog.md:432 src/changelog.md:492
+msgid "Removed"
+msgstr ""
+
+#: src/changelog.md:71
+msgid ""
+"Remove many exception and `PyErr` APIs; see the \"changed\" section above. "
+"[\\#1024](https://github.com/PyO3/pyo3/pull/1024) [\\#1067](https://github."
+"com/PyO3/pyo3/pull/1067) [\\#1115](https://github.com/PyO3/pyo3/pull/1115)"
+msgstr ""
+
+#: src/changelog.md:72
+msgid ""
+"Remove `PyString::to_string` (use new `PyString::to_str`). [\\#1023](https://"
+"github.com/PyO3/pyo3/pull/1023)"
+msgstr ""
+
+#: src/changelog.md:73
+msgid ""
+"Remove `PyString::as_bytes`. [\\#1023](https://github.com/PyO3/pyo3/"
+"pull/1023)"
+msgstr ""
+
+#: src/changelog.md:74
+msgid ""
+"Remove `Python::register_any`. [\\#1023](https://github.com/PyO3/pyo3/"
+"pull/1023)"
+msgstr ""
+
+#: src/changelog.md:75
+msgid ""
+"Remove `GILGuard::acquire` from the public API. Use `Python::acquire_gil` or "
+"`Python::with_gil`. [\\#1036](https://github.com/PyO3/pyo3/pull/1036)"
+msgstr ""
+
+#: src/changelog.md:76
+msgid ""
+"Remove the `FromPy` trait. [\\#1063](https://github.com/PyO3/pyo3/pull/1063)"
+msgstr ""
+
+#: src/changelog.md:77
+msgid ""
+"Remove the `AsPyRef` trait. [\\#1098](https://github.com/PyO3/pyo3/pull/1098)"
+msgstr ""
+
+#: src/changelog.md:80
+msgid ""
+"Correct FFI definitions `Py_SetProgramName` and `Py_SetPythonHome` to take "
+"`*const` arguments (was `*mut`). [\\#1021](https://github.com/PyO3/pyo3/"
+"pull/1021)"
+msgstr ""
+
+#: src/changelog.md:81
+msgid ""
+"Fix `FromPyObject` for `num_bigint::BigInt` for Python objects with an "
+"`__index__` method. [\\#1027](https://github.com/PyO3/pyo3/pull/1027)"
+msgstr ""
+
+#: src/changelog.md:82
+msgid ""
+"Correct FFI definition `_PyLong_AsByteArray` to take `*mut c_uchar` argument "
+"(was `*const c_uchar`). [\\#1029](https://github.com/PyO3/pyo3/pull/1029)"
+msgstr ""
+
+#: src/changelog.md:83
+msgid ""
+"Fix segfault with `#[pyclass(dict, unsendable)]`. [\\#1058](https://github."
+"com/PyO3/pyo3/pull/1058) [\\#1059](https://github.com/PyO3/pyo3/pull/1059)"
+msgstr ""
+
+#: src/changelog.md:84
+msgid ""
+"Fix using `&Self` as an argument type for functions in a `#[pymethods]` "
+"block. [\\#1071](https://github.com/PyO3/pyo3/pull/1071)"
+msgstr ""
+
+#: src/changelog.md:85
+msgid ""
+"Fix best-effort build against PyPy 3.6. [\\#1092](https://github.com/PyO3/"
+"pyo3/pull/1092)"
+msgstr ""
+
+#: src/changelog.md:86
+msgid ""
+"Fix many cases of lifetime elision in `#[pyproto]` implementations. [\\#1093]"
+"(https://github.com/PyO3/pyo3/pull/1093)"
+msgstr ""
+
+#: src/changelog.md:87
+msgid ""
+"Fix detection of Python build configuration when cross-compiling. [\\#1095]"
+"(https://github.com/PyO3/pyo3/pull/1095)"
+msgstr ""
+
+#: src/changelog.md:88
+msgid ""
+"Always link against libpython on android with the `extension-module` "
+"feature. [\\#1095](https://github.com/PyO3/pyo3/pull/1095)"
+msgstr ""
+
+#: src/changelog.md:89
+msgid ""
+"Fix the `+` operator not trying `__radd__` when both `__add__` and "
+"`__radd__`  are defined in `PyNumberProtocol` (and similar for all other "
+"reversible operators). [\\#1107](https://github.com/PyO3/pyo3/pull/1107)"
+msgstr ""
+
+#: src/changelog.md:90
+msgid ""
+"Fix building with Anaconda python. [\\#1175](https://github.com/PyO3/pyo3/"
+"pull/1175)"
+msgstr ""
+
+#: src/changelog.md:92
+msgid ""
+"[0.11.1](https://github.com/pyo3/pyo3/compare/v0.11.0...v0.11.1) - 2020-06-30"
+msgstr ""
+
+#: src/changelog.md:94
+msgid ""
+"`#[pyclass(unsendable)]`. [\\#1009](https://github.com/PyO3/pyo3/pull/1009)"
+msgstr ""
+
+#: src/changelog.md:97
+msgid ""
+"Update `parking_lot` dependency to `0.11`. [\\#1010](https://github.com/PyO3/"
+"pyo3/pull/1010)"
+msgstr ""
+
+#: src/changelog.md:99
+msgid ""
+"[0.11.0](https://github.com/pyo3/pyo3/compare/v0.10.1...v0.11.0) - 2020-06-28"
+msgstr ""
+
+#: src/changelog.md:101
+msgid ""
+"Support stable versions of Rust (>=1.39). [\\#969](https://github.com/PyO3/"
+"pyo3/pull/969)"
+msgstr ""
+
+#: src/changelog.md:102
+msgid ""
+"Add FFI definition `PyObject_AsFileDescriptor`. [\\#938](https://github.com/"
+"PyO3/pyo3/pull/938)"
+msgstr ""
+
+#: src/changelog.md:103
+msgid ""
+"Add `PyByteArray::data`, `PyByteArray::as_bytes`, and `PyByteArray::"
+"as_bytes_mut`. [\\#967](https://github.com/PyO3/pyo3/pull/967)"
+msgstr ""
+
+#: src/changelog.md:104
+msgid ""
+"Add `GILOnceCell` to use in situations where `lazy_static` or `once_cell` "
+"can deadlock. [\\#975](https://github.com/PyO3/pyo3/pull/975)"
+msgstr ""
+
+#: src/changelog.md:105
+msgid ""
+"Add `Py::borrow`, `Py::borrow_mut`, `Py::try_borrow`, and `Py::"
+"try_borrow_mut` for accessing `#[pyclass]` values. [\\#976](https://github."
+"com/PyO3/pyo3/pull/976)"
+msgstr ""
+
+#: src/changelog.md:106
+msgid ""
+"Add `IterNextOutput` and `IterANextOutput` for returning from `__next__` / "
+"`__anext__`. [\\#997](https://github.com/PyO3/pyo3/pull/997)"
+msgstr ""
+
+#: src/changelog.md:109
+msgid ""
+"Simplify internals of `#[pyo3(get)]` attribute. (Remove the hidden API "
+"`GetPropertyValue`.) [\\#934](https://github.com/PyO3/pyo3/pull/934)"
+msgstr ""
+
+#: src/changelog.md:110
+msgid ""
+"Call `Py_Finalize` at exit to flush buffers, etc. [\\#943](https://github."
+"com/PyO3/pyo3/pull/943)"
+msgstr ""
+
+#: src/changelog.md:111
+msgid ""
+"Add type parameter to PyBuffer. #[951](https://github.com/PyO3/pyo3/pull/951)"
+msgstr ""
+
+#: src/changelog.md:112
+msgid ""
+"Require `Send` bound for `#[pyclass]`. [\\#966](https://github.com/PyO3/pyo3/"
+"pull/966)"
+msgstr ""
+
+#: src/changelog.md:113
+msgid ""
+"Add `Python` argument to most methods on `PyObject` and `Py<T>` to ensure "
+"GIL safety. [\\#970](https://github.com/PyO3/pyo3/pull/970)"
+msgstr ""
+
+#: src/changelog.md:114
+msgid ""
+"Change signature of `PyTypeObject::type_object()` - now takes `Python` "
+"argument and returns `&PyType`. [\\#970](https://github.com/PyO3/pyo3/"
+"pull/970)"
+msgstr ""
+
+#: src/changelog.md:115
+msgid ""
+"Change return type of `PyTuple::slice()` and `PyTuple::split_from()` from "
+"`Py<PyTuple>` to `&PyTuple`. [\\#970](https://github.com/PyO3/pyo3/pull/970)"
+msgstr ""
+
+#: src/changelog.md:116
+msgid ""
+"Change return type of `PyTuple::as_slice` to `&[&PyAny]`. [\\#971](https://"
+"github.com/PyO3/pyo3/pull/971)"
+msgstr ""
+
+#: src/changelog.md:117
+msgid ""
+"Rename `PyTypeInfo::type_object` to `type_object_raw`, and add `Python` "
+"argument. [\\#975](https://github.com/PyO3/pyo3/pull/975)"
+msgstr ""
+
+#: src/changelog.md:118
+msgid ""
+"Update `num-complex` optional dependendency from `0.2` to `0.3`. [\\#977]"
+"(https://github.com/PyO3/pyo3/pull/977)"
+msgstr ""
+
+#: src/changelog.md:119
+msgid ""
+"Update `num-bigint` optional dependendency from `0.2` to `0.3`. [\\#978]"
+"(https://github.com/PyO3/pyo3/pull/978)"
+msgstr ""
+
+#: src/changelog.md:120
+msgid ""
+"`#[pyproto]` is re-implemented without specialization. [\\#961](https://"
+"github.com/PyO3/pyo3/pull/961)"
+msgstr ""
+
+#: src/changelog.md:121
+msgid ""
+"`PyClassAlloc::alloc` is renamed to `PyClassAlloc::new`. [\\#990](https://"
+"github.com/PyO3/pyo3/pull/990)"
+msgstr ""
+
+#: src/changelog.md:122
+msgid ""
+"`#[pyproto]` methods can now have return value `T` or `PyResult<T>` "
+"(previously only `PyResult<T>` was supported). [\\#996](https://github.com/"
+"PyO3/pyo3/pull/996)"
+msgstr ""
+
+#: src/changelog.md:123
+msgid ""
+"`#[pyproto]` methods can now skip annotating the return type if it is `()`. "
+"[\\#998](https://github.com/PyO3/pyo3/pull/998)"
+msgstr ""
+
+#: src/changelog.md:126
+msgid ""
+"Remove `ManagedPyRef` (unused, and needs specialization) [\\#930](https://"
+"github.com/PyO3/pyo3/pull/930)"
+msgstr ""
+
+#: src/changelog.md:129
+msgid ""
+"Fix passing explicit `None` to `Option<T>` argument `#[pyfunction]` with a "
+"default value. [\\#936](https://github.com/PyO3/pyo3/pull/936)"
+msgstr ""
+
+#: src/changelog.md:130
+msgid ""
+"Fix `PyClass.__new__`'s not respecting subclasses when inherited by a Python "
+"class. [\\#990](https://github.com/PyO3/pyo3/pull/990)"
+msgstr ""
+
+#: src/changelog.md:131
+msgid ""
+"Fix returning `Option<T>` from `#[pyproto]` methods. [\\#996](https://github."
+"com/PyO3/pyo3/pull/996)"
+msgstr ""
+
+#: src/changelog.md:132
+msgid ""
+"Fix accepting `PyRef<Self>` and `PyRefMut<Self>` to `#[getter]` and "
+"`#[setter]` methods. [\\#999](https://github.com/PyO3/pyo3/pull/999)"
+msgstr ""
+
+#: src/changelog.md:134
+msgid ""
+"[0.10.1](https://github.com/pyo3/pyo3/compare/v0.10.0...v0.10.1) - 2020-05-14"
+msgstr ""
+
+#: src/changelog.md:136
+msgid ""
+"Fix deadlock in `Python::acquire_gil()` after dropping a `PyObject` or "
+"`Py<T>`. [\\#924](https://github.com/PyO3/pyo3/pull/924)"
+msgstr ""
+
+#: src/changelog.md:138
+msgid ""
+"[0.10.0](https://github.com/pyo3/pyo3/compare/v0.9.2...v0.10.0) - 2020-05-13"
+msgstr ""
+
+#: src/changelog.md:140
+msgid ""
+"Add FFI definition `_PyDict_NewPresized`. [\\#849](https://github.com/PyO3/"
+"pyo3/pull/849)"
+msgstr ""
+
+#: src/changelog.md:141
+msgid ""
+"Implement `IntoPy<PyObject>` for `HashSet` and `BTreeSet`. [\\#864](https://"
+"github.com/PyO3/pyo3/pull/864)"
+msgstr ""
+
+#: src/changelog.md:142
+msgid ""
+"Add `PyAny::dir` method. [\\#886](https://github.com/PyO3/pyo3/pull/886)"
+msgstr ""
+
+#: src/changelog.md:143
+msgid ""
+"Gate macros behind a `macros` feature (enabled by default). [\\#897](https://"
+"github.com/PyO3/pyo3/pull/897)"
+msgstr ""
+
+#: src/changelog.md:144
+msgid ""
+"Add ability to define class attributes using `#[classattr]` on functions in "
+"`#[pymethods]`. [\\#905](https://github.com/PyO3/pyo3/pull/905)"
+msgstr ""
+
+#: src/changelog.md:145
+msgid ""
+"Implement `Clone` for `PyObject` and `Py<T>`. [\\#908](https://github.com/"
+"PyO3/pyo3/pull/908)"
+msgstr ""
+
+#: src/changelog.md:146
+msgid ""
+"Implement `Deref<Target = PyAny>` for all builtin types. (`PyList`, "
+"`PyTuple`, `PyDict` etc.) [\\#911](https://github.com/PyO3/pyo3/pull/911)"
+msgstr ""
+
+#: src/changelog.md:147
+msgid ""
+"Implement `Deref<Target = PyAny>` for `PyCell<T>`. [\\#911](https://github."
+"com/PyO3/pyo3/pull/911)"
+msgstr ""
+
+#: src/changelog.md:148
+msgid ""
+"Add `#[classattr]` support for associated constants in `#[pymethods]`. "
+"[\\#914](https://github.com/PyO3/pyo3/pull/914)"
+msgstr ""
+
+#: src/changelog.md:151
+msgid ""
+"Panics will now be raised as a Python `PanicException`. [\\#797](https://"
+"github.com/PyO3/pyo3/pull/797)"
+msgstr ""
+
+#: src/changelog.md:152
+msgid ""
+"Change `PyObject` and `Py<T>` reference counts to decrement immediately upon "
+"drop when the GIL is held. [\\#851](https://github.com/PyO3/pyo3/pull/851)"
+msgstr ""
+
+#: src/changelog.md:153
+msgid ""
+"Allow `PyIterProtocol` methods to use either `PyRef` or `PyRefMut` as the "
+"receiver type. [\\#856](https://github.com/PyO3/pyo3/pull/856)"
+msgstr ""
+
+#: src/changelog.md:154
+msgid ""
+"Change the implementation of `FromPyObject` for `Py<T>` to apply to a wider "
+"range of `T`, including all `T: PyClass`. [\\#880](https://github.com/PyO3/"
+"pyo3/pull/880)"
+msgstr ""
+
+#: src/changelog.md:155
+msgid ""
+"Move all methods from the `ObjectProtocol` trait to the `PyAny` struct. "
+"[\\#911](https://github.com/PyO3/pyo3/pull/911)"
+msgstr ""
+
+#: src/changelog.md:156
+msgid ""
+"Remove need for `#![feature(specialization)]` in crates depending on PyO3. "
+"[\\#917](https://github.com/PyO3/pyo3/pull/917)"
+msgstr ""
+
+#: src/changelog.md:159
+msgid ""
+"Remove `PyMethodsProtocol` trait. [\\#889](https://github.com/PyO3/pyo3/"
+"pull/889)"
+msgstr ""
+
+#: src/changelog.md:160
+msgid ""
+"Remove `num-traits` dependency. [\\#895](https://github.com/PyO3/pyo3/"
+"pull/895)"
+msgstr ""
+
+#: src/changelog.md:161
+msgid ""
+"Remove `ObjectProtocol` trait. [\\#911](https://github.com/PyO3/pyo3/"
+"pull/911)"
+msgstr ""
+
+#: src/changelog.md:162
+msgid ""
+"Remove `PyAny::None`. Users should use `Python::None` instead. [\\#911]"
+"(https://github.com/PyO3/pyo3/pull/911)"
+msgstr ""
+
+#: src/changelog.md:163
+msgid ""
+"Remove all `*ProtocolImpl` traits. [\\#917](https://github.com/PyO3/pyo3/"
+"pull/917)"
+msgstr ""
+
+#: src/changelog.md:166
+msgid ""
+"Fix support for `__radd__` and other `__r*__` methods as implementations for "
+"Python mathematical operators. [\\#839](https://github.com/PyO3/pyo3/"
+"pull/839)"
+msgstr ""
+
+#: src/changelog.md:167
+msgid ""
+"Fix panics during garbage collection when traversing objects that were "
+"already mutably borrowed. [\\#855](https://github.com/PyO3/pyo3/pull/855)"
+msgstr ""
+
+#: src/changelog.md:168
+msgid ""
+"Prevent `&'static` references to Python objects as arguments to "
+"`#[pyfunction]` and `#[pymethods]`. [\\#869](https://github.com/PyO3/pyo3/"
+"pull/869)"
+msgstr ""
+
+#: src/changelog.md:169
+msgid ""
+"Fix lifetime safety bug with `AsPyRef::as_ref`. [\\#876](https://github.com/"
+"PyO3/pyo3/pull/876)"
+msgstr ""
+
+#: src/changelog.md:170
+msgid ""
+"Fix `#[pyo3(get)]` attribute on `Py<T>` fields. [\\#880](https://github.com/"
+"PyO3/pyo3/pull/880)"
+msgstr ""
+
+#: src/changelog.md:171
+msgid ""
+"Fix segmentation faults caused by functions such as `PyList::get_item` "
+"returning borrowed objects when it was not safe to do so. [\\#890](https://"
+"github.com/PyO3/pyo3/pull/890)"
+msgstr ""
+
+#: src/changelog.md:172
+msgid ""
+"Fix segmentation faults caused by nested `Python::acquire_gil` calls "
+"creating dangling references. [\\#893](https://github.com/PyO3/pyo3/pull/893)"
+msgstr ""
+
+#: src/changelog.md:173
+msgid ""
+"Fix segmentatation faults when a panic occurs during a call to `Python::"
+"allow_threads`. [\\#912](https://github.com/PyO3/pyo3/pull/912)"
+msgstr ""
+
+#: src/changelog.md:175
+msgid ""
+"[0.9.2](https://github.com/pyo3/pyo3/compare/v0.9.1...v0.9.2) - 2020-04-09"
+msgstr ""
+
+#: src/changelog.md:177
+msgid ""
+"`FromPyObject` implementations for `HashSet` and `BTreeSet`. [\\#842]"
+"(https://github.com/PyO3/pyo3/pull/842)"
+msgstr ""
+
+#: src/changelog.md:180
+msgid ""
+"Correctly detect 32bit architecture. [\\#830](https://github.com/PyO3/pyo3/"
+"pull/830)"
+msgstr ""
+
+#: src/changelog.md:182
+msgid ""
+"[0.9.1](https://github.com/pyo3/pyo3/compare/v0.9.0...v0.9.1) - 2020-03-23"
+msgstr ""
+
+#: src/changelog.md:184
+msgid ""
+"Error messages for `#[pyclass]`. [\\#826](https://github.com/PyO3/pyo3/"
+"pull/826)"
+msgstr ""
+
+#: src/changelog.md:185
+msgid ""
+"`FromPyObject` implementation for `PySequence`. [\\#827](https://github.com/"
+"PyO3/pyo3/pull/827)"
+msgstr ""
+
+#: src/changelog.md:187
+msgid ""
+"[0.9.0](https://github.com/pyo3/pyo3/compare/v0.8.5...v0.9.0) - 2020-03-19"
+msgstr ""
+
+#: src/changelog.md:189
+msgid ""
+"`PyCell`, which has RefCell-like features. [\\#770](https://github.com/PyO3/"
+"pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:190
+msgid ""
+"`PyClass`, `PyLayout`, `PyClassInitializer`. [\\#683](https://github.com/"
+"PyO3/pyo3/pull/683)"
+msgstr ""
+
+#: src/changelog.md:191
+msgid ""
+"Implemented `IntoIterator` for `PySet` and `PyFrozenSet`. [\\#716](https://"
+"github.com/PyO3/pyo3/pull/716)"
+msgstr ""
+
+#: src/changelog.md:192
+msgid ""
+"`FromPyObject` is now automatically implemented for `T: Clone` pyclasses. "
+"[\\#730](https://github.com/PyO3/pyo3/pull/730)"
+msgstr ""
+
+#: src/changelog.md:193
+msgid ""
+"`#[pyo3(get)]` and `#[pyo3(set)]` will now use the Rust doc-comment from the "
+"field for the Python property. [\\#755](https://github.com/PyO3/pyo3/"
+"pull/755)"
+msgstr ""
+
+#: src/changelog.md:194
+msgid ""
+"`#[setter]` functions may now take an argument of `Pyo3::Python`. [\\#760]"
+"(https://github.com/PyO3/pyo3/pull/760)"
+msgstr ""
+
+#: src/changelog.md:195
+msgid ""
+"`PyTypeInfo::BaseLayout` and `PyClass::BaseNativeType`. [\\#770](https://"
+"github.com/PyO3/pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:196
+msgid "`PyDowncastImpl`. [\\#770](https://github.com/PyO3/pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:197
+msgid ""
+"Implement `FromPyObject` and `IntoPy<PyObject>` traits for arrays (up to "
+"32). [\\#778](https://github.com/PyO3/pyo3/pull/778)"
+msgstr ""
+
+#: src/changelog.md:198
+msgid ""
+"`migration.md` and `types.md` in the guide. [\\#795](https://github.com/PyO3/"
+"pyo3/pull/795), #[802](https://github.com/PyO3/pyo3/pull/802)"
+msgstr ""
+
+#: src/changelog.md:199
+msgid ""
+"`ffi::{_PyBytes_Resize, _PyDict_Next, _PyDict_Contains, _PyDict_GetDictPtr}"
+"`. #[820](https://github.com/PyO3/pyo3/pull/820)"
+msgstr ""
+
+#: src/changelog.md:202
+msgid ""
+"`#[new]` does not take `PyRawObject` and can return `Self`. [\\#683](https://"
+"github.com/PyO3/pyo3/pull/683)"
+msgstr ""
+
+#: src/changelog.md:203
+msgid ""
+"The blanket implementations for `FromPyObject` for `&T` and `&mut T` are no "
+"longer specializable. Implement `PyTryFrom` for your type to control the "
+"behavior of `FromPyObject::extract()` for your types. [\\#713](https://"
+"github.com/PyO3/pyo3/pull/713)"
+msgstr ""
+
+#: src/changelog.md:204
+msgid ""
+"The implementation for `IntoPy<U> for T` where `U: FromPy<T>` is no longer "
+"specializable. Control the behavior of this via the implementation of "
+"`FromPy`. [\\#713](https://github.com/PyO3/pyo3/pull/713)"
+msgstr ""
+
+#: src/changelog.md:205
+msgid ""
+"Use `parking_lot::Mutex` instead of `spin::Mutex`. [\\#734](https://github."
+"com/PyO3/pyo3/pull/734)"
+msgstr ""
+
+#: src/changelog.md:206
+msgid ""
+"Bumped minimum Rust version to `1.42.0-nightly 2020-01-21`. [\\#761](https://"
+"github.com/PyO3/pyo3/pull/761)"
+msgstr ""
+
+#: src/changelog.md:207
+msgid ""
+"`PyRef` and `PyRefMut` are renewed for `PyCell`. [\\#770](https://github.com/"
+"PyO3/pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:208
+msgid ""
+"Some new FFI functions for Python 3.8. [\\#784](https://github.com/PyO3/pyo3/"
+"pull/784)"
+msgstr ""
+
+#: src/changelog.md:209
+msgid ""
+"`PyAny` is now on the top level module and prelude. [\\#816](https://github."
+"com/PyO3/pyo3/pull/816)"
+msgstr ""
+
+#: src/changelog.md:212
+msgid "`PyRawObject`. [\\#683](https://github.com/PyO3/pyo3/pull/683)"
+msgstr ""
+
+#: src/changelog.md:213
+msgid "`PyNoArgsFunction`. [\\#741](https://github.com/PyO3/pyo3/pull/741)"
+msgstr ""
+
+#: src/changelog.md:214
+msgid ""
+"`initialize_type()`. To set the module name for a `#[pyclass]`, use the "
+"`module` argument to the macro. #[751](https://github.com/PyO3/pyo3/pull/751)"
+msgstr ""
+
+#: src/changelog.md:215
+msgid ""
+"`AsPyRef::as_mut/with/with_mut/into_py/into_mut_py`. [\\#770](https://github."
+"com/PyO3/pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:216
+msgid ""
+"`PyTryFrom::try_from_mut/try_from_mut_exact/try_from_mut_unchecked`. [\\#770]"
+"(https://github.com/PyO3/pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:217
+msgid ""
+"`Python::mut_from_owned_ptr/mut_from_borrowed_ptr`. [\\#770](https://github."
+"com/PyO3/pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:218
+msgid ""
+"`ObjectProtocol::get_base/get_mut_base`. [\\#770](https://github.com/PyO3/"
+"pyo3/pull/770)"
+msgstr ""
+
+#: src/changelog.md:221
+msgid ""
+"Fixed unsoundness of subclassing. [\\#683](https://github.com/PyO3/pyo3/"
+"pull/683)."
+msgstr ""
+
+#: src/changelog.md:222
+msgid ""
+"Clear error indicator when the exception is handled on the Rust side. "
+"[\\#719](https://github.com/PyO3/pyo3/pull/719)"
+msgstr ""
+
+#: src/changelog.md:223
+msgid ""
+"Usage of raw identifiers with `#[pyo3(set)]`. [\\#745](https://github.com/"
+"PyO3/pyo3/pull/745)"
+msgstr ""
+
+#: src/changelog.md:224
+msgid ""
+"Usage of `PyObject` with `#[pyo3(get)]`. [\\#760](https://github.com/PyO3/"
+"pyo3/pull/760)"
+msgstr ""
+
+#: src/changelog.md:225
+msgid ""
+"`#[pymethods]` used in conjunction with `#[cfg]`. #[769](https://github.com/"
+"PyO3/pyo3/pull/769)"
+msgstr ""
+
+#: src/changelog.md:226
+msgid ""
+"`\"*\"` in a `#[pyfunction()]` argument list incorrectly accepting any "
+"number of positional arguments (use `args = \"*\"` when this behaviour is "
+"desired). #[792](https://github.com/PyO3/pyo3/pull/792)"
+msgstr ""
+
+#: src/changelog.md:227
+msgid "`PyModule::dict`. #[809](https://github.com/PyO3/pyo3/pull/809)"
+msgstr ""
+
+#: src/changelog.md:228
+msgid ""
+"Fix the case where `DESCRIPTION` is not null-terminated. #[822](https://"
+"github.com/PyO3/pyo3/pull/822)"
+msgstr ""
+
+#: src/changelog.md:230
+msgid "\\[0.8.5\\] - 2020-01-05"
+msgstr ""
+
+#: src/changelog.md:232
+msgid "Implemented `FromPyObject` for `HashMap` and `BTreeMap`"
+msgstr ""
+
+#: src/changelog.md:233
+msgid ""
+"Support for `#[name = \"foo\"]` attribute for `#[pyfunction]` and in "
+"`#[pymethods]`. [\\#692](https://github.com/PyO3/pyo3/pull/692)"
+msgstr ""
+
+#: src/changelog.md:235
+msgid ""
+"[0.8.4](https://github.com/pyo3/pyo3/compare/v0.8.4...v0.8.5) - 2019-12-14"
+msgstr ""
+
+#: src/changelog.md:237
+msgid ""
+"Support for `#[text_signature]` attribute. [\\#675](https://github.com/PyO3/"
+"pyo3/pull/675)"
+msgstr ""
+
+#: src/changelog.md:239
+msgid ""
+"[0.8.3](https://github.com/pyo3/pyo3/compare/v0.8.2...v0.8.3) - 2019-11-23"
+msgstr ""
+
+#: src/changelog.md:241
+msgid "`#[init]` is removed. [\\#658](https://github.com/PyO3/pyo3/pull/658)"
+msgstr ""
+
+#: src/changelog.md:244
+msgid ""
+"Now all `&Py~` types have `!Send` bound. [\\#655](https://github.com/PyO3/"
+"pyo3/pull/655)"
+msgstr ""
+
+#: src/changelog.md:245
+msgid ""
+"Fix a compile error raised by the stabilization of `!` type. [\\#672]"
+"(https://github.com/PyO3/pyo3/issues/672)."
+msgstr ""
+
+#: src/changelog.md:247
+msgid ""
+"[0.8.2](https://github.com/pyo3/pyo3/compare/v0.8.1...v0.8.2) - 2019-10-27"
+msgstr ""
+
+#: src/changelog.md:249
+msgid ""
+"FFI compatibility for PEP 590 Vectorcall. [\\#641](https://github.com/PyO3/"
+"pyo3/pull/641)"
+msgstr ""
+
+#: src/changelog.md:252
+msgid ""
+"Fix PySequenceProtocol::set_item. [\\#624](https://github.com/PyO3/pyo3/"
+"pull/624)"
+msgstr ""
+
+#: src/changelog.md:253
+msgid ""
+"Fix a corner case of BigInt::FromPyObject. [\\#630](https://github.com/PyO3/"
+"pyo3/pull/630)"
+msgstr ""
+
+#: src/changelog.md:254
+msgid ""
+"Fix index errors in parameter conversion. [\\#631](https://github.com/PyO3/"
+"pyo3/pull/631)"
+msgstr ""
+
+#: src/changelog.md:255
+msgid ""
+"Fix handling of invalid utf-8 sequences in `PyString::as_bytes`. [\\#639]"
+"(https://github.com/PyO3/pyo3/pull/639) and `PyString::to_string_lossy` "
+"[\\#642](https://github.com/PyO3/pyo3/pull/642)."
+msgstr ""
+
+#: src/changelog.md:257
+msgid ""
+"Remove `__contains__` and `__iter__` from PyMappingProtocol. [\\#644]"
+"(https://github.com/PyO3/pyo3/pull/644)"
+msgstr ""
+
+#: src/changelog.md:258
+msgid ""
+"Fix proc-macro definition of PySetAttrProtocol. [\\#645](https://github.com/"
+"PyO3/pyo3/pull/645)"
+msgstr ""
+
+#: src/changelog.md:260
+msgid ""
+"[0.8.1](https://github.com/pyo3/pyo3/compare/v0.8.0...v0.8.1) - 2019-10-08"
+msgstr ""
+
+#: src/changelog.md:262
+msgid ""
+"Conversion between [num-bigint](https://github.com/rust-num/num-bigint) and "
+"Python int. [\\#608](https://github.com/PyO3/pyo3/pull/608)"
+msgstr ""
+
+#: src/changelog.md:265
+msgid ""
+"Make sure the right Python interpreter is used in OSX builds. [\\#604]"
+"(https://github.com/PyO3/pyo3/pull/604)"
+msgstr ""
+
+#: src/changelog.md:266
+msgid ""
+"Patch specialization being broken by Rust 1.40. [\\#614](https://github.com/"
+"PyO3/pyo3/issues/614)"
+msgstr ""
+
+#: src/changelog.md:267
+msgid ""
+"Fix a segfault around PyErr. [\\#597](https://github.com/PyO3/pyo3/pull/597)"
+msgstr ""
+
+#: src/changelog.md:269
+msgid ""
+"[0.8.0](https://github.com/pyo3/pyo3/compare/v0.7.0...v0.8.0) - 2019-09-16"
+msgstr ""
+
+#: src/changelog.md:271
+msgid ""
+"`module` argument to `pyclass` macro. [\\#499](https://github.com/PyO3/pyo3/"
+"pull/499)"
+msgstr ""
+
+#: src/changelog.md:272
+msgid "`py_run!` macro [\\#512](https://github.com/PyO3/pyo3/pull/512)"
+msgstr ""
+
+#: src/changelog.md:273
+msgid ""
+"Use existing fields and methods before calling custom **getattr**. [\\#505]"
+"(https://github.com/PyO3/pyo3/pull/505)"
+msgstr ""
+
+#: src/changelog.md:274
+msgid "`PyBytes` can now be indexed just like `Vec<u8>`"
+msgstr ""
+
+#: src/changelog.md:275
+msgid "Implement `IntoPy<PyObject>` for `PyRef` and `PyRefMut`."
+msgstr ""
+
+#: src/changelog.md:278
+msgid ""
+"Implementing the Using the `gc` parameter for `pyclass` (e.g. "
+"`#[pyclass(gc)]`) without implementing the `class::PyGCProtocol` trait is "
+"now a compile-time error. Failing to implement this trait could lead to "
+"segfaults. [\\#532](https://github.com/PyO3/pyo3/pull/532)"
+msgstr ""
+
+#: src/changelog.md:279
+msgid ""
+"`PyByteArray::data` has been replaced with `PyDataArray::to_vec` because "
+"returning a `&[u8]` is unsound. (See [this comment](https://github.com/PyO3/"
+"pyo3/issues/373#issuecomment-512332696) for a great write-up for why that "
+"was unsound)"
+msgstr ""
+
+#: src/changelog.md:280
+msgid "Replace `mashup` with `paste`."
+msgstr ""
+
+#: src/changelog.md:281
+msgid ""
+"`GILPool` gained a `Python` marker to prevent it from being misused to "
+"release Python objects without the GIL held."
+msgstr ""
+
+#: src/changelog.md:284
+msgid "`IntoPyObject` was replaced with `IntoPy<PyObject>`"
+msgstr ""
+
+#: src/changelog.md:285
+msgid ""
+"`#[pyclass(subclass)]` is hidden a `unsound-subclass` feature because it's "
+"causing segmentation faults."
+msgstr ""
+
+#: src/changelog.md:288
+msgid ""
+"More readable error message for generics in pyclass [\\#503](https://github."
+"com/PyO3/pyo3/pull/503)"
+msgstr ""
+
+#: src/changelog.md:290
+msgid ""
+"[0.7.0](https://github.com/pyo3/pyo3/compare/v0.6.0...v0.7.0) - 2019-05-26"
+msgstr ""
+
+#: src/changelog.md:292
+msgid ""
+"PyPy support by omerbenamram in [\\#393](https://github.com/PyO3/pyo3/"
+"pull/393)"
+msgstr ""
+
+#: src/changelog.md:293
+msgid "Have `PyModule` generate an index of its members (`__all__` list)."
+msgstr ""
+
+#: src/changelog.md:294
+msgid "Allow `slf: PyRef<T>` for pyclass(#419)"
+msgstr ""
+
+#: src/changelog.md:295
+msgid "Allow to use lifetime specifiers in `pymethods`"
+msgstr ""
+
+#: src/changelog.md:296
+msgid "Add `marshal` module. [\\#460](https://github.com/PyO3/pyo3/pull/460)"
+msgstr ""
+
+#: src/changelog.md:299
+msgid "`Python::run` returns `PyResult<()>` instead of `PyResult<&PyAny>`."
+msgstr ""
+
+#: src/changelog.md:300
+msgid ""
+"Methods decorated with `#[getter]` and `#[setter]` can now omit wrapping the "
+"result type in `PyResult` if they don't raise exceptions."
+msgstr ""
+
+#: src/changelog.md:304
+msgid ""
+"`type_object::PyTypeObject` has been marked unsafe because breaking the "
+"contract `type_object::PyTypeObject::init_type` can lead to UB."
+msgstr ""
+
+#: src/changelog.md:305
+msgid ""
+"Fixed automatic derive of `PySequenceProtocol` implementation in [\\#423]"
+"(https://github.com/PyO3/pyo3/pull/423)."
+msgstr ""
+
+#: src/changelog.md:306
+msgid "Capitalization & better wording to README.md."
+msgstr ""
+
+#: src/changelog.md:307
+msgid ""
+"Docstrings of properties is now properly set using the doc of the "
+"`#[getter]` method."
+msgstr ""
+
+#: src/changelog.md:308
+msgid ""
+"Fixed issues with `pymethods` crashing on doc comments containing double "
+"quotes."
+msgstr ""
+
+#: src/changelog.md:309
+msgid ""
+"`PySet::new` and `PyFrozenSet::new` now return `PyResult<&Py[Frozen]Set>`; "
+"exceptions are raised if the items are not hashable."
+msgstr ""
+
+#: src/changelog.md:311
+msgid "Fixed building using `venv` on Windows."
+msgstr ""
+
+#: src/changelog.md:312
+msgid "`PyTuple::new` now returns `&PyTuple` instead of `Py<PyTuple>`."
+msgstr ""
+
+#: src/changelog.md:313
+msgid ""
+"Fixed several issues with argument parsing; notable, the `*args` and "
+"`**kwargs` tuple/dict now doesn't contain arguments that are otherwise "
+"assigned to parameters."
+msgstr ""
+
+#: src/changelog.md:316
+msgid ""
+"[0.6.0](https://github.com/pyo3/pyo3/compare/v0.5.3...v0.6.0) - 2019-03-28"
+msgstr ""
+
+#: src/changelog.md:317
+msgid "Regressions"
+msgstr ""
+
+#: src/changelog.md:318
+msgid ""
+"Currently, [\\#341](https://github.com/PyO3/pyo3/issues/341) causes `cargo "
+"test` to fail with weird linking errors when the `extension-module` feature "
+"is activated. For now you can work around this by making the `extension-"
+"module` feature optional and running the tests with `cargo test --no-default-"
+"features`:"
+msgstr ""
+
+#: src/changelog.md:320
+msgid ""
+"```toml\n"
+"[dependencies.pyo3]\n"
+"version = \"0.6.0\"\n"
+"\n"
+"[features]\n"
+"extension-module = [\"pyo3/extension-module\"]\n"
+"default = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/changelog.md:330
+msgid ""
+"Added a `wrap_pymodule!` macro similar to the existing `wrap_pyfunction!` "
+"macro. Only available on python 3"
+msgstr ""
+
+#: src/changelog.md:331
+msgid ""
+"Added support for cross compiling (e.g. to arm v7) by mtp401 in [\\#327]"
+"(https://github.com/PyO3/pyo3/pull/327). See the \"Cross Compiling\" section "
+"in the \"Building and Distribution\" chapter of the guide for more details."
+msgstr ""
+
+#: src/changelog.md:332
+msgid ""
+"The `PyRef` and `PyRefMut` types, which allow to differentiate between an "
+"instance of a rust struct on the rust heap and an instance that is embedded "
+"inside a python object. By kngwyu in [\\#335](https://github.com/PyO3/pyo3/"
+"pull/335)"
+msgstr ""
+
+#: src/changelog.md:333
+msgid ""
+"Added `FromPy<T>` and `IntoPy<T>` which are equivalent to `From<T>` and "
+"`Into<T>` except that they require a gil token."
+msgstr ""
+
+#: src/changelog.md:334
+msgid ""
+"Added `ManagedPyRef`, which should eventually replace `ToBorrowedObject`."
+msgstr ""
+
+#: src/changelog.md:337
+msgid "Renamed `PyObjectRef` to `PyAny` in #388"
+msgstr ""
+
+#: src/changelog.md:338
+msgid ""
+"Renamed `add_function` to `add_wrapped` as it now also supports modules."
+msgstr ""
+
+#: src/changelog.md:339
+msgid "Renamed `#[pymodinit]` to `#[pymodule]`"
+msgstr ""
+
+#: src/changelog.md:340
+msgid "`py.init(|| value)` becomes `Py::new(value)`"
+msgstr ""
+
+#: src/changelog.md:341
+msgid "`py.init_ref(|| value)` becomes `PyRef::new(value)`"
+msgstr ""
+
+#: src/changelog.md:342
+msgid "`py.init_mut(|| value)` becomes `PyRefMut::new(value)`."
+msgstr ""
+
+#: src/changelog.md:343
+msgid ""
+"`PyRawObject::init` is now infallible, e.g. it returns `()` instead of "
+"`PyResult<()>`."
+msgstr ""
+
+#: src/changelog.md:344
+msgid ""
+"Renamed `py_exception!` to `create_exception!` and refactored the error "
+"macros."
+msgstr ""
+
+#: src/changelog.md:345
+msgid "Renamed `wrap_function!` to `wrap_pyfunction!`"
+msgstr ""
+
+#: src/changelog.md:346
+msgid "Renamed `#[prop(get, set)]` to `#[pyo3(get, set)]`"
+msgstr ""
+
+#: src/changelog.md:347
+msgid "`#[pyfunction]` now supports the same arguments as `#[pyfn()]`"
+msgstr ""
+
+#: src/changelog.md:348
+msgid "Some macros now emit proper spanned errors instead of panics."
+msgstr ""
+
+#: src/changelog.md:349
+msgid "Migrated to the 2018 edition"
+msgstr ""
+
+#: src/changelog.md:350
+msgid "`crate::types::exceptions` moved to `crate::exceptions`"
+msgstr ""
+
+#: src/changelog.md:351
+msgid "Replace `IntoPyTuple` with `IntoPy<Py<PyTuple>>`."
+msgstr ""
+
+#: src/changelog.md:352
+msgid "`IntoPyPointer` and `ToPyPointer` moved into the crate root."
+msgstr ""
+
+#: src/changelog.md:353
+msgid "`class::CompareOp` moved into `class::basic::CompareOp`"
+msgstr ""
+
+#: src/changelog.md:354
+msgid ""
+"PyTypeObject is now a direct subtrait PyTypeCreate, removing the old "
+"cyclical implementation in [\\#350](https://github.com/PyO3/pyo3/pull/350)"
+msgstr ""
+
+#: src/changelog.md:355
+msgid ""
+"Add `PyList::{sort, reverse}` by chr1sj0nes in [\\#357](https://github.com/"
+"PyO3/pyo3/pull/357) and [\\#358](https://github.com/PyO3/pyo3/pull/358)"
+msgstr ""
+
+#: src/changelog.md:356
+msgid "Renamed the `typeob` module to `type_object`"
+msgstr ""
+
+#: src/changelog.md:359
+msgid ""
+"`PyToken` was removed due to unsoundness (See [\\#94](https://github.com/"
+"PyO3/pyo3/issues/94))."
+msgstr ""
+
+#: src/changelog.md:360
+msgid "Removed the unnecessary type parameter from `PyObjectAlloc`"
+msgstr ""
+
+#: src/changelog.md:361
+msgid "`NoArgs`. Just use an empty tuple"
+msgstr ""
+
+#: src/changelog.md:362
+msgid ""
+"`PyObjectWithGIL`. `PyNativeType` is sufficient now that PyToken is removed."
+msgstr ""
+
+#: src/changelog.md:365
+msgid ""
+"A soudness hole where every instances of a `#[pyclass]` struct was "
+"considered to be part of a python object, even though you can create "
+"instances that are not part of the python heap. This was fixed through "
+"`PyRef` and `PyRefMut`."
+msgstr ""
+
+#: src/changelog.md:366
+msgid "Fix kwargs support in [\\#328](https://github.com/PyO3/pyo3/pull/328)."
+msgstr ""
+
+#: src/changelog.md:367
+msgid ""
+"Add full support for `__dict__` in [\\#403](https://github.com/PyO3/pyo3/"
+"pull/403)."
+msgstr ""
+
+#: src/changelog.md:369
+msgid ""
+"[0.5.3](https://github.com/pyo3/pyo3/compare/v0.5.2...v0.5.3) - 2019-01-04"
+msgstr ""
+
+#: src/changelog.md:371
+msgid ""
+"Fix memory leak in ArrayList by kngwyu [\\#316](https://github.com/PyO3/pyo3/"
+"pull/316)"
+msgstr ""
+
+#: src/changelog.md:373
+msgid ""
+"[0.5.2](https://github.com/pyo3/pyo3/compare/v0.5.0...v0.5.2) - 2018-11-25"
+msgstr ""
+
+#: src/changelog.md:375
+msgid ""
+"Fix undeterministic segfaults when creating many objects by kngwyu in "
+"[\\#281](https://github.com/PyO3/pyo3/pull/281)"
+msgstr ""
+
+#: src/changelog.md:377
+msgid "\\[0.5.1\\] - 2018-11-24"
+msgstr ""
+
+#: src/changelog.md:378
+msgid "Yanked"
+msgstr ""
+
+#: src/changelog.md:380
+msgid ""
+"[0.5.0](https://github.com/pyo3/pyo3/compare/v0.4.1...v0.5.0) - 2018-11-11"
+msgstr ""
+
+#: src/changelog.md:382
+msgid "`#[pyclass]` objects can now be returned from rust functions"
+msgstr ""
+
+#: src/changelog.md:383
+msgid ""
+"`PyComplex` by kngwyu in [\\#226](https://github.com/PyO3/pyo3/pull/226)"
+msgstr ""
+
+#: src/changelog.md:384
+msgid "`PyDict::from_sequence()`, equivalent to `dict([(key, val), ...])`"
+msgstr ""
+
+#: src/changelog.md:385
+msgid ""
+"Bindings for the `datetime` standard library types: `PyDate`, `PyTime`, "
+"`PyDateTime`, `PyTzInfo`, `PyDelta` with associated `ffi` types, by pganssle "
+"[\\#200](https://github.com/PyO3/pyo3/pull/200)."
+msgstr ""
+
+#: src/changelog.md:386
+msgid ""
+"`PyString`, `PyUnicode`, and `PyBytes` now have an `as_bytes()` method that "
+"returns `&[u8]`."
+msgstr ""
+
+#: src/changelog.md:387
+msgid ""
+"`PyObjectProtocol::get_type_ptr()` by ijl in [\\#242](https://github.com/"
+"PyO3/pyo3/pull/242)"
+msgstr ""
+
+#: src/changelog.md:390
+msgid ""
+"Removes the types from the root module and the prelude. They now live in "
+"`pyo3::types` instead."
+msgstr ""
+
+#: src/changelog.md:391
+msgid ""
+"All exceptions are consturcted with `py_err` instead of `new`, as they "
+"return `PyErr` and not `Self`."
+msgstr ""
+
+#: src/changelog.md:392
+msgid "`as_mut` and friends take and `&mut self` instead of `&self`"
+msgstr ""
+
+#: src/changelog.md:393
+msgid ""
+"`ObjectProtocol::call` now takes an `Option<&PyDict>` for the kwargs instead "
+"of an `IntoPyDictPointer`."
+msgstr ""
+
+#: src/changelog.md:394
+msgid ""
+"`IntoPyDictPointer` was replace by `IntoPyDict` which doesn't convert "
+"`PyDict` itself anymore and returns a `PyDict` instead of `*mut PyObject`."
+msgstr ""
+
+#: src/changelog.md:395
+msgid "`PyTuple::new` now takes an `IntoIterator` instead of a slice"
+msgstr ""
+
+#: src/changelog.md:396
+msgid "Updated to syn 0.15"
+msgstr ""
+
+#: src/changelog.md:397
+msgid ""
+"Splitted `PyTypeObject` into `PyTypeObject` without the create method and "
+"`PyTypeCreate` with requires `PyObjectAlloc<Self> + PyTypeInfo + Sized`."
+msgstr ""
+
+#: src/changelog.md:398
+msgid ""
+"Ran `cargo edition --fix` which prefixed path with `crate::` for rust 2018"
+msgstr ""
+
+#: src/changelog.md:399
+msgid ""
+"Renamed `async` to `pyasync` as async will be a keyword in the 2018 edition."
+msgstr ""
+
+#: src/changelog.md:400
+msgid ""
+"Starting to use `NonNull<*mut PyObject>` for Py and PyObject by ijl [\\#260]"
+"(https://github.com/PyO3/pyo3/pull/260)"
+msgstr ""
+
+#: src/changelog.md:403
+msgid ""
+"Removed most entries from the prelude. The new prelude is small and clear."
+msgstr ""
+
+#: src/changelog.md:404
+msgid "Slowly removing specialization uses"
+msgstr ""
+
+#: src/changelog.md:405
+msgid ""
+"`PyString`, `PyUnicode`, and `PyBytes` no longer have a `data()` method "
+"(replaced by `as_bytes()`) and `PyStringData` has been removed."
+msgstr ""
+
+#: src/changelog.md:407
+msgid "The pyobject_extract macro"
+msgstr ""
+
+#: src/changelog.md:410
+msgid ""
+"Added an explanation that the GIL can temporarily be released even while "
+"holding a GILGuard."
+msgstr ""
+
+#: src/changelog.md:411
+msgid "Lots of clippy errors"
+msgstr ""
+
+#: src/changelog.md:412
+msgid "Fix segfault on calling an unknown method on a PyObject"
+msgstr ""
+
+#: src/changelog.md:413
+msgid ""
+"Work around a [bug](https://github.com/rust-lang/rust/issues/55380) in the "
+"rust compiler by kngwyu [\\#252](https://github.com/PyO3/pyo3/pull/252)"
+msgstr ""
+
+#: src/changelog.md:414
+msgid ""
+"Fixed a segfault with subclassing pyo3 create classes and using `__class__` "
+"by kngwyu [\\#263](https://github.com/PyO3/pyo3/pull/263)"
+msgstr ""
+
+#: src/changelog.md:416
+msgid ""
+"[0.4.1](https://github.com/pyo3/pyo3/compare/v0.4.0...v0.4.1) - 2018-08-20"
+msgstr ""
+
+#: src/changelog.md:418
+msgid "PyTryFrom's error is always to `PyDowncastError`"
+msgstr ""
+
+#: src/changelog.md:421
+msgid "Fixed compilation on nightly since `use_extern_macros` was stabilized"
+msgstr ""
+
+#: src/changelog.md:424
+msgid "The pyobject_downcast macro"
+msgstr ""
+
+#: src/changelog.md:426
+msgid ""
+"[0.4.0](https://github.com/pyo3/pyo3/compare/v0.3.2...v0.4.0) - 2018-07-30"
+msgstr ""
+
+#: src/changelog.md:428
+msgid "Merged both examples into one"
+msgstr ""
+
+#: src/changelog.md:429
+msgid "Rustfmt all the things :heavy_check_mark:"
+msgstr ""
+
+#: src/changelog.md:430
+msgid "Switched to [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)"
+msgstr ""
+
+#: src/changelog.md:433
+msgid ""
+"Conversions from tuples to PyDict due to [rust-lang/rust#52050](https://"
+"github.com/rust-lang/rust/issues/52050)"
+msgstr ""
+
+#: src/changelog.md:435
+msgid ""
+"[0.3.2](https://github.com/pyo3/pyo3/compare/v0.3.1...v0.3.2) - 2018-07-22"
+msgstr ""
+
+#: src/changelog.md:437
+msgid "Replaced `concat_idents` with mashup"
+msgstr ""
+
+#: src/changelog.md:439
+msgid ""
+"[0.3.1](https://github.com/pyo3/pyo3/compare/v0.3.0...v0.3.1) - 2018-07-18"
+msgstr ""
+
+#: src/changelog.md:441
+msgid "Fixed scoping bug in pyobject_native_type that would break rust-numpy"
+msgstr ""
+
+#: src/changelog.md:443
+msgid ""
+"[0.3.0](https://github.com/pyo3/pyo3/compare/v0.2.7...v0.3.0) - 2018-07-18"
+msgstr ""
+
+#: src/changelog.md:445
+msgid ""
+"A few internal macros became part of the public api ([\\#155](https://github."
+"com/PyO3/pyo3/pull/155), [\\#186](https://github.com/PyO3/pyo3/pull/186))"
+msgstr ""
+
+#: src/changelog.md:446
+msgid ""
+"Always clone in getters. This allows using the get-annotation on all Clone-"
+"Types"
+msgstr ""
+
+#: src/changelog.md:449
+msgid "Upgraded to syn 0.14 which means much better error messages :tada:"
+msgstr ""
+
+#: src/changelog.md:450
+msgid ""
+"128 bit integer support by [kngwyu](https://github.com/kngwyu) ([\\#137]"
+"(https://github.com/PyO3/pyo3/pull/173))"
+msgstr ""
+
+#: src/changelog.md:451
+msgid ""
+"`proc_macro` has been stabilized on nightly ([rust-lang/rust#52081](https://"
+"github.com/rust-lang/rust/pull/52081)). This means that we can remove the "
+"`proc_macro` feature, but now we need the `use_extern_macros` from the 2018 "
+"edition instead."
+msgstr ""
+
+#: src/changelog.md:452
+msgid ""
+"All proc macro are now prefixed with `py` and live in the prelude. This "
+"means you can use `#[pyclass]`, `#[pymethods]`, `#[pyproto]`, "
+"`#[pyfunction]` and `#[pymodinit]` directly, at least after a `use pyo3::"
+"prelude::*`. They were also moved into a module called `proc_macro`. You "
+"shouldn't use `#[pyo3::proc_macro::pyclass]` or other longer paths in "
+"attributes because `proc_macro_path_invoc` isn't going to be stabilized soon."
+msgstr ""
+
+#: src/changelog.md:453
+msgid "Renamed the `base` option in the `pyclass` macro to `extends`."
+msgstr ""
+
+#: src/changelog.md:454
+msgid ""
+"`#[pymodinit]` uses the function name as module name, unless the name is "
+"overrriden with `#[pymodinit(name)]`"
+msgstr ""
+
+#: src/changelog.md:455
+msgid "The guide is now properly versioned."
+msgstr ""
+
+#: src/changelog.md:457
+msgid ""
+"[0.2.7](https://github.com/pyo3/pyo3/compare/v0.2.6...v0.2.7) - 2018-05-18"
+msgstr ""
+
+#: src/changelog.md:459
+msgid "Fix nightly breakage with proc_macro_path"
+msgstr ""
+
+#: src/changelog.md:461
+msgid ""
+"[0.2.6](https://github.com/pyo3/pyo3/compare/v0.2.5...v0.2.6) - 2018-04-03"
+msgstr ""
+
+#: src/changelog.md:463
+msgid "Fix compatibility with TryFrom trait #137"
+msgstr ""
+
+#: src/changelog.md:465
+msgid ""
+"[0.2.5](https://github.com/pyo3/pyo3/compare/v0.2.4...v0.2.5) - 2018-02-21"
+msgstr ""
+
+#: src/changelog.md:467
+msgid "CPython 3.7 support"
+msgstr ""
+
+#: src/changelog.md:470
+msgid "Embedded CPython 3.7b1 crashes on initialization #110"
+msgstr ""
+
+#: src/changelog.md:471
+msgid "Generated extension functions are weakly typed #108"
+msgstr ""
+
+#: src/changelog.md:472
+msgid "call_method\\*() crashes when the method does not exist #113"
+msgstr ""
+
+#: src/changelog.md:473
+msgid "Allow importing exceptions from nested modules #116"
+msgstr ""
+
+#: src/changelog.md:475
+msgid ""
+"[0.2.4](https://github.com/pyo3/pyo3/compare/v0.2.3...v0.2.4) - 2018-01-19"
+msgstr ""
+
+#: src/changelog.md:477
+msgid "Allow to get mutable ref from PyObject #106"
+msgstr ""
+
+#: src/changelog.md:478
+msgid "Drop `RefFromPyObject` trait"
+msgstr ""
+
+#: src/changelog.md:479
+msgid "Add Python::register_any() method"
+msgstr ""
+
+#: src/changelog.md:482
+msgid "Fix impl `FromPyObject` for `Py<T>`"
+msgstr ""
+
+#: src/changelog.md:483
+msgid "Mark method that work with raw pointers as unsafe #95"
+msgstr ""
+
+#: src/changelog.md:485
+msgid ""
+"[0.2.3](https://github.com/pyo3/pyo3/compare/v0.2.2...v0.2.3) - 11-27-2017"
+msgstr ""
+
+#: src/changelog.md:487
+msgid "Rustup to 1.23.0-nightly 2017-11-07"
+msgstr ""
+
+#: src/changelog.md:490
+msgid "Proper `c_char` usage #93"
+msgstr ""
+
+#: src/changelog.md:493
+msgid "Remove use of now unneeded 'AsciiExt' trait"
+msgstr ""
+
+#: src/changelog.md:495
+msgid ""
+"[0.2.2](https://github.com/pyo3/pyo3/compare/v0.2.1...v0.2.2) - 09-26-2017"
+msgstr ""
+
+#: src/changelog.md:497
+msgid "Rustup to 1.22.0-nightly 2017-09-30"
+msgstr ""
+
+#: src/changelog.md:499
+msgid ""
+"[0.2.1](https://github.com/pyo3/pyo3/compare/v0.2.0...v0.2.1) - 09-26-2017"
+msgstr ""
+
+#: src/changelog.md:501
+msgid "Fix rustc const_fn nightly breakage"
+msgstr ""
+
+#: src/changelog.md:503
+msgid ""
+"[0.2.0](https://github.com/pyo3/pyo3/compare/v0.1.0...v0.2.0) - 08-12-2017"
+msgstr ""
+
+#: src/changelog.md:505
+msgid "Added inheritance support #15"
+msgstr ""
+
+#: src/changelog.md:506
+msgid "Added weakref support #56"
+msgstr ""
+
+#: src/changelog.md:507
+msgid "Added subclass support #64"
+msgstr ""
+
+#: src/changelog.md:508
+msgid "Added `self.__dict__` supoort #68"
+msgstr ""
+
+#: src/changelog.md:509
+msgid "Added `pyo3::prelude` module #70"
+msgstr ""
+
+#: src/changelog.md:510
+msgid "Better `Iterator` support for PyTuple, PyList, PyDict #75"
+msgstr ""
+
+#: src/changelog.md:511
+msgid "Introduce IntoPyDictPointer similar to IntoPyTuple #69"
+msgstr ""
+
+#: src/changelog.md:514
+msgid "Allow to add gc support without implementing PyGCProtocol #57"
+msgstr ""
+
+#: src/changelog.md:515
+msgid "Refactor `PyErr` implementation. Drop `py` parameter from constructor."
+msgstr ""
+
+#: src/changelog.md:517
+msgid "[0.1.0](https://github.com/PyO3/pyo3/tree/0.1.0) - 07-23-2017"
+msgstr ""
+
+#: src/changelog.md:519
+msgid "Initial release"
+msgstr ""
