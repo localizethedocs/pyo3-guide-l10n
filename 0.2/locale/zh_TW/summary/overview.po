@@ -1,0 +1,230 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:53Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/overview.md:1
+msgid "Overview"
+msgstr ""
+
+#: src/overview.md:3
+msgid ""
+"[![Build Status](https://travis-ci.org/PyO3/pyo3.svg?branch=master)](https://"
+"travis-ci.org/PyO3/pyo3) [![Latest Version](https://img.shields.io/crates/v/"
+"pyo3.svg)](https://crates.io/crates/pyo3) [![Rust Documentation](https://img."
+"shields.io/badge/api-rustdoc-blue.svg)](http://pyo3.github.io/pyo3/pyo3/)"
+msgstr ""
+
+#: src/overview.md:7
+msgid ""
+"PyO3 is a [Rust](http://www.rust-lang.org/) bindings for the [Python]"
+"(https://www.python.org/) interpreter."
+msgstr ""
+
+#: src/overview.md:9
+msgid "Supported Python versions:"
+msgstr ""
+
+#: src/overview.md:11
+msgid "Python2.7, Python 3.5 and up"
+msgstr ""
+
+#: src/overview.md:13
+msgid "Supported Rust version:"
+msgstr ""
+
+#: src/overview.md:15
+msgid "Rust 1.20.0-nightly or later"
+msgstr ""
+
+#: src/overview.md:16
+msgid "On Windows, we require rustc 1.20.0-nightly"
+msgstr ""
+
+#: src/overview.md:18
+msgid "Usage"
+msgstr ""
+
+#: src/overview.md:20
+msgid "To use `pyo3`, add this to your `Cargo.toml`:"
+msgstr ""
+
+#: src/overview.md:22
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.2\"\n"
+"```"
+msgstr ""
+
+#: src/overview.md:27
+msgid "Example program displaying the value of `sys.version`:"
+msgstr ""
+
+#: src/overview.md:40
+msgid "\"sys\""
+msgstr ""
+
+#: src/overview.md:41
+msgid "\"version\""
+msgstr ""
+
+#: src/overview.md:44
+msgid "\"os\""
+msgstr ""
+
+#: src/overview.md:45
+msgid "\"os.getenv('USER') or os.getenv('USERNAME')\""
+msgstr ""
+
+#: src/overview.md:47
+msgid "\"Hello {}, I'm Python {}\""
+msgstr ""
+
+#: src/overview.md:52
+msgid "Example library with python bindings:"
+msgstr ""
+
+#: src/overview.md:54
+msgid ""
+"The following two files will build with `cargo build`, and will generate a "
+"python-compatible library. For MacOS, \"-C link-arg=-undefined -C link-"
+"arg=dynamic_lookup\" is required to build the library. `setuptools-"
+"rust`includes this by default. See [examples/word-count](https://github.com/"
+"PyO3/pyo3/tree/master/examples/word-count). Also on macOS, you will need to "
+"rename the output from \\*.dylib to \\*.so. On Windows, you will need to "
+"rename the output from \\*.dll to \\*.pyd."
+msgstr ""
+
+#: src/overview.md:61
+msgid "**`Cargo.toml`:**"
+msgstr ""
+
+#: src/overview.md:63
+msgid ""
+"```toml\n"
+"[lib]\n"
+"name = \"rust2py\"\n"
+"crate-type = [\"cdylib\"]\n"
+"\n"
+"[dependencies.pyo3]\n"
+"version = \"0.2\"\n"
+"features = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/overview.md:73
+msgid "**`src/lib.rs`**"
+msgstr ""
+
+#: src/overview.md:82
+msgid ""
+"// add bindings to the generated python module\n"
+"// N.B: names: \"librust2py\" must be the name of the `.so` or `.pyd` file\n"
+"/// This module is implemented in Rust.\n"
+msgstr ""
+
+#: src/overview.md:89
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/overview.md:90
+msgid ""
+"// pyo3 aware function. All of our python interface could be declared in a "
+"separate module.\n"
+"    // Note that the `#[pyfn()]` annotation automatically converts the "
+"arguments from\n"
+"    // Python objects to Rust values; and the Rust return value back into a "
+"Python object.\n"
+msgstr ""
+
+#: src/overview.md:100
+msgid "// logic implemented as a normal Rust function\n"
+msgstr ""
+
+#: src/overview.md:103
+msgid "\"{}\""
+msgstr ""
+
+#: src/overview.md:109
+msgid ""
+"For `setup.py` integration, see [setuptools-rust](https://github.com/PyO3/"
+"setuptools-rust)"
+msgstr ""
+
+#: src/overview.md:111
+msgid "Ownership and Lifetimes"
+msgstr ""
+
+#: src/overview.md:113
+msgid ""
+"In Python, all objects are implicitly reference counted. In Rust, we will "
+"use the [`PyObject`](https://pyo3.github.io/pyo3/pyo3/struct.PyObject.html) "
+"type to represent a reference to a Python object."
+msgstr ""
+
+#: src/overview.md:117
+msgid ""
+"Because all Python objects potentially have multiple owners, the concept of "
+"Rust mutability does not apply to Python objects. As a result, this API will "
+"**allow mutating Python objects even if they are not stored in a mutable "
+"Rust variable**."
+msgstr ""
+
+#: src/overview.md:122
+msgid ""
+"The Python interpreter uses a global interpreter lock (GIL) to ensure thread-"
+"safety. This API uses a zero-sized [`struct Python<'p>`](https://pyo3.github."
+"io/pyo3/pyo3/struct.Python.html) as a token to indicate that a function can "
+"assume that the GIL is held."
+msgstr ""
+
+#: src/overview.md:126
+msgid ""
+"You obtain a [`Python`](https://pyo3.github.io/pyo3/pyo3/struct.Python.html) "
+"instance by acquiring the GIL, and have to pass it into some operations that "
+"call into the Python runtime."
+msgstr ""
+
+#: src/overview.md:129
+msgid ""
+"PyO3 library provides wrappers for python native objects. Ownership of "
+"python objects are disallowed because any access to python runtime has to be "
+"protected by GIL. All APIs are available through references. Lifetimes of "
+"python object's references are bound to GIL lifetime."
+msgstr ""
+
+#: src/overview.md:134
+msgid ""
+"There are two types of pointers that could be stored on Rust structs. Both "
+"implements `Send` and `Sync` traits and maintain python object's reference "
+"count."
+msgstr ""
+
+#: src/overview.md:137
+msgid ""
+"[`PyObject`](https://pyo3.github.io/pyo3/pyo3/struct.PyObject.html) is "
+"general purpose type. It does not maintain type of the referenced object. It "
+"provides helper methods for extracting Rust values and casting to specific "
+"python object type."
+msgstr ""
+
+#: src/overview.md:141
+msgid ""
+"[`Py<T>`](https://pyo3.github.io/pyo3/pyo3/struct.Py.html) represents a "
+"reference to a concrete python object `T`."
+msgstr ""
+
+#: src/overview.md:144
+msgid ""
+"To upgrade to a reference [`AsPyRef`](https://pyo3.github.io/pyo3/pyo3/trait."
+"AsPyRef.html) trait can be used."
+msgstr ""
