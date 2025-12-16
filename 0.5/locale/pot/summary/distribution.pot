@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:43Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/distribution.md:1
+msgid "Distribution"
+msgstr ""
+
+#: src/distribution.md:3
+msgid ""
+"There are two way to distribute your module as python package: The old "
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust) and the new [pyo3-"
+"pack](https://github.com/pyo3/pyo3-pack). setuptools-rust needs some "
+"configuration files (`setup.py`,  `MANIFEST.in`, `build-wheels.sh`, etc.) "
+"and external tools (docker, twine). pyo3-pack doesn't need any configuration "
+"files. It can not yet build sdist though ([pyo3/pyo3-pack#2](https://github."
+"com/PyO3/pyo3-pack/issues/2))."
+msgstr ""
