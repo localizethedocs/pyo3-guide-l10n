@@ -1,0 +1,597 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:34:09Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem/async-await.md:1
+msgid "Using `async` and `await`"
+msgstr ""
+
+#: src/ecosystem/async-await.md:3
+msgid ""
+"_`async`/`await` support is currently being integrated in PyO3. See the "
+"[dedicated documentation](../async-await.md)_"
+msgstr ""
+
+#: src/ecosystem/async-await.md:5
+msgid ""
+"If you are working with a Python library that makes use of async functions "
+"or wish to provide Python bindings for an async Rust library, [`pyo3-"
+"asyncio`](https://github.com/awestlake87/pyo3-asyncio) likely has the tools "
+"you need. It provides conversions between async functions in both Python and "
+"Rust and was designed with first-class support for popular Rust runtimes "
+"such as [`tokio`](https://tokio.rs/) and [`async-std`](https://async.rs/). "
+"In addition, all async Python code runs on the default `asyncio` event loop, "
+"so `pyo3-asyncio` should work just fine with existing Python libraries."
+msgstr ""
+
+#: src/ecosystem/async-await.md:13
+msgid ""
+"In the following sections, we'll give a general overview of `pyo3-asyncio` "
+"explaining how to call async Python functions with PyO3, how to call async "
+"Rust functions from Python, and how to configure your codebase to manage the "
+"runtimes of both."
+msgstr ""
+
+#: src/ecosystem/async-await.md:17
+msgid "Quickstart"
+msgstr ""
+
+#: src/ecosystem/async-await.md:19
+msgid ""
+"Here are some examples to get you started right away! A more detailed "
+"breakdown of the concepts in these examples can be found in the following "
+"sections."
+msgstr ""
+
+#: src/ecosystem/async-await.md:22
+msgid "Rust Applications"
+msgstr ""
+
+#: src/ecosystem/async-await.md:23
+msgid ""
+"Here we initialize the runtime, import Python's `asyncio` library and run "
+"the given future to completion using Python's default `EventLoop` and `async-"
+"std`. Inside the future, we convert `asyncio` sleep into a Rust future and "
+"await it."
+msgstr ""
+
+#: src/ecosystem/async-await.md:26
+msgid ""
+"```toml\n"
+"# Cargo.toml dependencies\n"
+"[dependencies]\n"
+"pyo3 = { version = \"0.14\" }\n"
+"pyo3-asyncio = { version = \"0.14\", features = [\"attributes\", \"async-std-"
+"runtime\"] }\n"
+"async-std = \"1.9\"\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:35 src/ecosystem/async-await.md:65
+#: src/ecosystem/async-await.md:523
+msgid "//! main.rs\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:42 src/ecosystem/async-await.md:72
+#: src/ecosystem/async-await.md:384
+msgid "\"asyncio\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:43 src/ecosystem/async-await.md:73
+#: src/ecosystem/async-await.md:386
+msgid "// convert asyncio.sleep into a Rust Future\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:44 src/ecosystem/async-await.md:74
+#: src/ecosystem/async-await.md:388
+msgid "\"sleep\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:53
+msgid ""
+"The same application can be written to use `tokio` instead using the "
+"`#[pyo3_asyncio::tokio::main]` attribute."
+msgstr ""
+
+#: src/ecosystem/async-await.md:56
+msgid ""
+"```toml\n"
+"# Cargo.toml dependencies\n"
+"[dependencies]\n"
+"pyo3 = { version = \"0.14\" }\n"
+"pyo3-asyncio = { version = \"0.14\", features = [\"attributes\", \"tokio-"
+"runtime\"] }\n"
+"tokio = \"1.4\"\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:83
+msgid ""
+"More details on the usage of this library can be found in the [API docs]"
+"(https://awestlake87.github.io/pyo3-asyncio/master/doc) and the primer below."
+msgstr ""
+
+#: src/ecosystem/async-await.md:85
+msgid "PyO3 Native Rust Modules"
+msgstr ""
+
+#: src/ecosystem/async-await.md:87
+msgid ""
+"PyO3 Asyncio can also be used to write native modules with async functions."
+msgstr ""
+
+#: src/ecosystem/async-await.md:89
+msgid ""
+"Add the `[lib]` section to `Cargo.toml` to make your library a `cdylib` that "
+"Python can import."
+msgstr ""
+
+#: src/ecosystem/async-await.md:90
+msgid ""
+"```toml\n"
+"[lib]\n"
+"name = \"my_async_module\"\n"
+"crate-type = [\"cdylib\"]\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:96
+msgid ""
+"Make your project depend on `pyo3` with the `extension-module` feature "
+"enabled and select your `pyo3-asyncio` runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:99
+msgid "For `async-std`:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:100
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = { version = \"0.14\", features = [\"extension-module\"] }\n"
+"pyo3-asyncio = { version = \"0.14\", features = [\"async-std-runtime\"] }\n"
+"async-std = \"1.9\"\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:107
+msgid "For `tokio`:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:108
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = { version = \"0.14\", features = [\"extension-module\"] }\n"
+"pyo3-asyncio = { version = \"0.14\", features = [\"tokio-runtime\"] }\n"
+"tokio = \"1.4\"\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:115
+msgid "Export an async function that makes use of `async-std`:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:118 src/ecosystem/async-await.md:141
+#: src/ecosystem/async-await.md:465
+msgid "//! lib.rs\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:138
+msgid ""
+"If you want to use `tokio` instead, here's what your module should look like:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:160
+msgid ""
+"You can build your module with maturin (see the [Using Rust in Python]"
+"(https://pyo3.rs/main/#using-rust-from-python) section in the PyO3 guide for "
+"setup instructions). After that you should be able to run the Python REPL to "
+"try it out."
+msgstr ""
+
+#: src/ecosystem/async-await.md:169 src/ecosystem/async-await.md:492
+msgid "\"help\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:169 src/ecosystem/async-await.md:492
+msgid "\"copyright\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:169 src/ecosystem/async-await.md:492
+msgid "\"credits\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:169 src/ecosystem/async-await.md:492
+msgid "\"license\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:182
+msgid "Awaiting an Async Python Function in Rust"
+msgstr ""
+
+#: src/ecosystem/async-await.md:184
+msgid "Let's take a look at a dead simple async Python function:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:187
+msgid "# Sleep for 1 second\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:192
+msgid ""
+"**Async functions in Python are simply functions that return a `coroutine` "
+"object**. For our purposes, we really don't need to know much about these "
+"`coroutine` objects. The key factor here is that calling an `async` function "
+"is _just like calling a regular function_, the only difference is that we "
+"have to do something special with the object that it returns."
+msgstr ""
+
+#: src/ecosystem/async-await.md:197
+msgid ""
+"Normally in Python, that something special is the `await` keyword, but in "
+"order to await this coroutine in Rust, we first need to convert it into "
+"Rust's version of a `coroutine`: a `Future`. That's where `pyo3-asyncio` "
+"comes in. [`pyo3_asyncio::async_std::into_future`](https://docs.rs/pyo3-"
+"asyncio/latest/pyo3_asyncio/async_std/fn.into_future.html) performs this "
+"conversion for us."
+msgstr ""
+
+#: src/ecosystem/async-await.md:203
+msgid ""
+"The following example uses `into_future` to call the `py_sleep` function "
+"shown above and then await the coroutine object returned from the call:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:212
+msgid "// import the module containing the py_sleep function\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:213
+msgid "\"example\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:215
+msgid ""
+"// calling the py_sleep method like a normal function\n"
+"        // returns a coroutine\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:217
+msgid "\"py_sleep\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:219
+msgid ""
+"// convert the coroutine into a Rust future using the\n"
+"        // tokio runtime\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:224 src/ecosystem/async-await.md:242
+#: src/ecosystem/async-await.md:273
+msgid "// await the future\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:231
+msgid ""
+"Alternatively, the below example shows how to write a `#[pyfunction]` which "
+"uses `into_future` to receive and await a coroutine argument:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:237 src/ecosystem/async-await.md:268
+msgid ""
+"// convert the coroutine into a Rust future using the\n"
+"    // async_std runtime\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:249
+msgid "This could be called from Python as:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:260
+msgid ""
+"If for you wanted to pass a callable function to the `#[pyfunction]` "
+"instead, (i.e. the last line becomes `await_coro(py_sleep))`, then the above "
+"example needs to be tweaked to first call the callable to get the coroutine:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:265
+msgid "// get the coroutine by calling the callable\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:280
+msgid ""
+"This can be particularly helpful where you need to repeatedly create and "
+"await a coroutine. Trying to await the same coroutine multiple times will "
+"raise an error:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:286
+msgid ""
+"If you're interested in learning more about `coroutines` and `awaitables` in "
+"general, check out the [Python 3 `asyncio` docs](https://docs.python.org/3/"
+"library/asyncio-task.html) for more information."
+msgstr ""
+
+#: src/ecosystem/async-await.md:289
+msgid "Awaiting a Rust Future in Python"
+msgstr ""
+
+#: src/ecosystem/async-await.md:291
+msgid ""
+"Here we have the same async function as before written in Rust using the "
+"[`async-std`](https://async.rs/) runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:295
+msgid "/// Sleep for 1 second\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:301
+msgid ""
+"Similar to Python, Rust's async functions also return a special object "
+"called a `Future`:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:308
+msgid ""
+"We can convert this `Future` object into Python to make it `awaitable`. This "
+"tells Python that you can use the `await` keyword with it. In order to do "
+"this, we'll call [`pyo3_asyncio::async_std::future_into_py`](https://docs.rs/"
+"pyo3-asyncio/latest/pyo3_asyncio/async_std/fn.future_into_py.html):"
+msgstr ""
+
+#: src/ecosystem/async-await.md:328
+msgid ""
+"In Python, we can call this pyo3 function just like any other async function:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:337
+msgid "Managing Event Loops"
+msgstr ""
+
+#: src/ecosystem/async-await.md:339
+msgid ""
+"Python's event loop requires some special treatment, especially regarding "
+"the main thread. Some of Python's `asyncio` features, like proper signal "
+"handling, require control over the main thread, which doesn't always play "
+"well with Rust."
+msgstr ""
+
+#: src/ecosystem/async-await.md:343
+msgid ""
+"Luckily, Rust's event loops are pretty flexible and don't _need_ control "
+"over the main thread, so in `pyo3-asyncio`, we decided the best way to "
+"handle Rust/Python interop was to just surrender the main thread to Python "
+"and run Rust's event loops in the background. Unfortunately, since most "
+"event loop implementations _prefer_ control over the main thread, this can "
+"still make some things awkward."
+msgstr ""
+
+#: src/ecosystem/async-await.md:348
+msgid "PyO3 Asyncio Initialization"
+msgstr ""
+
+#: src/ecosystem/async-await.md:350
+msgid ""
+"Because Python needs to control the main thread, we can't use the convenient "
+"proc macros from Rust runtimes to handle the `main` function or `#[test]` "
+"functions. Instead, the initialization for PyO3 has to be done from the "
+"`main` function and the main thread must block on [`pyo3_asyncio::async_std::"
+"run_until_complete`](https://docs.rs/pyo3-asyncio/latest/pyo3_asyncio/"
+"async_std/fn.run_until_complete.html)."
+msgstr ""
+
+#: src/ecosystem/async-await.md:354
+msgid ""
+"Because we have to block on one of those functions, we can't use "
+"[`#[async_std::main]`](https://docs.rs/async-std/latest/async_std/attr.main."
+"html) or [`#[tokio::main]`](https://docs.rs/tokio/1.1.0/tokio/attr.main."
+"html) since it's not a good idea to make long blocking calls during an async "
+"function."
+msgstr ""
+
+#: src/ecosystem/async-await.md:357
+msgid ""
+"Internally, these `#[main]` proc macros are expanded to something like this:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:360
+msgid "// your async main fn\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:361
+msgid "/* ... */"
+msgstr ""
+
+#: src/ecosystem/async-await.md:365
+msgid ""
+"Making a long blocking call inside the `Future` that's being driven by "
+"`block_on` prevents that thread from doing anything else and can spell "
+"trouble for some runtimes (also this will actually deadlock a single-"
+"threaded runtime!). Many runtimes have some sort of `spawn_blocking` "
+"mechanism that can avoid this problem, but again that's not something we can "
+"use here since we need it to block on the _main_ thread."
+msgstr ""
+
+#: src/ecosystem/async-await.md:371
+msgid ""
+"For this reason, `pyo3-asyncio` provides its own set of proc macros to "
+"provide you with this initialization. These macros are intended to mirror "
+"the initialization of `async-std` and `tokio` while also satisfying the "
+"Python runtime's needs."
+msgstr ""
+
+#: src/ecosystem/async-await.md:375
+msgid ""
+"Here's a full example of PyO3 initialization with the `async-std` runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:381
+msgid "// PyO3 is initialized - Ready to go\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:398
+msgid "A Note About `asyncio.run`"
+msgstr ""
+
+#: src/ecosystem/async-await.md:400
+msgid ""
+"In Python 3.7+, the recommended way to run a top-level coroutine with "
+"`asyncio` is with `asyncio.run`. In `v0.13` we recommended against using "
+"this function due to initialization issues, but in `v0.14` it's perfectly "
+"valid to use this function... with a caveat."
+msgstr ""
+
+#: src/ecosystem/async-await.md:403
+msgid ""
+"Since our Rust \\<\\--> Python conversions require a reference to the Python "
+"event loop, this poses a problem. Imagine we have a PyO3 Asyncio module that "
+"defines a `rust_sleep` function like in previous examples. You might "
+"rightfully assume that you can call pass this directly into `asyncio.run` "
+"like this:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:414
+msgid "You might be surprised to find out that this throws an error:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:417
+msgid "\"example.py\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:422
+msgid ""
+"What's happening here is that we are calling `rust_sleep` _before_ the "
+"future is actually running on the event loop created by `asyncio.run`. This "
+"is counter-intuitive, but expected behaviour, and unfortunately there "
+"doesn't seem to be a good way of solving this problem within PyO3 Asyncio "
+"itself."
+msgstr ""
+
+#: src/ecosystem/async-await.md:425
+msgid "However, we can make this example work with a simple workaround:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:431
+msgid ""
+"# Calling main will just construct the coroutine that later calls "
+"rust_sleep.\n"
+"# - This ensures that rust_sleep will be called when the event loop is "
+"running,\n"
+"#   not before.\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:437
+msgid "# Run the main() coroutine at the top-level instead\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:442
+msgid "Non-standard Python Event Loops"
+msgstr ""
+
+#: src/ecosystem/async-await.md:444
+msgid ""
+"Python allows you to use alternatives to the default `asyncio` event loop. "
+"One popular alternative is `uvloop`. In `v0.13` using non-standard event "
+"loops was a bit of an ordeal, but in `v0.14` it's trivial."
+msgstr ""
+
+#: src/ecosystem/async-await.md:448
+msgid "Using `uvloop` in a PyO3 Asyncio Native Extensions"
+msgstr ""
+
+#: src/ecosystem/async-await.md:450
+msgid ""
+"```toml\n"
+"# Cargo.toml\n"
+"\n"
+"[lib]\n"
+"name = \"my_async_module\"\n"
+"crate-type = [\"cdylib\"]\n"
+"\n"
+"[dependencies]\n"
+"pyo3 = { version = \"0.14\", features = [\"extension-module\"] }\n"
+"pyo3-asyncio = { version = \"0.14\", features = [\"tokio-runtime\"] }\n"
+"async-std = \"1.9\"\n"
+"tokio = \"1.4\"\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:507
+msgid "Using `uvloop` in Rust Applications"
+msgstr ""
+
+#: src/ecosystem/async-await.md:509
+msgid ""
+"Using `uvloop` in Rust applications is a bit trickier, but it's still "
+"possible with relatively few modifications."
+msgstr ""
+
+#: src/ecosystem/async-await.md:512
+msgid ""
+"Unfortunately, we can't make use of the `#[pyo3_asyncio::<runtime>::main]` "
+"attribute with non-standard event loops. This is because the "
+"`#[pyo3_asyncio::<runtime>::main]` proc macro has to interact with the "
+"Python event loop before we can install the `uvloop` policy."
+msgstr ""
+
+#: src/ecosystem/async-await.md:515
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"async-std = \"1.9\"\n"
+"pyo3 = \"0.14\"\n"
+"pyo3-asyncio = { version = \"0.14\", features = [\"async-std-runtime\"] }\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:531
+msgid "\"uvloop\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:532
+msgid "\"install\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:534
+msgid "// store a reference for the assertion\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:538
+msgid "// verify that we are on a uvloop.Loop\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:543
+msgid "\"Loop\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:556
+msgid "Additional Information"
+msgstr ""
+
+#: src/ecosystem/async-await.md:557
+msgid ""
+"Managing event loop references can be tricky with pyo3-asyncio. See [Event "
+"Loop References](https://docs.rs/pyo3-asyncio/#event-loop-references) in the "
+"API docs to get a better intuition for how event loop references are managed "
+"in this library."
+msgstr ""
+
+#: src/ecosystem/async-await.md:558
+msgid ""
+"Testing pyo3-asyncio libraries and applications requires a custom test "
+"harness since Python requires control over the main thread. You can find a "
+"testing guide in the [API docs for the `testing` module](https://docs.rs/"
+"pyo3-asyncio/latest/pyo3_asyncio/testing)"
+msgstr ""
