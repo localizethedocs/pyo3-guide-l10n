@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:48Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/module.md:1
+msgid "Python Modules"
+msgstr ""
+
+#: src/module.md:3
+msgid ""
+"As shown in the Getting Started chapter, you can create a module as follows:"
+msgstr ""
+
+#: src/module.md:7
+msgid ""
+"// add bindings to the generated python module\n"
+"// N.B: names: \"librust2py\" must be the name of the `.so` or `.pyd` file\n"
+"/// This module is implemented in Rust.\n"
+msgstr ""
+
+#: src/module.md:14
+msgid ""
+"// PyO3 aware function. All of our python interfaces could be declared in a "
+"separate module.\n"
+"    // Note that the `#[pyfn()]` annotation automatically converts the "
+"arguments from\n"
+"    // Python objects to Rust values; and the Rust return value back into a "
+"Python object.\n"
+msgstr ""
+
+#: src/module.md:17
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/module.md:25
+msgid "// logic implemented as a normal rust function\n"
+msgstr ""
+
+#: src/module.md:28
+msgid "\"{}\""
+msgstr ""
+
+#: src/module.md:34
+msgid ""
+"The `#[pymodule]` procedural macro attribute takes care of exporting the "
+"initialization function of your module to Python. It can take as an argument "
+"the name of your module, which must be the name of the `.so` or `.pyd` file; "
+"the default is the Rust function's name."
+msgstr ""
+
+#: src/module.md:36
+msgid ""
+"To import the module, either copy the shared library as described in [Get "
+"Started](./get_started.md) or use a tool, e.g. `maturin develop` with "
+"[maturin](https://github.com/PyO3/maturin) or `python setup.py develop` with "
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust)."
+msgstr ""
+
+#: src/module.md:38
+msgid "Documentation"
+msgstr ""
+
+#: src/module.md:40
+msgid ""
+"The [Rust doc comments](https://doc.rust-lang.org/stable/book/first-edition/"
+"comments.html) of the module initialization function will be applied "
+"automatically as the Python doc string of your module."
+msgstr ""
+
+#: src/module.md:48
+msgid ""
+"Which means that the above Python code will print `This module is "
+"implemented in Rust.`."
+msgstr ""
+
+#: src/module.md:50
+msgid "Modules as objects"
+msgstr ""
+
+#: src/module.md:52
+msgid ""
+"In Python, modules are first class objects. This means that you can store "
+"them as values or add them to dicts or other modules:"
+msgstr ""
+
+#: src/module.md:61
+msgid "\"Subfunction\""
+msgstr ""
+
+#: src/module.md:80
+msgid "\"supermodule\""
+msgstr ""
+
+#: src/module.md:82
+msgid "\"assert supermodule.submodule.subfunction() == 'Subfunction'\""
+msgstr ""
+
+#: src/module.md:86
+msgid ""
+"This way, you can create a module hierarchy within a single extension module."
+msgstr ""
