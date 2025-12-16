@@ -1,0 +1,47 @@
+{
+  "po" : 
+  {
+    "en_US" : 
+    {
+      "branch" : "",
+      "commit" : 
+      {
+        "date" : "",
+        "hash" : "",
+        "title" : ""
+      }
+    },
+    "zh_CN" : 
+    {
+      "branch" : "",
+      "commit" : 
+      {
+        "date" : "",
+        "hash" : "",
+        "title" : ""
+      }
+    },
+    "zh_TW" : 
+    {
+      "branch" : "",
+      "commit" : 
+      {
+        "date" : "",
+        "hash" : "",
+        "title" : ""
+      }
+    }
+  },
+  "pot" : 
+  {
+    "branch" : "main",
+    "commit" : 
+    {
+      "date" : "2025-12-16 08:31:54 +0000",
+      "hash" : "0c1d54ef49077b2665cd93cb7445068cd09360f4",
+      "title" : "build(deps): bump actions/upload-artifact from 5 to 6 (#5700)"
+    }
+  },
+  "type" : "branch",
+  "version" : "latest"
+}
