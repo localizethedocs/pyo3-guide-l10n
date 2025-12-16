@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:51Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions.md:1
+msgid "Type Conversions"
+msgstr ""
+
+#: src/conversions.md:3
+msgid ""
+"`PyO3` provides some handy traits to convert between Python types and Rust "
+"types."
+msgstr ""
+
+#: src/conversions.md:5
+msgid "`ToPyObject` and `IntoPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:7
+msgid ""
+"[`ToPyObject`](https://pyo3.github.io/PyO3/pyo3/trait.ToPyObject.html) trait "
+"is a conversion trait that allows various objects to be converted into "
+"[`PyObject`](https://pyo3.github.io/PyO3/pyo3/struct.PyObject.html). "
+"[`IntoPyObject`](https://pyo3.github.io/PyO3/pyo3/trait.IntoPyObject.html) "
+"serves the same purpose except it consumes `self`."
+msgstr ""
+
+#: src/conversions.md:9
+msgid "`IntoPyTuple` trait"
+msgstr ""
+
+#: src/conversions.md:11
+msgid ""
+"[`IntoPyTuple`](https://pyo3.github.io/PyO3/pyo3/trait.IntoPyTuple.html) "
+"trait is a conversion trait that allows various objects to be converted into "
+"[`PyTuple`](https://pyo3.github.io/PyO3/pyo3/struct.PyTuple.html) object."
+msgstr ""
+
+#: src/conversions.md:13
+msgid ""
+"For example, [`IntoPyTuple`](https://pyo3.github.io/PyO3/pyo3/trait."
+"IntoPyTuple.html) trait is implemented for `()` so that you can convert it "
+"into a empty [`PyTuple`](https://pyo3.github.io/PyO3/pyo3/struct.PyTuple."
+"html)"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`FromPyObject` and `RefFromPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:29
+msgid "TODO"
+msgstr ""

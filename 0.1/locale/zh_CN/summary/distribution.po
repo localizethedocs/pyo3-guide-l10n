@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:51Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/distribution.md:1
+msgid "Distribution"
+msgstr ""
+
+#: src/distribution.md:3
+msgid "`setuptools-rust` integration"
+msgstr ""
+
+#: src/distribution.md:5
+msgid ""
+"[`setuptools-rust`](https://github.com/PyO3/setuptools-rust) is a setuptools "
+"helpers for Rust Python extensions. It supports `PyO3` by default."
+msgstr ""
+
+#: src/distribution.md:7
+msgid ""
+"For detailed usage, please refer to its [README](https://github.com/PyO3/"
+"setuptools-rust/blob/master/README.rst)"
+msgstr ""
+
+#: src/distribution.md:9
+msgid "Source distribution"
+msgstr ""
+
+#: src/distribution.md:11
+msgid ""
+"To build a source code distribution, you need to add the following lines to "
+"your `MANIFEST.in` file to ensure it correctly packages Rust extension "
+"source code."
+msgstr ""
+
+#: src/distribution.md:18
+msgid ""
+"Then you can build a source code distribution by (assuming you have already "
+"written a `setup.py`):"
+msgstr ""
+
+#: src/distribution.md:24
+msgid "Binary wheel distribution"
+msgstr ""
+
+#: src/distribution.md:26
+msgid ""
+"To build a binary wheel, [manylinux](https://github.com/pypa/manylinux) "
+"would be a natural choice for Linux."
+msgstr ""
+
+#: src/distribution.md:28
+msgid "TODO: an manylinux1 example, macOS wheel"
+msgstr ""
