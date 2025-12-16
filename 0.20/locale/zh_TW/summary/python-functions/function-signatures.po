@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:35Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function/signature.md:1
+msgid "Function signatures"
+msgstr ""
+
+#: src/function/signature.md:3
+msgid ""
+"The `#[pyfunction]` attribute also accepts parameters to control how the "
+"generated Python function accepts arguments. Just like in Python, arguments "
+"can be positional-only, keyword-only, or accept either. `*args` lists and "
+"`**kwargs` dicts can also be accepted. These parameters also work for "
+"`#[pymethods]` which will be introduced in the [Python Classes](../class.md) "
+"section of the guide."
+msgstr ""
+
+#: src/function/signature.md:5
+msgid ""
+"Like Python, by default PyO3 accepts all arguments as either positional or "
+"keyword arguments. Most arguments are required by default, except for "
+"trailing `Option<_>` arguments, which are [implicitly given a default of "
+"`None`](#trailing-optional-arguments). There are two ways to modify this "
+"behaviour:"
+msgstr ""
+
+#: src/function/signature.md:6
+msgid ""
+"The `#[pyo3(signature = (...))]` option which allows writing a signature in "
+"Python syntax."
+msgstr ""
+
+#: src/function/signature.md:7
+msgid "Extra arguments directly to `#[pyfunction]`. (See deprecated form)"
+msgstr ""
+
+#: src/function/signature.md:9
+msgid "Using `#[pyo3(signature = (...))]`"
+msgstr ""
+
+#: src/function/signature.md:11
+msgid ""
+"For example, below is a function that accepts arbitrary keyword arguments "
+"(`**kwargs` in Python syntax) and returns the number that was passed:"
+msgstr ""
+
+#: src/function/signature.md:30
+msgid ""
+"Just like in Python, the following constructs can be part of the signature::"
+msgstr ""
+
+#: src/function/signature.md:32
+msgid ""
+"`/`: positional-only arguments separator, each parameter defined before `/` "
+"is a positional-only parameter."
+msgstr ""
+
+#: src/function/signature.md:33
+msgid ""
+"`*`: var arguments separator, each parameter defined after `*` is a keyword-"
+"only parameter."
+msgstr ""
+
+#: src/function/signature.md:34
+msgid ""
+"`*args`: \"args\" is var args. Type of the `args` parameter has to be "
+"`&PyTuple`."
+msgstr ""
+
+#: src/function/signature.md:35
+msgid ""
+"`**kwargs`: \"kwargs\" receives keyword arguments. The type of the `kwargs` "
+"parameter has to be `Option<&PyDict>`."
+msgstr ""
+
+#: src/function/signature.md:36
+msgid ""
+"`arg=Value`: arguments with default value. If the `arg` argument is defined "
+"after var arguments, it is treated as a keyword-only argument. Note that "
+"`Value` has to be valid rust code, PyO3 just inserts it into the generated "
+"code unmodified."
+msgstr ""
+
+#: src/function/signature.md:41
+msgid "Example:"
+msgstr ""
+
+#: src/function/signature.md:58
+msgid "\"Hello\""
+msgstr ""
+
+#: src/function/signature.md:69
+msgid "\"num={} (was previously={}), py_args={:?}, name={}, py_kwargs={:?} \""
+msgstr ""
+
+#: src/function/signature.md:76
+msgid "\"num={}\""
+msgstr ""
+
+#: src/function/signature.md:81
+msgid "Arguments of type `Python` must not be part of the signature:"
+msgstr ""
+
+#: src/function/signature.md:93
+msgid ""
+"N.B. the position of the `/` and `*` arguments (if included) control the "
+"system of handling positional and keyword arguments. In Python:"
+msgstr ""
+
+#: src/function/signature.md:98 src/function/signature.md:99
+msgid "\"World\""
+msgstr ""
+
+#: src/function/signature.md:102
+msgid "Produces output:"
+msgstr ""
+
+#: src/function/signature.md:110
+msgid ""
+"Note: to use keywords like `struct` as a function argument, use \"raw "
+"identifier\" syntax `r#struct` in both the signature and the function "
+"definition:"
+msgstr ""
+
+#: src/function/signature.md:115
+msgid "\"foo\""
+msgstr ""
+
+#: src/function/signature.md:118
+msgid "/* ... */"
+msgstr ""
+
+#: src/function/signature.md:122
+msgid "Trailing optional arguments"
+msgstr ""
+
+#: src/function/signature.md:124
+msgid ""
+"As a convenience, functions without a `#[pyo3(signature = (...))]` option "
+"will treat trailing `Option<T>` arguments as having a default of `None`. In "
+"the example below, PyO3 will create `increment` with a signature of "
+"`increment(x, amount=None)`."
+msgstr ""
+
+#: src/function/signature.md:128
+msgid ""
+"/// Returns a copy of `x` increased by `amount`.\n"
+"///\n"
+"/// If `amount` is unspecified or `None`, equivalent to `x + 1`.\n"
+msgstr ""
+
+#: src/function/signature.md:141 src/function/signature.md:169
+#: src/function/signature.md:212 src/function/signature.md:260
+msgid "\"inspect\""
+msgstr ""
+
+#: src/function/signature.md:141 src/function/signature.md:169
+#: src/function/signature.md:212 src/function/signature.md:260
+msgid "\"signature\""
+msgstr ""
+
+#: src/function/signature.md:144 src/function/signature.md:172
+#: src/function/signature.md:215 src/function/signature.md:263
+msgid "\"__str__\""
+msgstr ""
+
+#: src/function/signature.md:147 src/function/signature.md:175
+#: src/function/signature.md:218
+msgid "// on 3.7 the signature doesn't render b, upstream bug?\n"
+msgstr ""
+
+#: src/function/signature.md:148
+msgid "\"(x, amount=None)\""
+msgstr ""
+
+#: src/function/signature.md:155
+msgid ""
+"To make trailing `Option<T>` arguments required, but still accept `None`, "
+"add a `#[pyo3(signature = (...))]` annotation. For the example above, this "
+"would be `#[pyo3(signature = (x, amount))]`:"
+msgstr ""
+
+#: src/function/signature.md:176
+msgid "\"(x, amount)\""
+msgstr ""
+
+#: src/function/signature.md:183
+msgid ""
+"To help avoid confusion, PyO3 requires `#[pyo3(signature = (...))]` when an "
+"`Option<T>` argument is surrounded by arguments which aren't `Option<T>`."
+msgstr ""
+
+#: src/function/signature.md:185
+msgid "Making the function signature available to Python"
+msgstr ""
+
+#: src/function/signature.md:187
+msgid ""
+"The function signature is exposed to Python via the `__text_signature__` "
+"attribute. PyO3 automatically generates this for every `#[pyfunction]` and "
+"all `#[pymethods]` directly from the Rust function, taking into account any "
+"override done with the `#[pyo3(signature = (...))]` option."
+msgstr ""
+
+#: src/function/signature.md:189
+msgid ""
+"This automatic generation can only display the value of default arguments "
+"for strings, integers, boolean types, and `None`. Any other default "
+"arguments will be displayed as `...`. (`.pyi` type stub files commonly also "
+"use `...` for default arguments in the same way.)"
+msgstr ""
+
+#: src/function/signature.md:191
+msgid ""
+"In cases where the automatically-generated signature needs adjusting, it can "
+"[be overridden](#overriding-the-generated-signature) using the "
+"`#[pyo3(text_signature)]` option.)"
+msgstr ""
+
+#: src/function/signature.md:193
+msgid ""
+"The example below creates a function `add` which accepts two positional-only "
+"arguments `a` and `b`, where `b` has a default value of zero."
+msgstr ""
+
+#: src/function/signature.md:197 src/function/signature.md:245
+#: src/function/signature.md:287
+msgid "/// This function adds two unsigned 64-bit integers.\n"
+msgstr ""
+
+#: src/function/signature.md:209 src/function/signature.md:257
+#: src/function/signature.md:299
+msgid "\"__doc__\""
+msgstr ""
+
+#: src/function/signature.md:210 src/function/signature.md:258
+#: src/function/signature.md:300
+msgid "\"This function adds two unsigned 64-bit integers.\""
+msgstr ""
+
+#: src/function/signature.md:219 src/function/signature.md:248
+#: src/function/signature.md:265
+msgid "\"(a, b=0, /)\""
+msgstr ""
+
+#: src/function/signature.md:226
+msgid ""
+"The following IPython output demonstrates how this generated signature will "
+"be seen from Python tooling:"
+msgstr ""
+
+#: src/function/signature.md:237
+msgid "Overriding the generated signature"
+msgstr ""
+
+#: src/function/signature.md:239
+msgid ""
+"The `#[pyo3(text_signature = \"(<some signature>)\")]` attribute can be used "
+"to override the default generated signature."
+msgstr ""
+
+#: src/function/signature.md:241
+msgid ""
+"In the snippet below, the text signature attribute is used to include the "
+"default value of `0` for the argument `b`, instead of the automatically-"
+"generated default value of `...`:"
+msgstr ""
+
+#: src/function/signature.md:272
+msgid ""
+"PyO3 will include the contents of the annotation unmodified as the "
+"`__text_signature`. Below shows how IPython will now present this (see the "
+"default value of 0 for b):"
+msgstr ""
+
+#: src/function/signature.md:283
+msgid ""
+"If no signature is wanted at all, `#[pyo3(text_signature = None)]` will "
+"disable the built-in signature. The snippet below demonstrates use of this:"
+msgstr ""
+
+#: src/function/signature.md:301
+msgid "\"__text_signature__\""
+msgstr ""
+
+#: src/function/signature.md:308
+msgid ""
+"Now the function's `__text_signature__` will be set to `None`, and IPython "
+"will not display any signature in the help:"
+msgstr ""
