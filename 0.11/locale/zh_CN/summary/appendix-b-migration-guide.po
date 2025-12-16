@@ -1,0 +1,268 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:54Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/migration.md:1
+msgid "Appendix B: Migrating from older PyO3 versions"
+msgstr ""
+
+#: src/migration.md:3
+msgid ""
+"This guide can help you upgrade code through breaking changes from one PyO3 "
+"version to the next. For a detailed list of all changes, see [CHANGELOG.md]"
+"(https://github.com/PyO3/pyo3/blob/master/CHANGELOG.md)"
+msgstr ""
+
+#: src/migration.md:6
+msgid "from 0.10.\\* to 0.11"
+msgstr ""
+
+#: src/migration.md:8
+msgid "Stable Rust"
+msgstr ""
+
+#: src/migration.md:9
+msgid ""
+"PyO3 now supports the stable Rust toolchain. The minimum required version is "
+"1.39.0."
+msgstr ""
+
+#: src/migration.md:11
+msgid "`#[pyclass]` structs must now be `Send` or `unsendable`"
+msgstr ""
+
+#: src/migration.md:12
+msgid ""
+"Because `#[pyclass]` structs can be sent between threads by the Python "
+"interpreter, they must implement `Send` or declared as `unsendable` (by "
+"`#[pyclass(unsendable)]`). Note that `unsendable` is added in PyO3 `0.11.1` "
+"and `Send` is always required in PyO3 `0.11.0`."
+msgstr ""
+
+#: src/migration.md:16
+msgid ""
+"This may \"break\" some code which previously was accepted, even though it "
+"could be unsound. There can be two fixes:"
+msgstr ""
+
+#: src/migration.md:19
+msgid ""
+"If you think that your `#[pyclass]` actually must be `Send`able, then let's "
+"implement `Send`. A common, safer way is using thread-safe types. E.g., "
+"`Arc` instead of `Rc`, `Mutex` instead of `RefCell`, and `Box<dyn Send + T>` "
+"instead of `Box<dyn T>`."
+msgstr ""
+
+#: src/migration.md:23 src/migration.md:57 src/migration.md:82
+#: src/migration.md:110 src/migration.md:138 src/migration.md:224
+#: src/migration.md:251 src/migration.md:286
+msgid "Before:"
+msgstr ""
+
+#: src/migration.md:36 src/migration.md:67 src/migration.md:92
+#: src/migration.md:120 src/migration.md:152 src/migration.md:234
+#: src/migration.md:258 src/migration.md:304
+msgid "After:"
+msgstr ""
+
+#: src/migration.md:48
+msgid ""
+"In situations where you cannot change your `#[pyclass]` to automatically "
+"implement `Send` (e.g., when it contains a raw pointer), you can use `unsafe "
+"impl Send`. In such cases, care should be taken to ensure the struct is "
+"actually thread safe. See [the Rustnomicon](https://doc.rust-lang.org/"
+"nomicon/send-and-sync.html) for more."
+msgstr ""
+
+#: src/migration.md:53
+msgid ""
+"If you think that your `#[pyclass]` should not be accessed by another "
+"thread, you can use `unsendable` flag. A class marked with `unsendable` "
+"panics when accessed by another thread, making it thread-safe to expose an "
+"unsendable object to the Python interpreter."
+msgstr ""
+
+#: src/migration.md:77
+msgid "All `PyObject` and `Py<T>` methods now take `Python` as an argument"
+msgstr ""
+
+#: src/migration.md:78
+msgid ""
+"Previously, a few methods such as `Object::get_refcnt` did not take `Python` "
+"as an argument (to ensure that the Python GIL was held by the current "
+"thread). Technically, this was not sound. To migrate, just pass a `py` "
+"argument to any calls to these methods."
+msgstr ""
+
+#: src/migration.md:102
+msgid "from 0.9.\\* to 0.10"
+msgstr ""
+
+#: src/migration.md:104
+msgid "`ObjectProtocol` is removed"
+msgstr ""
+
+#: src/migration.md:105
+msgid ""
+"All methods are moved to [`PyAny`](https://docs.rs/pyo3/latest/pyo3/types/"
+"struct.PyAny.html). And since now all native types (e.g., `PyList`) "
+"implements `Deref<Target=PyAny>`, all you need to do is remove "
+"`ObjectProtocol` from your code. Or if you use `ObjectProtocol` by `use "
+"pyo3::prelude::*`, you have to do nothing."
+msgstr ""
+
+#: src/migration.md:115 src/migration.md:123
+msgid "\"lambda: 'Hi :)'\""
+msgstr ""
+
+#: src/migration.md:128
+msgid "No `#![feature(specialization)]` in user code"
+msgstr ""
+
+#: src/migration.md:129
+msgid ""
+"While PyO3 itself still requires specialization and nightly Rust, now you "
+"don't have to use `#![feature(specialization)]` in your crate."
+msgstr ""
+
+#: src/migration.md:132
+msgid "from 0.8.\\* to 0.9"
+msgstr ""
+
+#: src/migration.md:134
+msgid "`#[new]` interface"
+msgstr ""
+
+#: src/migration.md:135
+msgid ""
+"[`PyRawObject`](https://docs.rs/pyo3/0.8.5/pyo3/type_object/struct."
+"PyRawObject.html) is now removed and our syntax for constructors has changed."
+msgstr ""
+
+#: src/migration.md:167
+msgid ""
+"Basically you can return `Self` or `Result<Self>` directly. For more, see "
+"[the constructor section](https://pyo3.rs/master/class.html#constructor) of "
+"this guide."
+msgstr ""
+
+#: src/migration.md:170
+msgid "PyCell"
+msgstr ""
+
+#: src/migration.md:171
+msgid ""
+"PyO3 0.9 introduces [`PyCell`](https://docs.rs/pyo3/latest/pyo3/pycell/"
+"struct.PyCell.html), which is a [`RefCell`](https://doc.rust-lang.org/std/"
+"cell/struct.RefCell.html)\\-like object wrapper for ensuring Rust's rules "
+"regarding aliasing of references are upheld. For more detail, see the [Rust "
+"Book's section on Rust's rules of references](https://doc.rust-lang.org/book/"
+"ch04-02-references-and-borrowing.html#the-rules-of-references)"
+msgstr ""
+
+#: src/migration.md:176
+msgid ""
+"For `#[pymethods]` or `#[pyfunction]`s, your existing code should continue "
+"to work without any change. Python exceptions will automatically be raised "
+"when your functions are used in a way which breaks Rust's rules of "
+"references."
+msgstr ""
+
+#: src/migration.md:180
+msgid "Here is an example."
+msgstr ""
+
+#: src/migration.md:202
+msgid ""
+"r\"\n"
+"# try:\n"
+"#    names.merge(names)\n"
+"#    assert False, 'Unreachable'\n"
+"# except RuntimeError as e:\n"
+"#    isinstance(e, borrow_mut_err)\n"
+"# \""
+msgstr ""
+
+#: src/migration.md:210
+msgid ""
+"`Names` has a `merge` method, which takes `&mut self` and another argument "
+"of type `&mut Self`. Given this `#[pyclass]`, calling `names.merge(names)` "
+"in Python raises a [`PyBorrowMutError`](https://docs.rs/pyo3/latest/pyo3/"
+"pycell/struct.PyBorrowMutError.html) exception, since it requires two "
+"mutable borrows of `names`."
+msgstr ""
+
+#: src/migration.md:214
+msgid ""
+"However, for `#[pyproto]` and some functions, you need to manually fix the "
+"code."
+msgstr ""
+
+#: src/migration.md:216
+msgid "Object creation"
+msgstr ""
+
+#: src/migration.md:217
+msgid ""
+"In 0.8 object creation was done with `PyRef::new` and `PyRefMut::new`. In "
+"0.9 these have both been removed. To upgrade code, please use [`PyCell::new`]"
+"(https://pyo3.rs/master/doc/pyo3/pycell/struct.PyCell.html#method.new) "
+"instead. If you need [`PyRef`](https://docs.rs/pyo3/latest/pyo3/pycell/"
+"struct.PyRef.html) or [`PyRefMut`](https://docs.rs/pyo3/latest/pyo3/pycell/"
+"struct.PyRef.html), just call `.borrow()` or `.borrow_mut()` on the newly-"
+"created `PyCell`."
+msgstr ""
+
+#: src/migration.md:245
+msgid "Object extraction"
+msgstr ""
+
+#: src/migration.md:246
+msgid ""
+"For `PyClass` types `T`, `&T` and `&mut T` no longer have [`FromPyObject`]"
+"(https://docs.rs/pyo3/latest/pyo3/conversion/trait.FromPyObject.html) "
+"implementations. Instead you should extract `PyRef<T>` or `PyRefMut<T>`, "
+"respectively. If `T` implements `Clone`, you can extract `T` itself. In "
+"addition, you can also extract `&PyCell<T>`, though you rarely need it."
+msgstr ""
+
+#: src/migration.md:267
+msgid "\"c\""
+msgstr ""
+
+#: src/migration.md:268
+msgid "\"c()\""
+msgstr ""
+
+#: src/migration.md:271
+msgid "// extracted by cloning the object\n"
+msgstr ""
+
+#: src/migration.md:274
+msgid ""
+"// we need to drop obj_ref before we can extract a PyRefMut due to Rust's "
+"rules of references\n"
+msgstr ""
+
+#: src/migration.md:280
+msgid "`#[pyproto]`"
+msgstr ""
+
+#: src/migration.md:281
+msgid ""
+"Most of the arguments to methods in `#[pyproto]` impls require a "
+"[`FromPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPyObject.html) implementation. So if your protocol methods take `&T` or "
+"`&mut T` (where `T: PyClass`), please use [`PyRef`](https://docs.rs/pyo3/"
+"latest/pyo3/pycell/struct.PyRef.html) or [`PyRefMut`](https://docs.rs/pyo3/"
+"latest/pyo3/pycell/struct.PyRef.html) instead."
+msgstr ""

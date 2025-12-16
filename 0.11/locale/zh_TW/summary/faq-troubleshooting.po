@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:54Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/faq.md:1
+msgid "Frequently Asked Questions / Troubleshooting"
+msgstr ""
+
+#: src/faq.md:3
+msgid "I'm experiencing deadlocks using PyO3 with lazy_static or once_cell!"
+msgstr ""
+
+#: src/faq.md:5
+msgid ""
+"`lazy_static` and `once_cell::sync` both use locks to ensure that "
+"initialization is performed only by a single thread. Because the Python GIL "
+"is an additional lock this can lead to deadlocks in the following way:"
+msgstr ""
+
+#: src/faq.md:7
+msgid ""
+"A thread (thread A) which has acquired the Python GIL starts initialization "
+"of a `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:8
+msgid ""
+"The initialization code calls some Python API which temporarily releases the "
+"GIL e.g. `Python::import`."
+msgstr ""
+
+#: src/faq.md:9
+msgid ""
+"Another thread (thread B) acquires the Python GIL and attempts to access the "
+"same `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:10
+msgid ""
+"Thread B is blocked, because it waits for `lazy_static`'s initialization to "
+"lock to release."
+msgstr ""
+
+#: src/faq.md:11
+msgid ""
+"Thread A is blocked, because it waits to re-aquire the GIL which thread B "
+"still holds."
+msgstr ""
+
+#: src/faq.md:12
+msgid "Deadlock."
+msgstr ""
+
+#: src/faq.md:14
+msgid ""
+"PyO3 provides a struct [`GILOnceCell`](https://docs.rs/pyo3/latest/pyo3/"
+"once_cell/struct.GILOnceCell.html) which works equivalently to `OnceCell` "
+"but relies solely on the Python GIL for thread safety. This means it can be "
+"used in place of `lazy_static` or `once_cell` where you are experiencing the "
+"deadlock described above. See the documentation for [`GILOnceCell`](https://"
+"docs.rs/pyo3/latest/pyo3/once_cell/struct.GILOnceCell.html) for an example "
+"how to use it."
+msgstr ""
+
+#: src/faq.md:18
+msgid ""
+"I can't run `cargo test`: I'm having linker issues like \"Symbol not found\" "
+"or \"Undefined reference to \\_PyExc_SystemError\"!"
+msgstr ""
+
+#: src/faq.md:20
+msgid ""
+"Currently, [\\#341](https://github.com/PyO3/pyo3/issues/341) causes `cargo "
+"test` to fail with linking errors when the `extension-module` feature is "
+"activated. For now you can work around this by making the `extension-module` "
+"feature optional and running the tests with `cargo test --no-default-"
+"features`:"
+msgstr ""
+
+#: src/faq.md:22
+msgid ""
+"```toml\n"
+"[dependencies.pyo3]\n"
+"version = \"*\"\n"
+"\n"
+"[features]\n"
+"extension-module = [\"pyo3/extension-module\"]\n"
+"default = [\"extension-module\"]\n"
+"```"
+msgstr ""
