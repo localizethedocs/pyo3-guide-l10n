@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:56Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/SUMMARY.md:1
+msgid "Summary"
+msgstr ""
+
+#: src/SUMMARY.md:3
+msgid "Introduction"
+msgstr ""
+
+#: src/SUMMARY.md:7
+msgid "Python Modules"
+msgstr ""
+
+#: src/SUMMARY.md:8
+msgid "Python Functions"
+msgstr ""
+
+#: src/SUMMARY.md:9
+msgid "Python Classes"
+msgstr ""
+
+#: src/SUMMARY.md:10
+msgid "Class customizations"
+msgstr ""
+
+#: src/SUMMARY.md:11
+msgid "Type Conversions"
+msgstr ""
+
+#: src/SUMMARY.md:12
+msgid "Mapping of Rust types to Python types\\]"
+msgstr ""
+
+#: src/SUMMARY.md:13
+msgid "Conversion traits\\]"
+msgstr ""
+
+#: src/SUMMARY.md:14
+msgid "Python Exceptions"
+msgstr ""
+
+#: src/SUMMARY.md:15
+msgid "Calling Python from Rust"
+msgstr ""
+
+#: src/SUMMARY.md:16
+msgid "GIL, mutability and object types"
+msgstr ""
+
+#: src/SUMMARY.md:17
+msgid "Parallelism"
+msgstr ""
+
+#: src/SUMMARY.md:18
+msgid "Debugging"
+msgstr ""
+
+#: src/SUMMARY.md:19
+msgid "Advanced Topics"
+msgstr ""
+
+#: src/SUMMARY.md:20
+msgid "Building and Distribution"
+msgstr ""
+
+#: src/SUMMARY.md:21
+msgid "PyPy support"
+msgstr ""
+
+#: src/SUMMARY.md:22
+msgid "FAQ & Troubleshooting"
+msgstr ""
+
+#: src/SUMMARY.md:26
+msgid ""
+"Appendix A: Migration Guide Appendix B: PyO3 and rust-cpython Appendix C: "
+"Trait bounds Appendix D: Logging CHANGELOG"
+msgstr ""
