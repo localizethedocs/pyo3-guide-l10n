@@ -13,22 +13,22 @@
     },
     "zh_CN" : 
     {
-      "branch" : "",
+      "branch" : "main",
       "commit" : 
       {
-        "date" : "",
-        "hash" : "",
-        "title" : ""
+        "date" : "2025-12-16 08:31:54 +0000",
+        "hash" : "0c1d54ef49077b2665cd93cb7445068cd09360f4",
+        "title" : "build(deps): bump actions/upload-artifact from 5 to 6 (#5700)"
       }
     },
     "zh_TW" : 
     {
-      "branch" : "",
+      "branch" : "main",
       "commit" : 
       {
-        "date" : "",
-        "hash" : "",
-        "title" : ""
+        "date" : "2025-12-16 08:31:54 +0000",
+        "hash" : "0c1d54ef49077b2665cd93cb7445068cd09360f4",
+        "title" : "build(deps): bump actions/upload-artifact from 5 to 6 (#5700)"
       }
     }
   },

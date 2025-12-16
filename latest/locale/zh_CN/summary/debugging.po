@@ -1,0 +1,725 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:32:46Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/debugging.md:1
+msgid "Debugging"
+msgstr ""
+
+#: src/debugging.md:3
+msgid "Macros"
+msgstr ""
+
+#: src/debugging.md:5
+msgid ""
+"PyO3's attributes (`#[pyclass]`, `#[pymodule]`, etc.) are [procedural macros]"
+"(https://doc.rust-lang.org/reference/procedural-macros.html), which means "
+"that they rewrite the source of the annotated item. You can view the "
+"generated source with the following command, which also expands a few other "
+"things:"
+msgstr ""
+
+#: src/debugging.md:12
+msgid ""
+"(You might need to install [rustfmt](https://github.com/rust-lang-nursery/"
+"rustfmt) if you don't already have it.)"
+msgstr ""
+
+#: src/debugging.md:14
+msgid "You can also debug classic `!`\\-macros by adding `-Z trace-macros`:"
+msgstr ""
+
+#: src/debugging.md:20
+msgid ""
+"Note that those commands require using the nightly build of rust and may "
+"occasionally have bugs. See [cargo expand](https://github.com/dtolnay/cargo-"
+"expand) for a more elaborate and stable version of those commands."
+msgstr ""
+
+#: src/debugging.md:23
+msgid "Running with Valgrind"
+msgstr ""
+
+#: src/debugging.md:25
+msgid ""
+"Valgrind is a tool to detect memory management bugs such as memory leaks."
+msgstr ""
+
+#: src/debugging.md:27
+msgid ""
+"You first need to install a debug build of Python, otherwise Valgrind won't "
+"produce usable results. In Ubuntu there's e.g. a `python3-dbg` package."
+msgstr ""
+
+#: src/debugging.md:30
+msgid ""
+"Activate an environment with the debug interpreter and recompile. If you're "
+"on Linux, use `ldd` with the name of your binary and check that you're "
+"linking e.g. `libpython3.7d.so.1.0` instead of `libpython3.7.so.1.0`."
+msgstr ""
+
+#: src/debugging.md:33
+msgid ""
+"[Download the suppressions file for CPython](https://raw.githubusercontent."
+"com/python/cpython/master/Misc/valgrind-python.supp)."
+msgstr ""
+
+#: src/debugging.md:35
+msgid ""
+"Run Valgrind with `valgrind --suppressions=valgrind-python.supp ./my-command "
+"--with-options`"
+msgstr ""
+
+#: src/debugging.md:37
+msgid "Getting a stacktrace"
+msgstr ""
+
+#: src/debugging.md:39
+msgid ""
+"The best start to investigate a crash such as an segmentation fault is a "
+"backtrace. You can set `RUST_BACKTRACE=1` as an environment variable to get "
+"the stack trace on a `panic!`. Alternatively you can use a debugger such as "
+"`gdb` to explore the issue. Rust provides a wrapper, `rust-gdb`, which has "
+"pretty-printers for inspecting Rust variables. Since PyO3 uses `cdylib` for "
+"Python shared objects, it does not receive the pretty-print debug hooks in "
+"`rust-gdb` ([rust-lang/rust#96365](https://github.com/rust-lang/rust/"
+"issues/96365)). The mentioned issue contains a workaround for enabling "
+"pretty-printers in this case."
+msgstr ""
+
+#: src/debugging.md:46
+msgid ""
+"Link against a debug build of python as described in the previous chapter"
+msgstr ""
+
+#: src/debugging.md:47
+msgid "Run `rust-gdb <my-binary>`"
+msgstr ""
+
+#: src/debugging.md:48
+msgid ""
+"Set a breakpoint (`b`) on `rust_panic` if you are investigating a `panic!`"
+msgstr ""
+
+#: src/debugging.md:49
+msgid "Enter `r` to run"
+msgstr ""
+
+#: src/debugging.md:50
+msgid ""
+"After the crash occurred, enter `bt` or `bt full` to print the stacktrace"
+msgstr ""
+
+#: src/debugging.md:52
+msgid ""
+"Often it is helpful to run a small piece of Python code to exercise a "
+"section of Rust."
+msgstr ""
+
+#: src/debugging.md:54
+msgid ""
+"```console\n"
+"rust-gdb --args python -c \"import my_package; my_package.sum_to_string(1, "
+"2)\"\n"
+"```"
+msgstr ""
+
+#: src/debugging.md:58
+msgid "Setting breakpoints in your Rust code"
+msgstr ""
+
+#: src/debugging.md:60
+msgid ""
+"One of the preferred ways by developers to debug their code is by setting "
+"breakpoints. This can be achieved in PyO3 by using a debugger like `rust-"
+"gdb` or `rust-lldb` with your Python interpreter."
+msgstr ""
+
+#: src/debugging.md:63
+msgid ""
+"For more information about how to use both `lldb` and `gdb` you can read the "
+"[gdb to lldb command map](https://lldb.llvm.org/use/map.html) from the lldb "
+"documentation."
+msgstr ""
+
+#: src/debugging.md:65
+msgid "Common setup"
+msgstr ""
+
+#: src/debugging.md:67
+msgid "Compile your extension with debug symbols:"
+msgstr ""
+
+#: src/debugging.md:70
+msgid ""
+"# Debug is the default for maturin, but you can explicitly ensure debug "
+"symbols with:\n"
+msgstr ""
+
+#: src/debugging.md:71
+msgid "\"-g\""
+msgstr ""
+
+#: src/debugging.md:73
+msgid "# For setuptools-rust users:\n"
+msgstr ""
+
+#: src/debugging.md:77
+msgid ""
+"**Note**: When using debuggers, make sure that `python` resolves to an "
+"actual Python binary or symlink and not a shim script. Some tools like pyenv "
+"use shim scripts which can interfere with debugging."
+msgstr ""
+
+#: src/debugging.md:80
+msgid "Debugger specific setup"
+msgstr ""
+
+#: src/debugging.md:82
+msgid ""
+"Depending on your OS and your preferences you can use two different "
+"debuggers, `rust-gdb` or `rust-lldb`."
+msgstr ""
+
+#: src/debugging.md:91
+msgid "Launch rust-gdb with the Python interpreter:"
+msgstr ""
+
+#: src/debugging.md:97
+msgid "Once in gdb, set a breakpoint in your Rust code:"
+msgstr ""
+
+#: src/debugging.md:103
+msgid "Run your Python script that imports and uses your Rust extension:"
+msgstr ""
+
+#: src/debugging.md:106 src/debugging.md:136
+msgid "# Option 1: Run an inline Python command\n"
+msgstr ""
+
+#: src/debugging.md:107 src/debugging.md:137
+msgid "\"import your_module; your_module.your_function()\""
+msgstr ""
+
+#: src/debugging.md:109 src/debugging.md:139
+msgid "# Option 2: Run a Python script\n"
+msgstr ""
+
+#: src/debugging.md:112 src/debugging.md:142
+msgid "# Option 3: Run pytest tests\n"
+msgstr ""
+
+#: src/debugging.md:121
+msgid "Start rust-lldb with Python:"
+msgstr ""
+
+#: src/debugging.md:127
+msgid "Set breakpoints in your Rust code:"
+msgstr ""
+
+#: src/debugging.md:133
+msgid "Run your Python script:"
+msgstr ""
+
+#: src/debugging.md:151
+msgid "Using VS Code"
+msgstr ""
+
+#: src/debugging.md:153
+msgid ""
+"VS Code with the Rust and Python extensions provides an integrated debugging "
+"experience:"
+msgstr ""
+
+#: src/debugging.md:155
+msgid "First, install the necessary VS Code extensions:"
+msgstr ""
+
+#: src/debugging.md:157
+msgid ""
+"[Rust Analyzer](https://marketplace.visualstudio.com/items?itemName=rust-"
+"lang.rust-analyzer)"
+msgstr ""
+
+#: src/debugging.md:158
+msgid ""
+"[CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn."
+"vscode-lldb)"
+msgstr ""
+
+#: src/debugging.md:159
+msgid ""
+"[Python](https://marketplace.visualstudio.com/items?itemName=ms-python."
+"python)"
+msgstr ""
+
+#: src/debugging.md:161
+msgid ""
+"Create a `.vscode/launch.json` file with a configuration that uses the LLDB "
+"Debug Launcher:"
+msgstr ""
+
+#: src/debugging.md:165 src/debugging.md:283
+msgid "\"version\""
+msgstr ""
+
+#: src/debugging.md:165 src/debugging.md:283
+msgid "\"0.2.0\""
+msgstr ""
+
+#: src/debugging.md:166 src/debugging.md:284 src/debugging.md:317
+#: src/debugging.md:324
+msgid "\"configurations\""
+msgstr ""
+
+#: src/debugging.md:168 src/debugging.md:178 src/debugging.md:187
+#: src/debugging.md:196 src/debugging.md:236 src/debugging.md:286
+#: src/debugging.md:294 src/debugging.md:318
+msgid "\"name\""
+msgstr ""
+
+#: src/debugging.md:168
+msgid "\"Debug PyO3\""
+msgstr ""
+
+#: src/debugging.md:169 src/debugging.md:179 src/debugging.md:188
+#: src/debugging.md:197 src/debugging.md:237 src/debugging.md:287
+#: src/debugging.md:295
+msgid "\"type\""
+msgstr ""
+
+#: src/debugging.md:169 src/debugging.md:179 src/debugging.md:188
+#: src/debugging.md:197 src/debugging.md:237 src/debugging.md:287
+#: src/debugging.md:295
+msgid "\"lldb\""
+msgstr ""
+
+#: src/debugging.md:170 src/debugging.md:180 src/debugging.md:189
+#: src/debugging.md:198 src/debugging.md:238 src/debugging.md:288
+#: src/debugging.md:296
+msgid "\"request\""
+msgstr ""
+
+#: src/debugging.md:170 src/debugging.md:288
+msgid "\"attach\""
+msgstr ""
+
+#: src/debugging.md:171 src/debugging.md:181 src/debugging.md:190
+#: src/debugging.md:199 src/debugging.md:239 src/debugging.md:289
+#: src/debugging.md:297 src/debugging.md:320
+msgid "\"program\""
+msgstr ""
+
+#: src/debugging.md:171 src/debugging.md:181 src/debugging.md:190
+#: src/debugging.md:199 src/debugging.md:239
+msgid "\"${workspaceFolder}/.venv/bin/python\""
+msgstr ""
+
+#: src/debugging.md:172 src/debugging.md:290 src/debugging.md:319
+msgid "\"pid\""
+msgstr ""
+
+#: src/debugging.md:172
+msgid "\"${command:pickProcess}\""
+msgstr ""
+
+#: src/debugging.md:173 src/debugging.md:184 src/debugging.md:193
+#: src/debugging.md:202 src/debugging.md:245 src/debugging.md:291
+#: src/debugging.md:300
+msgid "\"sourceLanguages\""
+msgstr ""
+
+#: src/debugging.md:174 src/debugging.md:184 src/debugging.md:193
+#: src/debugging.md:202 src/debugging.md:245 src/debugging.md:291
+#: src/debugging.md:300
+msgid "\"rust\""
+msgstr ""
+
+#: src/debugging.md:178 src/debugging.md:294
+msgid "\"Launch Python with PyO3\""
+msgstr ""
+
+#: src/debugging.md:180 src/debugging.md:189 src/debugging.md:198
+#: src/debugging.md:238 src/debugging.md:296
+msgid "\"launch\""
+msgstr ""
+
+#: src/debugging.md:182 src/debugging.md:191 src/debugging.md:200
+#: src/debugging.md:240 src/debugging.md:298
+msgid "\"args\""
+msgstr ""
+
+#: src/debugging.md:182 src/debugging.md:240 src/debugging.md:298
+msgid "\"${file}\""
+msgstr ""
+
+#: src/debugging.md:183 src/debugging.md:192 src/debugging.md:201
+#: src/debugging.md:299
+msgid "\"cwd\""
+msgstr ""
+
+#: src/debugging.md:183 src/debugging.md:192 src/debugging.md:201
+#: src/debugging.md:243 src/debugging.md:299
+msgid "\"${workspaceFolder}\""
+msgstr ""
+
+#: src/debugging.md:187
+msgid "\"Debug PyO3 with Args\""
+msgstr ""
+
+#: src/debugging.md:191
+msgid "\"path/to/your/script.py\""
+msgstr ""
+
+#: src/debugging.md:191
+msgid "\"arg1\""
+msgstr ""
+
+#: src/debugging.md:191
+msgid "\"arg2\""
+msgstr ""
+
+#: src/debugging.md:196
+msgid "\"Debug PyO3 Tests\""
+msgstr ""
+
+#: src/debugging.md:200
+msgid "\"-m\""
+msgstr ""
+
+#: src/debugging.md:200
+msgid "\"pytest\""
+msgstr ""
+
+#: src/debugging.md:200
+msgid "\"tests/your_test.py::test_function\""
+msgstr ""
+
+#: src/debugging.md:200
+msgid "\"-v\""
+msgstr ""
+
+#: src/debugging.md:208
+msgid "This configuration supports multiple debugging scenarios:"
+msgstr ""
+
+#: src/debugging.md:210
+msgid "Attaching to a running Python process"
+msgstr ""
+
+#: src/debugging.md:211
+msgid "Launching the currently open Python file"
+msgstr ""
+
+#: src/debugging.md:212
+msgid "Running a specific script with command-line arguments"
+msgstr ""
+
+#: src/debugging.md:213
+msgid "Running pytest tests"
+msgstr ""
+
+#: src/debugging.md:215
+msgid ""
+"Set breakpoints in your Rust code by clicking in the gutter next to line "
+"numbers."
+msgstr ""
+
+#: src/debugging.md:217
+msgid "Start debugging:"
+msgstr ""
+
+#: src/debugging.md:218
+msgid ""
+"For attaching to a running Python process: First start the process, then "
+"select the \"Debug PyO3\" configuration and click Start Debugging (F5). "
+"You'll be prompted to select the Python process to attach to."
+msgstr ""
+
+#: src/debugging.md:220
+msgid ""
+"For launching a Python script: Open your Python script, select the \"Launch "
+"Python with PyO3\" configuration and click Start Debugging (F5)."
+msgstr ""
+
+#: src/debugging.md:221
+msgid ""
+"For running with arguments: Select \"Debug PyO3 with Args\" (remember to "
+"edit the configuration with your actual script path and arguments)."
+msgstr ""
+
+#: src/debugging.md:222
+msgid ""
+"For running tests: Select \"Debug PyO3 Tests\" (edit the test path as "
+"needed)."
+msgstr ""
+
+#: src/debugging.md:224
+msgid "When debugging PyO3 code:"
+msgstr ""
+
+#: src/debugging.md:225
+msgid "You can inspect Rust variables and data structures"
+msgstr ""
+
+#: src/debugging.md:226
+msgid "Use the debug console to evaluate expressions"
+msgstr ""
+
+#: src/debugging.md:227
+msgid "Step through Rust code line by line using the step controls"
+msgstr ""
+
+#: src/debugging.md:228
+msgid "Set conditional breakpoints for more complex debugging scenarios"
+msgstr ""
+
+#: src/debugging.md:230
+msgid "Advanced Debugging Configurations"
+msgstr ""
+
+#: src/debugging.md:232
+msgid ""
+"For advanced debugging scenarios, you might want to add environment "
+"variables or enable specific Rust debug flags:"
+msgstr ""
+
+#: src/debugging.md:236
+msgid "\"Debug PyO3 with Environment\""
+msgstr ""
+
+#: src/debugging.md:241
+msgid "\"env\""
+msgstr ""
+
+#: src/debugging.md:242
+msgid "\"RUST_BACKTRACE\""
+msgstr ""
+
+#: src/debugging.md:242
+msgid "\"1\""
+msgstr ""
+
+#: src/debugging.md:243
+msgid "\"PYTHONPATH\""
+msgstr ""
+
+#: src/debugging.md:249
+msgid "Debugging from Jupyter Notebooks"
+msgstr ""
+
+#: src/debugging.md:251
+msgid ""
+"For Jupyter Notebooks run from VS Code, you can use the following helper "
+"functions to automate the launch configuration:"
+msgstr ""
+
+#: src/debugging.md:261
+msgid ""
+"\"\"\"Update VSCode launch.json with the correct Jupyter kernel PID.\n"
+"\n"
+"    Args:\n"
+"        vscode_config_file_path (str, optional): Path to the .vscode/launch."
+"json file.\n"
+"            If not provided, will use the current working directory.\n"
+"    \"\"\""
+msgstr ""
+
+#: src/debugging.md:269
+msgid "\"Could not determine Jupyter kernel PID.\""
+msgstr ""
+
+#: src/debugging.md:272
+msgid "# Determine launch.json path\n"
+msgstr ""
+
+#: src/debugging.md:276
+msgid "\".vscode\""
+msgstr ""
+
+#: src/debugging.md:276
+msgid "\"launch.json\""
+msgstr ""
+
+#: src/debugging.md:278
+msgid "# Get Python interpreter path\n"
+msgstr ""
+
+#: src/debugging.md:281
+msgid "# Default debugger config\n"
+msgstr ""
+
+#: src/debugging.md:286 src/debugging.md:318
+msgid "\"Debug PyO3 (Jupyter)\""
+msgstr ""
+
+#: src/debugging.md:305
+msgid "# Create .vscode directory if it doesn't exist\n"
+msgstr ""
+
+#: src/debugging.md:309
+msgid ""
+"# If launch.json already exists, try to update it instead of overwriting\n"
+msgstr ""
+
+#: src/debugging.md:312
+msgid "\"r\""
+msgstr ""
+
+#: src/debugging.md:315
+msgid "# Check if our configuration already exists\n"
+msgstr ""
+
+#: src/debugging.md:328
+msgid "# If reading fails, we'll just overwrite with our new configuration\n"
+msgstr ""
+
+#: src/debugging.md:331
+msgid "\"w\""
+msgstr ""
+
+#: src/debugging.md:333
+msgid "\"Updated launch.json with PID: "
+msgstr ""
+
+#: src/debugging.md:333
+msgid " at "
+msgstr ""
+
+#: src/debugging.md:333 src/debugging.md:335 src/debugging.md:347
+msgid "\""
+msgstr ""
+
+#: src/debugging.md:335
+msgid "\"Error updating launch.json: "
+msgstr ""
+
+#: src/debugging.md:339
+msgid ""
+"\"\"\"Find the process ID (PID) of the running Jupyter kernel.\n"
+"\n"
+"    Returns:\n"
+"        int: The process ID of the Jupyter kernel, or None if not found.\n"
+"    \"\"\""
+msgstr ""
+
+#: src/debugging.md:344
+msgid "# Check if we're running in a Jupyter environment\n"
+msgstr ""
+
+#: src/debugging.md:345
+msgid "'ipykernel'"
+msgstr ""
+
+#: src/debugging.md:347
+msgid "\"Jupyter kernel PID: "
+msgstr ""
+
+#: src/debugging.md:350
+msgid "\"Not running in a Jupyter environment.\""
+msgstr ""
+
+#: src/debugging.md:354
+msgid "To use these functions:"
+msgstr ""
+
+#: src/debugging.md:356
+msgid "Run the cell containing these functions in your Jupyter notebook"
+msgstr ""
+
+#: src/debugging.md:357
+msgid "Run `update_launch_json()` in a cell"
+msgstr ""
+
+#: src/debugging.md:358
+msgid ""
+"In VS Code, select the \"Debug PyO3 (Jupyter)\" configuration and start "
+"debugging"
+msgstr ""
+
+#: src/debugging.md:360
+msgid "Thread Safety and Compiler Sanitizers"
+msgstr ""
+
+#: src/debugging.md:362
+msgid ""
+"PyO3 attempts to match the Rust language-level guarantees for thread safety, "
+"but that does not preclude other code outside of the control of PyO3 or "
+"buggy code managed by a PyO3 extension from creating a thread safety issue. "
+"Analyzing whether or not a piece of Rust code that uses the CPython C API is "
+"thread safe can be quite complicated, since many Python operations can lead "
+"to arbitrary Python code execution. Automated ways to discover thread safety "
+"issues can often be more fruitful than code analysis."
+msgstr ""
+
+#: src/debugging.md:366
+msgid ""
+"[ThreadSanitizer](https://clang.llvm.org/docs/ThreadSanitizer.html) is a "
+"thread safety checking runtime that can be used to detect data races "
+"triggered by thread safety bugs or incorrect use of thread-unsafe data "
+"structures. While it can only detect data races triggered by code at "
+"runtime, if it does detect something the reports often point to exactly "
+"where the problem is happening."
+msgstr ""
+
+#: src/debugging.md:369
+msgid ""
+"To use `ThreadSanitizer` with a library that depends on PyO3, you will need "
+"to install a nightly Rust toolchain, along with the `rust-src` component, "
+"since you will need to compile the Rust standard library:"
+msgstr ""
+
+#: src/debugging.md:377
+msgid ""
+"You will also need a version of CPython compiled using LLVM/Clang with the "
+"same major version of LLVM as is currently used to compile nightly Rust. As "
+"of March 2025, Rust nightly uses LLVM 20."
+msgstr ""
+
+#: src/debugging.md:380
+msgid ""
+"The [cpython_sanity docker images](https://github.com/nascheme/"
+"cpython_sanity) contain a development environment with a pre-compiled "
+"version of CPython 3.13 or 3.14 as well as optionally NumPy and SciPy, all "
+"compiled using LLVM 20 and ThreadSanitizer."
+msgstr ""
+
+#: src/debugging.md:382
+msgid ""
+"After activating a nightly Rust toolchain, you can build your project using "
+"`ThreadSanitizer` with the following command:"
+msgstr ""
+
+#: src/debugging.md:385
+msgid "\"-Zsanitizer=thread\""
+msgstr ""
+
+#: src/debugging.md:388
+msgid ""
+"If you are not running on an x86_64 Linux machine, you should replace "
+"`x86_64-unknown-linux-gnu` with the [target triple](https://doc.rust-lang."
+"org/rustc/platform-support.html#tier-1-with-host-tools) that is appropriate "
+"for your system. You can also replace `maturin develop` with `cargo test` to "
+"run `cargo` tests. Note that `cargo` runs tests in a thread pool, so `cargo` "
+"tests can be a good way to find thread safety issues."
+msgstr ""
+
+#: src/debugging.md:392
+msgid ""
+"You can also replace `-Zsanitizer=thread` with `-Zsanitizer=address` or any "
+"of the other sanitizers that are [supported by Rust](https://doc.rust-lang."
+"org/beta/unstable-book/compiler-flags/sanitizer.html). Note that you'll need "
+"to build CPython from source with the appropriate [configure script flags]"
+"(https://docs.python.org/3/using/configure.html#cmdoption-with-address-"
+"sanitizer) to use the same sanitizer environment as you want to use for your "
+"Rust code."
+msgstr ""
