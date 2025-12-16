@@ -1,0 +1,351 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:36Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/faq.md:1
+msgid "Frequently Asked Questions and troubleshooting"
+msgstr ""
+
+#: src/faq.md:3
+msgid ""
+"Sorry that you're having trouble using PyO3. If you can't find the answer to "
+"your problem in the list below, you can also reach out for help on [GitHub "
+"Discussions](https://github.com/PyO3/pyo3/discussions) and on [Discord]"
+"(https://discord.gg/33kcChzH7f)."
+msgstr ""
+
+#: src/faq.md:5
+msgid "I'm experiencing deadlocks using PyO3 with lazy_static or once_cell!"
+msgstr ""
+
+#: src/faq.md:7
+msgid ""
+"`lazy_static` and `once_cell::sync` both use locks to ensure that "
+"initialization is performed only by a single thread. Because the Python GIL "
+"is an additional lock this can lead to deadlocks in the following way:"
+msgstr ""
+
+#: src/faq.md:9
+msgid ""
+"A thread (thread A) which has acquired the Python GIL starts initialization "
+"of a `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:10
+msgid ""
+"The initialization code calls some Python API which temporarily releases the "
+"GIL e.g. `Python::import`."
+msgstr ""
+
+#: src/faq.md:11
+msgid ""
+"Another thread (thread B) acquires the Python GIL and attempts to access the "
+"same `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:12
+msgid ""
+"Thread B is blocked, because it waits for `lazy_static`'s initialization to "
+"lock to release."
+msgstr ""
+
+#: src/faq.md:13
+msgid ""
+"Thread A is blocked, because it waits to re-acquire the GIL which thread B "
+"still holds."
+msgstr ""
+
+#: src/faq.md:14
+msgid "Deadlock."
+msgstr ""
+
+#: src/faq.md:16
+msgid ""
+"PyO3 provides a struct [`GILOnceCell`](https://pyo3.rs/main/doc/pyo3/sync/"
+"struct.GILOnceCell.html) which works equivalently to `OnceCell` but relies "
+"solely on the Python GIL for thread safety. This means it can be used in "
+"place of `lazy_static` or `once_cell` where you are experiencing the "
+"deadlock described above. See the documentation for [`GILOnceCell`](https://"
+"pyo3.rs/main/doc/pyo3/sync/struct.GILOnceCell.html) for an example how to "
+"use it."
+msgstr ""
+
+#: src/faq.md:20
+msgid ""
+"I can't run `cargo test`; or I can't build in a Cargo workspace: I'm having "
+"linker issues like \"Symbol not found\" or \"Undefined reference to "
+"\\_PyExc_SystemError\"!"
+msgstr ""
+
+#: src/faq.md:22
+msgid ""
+"Currently, [\\#340](https://github.com/PyO3/pyo3/issues/340) causes `cargo "
+"test` to fail with linking errors when the `extension-module` feature is "
+"activated. Linking errors can also happen when building in a cargo workspace "
+"where a different crate also uses PyO3 (see [\\#2521](https://github.com/"
+"PyO3/pyo3/issues/2521)). For now, there are three ways we can work around "
+"these issues."
+msgstr ""
+
+#: src/faq.md:24
+msgid ""
+"Make the `extension-module` feature optional. Build with `maturin develop --"
+"features \"extension-module\"`"
+msgstr ""
+
+#: src/faq.md:26
+msgid ""
+"```toml\n"
+"[dependencies.pyo3]\n"
+"git = \"https://github.com/pyo3/pyo3\"\n"
+"\n"
+"[features]\n"
+"extension-module = [\"pyo3/extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/faq.md:34
+msgid ""
+"Make the `extension-module` feature optional and default. Run tests with "
+"`cargo test --no-default-features`:"
+msgstr ""
+
+#: src/faq.md:36
+msgid ""
+"```toml\n"
+"[dependencies.pyo3]\n"
+"git = \"https://github.com/pyo3/pyo3\"\n"
+"\n"
+"[features]\n"
+"extension-module = [\"pyo3/extension-module\"]\n"
+"default = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/faq.md:45
+msgid ""
+"If you are using a [`pyproject.toml`](https://maturin.rs/metadata.html) file "
+"to control maturin settings, add the following section:"
+msgstr ""
+
+#: src/faq.md:47
+msgid ""
+"```toml\n"
+"[tool.maturin]\n"
+"features = [\"pyo3/extension-module\"]\n"
+"# Or for maturin 0.12:\n"
+"# cargo-extra-args = [\"--features\", \"pyo3/extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/faq.md:54
+msgid ""
+"I can't run `cargo test`: my crate cannot be found for tests in `tests/` "
+"directory!"
+msgstr ""
+
+#: src/faq.md:56
+msgid ""
+"The Rust book suggests to [put integration tests inside a `tests/` directory]"
+"(https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-"
+"tests)."
+msgstr ""
+
+#: src/faq.md:58
+msgid ""
+"For a PyO3 `extension-module` project where the `crate-type` is set to "
+"`\"cdylib\"` in your `Cargo.toml`, the compiler won't be able to find your "
+"crate and will display errors such as `E0432` or `E0463`:"
+msgstr ""
+
+#: src/faq.md:69
+msgid ""
+"The best solution is to make your crate types include both `rlib` and "
+"`cdylib`:"
+msgstr ""
+
+#: src/faq.md:71
+msgid ""
+"```toml\n"
+"# Cargo.toml\n"
+"[lib]\n"
+"crate-type = [\"cdylib\", \"rlib\"]\n"
+"```"
+msgstr ""
+
+#: src/faq.md:77
+msgid "Ctrl-C doesn't do anything while my Rust code is executing!"
+msgstr ""
+
+#: src/faq.md:79
+msgid ""
+"This is because Ctrl-C raises a SIGINT signal, which is handled by the "
+"calling Python process by simply setting a flag to action upon later. This "
+"flag isn't checked while Rust code called from Python is executing, only "
+"once control returns to the Python interpreter."
+msgstr ""
+
+#: src/faq.md:81
+msgid ""
+"You can give the Python interpreter a chance to process the signal properly "
+"by calling `Python::check_signals`. It's good practice to call this function "
+"regularly if you have a long-running Rust function so that your users can "
+"cancel it."
+msgstr ""
+
+#: src/faq.md:83
+msgid "`#[pyo3(get)]` clones my field!"
+msgstr ""
+
+#: src/faq.md:85
+msgid "You may have a nested struct similar to this:"
+msgstr ""
+
+#: src/faq.md:91 src/faq.md:130
+msgid "/* fields omitted */"
+msgstr ""
+
+#: src/faq.md:108
+msgid ""
+"When Python code accesses `Outer`'s field, PyO3 will return a new object on "
+"every access (note that their addresses are different):"
+msgstr ""
+
+#: src/faq.md:116 src/faq.md:159 src/faq.md:160
+msgid "\"a: "
+msgstr ""
+
+#: src/faq.md:116 src/faq.md:159 src/faq.md:160
+msgid "\\nb: "
+msgstr ""
+
+#: src/faq.md:116 src/faq.md:159 src/faq.md:160
+msgid "\""
+msgstr ""
+
+#: src/faq.md:124
+msgid ""
+"This can be especially confusing if the field is mutable, as getting the "
+"field and then mutating it won't persist - you'll just get a fresh clone of "
+"the original on the next access. Unfortunately Python and Rust don't agree "
+"about ownership - if PyO3 gave out references to (possibly) temporary Rust "
+"objects to Python code, Python code could then keep that reference alive "
+"indefinitely. Therefore returning Rust objects requires cloning."
+msgstr ""
+
+#: src/faq.md:126
+msgid ""
+"If you don't want that cloning to happen, a workaround is to allocate the "
+"field on the Python heap and store a reference to that, by using [`Py<...>`]"
+"(https://pyo3.rs/main/doc/pyo3/struct.Py.html):"
+msgstr ""
+
+#: src/faq.md:152
+msgid "This time `a` and `b` _are_ the same object:"
+msgstr ""
+
+#: src/faq.md:167
+msgid ""
+"The downside to this approach is that any Rust code working on the `Outer` "
+"struct now has to acquire the GIL to do anything with its field."
+msgstr ""
+
+#: src/faq.md:169
+msgid ""
+"I want to use the `pyo3` crate re-exported from dependency but the proc-"
+"macros fail!"
+msgstr ""
+
+#: src/faq.md:171
+msgid ""
+"All PyO3 proc-macros (`#[pyclass]`, `#[pyfunction]`, "
+"`#[derive(FromPyObject)]` and so on) expect the `pyo3` crate to be available "
+"under that name in your crate root, which is the normal situation when "
+"`pyo3` is a direct dependency of your crate."
+msgstr ""
+
+#: src/faq.md:176
+msgid ""
+"However, when the dependency is renamed, or your crate only indirectly "
+"depends on `pyo3`, you need to let the macro code know where to find the "
+"crate.  This is done with the `crate` attribute:"
+msgstr ""
+
+#: src/faq.md:186
+msgid "\"reexported::pyo3\""
+msgstr ""
+
+#: src/faq.md:190
+msgid ""
+"I'm trying to call Python from Rust but I get `STATUS_DLL_NOT_FOUND` or "
+"`STATUS_ENTRYPOINT_NOT_FOUND`!"
+msgstr ""
+
+#: src/faq.md:192
+msgid ""
+"This happens on Windows when linking to the python DLL fails or the wrong "
+"one is linked. The Python DLL on Windows will usually be called something "
+"like:"
+msgstr ""
+
+#: src/faq.md:193
+msgid "`python3X.dll` for Python 3.X, e.g. `python310.dll` for Python 3.10"
+msgstr ""
+
+#: src/faq.md:194
+msgid "`python3.dll` when using PyO3's `abi3` feature"
+msgstr ""
+
+#: src/faq.md:196
+msgid ""
+"The DLL needs to be locatable using the [Windows DLL search order](https://"
+"learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-"
+"order#standard-search-order-for-unpackaged-apps). Some ways to achieve this "
+"are:"
+msgstr ""
+
+#: src/faq.md:197
+msgid "Put the Python DLL in the same folder as your build artifacts"
+msgstr ""
+
+#: src/faq.md:198
+msgid ""
+"Add the directory containing the Python DLL to your `PATH` environment "
+"variable, for example `C:"
+"\\Users\\<You>\\AppData\\Local\\Programs\\Python\\Python310`"
+msgstr ""
+
+#: src/faq.md:199
+msgid ""
+"If this happens when you are _distributing_ your program, consider using "
+"[PyOxidizer](https://github.com/indygreg/PyOxidizer) to package it with your "
+"binary."
+msgstr ""
+
+#: src/faq.md:201
+msgid ""
+"If the wrong DLL is linked it is possible that this happened because another "
+"program added itself and its own Python DLLs to `PATH`. Rearrange your "
+"`PATH` variables to give the correct DLL priority."
+msgstr ""
+
+#: src/faq.md:203
+msgid ""
+"**Note**: Changes to `PATH` (or any other environment variable) are not "
+"visible to existing shells. Restart it for changes to take effect."
+msgstr ""
+
+#: src/faq.md:205
+msgid ""
+"For advanced troubleshooting, [Dependency Walker](https://www."
+"dependencywalker.com/) can be used to diagnose linking errors."
+msgstr ""
