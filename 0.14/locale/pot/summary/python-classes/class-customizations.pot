@@ -1,0 +1,762 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:42Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/protocols.md:1
+msgid "Class customizations"
+msgstr ""
+
+#: src/class/protocols.md:3
+msgid ""
+"PyO3 uses the `#[pyproto]` attribute in combination with special traits to "
+"implement certain protocol (aka `__dunder__`) methods of Python classes. The "
+"special traits are listed in this chapter of the guide. See also the "
+"[documentation for the `pyo3::class` module](https://pyo3.rs/main/doc/pyo3/"
+"class/index.html)."
+msgstr ""
+
+#: src/class/protocols.md:5
+msgid ""
+"Python's object model defines several protocols for different object "
+"behavior, such as the sequence, mapping, and number protocols. You may be "
+"familiar with implementing these protocols in Python classes by \"dunder\" "
+"methods, such as `__str__` or `__repr__`."
+msgstr ""
+
+#: src/class/protocols.md:7
+msgid ""
+"In the Python C-API which PyO3 is dependent upon, many of these protocol "
+"methods have to be provided into special \"slots\" on the class type object. "
+"To fill these slots PyO3 uses the `#[pyproto]` attribute in combination with "
+"special traits."
+msgstr ""
+
+#: src/class/protocols.md:9
+msgid ""
+"All `#[pyproto]` methods can return `T` instead of `PyResult<T>` if the "
+"method implementation is infallible. In addition, if the return type is "
+"`()`, it can be omitted altogether."
+msgstr ""
+
+#: src/class/protocols.md:11
+msgid ""
+"There are many \"dunder\" methods which are not included in any of PyO3's "
+"protocol traits, such as `__dir__`. These methods can be implemented in "
+"`#[pymethods]` as already covered in the previous section."
+msgstr ""
+
+#: src/class/protocols.md:13
+msgid "Basic object customization"
+msgstr ""
+
+#: src/class/protocols.md:15
+msgid ""
+"The [`PyObjectProtocol`](https://pyo3.rs/main/doc/pyo3/class/basic/trait."
+"PyObjectProtocol.html) trait provides several basic customizations."
+msgstr ""
+
+#: src/class/protocols.md:17
+msgid "Attribute access"
+msgstr ""
+
+#: src/class/protocols.md:19
+msgid "To customize object attribute access, define the following methods:"
+msgstr ""
+
+#: src/class/protocols.md:21
+msgid ""
+"`fn __getattr__(&self, name: impl FromPyObject) -> PyResult<impl "
+"IntoPy<PyObject>>`"
+msgstr ""
+
+#: src/class/protocols.md:22
+msgid ""
+"`fn __setattr__(&mut self, name: impl FromPyObject, value: impl "
+"FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:23
+msgid "`fn __delattr__(&mut self, name: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:25
+msgid ""
+"Each method corresponds to Python's `self.attr`, `self.attr = value` and "
+"`del self.attr` code."
+msgstr ""
+
+#: src/class/protocols.md:27
+msgid "String Conversions"
+msgstr ""
+
+#: src/class/protocols.md:29
+msgid "`fn __repr__(&self) -> PyResult<impl ToPyObject<ObjectType=PyString>>`"
+msgstr ""
+
+#: src/class/protocols.md:30
+msgid "`fn __str__(&self) -> PyResult<impl ToPyObject<ObjectType=PyString>>`"
+msgstr ""
+
+#: src/class/protocols.md:32
+msgid ""
+"Possible return types for `__str__` and `__repr__` are `PyResult<String>` or "
+"`PyResult<PyString>`."
+msgstr ""
+
+#: src/class/protocols.md:34
+msgid "Comparison operators"
+msgstr ""
+
+#: src/class/protocols.md:36
+msgid ""
+"`fn __richcmp__(&self, other: impl FromPyObject, op: CompareOp) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:38
+msgid ""
+"Overloads Python comparison operations (`==`, `!=`, `<`, `<=`, `>`, and "
+"`>=`). The `op` argument indicates the comparison operation being performed. "
+"The return type will normally be `PyResult<bool>`, but any Python object can "
+"be returned. If `other` is not of the type specified in the signature, the "
+"generated code will automatically `return NotImplemented`."
+msgstr ""
+
+#: src/class/protocols.md:44
+msgid "`fn __hash__(&self) -> PyResult<impl PrimInt>`"
+msgstr ""
+
+#: src/class/protocols.md:46
+msgid ""
+"Objects that compare equal must have the same hash value. The return type "
+"must be `PyResult<T>` where `T` is one of Rust's primitive integer types."
+msgstr ""
+
+#: src/class/protocols.md:49
+msgid "Other methods"
+msgstr ""
+
+#: src/class/protocols.md:51
+msgid "`fn __bool__(&self) -> PyResult<bool>`"
+msgstr ""
+
+#: src/class/protocols.md:53
+msgid "Determines the \"truthyness\" of the object."
+msgstr ""
+
+#: src/class/protocols.md:55
+msgid "Emulating numeric types"
+msgstr ""
+
+#: src/class/protocols.md:57
+msgid ""
+"The [`PyNumberProtocol`](https://pyo3.rs/main/doc/pyo3/class/number/trait."
+"PyNumberProtocol.html) trait can be implemented to emulate [numeric types]"
+"(https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types)."
+msgstr ""
+
+#: src/class/protocols.md:59
+msgid ""
+"`fn __add__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:60
+msgid ""
+"`fn __sub__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:61
+msgid ""
+"`fn __mul__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:62
+msgid ""
+"`fn __matmul__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:63
+msgid ""
+"`fn __truediv__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:64
+msgid ""
+"`fn __floordiv__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:65
+msgid ""
+"`fn __mod__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:66
+msgid ""
+"`fn __divmod__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:67
+msgid ""
+"`fn __pow__(lhs: impl FromPyObject, rhs: impl FromPyObject, modulo: "
+"Option<impl FromPyObject>) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:68
+msgid ""
+"`fn __lshift__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:69
+msgid ""
+"`fn __rshift__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:70
+msgid ""
+"`fn __and__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:71
+msgid ""
+"`fn __or__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:72
+msgid ""
+"`fn __xor__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:74
+msgid ""
+"These methods are called to implement the binary arithmetic operations (`+`, "
+"`-`, `*`, `@`, `/`, `//`, `%`, `divmod()`, `pow()` and `**`, `<<`, `>>`, "
+"`&`, `^`, and `|`)."
+msgstr ""
+
+#: src/class/protocols.md:77
+msgid ""
+"If `rhs` is not of the type specified in the signature, the generated code "
+"will automatically `return NotImplemented`.  This is not the case for `lhs` "
+"which must match signature or else raise a TypeError."
+msgstr ""
+
+#: src/class/protocols.md:82
+msgid "The reflected operations are also available:"
+msgstr ""
+
+#: src/class/protocols.md:84
+msgid ""
+"`fn __radd__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:85
+msgid ""
+"`fn __rsub__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:86
+msgid ""
+"`fn __rmul__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:87
+msgid ""
+"`fn __rmatmul__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:88
+msgid ""
+"`fn __rtruediv__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:89
+msgid ""
+"`fn __rfloordiv__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:90
+msgid ""
+"`fn __rmod__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:91
+msgid ""
+"`fn __rdivmod__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:92
+msgid ""
+"`fn __rpow__(lhs: impl FromPyObject, rhs: impl FromPyObject, modulo: "
+"Option<impl FromPyObject>) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:93
+msgid ""
+"`fn __rlshift__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:94
+msgid ""
+"`fn __rrshift__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:95
+msgid ""
+"`fn __rand__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:96
+msgid ""
+"`fn __ror__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:97
+msgid ""
+"`fn __rxor__(lhs: impl FromPyObject, rhs: impl FromPyObject) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:99
+msgid ""
+"The code generated for these methods expect that all arguments match the "
+"signature, or raise a TypeError."
+msgstr ""
+
+#: src/class/protocols.md:102
+msgid ""
+"This trait also has support the augmented arithmetic assignments (`+=`, `-"
+"=`, `*=`, `@=`, `/=`, `//=`, `%=`, `**=`, `<<=`, `>>=`, `&=`, `^=`, `|=`):"
+msgstr ""
+
+#: src/class/protocols.md:105
+msgid "`fn __iadd__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:106
+msgid "`fn __isub__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:107
+msgid "`fn __imul__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:108
+msgid ""
+"`fn __imatmul__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:109
+msgid ""
+"`fn __itruediv__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:110
+msgid ""
+"`fn __ifloordiv__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:111
+msgid "`fn __imod__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:112
+msgid "`fn __ipow__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:113
+msgid ""
+"`fn __ilshift__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:114
+msgid ""
+"`fn __irshift__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:115
+msgid "`fn __iand__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:116
+msgid "`fn __ior__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:117
+msgid "`fn __ixor__(&'p mut self, other: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:119
+msgid ""
+"The following methods implement the unary arithmetic operations (`-`, `+`, "
+"`abs()` and `~`):"
+msgstr ""
+
+#: src/class/protocols.md:121
+msgid "`fn __neg__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:122
+msgid "`fn __pos__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:123
+msgid "`fn __abs__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:124
+msgid "`fn __invert__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:126
+msgid "Support for coercions:"
+msgstr ""
+
+#: src/class/protocols.md:128
+msgid "`fn __int__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:129
+msgid "`fn __float__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:131
+msgid "Other:"
+msgstr ""
+
+#: src/class/protocols.md:133
+msgid "`fn __index__(&'p self) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:135
+msgid "Emulating sequential containers (such as lists or tuples)"
+msgstr ""
+
+#: src/class/protocols.md:137
+msgid ""
+"The [`PySequenceProtocol`](https://pyo3.rs/main/doc/pyo3/class/sequence/"
+"trait.PySequenceProtocol.html) trait can be implemented to emulate "
+"[sequential container types](https://docs.python.org/3/reference/datamodel."
+"html#emulating-container-types)."
+msgstr ""
+
+#: src/class/protocols.md:140
+msgid ""
+"For a sequence, the keys are the integers _k_ for which _0 \\<= k \\< N_, "
+"where _N_ is the length of the sequence."
+msgstr ""
+
+#: src/class/protocols.md:143 src/class/protocols.md:205
+msgid "`fn __len__(&self) -> PyResult<usize>`"
+msgstr ""
+
+#: src/class/protocols.md:145
+msgid "Implements the built-in function `len()` for the sequence."
+msgstr ""
+
+#: src/class/protocols.md:147
+msgid "`fn __getitem__(&self, idx: isize) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:149
+msgid ""
+"Implements evaluation of the `self[idx]` element. If the `idx` value is "
+"outside the set of indexes for the sequence, `IndexError` should be raised."
+msgstr ""
+
+#: src/class/protocols.md:152
+msgid ""
+"_Note:_ Negative integer indexes are handled as follows: if `__len__()` is "
+"defined, it is called and the sequence length is used to compute a positive "
+"index, which is passed to `__getitem__()`. If `__len__()` is not defined, "
+"the index is passed as is to the function."
+msgstr ""
+
+#: src/class/protocols.md:157
+msgid ""
+"`fn __setitem__(&mut self, idx: isize, value: impl FromPyObject) -> "
+"PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:159
+msgid ""
+"Implements assignment to the `self[idx]` element. Same note as for "
+"`__getitem__()`. Should only be implemented if sequence elements can be "
+"replaced."
+msgstr ""
+
+#: src/class/protocols.md:162
+msgid "`fn __delitem__(&mut self, idx: isize) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:164
+msgid ""
+"Implements deletion of the `self[idx]` element. Same note as for "
+"`__getitem__()`. Should only be implemented if sequence elements can be "
+"deleted."
+msgstr ""
+
+#: src/class/protocols.md:167
+msgid "`fn __contains__(&self, item: impl FromPyObject) -> PyResult<bool>`"
+msgstr ""
+
+#: src/class/protocols.md:169
+msgid ""
+"Implements membership test operators. Should return true if `item` is in "
+"`self`, false otherwise. For objects that don’t define `__contains__()`, the "
+"membership test simply traverses the sequence until it finds a match."
+msgstr ""
+
+#: src/class/protocols.md:174
+msgid ""
+"`fn __concat__(&self, other: impl FromPyObject) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:176
+msgid ""
+"Concatenates two sequences. Used by the `+` operator, after trying the "
+"numeric addition via the `PyNumberProtocol` trait method."
+msgstr ""
+
+#: src/class/protocols.md:180
+msgid "`fn __repeat__(&self, count: isize) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:182
+msgid ""
+"Repeats the sequence `count` times. Used by the `*` operator, after trying "
+"the numeric multiplication via the `PyNumberProtocol` trait method."
+msgstr ""
+
+#: src/class/protocols.md:186
+msgid ""
+"`fn __inplace_concat__(&mut self, other: impl FromPyObject) -> "
+"PyResult<Self>`"
+msgstr ""
+
+#: src/class/protocols.md:188
+msgid ""
+"Concatenates two sequences in place. Returns the modified first operand. "
+"Used by the `+=` operator, after trying the numeric in place addition via "
+"the `PyNumberProtocol` trait method."
+msgstr ""
+
+#: src/class/protocols.md:192
+msgid "`fn __inplace_repeat__(&mut self, count: isize) -> PyResult<Self>`"
+msgstr ""
+
+#: src/class/protocols.md:194
+msgid ""
+"Repeats the sequence `count` times in place. Returns the modified first "
+"operand. Used by the `*=` operator, after trying the numeric in place "
+"multiplication via the `PyNumberProtocol` trait method."
+msgstr ""
+
+#: src/class/protocols.md:198
+msgid "Emulating mapping containers (such as dictionaries)"
+msgstr ""
+
+#: src/class/protocols.md:200
+msgid ""
+"The [`PyMappingProtocol`](https://pyo3.rs/main/doc/pyo3/class/mapping/trait."
+"PyMappingProtocol.html) trait allows to emulate [mapping container types]"
+"(https://docs.python.org/3/reference/datamodel.html#emulating-container-"
+"types)."
+msgstr ""
+
+#: src/class/protocols.md:203
+msgid "For a mapping, the keys may be Python objects of arbitrary type."
+msgstr ""
+
+#: src/class/protocols.md:207
+msgid "Implements the built-in function `len()` for the mapping."
+msgstr ""
+
+#: src/class/protocols.md:209
+msgid ""
+"`fn __getitem__(&self, key: impl FromPyObject) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:211
+msgid ""
+"Implements evaluation of the `self[key]` element. If `key` is of an "
+"inappropriate type, `TypeError` may be raised; if `key` is missing (not in "
+"the container), `KeyError` should be raised."
+msgstr ""
+
+#: src/class/protocols.md:215
+msgid ""
+"`fn __setitem__(&mut self, key: impl FromPyObject, value: impl FromPyObject) "
+"-> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:217
+msgid ""
+"Implements assignment to the `self[key]` element or insertion of a new `key` "
+"mapping to `value`. Should only be implemented if the mapping support "
+"changes to the values for keys, or if new keys can be added. The same "
+"exceptions should be raised for improper key values as for the "
+"`__getitem__()` method."
+msgstr ""
+
+#: src/class/protocols.md:224
+msgid "`fn __delitem__(&mut self, key: impl FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class/protocols.md:226
+msgid ""
+"Implements deletion of the `self[key]` element. Should only be implemented "
+"if the mapping supports removal of keys. The same exceptions should be "
+"raised for improper key values as for the `__getitem__()` method."
+msgstr ""
+
+#: src/class/protocols.md:231
+msgid "Garbage Collector Integration"
+msgstr ""
+
+#: src/class/protocols.md:233
+msgid ""
+"If your type owns references to other Python objects, you will need to "
+"integrate with Python's garbage collector so that the GC is aware of those "
+"references. To do this, implement the [`PyGCProtocol`](https://pyo3.rs/main/"
+"doc/pyo3/class/gc/trait.PyGCProtocol.html) trait for your struct. It "
+"includes two methods `__traverse__` and `__clear__`. These correspond to the "
+"slots `tp_traverse` and `tp_clear` in the Python C API. `__traverse__` must "
+"call `visit.call()` for each reference to another Python object. `__clear__` "
+"must clear out any mutable references to other Python objects (thus breaking "
+"reference cycles). Immutable references do not have to be cleared, as every "
+"cycle must contain at least one mutable reference. Example:"
+msgstr ""
+
+#: src/class/protocols.md:264
+msgid "// Clear reference, this decrements ref counter.\n"
+msgstr ""
+
+#: src/class/protocols.md:270
+msgid ""
+"Special protocol trait implementations have to be annotated with the "
+"`#[pyproto]` attribute."
+msgstr ""
+
+#: src/class/protocols.md:272
+msgid ""
+"It is also possible to enable GC for custom classes using the `gc` parameter "
+"of the `pyclass` attribute. i.e. `#[pyclass(gc)]`. In that case instances of "
+"custom class participate in Python garbage collection, and it is possible to "
+"track them with `gc` module methods. When using the `gc` parameter, it is "
+"_required_ to implement the `PyGCProtocol` trait, failure to do so will "
+"result in an error at compile time:"
+msgstr ""
+
+#: src/class/protocols.md:278
+msgid ""
+"```compile_fail\n"
+"#[pyclass(gc)]\n"
+"struct GCTracked {} // Fails because it does not implement PyGCProtocol\n"
+"```"
+msgstr ""
+
+#: src/class/protocols.md:283
+msgid "Iterator Types"
+msgstr ""
+
+#: src/class/protocols.md:285
+msgid ""
+"Iterators can be defined using the [`PyIterProtocol`](https://pyo3.rs/main/"
+"doc/pyo3/class/iter/trait.PyIterProtocol.html) trait. It includes two "
+"methods `__iter__` and `__next__`:"
+msgstr ""
+
+#: src/class/protocols.md:288
+msgid "`fn __iter__(slf: PyRefMut<Self>) -> PyResult<impl IntoPy<PyObject>>`"
+msgstr ""
+
+#: src/class/protocols.md:289
+msgid ""
+"`fn __next__(slf: PyRefMut<Self>) -> PyResult<Option<impl IntoPy<PyObject>>>`"
+msgstr ""
+
+#: src/class/protocols.md:291
+msgid ""
+"Returning `None` from `__next__` indicates that that there are no further "
+"items. These two methods can be take either `PyRef<Self>` or "
+"`PyRefMut<Self>` as their first argument, so that mutable borrow can be "
+"avoided if needed."
+msgstr ""
+
+#: src/class/protocols.md:295
+msgid "Example:"
+msgstr ""
+
+#: src/class/protocols.md:317
+msgid ""
+"In many cases you'll have a distinction between the type being iterated over "
+"(i.e. the _iterable_) and the iterator it provides. In this case, you should "
+"implement `PyIterProtocol` for both the iterable and the iterator, but the "
+"iterable only needs to support `__iter__()` while the iterator must support "
+"both `__iter__()` and `__next__()`. The default implementations in "
+"`PyIterProtocol` will ensure that the objects behave correctly in Python. "
+"For example:"
+msgstr ""
+
+#: src/class/protocols.md:360
+msgid "\"assert list(inst) == [1, 2, 3, 4]\""
+msgstr ""
+
+#: src/class/protocols.md:361
+msgid "\"assert list(iter(iter(inst))) == [1, 2, 3, 4]\""
+msgstr ""
+
+#: src/class/protocols.md:365
+msgid ""
+"For more details on Python's iteration protocols, check out [the \"Iterator "
+"Types\" section of the library documentation](https://docs.python.org/3/"
+"library/stdtypes.html#iterator-types)."
+msgstr ""
+
+#: src/class/protocols.md:368
+msgid "Returning a value from iteration"
+msgstr ""
+
+#: src/class/protocols.md:370
+msgid ""
+"This guide has so far shown how to use `Option<T>` to implement yielding "
+"values during iteration. In Python a generator can also return a value. To "
+"express this in Rust, PyO3 provides the [`IterNextOutput`](https://pyo3.rs/"
+"main/doc/pyo3/class/iter/enum.IterNextOutput.html) enum to both `Yield` "
+"values and `Return` a final value - see its docs for further details and an "
+"example."
+msgstr ""
