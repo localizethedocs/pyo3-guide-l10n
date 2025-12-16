@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/debugging.md:1
+msgid "Debugging"
+msgstr ""
+
+#: src/debugging.md:3
+msgid ""
+"Pyo3's attributes, `#[pyclass]`, `#[pymodinit]`, etc. are [procedural macros]"
+"(https://doc.rust-lang.org/unstable-book/language-features/proc-macro.html), "
+"which means that rewrite the source of the annotated item. You can view the "
+"generated source with the following command, which also expands a few other "
+"things:"
+msgstr ""
+
+#: src/debugging.md:9
+msgid ""
+"(You might need to install [rustfmt](https://github.com/rust-lang-nursery/"
+"rustfmt) if you don't already have it.)"
+msgstr ""
+
+#: src/debugging.md:11
+msgid "You can also debug classic `!`\\-macros by adding -Z trace-macros\\`:"
+msgstr ""
+
+#: src/debugging.md:17
+msgid ""
+"See [cargo expand](https://github.com/dtolnay/cargo-expand) for a more "
+"elaborate version of those commands."
+msgstr ""
