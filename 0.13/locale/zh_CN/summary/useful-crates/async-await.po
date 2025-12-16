@@ -1,0 +1,356 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:08Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem/async-await.md:1
+msgid "Async / Await"
+msgstr ""
+
+#: src/ecosystem/async-await.md:3
+msgid ""
+"If you are working with a Python library that makes use of async functions "
+"or wish to provide Python bindings for an async Rust library, [`pyo3-"
+"asyncio`](https://github.com/awestlake87/pyo3-asyncio) likely has the tools "
+"you need. It provides conversions between async functions in both Python and "
+"Rust and was designed with first-class support for popular Rust runtimes "
+"such as [`tokio`](https://tokio.rs/) and [`async-std`](https://async.rs/). "
+"In addition, all async Python code runs on the default `asyncio` event loop, "
+"so `pyo3-asyncio` should work just fine with existing Python libraries."
+msgstr ""
+
+#: src/ecosystem/async-await.md:11
+msgid ""
+"In the following sections, we'll give a general overview of `pyo3-asyncio` "
+"explaining how to call async Python functions with PyO3, how to call async "
+"Rust functions from Python, and how to configure your codebase to manage the "
+"runtimes of both."
+msgstr ""
+
+#: src/ecosystem/async-await.md:15
+msgid "Awaiting an Async Python Function in Rust"
+msgstr ""
+
+#: src/ecosystem/async-await.md:17
+msgid "Let's take a look at a dead simple async Python function:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:20
+msgid "# Sleep for 1 second\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:25
+msgid ""
+"**Async functions in Python are simply functions that return a `coroutine` "
+"object**. For our purposes, we really don't need to know much about these "
+"`coroutine` objects. The key factor here is that calling an `async` function "
+"is _just like calling a regular function_, the only difference is that we "
+"have to do something special with the object that it returns."
+msgstr ""
+
+#: src/ecosystem/async-await.md:30
+msgid ""
+"Normally in Python, that something special is the `await` keyword, but in "
+"order to await this coroutine in Rust, we first need to convert it into "
+"Rust's version of a `coroutine`: a `Future`. That's where `pyo3-asyncio` "
+"comes in. [`pyo3_asyncio::into_future`](https://docs.rs/pyo3-asyncio/latest/"
+"pyo3_asyncio/fn.into_future.html) performs this conversion for us:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:39
+msgid "// import the module containing the py_sleep function\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:40
+msgid "\"example\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:42
+msgid ""
+"// calling the py_sleep method like a normal function returns a coroutine\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:43
+msgid "\"py_sleep\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:45
+msgid "// convert the coroutine into a Rust future\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:48
+msgid "// await the future\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:53
+msgid ""
+"If you're interested in learning more about `coroutines` and `awaitables` in "
+"general, check out the [Python 3 `asyncio` docs](https://docs.python.org/3/"
+"library/asyncio-task.html) for more information."
+msgstr ""
+
+#: src/ecosystem/async-await.md:56
+msgid "Awaiting a Rust Future in Python"
+msgstr ""
+
+#: src/ecosystem/async-await.md:58
+msgid ""
+"Here we have the same async function as before written in Rust using the "
+"[`async-std`](https://async.rs/) runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:62
+msgid "/// Sleep for 1 second\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:68
+msgid ""
+"Similar to Python, Rust's async functions also return a special object "
+"called a `Future`:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:75
+msgid ""
+"We can convert this `Future` object into Python to make it `awaitable`. This "
+"tells Python that you can use the `await` keyword with it. In order to do "
+"this, we'll call [`pyo3_asyncio::async_std::into_coroutine`](https://docs.rs/"
+"pyo3-asyncio/latest/pyo3_asyncio/async_std/fn.into_coroutine.html):"
+msgstr ""
+
+#: src/ecosystem/async-await.md:89
+msgid ""
+"In Python, we can call this pyo3 function just like any other async function:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:98
+msgid "Managing Event Loops"
+msgstr ""
+
+#: src/ecosystem/async-await.md:100
+msgid ""
+"Python's event loop requires some special treatment, especially regarding "
+"the main thread. Some of Python's `asyncio` features, like proper signal "
+"handling, require control over the main thread, which doesn't always play "
+"well with Rust."
+msgstr ""
+
+#: src/ecosystem/async-await.md:104
+msgid ""
+"Luckily, Rust's event loops are pretty flexible and don't _need_ control "
+"over the main thread, so in `pyo3-asyncio`, we decided the best way to "
+"handle Rust/Python interop was to just surrender the main thread to Python "
+"and run Rust's event loops in the background. Unfortunately, since most "
+"event loop implementations _prefer_ control over the main thread, this can "
+"still make some things awkward."
+msgstr ""
+
+#: src/ecosystem/async-await.md:109
+msgid "PyO3 Asyncio Initialization"
+msgstr ""
+
+#: src/ecosystem/async-await.md:111
+msgid ""
+"Because Python needs to control the main thread, we can't use the convenient "
+"proc macros from Rust runtimes to handle the `main` function or `#[test]` "
+"functions. Instead, the initialization for PyO3 has to be done from the "
+"`main` function and the main thread must block on [`pyo3_asyncio::"
+"run_forever`](https://docs.rs/pyo3-asyncio/latest/pyo3_asyncio/fn."
+"run_forever.html) or [`pyo3_asyncio::async_std::run_until_complete`](https://"
+"docs.rs/pyo3-asyncio/latest/pyo3_asyncio/async_std/fn.run_until_complete."
+"html)."
+msgstr ""
+
+#: src/ecosystem/async-await.md:115
+msgid ""
+"Because we have to block on one of those functions, we can't use "
+"[`#[async_std::main]`](https://docs.rs/async-std/latest/async_std/attr.main."
+"html) or [`#[tokio::main]`](https://docs.rs/tokio/1.1.0/tokio/attr.main."
+"html) since it's not a good idea to make long blocking calls during an async "
+"function."
+msgstr ""
+
+#: src/ecosystem/async-await.md:118
+msgid ""
+"Internally, these `#[main]` proc macros are expanded to something like this:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:121
+msgid "// your async main fn\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:122
+msgid "/* ... */"
+msgstr ""
+
+#: src/ecosystem/async-await.md:126
+msgid ""
+"Making a long blocking call inside the `Future` that's being driven by "
+"`block_on` prevents that thread from doing anything else and can spell "
+"trouble for some runtimes (also this will actually deadlock a single-"
+"threaded runtime!). Many runtimes have some sort of `spawn_blocking` "
+"mechanism that can avoid this problem, but again that's not something we can "
+"use here since we need it to block on the _main_ thread."
+msgstr ""
+
+#: src/ecosystem/async-await.md:132
+msgid ""
+"For this reason, `pyo3-asyncio` provides its own set of proc macros to "
+"provide you with this initialization. These macros are intended to mirror "
+"the initialization of `async-std` and `tokio` while also satisfying the "
+"Python runtime's needs."
+msgstr ""
+
+#: src/ecosystem/async-await.md:136
+msgid ""
+"Here's a full example of PyO3 initialization with the `async-std` runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:142
+msgid "// PyO3 is initialized - Ready to go\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:145
+msgid "\"asyncio\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:147
+msgid "// convert asyncio.sleep into a Rust Future\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:148
+msgid "\"sleep\""
+msgstr ""
+
+#: src/ecosystem/async-await.md:157
+msgid "PyO3 Asyncio in Cargo Tests"
+msgstr ""
+
+#: src/ecosystem/async-await.md:159
+msgid ""
+"The default Cargo Test harness does not currently allow test crates to "
+"provide their own `main` function, so there doesn't seem to be a good way to "
+"allow Python to gain control over the main thread."
+msgstr ""
+
+#: src/ecosystem/async-await.md:163
+msgid ""
+"We can, however, override the default test harness and provide our own. "
+"`pyo3-asyncio` provides some utilities to help us do just that! In the "
+"following sections, we will provide an overview for constructing a Cargo "
+"integration test with `pyo3-asyncio` and adding your tests to it."
+msgstr ""
+
+#: src/ecosystem/async-await.md:167
+msgid "Main Test File"
+msgstr ""
+
+#: src/ecosystem/async-await.md:168
+msgid ""
+"First, we need to create the test's main file. Although these tests are "
+"considered integration tests, we cannot put them in the `tests` directory "
+"since that is a special directory owned by Cargo. Instead, we put our tests "
+"in a `pytests` directory."
+msgstr ""
+
+#: src/ecosystem/async-await.md:172
+msgid ""
+"The name `pytests` is just a convention. You can name this folder anything "
+"you want in your own projects."
+msgstr ""
+
+#: src/ecosystem/async-await.md:175
+msgid ""
+"We'll also want to provide the test's main function. Most of the "
+"functionality that the test harness needs is packed in the [`pyo3_asyncio::"
+"testing::main`](https://docs.rs/pyo3-asyncio/latest/pyo3_asyncio/testing/fn."
+"main.html) function. This function will parse the test's CLI arguments, "
+"collect and pass the functions marked with [`#[pyo3_asyncio::async_std::"
+"test]`](https://docs.rs/pyo3-asyncio/latest/pyo3_asyncio/async_std/attr.test."
+"html) or [`#[pyo3_asyncio::tokio::test]`](https://docs.rs/pyo3-asyncio/"
+"latest/pyo3_asyncio/tokio/attr.test.html) and pass them into the test "
+"harness for running and filtering."
+msgstr ""
+
+#: src/ecosystem/async-await.md:177
+msgid "`pytests/test_example.rs` for the `tokio` runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:185
+msgid "`pytests/test_example.rs` for the `async-std` runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:193
+msgid "Cargo Configuration"
+msgstr ""
+
+#: src/ecosystem/async-await.md:194
+msgid ""
+"Next, we need to add our test file to the Cargo manifest by adding the "
+"following section to the `Cargo.toml`"
+msgstr ""
+
+#: src/ecosystem/async-await.md:197
+msgid ""
+"```toml\n"
+"[[test]]\n"
+"name = \"test_example\"\n"
+"path = \"pytests/test_example.rs\"\n"
+"harness = false\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:204
+msgid ""
+"Also add the `testing` and `attributes` features to the `pyo3-asyncio` "
+"dependency and select your preferred runtime:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:206
+msgid ""
+"```toml\n"
+"pyo3-asyncio = { version = \"0.13\", features = [\"testing\", "
+"\"attributes\", \"async-std-runtime\"] }\n"
+"```"
+msgstr ""
+
+#: src/ecosystem/async-await.md:210
+msgid "At this point, you should be able to run the test via `cargo test`"
+msgstr ""
+
+#: src/ecosystem/async-await.md:212
+msgid "Adding Tests to the PyO3 Asyncio Test Harness"
+msgstr ""
+
+#: src/ecosystem/async-await.md:214
+msgid ""
+"We can add tests anywhere in the test crate with the runtime's corresponding "
+"`#[test]` attribute:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:216
+msgid ""
+"For `async-std` use the [`pyo3_asyncio::async_std::test`](https://docs.rs/"
+"pyo3-asyncio/latest/pyo3_asyncio/async_std/attr.test.html) attribute:"
+msgstr ""
+
+#: src/ecosystem/async-await.md:223 src/ecosystem/async-await.md:251
+msgid "// tests can be async\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:230 src/ecosystem/async-await.md:258
+msgid "// they can also be synchronous\n"
+msgstr ""
+
+#: src/ecosystem/async-await.md:244
+msgid ""
+"For `tokio` use the [`pyo3_asyncio::tokio::test`](https://docs.rs/pyo3-"
+"asyncio/latest/pyo3_asyncio/tokio/attr.test.html) attribute:"
+msgstr ""
