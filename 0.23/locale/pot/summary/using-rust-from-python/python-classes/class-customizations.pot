@@ -1,0 +1,851 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:41Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/protocols.md:1
+msgid "Class customizations"
+msgstr ""
+
+#: src/class/protocols.md:3
+msgid ""
+"Python's object model defines several protocols for different object "
+"behavior, such as the sequence, mapping, and number protocols. Python "
+"classes support these protocols by implementing \"magic\" methods, such as "
+"`__str__` or `__repr__`. Because of the double-underscores surrounding their "
+"name, these are also known as \"dunder\" methods."
+msgstr ""
+
+#: src/class/protocols.md:5
+msgid ""
+"PyO3 makes it possible for every magic method to be implemented in "
+"`#[pymethods]` just as they would be done in a regular Python class, with a "
+"few notable differences:"
+msgstr ""
+
+#: src/class/protocols.md:6
+msgid ""
+"`__new__` and `__init__` are replaced by the [`#[new]` attribute](../class."
+"md#constructor)."
+msgstr ""
+
+#: src/class/protocols.md:7
+msgid "`__del__` is not yet supported, but may be in the future."
+msgstr ""
+
+#: src/class/protocols.md:8
+msgid ""
+"`__buffer__` and `__release_buffer__` are currently not supported and "
+"instead PyO3 supports [`__getbuffer__` and `__releasebuffer__`](#buffer-"
+"objects) methods (these predate [PEP 688](https://peps.python.org/pep-0688/"
+"#python-level-buffer-protocol)), again this may change in the future."
+msgstr ""
+
+#: src/class/protocols.md:9
+msgid ""
+"PyO3 adds [`__traverse__` and `__clear__`](#garbage-collector-integration) "
+"methods for controlling garbage collection."
+msgstr ""
+
+#: src/class/protocols.md:10
+msgid ""
+"The Python C-API which PyO3 is implemented upon requires many magic methods "
+"to have a specific function signature in C and be placed into special "
+"\"slots\" on the class type object. This limits the allowed argument and "
+"return types for these methods. They are listed in detail in the section "
+"below."
+msgstr ""
+
+#: src/class/protocols.md:12
+msgid ""
+"If a magic method is not on the list above (for example "
+"`__init_subclass__`), then it should just work in PyO3. If this is not the "
+"case, please file a bug report."
+msgstr ""
+
+#: src/class/protocols.md:14
+msgid "Magic Methods handled by PyO3"
+msgstr ""
+
+#: src/class/protocols.md:16
+msgid ""
+"If a function name in `#[pymethods]` is a magic method which is known to "
+"need special handling, it will be automatically placed into the correct slot "
+"in the Python type object. The function name is taken from the usual rules "
+"for naming `#[pymethods]`: the `#[pyo3(name = \"...\")]` attribute is used "
+"if present, otherwise the Rust function name is used."
+msgstr ""
+
+#: src/class/protocols.md:18
+msgid ""
+"The magic methods handled by PyO3 are very similar to the standard Python "
+"ones on [this page](https://docs.python.org/3/reference/datamodel."
+"html#special-method-names) - in particular they are the subset which have "
+"slots as [defined here](https://docs.python.org/3/c-api/typeobj.html)."
+msgstr ""
+
+#: src/class/protocols.md:20
+msgid ""
+"When PyO3 handles a magic method, a couple of changes apply compared to "
+"other `#[pymethods]`:"
+msgstr ""
+
+#: src/class/protocols.md:21
+msgid "The Rust function signature is restricted to match the magic method."
+msgstr ""
+
+#: src/class/protocols.md:22
+msgid ""
+"The `#[pyo3(signature = (...)]` and `#[pyo3(text_signature = \"...\")]` "
+"attributes are not allowed."
+msgstr ""
+
+#: src/class/protocols.md:24
+msgid ""
+"The following sections list all magic methods for which PyO3 implements the "
+"necessary special handling.  The given signatures should be interpreted as "
+"follows:"
+msgstr ""
+
+#: src/class/protocols.md:26
+msgid ""
+"All methods take a receiver as first argument, shown as `<self>`. It can be "
+"`&self`, `&mut self` or a `Bound` reference like `self_: PyRef<'_, Self>` "
+"and `self_: PyRefMut<'_, Self>`, as described [here](../class."
+"md#inheritance)."
+msgstr ""
+
+#: src/class/protocols.md:29
+msgid ""
+"An optional `Python<'py>` argument is always allowed as the first argument."
+msgstr ""
+
+#: src/class/protocols.md:30
+msgid "Return values can be optionally wrapped in `PyResult`."
+msgstr ""
+
+#: src/class/protocols.md:31
+msgid ""
+"`object` means that any type is allowed that can be extracted from a Python "
+"object (if argument) or converted to a Python object (if return value)."
+msgstr ""
+
+#: src/class/protocols.md:33
+msgid ""
+"Other types must match what's given, e.g. `pyo3::basic::CompareOp` for "
+"`__richcmp__`'s second argument."
+msgstr ""
+
+#: src/class/protocols.md:35
+msgid ""
+"For the comparison and arithmetic methods, extraction errors are not "
+"propagated as exceptions, but lead to a return of `NotImplemented`."
+msgstr ""
+
+#: src/class/protocols.md:37
+msgid ""
+"For some magic methods, the return values are not restricted by PyO3, but "
+"checked by the Python interpreter. For example, `__str__` needs to return a "
+"string object.  This is indicated by `object (Python type)`."
+msgstr ""
+
+#: src/class/protocols.md:41
+msgid "Basic object customization"
+msgstr ""
+
+#: src/class/protocols.md:43
+msgid "`__str__(<self>) -> object (str)`"
+msgstr ""
+
+#: src/class/protocols.md:44
+msgid "`__repr__(<self>) -> object (str)`"
+msgstr ""
+
+#: src/class/protocols.md:46
+msgid "`__hash__(<self>) -> isize`"
+msgstr ""
+
+#: src/class/protocols.md:48
+msgid ""
+"Objects that compare equal must have the same hash value. Any type up to 64 "
+"bits may be returned instead of `isize`, PyO3 will convert to an isize "
+"automatically (wrapping unsigned types like `u64` and `usize`)."
+msgstr ""
+
+#: src/class/protocols.md:67
+msgid "`__lt__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:68
+msgid "`__le__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:69
+msgid "`__eq__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:70
+msgid "`__ne__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:71
+msgid "`__gt__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:72
+msgid "`__ge__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:74
+msgid ""
+"The implementations of Python's \"rich comparison\" operators `<`, `<=`, "
+"`==`, `!=`, `>` and `>=` respectively."
+msgstr ""
+
+#: src/class/protocols.md:76
+msgid ""
+"_Note that implementing any of these methods will cause Python not to "
+"generate a default `__hash__` implementation, so consider also implementing "
+"`__hash__`._"
+msgstr ""
+
+#: src/class/protocols.md:82
+msgid "`__richcmp__(<self>, object, pyo3::basic::CompareOp) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:84
+msgid ""
+"Implements Python comparison operations (`==`, `!=`, `<`, `<=`, `>`, and "
+"`>=`) in a single method. The `CompareOp` argument indicates the comparison "
+"operation being performed. You can use [`CompareOp::matches`](https://pyo3."
+"rs/main/doc/pyo3/pyclass/enum.CompareOp.html#method.matches) to adapt a Rust "
+"`std::cmp::Ordering` result to the requested comparison."
+msgstr ""
+
+#: src/class/protocols.md:88
+msgid ""
+"_This method cannot be implemented in combination with any of `__lt__`, "
+"`__le__`, `__eq__`, `__ne__`, `__gt__`, or `__ge__`._"
+msgstr ""
+
+#: src/class/protocols.md:90
+msgid ""
+"_Note that implementing `__richcmp__` will cause Python not to generate a "
+"default `__hash__` implementation, so consider implementing `__hash__` when "
+"implementing `__richcmp__`._"
+msgstr ""
+
+#: src/class/protocols.md:95
+msgid ""
+"If you want to leave some operations unimplemented, you can return `py."
+"NotImplemented()` for some of the operations:"
+msgstr ""
+
+#: src/class/protocols.md:120
+msgid ""
+"If the second argument `object` is not of the type specified in the "
+"signature, the generated code will automatically `return NotImplemented`."
+msgstr ""
+
+#: src/class/protocols.md:124
+msgid "`__getattr__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:125
+msgid "`__getattribute__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:135
+msgid "`__setattr__(<self>, value: object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:136
+msgid "`__delattr__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:138
+msgid "Overrides attribute access."
+msgstr ""
+
+#: src/class/protocols.md:140
+msgid "`__bool__(<self>) -> bool`"
+msgstr ""
+
+#: src/class/protocols.md:142
+msgid "Determines the \"truthyness\" of an object."
+msgstr ""
+
+#: src/class/protocols.md:144
+msgid ""
+"`__call__(<self>, ...) -> object` - here, any argument list can be defined "
+"as for normal `pymethods`"
+msgstr ""
+
+#: src/class/protocols.md:147
+msgid "Iterable objects"
+msgstr ""
+
+#: src/class/protocols.md:149
+msgid "Iterators can be defined using these methods:"
+msgstr ""
+
+#: src/class/protocols.md:151
+msgid "`__iter__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:152
+msgid ""
+"`__next__(<self>) -> Option<object> or IterNextOutput` ([see details]"
+"(#returning-a-value-from-iteration))"
+msgstr ""
+
+#: src/class/protocols.md:154
+msgid ""
+"Returning `None` from `__next__` indicates that that there are no further "
+"items."
+msgstr ""
+
+#: src/class/protocols.md:156 src/class/protocols.md:431
+msgid "Example:"
+msgstr ""
+
+#: src/class/protocols.md:179
+msgid ""
+"In many cases you'll have a distinction between the type being iterated over "
+"(i.e. the _iterable_) and the iterator it provides. In this case, the "
+"iterable only needs to implement `__iter__()` while the iterator must "
+"implement both `__iter__()` and `__next__()`. For example:"
+msgstr ""
+
+#: src/class/protocols.md:221
+msgid "\"assert list(inst) == [1, 2, 3, 4]\""
+msgstr ""
+
+#: src/class/protocols.md:222
+msgid "\"assert list(iter(iter(inst))) == [1, 2, 3, 4]\""
+msgstr ""
+
+#: src/class/protocols.md:226
+msgid ""
+"For more details on Python's iteration protocols, check out [the \"Iterator "
+"Types\" section of the library documentation](https://docs.python.org/"
+"library/stdtypes.html#iterator-types)."
+msgstr ""
+
+#: src/class/protocols.md:229
+msgid "Returning a value from iteration"
+msgstr ""
+
+#: src/class/protocols.md:231
+msgid ""
+"This guide has so far shown how to use `Option<T>` to implement yielding "
+"values during iteration.  In Python a generator can also return a value. "
+"This is done by raising a `StopIteration` exception. To express this in "
+"Rust, return `PyResult::Err` with a `PyStopIteration` as the error."
+msgstr ""
+
+#: src/class/protocols.md:236
+msgid "Awaitable objects"
+msgstr ""
+
+#: src/class/protocols.md:238
+msgid "`__await__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:239
+msgid "`__aiter__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:240
+msgid "`__anext__(<self>) -> Option<object>`"
+msgstr ""
+
+#: src/class/protocols.md:242
+msgid "Mapping & Sequence types"
+msgstr ""
+
+#: src/class/protocols.md:244
+msgid ""
+"The magic methods in this section can be used to implement Python container "
+"types. They are two main categories of container in Python: \"mappings\" "
+"such as `dict`, with arbitrary keys, and \"sequences\" such as `list` and "
+"`tuple`, with integer keys."
+msgstr ""
+
+#: src/class/protocols.md:246
+msgid ""
+"The Python C-API which PyO3 is built upon has separate \"slots\" for "
+"sequences and mappings. When writing a `class` in pure Python, there is no "
+"such distinction in the implementation - a `__getitem__` implementation will "
+"fill the slots for both the mapping and sequence forms, for example."
+msgstr ""
+
+#: src/class/protocols.md:248
+msgid ""
+"By default PyO3 reproduces the Python behaviour of filling both mapping and "
+"sequence slots. This makes sense for the \"simple\" case which matches "
+"Python, and also for sequences, where the mapping slot is used anyway to "
+"implement slice indexing."
+msgstr ""
+
+#: src/class/protocols.md:250
+msgid ""
+"Mapping types usually will not want the sequence slots filled. Having them "
+"filled will lead to outcomes which may be unwanted, such as:"
+msgstr ""
+
+#: src/class/protocols.md:251
+msgid ""
+"The mapping type will successfully cast to [`PySequence`](https://pyo3.rs/"
+"main/doc/pyo3/types/struct.PySequence.html). This may lead to consumers of "
+"the type handling it incorrectly."
+msgstr ""
+
+#: src/class/protocols.md:252
+msgid ""
+"Python provides a default implementation of `__iter__` for sequences, which "
+"calls `__getitem__` with consecutive positive integers starting from 0 until "
+"an `IndexError` is returned. Unless the mapping only contains consecutive "
+"positive integer keys, this `__iter__` implementation will likely not be the "
+"intended behavior."
+msgstr ""
+
+#: src/class/protocols.md:254
+msgid ""
+"Use the `#[pyclass(mapping)]` annotation to instruct PyO3 to only fill the "
+"mapping slots, leaving the sequence ones empty. This will apply to "
+"`__getitem__`, `__setitem__`, and `__delitem__`."
+msgstr ""
+
+#: src/class/protocols.md:256
+msgid ""
+"Use the `#[pyclass(sequence)]` annotation to instruct PyO3 to fill the "
+"`sq_length` slot instead of the `mp_length` slot for `__len__`. This will "
+"help libraries such as `numpy` recognise the class as a sequence, however "
+"will also cause CPython to automatically add the sequence length to any "
+"negative indices before passing them to `__getitem__`. (`__getitem__`, "
+"`__setitem__` and `__delitem__` mapping slots are still used for sequences, "
+"for slice operations.)"
+msgstr ""
+
+#: src/class/protocols.md:258
+msgid "`__len__(<self>) -> usize`"
+msgstr ""
+
+#: src/class/protocols.md:260
+msgid "Implements the built-in function `len()`."
+msgstr ""
+
+#: src/class/protocols.md:262
+msgid "`__contains__(<self>, object) -> bool`"
+msgstr ""
+
+#: src/class/protocols.md:264
+msgid ""
+"Implements membership test operators. Should return true if `item` is in "
+"`self`, false otherwise. For objects that don’t define `__contains__()`, the "
+"membership test simply traverses the sequence until it finds a match."
+msgstr ""
+
+#: src/class/protocols.md:272
+msgid ""
+"By default, all `#[pyclass]` types with an `__iter__` method support a "
+"default implementation of the `in` operator. Types which do not want this "
+"can override this by setting `__contains__` to `None`. This is the same "
+"mechanism as for a pure-Python class. This is done like so:"
+msgstr ""
+
+#: src/class/protocols.md:291
+msgid "`__getitem__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:293
+msgid "Implements retrieval of the `self[a]` element."
+msgstr ""
+
+#: src/class/protocols.md:295
+msgid ""
+"_Note:_ Negative integer indexes are not handled specially by PyO3. However, "
+"for classes with `#[pyclass(sequence)]`, when a negative index is accessed "
+"via `PySequence::get_item`, the underlying C API already adjusts the index "
+"to be positive."
+msgstr ""
+
+#: src/class/protocols.md:300
+msgid "`__setitem__(<self>, object, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:302
+msgid ""
+"Implements assignment to the `self[a]` element. Should only be implemented "
+"if elements can be replaced."
+msgstr ""
+
+#: src/class/protocols.md:305 src/class/protocols.md:312
+msgid "Same behavior regarding negative indices as for `__getitem__`."
+msgstr ""
+
+#: src/class/protocols.md:307
+msgid "`__delitem__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:309
+msgid ""
+"Implements deletion of the `self[a]` element. Should only be implemented if "
+"elements can be deleted."
+msgstr ""
+
+#: src/class/protocols.md:314
+msgid ""
+"`fn __concat__(&self, other: impl FromPyObject) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:316
+msgid ""
+"Concatenates two sequences. Used by the `+` operator, after trying the "
+"numeric addition via the `__add__` and `__radd__` methods."
+msgstr ""
+
+#: src/class/protocols.md:320
+msgid "`fn __repeat__(&self, count: isize) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:322
+msgid ""
+"Repeats the sequence `count` times. Used by the `*` operator, after trying "
+"the numeric multiplication via the `__mul__` and `__rmul__` methods."
+msgstr ""
+
+#: src/class/protocols.md:326
+msgid ""
+"`fn __inplace_concat__(&self, other: impl FromPyObject) -> PyResult<impl "
+"ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:328
+msgid ""
+"Concatenates two sequences. Used by the `+=` operator, after trying the "
+"numeric addition via the `__iadd__` method."
+msgstr ""
+
+#: src/class/protocols.md:332
+msgid ""
+"`fn __inplace_repeat__(&self, count: isize) -> PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class/protocols.md:334
+msgid ""
+"Concatenates two sequences. Used by the `*=` operator, after trying the "
+"numeric multiplication via the `__imul__` method."
+msgstr ""
+
+#: src/class/protocols.md:338
+msgid "Descriptors"
+msgstr ""
+
+#: src/class/protocols.md:340
+msgid "`__get__(<self>, object, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:341
+msgid "`__set__(<self>, object, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:342
+msgid "`__delete__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:344
+msgid "Numeric types"
+msgstr ""
+
+#: src/class/protocols.md:346
+msgid ""
+"Binary arithmetic operations (`+`, `-`, `*`, `@`, `/`, `//`, `%`, "
+"`divmod()`, `pow()` and `**`, `<<`, `>>`, `&`, `^`, and `|`) and their "
+"reflected versions:"
+msgstr ""
+
+#: src/class/protocols.md:349
+msgid ""
+"(If the `object` is not of the type specified in the signature, the "
+"generated code will automatically `return NotImplemented`.)"
+msgstr ""
+
+#: src/class/protocols.md:352
+msgid "`__add__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:353
+msgid "`__radd__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:354
+msgid "`__sub__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:355
+msgid "`__rsub__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:356
+msgid "`__mul__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:357
+msgid "`__rmul__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:358
+msgid "`__matmul__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:359
+msgid "`__rmatmul__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:360
+msgid "`__floordiv__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:361
+msgid "`__rfloordiv__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:362
+msgid "`__truediv__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:363
+msgid "`__rtruediv__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:364
+msgid "`__divmod__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:365
+msgid "`__rdivmod__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:366
+msgid "`__mod__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:367
+msgid "`__rmod__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:368
+msgid "`__lshift__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:369
+msgid "`__rlshift__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:370
+msgid "`__rshift__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:371
+msgid "`__rrshift__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:372
+msgid "`__and__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:373
+msgid "`__rand__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:374
+msgid "`__xor__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:375
+msgid "`__rxor__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:376
+msgid "`__or__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:377
+msgid "`__ror__(<self>, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:378
+msgid "`__pow__(<self>, object, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:379
+msgid "`__rpow__(<self>, object, object) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:381
+msgid ""
+"In-place assignment operations (`+=`, `-=`, `*=`, `@=`, `/=`, `//=`, `%=`, "
+"`**=`, `<<=`, `>>=`, `&=`, `^=`, `|=`):"
+msgstr ""
+
+#: src/class/protocols.md:384
+msgid "`__iadd__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:385
+msgid "`__isub__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:386
+msgid "`__imul__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:387
+msgid "`__imatmul__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:388
+msgid "`__itruediv__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:389
+msgid "`__ifloordiv__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:390
+msgid "`__imod__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:391
+msgid "`__ipow__(<self>, object, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:392
+msgid "`__ilshift__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:393
+msgid "`__irshift__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:394
+msgid "`__iand__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:395
+msgid "`__ixor__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:396
+msgid "`__ior__(<self>, object) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:398
+msgid "Unary operations (`-`, `+`, `abs()` and `~`):"
+msgstr ""
+
+#: src/class/protocols.md:400
+msgid "`__pos__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:401
+msgid "`__neg__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:402
+msgid "`__abs__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:403
+msgid "`__invert__(<self>) -> object`"
+msgstr ""
+
+#: src/class/protocols.md:405
+msgid "Coercions:"
+msgstr ""
+
+#: src/class/protocols.md:407
+msgid "`__index__(<self>) -> object (int)`"
+msgstr ""
+
+#: src/class/protocols.md:408
+msgid "`__int__(<self>) -> object (int)`"
+msgstr ""
+
+#: src/class/protocols.md:409
+msgid "`__float__(<self>) -> object (float)`"
+msgstr ""
+
+#: src/class/protocols.md:411
+msgid "Buffer objects"
+msgstr ""
+
+#: src/class/protocols.md:413
+msgid "`__getbuffer__(<self>, *mut ffi::Py_buffer, flags) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:414
+msgid ""
+"`__releasebuffer__(<self>, *mut ffi::Py_buffer) -> ()` Errors returned from "
+"`__releasebuffer__` will be sent to `sys.unraiseablehook`. It is strongly "
+"advised to never return an error from `__releasebuffer__`, and if it really "
+"is necessary, to make best effort to perform any required freeing operations "
+"before returning. `__releasebuffer__` will not be called a second time; "
+"anything not freed will be leaked."
+msgstr ""
+
+#: src/class/protocols.md:417
+msgid "Garbage Collector Integration"
+msgstr ""
+
+#: src/class/protocols.md:419
+msgid ""
+"If your type owns references to other Python objects, you will need to "
+"integrate with Python's garbage collector so that the GC is aware of those "
+"references.  To do this, implement the two methods `__traverse__` and "
+"`__clear__`.  These correspond to the slots `tp_traverse` and `tp_clear` in "
+"the Python C API. `__traverse__` must call `visit.call()` for each reference "
+"to another Python object.  `__clear__` must clear out any mutable references "
+"to other Python objects (thus breaking reference cycles). Immutable "
+"references do not have to be cleared, as every cycle must contain at least "
+"one mutable reference."
+msgstr ""
+
+#: src/class/protocols.md:428
+msgid ""
+"`__traverse__(<self>, pyo3::class::gc::PyVisit<'_>) -> Result<(), pyo3::"
+"class::gc::PyTraverseError>`"
+msgstr ""
+
+#: src/class/protocols.md:429
+msgid "`__clear__(<self>) -> ()`"
+msgstr ""
+
+#: src/class/protocols.md:453
+msgid "// Clear reference, this decrements ref counter.\n"
+msgstr ""
+
+#: src/class/protocols.md:459
+msgid ""
+"Usually, an implementation of `__traverse__` should do nothing but calls to "
+"`visit.call`. Most importantly, safe access to the GIL is prohibited inside "
+"implementations of `__traverse__`, i.e. `Python::with_gil` will panic."
+msgstr ""
+
+#: src/class/protocols.md:463
+msgid ""
+"Note: these methods are part of the C API, PyPy does not necessarily honor "
+"them. If you are building for PyPy you should measure memory consumption to "
+"make sure you do not have runaway memory growth. See [this issue on the PyPy "
+"bug tracker](https://github.com/pypy/pypy/issues/3848)."
+msgstr ""
