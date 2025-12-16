@@ -1,0 +1,703 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:54Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions.md:1
+msgid "Type Conversions"
+msgstr ""
+
+#: src/conversions.md:3
+msgid ""
+"In this portion of the guide we'll talk about the mapping of Python types to "
+"Rust types offered by PyO3, as well as the traits available to perform "
+"conversions between them."
+msgstr ""
+
+#: src/conversions.md:5
+msgid "Mapping of Rust types to Python types"
+msgstr ""
+
+#: src/conversions.md:7
+msgid ""
+"When writing functions callable from Python (such as a `#[pyfunction]` or in "
+"a `#[pymethods]` block), the trait `FromPyObject` is required for function "
+"arguments, and `IntoPy<PyObject>` is required for function return values."
+msgstr ""
+
+#: src/conversions.md:9
+msgid ""
+"Consult the tables in the following section to find the Rust types provided "
+"by PyO3 which implement these traits."
+msgstr ""
+
+#: src/conversions.md:11
+msgid "Argument Types"
+msgstr ""
+
+#: src/conversions.md:13
+msgid ""
+"When accepting a function argument, it is possible to either use Rust "
+"library types or PyO3's Python-native types. (See the next section for "
+"discussion on when to use each.)"
+msgstr ""
+
+#: src/conversions.md:15
+msgid ""
+"The table below contains the Python type and the corresponding function "
+"argument types that will accept them:"
+msgstr ""
+
+#: src/conversions.md:17
+msgid "Python"
+msgstr ""
+
+#: src/conversions.md:17
+msgid "Rust"
+msgstr ""
+
+#: src/conversions.md:17
+msgid "Rust (Python-native)"
+msgstr ""
+
+#: src/conversions.md:19
+msgid "`object`"
+msgstr ""
+
+#: src/conversions.md:19 src/conversions.md:32 src/conversions.md:33
+#: src/conversions.md:34 src/conversions.md:35 src/conversions.md:36
+#: src/conversions.md:37 src/conversions.md:38 src/conversions.md:39
+#: src/conversions.md:40 src/conversions.md:42
+msgid "\\-"
+msgstr ""
+
+#: src/conversions.md:19
+msgid "`&PyAny`"
+msgstr ""
+
+#: src/conversions.md:20 src/conversions.md:81 src/conversions.md:82
+msgid "`str`"
+msgstr ""
+
+#: src/conversions.md:20
+msgid "`String`, `Cow<str>`, `&str`"
+msgstr ""
+
+#: src/conversions.md:20
+msgid "`&PyUnicode`"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`bytes`"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`Vec<u8>`, `&[u8]`"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`&PyBytes`"
+msgstr ""
+
+#: src/conversions.md:22 src/conversions.md:83
+msgid "`bool`"
+msgstr ""
+
+#: src/conversions.md:22
+msgid "`&PyBool`"
+msgstr ""
+
+#: src/conversions.md:23 src/conversions.md:84
+msgid "`int`"
+msgstr ""
+
+#: src/conversions.md:23 src/conversions.md:84
+msgid "Any integer type (`i32`, `u32`, `usize`, etc)"
+msgstr ""
+
+#: src/conversions.md:23
+msgid "`&PyLong`"
+msgstr ""
+
+#: src/conversions.md:24 src/conversions.md:85
+msgid "`float`"
+msgstr ""
+
+#: src/conversions.md:24 src/conversions.md:85
+msgid "`f32`, `f64`"
+msgstr ""
+
+#: src/conversions.md:24
+msgid "`&PyFloat`"
+msgstr ""
+
+#: src/conversions.md:25
+msgid "`complex`"
+msgstr ""
+
+#: src/conversions.md:25
+msgid "`num_complex::Complex`[^1]"
+msgstr ""
+
+#: src/conversions.md:25
+msgid "`&PyComplex`"
+msgstr ""
+
+#: src/conversions.md:26
+msgid "`list[T]`"
+msgstr ""
+
+#: src/conversions.md:26 src/conversions.md:41 src/conversions.md:88
+msgid "`Vec<T>`"
+msgstr ""
+
+#: src/conversions.md:26
+msgid "`&PyList`"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`dict[K, V]`"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`HashMap<K, V>`, `BTreeMap<K, V>`"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`&PyDict`"
+msgstr ""
+
+#: src/conversions.md:28
+msgid "`tuple[T, U]`"
+msgstr ""
+
+#: src/conversions.md:28
+msgid "`(T, U)`, `Vec<T>`"
+msgstr ""
+
+#: src/conversions.md:28
+msgid "`&PyTuple`"
+msgstr ""
+
+#: src/conversions.md:29
+msgid "`set[T]`"
+msgstr ""
+
+#: src/conversions.md:29 src/conversions.md:30
+msgid "`HashSet<T>`, `BTreeSet<T>`"
+msgstr ""
+
+#: src/conversions.md:29
+msgid "`&PySet`"
+msgstr ""
+
+#: src/conversions.md:30
+msgid "`frozenset[T]`"
+msgstr ""
+
+#: src/conversions.md:30
+msgid "`&PyFrozenSet`"
+msgstr ""
+
+#: src/conversions.md:31
+msgid "`bytearray`"
+msgstr ""
+
+#: src/conversions.md:31
+msgid "`Vec<u8>`"
+msgstr ""
+
+#: src/conversions.md:31
+msgid "`&PyByteArray`"
+msgstr ""
+
+#: src/conversions.md:32
+msgid "`slice`"
+msgstr ""
+
+#: src/conversions.md:32
+msgid "`&PySlice`"
+msgstr ""
+
+#: src/conversions.md:33
+msgid "`type`"
+msgstr ""
+
+#: src/conversions.md:33
+msgid "`&PyType`"
+msgstr ""
+
+#: src/conversions.md:34
+msgid "`module`"
+msgstr ""
+
+#: src/conversions.md:34
+msgid "`&PyModule`"
+msgstr ""
+
+#: src/conversions.md:35
+msgid "`datetime.datetime`"
+msgstr ""
+
+#: src/conversions.md:35
+msgid "`&PyDateTime`"
+msgstr ""
+
+#: src/conversions.md:36
+msgid "`datetime.date`"
+msgstr ""
+
+#: src/conversions.md:36
+msgid "`&PyDate`"
+msgstr ""
+
+#: src/conversions.md:37
+msgid "`datetime.time`"
+msgstr ""
+
+#: src/conversions.md:37
+msgid "`&PyTime`"
+msgstr ""
+
+#: src/conversions.md:38
+msgid "`datetime.tzinfo`"
+msgstr ""
+
+#: src/conversions.md:38
+msgid "`&PyTzInfo`"
+msgstr ""
+
+#: src/conversions.md:39
+msgid "`datetime.timedelta`"
+msgstr ""
+
+#: src/conversions.md:39
+msgid "`&PyDelta`"
+msgstr ""
+
+#: src/conversions.md:40
+msgid "`typing.Optional[T]`"
+msgstr ""
+
+#: src/conversions.md:40 src/conversions.md:86
+msgid "`Option<T>`"
+msgstr ""
+
+#: src/conversions.md:41
+msgid "`typing.Sequence[T]`"
+msgstr ""
+
+#: src/conversions.md:41
+msgid "`&PySequence`"
+msgstr ""
+
+#: src/conversions.md:42
+msgid "`typing.Iterator[Any]`"
+msgstr ""
+
+#: src/conversions.md:42
+msgid "`&PyIterator`"
+msgstr ""
+
+#: src/conversions.md:44
+msgid ""
+"There are also a few special types related to the GIL and Rust-defined "
+"`#[pyclass]`es which may come in useful:"
+msgstr ""
+
+#: src/conversions.md:46
+msgid "What"
+msgstr ""
+
+#: src/conversions.md:46
+msgid "Description"
+msgstr ""
+
+#: src/conversions.md:48
+msgid "`Python`"
+msgstr ""
+
+#: src/conversions.md:48
+msgid ""
+"A GIL token, used to pass to PyO3 constructors to prove ownership of the GIL"
+msgstr ""
+
+#: src/conversions.md:49
+msgid "`PyObject`"
+msgstr ""
+
+#: src/conversions.md:49
+msgid ""
+"A Python object isolated from the GIL lifetime. This can be sent to other "
+"threads. To call Python APIs using this object, it must be used with "
+"`AsPyRef::as_ref` to get a `&PyAny` reference."
+msgstr ""
+
+#: src/conversions.md:50
+msgid "`Py<T>`"
+msgstr ""
+
+#: src/conversions.md:50
+msgid "Same as above, for a specific Python type or `#[pyclass]` T."
+msgstr ""
+
+#: src/conversions.md:51
+msgid "`&PyCell<T>`"
+msgstr ""
+
+#: src/conversions.md:51
+msgid "A `#[pyclass]` value owned by Python."
+msgstr ""
+
+#: src/conversions.md:52
+msgid "`PyRef<T>`"
+msgstr ""
+
+#: src/conversions.md:52
+msgid "A `#[pyclass]` borrowed immutably."
+msgstr ""
+
+#: src/conversions.md:53
+msgid "`PyRefMut<T>`"
+msgstr ""
+
+#: src/conversions.md:53
+msgid "A `#[pyclass]` borrowed mutably."
+msgstr ""
+
+#: src/conversions.md:55
+msgid ""
+"For more detail on accepting `#[pyclass]` values as function arguments, see "
+"[the section of this guide on Python Classes](class.md)."
+msgstr ""
+
+#: src/conversions.md:57
+msgid "Using Rust library types vs Python-native types"
+msgstr ""
+
+#: src/conversions.md:59
+msgid ""
+"Using Rust library types as function arguments will incur a conversion cost "
+"compared to using the Python-native types. Using the Python-native types is "
+"almost zero-cost (they just require a type check similar to the Python "
+"builtin function `isinstance()`)."
+msgstr ""
+
+#: src/conversions.md:61
+msgid ""
+"However, once that conversion cost has been paid, the Rust standard library "
+"types offer a number of benefits:"
+msgstr ""
+
+#: src/conversions.md:62
+msgid ""
+"You can write functionality in native-speed Rust code (free of Python's "
+"runtime costs)."
+msgstr ""
+
+#: src/conversions.md:63
+msgid "You get better interoperability with the rest of the Rust ecosystem."
+msgstr ""
+
+#: src/conversions.md:64
+msgid ""
+"You can use `Python::allow_threads` to release the Python GIL and let other "
+"Python threads make progress while your Rust code is executing."
+msgstr ""
+
+#: src/conversions.md:65
+msgid ""
+"You also benefit from stricter type checking. For example you can specify "
+"`Vec<i32>`, which will only accept a Python `list` containing integers. The "
+"Python-native equivalent, `&PyList`, would accept a Python `list` containing "
+"Python objects of any type."
+msgstr ""
+
+#: src/conversions.md:67
+msgid ""
+"For most PyO3 usage the conversion cost is worth paying to get these "
+"benefits. As always, if you're not sure it's worth it in your case, "
+"benchmark it!"
+msgstr ""
+
+#: src/conversions.md:69
+msgid "Returning Rust values to Python"
+msgstr ""
+
+#: src/conversions.md:71
+msgid ""
+"When returning values from functions callable from Python, Python-native "
+"types (`&PyAny`, `&PyDict` etc.) can be used with zero cost."
+msgstr ""
+
+#: src/conversions.md:73
+msgid ""
+"Because these types are references, in some situations the Rust compiler may "
+"ask for lifetime annotations. If this is the case, you should use "
+"`Py<PyAny>`, `Py<PyDict>` etc. instead - which are also zero-cost. For all "
+"of these Python-native types `T`, `Py<T>` can be created from `T` with an `."
+"into()` conversion."
+msgstr ""
+
+#: src/conversions.md:75
+msgid ""
+"If your function is fallible, it should return `PyResult<T>`, which will "
+"raise a `Python` exception if the `Err` variant is returned."
+msgstr ""
+
+#: src/conversions.md:77
+msgid ""
+"Finally, the following Rust types are also able to convert to Python as "
+"return values:"
+msgstr ""
+
+#: src/conversions.md:79
+msgid "Rust type"
+msgstr ""
+
+#: src/conversions.md:79
+msgid "Resulting Python Type"
+msgstr ""
+
+#: src/conversions.md:81
+msgid "`String`"
+msgstr ""
+
+#: src/conversions.md:82
+msgid "`&str`"
+msgstr ""
+
+#: src/conversions.md:86
+msgid "`Optional[T]`"
+msgstr ""
+
+#: src/conversions.md:87
+msgid "`(T, U)`"
+msgstr ""
+
+#: src/conversions.md:87
+msgid "`Tuple[T, U]`"
+msgstr ""
+
+#: src/conversions.md:88
+msgid "`List[T]`"
+msgstr ""
+
+#: src/conversions.md:89
+msgid "`HashMap<K, V>`"
+msgstr ""
+
+#: src/conversions.md:89 src/conversions.md:90
+msgid "`Dict[K, V]`"
+msgstr ""
+
+#: src/conversions.md:90
+msgid "`BTreeMap<K, V>`"
+msgstr ""
+
+#: src/conversions.md:91
+msgid "`HashSet<T>`"
+msgstr ""
+
+#: src/conversions.md:91 src/conversions.md:92
+msgid "`Set[T]`"
+msgstr ""
+
+#: src/conversions.md:92
+msgid "`BTreeSet<T>`"
+msgstr ""
+
+#: src/conversions.md:93
+msgid "`&PyCell<T: PyClass>`"
+msgstr ""
+
+#: src/conversions.md:93 src/conversions.md:94 src/conversions.md:95
+msgid "`T`"
+msgstr ""
+
+#: src/conversions.md:94
+msgid "`PyRef<T: PyClass>`"
+msgstr ""
+
+#: src/conversions.md:95
+msgid "`PyRefMut<T: PyClass>`"
+msgstr ""
+
+#: src/conversions.md:97
+msgid "Traits"
+msgstr ""
+
+#: src/conversions.md:99
+msgid ""
+"PyO3 provides some handy traits to convert between Python types and Rust "
+"types."
+msgstr ""
+
+#: src/conversions.md:101
+msgid "`.extract()` and the `FromPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:103
+msgid ""
+"The easiest way to convert a Python object to a Rust value is using `."
+"extract()`.  It returns a `PyResult` with a type error if the conversion "
+"fails, so usually you will use something like"
+msgstr ""
+
+#: src/conversions.md:111
+msgid ""
+"This method is available for many Python object types, and can produce a "
+"wide variety of Rust types, which you can check out in the implementor list "
+"of [`FromPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPyObject.html)."
+msgstr ""
+
+#: src/conversions.md:115
+msgid ""
+"[`FromPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPyObject.html) is also implemented for your own Rust types wrapped as "
+"Python objects (see [the chapter about classes](class.md)).  There, in order "
+"to both be able to operate on mutable references _and_ satisfy Rust's rules "
+"of non-aliasing mutable references, you have to extract the PyO3 reference "
+"wrappers [`PyRef`](https://pyo3.rs/master/doc/pyo3/pycell/struct.PyRef.html) "
+"and [`PyRefMut`](https://pyo3.rs/master/doc/pyo3/pycell/struct.PyRefMut."
+"html).  They work like the reference wrappers of `std::cell::RefCell` and "
+"ensure (at runtime) that Rust borrows are allowed."
+msgstr ""
+
+#: src/conversions.md:123
+msgid "The `ToPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:125
+msgid ""
+"[`ToPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait.ToPyObject."
+"html) is a conversion trait that allows various objects to be converted into "
+"[`PyObject`](https://docs.rs/pyo3/latest/pyo3/struct.PyObject.html). "
+"`IntoPy<PyObject>` serves the same purpose, except that it consumes `self`."
+msgstr ""
+
+#: src/conversions.md:130
+msgid "`*args` and `**kwargs` for Python object calls"
+msgstr ""
+
+#: src/conversions.md:132
+msgid ""
+"There are several ways how to pass positional and keyword arguments to a "
+"Python object call. [`PyAny`](https://docs.rs/pyo3/latest/pyo3/struct.PyAny."
+"html) provides two methods:"
+msgstr ""
+
+#: src/conversions.md:135
+msgid "`call` - call any callable Python object."
+msgstr ""
+
+#: src/conversions.md:136
+msgid ""
+"`call_method` - call a specific method on the object, shorthand for "
+"`get_attr` then `call`."
+msgstr ""
+
+#: src/conversions.md:138
+msgid ""
+"Both methods need `args` and `kwargs` arguments, but there are variants for "
+"less complex calls, such as `call1` for only `args` and `call0` for no "
+"arguments at all."
+msgstr ""
+
+#: src/conversions.md:153
+msgid "\"arg1\""
+msgstr ""
+
+#: src/conversions.md:154
+msgid "\"arg2\""
+msgstr ""
+
+#: src/conversions.md:155
+msgid "\"arg3\""
+msgstr ""
+
+#: src/conversions.md:162
+msgid "// call object without empty arguments\n"
+msgstr ""
+
+#: src/conversions.md:165
+msgid "// call object with PyTuple\n"
+msgstr ""
+
+#: src/conversions.md:169
+msgid "// pass arguments as rust tuple\n"
+msgstr ""
+
+#: src/conversions.md:175
+msgid ""
+"`kwargs` can be `None` or `Some(&PyDict)`. You can use the [`IntoPyDict`]"
+"(https://docs.rs/pyo3/latest/pyo3/types/trait.IntoPyDict.html) trait to "
+"convert other dict-like containers, e.g. `HashMap` or `BTreeMap`, as well as "
+"tuples with up to 10 elements and `Vec`s where each element is a two-element "
+"tuple."
+msgstr ""
+
+#: src/conversions.md:194
+msgid "\"key1\""
+msgstr ""
+
+#: src/conversions.md:196
+msgid "\"key2\""
+msgstr ""
+
+#: src/conversions.md:204
+msgid "// call object with PyDict\n"
+msgstr ""
+
+#: src/conversions.md:208
+msgid "// pass arguments as Vec\n"
+msgstr ""
+
+#: src/conversions.md:212
+msgid "// pass arguments as HashMap\n"
+msgstr ""
+
+#: src/conversions.md:219
+msgid "`FromPy<T>` and `IntoPy<T>`"
+msgstr ""
+
+#: src/conversions.md:221
+msgid ""
+"Many conversions in PyO3 can't use `std::convert::From` because they need a "
+"GIL token. The [`FromPy`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPy.html) trait offers an `from_py` method that works just like `from`, "
+"except for taking a `Python<'_>` argument. I.e. `FromPy<T>` could be "
+"converting a Rust object into a Python object even though it is called "
+"[`FromPy`](https://docs.rs/pyo3/latest/pyo3/conversion/trait.FromPy.html) - "
+"it doesn't say anything about which side of the conversion is a Python "
+"object."
+msgstr ""
+
+#: src/conversions.md:225
+msgid ""
+"Just like `From<T>`, if you implement `FromPy<T>` you gain a blanket "
+"implementation of [`IntoPy`](https://docs.rs/pyo3/latest/pyo3/conversion/"
+"trait.IntoPy.html) for free."
+msgstr ""
+
+#: src/conversions.md:227
+msgid ""
+"Eventually, traits such as [`ToPyObject`](https://docs.rs/pyo3/latest/pyo3/"
+"conversion/trait.ToPyObject.html) will be replaced by this trait and a "
+"[`FromPy`](https://docs.rs/pyo3/latest/pyo3/conversion/trait.FromPy.html) "
+"trait will be added that will implement [`IntoPy`](https://docs.rs/pyo3/"
+"latest/pyo3/conversion/trait.IntoPy.html), just like with `From` and `Into`."
+msgstr ""
+
+#: src/conversions.md:242
+msgid "Requires the `num-complex` optional feature."
+msgstr ""
