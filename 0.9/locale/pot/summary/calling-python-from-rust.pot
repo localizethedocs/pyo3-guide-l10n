@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:45Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/python_from_rust.md:1
+msgid "Calling Python in Rust code"
+msgstr ""
+
+#: src/python_from_rust.md:3
+msgid ""
+"These APIs work from Rust whenever you have a `Python` object handy, whether "
+"PyO3 is built for an extension module or not."
+msgstr ""
+
+#: src/python_from_rust.md:6
+msgid "Want to run just an expression? Then use `eval`."
+msgstr ""
+
+#: src/python_from_rust.md:8
+msgid ""
+"[`Python::eval`](https://pyo3.rs/master/doc/pyo3/struct.Python.html#method."
+"eval) is a method to execute a [Python expression](https://docs.python."
+"org/3.7/reference/expressions.html) and return the evaluated value as a "
+"`&PyAny` object."
+msgstr ""
+
+#: src/python_from_rust.md:19
+msgid "\"[i * 10 for i in range(5)]\""
+msgstr ""
+
+#: src/python_from_rust.md:28
+msgid "Want to run statements? Then use `run`."
+msgstr ""
+
+#: src/python_from_rust.md:30
+msgid ""
+"[`Python::run`](https://pyo3.rs/master/doc/pyo3/struct.Python.html#method."
+"run) is a method to execute one or more [Python statements](https://docs."
+"python.org/3.7/reference/simple_stmts.html). This method returns nothing "
+"(like any Python statement), but you can get access to manipulated objects "
+"via the `locals` dict."
+msgstr ""
+
+#: src/python_from_rust.md:35
+msgid ""
+"You can also use the [`py_run!`](https://pyo3.rs/master/doc/pyo3/macro."
+"py_run.html) macro, which is a shorthand for [`Python::run`](https://pyo3.rs/"
+"master/doc/pyo3/struct.Python.html#method.run). Since [`py_run!`](https://"
+"pyo3.rs/master/doc/pyo3/macro.py_run.html) panics on exceptions, we "
+"recommend you use this macro only for quickly testing your Python extensions."
+msgstr ""
+
+#: src/python_from_rust.md:57
+msgid "\"User {}(id: {})\""
+msgstr ""
+
+#: src/python_from_rust.md:64 src/python_from_rust.md:67
+msgid "\"Yu\""
+msgstr ""
+
+#: src/python_from_rust.md:68
+msgid ""
+"r#\"\n"
+"assert repr(userdata) == \"User Yu(id: 34)\"\n"
+"assert userdata.as_tuple() == userdata_as_tuple\n"
+"\"#"
+msgstr ""
+
+#: src/python_from_rust.md:75
+msgid "You have a Python file or Python function? Then use `PyModule`."
+msgstr ""
+
+#: src/python_from_rust.md:77
+msgid ""
+"[PyModule](https://pyo3.rs/master/doc/pyo3/types/struct.PyModule.html) also "
+"can execute Python code by calling its methods."
+msgstr ""
+
+#: src/python_from_rust.md:85
+msgid ""
+"r#\"\n"
+"def relu(x):\n"
+"    \"\"\"see https://en.wikipedia.org/wiki/"
+"Rectifier_(neural_networks)\"\"\"\n"
+"    return max(0.0, x)\n"
+"\n"
+"def leaky_relu(x, slope=0.01):\n"
+"    return x if x >= 0 else x * slope\n"
+"\"#"
+msgstr ""
+
+#: src/python_from_rust.md:92
+msgid "\"activators.py\""
+msgstr ""
+
+#: src/python_from_rust.md:92
+msgid "\"activators\""
+msgstr ""
+
+#: src/python_from_rust.md:94
+msgid "\"relu\""
+msgstr ""
+
+#: src/python_from_rust.md:97
+msgid "\"slope\""
+msgstr ""
+
+#: src/python_from_rust.md:99
+msgid "\"leaky_relu\""
+msgstr ""
