@@ -1,0 +1,149 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:41Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/async-await.md:1
+msgid "Using `async` and `await`"
+msgstr ""
+
+#: src/async-await.md:3
+msgid ""
+"_This feature is still in active development. See [the related issue]"
+"(https://github.com/PyO3/pyo3/issues/1632)._"
+msgstr ""
+
+#: src/async-await.md:5
+msgid "`#[pyfunction]` and `#[pymethods]` attributes also support `async fn`."
+msgstr ""
+
+#: src/async-await.md:9 src/async-await.md:82
+msgid "\"experimental-async\""
+msgstr ""
+
+#: src/async-await.md:28
+msgid ""
+"_Python awaitables instantiated with this method can only be awaited in "
+"_asyncio_ context. Other Python async runtime may be supported in the future."
+"_"
+msgstr ""
+
+#: src/async-await.md:30
+msgid "`Send + 'static` constraint"
+msgstr ""
+
+#: src/async-await.md:32
+msgid ""
+"Resulting future of an `async fn` decorated by `#[pyfunction]` must be `Send "
+"+ 'static` to be embedded in a Python object."
+msgstr ""
+
+#: src/async-await.md:34
+msgid ""
+"As a consequence, `async fn` parameters and return types must also be `Send "
+"+ 'static`, so it is not possible to have a signature like `async fn "
+"does_not_compile<'py>(arg: Bound<'py, PyAny>) -> Bound<'py, PyAny>`."
+msgstr ""
+
+#: src/async-await.md:36
+msgid ""
+"However, there is an exception for method receivers, so async methods can "
+"accept `&self`/`&mut self`. Note that this means that the class instance is "
+"borrowed for as long as the returned future is not completed, even across "
+"yield points and while waiting for I/O operations to complete. Hence, other "
+"methods cannot obtain exclusive borrows while the future is still being "
+"polled. This is the same as how async methods in Rust generally work but it "
+"is more problematic for Rust code interfacing with Python code due to "
+"pervasive shared mutability. This strongly suggests to prefer shared borrows "
+"`&self` over exclusive ones `&mut self` to avoid racy borrow check failures "
+"at runtime."
+msgstr ""
+
+#: src/async-await.md:38
+msgid "Implicit GIL holding"
+msgstr ""
+
+#: src/async-await.md:40
+msgid ""
+"Even if it is not possible to pass a `py: Python<'py>` parameter to `async "
+"fn`, the GIL is still held during the execution of the future – it's also "
+"the case for regular `fn` without `Python<'py>`/`Bound<'py, PyAny>` "
+"parameter, yet the GIL is held."
+msgstr ""
+
+#: src/async-await.md:42
+msgid ""
+"It is still possible to get a `Python` marker using [`Python::with_gil`]"
+"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.with_gil); "
+"because `with_gil` is reentrant and optimized, the cost will be negligible."
+msgstr ""
+
+#: src/async-await.md:44
+msgid "Release the GIL across `.await`"
+msgstr ""
+
+#: src/async-await.md:46
+msgid ""
+"There is currently no simple way to release the GIL when awaiting a future, "
+"_but solutions are currently in development_."
+msgstr ""
+
+#: src/async-await.md:48
+msgid "Here is the advised workaround for now:"
+msgstr ""
+
+#: src/async-await.md:76
+msgid "Cancellation"
+msgstr ""
+
+#: src/async-await.md:78
+msgid ""
+"Cancellation on the Python side can be caught using [`CancelHandle`](https://"
+"pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle.html) type, by "
+"annotating a function parameter with `#[pyo3(cancel_handle)]`."
+msgstr ""
+
+#: src/async-await.md:90
+msgid "/* _ = ... => println!(\"done\"), */"
+msgstr ""
+
+#: src/async-await.md:91
+msgid "\"cancelled\""
+msgstr ""
+
+#: src/async-await.md:97
+msgid "The `Coroutine` type"
+msgstr ""
+
+#: src/async-await.md:99
+msgid ""
+"To make a Rust future awaitable in Python, PyO3 defines a [`Coroutine`]"
+"(https://pyo3.rs/main/doc/pyo3/coroutine/struct.Coroutine.html) type, which "
+"implements the Python [coroutine protocol](https://docs.python.org/3/library/"
+"collections.abc.html#collections.abc.Coroutine)."
+msgstr ""
+
+#: src/async-await.md:101
+msgid ""
+"Each `coroutine.send` call is translated to a `Future::poll` call. If a "
+"[`CancelHandle`](https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle."
+"html) parameter is declared, the exception passed to `coroutine.throw` call "
+"is stored in it and can be retrieved with [`CancelHandle::cancelled`]"
+"(https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle.html#method."
+"cancelled); otherwise, it cancels the Rust future, and the exception is "
+"reraised;"
+msgstr ""
+
+#: src/async-await.md:103
+msgid ""
+"_The type does not yet have a public constructor until the design is "
+"finalized._"
+msgstr ""
