@@ -1,0 +1,336 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:42Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions/traits.md:1
+msgid "Conversion traits"
+msgstr ""
+
+#: src/conversions/traits.md:3
+msgid ""
+"PyO3 provides some handy traits to convert between Python types and Rust "
+"types."
+msgstr ""
+
+#: src/conversions/traits.md:5
+msgid "`.extract()` and the `FromPyObject` trait"
+msgstr ""
+
+#: src/conversions/traits.md:7
+msgid ""
+"The easiest way to convert a Python object to a Rust value is using `."
+"extract()`.  It returns a `PyResult` with a type error if the conversion "
+"fails, so usually you will use something like"
+msgstr ""
+
+#: src/conversions/traits.md:15
+msgid ""
+"This method is available for many Python object types, and can produce a "
+"wide variety of Rust types, which you can check out in the implementor list "
+"of [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html)."
+msgstr ""
+
+#: src/conversions/traits.md:19
+msgid ""
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
+"html) is also implemented for your own Rust types wrapped as Python objects "
+"(see [the chapter about classes](class.md)).  There, in order to both be "
+"able to operate on mutable references _and_ satisfy Rust's rules of non-"
+"aliasing mutable references, you have to extract the PyO3 reference wrappers "
+"[`PyRef`](https://pyo3.rs/main/doc/pyo3/pycell/struct.PyRef.html) and "
+"[`PyRefMut`](https://pyo3.rs/main/doc/pyo3/pycell/struct.PyRefMut.html).  "
+"They work like the reference wrappers of `std::cell::RefCell` and ensure (at "
+"runtime) that Rust borrows are allowed."
+msgstr ""
+
+#: src/conversions/traits.md:26
+msgid ""
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html)"
+msgstr ""
+
+#: src/conversions/traits.md:28
+msgid ""
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
+"html) can be automatically derived for many kinds of structs and enums if "
+"the member types themselves implement `FromPyObject`. This even includes "
+"members with a generic type `T: FromPyObject`. Derivation for empty enums, "
+"enum variants and structs is not supported."
+msgstr ""
+
+#: src/conversions/traits.md:33
+msgid ""
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html) for structs"
+msgstr ""
+
+#: src/conversions/traits.md:44
+msgid ""
+"The derivation generates code that will per default access the attribute "
+"`my_string` on the Python object, i.e. `obj.getattr(\"my_string\")`, and "
+"call `extract()` on the attribute. It is also possible to access the value "
+"on the Python object through `obj.get_item(\"my_string\")` by setting the "
+"attribute `pyo3(item)` on the field:"
+msgstr ""
+
+#: src/conversions/traits.md:58
+msgid "The argument passed to `getattr` and `get_item` can also be configured:"
+msgstr ""
+
+#: src/conversions/traits.md:60
+msgid ""
+"```\n"
+"use pyo3::prelude::*;\n"
+"\n"
+"#[derive(FromPyObject)]\n"
+"struct RustyStruct {\n"
+"    #[pyo3(item(\"key\"))]\n"
+"    string_in_mapping: String,\n"
+"    #[pyo3(attribute(\"name\"))]\n"
+"    string_attr: String,\n"
+"}\n"
+"```"
+msgstr ""
+
+#: src/conversions/traits.md:72
+msgid ""
+"This tries to extract `string_attr` from the attribute `name` and "
+"`string_in_mapping` from a mapping with the key `\"key\"`. The arguments for "
+"`attribute` are restricted to non-empty string literals while `item` can "
+"take any valid literal that implements `ToBorrowedObject`."
+msgstr ""
+
+#: src/conversions/traits.md:77
+msgid ""
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html) for tuple structs"
+msgstr ""
+
+#: src/conversions/traits.md:79
+msgid ""
+"Tuple structs are also supported but do not allow customizing the "
+"extraction. The input is always assumed to be a Python tuple with the same "
+"length as the Rust type, the `n`th field is extracted from the `n`th item in "
+"the Python tuple."
+msgstr ""
+
+#: src/conversions/traits.md:90
+msgid ""
+"Tuple structs with a single field are treated as wrapper types which are "
+"described in the following section. To override this behaviour and ensure "
+"that the input is in fact a tuple, specify the struct as"
+msgstr ""
+
+#: src/conversions/traits.md:100
+msgid ""
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html) for wrapper types"
+msgstr ""
+
+#: src/conversions/traits.md:102
+msgid ""
+"The `pyo3(transparent)` attribute can be used on structs with exactly one "
+"field. This results in extracting directly from the input object, i.e. `obj."
+"extract()`, rather than trying to access an item or attribute. This "
+"behaviour is enabled per default for newtype structs and tuple-variants with "
+"a single field."
+msgstr ""
+
+#: src/conversions/traits.md:120
+msgid ""
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html) for enums"
+msgstr ""
+
+#: src/conversions/traits.md:122
+msgid ""
+"The `FromPyObject` derivation for enums generates code that tries to extract "
+"the variants in the order of the fields. As soon as a variant can be "
+"extracted succesfully, that variant is returned. This makes it possible to "
+"extract Python types like `Union[str, int]`."
+msgstr ""
+
+#: src/conversions/traits.md:126
+msgid ""
+"The same customizations and restrictions described for struct derivations "
+"apply to enum variants, i.e. a tuple variant assumes that the input is a "
+"Python tuple, and a struct variant defaults to extracting fields as "
+"attributes but can be configured in the same manner. The `transparent` "
+"attribute can be applied to single-field-variants."
+msgstr ""
+
+#: src/conversions/traits.md:131
+msgid ""
+"```\n"
+"use pyo3::prelude::*;\n"
+"\n"
+"#[derive(FromPyObject)]\n"
+"enum RustyEnum<'a> {\n"
+"    Int(usize), // input is a positive int\n"
+"    String(String), // input is a string\n"
+"    IntTuple(usize, usize), // input is a 2-tuple with positive ints\n"
+"    StringIntTuple(String, usize), // input is a 2-tuple with String and "
+"int\n"
+"    Coordinates3d { // needs to be in front of 2d\n"
+"        x: usize,\n"
+"        y: usize,\n"
+"        z: usize,\n"
+"    },\n"
+"    Coordinates2d { // only gets checked if the input did not have `z`\n"
+"        #[pyo3(attribute(\"x\"))]\n"
+"        a: usize,\n"
+"        #[pyo3(attribute(\"y\"))]\n"
+"        b: usize,\n"
+"    },\n"
+"    #[pyo3(transparent)]\n"
+"    CatchAll(&'a PyAny), // This extraction never fails\n"
+"}\n"
+"```"
+msgstr ""
+
+#: src/conversions/traits.md:156
+msgid ""
+"If none of the enum variants match, a `PyValueError` containing the names of "
+"the tested variants is returned. The names reported in the error message can "
+"be customized through the `pyo3(annotation = \"name\")` attribute, e.g. to "
+"use conventional Python type names:"
+msgstr ""
+
+#: src/conversions/traits.md:161
+msgid ""
+"```\n"
+"use pyo3::prelude::*;\n"
+"\n"
+"#[derive(FromPyObject)]\n"
+"enum RustyEnum {\n"
+"    #[pyo3(transparent, annotation = \"str\")]\n"
+"    String(String),\n"
+"    #[pyo3(transparent, annotation = \"int\")]\n"
+"    Int(isize),\n"
+"}\n"
+"```"
+msgstr ""
+
+#: src/conversions/traits.md:173
+msgid ""
+"If the input is neither a string nor an integer, the error message will be: "
+"`\"'<INPUT_TYPE>' cannot be converted to 'Union[str, int]'\"`."
+msgstr ""
+
+#: src/conversions/traits.md:176
+msgid "`#[derive(FromPyObject)]` Container Attributes"
+msgstr ""
+
+#: src/conversions/traits.md:177
+msgid "`pyo3(transparent)`"
+msgstr ""
+
+#: src/conversions/traits.md:178
+msgid ""
+"extract the field directly from the object as `obj.extract()` instead of "
+"`get_item()` or `getattr()`"
+msgstr ""
+
+#: src/conversions/traits.md:180
+msgid ""
+"Newtype structs and tuple-variants are treated as transparent per default."
+msgstr ""
+
+#: src/conversions/traits.md:181
+msgid "only supported for single-field structs and enum variants"
+msgstr ""
+
+#: src/conversions/traits.md:182
+msgid "`pyo3(annotation = \"name\")`"
+msgstr ""
+
+#: src/conversions/traits.md:183
+msgid ""
+"changes the name of the failed variant in the generated error message in "
+"case of failure."
+msgstr ""
+
+#: src/conversions/traits.md:184
+msgid "e.g. `pyo3(\"int\")` reports the variant's type as `int`."
+msgstr ""
+
+#: src/conversions/traits.md:185
+msgid "only supported for enum variants"
+msgstr ""
+
+#: src/conversions/traits.md:187
+msgid "`#[derive(FromPyObject)]` Field Attributes"
+msgstr ""
+
+#: src/conversions/traits.md:188
+msgid "`pyo3(attribute)`, `pyo3(attribute(\"name\"))`"
+msgstr ""
+
+#: src/conversions/traits.md:189
+msgid ""
+"retrieve the field from an attribute, possibly with a custom name specified "
+"as an argument"
+msgstr ""
+
+#: src/conversions/traits.md:190
+msgid "argument must be a string-literal."
+msgstr ""
+
+#: src/conversions/traits.md:191
+msgid "`pyo3(item)`, `pyo3(item(\"key\"))`"
+msgstr ""
+
+#: src/conversions/traits.md:192
+msgid ""
+"retrieve the field from a mapping, possibly with the custom key specified as "
+"an argument."
+msgstr ""
+
+#: src/conversions/traits.md:193
+msgid "can be any literal that implements `ToBorrowedObject`"
+msgstr ""
+
+#: src/conversions/traits.md:195
+msgid "`IntoPy<T>`"
+msgstr ""
+
+#: src/conversions/traits.md:197
+msgid ""
+"This trait defines the to-python conversion for a Rust type. It is usually "
+"implemented as `IntoPy<PyObject>`, which is the trait needed for returning a "
+"value from `#[pyfunction]` and `#[pymethods]`."
+msgstr ""
+
+#: src/conversions/traits.md:201
+msgid ""
+"All types in PyO3 implement this trait, as does a `#[pyclass]` which doesn't "
+"use `extends`."
+msgstr ""
+
+#: src/conversions/traits.md:203
+msgid ""
+"Occasionally you may choose to implement this for custom types which are "
+"mapped to Python types _without_ having a unique python type."
+msgstr ""
+
+#: src/conversions/traits.md:218
+msgid "The `ToPyObject` trait"
+msgstr ""
+
+#: src/conversions/traits.md:220
+msgid ""
+"[`ToPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.ToPyObject."
+"html) is a conversion trait that allows various objects to be converted into "
+"[`PyObject`](https://pyo3.rs/main/doc/pyo3/type.PyObject.html). "
+"`IntoPy<PyObject>` serves the same purpose, except that it consumes `self`."
+msgstr ""
