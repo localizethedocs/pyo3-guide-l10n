@@ -1,0 +1,284 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:42:11Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function.md:1
+msgid "Python functions"
+msgstr ""
+
+#: src/function.md:3
+msgid ""
+"The `#[pyfunction]` attribute is used to define a Python function from a "
+"Rust function. Once defined, the function needs to be added to a [module](./"
+"module.md) using the `wrap_pyfunction!` macro."
+msgstr ""
+
+#: src/function.md:5
+msgid ""
+"The following example defines a function called `double` in a Python module "
+"called `my_extension`:"
+msgstr ""
+
+#: src/function.md:22
+msgid ""
+"This chapter of the guide explains full usage of the `#[pyfunction]` "
+"attribute. In this first section, the following topics are covered:"
+msgstr ""
+
+#: src/function.md:24
+msgid "[Function options](#function-options)"
+msgstr ""
+
+#: src/function.md:25
+msgid "[`#[pyo3(name = \"...\")]`](#name)"
+msgstr ""
+
+#: src/function.md:26
+msgid "[`#[pyo3(signature = (...))]`](#signature)"
+msgstr ""
+
+#: src/function.md:27
+msgid "[`#[pyo3(text_signature = \"...\")]`](#text_signature)"
+msgstr ""
+
+#: src/function.md:28
+msgid "[`#[pyo3(pass_module)]`](#pass_module)"
+msgstr ""
+
+#: src/function.md:29
+msgid "[Per-argument options](#per-argument-options)"
+msgstr ""
+
+#: src/function.md:30
+msgid "[Advanced function patterns](#advanced-function-patterns)"
+msgstr ""
+
+#: src/function.md:31
+msgid "[`#[pyfn]` shorthand](#pyfn-shorthand)"
+msgstr ""
+
+#: src/function.md:33
+msgid "There are also additional sections on the following topics:"
+msgstr ""
+
+#: src/function.md:35
+msgid "[Function Signatures](./function/signature.md)"
+msgstr ""
+
+#: src/function.md:37
+msgid "Function options"
+msgstr ""
+
+#: src/function.md:39
+msgid ""
+"The `#[pyo3]` attribute can be used to modify properties of the generated "
+"Python function. It can take any combination of the following options:"
+msgstr ""
+
+#: src/function.md:41
+msgid "<a name=\"name\"></a> `#[pyo3(name = \"...\")]`"
+msgstr ""
+
+#: src/function.md:43
+msgid "Overrides the name exposed to Python."
+msgstr ""
+
+#: src/function.md:45
+msgid ""
+"In the following example, the Rust function `no_args_py` will be added to "
+"the Python module `module_with_functions` as the Python function `no_args`:"
+msgstr ""
+
+#: src/function.md:52 src/function.md:65
+msgid "\"no_args\""
+msgstr ""
+
+#: src/function.md:66
+msgid "\"no_args_py\""
+msgstr ""
+
+#: src/function.md:70
+msgid "<a name=\"signature\"></a> `#[pyo3(signature = (...))]`"
+msgstr ""
+
+#: src/function.md:72
+msgid ""
+"Defines the function signature in Python. See [Function Signatures](./"
+"function/signature.md)."
+msgstr ""
+
+#: src/function.md:74
+msgid "<a name=\"text_signature\"></a> `#[pyo3(text_signature = \"...\")]`"
+msgstr ""
+
+#: src/function.md:76
+msgid ""
+"Overrides the PyO3-generated function signature visible in Python tooling "
+"(such as via [`inspect.signature`](https://docs.python.org/3/library/inspect."
+"html#inspect.signature)). See the [corresponding topic in the Function "
+"Signatures subchapter](./function/signature.md#making-the-function-signature-"
+"available-to-python)."
+msgstr ""
+
+#: src/function.md:78
+msgid "<a name=\"pass_module\" ></a> `#[pyo3(pass_module)]`"
+msgstr ""
+
+#: src/function.md:80
+msgid ""
+"Set this option to make PyO3 pass the containing module as the first "
+"argument to the function. It is then possible to use the module in the "
+"function body. The first argument **must** be of type `&PyModule`."
+msgstr ""
+
+#: src/function.md:82
+msgid ""
+"The following example creates a function `pyfunction_with_module` which "
+"returns the containing module's name (i.e. `module_with_fn`):"
+msgstr ""
+
+#: src/function.md:99
+msgid "Per-argument options"
+msgstr ""
+
+#: src/function.md:101
+msgid ""
+"The `#[pyo3]` attribute can be used on individual arguments to modify "
+"properties of them in the generated function. It can take any combination of "
+"the following options:"
+msgstr ""
+
+#: src/function.md:103
+msgid "<a name=\"from_py_with\"></a> `#[pyo3(from_py_with = \"...\")]`"
+msgstr ""
+
+#: src/function.md:105
+msgid ""
+"Set this on an option to specify a custom function to convert the function "
+"argument from Python to the desired Rust type, instead of using the default "
+"`FromPyObject` extraction. The function signature must be `fn(&PyAny) -> "
+"PyResult<T>` where `T` is the Rust type of the argument."
+msgstr ""
+
+#: src/function.md:107
+msgid ""
+"The following example uses `from_py_with` to convert the input Python object "
+"to its length:"
+msgstr ""
+
+#: src/function.md:130
+msgid "Advanced function patterns"
+msgstr ""
+
+#: src/function.md:132
+msgid "Calling Python functions in Rust"
+msgstr ""
+
+#: src/function.md:134
+msgid ""
+"You can pass Python `def`'d functions and built-in functions to Rust "
+"functions [`PyFunction`](https://pyo3.rs/main/doc/pyo3/types/struct."
+"PyFunction.html) corresponds to regular Python functions while "
+"[`PyCFunction`](https://pyo3.rs/main/doc/pyo3/types/struct.PyCFunction.html) "
+"describes built-ins such as `repr()`."
+msgstr ""
+
+#: src/function.md:138
+msgid ""
+"You can also use [`PyAny::is_callable`](https://pyo3.rs/main/doc/pyo3/struct."
+"PyAny.html#tymethod.is_callable) to check if you have a callable object. "
+"`is_callable` will return `true` for functions (including lambdas), methods "
+"and objects with a `__call__` method. You can call the object with [`PyAny::"
+"call`](https://pyo3.rs/main/doc/pyo3/struct.PyAny.html#tymethod.call) with "
+"the args as first parameter and the kwargs (or `None`) as second parameter. "
+"There are also [`PyAny::call0`](https://pyo3.rs/main/doc/pyo3/struct.PyAny."
+"html#tymethod.call0) with no args and [`PyAny::call1`](https://pyo3.rs/main/"
+"doc/pyo3/struct.PyAny.html#tymethod.call1) with only positional args."
+msgstr ""
+
+#: src/function.md:144
+msgid "Calling Rust functions in Python"
+msgstr ""
+
+#: src/function.md:146
+msgid ""
+"The ways to convert a Rust function into a Python object vary depending on "
+"the function:"
+msgstr ""
+
+#: src/function.md:148
+msgid ""
+"Named functions, e.g. `fn foo()`: add `#[pyfunction]` and then use "
+"[`wrap_pyfunction!`](https://pyo3.rs/main/doc/pyo3/macro.wrap_pyfunction."
+"html) to get the corresponding [`PyCFunction`](https://pyo3.rs/main/doc/pyo3/"
+"types/struct.PyCFunction.html)."
+msgstr ""
+
+#: src/function.md:149
+msgid "Anonymous functions (or closures), e.g. `foo: fn()` either:"
+msgstr ""
+
+#: src/function.md:150
+msgid ""
+"use a `#[pyclass]` struct which stores the function as a field and implement "
+"`__call__` to call the stored function."
+msgstr ""
+
+#: src/function.md:151
+msgid ""
+"use `PyCFunction::new_closure` to create an object directly from the "
+"function."
+msgstr ""
+
+#: src/function.md:162
+msgid "Accessing the FFI functions"
+msgstr ""
+
+#: src/function.md:164
+msgid ""
+"In order to make Rust functions callable from Python, PyO3 generates an "
+"`extern \"C\"` function whose exact signature depends on the Rust "
+"signature.  (PyO3 chooses the optimal Python argument passing convention.) "
+"It then embeds the call to the Rust function inside this FFI-wrapper "
+"function. This wrapper handles extraction of the regular arguments and the "
+"keyword arguments from the input `PyObject`s."
+msgstr ""
+
+#: src/function.md:170
+msgid ""
+"The `wrap_pyfunction` macro can be used to directly get a `PyCFunction` "
+"given a `#[pyfunction]` and a `PyModule`: `wrap_pyfunction!(rust_fun, "
+"module)`."
+msgstr ""
+
+#: src/function.md:173
+msgid "`#[pyfn]` shorthand"
+msgstr ""
+
+#: src/function.md:175
+msgid ""
+"There is a shorthand to `#[pyfunction]` and `wrap_pymodule!`: the function "
+"can be placed inside the module definition and annotated with `#[pyfn]`. To "
+"simplify PyO3, it is expected that `#[pyfn]` may be removed in a future "
+"release (See [\\#694](https://github.com/PyO3/pyo3/issues/694))."
+msgstr ""
+
+#: src/function.md:178
+msgid "An example of `#[pyfn]` is below:"
+msgstr ""
+
+#: src/function.md:194
+msgid ""
+"`#[pyfn(m)]` is just syntactic sugar for `#[pyfunction]`, and takes all the "
+"same options documented in the rest of this chapter. The code above is "
+"expanded to the following:"
+msgstr ""

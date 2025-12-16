@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:42:12Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/performance.md:1
+msgid "Performance"
+msgstr ""
+
+#: src/performance.md:3
+msgid ""
+"To achieve the best possible performance, it is useful to be aware of "
+"several tricks and sharp edges concerning PyO3's API."
+msgstr ""
+
+#: src/performance.md:5
+msgid "`extract` versus `downcast`"
+msgstr ""
+
+#: src/performance.md:7
+msgid ""
+"Pythonic API implemented using PyO3 are often polymorphic, i.e. they will "
+"accept `&PyAny` and try to turn this into multiple more concrete types to "
+"which the requested operation is applied. This often leads to chains of "
+"calls to `extract`, e.g."
+msgstr ""
+
+#: src/performance.md:29 src/performance.md:51
+msgid "\"Cannot frobnicate that type.\""
+msgstr ""
+
+#: src/performance.md:34
+msgid ""
+"This suboptimal as the `FromPyObject<T>` trait requires `extract` to have a "
+"`Result<T, PyErr>` return type. For native types like `PyList`, it faster to "
+"use `downcast` (which `extract` calls internally) when the error value is "
+"ignored. This avoids the costly conversion of a `PyDowncastError` to a "
+"`PyErr` required to fulfil the `FromPyObject` contract, i.e."
+msgstr ""
+
+#: src/performance.md:45
+msgid ""
+"// Use `downcast` instead of `extract` as turning `PyDowncastError` into "
+"`PyErr` is quite costly.\n"
+msgstr ""
+
+#: src/performance.md:56
+msgid "Access to GIL-bound reference implies access to GIL token"
+msgstr ""
+
+#: src/performance.md:58
+msgid ""
+"Calling `Python::with_gil` is effectively a no-op when the GIL is already "
+"held, but checking that this is the case still has a cost. If an existing "
+"GIL token can not be accessed, for example when implementing a pre-existing "
+"trait, but a GIL-bound reference is available, this cost can be avoided by "
+"exploiting that access to GIL-bound reference gives zero-cost access to a "
+"GIL token via `PyAny::py`."
+msgstr ""
+
+#: src/performance.md:60
+msgid "For example, instead of writing"
+msgstr ""
+
+#: src/performance.md:78
+msgid "use more efficient"
+msgstr ""
+
+#: src/performance.md:89
+msgid "// Access to `&'a PyAny` implies access to `Python<'a>`.\n"
+msgstr ""
