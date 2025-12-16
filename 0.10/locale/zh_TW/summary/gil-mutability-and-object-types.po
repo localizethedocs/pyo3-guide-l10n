@@ -1,0 +1,344 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:29Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/types.md:1
+msgid "GIL lifetimes, mutability and Python object types"
+msgstr ""
+
+#: src/types.md:3
+msgid ""
+"On first glance, PyO3 provides a huge number of different types that can be "
+"used to wrap or refer to Python objects.  This page delves into the details "
+"and gives an overview of their intended meaning, with examples when each "
+"type is best used."
+msgstr ""
+
+#: src/types.md:9
+msgid "Mutability and Rust types"
+msgstr ""
+
+#: src/types.md:11
+msgid ""
+"Since Python has no concept of ownership, and works solely with boxed "
+"objects, any Python object can be referenced any number of times, and "
+"mutation is allowed from any reference."
+msgstr ""
+
+#: src/types.md:15
+msgid ""
+"The situation is helped a little by the Global Interpreter Lock (GIL), which "
+"ensures that only one thread can use the Python interpreter and its API at "
+"the same time, while non-Python operations (system calls and extension code) "
+"can unlock the GIL.  (See [the section on parallelism](parallelism.md) for "
+"how to do that in PyO3.)"
+msgstr ""
+
+#: src/types.md:21
+msgid ""
+"In PyO3, holding the GIL is modeled by acquiring a token of the type "
+"`Python<'py>`, which serves three purposes:"
+msgstr ""
+
+#: src/types.md:24
+msgid ""
+"It provides some global API for the Python interpreter, such as [`eval`]"
+"(https://docs.rs/pyo3/latest/pyo3/struct.Python.html#method.eval)."
+msgstr ""
+
+#: src/types.md:26
+msgid ""
+"It can be passed to functions that require a proof of holding the GIL, such "
+"as [`PyObject::clone_ref`](https://docs.rs/pyo3/latest/pyo3/struct.PyObject."
+"html#method.clone_ref)."
+msgstr ""
+
+#: src/types.md:28
+msgid ""
+"Its lifetime can be used to create Rust references that implicitly guarantee "
+"holding the GIL, such as [`&'py PyAny`](https://docs.rs/pyo3/latest/pyo3/"
+"types/struct.PyAny.html)."
+msgstr ""
+
+#: src/types.md:31
+msgid ""
+"The latter two points are the reason why some APIs in PyO3 require the `py: "
+"Python` argument, while others don't."
+msgstr ""
+
+#: src/types.md:34
+msgid ""
+"The PyO3 API for Python objects is written such that instead of requiring a "
+"mutable Rust reference for mutating operations such as [`PyList::append`]"
+"(https://docs.rs/pyo3/latest/pyo3/types/struct.PyList.html#method.append), a "
+"shared reference (which, in turn, can only be created through `Python<'_>` "
+"with a GIL lifetime) is sufficient."
+msgstr ""
+
+#: src/types.md:39
+msgid ""
+"However, Rust structs wrapped as Python objects (called `pyclass` types) "
+"usually _do_ need `&mut` access.  Due to the GIL, PyO3 _can_ guarantee "
+"thread-safe acces to them, but it cannot statically guarantee uniqueness of "
+"`&mut` references once an object's ownership has been passed to the Python "
+"interpreter, ensuring references is done at runtime using `PyCell`, a scheme "
+"very similar to `std::cell::RefCell`."
+msgstr ""
+
+#: src/types.md:47
+msgid "Object types"
+msgstr ""
+
+#: src/types.md:49
+msgid "\\[`PyAny`\\]"
+msgstr ""
+
+#: src/types.md:51
+msgid ""
+"**Represents:** a Python object of unspecified type, restricted to a GIL "
+"lifetime.  Currently, `PyAny` can only ever occur as a reference, `&PyAny`."
+msgstr ""
+
+#: src/types.md:54
+msgid ""
+"**Used:** Whenever you want to refer to some Python object and will have the "
+"GIL for the whole duration you need to access that object. For example, "
+"intermediate values and arguments to `pyfunction`s or `pymethod`s "
+"implemented in Rust where any type is allowed."
+msgstr ""
+
+#: src/types.md:59
+msgid ""
+"Many general methods for interacting with Python objects are on the `PyAny` "
+"struct, such as `getattr`, `setattr`, and `.call`."
+msgstr ""
+
+#: src/types.md:62 src/types.md:97 src/types.md:134 src/types.md:161
+#: src/types.md:195
+msgid "**Conversions:**"
+msgstr ""
+
+#: src/types.md:70
+msgid "// Convert to &ConcreteType using PyAny::downcast\n"
+msgstr ""
+
+#: src/types.md:73
+msgid "// Convert to PyObject using .into() or .to_object(py)\n"
+msgstr ""
+
+#: src/types.md:76
+msgid "// Convert to Py<PyAny> using .into() or Py::from\n"
+msgstr ""
+
+#: src/types.md:79
+msgid "// Convert to Py<ConcreteType> using PyAny::extract\n"
+msgstr ""
+
+#: src/types.md:85
+msgid "`PyTuple`, `PyDict`, and many more"
+msgstr ""
+
+#: src/types.md:87
+msgid ""
+"**Represents:** a native Python object of known type, restricted to a GIL "
+"lifetime just like `PyAny`."
+msgstr ""
+
+#: src/types.md:90
+msgid ""
+"**Used:** Whenever you want to operate with native Python types while "
+"holding the GIL.  Like `PyAny`, this is the most convenient form to use for "
+"function arguments and intermediate values."
+msgstr ""
+
+#: src/types.md:94
+msgid ""
+"These types all implement `Deref<Target = PyAny>`, so they all expose the "
+"same methods which can be found on `PyAny`."
+msgstr ""
+
+#: src/types.md:105
+msgid ""
+"// Can use methods from PyAny on all Python types due to Deref "
+"implementation\n"
+msgstr ""
+
+#: src/types.md:108
+msgid ""
+"// Rust will convert &PyList etc. to &PyAny automatically due to Deref "
+"implementation\n"
+msgstr ""
+
+#: src/types.md:111 src/types.md:218
+msgid "// For more explicit &PyAny conversion, use .as_ref()\n"
+msgstr ""
+
+#: src/types.md:114
+msgid "// To convert to PyObject use .into() or .to_object(py)\n"
+msgstr ""
+
+#: src/types.md:117
+msgid "// To convert to Py<T> use .into() or Py::from()\n"
+msgstr ""
+
+#: src/types.md:122
+msgid "`PyObject`"
+msgstr ""
+
+#: src/types.md:124
+msgid ""
+"**Represents:** a GIL independent reference to a Python object of "
+"unspecified type."
+msgstr ""
+
+#: src/types.md:127
+msgid ""
+"**Used:** Whenever you want to carry around references to \"some\" Python "
+"object, without caring about a GIL lifetime.  For example, storing Python "
+"object references in a Rust struct that outlives the Python-Rust FFI "
+"boundary, or returning objects from functions implemented in Rust back to "
+"Python."
+msgstr ""
+
+#: src/types.md:132
+msgid "Can be cloned using Python reference counts with `.clone_ref()`."
+msgstr ""
+
+#: src/types.md:142
+msgid "// Convert to &PyAny using AsPyRef::as_ref\n"
+msgstr ""
+
+#: src/types.md:145
+msgid "// Convert to &ConcreteType using PyObject::cast_as\n"
+msgstr ""
+
+#: src/types.md:148
+msgid "// Convert to Py<ConcreteType> using PyObject::extract\n"
+msgstr ""
+
+#: src/types.md:153
+msgid "`Py<SomeType>`"
+msgstr ""
+
+#: src/types.md:155
+msgid ""
+"**Represents:** a GIL independent reference to a Python object of known "
+"type. This can be a Python native type (like `PyTuple`), or a `pyclass` type "
+"implemented in Rust."
+msgstr ""
+
+#: src/types.md:159
+msgid "**Used:** Like `PyObject`, but with a known inner type."
+msgstr ""
+
+#: src/types.md:169
+msgid ""
+"// Access the native type using AsPyRef::as_ref(py)\n"
+"// (For #[pyclass] types, as_ref() will return &PyCell<T>)\n"
+msgstr ""
+
+#: src/types.md:173
+msgid "// Convert to PyObject with .into()\n"
+msgstr ""
+
+#: src/types.md:178
+msgid ""
+"**Note:** `PyObject` is semantically equivalent to `Py<PyAny>` and might be "
+"merged with it in the future."
+msgstr ""
+
+#: src/types.md:182
+msgid "`PyCell<SomeType>`"
+msgstr ""
+
+#: src/types.md:184
+msgid ""
+"**Represents:** a reference to a Rust object (instance of `PyClass`) which "
+"is wrapped in a Python object.  The cell part is an analog to stdlib's "
+"[`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) to allow "
+"access to `&mut` references."
+msgstr ""
+
+#: src/types.md:188
+msgid ""
+"**Used:** for accessing pure-Rust API of the instance (members and functions "
+"taking `&SomeType` or `&mut SomeType`) while maintaining the aliasing rules "
+"of Rust references."
+msgstr ""
+
+#: src/types.md:192
+msgid ""
+"Like pyo3's Python native types, `PyCell<T>` implements `Deref<Target = "
+"PyAny>`, so it also exposes all of the methods on `PyAny`."
+msgstr ""
+
+#: src/types.md:204
+msgid "// Obtain PyRef<T> with .try_borrow()\n"
+msgstr ""
+
+#: src/types.md:208
+msgid "// Obtain PyRefMut<T> with .try_borrow_mut()\n"
+msgstr ""
+
+#: src/types.md:212
+msgid ""
+"// Can use methods from PyAny on PyCell<T> due to Deref implementation\n"
+msgstr ""
+
+#: src/types.md:215
+msgid ""
+"// Rust will convert &PyCell<T> to &PyAny automatically due to Deref "
+"implementation\n"
+msgstr ""
+
+#: src/types.md:221
+msgid "// To obtain a PyCell<T> from PyAny, use PyAny::downcast\n"
+msgstr ""
+
+#: src/types.md:226
+msgid "`PyRef<SomeType>` and `PyRefMut<SomeType>`"
+msgstr ""
+
+#: src/types.md:228
+msgid ""
+"**Represents:** reference wrapper types employed by `PyCell` to keep track "
+"of borrows, analog to `Ref` and `RefMut` used by `RefCell`."
+msgstr ""
+
+#: src/types.md:231
+msgid ""
+"**Used:** while borrowing a `PyCell`.  They can also be used with `."
+"extract()` on types like `Py<T>` and `PyAny` to get a reference quickly."
+msgstr ""
+
+#: src/types.md:236
+msgid "Related traits and types"
+msgstr ""
+
+#: src/types.md:238
+msgid "`PyClass`"
+msgstr ""
+
+#: src/types.md:240
+msgid ""
+"This trait marks structs defined in Rust that are also usable as Python "
+"classes, usually defined using the `#[pyclass]` macro."
+msgstr ""
+
+#: src/types.md:243
+msgid "`PyNativeType`"
+msgstr ""
+
+#: src/types.md:245
+msgid ""
+"This trait marks structs that mirror native Python types, such as `PyList`."
+msgstr ""
