@@ -5,10 +5,10 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/get_started.md:1
@@ -68,7 +68,7 @@ msgstr ""
 
 #: src/get_started.md:26
 msgid "Using Rust from Python"
-msgstr ""
+msgstr "從 Python 使用 Rust"
 
 #: src/get_started.md:28
 msgid "PyO3 can be used to generate a native Python module."
@@ -148,7 +148,7 @@ msgstr ""
 
 #: src/get_started.md:82
 msgid "Using Python from Rust"
-msgstr ""
+msgstr "從 Rust 使用 Python"
 
 #: src/get_started.md:84
 msgid "Add `pyo3` to your `Cargo.toml` like this:"
