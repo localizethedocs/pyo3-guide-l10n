@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:50Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/pypy.md:1
+msgid "PyPy Support"
+msgstr ""
+
+#: src/pypy.md:3
+msgid "Using PyPy is supported via cpyext."
+msgstr ""
+
+#: src/pypy.md:5
+msgid ""
+"Support is only provided for building rust extension for code running under "
+"PyPy. This means PyPy **cannot** be called from rust via cpyext. Note that "
+"there some differences in the ffi module between pypy and cpython."
+msgstr ""
+
+#: src/pypy.md:7
+msgid ""
+"This is a limitation of cpyext and supported for embedding cpyext is not "
+"planned."
+msgstr ""
+
+#: src/pypy.md:9
+msgid ""
+"Compilation against PyPy is done by exporting the `PYTHON_SYS_EXECUTABLE` to "
+"a pypy binary or by compiling in a PyPy virtualenv."
+msgstr ""
+
+#: src/pypy.md:11
+msgid ""
+"For example, `PYTHON_SYS_EXECUTABLE=\"/path/to/pypy3\" /path/to/pypy3 setup."
+"py install`"
+msgstr ""
+
+#: src/pypy.md:14
+msgid "Unsupported Features"
+msgstr ""
+
+#: src/pypy.md:16
+msgid ""
+"These are features currently supported by PyO3, but not yet implemented in "
+"cpyext."
+msgstr ""
+
+#: src/pypy.md:18
+msgid "Complex number functions (`_Py_c_sum`, `_Py_c_sum` ..)"
+msgstr ""
+
+#: src/pypy.md:19
+msgid "Conversion to rust's i128, u128 types."
+msgstr ""
+
+#: src/pypy.md:20
+msgid "`PySequence_Count` (which is used to count number of element in array)"
+msgstr ""
+
+#: src/pypy.md:21
+msgid "`PyDict_MergeFromSeq2` (used in `PyDict::from_sequence`)"
+msgstr ""

@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:50Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/debugging.md:1
+msgid "Debugging"
+msgstr ""
+
+#: src/debugging.md:3
+msgid "Macros"
+msgstr ""
+
+#: src/debugging.md:5
+msgid ""
+"PyO3's attributes (`#[pyclass]`, `#[pymodule]`, etc.) are [procedural macros]"
+"(https://doc.rust-lang.org/reference/procedural-macros.html), which means "
+"that they rewrite the source of the annotated item. You can view the "
+"generated source with the following command, which also expands a few other "
+"things:"
+msgstr ""
+
+#: src/debugging.md:11
+msgid ""
+"(You might need to install [rustfmt](https://github.com/rust-lang-nursery/"
+"rustfmt) if you don't already have it.)"
+msgstr ""
+
+#: src/debugging.md:13
+msgid "You can also debug classic `!`\\-macros by adding `-Z trace-macros`:"
+msgstr ""
+
+#: src/debugging.md:19
+msgid ""
+"See [cargo expand](https://github.com/dtolnay/cargo-expand) for a more "
+"elaborate version of those commands."
+msgstr ""
+
+#: src/debugging.md:21
+msgid "Running with Valgrind"
+msgstr ""
+
+#: src/debugging.md:23
+msgid ""
+"Valgrind is a tool to detect memory management bugs such as memory leaks."
+msgstr ""
+
+#: src/debugging.md:25
+msgid ""
+"You first need to install a debug build of Python, otherwise Valgrind won't "
+"produce usable results. In Ubuntu there's e.g. a `python3-dbg` package."
+msgstr ""
+
+#: src/debugging.md:27
+msgid ""
+"Activate an environment with the debug interpreter and recompile. If you're "
+"on Linux, use `ldd` with the name of your binary and check that you're "
+"linking e.g. `libpython3.6dm.so.1.0` instead of `libpython3.6m.so.1.0`."
+msgstr ""
+
+#: src/debugging.md:29
+msgid ""
+"[Download the suppressions file for cpython](https://raw.githubusercontent."
+"com/python/cpython/master/Misc/valgrind-python.supp)."
+msgstr ""
+
+#: src/debugging.md:31
+msgid ""
+"Run Valgrind with `valgrind --suppressions=valgrind-python.supp ./my-command "
+"--with-options`"
+msgstr ""
+
+#: src/debugging.md:33
+msgid "Getting a stacktrace"
+msgstr ""
+
+#: src/debugging.md:35
+msgid ""
+"The best start to investigate a crash such as an segmentation fault is a "
+"backtrace."
+msgstr ""
+
+#: src/debugging.md:37
+msgid ""
+"Link against a debug build of python as described in the previous chapter"
+msgstr ""
+
+#: src/debugging.md:38
+msgid "Run `gdb <my-binary>`"
+msgstr ""
+
+#: src/debugging.md:39
+msgid "Enter `r` to run"
+msgstr ""
+
+#: src/debugging.md:40
+msgid ""
+"After the crash occurred, enter `bt` or `bt full` to print the stacktrace"
+msgstr ""
