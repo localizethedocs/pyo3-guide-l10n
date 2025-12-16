@@ -1,0 +1,281 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/numeric.md:1
+msgid "Emulating numeric types"
+msgstr ""
+
+#: src/class/numeric.md:3
+msgid ""
+"At this point we have a `Number` class that we can't actually do any math on!"
+msgstr ""
+
+#: src/class/numeric.md:5
+msgid ""
+"Before proceeding, we should think about how we want to handle overflows. "
+"There are three obvious solutions:"
+msgstr ""
+
+#: src/class/numeric.md:7
+msgid ""
+"We can have infinite precision just like Python's `int`. However that would "
+"be quite boring - we'd"
+msgstr ""
+
+#: src/class/numeric.md:9
+msgid "be reinventing the wheel."
+msgstr ""
+
+#: src/class/numeric.md:11
+msgid ""
+"We can raise exceptions whenever `Number` overflows, but that makes the API "
+"painful to use."
+msgstr ""
+
+#: src/class/numeric.md:12
+msgid ""
+"We can wrap around the boundary of `i32`. This is the approach we'll take "
+"here. To do that we'll just forward to `i32`'s"
+msgstr ""
+
+#: src/class/numeric.md:14
+msgid "`wrapping_*` methods."
+msgstr ""
+
+#: src/class/numeric.md:16
+msgid "Fixing our constructor"
+msgstr ""
+
+#: src/class/numeric.md:18
+msgid "Let's address the first overflow, in `Number`'s constructor:"
+msgstr ""
+
+#: src/class/numeric.md:26
+msgid ""
+"```text\n"
+"Traceback (most recent call last):\n"
+"  File \"example.py\", line 3, in <module>\n"
+"    n = Number(1 << 1337)\n"
+"OverflowError: Python int too large to convert to C long\n"
+"```"
+msgstr ""
+
+#: src/class/numeric.md:33
+msgid ""
+"Instead of relying on the default [`FromPyObject`](https://pyo3.rs/main/doc/"
+"pyo3/conversion/trait.FromPyObject.html) extraction to parse arguments, we "
+"can specify our own extraction function, using the `#[pyo3(from_py_with "
+"= ...)]` attribute. Unfortunately PyO3 doesn't provide a way to wrap Python "
+"integers out of the box, but we can do a Python call to mask it and cast it "
+"to an `i32`."
+msgstr ""
+
+#: src/class/numeric.md:43 src/class/numeric.md:57 src/class/numeric.md:221
+msgid "\"__and__\""
+msgstr ""
+
+#: src/class/numeric.md:45
+msgid "//     👇 This intentionally overflows!\n"
+msgstr ""
+
+#: src/class/numeric.md:50
+msgid ""
+"We also add documentation, via `///` comments, which are visible to Python "
+"users."
+msgstr ""
+
+#: src/class/numeric.md:61 src/class/numeric.md:224
+msgid ""
+"/// Did you ever hear the tragedy of Darth Signed The Overfloweth? I thought "
+"not.\n"
+"/// It's not a story C would tell you. It's a Rust legend.\n"
+msgstr ""
+
+#: src/class/numeric.md:64 src/class/numeric.md:227
+msgid "\"my_module\""
+msgstr ""
+
+#: src/class/numeric.md:76
+msgid "With that out of the way, let's implement some operators:"
+msgstr ""
+
+#: src/class/numeric.md:103 src/class/numeric.md:110 src/class/numeric.md:283
+#: src/class/numeric.md:290
+msgid "\"division by zero\""
+msgstr ""
+
+#: src/class/numeric.md:117 src/class/numeric.md:124 src/class/numeric.md:297
+#: src/class/numeric.md:304
+msgid "\"negative shift count\""
+msgstr ""
+
+#: src/class/numeric.md:130
+msgid "Unary arithmetic operations"
+msgstr ""
+
+#: src/class/numeric.md:158
+msgid "Support for the `complex()`, `int()` and `float()` built-in functions"
+msgstr ""
+
+#: src/class/numeric.md:184
+msgid ""
+"We do not implement the in-place operations like `__iadd__` because we do "
+"not wish to mutate `Number`. Similarly we're not interested in supporting "
+"operations with different types, so we do not implement the reflected "
+"operations like `__radd__` either."
+msgstr ""
+
+#: src/class/numeric.md:188
+msgid "Now Python can use our `Number` class:"
+msgstr ""
+
+#: src/class/numeric.md:194
+msgid ""
+"'''\n"
+"\tA version of Daniel J. Bernstein's djb2 string hashing algorithm\n"
+"\tLike many hashing algorithms, it relies on integer wrapping.\n"
+"\t'''"
+msgstr ""
+
+#: src/class/numeric.md:206
+msgid "'l50_50'"
+msgstr ""
+
+#: src/class/numeric.md:209
+msgid "Final code"
+msgstr ""
+
+#: src/class/numeric.md:238
+msgid "// Get the class name dynamically in case `Number` is subclassed\n"
+msgstr ""
+
+#: src/class/numeric.md:240
+msgid "\"{}({})\""
+msgstr ""
+
+#: src/class/numeric.md:338
+msgid ""
+"r#\"\n"
+"# def hash_djb2(s: str):\n"
+"#     n = Number(0)\n"
+"#     five = Number(5)\n"
+"#\n"
+"#     for x in s:\n"
+"#         n = Number(ord(x)) + ((n << five) - n)\n"
+"#     return n\n"
+"#\n"
+"# assert hash_djb2('l50_50') == Number(-1152549421)\n"
+"# assert hash_djb2('logo') == Number(3327403)\n"
+"# assert hash_djb2('horizon') == Number(1097468315)\n"
+"#\n"
+"#\n"
+"# assert Number(2) + Number(2) == Number(4)\n"
+"# assert Number(2) + Number(2) != Number(5)\n"
+"#\n"
+"# assert Number(13) - Number(7) == Number(6)\n"
+"# assert Number(13) - Number(-7) == Number(20)\n"
+"#\n"
+"# assert Number(13) / Number(7) == Number(1)\n"
+"# assert Number(13) // Number(7) == Number(1)\n"
+"#\n"
+"# assert Number(13) * Number(7) == Number(13*7)\n"
+"#\n"
+"# assert Number(13) > Number(7)\n"
+"# assert Number(13) < Number(20)\n"
+"# assert Number(13) == Number(13)\n"
+"# assert Number(13) >= Number(7)\n"
+"# assert Number(13) <= Number(20)\n"
+"# assert Number(13) == Number(13)\n"
+"#\n"
+"#\n"
+"# assert (True if Number(1) else False)\n"
+"# assert (False if Number(0) else True)\n"
+"#\n"
+"#\n"
+"# assert int(Number(13)) == 13\n"
+"# assert float(Number(13)) == 13\n"
+"# assert Number.__doc__ == \"Did you ever hear the tragedy of Darth Signed "
+"The Overfloweth? I thought not.\\nIt's not a story C would tell you. It's a "
+"Rust legend.\"\n"
+"# assert Number(12345234523452) == Number(1498514748)\n"
+"# try:\n"
+"#     import inspect\n"
+"#     assert inspect.signature(Number).__str__() == '(value)'\n"
+"# except ValueError:\n"
+"#     # Not supported with `abi3` before Python 3.10\n"
+"#     pass\n"
+"# assert Number(1337).__str__() == '1337'\n"
+"# assert Number(1337).__repr__() == 'Number(1337)'\n"
+"\"#"
+msgstr ""
+
+#: src/class/numeric.md:394
+msgid "\"__main__\""
+msgstr ""
+
+#: src/class/numeric.md:395
+msgid "\"Number\""
+msgstr ""
+
+#: src/class/numeric.md:403
+msgid "Appendix: Writing some unsafe code"
+msgstr ""
+
+#: src/class/numeric.md:405
+msgid ""
+"At the beginning of this chapter we said that PyO3 doesn't provide a way to "
+"wrap Python integers out of the box but that's a half truth. There's not a "
+"PyO3 API for it, but there's a Python C API function that does:"
+msgstr ""
+
+#: src/class/numeric.md:413
+msgid ""
+"We can call this function from Rust by using [`pyo3::ffi::"
+"PyLong_AsUnsignedLongMask`](https://pyo3.rs/main/doc/pyo3/ffi/fn."
+"PyLong_AsUnsignedLongMask.html). This is an _unsafe_ function, which means "
+"we have to use an unsafe block to call it and take responsibility for "
+"upholding the contracts of this function. Let's review those contracts:"
+msgstr ""
+
+#: src/class/numeric.md:417
+msgid ""
+"We must be attached to the interpreter. If we're not, calling this function "
+"causes a data race."
+msgstr ""
+
+#: src/class/numeric.md:418
+msgid ""
+"The pointer must be valid, i.e. it must be properly aligned and point to a "
+"valid Python object."
+msgstr ""
+
+#: src/class/numeric.md:420
+msgid ""
+"Let's create that helper function. The signature has to be `fn(&Bound<'_, "
+"PyAny>) -> PyResult<T>`."
+msgstr ""
+
+#: src/class/numeric.md:422
+msgid ""
+"`&Bound<'_, PyAny>` represents a checked bound reference, so the pointer "
+"derived from it is valid (and not null)."
+msgstr ""
+
+#: src/class/numeric.md:423
+msgid ""
+"Whenever we have bound references to Python objects in scope, it is "
+"guaranteed that we're attached to the interpreter. This reference is also "
+"where we can get a [`Python`](https://pyo3.rs/main/doc/pyo3/marker/struct."
+"Python.html) token to use in our call to [`PyErr::take`](https://pyo3.rs/"
+"main/doc/pyo3/prelude/struct.PyErr.html#method.take)."
+msgstr ""
