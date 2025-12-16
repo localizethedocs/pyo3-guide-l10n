@@ -1,0 +1,169 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:47Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/object.md:1
+msgid "Basic object customization"
+msgstr ""
+
+#: src/class/object.md:3
+msgid "Recall the `Number` class from the previous chapter:"
+msgstr ""
+
+#: src/class/object.md:26
+msgid ""
+"At this point Python code can import the module, access the class and create "
+"class instances - but nothing else."
+msgstr ""
+
+#: src/class/object.md:40
+msgid "String representations"
+msgstr ""
+
+#: src/class/object.md:42
+msgid ""
+"It can't even print an user-readable representation of itself! We can fix "
+"that by defining the `__repr__` and `__str__` methods inside a "
+"`#[pymethods]` block. We do this by accessing the value contained inside "
+"`Number`."
+msgstr ""
+
+#: src/class/object.md:54
+msgid ""
+"// For `__repr__` we want to return a string that Python code could use to "
+"recreate\n"
+msgstr ""
+
+#: src/class/object.md:55
+msgid "// the `Number`, like `Number(5)` for example.\n"
+msgstr ""
+
+#: src/class/object.md:57
+msgid ""
+"// We use the `format!` macro to create a string. Its first argument is a\n"
+msgstr ""
+
+#: src/class/object.md:58
+msgid ""
+"// format string, followed by any number of parameters which replace the\n"
+msgstr ""
+
+#: src/class/object.md:59
+msgid "// `{}`'s in the format string.\n"
+msgstr ""
+
+#: src/class/object.md:60
+msgid "//\n"
+msgstr ""
+
+#: src/class/object.md:61
+msgid "//                       👇 Tuple field access in Rust uses a dot\n"
+msgstr ""
+
+#: src/class/object.md:62 src/class/object.md:239
+msgid "\"Number({})\""
+msgstr ""
+
+#: src/class/object.md:65
+msgid ""
+"// `__str__` is generally used to create an \"informal\" representation, so "
+"we\n"
+msgstr ""
+
+#: src/class/object.md:66
+msgid ""
+"// just forward to `i32`'s `ToString` trait implementation to print a bare "
+"number.\n"
+msgstr ""
+
+#: src/class/object.md:73
+msgid "Hashing"
+msgstr ""
+
+#: src/class/object.md:76
+msgid ""
+"Let's also implement hashing. We'll just hash the `i32`. For that we need a "
+"[`Hasher`](https://doc.rust-lang.org/std/hash/trait.Hasher.html). The one "
+"provided by `std` is [`DefaultHasher`](https://doc.rust-lang.org/std/"
+"collections/hash_map/struct.DefaultHasher.html), which uses the [SipHash]"
+"(https://en.wikipedia.org/wiki/SipHash) algorithm."
+msgstr ""
+
+#: src/class/object.md:81
+msgid ""
+"// Required to call the `.hash` and `.finish` methods, which are defined on "
+"traits.\n"
+msgstr ""
+
+#: src/class/object.md:100
+msgid ""
+"**Note**: When implementing `__hash__` and comparisons, it is important that "
+"the following property holds:"
+msgstr ""
+
+#: src/class/object.md:106
+msgid ""
+"In other words, if two keys are equal, their hashes must also be equal. In "
+"addition you must take care that your classes' hash doesn't change during "
+"its lifetime. In this tutorial we do that by not letting Python code change "
+"our `Number` class. In other words, it is immutable."
+msgstr ""
+
+#: src/class/object.md:110
+msgid ""
+"By default, all `#[pyclass]` types have a default hash implementation from "
+"Python. Types which should not be hashable can override this by setting "
+"`__hash__` to None. This is the same mechanism as for a pure-Python class. "
+"This is done like so:"
+msgstr ""
+
+#: src/class/object.md:126
+msgid "Comparisons"
+msgstr ""
+
+#: src/class/object.md:128
+msgid ""
+"Unlike in Python, PyO3 does not provide the magic comparison methods you "
+"might expect like `__eq__`, `__lt__` and so on. Instead you have to "
+"implement all six operations at once with `__richcmp__`. This method will be "
+"called with a value of `CompareOp` depending on the operation."
+msgstr ""
+
+#: src/class/object.md:155
+msgid ""
+"If you obtain the result by comparing two Rust values, as in this example, "
+"you can take a shortcut using `CompareOp::matches`:"
+msgstr ""
+
+#: src/class/object.md:174
+msgid ""
+"It checks that the `std::cmp::Ordering` obtained from Rust's `Ord` matches "
+"the given `CompareOp`."
+msgstr ""
+
+#: src/class/object.md:177
+msgid ""
+"Alternatively, if you want to leave some operations unimplemented, you can "
+"return `py.NotImplemented()` for some of the operations:"
+msgstr ""
+
+#: src/class/object.md:201
+msgid "Truthyness"
+msgstr ""
+
+#: src/class/object.md:203
+msgid "We'll consider `Number` to be `True` if it is nonzero:"
+msgstr ""
+
+#: src/class/object.md:219
+msgid "Final code"
+msgstr ""
