@@ -1,0 +1,797 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:34:09Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/types.md:1
+msgid "Python object types"
+msgstr ""
+
+#: src/types.md:3
+msgid ""
+"PyO3 offers two main sets of types to interact with Python objects. This "
+"section of the guide expands into detail about these types and how to choose "
+"which to use."
+msgstr ""
+
+#: src/types.md:5
+msgid ""
+"The first set of types is are the [smart pointers](https://doc.rust-lang.org/"
+"book/ch15-00-smart-pointers.html) which all Python objects are wrapped in. "
+"These are `Py<T>`, `Bound<'py, T>`, and `Borrowed<'a, 'py, T>`. The [first "
+"section below](#pyo3s-smart-pointers) expands on each of these in detail and "
+"why there are three of them."
+msgstr ""
+
+#: src/types.md:7
+msgid ""
+"The second set of types are types which fill in the generic parameter `T` of "
+"the smart pointers. The most common is `PyAny`, which represents any Python "
+"object (similar to Python's `typing.Any`). There are also concrete types for "
+"many Python built-in types, such as `PyList`, `PyDict`, and `PyTuple`. User "
+"defined `#[pyclass]` types also fit this category. The [second section below]"
+"(#concrete-python-types) expands on how to use these types."
+msgstr ""
+
+#: src/types.md:9
+msgid ""
+"Before PyO3 0.21, PyO3's main API to interact with Python objects was a "
+"deprecated API known as the \"GIL Refs\" API, containing reference types "
+"such as `&PyAny`, `&PyList`, and `&PyCell<T>` for user-defined `#[pyclass]` "
+"types. The [third section below](#the-gil-refs-api) details this deprecated "
+"API."
+msgstr ""
+
+#: src/types.md:11
+msgid "PyO3's smart pointers"
+msgstr ""
+
+#: src/types.md:13
+msgid ""
+"PyO3's API offers three generic smart pointers: `Py<T>`, `Bound<'py, T>` and "
+"`Borrowed<'a, 'py, T>`. For each of these the type parameter `T` will be "
+"filled by a [concrete Python type](#concrete-python-types). For example, a "
+"Python list object can be represented by `Py<PyList>`, `Bound<'py, PyList>`, "
+"and `Borrowed<'a, 'py, PyList>`."
+msgstr ""
+
+#: src/types.md:15
+msgid ""
+"These smart pointers behave differently due to their lifetime parameters. "
+"`Py<T>` has no lifetime parameters, `Bound<'py, T>` has [the `'py` lifetime]"
+"(./python-from-rust.md#the-py-lifetime) as a parameter, and `Borrowed<'a, "
+"'py, T>` has the `'py` lifetime plus an additional lifetime `'a` to denote "
+"the lifetime it is borrowing data for. (You can read more about these "
+"lifetimes in the subsections below)."
+msgstr ""
+
+#: src/types.md:17
+msgid ""
+"Python objects are reference counted, like [`std::sync::Arc`](https://doc."
+"rust-lang.org/stable/std/sync/struct.Arc.html). A major reason for these "
+"smart pointers is to bring Python's reference counting to a Rust API."
+msgstr ""
+
+#: src/types.md:19
+msgid ""
+"The recommendation of when to use each of these smart pointers is as follows:"
+msgstr ""
+
+#: src/types.md:21
+msgid ""
+"Use `Bound<'py, T>` for as much as possible, as it offers the most efficient "
+"and complete API."
+msgstr ""
+
+#: src/types.md:22
+msgid ""
+"Use `Py<T>` mostly just for storage inside Rust `struct`s which do not want "
+"to or can't add a lifetime parameter for `Bound<'py, T>`."
+msgstr ""
+
+#: src/types.md:23
+msgid ""
+"`Borrowed<'a, 'py, T>` is almost never used. It is occasionally present at "
+"the boundary between Rust and the Python interpreter, for example when "
+"borrowing data from Python tuples (which is safe because they are immutable)."
+msgstr ""
+
+#: src/types.md:25
+msgid ""
+"The sections below also explain these smart pointers in a little more detail."
+msgstr ""
+
+#: src/types.md:27
+msgid "`Py<T>` (and `PyObject`)"
+msgstr ""
+
+#: src/types.md:29
+msgid ""
+"[`Py<T>`](https://pyo3.rs/main/doc/pyo3/struct.Py.html) is the foundational "
+"smart pointer in PyO3's API. The type parameter `T` denotes the type of the "
+"Python object. Very frequently this is `PyAny`, meaning any Python object. "
+"This is so common that `Py<PyAny>` has a type alias `PyObject`."
+msgstr ""
+
+#: src/types.md:31
+msgid ""
+"Because `Py<T>` is not bound to [the `'py` lifetime](./python-from-rust."
+"md#the-py-lifetime), it is the type to use when storing a Python object "
+"inside a Rust `struct` or `enum` which do not want to have a lifetime "
+"parameter. In particular, [`#[pyclass]`](class.md) types are not permitted "
+"to have a lifetime, so `Py<T>` is the correct type to store Python objects "
+"inside them."
+msgstr ""
+
+#: src/types.md:33
+msgid "The lack of binding to the `'py` lifetime also carries drawbacks:"
+msgstr ""
+
+#: src/types.md:34
+msgid ""
+"Almost all methods on `Py<T>` require a `Python<'py>` token as the first "
+"argument"
+msgstr ""
+
+#: src/types.md:35
+msgid ""
+"Other functionality, such as [`Drop`](https://doc.rust-lang.org/std/ops/"
+"trait.Drop.html), needs to check at runtime for attachment to the Python "
+"GIL, at a small performance cost"
+msgstr ""
+
+#: src/types.md:37
+msgid ""
+"Because of the drawbacks `Bound<'py, T>` is preferred for many of PyO3's "
+"APIs. In particular, `Bound<'py, T>` is the better for function arguments."
+msgstr ""
+
+#: src/types.md:39
+msgid ""
+"To convert a `Py<T>` into a `Bound<'py, T>`, the `Py::bind` and `Py::"
+"into_bound` methods are available. `Bound<'py, T>` can be converted back "
+"into `Py<T>` using [`Bound::unbind`](https://pyo3.rs/main/doc/pyo3/struct."
+"Bound.html#method.unbind)."
+msgstr ""
+
+#: src/types.md:41
+msgid "`Bound<'py, T>`"
+msgstr ""
+
+#: src/types.md:43
+msgid ""
+"[`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/struct.Bound.html) is the "
+"counterpart to `Py<T>` which is also bound to the `'py` lifetime. It can be "
+"thought of as equivalent to the Rust tuple `(Python<'py>, Py<T>)`."
+msgstr ""
+
+#: src/types.md:45
+msgid ""
+"By having the binding to the `'py` lifetime, `Bound<'py, T>` can offer the "
+"complete PyO3 API at maximum efficiency. This means that in almost all cases "
+"where `Py<T>` is not necessary for lifetime reasons, `Bound<'py, T>` should "
+"be used."
+msgstr ""
+
+#: src/types.md:47
+msgid ""
+"`Bound<'py, T>` engages in Python reference counting. This means that "
+"`Bound<'py, T>` owns a Python object. Rust code which just wants to borrow a "
+"Python object should use a shared reference `&Bound<'py, T>`. Just like "
+"`std::sync::Arc`, using `.clone()` and `drop()` will cheaply increment and "
+"decrement the reference count of the object (just in this case, the "
+"reference counting is implemented by the Python interpreter itself)."
+msgstr ""
+
+#: src/types.md:49
+msgid ""
+"To give an example of how `Bound<'py, T>` is PyO3's primary API type, "
+"consider the following Python code:"
+msgstr ""
+
+#: src/types.md:53
+msgid "# create a Python list\n"
+msgstr ""
+
+#: src/types.md:54
+msgid "# append the integer 1 to it\n"
+msgstr ""
+
+#: src/types.md:55
+msgid "# create a second reference to the list\n"
+msgstr ""
+
+#: src/types.md:56
+msgid "# delete the original reference\n"
+msgstr ""
+
+#: src/types.md:59
+msgid ""
+"Using PyO3's API, and in particular `Bound<'py, PyList>`, this code "
+"translates into the following Rust code:"
+msgstr ""
+
+#: src/types.md:68
+msgid "// y is a new reference to the same list\n"
+msgstr ""
+
+#: src/types.md:69
+msgid "// release the original reference x\n"
+msgstr ""
+
+#: src/types.md:75
+msgid "Or, without the type annotations:"
+msgstr ""
+
+#: src/types.md:91
+msgid "Function argument lifetimes"
+msgstr ""
+
+#: src/types.md:93
+msgid ""
+"Because the `'py` lifetime often appears in many function arguments as part "
+"of the `Bound<'py, T>` smart pointer, the Rust compiler will often require "
+"annotations of input and output lifetimes. This occurs when the function "
+"output has at least one lifetime, and there is more than one lifetime "
+"present on the inputs."
+msgstr ""
+
+#: src/types.md:95
+msgid ""
+"To demonstrate, consider this function which takes accepts Python objects "
+"and applies the [Python `+` operation](https://pyo3.rs/main/doc/pyo3/types/"
+"trait.PyAnyMethods.html#tymethod.add) to them:"
+msgstr ""
+
+#: src/types.md:104
+msgid ""
+"Because the Python `+` operation might raise an exception, this function "
+"returns `PyResult<Bound<'_, PyAny>>`. It doesn't need ownership of the "
+"inputs, so it takes `&Bound<'_, PyAny>` shared references. To demonstrate "
+"the point, all lifetimes have used the wildcard `'_` to allow the Rust "
+"compiler to attempt to infer them. Because there are four input lifetimes "
+"(two lifetimes of the shared references, and two `'py` lifetimes unnamed "
+"inside the `Bound<'_, PyAny>` pointers), the compiler cannot reason about "
+"which must be connected to the output."
+msgstr ""
+
+#: src/types.md:106
+msgid ""
+"The correct way to solve this is to add the `'py` lifetime as a parameter "
+"for the function, and name all the `'py` lifetimes inside the `Bound<'py, "
+"PyAny>` smart pointers. For the shared references, it's also fine to reduce "
+"`&'_` to just `&`. The working end result is below:"
+msgstr ""
+
+#: src/types.md:117 src/types.md:131
+msgid "\"s\""
+msgstr ""
+
+#: src/types.md:118 src/types.md:132
+msgid "\"ss\""
+msgstr ""
+
+#: src/types.md:122
+msgid ""
+"If naming the `'py` lifetime adds unwanted complexity to the function "
+"signature, it is also acceptable to return `PyObject` (aka `Py<PyAny>`), "
+"which has no lifetime. The cost is instead paid by a slight increase in "
+"implementation complexity, as seen by the introduction of a call to [`Bound::"
+"unbind`](https://pyo3.rs/main/doc/pyo3/struct.Bound.html#method.unbind):"
+msgstr ""
+
+#: src/types.md:136
+msgid "`Borrowed<'a, 'py, T>`"
+msgstr ""
+
+#: src/types.md:138
+msgid ""
+"[`Borrowed<'a, 'py, T>`](https://pyo3.rs/main/doc/pyo3/struct.Borrowed.html) "
+"is an advanced type used just occasionally at the edge of interaction with "
+"the Python interpreter. It can be thought of as analogous to the shared "
+"reference `&'a Bound<'py, T>`. The difference is that `Borrowed<'a, 'py, T>` "
+"is just a smart pointer rather than a reference-to-a-smart-pointer, which is "
+"a helpful reduction in indirection in specific interactions with the Python "
+"interpreter."
+msgstr ""
+
+#: src/types.md:140
+msgid ""
+"`Borrowed<'a, 'py, T>` dereferences to `Bound<'py, T>`, so all methods on "
+"`Bound<'py, T>` are available on `Borrowed<'a, 'py, T>`."
+msgstr ""
+
+#: src/types.md:142
+msgid ""
+"An example where `Borrowed<'a, 'py, T>` is used is in [`PyTupleMethods::"
+"get_borrowed_item`](https://pyo3.rs/main/doc/pyo3/types/trait.PyTupleMethods."
+"html#tymethod.get_item):"
+msgstr ""
+
+#: src/types.md:148
+msgid "// Create a new tuple with the elements (0, 1, 2)\n"
+msgstr ""
+
+#: src/types.md:153
+msgid ""
+"// `PyAnyMethods::extract` is available on `Borrowed`\n"
+"    // via the dereference to `Bound`\n"
+msgstr ""
+
+#: src/types.md:163
+msgid "Casting between smart pointer types"
+msgstr ""
+
+#: src/types.md:165
+msgid ""
+"To convert between `Py<T>` and `Bound<'py, T>` use the `bind()` / "
+"`into_bound()` methods. Use the `as_unbound()` / `unbind()` methods to go "
+"back from `Bound<'py, T>` to `Py<T>`."
+msgstr ""
+
+#: src/types.md:176
+msgid ""
+"To convert between `Bound<'py, T>` and `Borrowed<'a, 'py, T>` use the "
+"`as_borrowed()` method. `Borrowed<'a, 'py, T>` has a deref coercion to "
+"`Bound<'py, T>`. Use the `to_owned()` method to increment the Python "
+"reference count and to create a new `Bound<'py, T>` from the `Borrowed<'a, "
+"'py, T>`."
+msgstr ""
+
+#: src/types.md:181
+msgid "// deref coercion\n"
+msgstr ""
+
+#: src/types.md:184
+msgid "// create a new Bound by increase the Python reference count\n"
+msgstr ""
+
+#: src/types.md:189
+msgid ""
+"To convert between `Py<T>` and `Borrowed<'a, 'py, T>` use the "
+"`bind_borrowed()` method. Use either `as_unbound()` or `.to_owned()."
+"unbind()` to go back to `Py<T>` from `Borrowed<'a, 'py, T>`, via `Bound<'py, "
+"T>`."
+msgstr ""
+
+#: src/types.md:194
+msgid "// via deref coercion to Bound and then using Bound::as_unbound\n"
+msgstr ""
+
+#: src/types.md:197
+msgid ""
+"// via a new Bound by increasing the Python reference count, and unbind it\n"
+msgstr ""
+
+#: src/types.md:202
+msgid "Concrete Python types"
+msgstr ""
+
+#: src/types.md:204
+msgid ""
+"In all of `Py<T>`, `Bound<'py, T>`, and `Borrowed<'a, 'py, T>`, the type "
+"parameter `T` denotes the type of the Python object referred to by the smart "
+"pointer."
+msgstr ""
+
+#: src/types.md:206
+msgid "This parameter `T` can be filled by:"
+msgstr ""
+
+#: src/types.md:207
+msgid ""
+"[`PyAny`](https://pyo3.rs/main/doc/pyo3/types/struct.PyAny.html), which "
+"represents any Python object,"
+msgstr ""
+
+#: src/types.md:208
+msgid "Native Python types such as `PyList`, `PyTuple`, and `PyDict`, and"
+msgstr ""
+
+#: src/types.md:209
+msgid "[`#[pyclass]`](class.md) types defined from Rust"
+msgstr ""
+
+#: src/types.md:211
+msgid ""
+"The following subsections covers some further detail about how to work with "
+"these types:"
+msgstr ""
+
+#: src/types.md:212
+msgid "the APIs that are available for these concrete types,"
+msgstr ""
+
+#: src/types.md:213
+msgid "how to cast `Bound<'py, T>` to a specific concrete type, and"
+msgstr ""
+
+#: src/types.md:214
+msgid "how to get Rust data out of a `Bound<'py, T>`."
+msgstr ""
+
+#: src/types.md:216
+msgid "Using APIs for concrete Python types"
+msgstr ""
+
+#: src/types.md:218
+msgid ""
+"Each concrete Python type such as `PyAny`, `PyTuple` and `PyDict` exposes "
+"its API on the corresponding bound smart pointer `Bound<'py, PyAny>`, "
+"`Bound<'py, PyTuple>` and `Bound<'py, PyDict>`."
+msgstr ""
+
+#: src/types.md:220
+msgid ""
+"Each type's API is exposed as a trait: [`PyAnyMethods`](https://pyo3.rs/main/"
+"doc/pyo3/types/trait.PyAnyMethods.html), [`PyTupleMethods`](https://pyo3.rs/"
+"main/doc/pyo3/types/trait.PyTupleMethods.html), [`PyDictMethods`](https://"
+"pyo3.rs/main/doc/pyo3/types/trait.PyDictMethods.html), and so on for all "
+"concrete types. Using traits rather than associated methods on the `Bound` "
+"smart pointer is done for a couple of reasons:"
+msgstr ""
+
+#: src/types.md:221
+msgid ""
+"Clarity of documentation: each trait gets its own documentation page in the "
+"PyO3 API docs. If all methods were on the `Bound` smart pointer directly, "
+"the vast majority of PyO3's API would be on a single, extremely long, "
+"documentation page."
+msgstr ""
+
+#: src/types.md:222
+msgid ""
+"Consistency: downstream code implementing Rust APIs for existing Python "
+"types can also follow this pattern of using a trait. Downstream code would "
+"not be allowed to add new associated methods directly on the `Bound` type."
+msgstr ""
+
+#: src/types.md:223
+msgid ""
+"Future design: it is hoped that a future Rust with [arbitrary self types]"
+"(https://github.com/rust-lang/rust/issues/44874) will remove the need for "
+"these traits in favour of placing the methods directly on `PyAny`, "
+"`PyTuple`, `PyDict`, and so on."
+msgstr ""
+
+#: src/types.md:225
+msgid ""
+"These traits are all included in the `pyo3::prelude` module, so with the "
+"glob import `use pyo3::prelude::*` the full PyO3 API is made available to "
+"downstream code."
+msgstr ""
+
+#: src/types.md:227
+msgid ""
+"The following function accesses the first item in the input Python list, "
+"using the `.get_item()` method from the `PyListMethods` trait:"
+msgstr ""
+
+#: src/types.md:237 src/types.md:238
+msgid "\"hello world\""
+msgstr ""
+
+#: src/types.md:242
+msgid "Casting between Python object types"
+msgstr ""
+
+#: src/types.md:244
+msgid ""
+"To cast `Bound<'py, T>` smart pointers to some other type, use the [`."
+"downcast()`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
+"html#tymethod.downcast) family of functions. This converts `&Bound<'py, T>` "
+"to a different `&Bound<'py, U>`, without transferring ownership. There is "
+"also [`.downcast_into()`](https://pyo3.rs/main/doc/pyo3/types/trait."
+"PyAnyMethods.html#tymethod.downcast_into) to convert `Bound<'py, T>` to "
+"`Bound<'py, U>` with transfer of ownership. These methods are available for "
+"all types `T` which implement the [`PyTypeCheck`](https://pyo3.rs/main/doc/"
+"pyo3/type_object/trait.PyTypeCheck.html) trait."
+msgstr ""
+
+#: src/types.md:246
+msgid ""
+"Casting to `Bound<'py, PyAny>` can be done with `.as_any()` or `.into_any()`."
+msgstr ""
+
+#: src/types.md:248
+msgid ""
+"For example, the following snippet shows how to cast `Bound<'py, PyAny>` to "
+"`Bound<'py, PyTuple>`:"
+msgstr ""
+
+#: src/types.md:253 src/types.md:275 src/types.md:298
+msgid ""
+"// create a new Python `tuple`, and use `.into_any()` to erase the type\n"
+msgstr ""
+
+#: src/types.md:256
+msgid ""
+"// use `.downcast()` to cast to `PyTuple` without transferring ownership\n"
+msgstr ""
+
+#: src/types.md:259
+msgid ""
+"// use `.downcast_into()` to cast to `PyTuple` with transfer of ownership\n"
+msgstr ""
+
+#: src/types.md:267
+msgid ""
+"Custom [`#[pyclass]`](class.md) types implement [`PyTypeCheck`](https://pyo3."
+"rs/main/doc/pyo3/type_object/trait.PyTypeCheck.html), so `.downcast()` also "
+"works for these types. The snippet below is the same as the snippet above "
+"casting instead to a custom type `MyClass`:"
+msgstr ""
+
+#: src/types.md:278
+msgid ""
+"// use `.downcast()` to cast to `MyClass` without transferring ownership\n"
+msgstr ""
+
+#: src/types.md:281
+msgid ""
+"// use `.downcast_into()` to cast to `MyClass` with transfer of ownership\n"
+msgstr ""
+
+#: src/types.md:289
+msgid "Extracting Rust data from Python objects"
+msgstr ""
+
+#: src/types.md:291
+msgid ""
+"To extract Rust data from Python objects, use [`.extract()`](https://pyo3.rs/"
+"main/doc/pyo3/types/trait.PyAnyMethods.html#tymethod.extract) instead of `."
+"downcast()`. This method is available for all types which implement the "
+"\\[`FromPyObject`\\] trait."
+msgstr ""
+
+#: src/types.md:293
+msgid ""
+"For example, the following snippet extracts a Rust tuple of integers from a "
+"Python tuple:"
+msgstr ""
+
+#: src/types.md:301
+msgid "// extracting the Python `tuple` to a rust `(i32, i32, i32)` tuple\n"
+msgstr ""
+
+#: src/types.md:310
+msgid ""
+"To avoid copying data, [`#[pyclass]`](class.md) types can directly reference "
+"Rust data stored within the Python objects without needing to `.extract()`. "
+"See the [corresponding documentation in the class section of the guide](./"
+"class.md#bound-and-interior-mutability) for more detail."
+msgstr ""
+
+#: src/types.md:313
+msgid "The GIL Refs API"
+msgstr ""
+
+#: src/types.md:315
+msgid ""
+"The GIL Refs API was PyO3's primary API prior to PyO3 0.21. The main "
+"difference was that instead of the `Bound<'py, PyAny>` smart pointer, the "
+"\"GIL Reference\" `&'py PyAny` was used. (This was similar for other Python "
+"types.)"
+msgstr ""
+
+#: src/types.md:317
+msgid ""
+"As of PyO3 0.21, the GIL Refs API is deprecated. See the [migration guide](./"
+"migration.md#from-020-to-021) for details on how to upgrade."
+msgstr ""
+
+#: src/types.md:319
+msgid ""
+"The following sections note some historical detail about the GIL Refs API."
+msgstr ""
+
+#: src/types.md:321
+msgid "[`PyAny`](https://pyo3.rs/main/doc/pyo3/types/struct.PyAny.html)"
+msgstr ""
+
+#: src/types.md:323
+msgid ""
+"**Represented:** a Python object of unspecified type. In the GIL Refs API, "
+"this was only accessed as the GIL Ref `&'py PyAny`."
+msgstr ""
+
+#: src/types.md:325
+msgid ""
+"**Used:** `&'py PyAny` was used to refer to some Python object when the GIL "
+"lifetime was available for the whole duration access was needed. For "
+"example, intermediate values and arguments to `pyfunction`s or `pymethod`s "
+"implemented in Rust where any type is allowed."
+msgstr ""
+
+#: src/types.md:327 src/types.md:390 src/types.md:438
+msgid "**Conversions:**"
+msgstr ""
+
+#: src/types.md:329
+msgid ""
+"For a `&PyAny` object reference `any` where the underlying object is a "
+"Python-native type such as a list:"
+msgstr ""
+
+#: src/types.md:336 src/types.md:396
+msgid "// PyList::empty is part of the deprecated \"GIL Refs\" API.\n"
+msgstr ""
+
+#: src/types.md:338
+msgid "// To &PyList with PyAny::downcast\n"
+msgstr ""
+
+#: src/types.md:341 src/types.md:363
+msgid "// To Py<PyAny> (aka PyObject) with .into()\n"
+msgstr ""
+
+#: src/types.md:344
+msgid "// To Py<PyList> with PyAny::extract\n"
+msgstr ""
+
+#: src/types.md:351
+msgid ""
+"For a `&PyAny` object reference `any` where the underlying object is a "
+"`#[pyclass]`:"
+msgstr ""
+
+#: src/types.md:357
+msgid "// into_ref is part of the deprecated GIL Refs API\n"
+msgstr ""
+
+#: src/types.md:359
+msgid "// To &PyCell<MyClass> with PyAny::downcast\n"
+msgstr ""
+
+#: src/types.md:361 src/types.md:446
+msgid "// &PyCell is part of the deprecated GIL Refs API\n"
+msgstr ""
+
+#: src/types.md:366
+msgid "// To Py<MyClass> with PyAny::extract\n"
+msgstr ""
+
+#: src/types.md:369
+msgid "// To MyClass with PyAny::extract, if MyClass: Clone\n"
+msgstr ""
+
+#: src/types.md:372
+msgid "// To PyRef<'_, MyClass> or PyRefMut<'_, MyClass> with PyAny::extract\n"
+msgstr ""
+
+#: src/types.md:380
+msgid "`PyTuple`, `PyDict`, and many more"
+msgstr ""
+
+#: src/types.md:382
+msgid ""
+"**Represented:** a native Python object of known type. In the GIL Refs API, "
+"they were only accessed as the GIL Refs `&'py PyTuple`, `&'py PyDict`."
+msgstr ""
+
+#: src/types.md:384
+msgid ""
+"**Used:** `&'py PyTuple` and similar were used to operate with native Python "
+"types while holding the GIL. Like `PyAny`, this is the most convenient form "
+"to use for function arguments and intermediate values."
+msgstr ""
+
+#: src/types.md:386
+msgid ""
+"These GIL Refs implement `Deref<Target = PyAny>`, so they all expose the "
+"same methods which can be found on `PyAny`."
+msgstr ""
+
+#: src/types.md:388
+msgid ""
+"To see all Python types exposed by `PyO3` consult the [`pyo3::types`]"
+"(https://pyo3.rs/main/doc/pyo3/types/index.html) module."
+msgstr ""
+
+#: src/types.md:398
+msgid ""
+"// Use methods from PyAny on all Python types with Deref implementation\n"
+msgstr ""
+
+#: src/types.md:401 src/types.md:472
+msgid "// To &PyAny automatically with Deref implementation\n"
+msgstr ""
+
+#: src/types.md:404 src/types.md:475
+msgid "// To &PyAny explicitly with .as_ref()\n"
+msgstr ""
+
+#: src/types.md:406 src/types.md:477
+msgid "// as_ref is part of the deprecated \"GIL Refs\" API.\n"
+msgstr ""
+
+#: src/types.md:408
+msgid "// To Py<T> with .into() or Py::from()\n"
+msgstr ""
+
+#: src/types.md:411
+msgid "// To PyObject with .into() or .to_object(py)\n"
+msgstr ""
+
+#: src/types.md:418
+msgid "`Py<T>` and `PyObject`"
+msgstr ""
+
+#: src/types.md:420
+msgid ""
+"**Represented:** a GIL-independent reference to a Python object. This can be "
+"a Python native type (like `PyTuple`), or a `pyclass` type implemented in "
+"Rust. The most commonly-used variant, `Py<PyAny>`, is also known as "
+"`PyObject`."
+msgstr ""
+
+#: src/types.md:424
+msgid ""
+"**Used:** Whenever you want to carry around references to a Python object "
+"without caring about a GIL lifetime.  For example, storing Python object "
+"references in a Rust struct that outlives the Python-Rust FFI boundary, or "
+"returning objects from functions implemented in Rust back to Python."
+msgstr ""
+
+#: src/types.md:428
+msgid "Can be cloned using Python reference counts with `.clone()`."
+msgstr ""
+
+#: src/types.md:430
+msgid "`PyCell<SomeType>`"
+msgstr ""
+
+#: src/types.md:432
+msgid ""
+"**Represented:** a reference to a Rust object (instance of `PyClass`) "
+"wrapped in a Python object.  The cell part is an analog to stdlib's "
+"[`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) to allow "
+"access to `&mut` references."
+msgstr ""
+
+#: src/types.md:434
+msgid ""
+"**Used:** for accessing pure-Rust API of the instance (members and functions "
+"taking `&SomeType` or `&mut SomeType`) while maintaining the aliasing rules "
+"of Rust references."
+msgstr ""
+
+#: src/types.md:436
+msgid ""
+"Like PyO3's Python native types, the GIL Ref `&PyCell<T>` implements "
+"`Deref<Target = PyAny>`, so it also exposed all of the methods on `PyAny`."
+msgstr ""
+
+#: src/types.md:440
+msgid ""
+"`PyCell<T>` was used to access `&T` and `&mut T` via `PyRef<T>` and "
+"`PyRefMut<T>` respectively."
+msgstr ""
+
+#: src/types.md:448
+msgid "// To PyRef<T> with .borrow() or .try_borrow()\n"
+msgstr ""
+
+#: src/types.md:453
+msgid "// To PyRefMut<T> with .borrow_mut() or .try_borrow_mut()\n"
+msgstr ""
+
+#: src/types.md:461
+msgid "`PyCell<T>` was also accessed like a Python-native type."
+msgstr ""
+
+#: src/types.md:467
+msgid "// &PyCell is part of the deprecate GIL Refs API\n"
+msgstr ""
+
+#: src/types.md:469
+msgid "// Use methods from PyAny on PyCell<T> with Deref implementation\n"
+msgstr ""
