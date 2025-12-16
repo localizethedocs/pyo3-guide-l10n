@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:42:12Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/rust_cpython.md:1
+msgid "PyO3 and rust-cpython"
+msgstr ""
+
+#: src/rust_cpython.md:3
+msgid ""
+"PyO3 began as fork of [rust-cpython](https://github.com/dgrunwald/rust-"
+"cpython) when rust-cpython wasn't maintained. Over time PyO3 has become "
+"fundamentally different from rust-cpython."
+msgstr ""
+
+#: src/rust_cpython.md:5
+msgid "Macros"
+msgstr ""
+
+#: src/rust_cpython.md:7
+msgid ""
+"While rust-cpython has a `macro_rules!` based DSL for declaring modules and "
+"classes, PyO3 uses proc macros. PyO3 also doesn't change your struct and "
+"functions so you can still use them as normal Rust functions."
+msgstr ""
+
+#: src/rust_cpython.md:9 src/rust_cpython.md:53
+msgid "**rust-cpython**"
+msgstr ""
+
+#: src/rust_cpython.md:23 src/rust_cpython.md:64
+msgid "**PyO3**"
+msgstr ""
+
+#: src/rust_cpython.md:46
+msgid "Ownership and lifetimes"
+msgstr ""
+
+#: src/rust_cpython.md:48
+msgid ""
+"While in rust-cpython you always own Python objects, PyO3 allows efficient "
+"_borrowed objects_ and most APIs work with references."
+msgstr ""
+
+#: src/rust_cpython.md:51
+msgid "Here is an example of the PyList API:"
+msgstr ""
+
+#: src/rust_cpython.md:75
+msgid ""
+"In PyO3, all object references are bounded by the GIL lifetime. So owned "
+"Python objects are not required, and it is safe to have functions like `fn "
+"py<'p>(&'p self) -> Python<'p> {}`."
+msgstr ""
+
+#: src/rust_cpython.md:78
+msgid "Error handling"
+msgstr ""
+
+#: src/rust_cpython.md:80
+msgid ""
+"rust-cpython requires a `Python` parameter for constructing a `PyErr`, so "
+"error handling ergonomics is pretty bad. It is not possible to use `?` with "
+"Rust errors."
+msgstr ""
+
+#: src/rust_cpython.md:82
+msgid ""
+"PyO3 on other hand does not require `Python` for constructing a `PyErr`, it "
+"is only required if you want to raise an exception in Python with the "
+"`PyErr::restore()` method. Due to various `std::convert::From<E> for PyErr` "
+"implementations for Rust standard error types `E`, propagating `?` is "
+"supported automatically."
+msgstr ""
