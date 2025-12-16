@@ -1,0 +1,122 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:43Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/SUMMARY.md:1
+msgid "Summary"
+msgstr ""
+
+#: src/SUMMARY.md:3
+msgid "Introduction"
+msgstr ""
+
+#: src/SUMMARY.md:7
+msgid "Python Modules"
+msgstr ""
+
+#: src/SUMMARY.md:8
+msgid "Python Functions"
+msgstr ""
+
+#: src/SUMMARY.md:9
+msgid "Python Classes"
+msgstr ""
+
+#: src/SUMMARY.md:10
+msgid "Class customizations"
+msgstr ""
+
+#: src/SUMMARY.md:11
+msgid "Basic object customization"
+msgstr ""
+
+#: src/SUMMARY.md:12
+msgid "Emulating numeric types"
+msgstr ""
+
+#: src/SUMMARY.md:13
+msgid "Emulating callable objects"
+msgstr ""
+
+#: src/SUMMARY.md:14
+msgid "Type Conversions"
+msgstr ""
+
+#: src/SUMMARY.md:15
+msgid "Mapping of Rust types to Python types\\]"
+msgstr ""
+
+#: src/SUMMARY.md:16
+msgid "Conversion traits\\]"
+msgstr ""
+
+#: src/SUMMARY.md:17
+msgid "Python Exceptions"
+msgstr ""
+
+#: src/SUMMARY.md:18
+msgid "Calling Python from Rust"
+msgstr ""
+
+#: src/SUMMARY.md:19
+msgid "GIL, mutability and object types"
+msgstr ""
+
+#: src/SUMMARY.md:20
+msgid "Parallelism"
+msgstr ""
+
+#: src/SUMMARY.md:21
+msgid "Debugging"
+msgstr ""
+
+#: src/SUMMARY.md:22
+msgid "Features Reference"
+msgstr ""
+
+#: src/SUMMARY.md:23
+msgid "Memory Management"
+msgstr ""
+
+#: src/SUMMARY.md:24
+msgid "Advanced Topics"
+msgstr ""
+
+#: src/SUMMARY.md:25
+msgid "Building and Distribution"
+msgstr ""
+
+#: src/SUMMARY.md:26
+msgid "Supporting multiple Python versions"
+msgstr ""
+
+#: src/SUMMARY.md:27
+msgid "Useful Crates"
+msgstr ""
+
+#: src/SUMMARY.md:28
+msgid "Logging"
+msgstr ""
+
+#: src/SUMMARY.md:29
+msgid "Async / Await"
+msgstr ""
+
+#: src/SUMMARY.md:30
+msgid "FAQ & Troubleshooting"
+msgstr ""
+
+#: src/SUMMARY.md:34
+msgid ""
+"Appendix A: Migration Guide Appendix B: PyO3 and rust-cpython Appendix C: "
+"Trait bounds Appendix D: Python typing hints CHANGELOG"
+msgstr ""
