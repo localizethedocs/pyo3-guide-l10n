@@ -1,0 +1,338 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:08Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/building_and_distribution.md:1
+msgid "Building and Distribution"
+msgstr ""
+
+#: src/building_and_distribution.md:3
+msgid "Python version"
+msgstr ""
+
+#: src/building_and_distribution.md:5
+msgid ""
+"PyO3 uses a build script to determine the Python version and set the correct "
+"linker arguments. By default it uses the `python3` executable. You can "
+"override the Python interpreter by setting `PYO3_PYTHON`, e.g., "
+"`PYO3_PYTHON=python3.6`."
+msgstr ""
+
+#: src/building_and_distribution.md:7
+msgid "Linking"
+msgstr ""
+
+#: src/building_and_distribution.md:9
+msgid ""
+"Different linker arguments must be set for libraries/extension modules and "
+"binaries, which includes both standalone binaries and tests. (More "
+"specifically, binaries must be told where to find libpython and libraries "
+"must not link to libpython for [manylinux](https://www.python.org/dev/peps/"
+"pep-0513/) compliance)."
+msgstr ""
+
+#: src/building_and_distribution.md:11
+msgid ""
+"Since PyO3's build script can't know whether you're building a binary or a "
+"library, you have to activate the `extension-module` feature to get the "
+"build options for a library, or it'll default to binary."
+msgstr ""
+
+#: src/building_and_distribution.md:13
+msgid ""
+"If you have e.g. a library crate and a profiling crate alongside, you need "
+"to use optional features. E.g. you put the following in the library crate:"
+msgstr ""
+
+#: src/building_and_distribution.md:15
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.6\"\n"
+"\n"
+"[lib]\n"
+"name = \"hyperjson\"\n"
+"crate-type = [\"rlib\", \"cdylib\"]\n"
+"\n"
+"[features]\n"
+"default = [\"pyo3/extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:27
+msgid "And this in the profiling crate:"
+msgstr ""
+
+#: src/building_and_distribution.md:29
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"my_main_crate = { path = \"..\", default-features = false }\n"
+"pyo3 = \"0.6\"\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:35
+msgid ""
+"On Linux/macOS you might have to change `LD_LIBRARY_PATH` to include "
+"libpython, while on windows you might need to set `LIB` to include `pythonxy."
+"lib` (where x and y are major and minor version), which is normally either "
+"in the `libs` or `Lib` folder of a Python installation."
+msgstr ""
+
+#: src/building_and_distribution.md:37
+msgid "Distribution"
+msgstr ""
+
+#: src/building_and_distribution.md:39
+msgid ""
+"There are two ways to distribute your module as a Python package: The old, "
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust), and the new, "
+"[maturin](https://github.com/PyO3/maturin). setuptools-rust needs several "
+"configuration files (`setup.py`, `MANIFEST.in`, `build-wheels.sh`, etc.). "
+"maturin doesn't need any configuration files, however it does not support "
+"some functionality of setuptools such as package data ([pyo3/maturin#258]"
+"(https://github.com/PyO3/maturin/issues/258)) and requires a rigid project "
+"structure, while setuptools-rust allows (and sometimes requires) "
+"configuration with python code."
+msgstr ""
+
+#: src/building_and_distribution.md:41
+msgid "`Py_LIMITED_API`/`abi3`"
+msgstr ""
+
+#: src/building_and_distribution.md:43
+msgid ""
+"By default, Python extension modules can only be used with the same Python "
+"version they were compiled against -- if you build an extension module with "
+"Python 3.5, you can't import it using Python 3.8. [PEP 384](https://www."
+"python.org/dev/peps/pep-0384/) introduced the idea of the limited Python "
+"API, which would have a stable ABI enabling extension modules built with it "
+"to be used against multiple Python versions. This is also known as `abi3`."
+msgstr ""
+
+#: src/building_and_distribution.md:45
+msgid ""
+"Note that [maturin](https://github.com/PyO3/maturin) >= 0.9.0 or [setuptools-"
+"rust](https://github.com/PyO3/setuptools-rust) >= 0.11.4 support `abi3` "
+"wheels. See the [corresponding](https://github.com/PyO3/maturin/pull/353) "
+"[PRs](https://github.com/PyO3/setuptools-rust/pull/82) for more."
+msgstr ""
+
+#: src/building_and_distribution.md:48
+msgid ""
+"There are three steps involved in making use of `abi3` when building Python "
+"packages as wheels:"
+msgstr ""
+
+#: src/building_and_distribution.md:50
+msgid ""
+"Enable the `abi3` feature in `pyo3`. This ensures `pyo3` only calls Python C-"
+"API functions which are part of the stable API, and on Windows also ensures "
+"that the project links against the correct shared object (no special "
+"behavior is required on other platforms):"
+msgstr ""
+
+#: src/building_and_distribution.md:52
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = { version = \"...\", features = [\"abi3\"]}\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:57
+msgid ""
+"Ensure that the built shared objects are correctly marked as `abi3`. This is "
+"accomplished by telling your build system that you're using the limited API."
+msgstr ""
+
+#: src/building_and_distribution.md:59
+msgid ""
+"Ensure that the `.whl` is correctly marked as `abi3`. For projects using "
+"`setuptools`, this is accomplished by passing `--py-limited-api=cp3x` (where "
+"`x` is the minimum Python version supported by the wheel, e.g. `--py-limited-"
+"api=cp35` for Python 3.5) to `setup.py bdist_wheel`."
+msgstr ""
+
+#: src/building_and_distribution.md:61
+msgid "Minimum Python version for `abi3`"
+msgstr ""
+
+#: src/building_and_distribution.md:63
+msgid ""
+"Because a single `abi3` wheel can be used with many different Python "
+"versions, PyO3 has feature flags `abi3-py36`, `abi3-py37`, `abi-py38` etc. "
+"to set the minimum required Python version for your `abi3` wheel. For "
+"example, if you set the `abi3-py36` feature, your extension wheel can be "
+"used on all Python 3 versions from Python 3.6 and up. `maturin` and "
+"`setuptools-rust` will give the wheel a name like `my-extension-1.0-cp36-"
+"abi3-manylinux2020_x86_64.whl`. If you set more that one of these api "
+"version feature flags the highest version always wins. For example, with "
+"both `abi3-py36` and `abi3-py38` set, PyO3 would build a wheel which "
+"supports Python 3.8 and up. PyO3 is only able to link your extension module "
+"to api3 version up to and including your host Python version. E.g., if you "
+"set `abi3-py38` and try to compile the crate with a host of Python 3.6, the "
+"build will fail."
+msgstr ""
+
+#: src/building_and_distribution.md:68
+msgid ""
+"As an advanced feature, you can build PyO3 wheel without calling Python "
+"interpreter with the environment variable `PYO3_NO_PYTHON` set. On unix "
+"systems this works unconditionally; on Windows you must also set the "
+"`RUSTFLAGS` evironment variable to contain `-L native=/path/to/python/libs` "
+"so that the linker can find `python3.lib`."
+msgstr ""
+
+#: src/building_and_distribution.md:70
+msgid "Missing features"
+msgstr ""
+
+#: src/building_and_distribution.md:72
+msgid ""
+"Due to limitations in the Python API, there are a few `pyo3` features that "
+"do not work when compiling for `abi3`. These are:"
+msgstr ""
+
+#: src/building_and_distribution.md:75
+msgid ""
+"`#[text_signature]` does not work on classes until Python 3.10 or greater."
+msgstr ""
+
+#: src/building_and_distribution.md:76
+msgid ""
+"The `dict` and `weakref` options on classes are not supported until Python "
+"3.9 or greater."
+msgstr ""
+
+#: src/building_and_distribution.md:77
+msgid "The buffer API is not supported."
+msgstr ""
+
+#: src/building_and_distribution.md:79
+msgid "Cross Compiling"
+msgstr ""
+
+#: src/building_and_distribution.md:81
+msgid ""
+"Cross compiling PyO3 modules is relatively straightforward and requires a "
+"few pieces of software:"
+msgstr ""
+
+#: src/building_and_distribution.md:83
+msgid "A toolchain for your target."
+msgstr ""
+
+#: src/building_and_distribution.md:84
+msgid ""
+"The appropriate options in your Cargo `.config` for the platform you're "
+"targeting and the toolchain you are using."
+msgstr ""
+
+#: src/building_and_distribution.md:85
+msgid "A Python interpreter that's already been compiled for your target."
+msgstr ""
+
+#: src/building_and_distribution.md:86
+msgid ""
+"A Python interpreter that is built for your host and available through the "
+"`PATH` or setting the [`PYO3_PYTHON`](#python-version) variable."
+msgstr ""
+
+#: src/building_and_distribution.md:87
+msgid "The headers that match the above interpreter."
+msgstr ""
+
+#: src/building_and_distribution.md:89
+msgid ""
+"See https://github.com/japaric/rust-cross for a primer on cross compiling "
+"Rust in general."
+msgstr ""
+
+#: src/building_and_distribution.md:91
+msgid ""
+"After you've obtained the above, you can build a cross compiled PyO3 module "
+"by setting a few extra environment variables:"
+msgstr ""
+
+#: src/building_and_distribution.md:93
+msgid ""
+"`PYO3_CROSS_LIB_DIR`: This variable must be set to the directory containing "
+"the target's libpython DSO and the associated `_sysconfigdata*.py` file."
+msgstr ""
+
+#: src/building_and_distribution.md:94
+msgid ""
+"`PYO3_CROSS_PYTHON_VERSION`: Major and minor version (e.g. 3.9) of the "
+"target Python installation. This variable is only needed if pyo3 cannot "
+"determine the version to target by other means:"
+msgstr ""
+
+#: src/building_and_distribution.md:95
+msgid ""
+"From `PYO3_CROSS_INCLUDE_DIR` or abi3-py3\\* features when targeting "
+"Windows, or"
+msgstr ""
+
+#: src/building_and_distribution.md:96
+msgid ""
+"if there are multiple versions of python present in `PYO3_CROSS_LIB_DIR` "
+"when targeting unix."
+msgstr ""
+
+#: src/building_and_distribution.md:97
+msgid ""
+"`PYO3_CROSS_INCLUDE_DIR`: This variable can optionally be set to the "
+"directory containing the headers for the target's Python interpreter when "
+"targeting Windows."
+msgstr ""
+
+#: src/building_and_distribution.md:99
+msgid ""
+"An example might look like the following (assuming your target's sysroot is "
+"at `/home/pyo3/cross/sysroot` and that your target is `armv7`):"
+msgstr ""
+
+#: src/building_and_distribution.md:102 src/building_and_distribution.md:110
+#: src/building_and_distribution.md:118
+msgid "\"/home/pyo3/cross/sysroot/usr/lib\""
+msgstr ""
+
+#: src/building_and_distribution.md:107
+msgid ""
+"If there are multiple python versions at the cross lib directory and you "
+"cannot set a more precise location to include both the `libpython` DSO and "
+"`_sysconfigdata*.py` files, you can set the required version:"
+msgstr ""
+
+#: src/building_and_distribution.md:109
+msgid "3.8"
+msgstr ""
+
+#: src/building_and_distribution.md:115
+msgid "Or another example with the same sys root but building for windows:"
+msgstr ""
+
+#: src/building_and_distribution.md:117
+msgid "\"/home/pyo3/cross/sysroot/usr/include\""
+msgstr ""
+
+#: src/building_and_distribution.md:123
+msgid "Bazel"
+msgstr ""
+
+#: src/building_and_distribution.md:125
+msgid ""
+"For an example of how to build python extensions using Bazel, see https://"
+"github.com/TheButlah/rules_pyo3"
+msgstr ""
