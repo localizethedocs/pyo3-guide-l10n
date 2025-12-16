@@ -1,0 +1,142 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:45Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions.md:1
+msgid "Type Conversions"
+msgstr ""
+
+#: src/conversions.md:3
+msgid ""
+"PyO3 provides some handy traits to convert between Python types and Rust "
+"types."
+msgstr ""
+
+#: src/conversions.md:5
+msgid "`.extract()`"
+msgstr ""
+
+#: src/conversions.md:7
+msgid ""
+"The easiest way to convert a python object to a rust value is using `."
+"extract()?`."
+msgstr ""
+
+#: src/conversions.md:9
+msgid "`ToPyObject` and `IntoPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:11
+msgid ""
+"[`ToPyObject`](https://docs.rs/pyo3/0.6.0-alpha.4/trait.ToPyObject.html) "
+"trait is a conversion trait that allows various objects to be converted into "
+"[`PyObject`](https://docs.rs/pyo3/0.6.0-alpha.4/struct.PyObject.html). "
+"[`IntoPyObject`](https://docs.rs/pyo3/0.6.0-alpha.4/trait.IntoPyObject.html) "
+"serves the same purpose except it consumes `self`."
+msgstr ""
+
+#: src/conversions.md:13
+msgid "`FromPyObject` and `RefFromPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:15
+msgid "`*args` and `**kwargs` for python object call"
+msgstr ""
+
+#: src/conversions.md:17
+msgid ""
+"There are several way how to pass positional and keyword arguments to python "
+"object call. [`ObjectProtocol`](https://docs.rs/pyo3/0.6.0-alpha.4/trait."
+"ObjectProtocol.html) trait provides two methods:"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`call` - call callable python object."
+msgstr ""
+
+#: src/conversions.md:22
+msgid "`call_method` - call specific method on the object."
+msgstr ""
+
+#: src/conversions.md:24
+msgid "Both methods accept `args` and `kwargs` arguments."
+msgstr ""
+
+#: src/conversions.md:39
+msgid "\"arg1\""
+msgstr ""
+
+#: src/conversions.md:40
+msgid "\"arg2\""
+msgstr ""
+
+#: src/conversions.md:41
+msgid "\"arg3\""
+msgstr ""
+
+#: src/conversions.md:48
+msgid "// call object without empty arguments\n"
+msgstr ""
+
+#: src/conversions.md:51
+msgid "// call object with PyTuple\n"
+msgstr ""
+
+#: src/conversions.md:55
+msgid "// pass arguments as rust tuple\n"
+msgstr ""
+
+#: src/conversions.md:61
+msgid ""
+"`kwargs` can by `None` or `Some(&PyDict)`. You can use the [`IntoPyDict`]"
+"(https://docs.rs/pyo3/0.6.0-alpha.4/trait.IntoPyDict.html) trait to convert "
+"other dict-like containers, e.g. `HashMap`, `BTreeMap` as well as tuples "
+"with up to 10 elements and `Vec`s where each element is a two element tuple."
+msgstr ""
+
+#: src/conversions.md:79
+msgid "\"key1\""
+msgstr ""
+
+#: src/conversions.md:81
+msgid "\"key2\""
+msgstr ""
+
+#: src/conversions.md:89
+msgid "// call object with PyDict\n"
+msgstr ""
+
+#: src/conversions.md:93
+msgid "// pass arguments as Vec\n"
+msgstr ""
+
+#: src/conversions.md:97
+msgid "// pass arguments as HashMap\n"
+msgstr ""
+
+#: src/conversions.md:104
+msgid "`IntoPy<T>`"
+msgstr ""
+
+#: src/conversions.md:106
+msgid ""
+"Many conversions in PyO3 can't use `std::convert::Into` because they need a "
+"gil token. That's why the `IntoPy<T>` trait offers an `into_py` methods that "
+"works just like `into` except for taking a `Python<'_>` as argument."
+msgstr ""
+
+#: src/conversions.md:108
+msgid ""
+"Eventually, traits such as `IntoPyObject` will be replaces by this trait and "
+"a `FromPy` trait will be added that will implement `IntoPy`, just like with "
+"`From` and `Into`."
+msgstr ""
