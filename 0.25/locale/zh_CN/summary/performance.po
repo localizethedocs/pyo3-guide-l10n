@@ -1,0 +1,157 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:22Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/performance.md:1
+msgid "Performance"
+msgstr ""
+
+#: src/performance.md:3
+msgid ""
+"To achieve the best possible performance, it is useful to be aware of "
+"several tricks and sharp edges concerning PyO3's API."
+msgstr ""
+
+#: src/performance.md:5
+msgid "`extract` versus `downcast`"
+msgstr ""
+
+#: src/performance.md:7
+msgid ""
+"Pythonic API implemented using PyO3 are often polymorphic, i.e. they will "
+"accept `&Bound<'_, PyAny>` and try to turn this into multiple more concrete "
+"types to which the requested operation is applied. This often leads to "
+"chains of calls to `extract`, e.g."
+msgstr ""
+
+#: src/performance.md:29 src/performance.md:51
+msgid "\"Cannot frobnicate that type.\""
+msgstr ""
+
+#: src/performance.md:34
+msgid ""
+"This suboptimal as the `FromPyObject<T>` trait requires `extract` to have a "
+"`Result<T, PyErr>` return type. For native types like `PyList`, it faster to "
+"use `downcast` (which `extract` calls internally) when the error value is "
+"ignored. This avoids the costly conversion of a `PyDowncastError` to a "
+"`PyErr` required to fulfil the `FromPyObject` contract, i.e."
+msgstr ""
+
+#: src/performance.md:45
+msgid ""
+"// Use `downcast` instead of `extract` as turning `PyDowncastError` into "
+"`PyErr` is quite costly.\n"
+msgstr ""
+
+#: src/performance.md:56
+msgid "Access to Bound implies access to GIL token"
+msgstr ""
+
+#: src/performance.md:58
+msgid ""
+"Calling `Python::with_gil` is effectively a no-op when the GIL is already "
+"held, but checking that this is the case still has a cost. If an existing "
+"GIL token can not be accessed, for example when implementing a pre-existing "
+"trait, but a GIL-bound reference is available, this cost can be avoided by "
+"exploiting that access to GIL-bound reference gives zero-cost access to a "
+"GIL token via `Bound::py`."
+msgstr ""
+
+#: src/performance.md:60
+msgid "For example, instead of writing"
+msgstr ""
+
+#: src/performance.md:81
+msgid "use the more efficient"
+msgstr ""
+
+#: src/performance.md:92
+msgid "// Access to `&Bound<'py, PyAny>` implies access to `Python<'py>`.\n"
+msgstr ""
+
+#: src/performance.md:100
+msgid "Calling Python callables (`__call__`)"
+msgstr ""
+
+#: src/performance.md:101
+msgid ""
+"CPython support multiple calling protocols: [`tp_call`](https://docs.python."
+"org/3/c-api/call.html#the-tp-call-protocol) and [`vectorcall`](https://docs."
+"python.org/3/c-api/call.html#the-vectorcall-protocol). [`vectorcall`]"
+"(https://docs.python.org/3/c-api/call.html#the-vectorcall-protocol) is a "
+"more efficient protocol unlocking faster calls. PyO3 will try to dispatch "
+"Python `call`s using the [`vectorcall`](https://docs.python.org/3/c-api/call."
+"html#the-vectorcall-protocol) calling convention to archive maximum "
+"performance if possible and falling back to [`tp_call`](https://docs.python."
+"org/3/c-api/call.html#the-tp-call-protocol) otherwise. This is implemented "
+"using the (internal) `PyCallArgs` trait. It defines how Rust types can be "
+"used as Python `call` arguments. This trait is currently implemented for"
+msgstr ""
+
+#: src/performance.md:104
+msgid "Rust tuples, where each member implements `IntoPyObject`,"
+msgstr ""
+
+#: src/performance.md:105
+msgid "`Bound<'_, PyTuple>`"
+msgstr ""
+
+#: src/performance.md:106
+msgid ""
+"`Py<PyTuple>` Rust tuples may make use of [`vectorcall`](https://docs.python."
+"org/3/c-api/call.html#the-vectorcall-protocol) where as `Bound<'_, PyTuple>` "
+"and `Py<PyTuple>` can only use [`tp_call`](https://docs.python.org/3/c-api/"
+"call.html#the-tp-call-protocol). For maximum performance prefer using Rust "
+"tuples as arguments."
+msgstr ""
+
+#: src/performance.md:113
+msgid "Disable the global reference pool"
+msgstr ""
+
+#: src/performance.md:115
+msgid ""
+"PyO3 uses global mutable state to keep track of deferred reference count "
+"updates implied by `impl<T> Drop for Py<T>` being called without the GIL "
+"being held. The necessary synchronization to obtain and apply these "
+"reference count updates when PyO3-based code next acquires the GIL is "
+"somewhat expensive and can become a significant part of the cost of crossing "
+"the Python-Rust boundary."
+msgstr ""
+
+#: src/performance.md:117
+msgid ""
+"This functionality can be avoided by setting the "
+"`pyo3_disable_reference_pool` conditional compilation flag. This removes the "
+"global reference pool and the associated costs completely. However, it does "
+"_not_ remove the `Drop` implementation for `Py<T>` which is necessary to "
+"interoperate with existing Rust code written without PyO3-based code in "
+"mind. To stay compatible with the wider Rust ecosystem in these cases, we "
+"keep the implementation but abort when `Drop` is called without the GIL "
+"being held. If `pyo3_leak_on_drop_without_reference_pool` is additionally "
+"enabled, objects dropped without the GIL being held will be leaked instead "
+"which is always sound but might have determinal effects like resource "
+"exhaustion in the long term."
+msgstr ""
+
+#: src/performance.md:119
+msgid ""
+"This limitation is important to keep in mind when this setting is used, "
+"especially when embedding Python code into a Rust application as it is quite "
+"easy to accidentally drop a `Py<T>` (or types containing it like `PyErr`, "
+"`PyBackedStr` or `PyBackedBytes`) returned from `Python::with_gil` without "
+"making sure to re-acquire the GIL beforehand. For example, the following code"
+msgstr ""
+
+#: src/performance.md:135
+msgid "will abort if the list not explicitly disposed via"
+msgstr ""
