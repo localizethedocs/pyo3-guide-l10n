@@ -5,15 +5,15 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/index.md:1
 msgid "The PyO3 user guide"
-msgstr ""
+msgstr "PyO3 使用者指南"
 
 #: src/index.md:3
 msgid ""
@@ -104,7 +104,7 @@ msgstr ""
 
 #: src/index.md:40
 msgid "Using Rust from Python"
-msgstr ""
+msgstr "從 Python 使用 Rust"
 
 #: src/index.md:42
 msgid "PyO3 can be used to generate a native Python module."
@@ -196,7 +196,7 @@ msgstr ""
 
 #: src/index.md:101
 msgid "Using Python from Rust"
-msgstr ""
+msgstr "從 Rust 使用 Python"
 
 #: src/index.md:103
 msgid ""
@@ -252,7 +252,7 @@ msgstr ""
 
 #: src/index.md:141
 msgid "Tools and libraries"
-msgstr ""
+msgstr "工具與程式庫"
 
 #: src/index.md:142
 msgid ""
