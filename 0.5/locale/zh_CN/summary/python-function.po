@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:43Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function.md:1
+msgid "Python Function"
+msgstr ""
+
+#: src/function.md:3
+msgid ""
+"Pyo3 supports two ways to define a function in python. Both require "
+"registering the function to a [module](./module.md)"
+msgstr ""
+
+#: src/function.md:6
+msgid "One way is defining the function in the module definition."
+msgstr ""
+
+#: src/function.md:18
+msgid ""
+"// Note that the `#[pyfn()]` annotation automatically converts the arguments "
+"from\n"
+"    // Python objects to Rust values; and the Rust return value back into a "
+"Python object.\n"
+msgstr ""
+
+#: src/function.md:20
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/function.md:22
+msgid "\"{}\""
+msgstr ""
+
+#: src/function.md:31
+msgid ""
+"The other is annotating a function with `#[py::function]` and then adding it "
+"to the module using the `add_function_to_module!` macro, which takes the "
+"module as first parameter, the function name as second and an instance of "
+"`Python` as third."
+msgstr ""
+
+#: src/function.md:58
+msgid "Closures"
+msgstr ""
+
+#: src/function.md:60
+msgid ""
+"Currently, there are no conversions between `Fn`s in rust and callables in "
+"python. This would definitely be possible and very useful, so contributions "
+"are welcome. In the meantime, you can do the following:"
+msgstr ""
+
+#: src/function.md:62
+msgid "Calling a python function in rust"
+msgstr ""
+
+#: src/function.md:64
+msgid ""
+"You can use `ObjectProtocol::is_callable` to check if you got a callable, "
+"which is true for functions (including lambdas), methods and objects with a "
+"`__call__` method. You can call the object with `ObjectProtocol::call` with "
+"the args as first parameter and the kwargs (or `NoArgs`) as second paramter. "
+"There are also `ObjectProtocol::call0` with no args and `ObjectProtocol::"
+"call1` with only the args."
+msgstr ""
+
+#: src/function.md:66
+msgid "Calling rust `Fn`s in python"
+msgstr ""
+
+#: src/function.md:68
+msgid ""
+"If you have a static function, you can expose it with `#[pyfunction]` and "
+"use `wrap_function!` to get the corresponding `PyObject`. For dynamic "
+"functions, e.g. lambda and functions that were passed as arguments, you must "
+"put them in some kind of owned container, e.g. a box. (Long-Term a special "
+"container similar to wasm-bindgen's `Closure` should take care of that). You "
+"can than use a `#[pyclass]` struct with that container as field as a way to "
+"pass the function over the ffi-barrier. You can even make that class "
+"callable with `__call__` so it looks like a function in python code."
+msgstr ""
