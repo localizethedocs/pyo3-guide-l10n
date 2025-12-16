@@ -5,15 +5,15 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/index.md:1
 msgid "The PyO3 user guide"
-msgstr ""
+msgstr "PyO3 使用者指南"
 
 #: src/index.md:3
 msgid ""
@@ -77,13 +77,14 @@ msgstr ""
 
 #: src/index.md:27
 msgid "User Guide: [stable](https://pyo3.rs) | [main](https://pyo3.rs/main)"
-msgstr ""
+msgstr "使用者指南：[stable](https://pyo3.rs) | [main](https://pyo3.rs/main)"
 
 #: src/index.md:29
 msgid ""
 "API Documentation: [stable](https://docs.rs/pyo3/) | [main](https://pyo3.rs/"
 "main/doc)"
 msgstr ""
+"API 文件：[stable](https://docs.rs/pyo3/) | [main](https://pyo3.rs/main/doc)"
 
 #: src/index.md:31
 msgid "Usage"
@@ -95,11 +96,11 @@ msgstr ""
 
 #: src/index.md:35
 msgid "PyO3 supports the following Python distributions:"
-msgstr ""
+msgstr "PyO3 支援以下 Python 散布版："
 
 #: src/index.md:36
 msgid "CPython 3.7 or greater"
-msgstr ""
+msgstr "CPython 3.7 或更高版本"
 
 #: src/index.md:37
 msgid "PyPy 7.3 (Python 3.9+)"
@@ -117,7 +118,7 @@ msgstr ""
 
 #: src/index.md:42
 msgid "Using Rust from Python"
-msgstr ""
+msgstr "從 Python 使用 Rust"
 
 #: src/index.md:44
 msgid ""
@@ -254,7 +255,7 @@ msgstr ""
 
 #: src/index.md:140
 msgid "Using Python from Rust"
-msgstr ""
+msgstr "從 Rust 使用 Python"
 
 #: src/index.md:142
 msgid ""
@@ -323,7 +324,7 @@ msgstr ""
 
 #: src/index.md:186
 msgid "Tools and libraries"
-msgstr ""
+msgstr "工具與程式庫"
 
 #: src/index.md:188
 msgid ""
