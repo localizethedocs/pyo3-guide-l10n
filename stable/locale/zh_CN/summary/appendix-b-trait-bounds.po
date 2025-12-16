@@ -1,0 +1,421 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/trait-bounds.md:1
+msgid "Using in Python a Rust function with trait bounds"
+msgstr ""
+
+#: src/trait-bounds.md:3
+msgid ""
+"PyO3 allows for easy conversion from Rust to Python for certain functions "
+"and classes (see the [conversion table](conversions/tables.md)). However, it "
+"is not always straightforward to convert Rust code that requires a given "
+"trait implementation as an argument."
+msgstr ""
+
+#: src/trait-bounds.md:6
+msgid ""
+"This tutorial explains how to convert a Rust function that takes a trait as "
+"argument for use in Python with classes implementing the same methods as the "
+"trait."
+msgstr ""
+
+#: src/trait-bounds.md:8
+msgid "Why is this useful?"
+msgstr ""
+
+#: src/trait-bounds.md:10
+msgid "Pros"
+msgstr ""
+
+#: src/trait-bounds.md:12
+msgid "Make your Rust code available to Python users"
+msgstr ""
+
+#: src/trait-bounds.md:13
+msgid "Code complex algorithms in Rust with the help of the borrow checker"
+msgstr ""
+
+#: src/trait-bounds.md:15
+msgid "Cons"
+msgstr ""
+
+#: src/trait-bounds.md:17
+msgid ""
+"Not as fast as native Rust (type conversion has to be performed and one part "
+"of the code runs in Python)"
+msgstr ""
+
+#: src/trait-bounds.md:18
+msgid "You need to adapt your code to expose it"
+msgstr ""
+
+#: src/trait-bounds.md:20
+msgid "Example"
+msgstr ""
+
+#: src/trait-bounds.md:22
+msgid ""
+"Let's work with the following basic example of an implementation of a "
+"optimization solver operating on a given model."
+msgstr ""
+
+#: src/trait-bounds.md:24
+msgid ""
+"Let's say we have a function `solve` that operates on a model and mutates "
+"its state. The argument of the function can be any model that implements the "
+"`Model` trait :"
+msgstr ""
+
+#: src/trait-bounds.md:36 src/trait-bounds.md:479
+msgid "\"Magic solver that mutates the model into a resolved state\""
+msgstr ""
+
+#: src/trait-bounds.md:40
+msgid "Let's assume we have the following constraints:"
+msgstr ""
+
+#: src/trait-bounds.md:42
+msgid "We cannot change that code as it runs on many Rust models."
+msgstr ""
+
+#: src/trait-bounds.md:43
+msgid ""
+"We also have many Python models that cannot be solved as this solver is not "
+"available in that language."
+msgstr ""
+
+#: src/trait-bounds.md:45
+msgid ""
+"Rewriting it in Python would be cumbersome and error-prone, as everything is "
+"already available in Rust."
+msgstr ""
+
+#: src/trait-bounds.md:47
+msgid "How could we expose this solver to Python thanks to PyO3 ?"
+msgstr ""
+
+#: src/trait-bounds.md:49
+msgid "Implementation of the trait bounds for the Python class"
+msgstr ""
+
+#: src/trait-bounds.md:51
+msgid ""
+"If a Python class implements the same three methods as the `Model` trait, it "
+"seems logical it could be adapted to use the solver. However, it is not "
+"possible to pass a `Py<PyAny>` to it as it does not implement the Rust trait "
+"(even if the Python model has the required methods)."
+msgstr ""
+
+#: src/trait-bounds.md:54
+msgid ""
+"In order to implement the trait, we must write a wrapper around the calls in "
+"Rust to the Python model. The method signatures must be the same as the "
+"trait, keeping in mind that the Rust trait cannot be changed for the purpose "
+"of making the code available in Python."
+msgstr ""
+
+#: src/trait-bounds.md:57
+msgid ""
+"The Python model we want to expose is the following one, which already "
+"contains all the required methods:"
+msgstr ""
+
+#: src/trait-bounds.md:69
+msgid ""
+"The following wrapper will call the Python model from Rust, using a struct "
+"to hold the model as a `PyAny` object:"
+msgstr ""
+
+#: src/trait-bounds.md:88 src/trait-bounds.md:188 src/trait-bounds.md:367
+#: src/trait-bounds.md:426 src/trait-bounds.md:523
+msgid "\"Rust calling Python to set the variables\""
+msgstr ""
+
+#: src/trait-bounds.md:92 src/trait-bounds.md:191 src/trait-bounds.md:370
+#: src/trait-bounds.md:429 src/trait-bounds.md:527
+msgid "\"set_variables\""
+msgstr ""
+
+#: src/trait-bounds.md:98 src/trait-bounds.md:197 src/trait-bounds.md:356
+msgid "\"Rust calling Python to get the results\""
+msgstr ""
+
+#: src/trait-bounds.md:102 src/trait-bounds.md:201 src/trait-bounds.md:360
+#: src/trait-bounds.md:412 src/trait-bounds.md:538
+msgid "\"get_results\""
+msgstr ""
+
+#: src/trait-bounds.md:110 src/trait-bounds.md:209 src/trait-bounds.md:376
+#: src/trait-bounds.md:435 src/trait-bounds.md:553
+msgid "\"Rust calling Python to perform the computation\""
+msgstr ""
+
+#: src/trait-bounds.md:114 src/trait-bounds.md:213 src/trait-bounds.md:380
+#: src/trait-bounds.md:439 src/trait-bounds.md:557
+msgid "\"compute\""
+msgstr ""
+
+#: src/trait-bounds.md:121
+msgid ""
+"Now that this bit is implemented, let's expose the model wrapper to Python. "
+"Let's add the PyO3 annotations and add a constructor:"
+msgstr ""
+
+#: src/trait-bounds.md:154
+msgid "Now we add the PyO3 annotations to the trait implementation:"
+msgstr ""
+
+#: src/trait-bounds.md:159
+msgid "// the previous trait implementation\n"
+msgstr ""
+
+#: src/trait-bounds.md:163
+msgid ""
+"However, the previous code will not compile. The compilation error is the "
+"following one: `error: #[pymethods] cannot be used on trait impl blocks`"
+msgstr ""
+
+#: src/trait-bounds.md:166
+msgid ""
+"That's a bummer! However, we can write a second wrapper around these "
+"functions to call them directly. This wrapper will also perform the type "
+"conversions between Python and Rust."
+msgstr ""
+
+#: src/trait-bounds.md:223 src/trait-bounds.md:501
+msgid "\"Set variables from Python calling Rust\""
+msgstr ""
+
+#: src/trait-bounds.md:228 src/trait-bounds.md:506
+msgid "\"Get results from Python calling Rust\""
+msgstr ""
+
+#: src/trait-bounds.md:233
+msgid "\"Compute from Python calling Rust\""
+msgstr ""
+
+#: src/trait-bounds.md:239
+msgid ""
+"This wrapper handles the type conversion between the PyO3 requirements and "
+"the trait. In order to meet PyO3 requirements, this wrapper must:"
+msgstr ""
+
+#: src/trait-bounds.md:242
+msgid "return an object of type `PyResult`"
+msgstr ""
+
+#: src/trait-bounds.md:243
+msgid "use only values, not references in the method signatures"
+msgstr ""
+
+#: src/trait-bounds.md:245
+msgid "Let's run the file python file:"
+msgstr ""
+
+#: src/trait-bounds.md:256
+msgid "\"__main__\""
+msgstr ""
+
+#: src/trait-bounds.md:262
+msgid "\"Print value from Python: \""
+msgstr ""
+
+#: src/trait-bounds.md:264
+msgid "\"Print value from Python through Rust: \""
+msgstr ""
+
+#: src/trait-bounds.md:265
+msgid "\"Print value directly from Python: \""
+msgstr ""
+
+#: src/trait-bounds.md:268
+msgid "This outputs:"
+msgstr ""
+
+#: src/trait-bounds.md:282
+msgid ""
+"We have now successfully exposed a Rust model that implements the `Model` "
+"trait to Python!"
+msgstr ""
+
+#: src/trait-bounds.md:284
+msgid ""
+"We will now expose the `solve` function, but before, let's talk about types "
+"errors."
+msgstr ""
+
+#: src/trait-bounds.md:286
+msgid "Type errors in Python"
+msgstr ""
+
+#: src/trait-bounds.md:288
+msgid ""
+"What happens if you have type errors when using Python and how can you "
+"improve the error messages?"
+msgstr ""
+
+#: src/trait-bounds.md:290
+msgid "Wrong types in Python function arguments"
+msgstr ""
+
+#: src/trait-bounds.md:292
+msgid ""
+"Let's assume in the first case that you will use in your Python file "
+"`my_rust_model.set_variables(2.0)` instead of `my_rust_model."
+"set_variables([2.0])`."
+msgstr ""
+
+#: src/trait-bounds.md:294
+msgid ""
+"The Rust signature expects a vector, which corresponds to a list in Python. "
+"What happens if instead of a vector, we pass a single value ?"
+msgstr ""
+
+#: src/trait-bounds.md:297
+msgid "At the execution of Python, we get :"
+msgstr ""
+
+#: src/trait-bounds.md:299
+msgid ""
+"```block\n"
+"File \"main.py\", line 15, in <module>\n"
+"   my_rust_model.set_variables(2)\n"
+"TypeError\n"
+"```"
+msgstr ""
+
+#: src/trait-bounds.md:305
+msgid ""
+"It is a type error and Python points to it, so it's easy to identify and "
+"solve."
+msgstr ""
+
+#: src/trait-bounds.md:307
+msgid "Wrong types in Python method signatures"
+msgstr ""
+
+#: src/trait-bounds.md:309
+msgid ""
+"Let's assume now that the return type of one of the methods of our Model "
+"class is wrong, for example the `get_results` method that is expected to "
+"return a `Vec<f64>` in Rust, a list in Python."
+msgstr ""
+
+#: src/trait-bounds.md:319
+msgid "#return self.results <-- this is the expected output\n"
+msgstr ""
+
+#: src/trait-bounds.md:322
+msgid "This call results in the following panic:"
+msgstr ""
+
+#: src/trait-bounds.md:328
+msgid ""
+"This error code is not helpful for a Python user that does not know anything "
+"about Rust, or someone that does not know PyO3 was used to interface the "
+"Rust code."
+msgstr ""
+
+#: src/trait-bounds.md:330
+msgid ""
+"However, as we are responsible for making the Rust code available to Python, "
+"we can do something about it."
+msgstr ""
+
+#: src/trait-bounds.md:332
+msgid ""
+"The issue is that we called `unwrap` anywhere we could, and therefore any "
+"panic from PyO3 will be directly forwarded to the end user."
+msgstr ""
+
+#: src/trait-bounds.md:334
+msgid ""
+"Let's modify the code performing the type conversion to give a helpful error "
+"message to the Python user:"
+msgstr ""
+
+#: src/trait-bounds.md:336
+msgid ""
+"We used in our `get_results` method the following call that performs the "
+"type conversion:"
+msgstr ""
+
+#: src/trait-bounds.md:387
+msgid "Let's break it down in order to perform better error handling:"
+msgstr ""
+
+#: src/trait-bounds.md:407 src/trait-bounds.md:533
+msgid "\"Get results from Rust calling Python\""
+msgstr ""
+
+#: src/trait-bounds.md:415 src/trait-bounds.md:541
+msgid "\"list\""
+msgstr ""
+
+#: src/trait-bounds.md:417 src/trait-bounds.md:543
+msgid "\"Expected a list for the get_results() method signature, got {}\""
+msgstr ""
+
+#: src/trait-bounds.md:446
+msgid ""
+"By doing so, you catch the result of the Python computation and check its "
+"type in order to be able to deliver a better error message before performing "
+"the unwrapping."
+msgstr ""
+
+#: src/trait-bounds.md:448
+msgid ""
+"Of course, it does not cover all the possible wrong outputs: the user could "
+"return a list of strings instead of a list of floats. In this case, a "
+"runtime panic would still occur due to PyO3, but with an error message much "
+"more difficult to decipher for non-rust user."
+msgstr ""
+
+#: src/trait-bounds.md:452
+msgid ""
+"It is up to the developer exposing the rust code to decide how much effort "
+"to invest into Python type error handling and improved error messages."
+msgstr ""
+
+#: src/trait-bounds.md:454
+msgid "The final code"
+msgstr ""
+
+#: src/trait-bounds.md:456
+msgid ""
+"Now let's expose the `solve()` function to make it available from Python."
+msgstr ""
+
+#: src/trait-bounds.md:458
+msgid ""
+"It is not possible to directly expose the `solve` function to Python, as the "
+"type conversion cannot be performed. It requires an object implementing the "
+"`Model` trait as input."
+msgstr ""
+
+#: src/trait-bounds.md:461
+msgid ""
+"However, the `UserModel` already implements this trait. Because of this, we "
+"can write a function wrapper that takes the `UserModel`\\--which has already "
+"been exposed to Python--as an argument in order to call the core function "
+"`solve`."
+msgstr ""
+
+#: src/trait-bounds.md:464
+msgid "It is also required to make the struct public."
+msgstr ""
+
+#: src/trait-bounds.md:483
+msgid "\"solve\""
+msgstr ""

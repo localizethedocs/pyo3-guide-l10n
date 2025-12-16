@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem/async-await.md:1
+msgid "Using `async` and `await`"
+msgstr ""
+
+#: src/ecosystem/async-await.md:3
+msgid ""
+"_`async`/`await` support is currently being integrated in PyO3. See the "
+"[dedicated documentation](../async-await.md)_"
+msgstr ""
+
+#: src/ecosystem/async-await.md:5
+msgid ""
+"If you are working with a Python library that makes use of async functions "
+"or wish to provide Python bindings for an async Rust library, [`pyo3-async-"
+"runtimes`](https://github.com/PyO3/pyo3-async-runtimes) likely has the tools "
+"you need. It provides conversions between async functions in both Python and "
+"Rust and was designed with first-class support for popular Rust runtimes "
+"such as [`tokio`](https://tokio.rs/) and [`async-std`](https://async.rs/). "
+"In addition, all async Python code runs on the default `asyncio` event loop, "
+"so `pyo3-async-runtimes` should work just fine with existing Python "
+"libraries."
+msgstr ""
+
+#: src/ecosystem/async-await.md:13
+msgid "Additional Information"
+msgstr ""
+
+#: src/ecosystem/async-await.md:15
+msgid ""
+"Managing event loop references can be tricky with `pyo3-async-runtimes`. See "
+"[Event Loop References](https://docs.rs/pyo3-async-runtimes/#event-loop-"
+"references-and-contextvars) in the API docs to get a better intuition for "
+"how event loop references are managed in this library."
+msgstr ""
+
+#: src/ecosystem/async-await.md:16
+msgid ""
+"Testing `pyo3-async-runtimes` libraries and applications requires a custom "
+"test harness since Python requires control over the main thread. You can "
+"find a testing guide in the [API docs for the `testing` module](https://docs."
+"rs/pyo3-async-runtimes/latest/pyo3_async_runtimes/testing)"
+msgstr ""
