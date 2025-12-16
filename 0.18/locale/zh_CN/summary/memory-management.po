@@ -1,0 +1,237 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/memory.md:1
+msgid "Memory management"
+msgstr ""
+
+#: src/memory.md:3
+msgid ""
+"Rust and Python have very different notions of memory management.  Rust has "
+"a strict memory model with concepts of ownership, borrowing, and lifetimes, "
+"where memory is freed at predictable points in program execution.  Python "
+"has a looser memory model in which variables are reference-counted with "
+"shared, mutable state by default. A global interpreter lock (GIL) is needed "
+"to prevent race conditions, and a garbage collector is needed to break "
+"reference cycles. Memory in Python is freed eventually by the garbage "
+"collector, but not usually in a predictable way."
+msgstr ""
+
+#: src/memory.md:12
+msgid ""
+"PyO3 bridges the Rust and Python memory models with two different strategies "
+"for accessing memory allocated on Python's heap from inside Rust.  These are "
+"GIL-bound, or \"owned\" references, and GIL-independent `Py<Any>` smart "
+"pointers."
+msgstr ""
+
+#: src/memory.md:16
+msgid "GIL-bound memory"
+msgstr ""
+
+#: src/memory.md:18
+msgid ""
+"PyO3's GIL-bound, \"owned references\" (`&PyAny` etc.) make PyO3 more "
+"ergonomic to use by ensuring that their lifetime can never be longer than "
+"the duration the Python GIL is held.  This means that most of PyO3's API can "
+"assume the GIL is held. (If PyO3 could not assume this, every PyO3 API would "
+"need to take a `Python` GIL token to prove that the GIL is held.)  This "
+"allows us to write very simple and easy-to-understand programs like this:"
+msgstr ""
+
+#: src/memory.md:30 src/memory.md:52 src/memory.md:80 src/memory.md:101
+#: src/memory.md:148 src/memory.md:170 src/memory.md:201 src/memory.md:224
+msgid "\"\\\"Hello World!\\\"\""
+msgstr ""
+
+#: src/memory.md:31 src/memory.md:53 src/memory.md:81 src/memory.md:102
+#: src/memory.md:149 src/memory.md:175 src/memory.md:206 src/memory.md:229
+msgid "\"Python says: {}\""
+msgstr ""
+
+#: src/memory.md:38
+msgid ""
+"Internally, calling `Python::with_gil()` or `Python::acquire_gil()` creates "
+"a `GILPool` which owns the memory pointed to by the reference.  In the "
+"example above, the lifetime of the reference `hello` is bound to the "
+"`GILPool`.  When the `with_gil()` closure ends or the `GILGuard` from "
+"`acquire_gil()` is dropped, the `GILPool` is also dropped and the Python "
+"reference counts of the variables it owns are decreased, releasing them to "
+"the Python garbage collector.  Most of the time we don't have to think about "
+"this, but consider the following:"
+msgstr ""
+
+#: src/memory.md:55
+msgid "// There are 10 copies of `hello` on Python's heap here.\n"
+msgstr ""
+
+#: src/memory.md:62
+msgid ""
+"We might assume that the `hello` variable's memory is freed at the end of "
+"each loop iteration, but in fact we create 10 copies of `hello` on Python's "
+"heap. This may seem surprising at first, but it is completely consistent "
+"with Rust's memory model.  The `hello` variable is dropped at the end of "
+"each loop, but it is only a reference to the memory owned by the `GILPool`, "
+"and its lifetime is bound to the `GILPool`, not the for loop.  The `GILPool` "
+"isn't dropped until the end of the `with_gil()` closure, at which point the "
+"10 copies of `hello` are finally released to the Python garbage collector."
+msgstr ""
+
+#: src/memory.md:71
+msgid ""
+"In general we don't want unbounded memory growth during loops!  One "
+"workaround is to acquire and release the GIL with each iteration of the loop."
+msgstr ""
+
+#: src/memory.md:83
+msgid "// only one copy of `hello` at a time\n"
+msgstr ""
+
+#: src/memory.md:89
+msgid ""
+"It might not be practical or performant to acquire and release the GIL so "
+"many times.  Another workaround is to work with the `GILPool` object "
+"directly, but this is unsafe."
+msgstr ""
+
+#: src/memory.md:110
+msgid ""
+"The unsafe method `Python::new_pool` allows you to create a nested `GILPool` "
+"from which you can retrieve a new `py: Python` GIL token.  Variables created "
+"with this new GIL token are bound to the nested `GILPool` and will be "
+"released when the nested `GILPool` is dropped.  Here, the nested `GILPool` "
+"is dropped at the end of each loop iteration, before the `with_gil()` "
+"closure ends."
+msgstr ""
+
+#: src/memory.md:116
+msgid ""
+"When doing this, you must be very careful to ensure that once the `GILPool` "
+"is dropped you do not retain access to any owned references created after "
+"the `GILPool` was created.  Read the [documentation for `Python::new_pool()`]"
+"(https://pyo3.rs/main/doc/pyo3/prelude/struct.Python.html#method.new_pool) "
+"for more information on safety."
+msgstr ""
+
+#: src/memory.md:122
+msgid ""
+"This memory management can also be applicable when writing extension "
+"modules. `#[pyfunction]` and `#[pymethods]` will create a `GILPool` which "
+"lasts the entire function call, releasing objects when the function returns. "
+"Most functions only create a few objects, meaning this doesn't have a "
+"significant impact. Occasionally functions with long complex loops may need "
+"to use `Python::new_pool` as shown above."
+msgstr ""
+
+#: src/memory.md:128
+msgid ""
+"This behavior may change in future, see [issue #1056](https://github.com/"
+"PyO3/pyo3/issues/1056)."
+msgstr ""
+
+#: src/memory.md:130
+msgid "GIL-independent memory"
+msgstr ""
+
+#: src/memory.md:132
+msgid ""
+"Sometimes we need a reference to memory on Python's heap that can outlive "
+"the GIL.  Python's `Py<PyAny>` is analogous to `Arc<T>`, but for variables "
+"whose memory is allocated on Python's heap.  Cloning a `Py<PyAny>` increases "
+"its internal reference count just like cloning `Arc<T>`.  The smart pointer "
+"can outlive the \"GIL is held\" period in which it was created.  It isn't "
+"magic, though.  We need to reacquire the GIL to access the memory pointed to "
+"by the `Py<PyAny>`."
+msgstr ""
+
+#: src/memory.md:140
+msgid ""
+"What happens to the memory when the last `Py<PyAny>` is dropped and its "
+"reference count reaches zero?  It depends whether or not we are holding the "
+"GIL."
+msgstr ""
+
+#: src/memory.md:156
+msgid ""
+"At the end of the `Python::with_gil()` closure `hello` is dropped, and then "
+"the GIL is dropped.  Since `hello` is dropped while the GIL is still held by "
+"the current thread, its memory is released to the Python garbage collector "
+"immediately."
+msgstr ""
+
+#: src/memory.md:161
+msgid ""
+"This example wasn't very interesting.  We could have just used a GIL-bound "
+"`&PyString` reference.  What happens when the last `Py<Any>` is dropped "
+"while we are _not_ holding the GIL?"
+msgstr ""
+
+#: src/memory.md:171
+msgid ""
+"// Do some stuff...\n"
+"// Now sometime later in the program we want to access `hello`.\n"
+msgstr ""
+
+#: src/memory.md:176
+msgid "// Now we're done with `hello`.\n"
+msgstr ""
+
+#: src/memory.md:178
+msgid ""
+"// Memory *not* released here.\n"
+"// Sometime later we need the GIL again for something...\n"
+msgstr ""
+
+#: src/memory.md:181
+msgid "// Memory for `hello` is released here.\n"
+msgstr ""
+
+#: src/memory.md:188
+msgid ""
+"When `hello` is dropped _nothing_ happens to the pointed-to memory on "
+"Python's heap because nothing _can_ happen if we're not holding the GIL.  "
+"Fortunately, the memory isn't leaked.  PyO3 keeps track of the memory "
+"internally and will release it the next time we acquire the GIL."
+msgstr ""
+
+#: src/memory.md:193
+msgid ""
+"We can avoid the delay in releasing memory if we are careful to drop the "
+"`Py<Any>` while the GIL is held."
+msgstr ""
+
+#: src/memory.md:202 src/memory.md:225
+msgid ""
+"// Do some stuff...\n"
+"// Now sometime later in the program:\n"
+msgstr ""
+
+#: src/memory.md:207
+msgid "// Memory released here.\n"
+msgstr ""
+
+#: src/memory.md:213
+msgid ""
+"We could also have used `Py::into_ref()`, which consumes `self`, instead of "
+"`Py::as_ref()`.  But note that in addition to being slower than `as_ref()`, "
+"`into_ref()` binds the memory to the lifetime of the `GILPool`, which means "
+"that rather than being released immediately, the memory will not be released "
+"until the GIL is dropped."
+msgstr ""
+
+#: src/memory.md:230
+msgid ""
+"// Memory not released yet.\n"
+"    // Do more stuff...\n"
+"    // Memory released here at end of `with_gil()` closure.\n"
+msgstr ""
