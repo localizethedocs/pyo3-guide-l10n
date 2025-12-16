@@ -1,0 +1,660 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:40:45Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions/tables.md:1
+msgid "Mapping of Rust types to Python types"
+msgstr ""
+
+#: src/conversions/tables.md:3
+msgid ""
+"When writing functions callable from Python (such as a `#[pyfunction]` or in "
+"a `#[pymethods]` block), the trait `FromPyObject` is required for function "
+"arguments, and `IntoPy<PyObject>` is required for function return values."
+msgstr ""
+
+#: src/conversions/tables.md:5
+msgid ""
+"Consult the tables in the following section to find the Rust types provided "
+"by PyO3 which implement these traits."
+msgstr ""
+
+#: src/conversions/tables.md:7
+msgid "Argument Types"
+msgstr ""
+
+#: src/conversions/tables.md:9
+msgid ""
+"When accepting a function argument, it is possible to either use Rust "
+"library types or PyO3's Python-native types. (See the next section for "
+"discussion on when to use each.)"
+msgstr ""
+
+#: src/conversions/tables.md:11
+msgid ""
+"The table below contains the Python type and the corresponding function "
+"argument types that will accept them:"
+msgstr ""
+
+#: src/conversions/tables.md:13
+msgid "Python"
+msgstr ""
+
+#: src/conversions/tables.md:13
+msgid "Rust"
+msgstr ""
+
+#: src/conversions/tables.md:13
+msgid "Rust (Python-native)"
+msgstr ""
+
+#: src/conversions/tables.md:15
+msgid "`object`"
+msgstr ""
+
+#: src/conversions/tables.md:15 src/conversions/tables.md:22
+#: src/conversions/tables.md:29 src/conversions/tables.md:30
+#: src/conversions/tables.md:31 src/conversions/tables.md:32
+#: src/conversions/tables.md:38 src/conversions/tables.md:39
+#: src/conversions/tables.md:40 src/conversions/tables.md:43
+#: src/conversions/tables.md:46 src/conversions/tables.md:47
+msgid "\\-"
+msgstr ""
+
+#: src/conversions/tables.md:15
+msgid "`PyAny`"
+msgstr ""
+
+#: src/conversions/tables.md:16 src/conversions/tables.md:86
+#: src/conversions/tables.md:87
+msgid "`str`"
+msgstr ""
+
+#: src/conversions/tables.md:16
+msgid "`String`, `Cow<str>`, `&str`, `char`, `OsString`, `PathBuf`, `Path`"
+msgstr ""
+
+#: src/conversions/tables.md:16 src/conversions/tables.md:41
+#: src/conversions/tables.md:42
+msgid "`PyString`"
+msgstr ""
+
+#: src/conversions/tables.md:17 src/conversions/tables.md:94
+msgid "`bytes`"
+msgstr ""
+
+#: src/conversions/tables.md:17
+msgid "`Vec<u8>`, `&[u8]`, `Cow<[u8]>`"
+msgstr ""
+
+#: src/conversions/tables.md:17
+msgid "`PyBytes`"
+msgstr ""
+
+#: src/conversions/tables.md:18 src/conversions/tables.md:88
+msgid "`bool`"
+msgstr ""
+
+#: src/conversions/tables.md:18
+msgid "`PyBool`"
+msgstr ""
+
+#: src/conversions/tables.md:19 src/conversions/tables.md:89
+msgid "`int`"
+msgstr ""
+
+#: src/conversions/tables.md:19
+msgid ""
+"`i8`, `u8`, `i16`, `u16`, `i32`, `u32`, `i64`, `u64`, `i128`, `u128`, "
+"`isize`, `usize`, `num_bigint::BigInt`[^1], `num_bigint::BigUint`[^1]"
+msgstr ""
+
+#: src/conversions/tables.md:19
+msgid "`PyInt`"
+msgstr ""
+
+#: src/conversions/tables.md:20 src/conversions/tables.md:90
+msgid "`float`"
+msgstr ""
+
+#: src/conversions/tables.md:20 src/conversions/tables.md:90
+msgid "`f32`, `f64`"
+msgstr ""
+
+#: src/conversions/tables.md:20
+msgid "`PyFloat`"
+msgstr ""
+
+#: src/conversions/tables.md:21
+msgid "`complex`"
+msgstr ""
+
+#: src/conversions/tables.md:21
+msgid "`num_complex::Complex`[^2]"
+msgstr ""
+
+#: src/conversions/tables.md:21
+msgid "`PyComplex`"
+msgstr ""
+
+#: src/conversions/tables.md:22
+msgid "`fractions.Fraction`"
+msgstr ""
+
+#: src/conversions/tables.md:22
+msgid "`num_rational::Ratio`[^8]"
+msgstr ""
+
+#: src/conversions/tables.md:23
+msgid "`list[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:23 src/conversions/tables.md:44
+#: src/conversions/tables.md:93
+msgid "`Vec<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:23
+msgid "`PyList`"
+msgstr ""
+
+#: src/conversions/tables.md:24
+msgid "`dict[K, V]`"
+msgstr ""
+
+#: src/conversions/tables.md:24 src/conversions/tables.md:45
+msgid ""
+"`HashMap<K, V>`, `BTreeMap<K, V>`, `hashbrown::HashMap<K, V>`[^3], "
+"`indexmap::IndexMap<K, V>`[^4]"
+msgstr ""
+
+#: src/conversions/tables.md:24
+msgid "`PyDict`"
+msgstr ""
+
+#: src/conversions/tables.md:25
+msgid "`tuple[T, U]`"
+msgstr ""
+
+#: src/conversions/tables.md:25
+msgid "`(T, U)`, `Vec<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:25
+msgid "`PyTuple`"
+msgstr ""
+
+#: src/conversions/tables.md:26
+msgid "`set[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:26 src/conversions/tables.md:27
+msgid "`HashSet<T>`, `BTreeSet<T>`, `hashbrown::HashSet<T>`[^3]"
+msgstr ""
+
+#: src/conversions/tables.md:26
+msgid "`PySet`"
+msgstr ""
+
+#: src/conversions/tables.md:27
+msgid "`frozenset[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:27
+msgid "`PyFrozenSet`"
+msgstr ""
+
+#: src/conversions/tables.md:28
+msgid "`bytearray`"
+msgstr ""
+
+#: src/conversions/tables.md:28
+msgid "`Vec<u8>`, `Cow<[u8]>`"
+msgstr ""
+
+#: src/conversions/tables.md:28
+msgid "`PyByteArray`"
+msgstr ""
+
+#: src/conversions/tables.md:29
+msgid "`slice`"
+msgstr ""
+
+#: src/conversions/tables.md:29
+msgid "`PySlice`"
+msgstr ""
+
+#: src/conversions/tables.md:30
+msgid "`type`"
+msgstr ""
+
+#: src/conversions/tables.md:30
+msgid "`PyType`"
+msgstr ""
+
+#: src/conversions/tables.md:31
+msgid "`module`"
+msgstr ""
+
+#: src/conversions/tables.md:31
+msgid "`PyModule`"
+msgstr ""
+
+#: src/conversions/tables.md:32
+msgid "`collections.abc.Buffer`"
+msgstr ""
+
+#: src/conversions/tables.md:32
+msgid "`PyBuffer<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:33
+msgid "`datetime.datetime`"
+msgstr ""
+
+#: src/conversions/tables.md:33
+msgid "`SystemTime`, `chrono::DateTime<Tz>`[^5], `chrono::NaiveDateTime`[^5]"
+msgstr ""
+
+#: src/conversions/tables.md:33
+msgid "`PyDateTime`"
+msgstr ""
+
+#: src/conversions/tables.md:34
+msgid "`datetime.date`"
+msgstr ""
+
+#: src/conversions/tables.md:34
+msgid "`chrono::NaiveDate`[^5]"
+msgstr ""
+
+#: src/conversions/tables.md:34
+msgid "`PyDate`"
+msgstr ""
+
+#: src/conversions/tables.md:35
+msgid "`datetime.time`"
+msgstr ""
+
+#: src/conversions/tables.md:35
+msgid "`chrono::NaiveTime`[^5]"
+msgstr ""
+
+#: src/conversions/tables.md:35
+msgid "`PyTime`"
+msgstr ""
+
+#: src/conversions/tables.md:36
+msgid "`datetime.tzinfo`"
+msgstr ""
+
+#: src/conversions/tables.md:36
+msgid "`chrono::FixedOffset`[^5], `chrono::Utc`[^5], `chrono_tz::TimeZone`[^6]"
+msgstr ""
+
+#: src/conversions/tables.md:36
+msgid "`PyTzInfo`"
+msgstr ""
+
+#: src/conversions/tables.md:37
+msgid "`datetime.timedelta`"
+msgstr ""
+
+#: src/conversions/tables.md:37
+msgid "`Duration`, `chrono::Duration`[^5]"
+msgstr ""
+
+#: src/conversions/tables.md:37
+msgid "`PyDelta`"
+msgstr ""
+
+#: src/conversions/tables.md:38
+msgid "`decimal.Decimal`"
+msgstr ""
+
+#: src/conversions/tables.md:38
+msgid "`rust_decimal::Decimal`[^7]"
+msgstr ""
+
+#: src/conversions/tables.md:39
+msgid "`ipaddress.IPv4Address`"
+msgstr ""
+
+#: src/conversions/tables.md:39
+msgid "`std::net::IpAddr`, `std::net::IpV4Addr`"
+msgstr ""
+
+#: src/conversions/tables.md:40
+msgid "`ipaddress.IPv6Address`"
+msgstr ""
+
+#: src/conversions/tables.md:40
+msgid "`std::net::IpAddr`, `std::net::IpV6Addr`"
+msgstr ""
+
+#: src/conversions/tables.md:41
+msgid "`os.PathLike `"
+msgstr ""
+
+#: src/conversions/tables.md:41 src/conversions/tables.md:42
+msgid "`PathBuf`, `Path`"
+msgstr ""
+
+#: src/conversions/tables.md:42
+msgid "`pathlib.Path`"
+msgstr ""
+
+#: src/conversions/tables.md:43
+msgid "`typing.Optional[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:43 src/conversions/tables.md:91
+msgid "`Option<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:44
+msgid "`typing.Sequence[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:44
+msgid "`PySequence`"
+msgstr ""
+
+#: src/conversions/tables.md:45
+msgid "`typing.Mapping[K, V]`"
+msgstr ""
+
+#: src/conversions/tables.md:45
+msgid "`&PyMapping`"
+msgstr ""
+
+#: src/conversions/tables.md:46
+msgid "`typing.Iterator[Any]`"
+msgstr ""
+
+#: src/conversions/tables.md:46
+msgid "`PyIterator`"
+msgstr ""
+
+#: src/conversions/tables.md:47
+msgid "`typing.Union[...]`"
+msgstr ""
+
+#: src/conversions/tables.md:47
+msgid ""
+"See [`#[derive(FromPyObject)]`](traits.md#deriving-frompyobject-for-enums)"
+msgstr ""
+
+#: src/conversions/tables.md:49
+msgid "It is also worth remembering the following special types:"
+msgstr ""
+
+#: src/conversions/tables.md:51
+msgid "What"
+msgstr ""
+
+#: src/conversions/tables.md:51
+msgid "Description"
+msgstr ""
+
+#: src/conversions/tables.md:53
+msgid "`Python<'py>`"
+msgstr ""
+
+#: src/conversions/tables.md:53
+msgid ""
+"A GIL token, used to pass to PyO3 constructors to prove ownership of the GIL."
+msgstr ""
+
+#: src/conversions/tables.md:54
+msgid "`Bound<'py, T>`"
+msgstr ""
+
+#: src/conversions/tables.md:54
+msgid ""
+"A Python object connected to the GIL lifetime. This provides access to most "
+"of PyO3's APIs."
+msgstr ""
+
+#: src/conversions/tables.md:55 src/conversions/tables.md:99
+msgid "`Py<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:55
+msgid ""
+"A Python object isolated from the GIL lifetime. This can be sent to other "
+"threads."
+msgstr ""
+
+#: src/conversions/tables.md:56
+msgid "`PyObject`"
+msgstr ""
+
+#: src/conversions/tables.md:56
+msgid "An alias for `Py<PyAny>`"
+msgstr ""
+
+#: src/conversions/tables.md:57
+msgid "`PyRef<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:57
+msgid "A `#[pyclass]` borrowed immutably."
+msgstr ""
+
+#: src/conversions/tables.md:58
+msgid "`PyRefMut<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:58
+msgid "A `#[pyclass]` borrowed mutably."
+msgstr ""
+
+#: src/conversions/tables.md:60
+msgid ""
+"For more detail on accepting `#[pyclass]` values as function arguments, see "
+"[the section of this guide on Python Classes](../class.md)."
+msgstr ""
+
+#: src/conversions/tables.md:62
+msgid "Using Rust library types vs Python-native types"
+msgstr ""
+
+#: src/conversions/tables.md:64
+msgid ""
+"Using Rust library types as function arguments will incur a conversion cost "
+"compared to using the Python-native types. Using the Python-native types is "
+"almost zero-cost (they just require a type check similar to the Python "
+"builtin function `isinstance()`)."
+msgstr ""
+
+#: src/conversions/tables.md:66
+msgid ""
+"However, once that conversion cost has been paid, the Rust standard library "
+"types offer a number of benefits:"
+msgstr ""
+
+#: src/conversions/tables.md:67
+msgid ""
+"You can write functionality in native-speed Rust code (free of Python's "
+"runtime costs)."
+msgstr ""
+
+#: src/conversions/tables.md:68
+msgid "You get better interoperability with the rest of the Rust ecosystem."
+msgstr ""
+
+#: src/conversions/tables.md:69
+msgid ""
+"You can use `Python::allow_threads` to release the Python GIL and let other "
+"Python threads make progress while your Rust code is executing."
+msgstr ""
+
+#: src/conversions/tables.md:70
+msgid ""
+"You also benefit from stricter type checking. For example you can specify "
+"`Vec<i32>`, which will only accept a Python `list` containing integers. The "
+"Python-native equivalent, `&PyList`, would accept a Python `list` containing "
+"Python objects of any type."
+msgstr ""
+
+#: src/conversions/tables.md:72
+msgid ""
+"For most PyO3 usage the conversion cost is worth paying to get these "
+"benefits. As always, if you're not sure it's worth it in your case, "
+"benchmark it!"
+msgstr ""
+
+#: src/conversions/tables.md:74
+msgid "Returning Rust values to Python"
+msgstr ""
+
+#: src/conversions/tables.md:76
+msgid ""
+"When returning values from functions callable from Python, [PyO3's smart "
+"pointers](../types.md#pyo3s-smart-pointers) (`Py<T>`, `Bound<'py, T>`, and "
+"`Borrowed<'a, 'py, T>`) can be used with zero cost."
+msgstr ""
+
+#: src/conversions/tables.md:78
+msgid ""
+"Because `Bound<'py, T>` and `Borrowed<'a, 'py, T>` have lifetime parameters, "
+"the Rust compiler may ask for lifetime annotations to be added to your "
+"function. See the [section of the guide dedicated to this](../types."
+"md#function-argument-lifetimes)."
+msgstr ""
+
+#: src/conversions/tables.md:80
+msgid ""
+"If your function is fallible, it should return `PyResult<T>` or `Result<T, "
+"E>` where `E` implements `From<E> for PyErr`. This will raise a `Python` "
+"exception if the `Err` variant is returned."
+msgstr ""
+
+#: src/conversions/tables.md:82
+msgid ""
+"Finally, the following Rust types are also able to convert to Python as "
+"return values:"
+msgstr ""
+
+#: src/conversions/tables.md:84
+msgid "Rust type"
+msgstr ""
+
+#: src/conversions/tables.md:84
+msgid "Resulting Python Type"
+msgstr ""
+
+#: src/conversions/tables.md:86
+msgid "`String`"
+msgstr ""
+
+#: src/conversions/tables.md:87
+msgid "`&str`"
+msgstr ""
+
+#: src/conversions/tables.md:89
+msgid "Any integer type (`i32`, `u32`, `usize`, etc)"
+msgstr ""
+
+#: src/conversions/tables.md:91
+msgid "`Optional[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:92
+msgid "`(T, U)`"
+msgstr ""
+
+#: src/conversions/tables.md:92
+msgid "`Tuple[T, U]`"
+msgstr ""
+
+#: src/conversions/tables.md:93
+msgid "`List[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:94
+msgid "`Cow<[u8]>`"
+msgstr ""
+
+#: src/conversions/tables.md:95
+msgid "`HashMap<K, V>`"
+msgstr ""
+
+#: src/conversions/tables.md:95 src/conversions/tables.md:96
+msgid "`Dict[K, V]`"
+msgstr ""
+
+#: src/conversions/tables.md:96
+msgid "`BTreeMap<K, V>`"
+msgstr ""
+
+#: src/conversions/tables.md:97
+msgid "`HashSet<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:97 src/conversions/tables.md:98
+msgid "`Set[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:98
+msgid "`BTreeSet<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:99 src/conversions/tables.md:100
+#: src/conversions/tables.md:101 src/conversions/tables.md:102
+msgid "`T`"
+msgstr ""
+
+#: src/conversions/tables.md:100
+msgid "`Bound<T>`"
+msgstr ""
+
+#: src/conversions/tables.md:101
+msgid "`PyRef<T: PyClass>`"
+msgstr ""
+
+#: src/conversions/tables.md:102
+msgid "`PyRefMut<T: PyClass>`"
+msgstr ""
+
+#: src/conversions/tables.md:104
+msgid "Requires the `num-bigint` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:106
+msgid "Requires the `num-complex` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:108
+msgid "Requires the `hashbrown` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:110
+msgid "Requires the `indexmap` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:112
+msgid "Requires the `chrono` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:114
+msgid "Requires the `chrono-tz` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:116
+msgid "Requires the `rust_decimal` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:118
+msgid "Requires the `num-rational` optional feature."
+msgstr ""
