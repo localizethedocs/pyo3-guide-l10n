@@ -1,0 +1,84 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/distribution.md:1
+msgid "Distribution"
+msgstr ""
+
+#: src/distribution.md:3
+msgid "`setuptools-rust` integration"
+msgstr ""
+
+#: src/distribution.md:5
+msgid ""
+"[`setuptools-rust`](https://github.com/PyO3/setuptools-rust) is a setuptools "
+"helpers for Rust Python extensions. It supports `PyO3` by default."
+msgstr ""
+
+#: src/distribution.md:7
+msgid ""
+"For detailed usage, please refer to its [README](https://github.com/PyO3/"
+"setuptools-rust/blob/master/README.rst)"
+msgstr ""
+
+#: src/distribution.md:9
+msgid "Source distribution"
+msgstr ""
+
+#: src/distribution.md:11
+msgid ""
+"To build a source code distribution, you need to add the following lines to "
+"your `MANIFEST.in` file to ensure it correctly packages Rust extension "
+"source code."
+msgstr ""
+
+#: src/distribution.md:18
+msgid ""
+"Then you can build a source code distribution by (assuming you have already "
+"written a `setup.py`):"
+msgstr ""
+
+#: src/distribution.md:24
+msgid "Binary wheel distribution"
+msgstr ""
+
+#: src/distribution.md:26
+msgid ""
+"To build a binary wheel, [manylinux](https://github.com/pypa/manylinux) "
+"would be a natural choice for Linux."
+msgstr ""
+
+#: src/distribution.md:28
+msgid ""
+"Take the [example](https://github.com/PyO3/setuptools-rust/tree/master/"
+"example) project in [`setuptools-rust`](https://github.com/PyO3/setuptools-"
+"rust) repository for example, we have a [`build-wheels.sh`](https://github."
+"com/PyO3/setuptools-rust/blob/master/example/build-wheels.sh) to be used "
+"with Docker to build manylinux1 wheels. First you need to pull the "
+"`manylinux1` Docker image:"
+msgstr ""
+
+#: src/distribution.md:36
+msgid ""
+"Then use the following command to build wheels for supported Python versions:"
+msgstr ""
+
+#: src/distribution.md:42
+msgid "You will find all the wheels in `dist` directory:"
+msgstr ""
+
+#: src/distribution.md:52
+msgid ""
+"The `*-manylinux1_x86_64.whl` files are the `manylinux1` wheels that you can "
+"upload to PyPI."
+msgstr ""

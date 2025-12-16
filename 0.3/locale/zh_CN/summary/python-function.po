@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function.md:1
+msgid "Python Function"
+msgstr ""
+
+#: src/function.md:3
+msgid ""
+"Pyo3 supports two ways to define a function in python. Both require "
+"registering the function to a [module](./module.md)"
+msgstr ""
+
+#: src/function.md:6
+msgid "One way is defining the function in the module definition."
+msgstr ""
+
+#: src/function.md:18
+msgid ""
+"// Note that the `#[pyfn()]` annotation automatically converts the arguments "
+"from\n"
+"    // Python objects to Rust values; and the Rust return value back into a "
+"Python object.\n"
+msgstr ""
+
+#: src/function.md:20
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/function.md:22
+msgid "\"{}\""
+msgstr ""
+
+#: src/function.md:31
+msgid ""
+"The other is annotating a function with `#[py::function]` and then adding it "
+"to the module using the `add_function_to_module!` macro, which takes the "
+"module as first parameter, the function name as second and an instance of "
+"`Python` as third."
+msgstr ""

@@ -1,0 +1,148 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions.md:1
+msgid "Type Conversions"
+msgstr ""
+
+#: src/conversions.md:3
+msgid ""
+"`PyO3` provides some handy traits to convert between Python types and Rust "
+"types."
+msgstr ""
+
+#: src/conversions.md:5
+msgid "`.extract()?`"
+msgstr ""
+
+#: src/conversions.md:7
+msgid ""
+"The easiest way to convert a python object to a rust value is using `."
+"extract()`."
+msgstr ""
+
+#: src/conversions.md:9
+msgid "`ToPyObject` and `IntoPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:11
+msgid ""
+"[`ToPyObject`](https://docs.rs/pyo3/0.2.7/trait.ToPyObject.html) trait is a "
+"conversion trait that allows various objects to be converted into "
+"[`PyObject`](https://docs.rs/pyo3/0.2.7/struct.PyObject.html). "
+"[`IntoPyObject`](https://docs.rs/pyo3/0.2.7/trait.IntoPyObject.html) serves "
+"the same purpose except it consumes `self`."
+msgstr ""
+
+#: src/conversions.md:13
+msgid "`IntoPyTuple` trait"
+msgstr ""
+
+#: src/conversions.md:15
+msgid ""
+"[`IntoPyTuple`](https://docs.rs/pyo3/0.2.7/trait.IntoPyTuple.html) trait is "
+"a conversion trait that allows various objects to be converted into "
+"[`PyTuple`](https://docs.rs/pyo3/0.2.7/struct.PyTuple.html) object."
+msgstr ""
+
+#: src/conversions.md:17
+msgid ""
+"For example, [`IntoPyTuple`](https://docs.rs/pyo3/0.2.7/trait.IntoPyTuple."
+"html) trait is implemented for `()` so that you can convert it into a empty "
+"[`PyTuple`](https://docs.rs/pyo3/0.2.7/struct.PyTuple.html)"
+msgstr ""
+
+#: src/conversions.md:30
+msgid "`FromPyObject` and `RefFromPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:32
+msgid "`*args` and `**kwargs` for python object call"
+msgstr ""
+
+#: src/conversions.md:34
+msgid ""
+"There are several way how to pass positional and keyword arguments to python "
+"object call. [`ObjectProtocol`](https://docs.rs/pyo3/0.2.7/trait."
+"ObjectProtocol.html) trait provides two methods:"
+msgstr ""
+
+#: src/conversions.md:38
+msgid "`call` - call callable python object."
+msgstr ""
+
+#: src/conversions.md:39
+msgid "`call_method` - call specific method on the object."
+msgstr ""
+
+#: src/conversions.md:41
+msgid ""
+"Both methods accept `args` and `kwargs` arguments. `args` argument is "
+"generate over [`IntoPyTuple`](https://docs.rs/pyo3/0.2.7/trait.IntoPyTuple."
+"html) trait. So args could be `PyTuple` instance or rust tuple with up to 10 "
+"elements. Or `NoArgs` object which represents empty tuple object."
+msgstr ""
+
+#: src/conversions.md:57
+msgid "\"arg1\""
+msgstr ""
+
+#: src/conversions.md:58
+msgid "\"arg2\""
+msgstr ""
+
+#: src/conversions.md:59
+msgid "\"arg3\""
+msgstr ""
+
+#: src/conversions.md:66
+msgid "// call object without empty arguments\n"
+msgstr ""
+
+#: src/conversions.md:69
+msgid "// call object with PyTuple\n"
+msgstr ""
+
+#: src/conversions.md:73 src/conversions.md:113
+msgid "// pass arguments as rust tuple\n"
+msgstr ""
+
+#: src/conversions.md:79
+msgid ""
+"`kwargs` argument is generate over [`IntoPyDictPointer`](https://docs.rs/"
+"pyo3/0.2.7/trait.IntoPyDictPointer.html) trait. `HashMap` or `BTreeMap` "
+"could be used as keyword arguments. rust tuple with up to 10 elements where "
+"each element is tuple with size 2 could be used as kwargs as well. Or "
+"`NoArgs` object can be used to indicate that no keywords arguments are "
+"provided."
+msgstr ""
+
+#: src/conversions.md:98
+msgid "\"key1\""
+msgstr ""
+
+#: src/conversions.md:100
+msgid "\"key2\""
+msgstr ""
+
+#: src/conversions.md:108
+msgid "// call object with PyDict\n"
+msgstr ""
+
+#: src/conversions.md:117
+msgid "// pass arguments as HashMap\n"
+msgstr ""
+
+#: src/conversions.md:125
+msgid "TODO"
+msgstr ""
