@@ -27,7 +27,7 @@ msgstr ""
 
 #: src/class/object.md:42
 msgid "String representations"
-msgstr ""
+msgstr "字串表示法"
 
 #: src/class/object.md:44
 msgid ""

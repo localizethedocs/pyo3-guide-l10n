@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/debugging.md:1
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/debugging.md:3
 msgid "Macros"
@@ -224,15 +224,15 @@ msgstr ""
 
 #: src/debugging.md:116
 msgid "Set breakpoints in your Rust code:"
-msgstr ""
+msgstr "在 Rust 程式碼中設定中斷點："
 
 #: src/debugging.md:122
 msgid "Run your Python script:"
-msgstr ""
+msgstr "執行 Python 腳本："
 
 #: src/debugging.md:140
 msgid "Using VS Code"
-msgstr ""
+msgstr "使用 VS Code"
 
 #: src/debugging.md:142
 msgid ""
@@ -255,12 +255,16 @@ msgid ""
 "[CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn."
 "vscode-lldb)"
 msgstr ""
+"[CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn."
+"vscode-lldb)"
 
 #: src/debugging.md:148
 msgid ""
 "[Python](https://marketplace.visualstudio.com/items?itemName=ms-python."
 "python)"
 msgstr ""
+"[Python](https://marketplace.visualstudio.com/items?itemName=ms-python."
+"python)"
 
 #: src/debugging.md:150
 msgid ""
@@ -485,7 +489,7 @@ msgstr ""
 
 #: src/debugging.md:222
 msgid "Advanced Debugging Configurations"
-msgstr ""
+msgstr "進階除錯組態"
 
 #: src/debugging.md:224
 msgid ""
@@ -648,7 +652,7 @@ msgstr ""
 
 #: src/debugging.md:352
 msgid "Thread Safety and Compiler Sanitizers"
-msgstr ""
+msgstr "執行緒安全與編譯器淨化器"
 
 #: src/debugging.md:354
 msgid ""
