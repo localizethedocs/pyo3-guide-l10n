@@ -196,7 +196,7 @@ msgstr ""
 
 #: src/features.md:72
 msgid "`pyo3_disable_reference_pool`"
-msgstr ""
+msgstr "`pyo3_disable_reference_pool`"
 
 #: src/features.md:74
 msgid ""
@@ -220,23 +220,23 @@ msgstr ""
 
 #: src/features.md:81
 msgid "`#[pymodule]`"
-msgstr ""
+msgstr "`#[pymodule]`"
 
 #: src/features.md:82
 msgid "`#[pyfunction]`"
-msgstr ""
+msgstr "`#[pyfunction]`"
 
 #: src/features.md:83
 msgid "`#[pyclass]`"
-msgstr ""
+msgstr "`#[pyclass]`"
 
 #: src/features.md:84
 msgid "`#[pymethods]`"
-msgstr ""
+msgstr "`#[pymethods]`"
 
 #: src/features.md:85
 msgid "`#[derive(FromPyObject)]`"
-msgstr ""
+msgstr "`#[derive(FromPyObject)]`"
 
 #: src/features.md:87
 msgid "It also provides the `py_run!` macro."
@@ -258,7 +258,7 @@ msgstr ""
 
 #: src/features.md:95
 msgid "`multiple-pymethods`"
-msgstr ""
+msgstr "`multiple-pymethods`"
 
 #: src/features.md:97
 msgid ""
@@ -536,36 +536,48 @@ msgid ""
 "[Date](https://docs.rs/jiff/0.2/jiff/civil/struct.Date.html) -> [`PyDate`]"
 "(https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 msgstr ""
+"[Date](https://docs.rs/jiff/0.2/jiff/civil/struct.Date.html) -> [`PyDate`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 
 #: src/features.md:194
 msgid ""
 "[Time](https://docs.rs/jiff/0.2/jiff/civil/struct.Time.html) -> [`PyTime`]"
 "(https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
 msgstr ""
+"[Time](https://docs.rs/jiff/0.2/jiff/civil/struct.Time.html) -> [`PyTime`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
 
 #: src/features.md:195
 msgid ""
 "[DateTime](https://docs.rs/jiff/0.2/jiff/civil/struct.DateTime.html) -> "
 "[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 msgstr ""
+"[DateTime](https://docs.rs/jiff/0.2/jiff/civil/struct.DateTime.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 
 #: src/features.md:196
 msgid ""
 "[Zoned](https://docs.rs/jiff/0.2/jiff/struct.Zoned.html) -> [`PyDateTime`]"
 "(https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 msgstr ""
+"[Zoned](https://docs.rs/jiff/0.2/jiff/struct.Zoned.html) -> [`PyDateTime`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 
 #: src/features.md:197
 msgid ""
 "[Timestamp](https://docs.rs/jiff/0.2/jiff/struct.Timestamp.html) -> "
 "[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 msgstr ""
+"[Timestamp](https://docs.rs/jiff/0.2/jiff/struct.Timestamp.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 
 #: src/features.md:198
 msgid ""
 "[ISOWeekDate](https://docs.rs/jiff/0.2/jiff/civil/struct.ISOWeekDate.html) -"
 "> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 msgstr ""
+"[ISOWeekDate](https://docs.rs/jiff/0.2/jiff/civil/struct.ISOWeekDate.html) -"
+"> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 
 #: src/features.md:200
 msgid "`lock_api`"
@@ -678,12 +690,16 @@ msgid ""
 "[Date](https://docs.rs/time/0.3.38/time/struct.Date.html) -> [`PyDate`]"
 "(https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 msgstr ""
+"[Date](https://docs.rs/time/0.3.38/time/struct.Date.html) -> [`PyDate`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 
 #: src/features.md:237
 msgid ""
 "[Time](https://docs.rs/time/0.3.38/time/struct.Time.html) -> [`PyTime`]"
 "(https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
 msgstr ""
+"[Time](https://docs.rs/time/0.3.38/time/struct.Time.html) -> [`PyTime`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
 
 #: src/features.md:238
 msgid ""
@@ -691,6 +707,9 @@ msgid ""
 "html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct."
 "PyDateTime.html)"
 msgstr ""
+"[OffsetDateTime](https://docs.rs/time/0.3.38/time/struct.OffsetDateTime."
+"html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct."
+"PyDateTime.html)"
 
 #: src/features.md:239
 msgid ""
@@ -698,24 +717,33 @@ msgid ""
 "PrimitiveDateTime.html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/"
 "types/struct.PyDateTime.html)"
 msgstr ""
+"[PrimitiveDateTime](https://docs.rs/time/0.3.38/time/struct."
+"PrimitiveDateTime.html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/"
+"types/struct.PyDateTime.html)"
 
 #: src/features.md:240
 msgid ""
 "[Duration](https://docs.rs/time/0.3.38/time/struct.Duration.html) -> "
 "[`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
 msgstr ""
+"[Duration](https://docs.rs/time/0.3.38/time/struct.Duration.html) -> "
+"[`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
 
 #: src/features.md:241
 msgid ""
 "[UtcOffset](https://docs.rs/time/0.3.38/time/struct.UtcOffset.html) -> "
 "[`PyTzInfo`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTzInfo.html)"
 msgstr ""
+"[UtcOffset](https://docs.rs/time/0.3.38/time/struct.UtcOffset.html) -> "
+"[`PyTzInfo`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTzInfo.html)"
 
 #: src/features.md:242
 msgid ""
 "[UtcDateTime](https://docs.rs/time/0.3.38/time/struct.UtcDateTime.html) -> "
 "[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 msgstr ""
+"[UtcDateTime](https://docs.rs/time/0.3.38/time/struct.UtcDateTime.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
 
 #: src/features.md:244
 msgid "`serde`"

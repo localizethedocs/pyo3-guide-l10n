@@ -253,7 +253,7 @@ msgstr ""
 
 #: src/function/signature.md:267
 msgid "Type annotations in the signature"
-msgstr ""
+msgstr "簽章中的型別註解"
 
 #: src/function/signature.md:269
 msgid ""

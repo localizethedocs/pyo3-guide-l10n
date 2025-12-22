@@ -105,19 +105,19 @@ msgstr ""
 
 #: src/getting-started.md:45
 msgid "System Python:"
-msgstr ""
+msgstr "系統 Python："
 
 #: src/getting-started.md:51
 msgid "pipx:"
-msgstr ""
+msgstr "pipx："
 
 #: src/getting-started.md:57
 msgid "pyenv:"
-msgstr ""
+msgstr "pyenv："
 
 #: src/getting-started.md:64
 msgid "poetry:"
-msgstr ""
+msgstr "poetry："
 
 #: src/getting-started.md:70
 msgid ""
@@ -288,7 +288,7 @@ msgstr ""
 
 #: src/getting-started.md:197
 msgid "Maturin Import Hook"
-msgstr ""
+msgstr "Maturin 匯入掛鉤"
 
 #: src/getting-started.md:199
 msgid ""
