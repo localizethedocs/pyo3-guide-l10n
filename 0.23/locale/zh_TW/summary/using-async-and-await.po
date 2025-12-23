@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/async-await.md:1
 msgid "Using `async` and `await`"
-msgstr ""
+msgstr "使用 `async` 和 `await`"
 
 #: src/async-await.md:3
 msgid ""
@@ -102,7 +102,7 @@ msgstr ""
 
 #: src/async-await.md:76
 msgid "Cancellation"
-msgstr ""
+msgstr "取消"
 
 #: src/async-await.md:78
 msgid ""

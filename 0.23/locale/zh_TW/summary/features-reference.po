@@ -212,7 +212,7 @@ msgstr ""
 
 #: src/features.md:76
 msgid "`pyo3_disable_reference_pool`"
-msgstr ""
+msgstr "`pyo3_disable_reference_pool`"
 
 #: src/features.md:78
 msgid ""
@@ -236,23 +236,23 @@ msgstr ""
 
 #: src/features.md:84
 msgid "`#[pymodule]`"
-msgstr ""
+msgstr "`#[pymodule]`"
 
 #: src/features.md:85
 msgid "`#[pyfunction]`"
-msgstr ""
+msgstr "`#[pyfunction]`"
 
 #: src/features.md:86
 msgid "`#[pyclass]`"
-msgstr ""
+msgstr "`#[pyclass]`"
 
 #: src/features.md:87
 msgid "`#[pymethods]`"
-msgstr ""
+msgstr "`#[pymethods]`"
 
 #: src/features.md:88
 msgid "`#[derive(FromPyObject)]`"
-msgstr ""
+msgstr "`#[derive(FromPyObject)]`"
 
 #: src/features.md:90
 msgid "It also provides the `py_run!` macro."
@@ -274,7 +274,7 @@ msgstr ""
 
 #: src/features.md:96
 msgid "`multiple-pymethods`"
-msgstr ""
+msgstr "`multiple-pymethods`"
 
 #: src/features.md:98
 msgid ""
