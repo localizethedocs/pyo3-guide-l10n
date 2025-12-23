@@ -76,7 +76,7 @@ msgstr ""
 
 #: src/get_started.md:30
 msgid "**`Cargo.toml`**"
-msgstr ""
+msgstr "**`Cargo.toml`**"
 
 #: src/get_started.md:32
 msgid ""
