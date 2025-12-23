@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/free-threading.md:1
 msgid "Supporting Free-Threaded CPython"
-msgstr ""
+msgstr "支援自由執行緒的 CPython"
 
 #: src/free-threading.md:3
 msgid ""

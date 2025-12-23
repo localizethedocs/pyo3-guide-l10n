@@ -13,11 +13,11 @@ msgstr ""
 
 #: src/module.md:1
 msgid "Python modules"
-msgstr ""
+msgstr "Python 模組"
 
 #: src/module.md:3
 msgid "You can create a module using `#[pymodule]`:"
-msgstr ""
+msgstr "您可以使用 `#[pymodule]` 建立模組："
 
 #: src/module.md:12
 msgid "/// This module is implemented in Rust.\n"
@@ -66,7 +66,7 @@ msgstr ""
 
 #: src/module.md:49
 msgid "Documentation"
-msgstr ""
+msgstr "文件"
 
 #: src/module.md:51
 msgid ""
@@ -83,7 +83,7 @@ msgstr ""
 
 #: src/module.md:62
 msgid "Python submodules"
-msgstr ""
+msgstr "Python 子模組"
 
 #: src/module.md:64
 msgid ""

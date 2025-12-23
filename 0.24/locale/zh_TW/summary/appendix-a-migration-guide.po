@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/migration.md:1
 msgid "Migrating from older PyO3 versions"
-msgstr ""
+msgstr "從舊版 PyO3 遷移"
 
 #: src/migration.md:3
 msgid ""
@@ -622,6 +622,11 @@ msgid ""
 "pyo3 = \"0.20\"\n"
 "```"
 msgstr ""
+"```toml\n"
+"# Cargo.toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.20\"\n"
+"```"
 
 #: src/migration.md:449
 msgid ""
@@ -631,6 +636,11 @@ msgid ""
 "pyo3 = { version = \"0.21\", features = [\"gil-refs\"] }\n"
 "```"
 msgstr ""
+"```toml\n"
+"# Cargo.toml\n"
+"[dependencies]\n"
+"pyo3 = { version = \"0.21\", features = [\"gil-refs\"] }\n"
+"```"
 
 #: src/migration.md:456
 msgid "`PyTypeInfo` and `PyTryFrom` have been adjusted"
