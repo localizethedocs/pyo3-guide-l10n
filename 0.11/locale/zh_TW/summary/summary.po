@@ -37,7 +37,7 @@ msgstr ""
 
 #: src/SUMMARY.md:8
 msgid "Calling Python from Rust"
-msgstr ""
+msgstr "從 Rust 呼叫 Python"
 
 #: src/SUMMARY.md:9
 msgid "GIL, mutability and object types"

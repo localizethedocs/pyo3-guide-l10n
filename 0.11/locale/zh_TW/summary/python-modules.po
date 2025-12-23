@@ -78,7 +78,7 @@ msgstr ""
 
 #: src/module.md:42
 msgid "Documentation"
-msgstr ""
+msgstr "文件"
 
 #: src/module.md:44
 msgid ""
