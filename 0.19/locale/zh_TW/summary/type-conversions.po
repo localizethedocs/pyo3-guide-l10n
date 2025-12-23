@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/conversions.md:1
 msgid "Type conversions"
-msgstr ""
+msgstr "型別轉換"
 
 #: src/conversions.md:3
 msgid ""
