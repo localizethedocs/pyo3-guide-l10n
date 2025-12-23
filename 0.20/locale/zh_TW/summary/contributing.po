@@ -62,7 +62,7 @@ msgstr ""
 
 #: src/contributing.md:18
 msgid "Setting up a development environment"
-msgstr ""
+msgstr "設定開發環境"
 
 #: src/contributing.md:20
 msgid ""
@@ -191,7 +191,7 @@ msgstr ""
 
 #: src/contributing.md:63
 msgid "Building the guide"
-msgstr ""
+msgstr "建置指南"
 
 #: src/contributing.md:65
 msgid "You can preview the user guide by building it locally with `mdbook`."
@@ -223,7 +223,7 @@ msgstr ""
 
 #: src/contributing.md:79
 msgid "Review pull requests"
-msgstr ""
+msgstr "審查拉取請求"
 
 #: src/contributing.md:81
 msgid ""
@@ -233,7 +233,7 @@ msgstr ""
 
 #: src/contributing.md:83
 msgid "Writing pull requests"
-msgstr ""
+msgstr "撰寫拉取請求"
 
 #: src/contributing.md:85
 msgid "Here are a few things to note when you are writing PRs."
@@ -520,7 +520,7 @@ msgstr ""
 
 #: src/contributing.md:199
 msgid "Sponsor this project"
-msgstr ""
+msgstr "贊助此專案"
 
 #: src/contributing.md:201
 msgid ""
@@ -538,8 +538,8 @@ msgstr ""
 
 #: src/contributing.md:205
 msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
-msgstr ""
+msgstr "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 
 #: src/contributing.md:206
 msgid "[messense](https://github.com/sponsors/messense)"
-msgstr ""
+msgstr "[messense](https://github.com/sponsors/messense)"

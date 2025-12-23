@@ -113,7 +113,7 @@ msgstr ""
 
 #: src/class/numeric.md:125
 msgid "Unary arithmetic operations"
-msgstr ""
+msgstr "一元算數運算"
 
 #: src/class/numeric.md:153
 msgid "Support for the `complex()`, `int()` and `float()` built-in functions."
@@ -221,7 +221,7 @@ msgstr ""
 
 #: src/class/numeric.md:399
 msgid "Appendix: Writing some unsafe code"
-msgstr ""
+msgstr "附錄：編寫一些不安全的程式碼"
 
 #: src/class/numeric.md:401
 msgid ""
