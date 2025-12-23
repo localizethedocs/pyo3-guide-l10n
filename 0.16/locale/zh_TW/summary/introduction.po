@@ -127,7 +127,7 @@ msgstr ""
 
 #: src/index.md:56
 msgid "**`Cargo.toml`**"
-msgstr ""
+msgstr "**`Cargo.toml`**"
 
 #: src/index.md:58
 msgid ""
@@ -341,7 +341,7 @@ msgstr ""
 
 #: src/index.md:181
 msgid "Examples"
-msgstr ""
+msgstr "範例"
 
 #: src/index.md:183
 msgid ""
@@ -481,7 +481,7 @@ msgstr ""
 
 #: src/index.md:207
 msgid "Articles and other media"
-msgstr ""
+msgstr "文章及其他媒體"
 
 #: src/index.md:209
 msgid ""
@@ -567,7 +567,7 @@ msgstr ""
 
 #: src/index.md:231
 msgid "License"
-msgstr ""
+msgstr "授權條款"
 
 #: src/index.md:233
 msgid ""

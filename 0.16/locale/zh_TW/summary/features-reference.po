@@ -157,19 +157,19 @@ msgstr ""
 
 #: src/features.md:58
 msgid "`#[pymodule]`"
-msgstr ""
+msgstr "`#[pymodule]`"
 
 #: src/features.md:59
 msgid "`#[pyfunction]`"
-msgstr ""
+msgstr "`#[pyfunction]`"
 
 #: src/features.md:60
 msgid "`#[pyclass]`"
-msgstr ""
+msgstr "`#[pyclass]`"
 
 #: src/features.md:61
 msgid "`#[pymethods]`"
-msgstr ""
+msgstr "`#[pymethods]`"
 
 #: src/features.md:62
 msgid "`#[pyproto]`"
@@ -177,7 +177,7 @@ msgstr ""
 
 #: src/features.md:63
 msgid "`#[derive(FromPyObject)]`"
-msgstr ""
+msgstr "`#[derive(FromPyObject)]`"
 
 #: src/features.md:65
 msgid "It also provides the `py_run!` macro."
@@ -199,7 +199,7 @@ msgstr ""
 
 #: src/features.md:71
 msgid "`multiple-pymethods`"
-msgstr ""
+msgstr "`multiple-pymethods`"
 
 #: src/features.md:73
 msgid ""
