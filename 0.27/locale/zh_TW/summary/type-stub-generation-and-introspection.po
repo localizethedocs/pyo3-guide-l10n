@@ -83,7 +83,7 @@ msgstr ""
 
 #: src/type-stub.md:76
 msgid "Constraints and limitations"
-msgstr ""
+msgstr "約束與限制"
 
 #: src/type-stub.md:78
 msgid ""
