@@ -30,7 +30,7 @@ msgstr ""
 
 #: src/conversions/tables.md:7
 msgid "Argument Types"
-msgstr ""
+msgstr "引數型別"
 
 #: src/conversions/tables.md:9
 msgid ""
@@ -232,7 +232,7 @@ msgstr ""
 
 #: src/conversions/tables.md:30
 msgid "`module`"
-msgstr ""
+msgstr "`module`"
 
 #: src/conversions/tables.md:30
 msgid "`&PyModule`"
@@ -240,7 +240,7 @@ msgstr ""
 
 #: src/conversions/tables.md:31
 msgid "`datetime.datetime`"
-msgstr ""
+msgstr "`datetime.datetime`"
 
 #: src/conversions/tables.md:31
 msgid "`&PyDateTime`"
@@ -483,43 +483,43 @@ msgstr ""
 
 #: src/conversions/tables.md:83
 msgid "`Optional[T]`"
-msgstr ""
+msgstr "`Optional[T]`"
 
 #: src/conversions/tables.md:84
 msgid "`(T, U)`"
-msgstr ""
+msgstr "`(T, U)`"
 
 #: src/conversions/tables.md:84
 msgid "`Tuple[T, U]`"
-msgstr ""
+msgstr "`Tuple[T, U]`"
 
 #: src/conversions/tables.md:85
 msgid "`List[T]`"
-msgstr ""
+msgstr "`List[T]`"
 
 #: src/conversions/tables.md:86
 msgid "`HashMap<K, V>`"
-msgstr ""
+msgstr "`HashMap<K, V>`"
 
 #: src/conversions/tables.md:86 src/conversions/tables.md:87
 msgid "`Dict[K, V]`"
-msgstr ""
+msgstr "`Dict[K, V]`"
 
 #: src/conversions/tables.md:87
 msgid "`BTreeMap<K, V>`"
-msgstr ""
+msgstr "`BTreeMap<K, V>`"
 
 #: src/conversions/tables.md:88
 msgid "`HashSet<T>`"
-msgstr ""
+msgstr "`HashSet<T>`"
 
 #: src/conversions/tables.md:88 src/conversions/tables.md:89
 msgid "`Set[T]`"
-msgstr ""
+msgstr "`Set[T]`"
 
 #: src/conversions/tables.md:89
 msgid "`BTreeSet<T>`"
-msgstr ""
+msgstr "`BTreeSet<T>`"
 
 #: src/conversions/tables.md:90
 msgid "`&PyCell<T: PyClass>`"
@@ -528,15 +528,15 @@ msgstr ""
 #: src/conversions/tables.md:90 src/conversions/tables.md:91
 #: src/conversions/tables.md:92
 msgid "`T`"
-msgstr ""
+msgstr "`T`"
 
 #: src/conversions/tables.md:91
 msgid "`PyRef<T: PyClass>`"
-msgstr ""
+msgstr "`PyRef<T: PyClass>`"
 
 #: src/conversions/tables.md:92
 msgid "`PyRefMut<T: PyClass>`"
-msgstr ""
+msgstr "`PyRefMut<T: PyClass>`"
 
 #: src/conversions/tables.md:94
 msgid "Requires the `num-complex` optional feature."
