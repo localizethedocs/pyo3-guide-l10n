@@ -247,7 +247,7 @@ msgstr ""
 
 #: src/class/protocols.md:130
 msgid "Output:"
-msgstr ""
+msgstr "輸出："
 
 #: src/class/protocols.md:143
 msgid "Iterable objects"
