@@ -268,7 +268,7 @@ msgstr ""
 
 #: src/class.md:237
 msgid "`T`"
-msgstr ""
+msgstr "`T`"
 
 #: src/class.md:237
 msgid "`PyResult<T>`"
@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/class.md:238
 msgid "`(T, U)`"
-msgstr ""
+msgstr "`(T, U)`"
 
 #: src/class.md:238
 msgid "`PyResult<(T, U)>`"

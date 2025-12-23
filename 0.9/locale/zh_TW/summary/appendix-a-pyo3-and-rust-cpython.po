@@ -71,7 +71,7 @@ msgstr ""
 
 #: src/rust_cpython.md:78
 msgid "Error handling"
-msgstr ""
+msgstr "錯誤處理"
 
 #: src/rust_cpython.md:80
 msgid ""
