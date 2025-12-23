@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/ecosystem.md:1
 msgid "The PyO3 ecosystem"
-msgstr ""
+msgstr "PyO3 生態系"
 
 #: src/ecosystem.md:3
 msgid ""

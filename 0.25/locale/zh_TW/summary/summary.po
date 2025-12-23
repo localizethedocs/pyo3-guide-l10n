@@ -25,11 +25,11 @@ msgstr ""
 
 #: src/SUMMARY.md:8
 msgid "Using Rust from Python"
-msgstr ""
+msgstr "從 Python 使用 Rust"
 
 #: src/SUMMARY.md:9
 msgid "Python modules"
-msgstr ""
+msgstr "Python 模組"
 
 #: src/SUMMARY.md:10
 msgid "Python functions"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: src/SUMMARY.md:12
 msgid "Error handling"
-msgstr ""
+msgstr "錯誤處理"
 
 #: src/SUMMARY.md:13
 msgid "Python classes"
@@ -69,11 +69,11 @@ msgstr ""
 
 #: src/SUMMARY.md:19
 msgid "Calling Python from Rust"
-msgstr ""
+msgstr "從 Rust 呼叫 Python"
 
 #: src/SUMMARY.md:20
 msgid "Python object types"
-msgstr ""
+msgstr "Python 物件型別"
 
 #: src/SUMMARY.md:21
 msgid "Python exceptions"
@@ -85,11 +85,11 @@ msgstr ""
 
 #: src/SUMMARY.md:23
 msgid "Executing existing Python code"
-msgstr ""
+msgstr "執行現有的 Python 程式碼"
 
 #: src/SUMMARY.md:24
 msgid "Type conversions"
-msgstr ""
+msgstr "型別轉換"
 
 #: src/SUMMARY.md:25
 msgid "Mapping of Rust types to Python types"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: src/SUMMARY.md:32
 msgid "Performance"
-msgstr ""
+msgstr "效能"
 
 #: src/SUMMARY.md:33
 msgid "Advanced topics"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: src/SUMMARY.md:34
 msgid "Building and distribution"
-msgstr ""
+msgstr "建置與散布"
 
 #: src/SUMMARY.md:35
 msgid "Supporting multiple Python versions"

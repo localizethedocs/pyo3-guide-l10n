@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/class.md:1
 msgid "Python classes"
-msgstr ""
+msgstr "Python 類別"
 
 #: src/class.md:3
 msgid ""
@@ -50,35 +50,35 @@ msgstr ""
 
 #: src/class.md:11
 msgid "[`#[pymethods]`](#instance-methods)"
-msgstr ""
+msgstr "[`#[pymethods]`](#instance-methods)"
 
 #: src/class.md:12
 msgid "[`#[new]`](#constructor)"
-msgstr ""
+msgstr "[`#[new]`](#constructor)"
 
 #: src/class.md:13
 msgid "[`#[getter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[getter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:14
 msgid "[`#[setter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[setter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:15
 msgid "[`#[staticmethod]`](#static-methods)"
-msgstr ""
+msgstr "[`#[staticmethod]`](#static-methods)"
 
 #: src/class.md:16
 msgid "[`#[classmethod]`](#class-methods)"
-msgstr ""
+msgstr "[`#[classmethod]`](#class-methods)"
 
 #: src/class.md:17
 msgid "[`#[classattr]`](#class-attributes)"
-msgstr ""
+msgstr "[`#[classattr]`](#class-attributes)"
 
 #: src/class.md:18
 msgid "[`#[args]`](#method-arguments)"
-msgstr ""
+msgstr "[`#[args]`](#method-arguments)"
 
 #: src/class.md:19
 msgid "[Magic methods and slots](class/protocols.md)"

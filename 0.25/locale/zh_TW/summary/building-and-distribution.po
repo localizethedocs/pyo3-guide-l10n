@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:1
 msgid "Building and distribution"
-msgstr ""
+msgstr "建置與散布"
 
 #: src/building-and-distribution.md:3
 msgid ""
@@ -61,7 +61,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:14
 msgid "The `python3` executable."
-msgstr ""
+msgstr "`python3` 執行檔。"
 
 #: src/building-and-distribution.md:16
 msgid ""
@@ -113,7 +113,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:56
 msgid "Building Python extension modules"
-msgstr ""
+msgstr "建置 Python 擴充模組"
 
 #: src/building-and-distribution.md:58
 msgid ""
@@ -214,7 +214,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:78
 msgid "Manual builds"
-msgstr ""
+msgstr "手動建置"
 
 #: src/building-and-distribution.md:80
 msgid ""
@@ -373,6 +373,19 @@ msgid ""
 "]\n"
 "```"
 msgstr ""
+"```toml\n"
+"[target.x86_64-apple-darwin]\n"
+"rustflags = [\n"
+"  \"-C\", \"link-arg=-undefined\",\n"
+"  \"-C\", \"link-arg=dynamic_lookup\",\n"
+"]\n"
+"\n"
+"[target.aarch64-apple-darwin]\n"
+"rustflags = [\n"
+"  \"-C\", \"link-arg=-undefined\",\n"
+"  \"-C\", \"link-arg=dynamic_lookup\",\n"
+"]\n"
+"```"
 
 #: src/building-and-distribution.md:147
 msgid ""
@@ -403,6 +416,13 @@ msgid ""
 "]\n"
 "```"
 msgstr ""
+"```toml\n"
+"[build]\n"
+"rustflags = [\n"
+"  \"-C\", \"link-args=-Wl,-rpath,/Library/Developer/CommandLineTools/Library/"
+"Frameworks\",\n"
+"]\n"
+"```"
 
 #: src/building-and-distribution.md:166
 msgid ""
