@@ -38,27 +38,27 @@ msgstr ""
 
 #: src/class.md:9
 msgid "[`#[pymethods]`](#instance-methods)"
-msgstr ""
+msgstr "[`#[pymethods]`](#instance-methods)"
 
 #: src/class.md:10
 msgid "[`#[new]`](#constructor)"
-msgstr ""
+msgstr "[`#[new]`](#constructor)"
 
 #: src/class.md:11
 msgid "[`#[getter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[getter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:12
 msgid "[`#[setter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[setter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:13
 msgid "[`#[staticmethod]`](#static-methods)"
-msgstr ""
+msgstr "[`#[staticmethod]`](#static-methods)"
 
 #: src/class.md:14
 msgid "[`#[classmethod]`](#class-methods)"
-msgstr ""
+msgstr "[`#[classmethod]`](#class-methods)"
 
 #: src/class.md:15
 msgid "[`#[call]`](#callable-objects)"
@@ -66,11 +66,11 @@ msgstr ""
 
 #: src/class.md:16
 msgid "[`#[classattr]`](#class-attributes)"
-msgstr ""
+msgstr "[`#[classattr]`](#class-attributes)"
 
 #: src/class.md:17
 msgid "[`#[args]`](#method-arguments)"
-msgstr ""
+msgstr "[`#[args]`](#method-arguments)"
 
 #: src/class.md:18
 msgid "[`#[pyproto]`](class/protocols.html)"
@@ -323,7 +323,7 @@ msgstr ""
 
 #: src/class.md:186
 msgid "`T`"
-msgstr ""
+msgstr "`T`"
 
 #: src/class.md:186
 msgid "`PyResult<T>`"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: src/class.md:187
 msgid "`(T, U)`"
-msgstr ""
+msgstr "`(T, U)`"
 
 #: src/class.md:187
 msgid "`PyResult<(T, U)>`"
