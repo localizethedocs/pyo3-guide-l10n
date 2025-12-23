@@ -112,7 +112,7 @@ msgstr ""
 
 #: src/index.md:44
 msgid "**`Cargo.toml`**"
-msgstr ""
+msgstr "**`Cargo.toml`**"
 
 #: src/index.md:46
 msgid ""
@@ -309,7 +309,7 @@ msgstr ""
 
 #: src/index.md:158
 msgid "Examples"
-msgstr ""
+msgstr "範例"
 
 #: src/index.md:160
 msgid ""
@@ -415,7 +415,7 @@ msgstr ""
 
 #: src/index.md:178
 msgid "License"
-msgstr ""
+msgstr "授權條款"
 
 #: src/index.md:180
 msgid ""

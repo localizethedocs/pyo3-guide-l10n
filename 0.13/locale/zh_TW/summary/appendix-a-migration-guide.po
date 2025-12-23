@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/migration.md:1
 msgid "Migrating from older PyO3 versions"
-msgstr ""
+msgstr "從舊版 PyO3 遷移"
 
 #: src/migration.md:3
 msgid ""
