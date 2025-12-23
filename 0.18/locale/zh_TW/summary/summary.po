@@ -25,7 +25,7 @@ msgstr ""
 
 #: src/SUMMARY.md:8
 msgid "Python modules"
-msgstr ""
+msgstr "Python 模組"
 
 #: src/SUMMARY.md:9
 msgid "Python functions"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: src/SUMMARY.md:11
 msgid "Error handling"
-msgstr ""
+msgstr "錯誤處理"
 
 #: src/SUMMARY.md:12
 msgid "Python classes"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: src/SUMMARY.md:17
 msgid "Type conversions"
-msgstr ""
+msgstr "型別轉換"
 
 #: src/SUMMARY.md:18
 msgid "Mapping of Rust types to Python types\\]"
@@ -77,7 +77,7 @@ msgstr ""
 
 #: src/SUMMARY.md:21
 msgid "Calling Python from Rust"
-msgstr ""
+msgstr "從 Rust 呼叫 Python"
 
 #: src/SUMMARY.md:22
 msgid "GIL, mutability and object types"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: src/SUMMARY.md:28
 msgid "Building and distribution"
-msgstr ""
+msgstr "建置與散布"
 
 #: src/SUMMARY.md:29
 msgid "Supporting multiple Python versions"
