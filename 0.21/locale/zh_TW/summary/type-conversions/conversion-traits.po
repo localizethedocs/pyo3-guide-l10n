@@ -158,7 +158,7 @@ msgstr ""
 
 #: src/conversions/traits.md:158
 msgid "\"{'foo': 'foo', 'bar': 'bar', 'foobar': 'foobar'}\""
-msgstr ""
+msgstr "\"{'foo': 'foo', 'bar': 'bar', 'foobar': 'foobar'}\""
 
 #: src/conversions/traits.md:160 src/conversions/traits.md:330
 #: src/conversions/traits.md:334 src/conversions/traits.md:440

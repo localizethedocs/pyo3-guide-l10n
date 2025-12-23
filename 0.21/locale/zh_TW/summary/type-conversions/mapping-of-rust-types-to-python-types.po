@@ -30,7 +30,7 @@ msgstr ""
 
 #: src/conversions/tables.md:7
 msgid "Argument Types"
-msgstr ""
+msgstr "引數型別"
 
 #: src/conversions/tables.md:9
 msgid ""
@@ -231,27 +231,27 @@ msgstr ""
 
 #: src/conversions/tables.md:29
 msgid "`PyType`"
-msgstr ""
+msgstr "`PyType`"
 
 #: src/conversions/tables.md:30
 msgid "`module`"
-msgstr ""
+msgstr "`module`"
 
 #: src/conversions/tables.md:30
 msgid "`PyModule`"
-msgstr ""
+msgstr "`PyModule`"
 
 #: src/conversions/tables.md:31
 msgid "`collections.abc.Buffer`"
-msgstr ""
+msgstr "`collections.abc.Buffer`"
 
 #: src/conversions/tables.md:31
 msgid "`PyBuffer<T>`"
-msgstr ""
+msgstr "`PyBuffer<T>`"
 
 #: src/conversions/tables.md:32
 msgid "`datetime.datetime`"
-msgstr ""
+msgstr "`datetime.datetime`"
 
 #: src/conversions/tables.md:32
 msgid "`SystemTime`, `chrono::DateTime<Tz>`[^5], `chrono::NaiveDateTime`[^5]"
@@ -560,64 +560,64 @@ msgstr ""
 
 #: src/conversions/tables.md:90
 msgid "`Optional[T]`"
-msgstr ""
+msgstr "`Optional[T]`"
 
 #: src/conversions/tables.md:91
 msgid "`(T, U)`"
-msgstr ""
+msgstr "`(T, U)`"
 
 #: src/conversions/tables.md:91
 msgid "`Tuple[T, U]`"
-msgstr ""
+msgstr "`Tuple[T, U]`"
 
 #: src/conversions/tables.md:92
 msgid "`List[T]`"
-msgstr ""
+msgstr "`List[T]`"
 
 #: src/conversions/tables.md:93
 msgid "`Cow<[u8]>`"
-msgstr ""
+msgstr "`Cow<[u8]>`"
 
 #: src/conversions/tables.md:94
 msgid "`HashMap<K, V>`"
-msgstr ""
+msgstr "`HashMap<K, V>`"
 
 #: src/conversions/tables.md:94 src/conversions/tables.md:95
 msgid "`Dict[K, V]`"
-msgstr ""
+msgstr "`Dict[K, V]`"
 
 #: src/conversions/tables.md:95
 msgid "`BTreeMap<K, V>`"
-msgstr ""
+msgstr "`BTreeMap<K, V>`"
 
 #: src/conversions/tables.md:96
 msgid "`HashSet<T>`"
-msgstr ""
+msgstr "`HashSet<T>`"
 
 #: src/conversions/tables.md:96 src/conversions/tables.md:97
 msgid "`Set[T]`"
-msgstr ""
+msgstr "`Set[T]`"
 
 #: src/conversions/tables.md:97
 msgid "`BTreeSet<T>`"
-msgstr ""
+msgstr "`BTreeSet<T>`"
 
 #: src/conversions/tables.md:98 src/conversions/tables.md:99
 #: src/conversions/tables.md:100 src/conversions/tables.md:101
 msgid "`T`"
-msgstr ""
+msgstr "`T`"
 
 #: src/conversions/tables.md:99
 msgid "`Bound<T>`"
-msgstr ""
+msgstr "`Bound<T>`"
 
 #: src/conversions/tables.md:100
 msgid "`PyRef<T: PyClass>`"
-msgstr ""
+msgstr "`PyRef<T: PyClass>`"
 
 #: src/conversions/tables.md:101
 msgid "`PyRefMut<T: PyClass>`"
-msgstr ""
+msgstr "`PyRefMut<T: PyClass>`"
 
 #: src/conversions/tables.md:103
 msgid "Requires the `num-bigint` optional feature."

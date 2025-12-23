@@ -116,19 +116,19 @@ msgstr ""
 
 #: src/getting-started.md:38
 msgid "System Python:"
-msgstr ""
+msgstr "系統 Python："
 
 #: src/getting-started.md:43
 msgid "pipx:"
-msgstr ""
+msgstr "pipx："
 
 #: src/getting-started.md:48
 msgid "pyenv:"
-msgstr ""
+msgstr "pyenv："
 
 #: src/getting-started.md:54
 msgid "poetry:"
-msgstr ""
+msgstr "poetry："
 
 #: src/getting-started.md:59
 msgid ""
