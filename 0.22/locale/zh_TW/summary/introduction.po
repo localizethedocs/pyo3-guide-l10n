@@ -36,7 +36,7 @@ msgstr ""
 
 #: src/index.md:8
 msgid "How to use Python code from Rust"
-msgstr ""
+msgstr "如何從 Rust 使用 Python 程式碼"
 
 #: src/index.md:9
 msgid "Remaining topics which go into advanced concepts in detail"
@@ -164,7 +164,7 @@ msgstr ""
 
 #: src/index.md:73
 msgid "**`Cargo.toml`**"
-msgstr ""
+msgstr "**`Cargo.toml`**"
 
 #: src/index.md:75
 msgid ""
@@ -399,7 +399,7 @@ msgstr ""
 
 #: src/index.md:204
 msgid "Examples"
-msgstr ""
+msgstr "範例"
 
 #: src/index.md:206
 msgid ""
@@ -655,7 +655,7 @@ msgstr ""
 
 #: src/index.md:248
 msgid "Articles and other media"
-msgstr ""
+msgstr "文章及其他媒體"
 
 #: src/index.md:250
 msgid ""
@@ -785,7 +785,7 @@ msgstr ""
 
 #: src/index.md:279
 msgid "License"
-msgstr ""
+msgstr "授權條款"
 
 #: src/index.md:281
 msgid ""

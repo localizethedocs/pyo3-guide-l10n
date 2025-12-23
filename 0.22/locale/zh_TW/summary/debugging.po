@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/debugging.md:1
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/debugging.md:3
 msgid "Macros"

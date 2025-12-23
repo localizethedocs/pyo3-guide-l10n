@@ -107,11 +107,11 @@ msgstr ""
 
 #: src/class/call.md:105
 msgid "Output:"
-msgstr ""
+msgstr "輸出："
 
 #: src/class/call.md:118
 msgid "Pure Python implementation"
-msgstr ""
+msgstr "純 Python 實現"
 
 #: src/class/call.md:120
 msgid "A Python implementation of this looks similar to the Rust version:"
