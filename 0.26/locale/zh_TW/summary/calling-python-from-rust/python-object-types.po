@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/types.md:1
 msgid "Python object types"
-msgstr ""
+msgstr "Python 物件型別"
 
 #: src/types.md:3
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 
 #: src/types.md:9
 msgid "PyO3's smart pointers"
-msgstr ""
+msgstr "PyO3 的智慧指標"
 
 #: src/types.md:11
 msgid ""

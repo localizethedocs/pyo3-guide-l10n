@@ -80,7 +80,7 @@ msgstr ""
 
 #: src/function.md:34
 msgid "[Error Handling](./function/error-handling.md)"
-msgstr ""
+msgstr "[錯誤處理](./function/error-handling.md)"
 
 #: src/function.md:36
 msgid "Function options"

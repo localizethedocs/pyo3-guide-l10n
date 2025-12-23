@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:1
 msgid "Executing existing Python code"
-msgstr ""
+msgstr "執行現有的 Python 程式碼"
 
 #: src/python-from-rust/calling-existing-code.md:3
 msgid ""
@@ -187,7 +187,7 @@ msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:194
 msgid "// Create new module\n"
-msgstr ""
+msgstr "// 建立新模組\n"
 
 #: src/python-from-rust/calling-existing-code.md:195
 #: src/python-from-rust/calling-existing-code.md:203
@@ -196,7 +196,7 @@ msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:198
 msgid "// Import and get sys.modules\n"
-msgstr ""
+msgstr "// 匯入並獲取 sys.modules\n"
 
 #: src/python-from-rust/calling-existing-code.md:199
 #: src/python-from-rust/calling-existing-code.md:303
@@ -239,7 +239,7 @@ msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:222
 msgid "Example directory structure:"
-msgstr ""
+msgstr "範例目錄結構："
 
 #: src/python-from-rust/calling-existing-code.md:235
 msgid "`python_app/app.py`:"

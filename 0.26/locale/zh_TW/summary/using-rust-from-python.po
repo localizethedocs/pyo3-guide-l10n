@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/rust-from-python.md:1
 msgid "Using Rust from Python"
-msgstr ""
+msgstr "從 Python 使用 Rust"
 
 #: src/rust-from-python.md:3
 msgid ""
