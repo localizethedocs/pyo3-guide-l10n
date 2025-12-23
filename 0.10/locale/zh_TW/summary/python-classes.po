@@ -254,7 +254,7 @@ msgstr ""
 
 #: src/class.md:168
 msgid "`T`"
-msgstr ""
+msgstr "`T`"
 
 #: src/class.md:168
 msgid "`PyResult<T>`"
@@ -266,7 +266,7 @@ msgstr ""
 
 #: src/class.md:169
 msgid "`(T, U)`"
-msgstr ""
+msgstr "`(T, U)`"
 
 #: src/class.md:169
 msgid "`PyResult<(T, U)>`"
