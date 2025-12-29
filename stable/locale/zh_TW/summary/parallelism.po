@@ -104,7 +104,7 @@ msgstr ""
 
 #: src/parallelism.md:109
 msgid "Pure Python version"
-msgstr ""
+msgstr "純 Python 版本"
 
 #: src/parallelism.md:110
 msgid "Rust parallel version"
