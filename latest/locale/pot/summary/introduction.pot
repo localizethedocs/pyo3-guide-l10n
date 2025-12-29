@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:32:45Z\n"
+"POT-Creation-Date: 2025-12-29T08:25:30Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/index.md:1
@@ -510,48 +510,55 @@ msgstr ""
 
 #: src/index.md:218
 msgid ""
+"[fast-paseto](https://github.com/CodingCogs-OSS/Fast-Paseto) _High-"
+"performance PASETO (Platform-Agnostic Security Tokens) implementation with "
+"Python bindings._"
+msgstr ""
+
+#: src/index.md:219
+msgid ""
 "[feos](https://github.com/feos-org/feos) _Lightning fast thermodynamic "
 "modeling in Rust with fully developed Python interface._"
 msgstr ""
 
-#: src/index.md:219
+#: src/index.md:220
 msgid ""
 "[finalytics](https://github.com/Nnamdi-sys/finalytics) _Investment Analysis "
 "library in Rust | Python._"
 msgstr ""
 
-#: src/index.md:220
+#: src/index.md:221
 msgid ""
 "[forust](https://github.com/jinlow/forust) _A lightweight gradient boosted "
 "decision tree library written in Rust._"
 msgstr ""
 
-#: src/index.md:221
+#: src/index.md:222
 msgid ""
 "[geo-index](https://github.com/kylebarron/geo-index) _A Rust crate and "
 "[Python library](https://github.com/kylebarron/geo-index/tree/main/python) "
 "for packed, immutable, zero-copy spatial indexes._"
 msgstr ""
 
-#: src/index.md:222
+#: src/index.md:223
 msgid ""
 "[granian](https://github.com/emmett-framework/granian) _A Rust HTTP server "
 "for Python applications._"
 msgstr ""
 
-#: src/index.md:223
+#: src/index.md:224
 msgid ""
 "[haem](https://github.com/BooleanCat/haem) _A Python library for working on "
 "Bioinformatics problems._"
 msgstr ""
 
-#: src/index.md:224
+#: src/index.md:225
 msgid ""
 "[html2text-rs](https://github.com/deedy5/html2text_rs) _Python library for "
 "converting HTML to markup or plain text._"
 msgstr ""
 
-#: src/index.md:225
+#: src/index.md:226
 msgid ""
 "[html-py-ever](https://github.com/PyO3/setuptools-rust/tree/main/examples/"
 "html-py-ever) _Using [html5ever](https://github.com/servo/html5ever) through "
@@ -559,304 +566,304 @@ msgid ""
 "and css-selecting._"
 msgstr ""
 
-#: src/index.md:226
+#: src/index.md:227
 msgid ""
 "[hudi-rs](https://github.com/apache/hudi-rs) _The native Rust implementation "
 "for Apache Hudi, with C++ & Python API bindings._"
 msgstr ""
 
-#: src/index.md:227
+#: src/index.md:228
 msgid ""
 "[inline-python](https://github.com/m-ou-se/inline-python) _Inline Python "
 "code directly in your Rust code._"
 msgstr ""
 
-#: src/index.md:228
+#: src/index.md:229
 msgid ""
 "[johnnycanencrypt](https://github.com/kushaldas/johnnycanencrypt) OpenPGP "
 "library with Yubikey support."
 msgstr ""
 
-#: src/index.md:229
+#: src/index.md:230
 msgid ""
 "[jsonschema](https://github.com/Stranger6667/jsonschema/tree/master/crates/"
 "jsonschema-py) _A high-performance JSON Schema validator for Python._"
 msgstr ""
 
-#: src/index.md:230
+#: src/index.md:231
 msgid ""
 "[mocpy](https://github.com/cds-astro/mocpy) _Astronomical Python library "
 "offering data structures for describing any arbitrary coverage regions on "
 "the unit sphere._"
 msgstr ""
 
-#: src/index.md:231
+#: src/index.md:232
 msgid ""
 "[obstore](https://github.com/developmentseed/obstore) _The simplest, highest-"
 "throughput Python interface to Amazon S3, Google Cloud Storage, Azure "
 "Storage, & other S3-compliant APIs, powered by Rust._"
 msgstr ""
 
-#: src/index.md:232
+#: src/index.md:233
 msgid ""
 "[opendal](https://github.com/apache/opendal/tree/main/bindings/python) _A "
 "data access layer that allows users to easily and efficiently retrieve data "
 "from various storage services in a unified way._"
 msgstr ""
 
-#: src/index.md:233
+#: src/index.md:234
 msgid "[orjson](https://github.com/ijl/orjson) _Fast Python JSON library._"
 msgstr ""
 
-#: src/index.md:234
+#: src/index.md:235
 msgid ""
 "[ormsgpack](https://github.com/aviramha/ormsgpack) _Fast Python msgpack "
 "library._"
 msgstr ""
 
-#: src/index.md:235
+#: src/index.md:236
 msgid ""
 "[polars](https://github.com/pola-rs/polars) _Fast multi-threaded DataFrame "
 "library in Rust | Python | Node.js._"
 msgstr ""
 
-#: src/index.md:236
+#: src/index.md:237
 msgid ""
 "[pycrdt](https://github.com/jupyter-server/pycrdt) _Python bindings for the "
 "Rust CRDT implementation [Yrs](https://github.com/y-crdt/y-crdt)._"
 msgstr ""
 
-#: src/index.md:237
+#: src/index.md:238
 msgid ""
 "[pydantic-core](https://github.com/pydantic/pydantic-core) _Core validation "
 "logic for pydantic written in Rust._"
 msgstr ""
 
-#: src/index.md:238
+#: src/index.md:239
 msgid ""
 "[primp](https://github.com/deedy5/primp) _The fastest python HTTP client "
 "that can impersonate web browsers by mimicking their headers and TLS/JA3/JA4/"
 "HTTP2 fingerprints._"
 msgstr ""
 
-#: src/index.md:239
+#: src/index.md:240
 msgid ""
 "[radiate](https://github.com/pkalivas/radiate): _A high-performance "
 "evolution engine for genetic programming and evolutionary algorithms._"
 msgstr ""
 
-#: src/index.md:240
+#: src/index.md:241
 msgid ""
 "[rateslib](https://github.com/attack68/rateslib) _A fixed income library for "
 "Python using Rust extensions._"
 msgstr ""
 
-#: src/index.md:241
+#: src/index.md:242
 msgid ""
 "[river](https://github.com/online-ml/river) _Online machine learning in "
 "python, the computationally heavy statistics algorithms are implemented in "
 "Rust._"
 msgstr ""
 
-#: src/index.md:242
+#: src/index.md:243
 msgid ""
 "[robyn](https://github.com/sparckles/Robyn) A Super Fast Async Python Web "
 "Framework with a Rust runtime."
 msgstr ""
 
-#: src/index.md:243
+#: src/index.md:244
 msgid ""
 "[rust-python-coverage](https://github.com/cjermain/rust-python-coverage) "
 "_Example PyO3 project with automated test coverage for Rust and Python._"
 msgstr ""
 
-#: src/index.md:244
+#: src/index.md:245
 msgid ""
 "[rnet](https://github.com/0x676e67/rnet) Asynchronous Python HTTP Client "
 "with Black Magic"
 msgstr ""
 
-#: src/index.md:245
+#: src/index.md:246
 msgid ""
 "[sail](https://github.com/lakehq/sail) _Unifying stream, batch, and AI "
 "workloads with Apache Spark compatibility._"
 msgstr ""
 
-#: src/index.md:246
+#: src/index.md:247
 msgid ""
 "[tiktoken](https://github.com/openai/tiktoken) _A fast BPE tokeniser for use "
 "with OpenAI's models._"
 msgstr ""
 
-#: src/index.md:247
+#: src/index.md:248
 msgid ""
 "[tokenizers](https://github.com/huggingface/tokenizers/tree/main/bindings/"
 "python) _Python bindings to the Hugging Face tokenizers (NLP) written in "
 "Rust._"
 msgstr ""
 
-#: src/index.md:248
+#: src/index.md:249
 msgid ""
 "[tzfpy](http://github.com/ringsaturn/tzfpy) _A fast package to convert "
 "longitude/latitude to timezone name._"
 msgstr ""
 
-#: src/index.md:249
+#: src/index.md:250
 msgid ""
 "[utiles](https://github.com/jessekrubin/utiles) _Fast Python web-map tile "
 "utilities_"
 msgstr ""
 
-#: src/index.md:251
+#: src/index.md:252
 msgid "Articles and other media"
 msgstr ""
 
-#: src/index.md:253
+#: src/index.md:254
 msgid ""
 "[(Video) Using Rust in Free-Threaded vs Regular Python 3.13](https://www."
 "youtube.com/watch?v=J7phN_M4GLM) - Jun 4, 2025"
 msgstr ""
 
-#: src/index.md:254
+#: src/index.md:255
 msgid ""
 "[(Video) Techniques learned from five years finding the way for Rust in "
 "Python](https://www.youtube.com/watch?v=KTQn_PTHNCw) - Feb 26, 2025"
 msgstr ""
 
-#: src/index.md:255
+#: src/index.md:256
 msgid ""
 "[(Podcast) Bridging Python and Rust: An Interview with PyO3 Maintainer David "
 "Hewitt](https://www.youtube.com/watch?v=P47JUMSQagU) - Aug 30, 2024"
 msgstr ""
 
-#: src/index.md:256
+#: src/index.md:257
 msgid ""
 "[(Video) PyO3: From Python to Rust and Back Again](https://www.youtube.com/"
 "watch?v=UmL_CA-v3O8) - Jul 3, 2024"
 msgstr ""
 
-#: src/index.md:257
+#: src/index.md:258
 msgid ""
 "[Parsing Python ASTs 20x Faster with Rust](https://www.gauge.sh/blog/parsing-"
 "python-asts-20x-faster-with-rust) - Jun 17, 2024"
 msgstr ""
 
-#: src/index.md:258
+#: src/index.md:259
 msgid ""
 "[(Video) How Python Harnesses Rust through PyO3](https://www.youtube.com/"
 "watch?v=UilujdubqVU) - May 18, 2024"
 msgstr ""
 
-#: src/index.md:259
+#: src/index.md:260
 msgid ""
 "[(Video) Combining Rust and Python: The Best of Both Worlds?](https://www."
 "youtube.com/watch?v=lyG6AKzu4ew) - Mar 1, 2024"
 msgstr ""
 
-#: src/index.md:260
+#: src/index.md:261
 msgid ""
 "[(Video) Extending Python with Rust using PyO3](https://www.youtube.com/"
 "watch?v=T45ZEmSR1-s) - Dec 16, 2023"
 msgstr ""
 
-#: src/index.md:261
+#: src/index.md:262
 msgid ""
 "[A Week of PyO3 + rust-numpy (How to Speed Up Your Data Pipeline X Times)]"
 "(https://terencezl.github.io/blog/2023/06/06/a-week-of-pyo3-rust-numpy/) - "
 "Jun 6, 2023"
 msgstr ""
 
-#: src/index.md:262
+#: src/index.md:263
 msgid ""
 "[(Podcast) PyO3 with David Hewitt](https://rustacean-station.org/episode/"
 "david-hewitt/) - May 19, 2023"
 msgstr ""
 
-#: src/index.md:263
+#: src/index.md:264
 msgid ""
 "[Making Python 100x faster with less than 100 lines of Rust](https://"
 "ohadravid.github.io/posts/2023-03-rusty-python/) - Mar 28, 2023"
 msgstr ""
 
-#: src/index.md:264
+#: src/index.md:265
 msgid ""
 "[How Pydantic V2 leverages Rust's Superpowers](https://fosdem.org/2023/"
 "schedule/event/rust_how_pydantic_v2_leverages_rusts_superpowers/) - Feb 4, "
 "2023"
 msgstr ""
 
-#: src/index.md:265
+#: src/index.md:266
 msgid ""
 "[How we extended the River stats module with Rust using PyO3](https://boring-"
 "guy.sh/posts/river-rust/) - Dec 23, 2022"
 msgstr ""
 
-#: src/index.md:266
+#: src/index.md:267
 msgid ""
 "[Nine Rules for Writing Python Extensions in Rust](https://"
 "towardsdatascience.com/nine-rules-for-writing-python-extensions-in-rust-"
 "d35ea3a4ec29?sk=f8d808d5f414154fdb811e4137011437) - Dec 31, 2021"
 msgstr ""
 
-#: src/index.md:267
+#: src/index.md:268
 msgid ""
 "[Calling Rust from Python using PyO3](https://saidvandeklundert.net/"
 "learn/2021-11-18-calling-rust-from-python-using-pyo3/) - Nov 18, 2021"
 msgstr ""
 
-#: src/index.md:268
+#: src/index.md:269
 msgid ""
 "[davidhewitt's 2021 talk at Rust Manchester meetup](https://www.youtube.com/"
 "watch?v=-XyWG_klSAw&t=320s) - Aug 19, 2021"
 msgstr ""
 
-#: src/index.md:269
+#: src/index.md:270
 msgid ""
 "[Incrementally porting a small Python project to Rust](https://blog."
 "waleedkhan.name/port-python-to-rust/) - Apr 29, 2021"
 msgstr ""
 
-#: src/index.md:270
+#: src/index.md:271
 msgid ""
 "[Vortexa - Integrating Rust into Python](https://www.vortexa.com/blog/"
 "integrating-rust-into-python) - Apr 12, 2021"
 msgstr ""
 
-#: src/index.md:271
+#: src/index.md:272
 msgid ""
 "[Writing and publishing a Python module in Rust](https://blog.yossarian."
 "net/2020/08/02/Writing-and-publishing-a-python-module-in-rust) - Aug 2, 2020"
 msgstr ""
 
-#: src/index.md:273
+#: src/index.md:274
 msgid "Contributing"
 msgstr ""
 
-#: src/index.md:275
+#: src/index.md:276
 msgid ""
 "Everyone is welcomed to contribute to PyO3! There are many ways to support "
 "the project, such as:"
 msgstr ""
 
-#: src/index.md:277
+#: src/index.md:278
 msgid ""
 "help PyO3 users with issues on GitHub and [Discord](https://discord."
 "gg/33kcChzH7f)"
 msgstr ""
 
-#: src/index.md:278
+#: src/index.md:279
 msgid "improve documentation"
 msgstr ""
 
-#: src/index.md:279
+#: src/index.md:280
 msgid "write features and bugfixes"
 msgstr ""
 
-#: src/index.md:280
+#: src/index.md:281
 msgid "publish blogs and examples of how to use PyO3"
 msgstr ""
 
-#: src/index.md:282
+#: src/index.md:283
 msgid ""
 "Our [contributing notes](https://github.com/PyO3/pyo3/blob/main/Contributing."
 "md) and [architecture guide](https://github.com/PyO3/pyo3/blob/main/"
@@ -864,45 +871,45 @@ msgid ""
 "and are searching where to start."
 msgstr ""
 
-#: src/index.md:284
+#: src/index.md:285
 msgid ""
 "If you don't have time to contribute yourself but still wish to support the "
 "project's future success, some of our maintainers have GitHub sponsorship "
 "pages:"
 msgstr ""
 
-#: src/index.md:286
+#: src/index.md:287
 msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 msgstr ""
 
-#: src/index.md:287
+#: src/index.md:288
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr ""
 
-#: src/index.md:289
+#: src/index.md:290
 msgid "License"
 msgstr ""
 
-#: src/index.md:291
+#: src/index.md:292
 msgid ""
 "PyO3 is licensed under the [Apache-2.0 license](LICENSE-APACHE) or the [MIT "
 "license](LICENSE-MIT), at your option."
 msgstr ""
 
-#: src/index.md:293
+#: src/index.md:294
 msgid ""
 "Python is licensed under the [Python License](https://docs.python.org/3/"
 "license.html)."
 msgstr ""
 
-#: src/index.md:295
+#: src/index.md:296
 msgid ""
 "Unless you explicitly state otherwise, any contribution intentionally "
 "submitted for inclusion in PyO3 by you, as defined in the Apache License, "
 "shall be dual-licensed as above, without any additional terms or conditions."
 msgstr ""
 
-#: src/index.md:297
+#: src/index.md:298
 msgid ""
 "<a href=\"https://www.netlify.com\"> <img src=\"https://www.netlify.com/v3/"
 "img/components/netlify-color-accent.svg\" alt=\"Deploys by Netlify\" /> </a>"
