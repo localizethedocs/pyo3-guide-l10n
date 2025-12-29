@@ -152,7 +152,7 @@ msgstr ""
 
 #: src/performance.md:134
 msgid "Disable the global reference pool"
-msgstr ""
+msgstr "停用全域參考池"
 
 #: src/performance.md:136
 msgid ""

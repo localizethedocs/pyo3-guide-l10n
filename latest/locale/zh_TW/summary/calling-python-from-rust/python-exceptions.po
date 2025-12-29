@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/exception.md:1
 msgid "Python exceptions"
-msgstr ""
+msgstr "Python 例外狀況"
 
 #: src/exception.md:3
 msgid "Defining a new exception"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: src/exception.md:58
 msgid "Raising an exception"
-msgstr ""
+msgstr "拋出例外狀況"
 
 #: src/exception.md:60
 msgid ""
@@ -101,7 +101,7 @@ msgstr ""
 
 #: src/exception.md:107
 msgid "Using exceptions defined in Python code"
-msgstr ""
+msgstr "使用 Python 程式碼中定義的例外狀況"
 
 #: src/exception.md:109
 msgid ""
@@ -127,7 +127,7 @@ msgstr ""
 
 #: src/exception.md:130
 msgid "Creating more complex exceptions"
-msgstr ""
+msgstr "建立更多複雜的例外狀況"
 
 #: src/exception.md:132
 msgid ""
@@ -144,18 +144,24 @@ msgid ""
 "\"assert str(CustomError) == \\\"<class 'builtins.CustomError'>\\\", "
 "repr(CustomError)\""
 msgstr ""
+"\"assert str(CustomError) == \\\"<class 'builtins.CustomError'>\\\", "
+"repr(CustomError)\""
 
 #: src/exception.md:166
 msgid ""
 "\"assert CustomError('https://example.com', 'something went bad').args == "
 "('https://example.com', 'something went bad')\""
 msgstr ""
+"\"assert CustomError('https://example.com', 'something went bad').args == "
+"('https://example.com', 'something went bad')\""
 
 #: src/exception.md:167
 msgid ""
 "\"assert CustomError('https://example.com', 'something went bad').url == "
 "'https://example.com'\""
 msgstr ""
+"\"assert CustomError('https://example.com', 'something went bad').url == "
+"'https://example.com'\""
 
 #: src/exception.md:175
 msgid ""
