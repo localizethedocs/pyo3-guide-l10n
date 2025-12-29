@@ -16,9 +16,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2025-12-16 08:31:54 +0000",
-        "hash" : "0c1d54ef49077b2665cd93cb7445068cd09360f4",
-        "title" : "build(deps): bump actions/upload-artifact from 5 to 6 (#5700)"
+        "date" : "2025-12-28 14:37:12 +0000",
+        "hash" : "e4f0818fc29dcb8575da035422752c38bf46f68c",
+        "title" : "Add fast-paseto to examples (#5715)"
       }
     },
     "zh_TW" : 
@@ -26,9 +26,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2025-12-16 08:31:54 +0000",
-        "hash" : "0c1d54ef49077b2665cd93cb7445068cd09360f4",
-        "title" : "build(deps): bump actions/upload-artifact from 5 to 6 (#5700)"
+        "date" : "2025-12-28 14:37:12 +0000",
+        "hash" : "e4f0818fc29dcb8575da035422752c38bf46f68c",
+        "title" : "Add fast-paseto to examples (#5715)"
       }
     }
   },

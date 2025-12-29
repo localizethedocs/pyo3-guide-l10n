@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:32:46Z\n"
+"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -73,7 +73,9 @@ msgid "The `abi3-pyXY` features"
 msgstr ""
 
 #: src/features.md:26
-msgid "(`abi3-py37`, `abi3-py38`, `abi3-py39`, `abi3-py310` and `abi3-py311`)"
+msgid ""
+"(`abi3-py37`, `abi3-py38`, `abi3-py39`, `abi3-py310`, `abi3-py311`, `abi3-"
+"py312`, `abi3-py313` and `abi3-py314`)"
 msgstr ""
 
 #: src/features.md:28
