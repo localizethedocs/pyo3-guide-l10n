@@ -61,7 +61,7 @@ msgstr ""
 
 #: src/exception.md:50
 msgid "Raising an exception"
-msgstr ""
+msgstr "拋出例外狀況"
 
 #: src/exception.md:52
 msgid ""
@@ -203,7 +203,7 @@ msgstr ""
 
 #: src/exception.md:226
 msgid "Using exceptions defined in Python code"
-msgstr ""
+msgstr "使用 Python 程式碼中定義的例外狀況"
 
 #: src/exception.md:228
 msgid ""
