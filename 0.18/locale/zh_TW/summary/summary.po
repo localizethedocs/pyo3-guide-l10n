@@ -73,7 +73,7 @@ msgstr ""
 
 #: src/SUMMARY.md:20
 msgid "Python exceptions"
-msgstr ""
+msgstr "Python 例外狀況"
 
 #: src/SUMMARY.md:21
 msgid "Calling Python from Rust"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: src/SUMMARY.md:32
 msgid "Using `async` and `await`"
-msgstr ""
+msgstr "使用 `async` 和 `await`"
 
 #: src/SUMMARY.md:33
 msgid "FAQ and troubleshooting"
