@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:50Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function.md:1
+msgid "Python Functions"
+msgstr ""
+
+#: src/function.md:3
+msgid ""
+"PyO3 supports two ways to define a free function in Python. Both require "
+"registering the function to a [module](./module.md)."
+msgstr ""
+
+#: src/function.md:6
+msgid "One way is defining the function in the module definition."
+msgstr ""
+
+#: src/function.md:14
+msgid ""
+"// Note that the `#[pyfn()]` annotation automatically converts the arguments "
+"from\n"
+"    // Python objects to Rust values; and the Rust return value back into a "
+"Python object.\n"
+msgstr ""
+
+#: src/function.md:16
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/function.md:18
+msgid "\"{}\""
+msgstr ""
+
+#: src/function.md:27
+msgid ""
+"The other is annotating a function with `#[pyfunction]` and then adding it "
+"to the module using the `wrap_pyfunction!` macro."
+msgstr ""
+
+#: src/function.md:49
+msgid "Making the function signature available to Python"
+msgstr ""
+
+#: src/function.md:51
+msgid ""
+"In order to make the function signature available to Python to be retrieved "
+"via `inspect.signature`, simply make sure the first line of your docstring "
+"is formatted like in the example below. Please note that the newline after "
+"the `--` is mandatory. The `/` signifies the end of positional-only "
+"arguments. This is not a feature of this library in particular, but the "
+"general format used by CPython for annotating signatures of built-in "
+"functions. Function signatures for built-ins are new in Python 3 — in Python "
+"2, they are simply considered to be a part of the docstring."
+msgstr ""
+
+#: src/function.md:62
+msgid ""
+"/// add(a, b, /)\n"
+"/// --\n"
+"///\n"
+"/// This function adds two unsigned 64-bit integers.\n"
+msgstr ""
+
+#: src/function.md:73
+msgid ""
+"When annotated like this, signatures are also correctly displayed in IPython."
+msgstr ""
+
+#: src/function.md:81
+msgid "Closures"
+msgstr ""
+
+#: src/function.md:83
+msgid ""
+"Currently, there are no conversions between `Fn`s in Rust and callables in "
+"Python. This would definitely be possible and very useful, so contributions "
+"are welcome. In the meantime, you can do the following:"
+msgstr ""
+
+#: src/function.md:85
+msgid "Calling a Python function in Rust"
+msgstr ""
+
+#: src/function.md:87
+msgid ""
+"You can use `ObjectProtocol::is_callable` to check if you got a callable, "
+"which is true for functions (including lambdas), methods and objects with a "
+"`__call__` method. You can call the object with `ObjectProtocol::call` with "
+"the args as first parameter and the kwargs (or `None`) as second parameter. "
+"There are also `ObjectProtocol::call0` with no args and `ObjectProtocol::"
+"call1` with only the positional args."
+msgstr ""
+
+#: src/function.md:89
+msgid "Calling Rust `Fn`s in Python"
+msgstr ""
+
+#: src/function.md:91
+msgid ""
+"If you have a static function, you can expose it with `#[pyfunction]` and "
+"use `wrap_pyfunction!` to get the corresponding `PyObject`. For dynamic "
+"functions, e.g. lambda and functions that were passed as arguments, you must "
+"put them in some kind of owned container, e.g. a box. (A long-term solution "
+"will be a special container similar to wasm-bindgen's `Closure`). You can "
+"then use a `#[pyclass]` struct with that container as a field as a way to "
+"pass the function over the FFI barrier. You can even make that class "
+"callable with `__call__` so it looks like a function in Python code."
+msgstr ""
