@@ -120,7 +120,7 @@ msgstr ""
 
 #: src/python-from-rust.md:34
 msgid "Python's memory model"
-msgstr ""
+msgstr "Python 的記憶體模型"
 
 #: src/python-from-rust.md:36
 msgid "Python's memory model differs from Rust's memory model in two key ways:"

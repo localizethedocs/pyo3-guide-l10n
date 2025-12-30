@@ -73,7 +73,7 @@ msgstr "Python 物件型別"
 
 #: src/SUMMARY.md:20
 msgid "Python exceptions"
-msgstr ""
+msgstr "Python 例外狀況"
 
 #: src/SUMMARY.md:21
 msgid "Calling Python functions"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: src/SUMMARY.md:26 src/SUMMARY.md:37
 msgid "Using `async` and `await`"
-msgstr ""
+msgstr "使用 `async` 和 `await`"
 
 #: src/SUMMARY.md:27
 msgid "Parallelism"

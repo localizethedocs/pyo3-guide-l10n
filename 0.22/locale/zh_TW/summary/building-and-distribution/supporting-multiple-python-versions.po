@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:1
 msgid "Supporting multiple Python versions"
-msgstr ""
+msgstr "支援多種 Python 版本"
 
 #: src/building-and-distribution/multiple-python-versions.md:3
 msgid ""
@@ -72,7 +72,7 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:30
 msgid "Using `pyo3-build-config`"
-msgstr ""
+msgstr "使用 `pyo3-build-config`"
 
 #: src/building-and-distribution/multiple-python-versions.md:32
 msgid "You can use the `#[cfg]` flags in just two steps:"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:52
 msgid "Common usages of `pyo3-build-cfg` flags"
-msgstr ""
+msgstr "`pyo3-build-cfg` 旗標的常見用法"
 
 #: src/building-and-distribution/multiple-python-versions.md:54
 msgid ""
