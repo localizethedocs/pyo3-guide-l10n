@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:43Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/parallelism.md:1
+msgid "Parallelism"
+msgstr ""
+
+#: src/parallelism.md:3
+msgid ""
+"CPython has an infamous GIL(Global Interpreter Lock) prevents developers "
+"getting true parallelism. With `pyo3` you can release GIL when executing "
+"Rust code to achieve true parallelism."
+msgstr ""
+
+#: src/parallelism.md:7
+msgid ""
+"The [`Python::allow_threads`](https://docs.rs/pyo3/0.2.7/struct.Python."
+"html#method.allow_threads) method temporarily releases the GIL, thus "
+"allowing other Python threads to run."
+msgstr ""
+
+#: src/parallelism.md:16
+msgid ""
+"Let's take a look at our [word-count](https://github.com/PyO3/pyo3/blob/"
+"master/examples/word-count/src/lib.rs) example, we have a `wc_parallel` "
+"function utilize the [rayon](https://github.com/nikomatsakis/rayon) crate to "
+"count words in parallel."
+msgstr ""
+
+#: src/parallelism.md:27
+msgid ""
+"Then in the Python bridge, we have a function `search` exposed to Python "
+"runtime which calls `wc_parallel` inside `Python::allow_threads` method to "
+"enable true parallelism:"
+msgstr ""
+
+#: src/parallelism.md:34
+msgid "\"search\""
+msgstr ""
+
+#: src/parallelism.md:48
+msgid "Benchmark"
+msgstr ""
+
+#: src/parallelism.md:50
+msgid ""
+"Let's benchmark the `word-count` example to verify that we did unlock true "
+"parallelism with `pyo3`. We are using `pytest-benchmark` to benchmark three "
+"word count functions:"
+msgstr ""
+
+#: src/parallelism.md:53
+msgid ""
+"[Pure Python version](https://github.com/PyO3/pyo3/blob/master/examples/word-"
+"count/word_count/__init__.py#L9)"
+msgstr ""
+
+#: src/parallelism.md:54
+msgid ""
+"[Rust sequential version](https://github.com/PyO3/pyo3/blob/master/examples/"
+"word-count/src/lib.rs#L64)"
+msgstr ""
+
+#: src/parallelism.md:55
+msgid ""
+"[Rust parallel version](https://github.com/PyO3/pyo3/blob/master/examples/"
+"word-count/src/lib.rs#L54)"
+msgstr ""
+
+#: src/parallelism.md:57
+msgid ""
+"Benchmark script can be found [here](https://github.com/PyO3/pyo3/blob/"
+"master/examples/word-count/tests/test_word_count.py), then we can run "
+"`pytest tests` to benchmark them."
+msgstr ""
+
+#: src/parallelism.md:60
+msgid "On MacBook Pro (Retina, 15-inch, Mid 2015) the benchmark gives:"
+msgstr ""
+
+#: src/parallelism.md:62
+msgid ""
+"![Benchmark Result](https://user-images.githubusercontent."
+"com/1556054/28604608-81bd6d22-71fe-11e7-8a2c-c3cf3bd0f622.png)"
+msgstr ""
