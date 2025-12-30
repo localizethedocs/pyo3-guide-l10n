@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/ecosystem/async-await.md:1
 msgid "Using `async` and `await`"
-msgstr ""
+msgstr "使用 `async` 和 `await`"
 
 #: src/ecosystem/async-await.md:3
 msgid ""
