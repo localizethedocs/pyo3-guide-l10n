@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:32:46Z\n"
+"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -169,7 +169,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:83
 msgid "Packaging tools"
-msgstr ""
+msgstr "打包工具"
 
 #: src/building-and-distribution.md:85
 msgid ""
@@ -290,7 +290,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:124
 msgid "Platform tags"
-msgstr ""
+msgstr "平臺標記"
 
 #: src/building-and-distribution.md:126
 msgid ""

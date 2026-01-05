@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:32:45Z\n"
+"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: src/class/thread-safety.md:50
 msgid "Using atomic data structures"
-msgstr ""
+msgstr "使用原子資料結構"
 
 #: src/class/thread-safety.md:52
 msgid ""

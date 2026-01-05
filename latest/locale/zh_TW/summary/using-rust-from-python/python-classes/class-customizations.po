@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:32:45Z\n"
+"POT-Creation-Date: 2025-12-29T08:25:30Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -610,47 +610,47 @@ msgstr ""
 
 #: src/class/protocols.md:373
 msgid "`__add__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__add__(<self>, object) -> object`"
 
 #: src/class/protocols.md:374
 msgid "`__radd__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__radd__(<self>, object) -> object`"
 
 #: src/class/protocols.md:375
 msgid "`__sub__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__sub__(<self>, object) -> object`"
 
 #: src/class/protocols.md:376
 msgid "`__rsub__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rsub__(<self>, object) -> object`"
 
 #: src/class/protocols.md:377
 msgid "`__mul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__mul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:378
 msgid "`__rmul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rmul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:379
 msgid "`__matmul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__matmul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:380
 msgid "`__rmatmul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rmatmul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:381
 msgid "`__floordiv__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__floordiv__(<self>, object) -> object`"
 
 #: src/class/protocols.md:382
 msgid "`__rfloordiv__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rfloordiv__(<self>, object) -> object`"
 
 #: src/class/protocols.md:383
 msgid "`__truediv__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__truediv__(<self>, object) -> object`"
 
 #: src/class/protocols.md:384
 msgid "`__rtruediv__(<self>, object) -> object`"
@@ -698,27 +698,27 @@ msgstr ""
 
 #: src/class/protocols.md:395
 msgid "`__xor__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__xor__(<self>, object) -> object`"
 
 #: src/class/protocols.md:396
 msgid "`__rxor__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rxor__(<self>, object) -> object`"
 
 #: src/class/protocols.md:397
 msgid "`__or__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__or__(<self>, object) -> object`"
 
 #: src/class/protocols.md:398
 msgid "`__ror__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__ror__(<self>, object) -> object`"
 
 #: src/class/protocols.md:399
 msgid "`__pow__(<self>, object, object) -> object`"
-msgstr ""
+msgstr "`__pow__(<self>, object, object) -> object`"
 
 #: src/class/protocols.md:400
 msgid "`__rpow__(<self>, object, object) -> object`"
-msgstr ""
+msgstr "`__rpow__(<self>, object, object) -> object`"
 
 #: src/class/protocols.md:402
 msgid ""

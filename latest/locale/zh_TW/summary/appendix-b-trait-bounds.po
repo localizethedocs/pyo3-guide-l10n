@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:32:46Z\n"
+"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -62,7 +62,7 @@ msgstr ""
 
 #: src/trait-bounds.md:20
 msgid "Example"
-msgstr ""
+msgstr "範例"
 
 #: src/trait-bounds.md:22
 msgid ""
