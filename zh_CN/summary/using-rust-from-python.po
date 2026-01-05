@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-29T08:25:30Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/rust-from-python.md:1
+msgid "Using Rust from Python"
+msgstr ""
+
+#: src/rust-from-python.md:3
+msgid ""
+"This chapter of the guide is dedicated to explaining how to wrap Rust code "
+"into Python objects."
+msgstr ""
+
+#: src/rust-from-python.md:5
+msgid ""
+"PyO3 uses Rust's \"procedural macros\" to provide a powerful yet simple API "
+"to denote what Rust code should map into Python objects."
+msgstr ""
+
+#: src/rust-from-python.md:7
+msgid "PyO3 can create three types of Python objects:"
+msgstr ""
+
+#: src/rust-from-python.md:9
+msgid "Python modules, via the `#[pymodule]` macro"
+msgstr ""
+
+#: src/rust-from-python.md:10
+msgid "Python functions, via the `#[pyfunction]` macro"
+msgstr ""
+
+#: src/rust-from-python.md:11
+msgid ""
+"Python classes, via the `#[pyclass]` macro (plus `#[pymethods]` to define "
+"methods for those classes)"
+msgstr ""
+
+#: src/rust-from-python.md:13
+msgid "The following subchapters go through each of these in turn."
+msgstr ""

@@ -1,0 +1,756 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/features.md:1
+msgid "Features reference"
+msgstr ""
+
+#: src/features.md:3
+msgid ""
+"PyO3 provides a number of Cargo features to customize functionality. This "
+"chapter of the guide provides detail on each of them."
+msgstr ""
+
+#: src/features.md:6
+msgid "By default, only the `macros` feature is enabled."
+msgstr ""
+
+#: src/features.md:8
+msgid "Features for extension module authors"
+msgstr ""
+
+#: src/features.md:10
+msgid "`extension-module`"
+msgstr ""
+
+#: src/features.md:12
+msgid ""
+"Deprecated, users should remove this feature and upgrade to `maturin >= "
+"1.9.4` or `setuptools-rust >= 1.12`."
+msgstr ""
+
+#: src/features.md:14
+msgid ""
+"See the [building and distribution](building-and-distribution.md#the-"
+"extension-module-feature) section for further detail."
+msgstr ""
+
+#: src/features.md:16
+msgid "`abi3`"
+msgstr ""
+
+#: src/features.md:18
+msgid ""
+"This feature is used when building Python extension modules to create wheels "
+"which are compatible with multiple Python versions."
+msgstr ""
+
+#: src/features.md:20
+msgid ""
+"It restricts PyO3's API to a subset of the full Python API which is "
+"guaranteed by [PEP 384](https://www.python.org/dev/peps/pep-0384/) to be "
+"forwards-compatible with future Python versions."
+msgstr ""
+
+#: src/features.md:22
+msgid ""
+"See the [building and distribution](building-and-distribution."
+"md#py_limited_apiabi3) section for further detail."
+msgstr ""
+
+#: src/features.md:24
+msgid "The `abi3-pyXY` features"
+msgstr ""
+
+#: src/features.md:26
+msgid ""
+"(`abi3-py37`, `abi3-py38`, `abi3-py39`, `abi3-py310`, `abi3-py311`, `abi3-"
+"py312`, `abi3-py313` and `abi3-py314`)"
+msgstr ""
+
+#: src/features.md:28
+msgid ""
+"These features are extensions of the `abi3` feature to specify the exact "
+"minimum Python version which the multiple-version-wheel will support."
+msgstr ""
+
+#: src/features.md:30
+msgid ""
+"See the [building and distribution](building-and-distribution.md#minimum-"
+"python-version-for-abi3) section for further detail."
+msgstr ""
+
+#: src/features.md:32
+msgid "`generate-import-lib`"
+msgstr ""
+
+#: src/features.md:34
+msgid ""
+"This experimental feature is used to generate import libraries for Python "
+"DLL for MinGW-w64 and MSVC (cross-)compile targets."
+msgstr ""
+
+#: src/features.md:36
+msgid ""
+"Enabling it allows to (cross-)compile extension modules to any Windows "
+"targets without having to install the Windows Python distribution files for "
+"the target."
+msgstr ""
+
+#: src/features.md:38
+msgid ""
+"See the [building and distribution](building-and-distribution.md#building-"
+"abi3-extensions-without-a-python-interpreter) section for further detail."
+msgstr ""
+
+#: src/features.md:40
+msgid "Features for embedding Python in Rust"
+msgstr ""
+
+#: src/features.md:42
+msgid "`auto-initialize`"
+msgstr ""
+
+#: src/features.md:44
+msgid ""
+"This feature changes [`Python::attach`](https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html#method.attach) to automatically initialize a Python "
+"interpreter (by calling [`Python::initialize`](https://pyo3.rs/main/doc/pyo3/"
+"marker/struct.Python.html#method.initialize)) if needed."
+msgstr ""
+
+#: src/features.md:46
+msgid ""
+"If you do not enable this feature, you should call `Python::initialize()` "
+"before attempting to call any other Python APIs."
+msgstr ""
+
+#: src/features.md:48
+msgid "Advanced Features"
+msgstr ""
+
+#: src/features.md:50
+msgid "`experimental-async`"
+msgstr ""
+
+#: src/features.md:52
+msgid ""
+"This feature adds support for `async fn` in `#[pyfunction]` and "
+"`#[pymethods]`."
+msgstr ""
+
+#: src/features.md:54
+msgid ""
+"The feature has some unfinished refinements and performance improvements. To "
+"help finish this off, see [issue #1632](https://github.com/PyO3/pyo3/"
+"issues/1632) and its associated draft PRs."
+msgstr ""
+
+#: src/features.md:57
+msgid "`experimental-inspect`"
+msgstr ""
+
+#: src/features.md:59
+msgid ""
+"This feature adds to the built binaries introspection data that can be then "
+"retrieved using the `pyo3-introspection` crate to generate [type stubs]"
+"(https://typing.readthedocs.io/en/latest/source/stubs.html)."
+msgstr ""
+
+#: src/features.md:61
+msgid ""
+"Also, this feature adds the `pyo3::inspect` module, as well as `IntoPy::"
+"type_output` and `FromPyObject::type_input` APIs to produce Python type "
+"\"annotations\" for Rust types."
+msgstr ""
+
+#: src/features.md:63
+msgid ""
+"This is a first step towards adding first-class support for generating type "
+"annotations automatically in PyO3, however work is needed to finish this "
+"off. All feedback and offers of help welcome on [issue #2454](https://github."
+"com/PyO3/pyo3/issues/2454)."
+msgstr ""
+
+#: src/features.md:66
+msgid "`py-clone`"
+msgstr ""
+
+#: src/features.md:68
+msgid ""
+"This feature was introduced to ease migration. It was found that delayed "
+"reference counting (which PyO3 used historically) could not be made sound "
+"and hence `Clone`\\-ing an instance of `Py<T>` is impossible when not "
+"attached to Python interpreter (it will panic). To avoid migrations "
+"introducing new panics without warning, the `Clone` implementation itself is "
+"now gated behind this feature."
+msgstr ""
+
+#: src/features.md:72
+msgid "`pyo3_disable_reference_pool`"
+msgstr ""
+
+#: src/features.md:74
+msgid ""
+"This is a performance-oriented conditional compilation flag, e.g. [set via "
+"`$RUSTFLAGS`](https://doc.rust-lang.org/reference/conditional-compilation."
+"html#set-configuration-options), which disabled the global reference pool "
+"and the associated overhead for the crossing the Python-Rust boundary. "
+"However, if enabled, `Drop`ping an instance of `Py<T>` when not attached to "
+"the Python interpreter will abort the process."
+msgstr ""
+
+#: src/features.md:77
+msgid "`macros`"
+msgstr ""
+
+#: src/features.md:79
+msgid ""
+"This feature enables a dependency on the `pyo3-macros` crate, which provides "
+"the procedural macros portion of PyO3's API:"
+msgstr ""
+
+#: src/features.md:81
+msgid "`#[pymodule]`"
+msgstr ""
+
+#: src/features.md:82
+msgid "`#[pyfunction]`"
+msgstr ""
+
+#: src/features.md:83
+msgid "`#[pyclass]`"
+msgstr ""
+
+#: src/features.md:84
+msgid "`#[pymethods]`"
+msgstr ""
+
+#: src/features.md:85
+msgid "`#[derive(FromPyObject)]`"
+msgstr ""
+
+#: src/features.md:87
+msgid "It also provides the `py_run!` macro."
+msgstr ""
+
+#: src/features.md:89
+msgid ""
+"These macros require a number of dependencies which may not be needed by "
+"users who just need PyO3 for Python FFI. Disabling this feature enables "
+"faster builds for those users, as these dependencies will not be built if "
+"this feature is disabled."
+msgstr ""
+
+#: src/features.md:92
+msgid ""
+"\\[!NOTE\\] This feature is enabled by default. To disable it, set `default-"
+"features = false` for the `pyo3` entry in your Cargo.toml."
+msgstr ""
+
+#: src/features.md:95
+msgid "`multiple-pymethods`"
+msgstr ""
+
+#: src/features.md:97
+msgid ""
+"This feature enables each `#[pyclass]` to have more than one `#[pymethods]` "
+"block."
+msgstr ""
+
+#: src/features.md:99
+msgid ""
+"Most users should only need a single `#[pymethods]` per `#[pyclass]`. In "
+"addition, not all platforms (e.g. Wasm) are supported by `inventory`, which "
+"is used in the implementation of the feature. For this reason this feature "
+"is not enabled by default, meaning fewer dependencies and faster compilation "
+"for the majority of users."
+msgstr ""
+
+#: src/features.md:103
+msgid ""
+"See [the `#[pyclass]` implementation details](class.md#implementation-"
+"details) for more information."
+msgstr ""
+
+#: src/features.md:105
+msgid "`nightly`"
+msgstr ""
+
+#: src/features.md:107
+msgid ""
+"The `nightly` feature needs the nightly Rust compiler. This allows PyO3 to "
+"use the `auto_traits` and `negative_impls` features to fix the `Python::"
+"detach` function."
+msgstr ""
+
+#: src/features.md:110
+msgid "`resolve-config`"
+msgstr ""
+
+#: src/features.md:112
+msgid ""
+"The `resolve-config` feature of the `pyo3-build-config` crate controls "
+"whether that crate's build script automatically resolves a Python "
+"interpreter / build configuration. This feature is primarily useful when "
+"building PyO3 itself. By default this feature is not enabled, meaning you "
+"can freely use `pyo3-build-config` as a standalone library to read or write "
+"PyO3 build configuration files or resolve metadata about a Python "
+"interpreter."
+msgstr ""
+
+#: src/features.md:116
+msgid "Optional Dependencies"
+msgstr ""
+
+#: src/features.md:118
+msgid ""
+"These features enable conversions between Python types and types from other "
+"Rust crates, enabling easy access to the rest of the Rust ecosystem."
+msgstr ""
+
+#: src/features.md:120
+msgid "`anyhow`"
+msgstr ""
+
+#: src/features.md:122
+msgid ""
+"Adds a dependency on [anyhow](https://docs.rs/anyhow). Enables a conversion "
+"from [anyhow](https://docs.rs/anyhow)’s [`Error`](https://docs.rs/anyhow/"
+"latest/anyhow/struct.Error.html) type to [`PyErr`](https://pyo3.rs/main/doc/"
+"pyo3/struct.PyErr.html), for easy error handling."
+msgstr ""
+
+#: src/features.md:125
+msgid "`arc_lock`"
+msgstr ""
+
+#: src/features.md:127
+msgid ""
+"Enables Pyo3's `MutexExt` trait for all Mutexes that extend on [`lock_api::"
+"Mutex`](https://docs.rs/lock_api/latest/lock_api/struct.Mutex.html) or "
+"[`parking_lot::ReentrantMutex`](https://docs.rs/lock_api/latest/lock_api/"
+"struct.ReentrantMutex.html) and are wrapped in an [`Arc`](https://doc.rust-"
+"lang.org/std/sync/struct.Arc.html) type. Like [`Arc<parking_lot::Mutex>`]"
+"(https://docs.rs/parking_lot/latest/parking_lot/type.Mutex.html#method."
+"lock_arc)"
+msgstr ""
+
+#: src/features.md:130
+msgid "`bigdecimal`"
+msgstr ""
+
+#: src/features.md:132
+msgid ""
+"Adds a dependency on [bigdecimal](https://docs.rs/bigdecimal) and enables "
+"conversions into its [`BigDecimal`](https://docs.rs/bigdecimal/latest/"
+"bigdecimal/struct.BigDecimal.html) type."
+msgstr ""
+
+#: src/features.md:134
+msgid "`bytes`"
+msgstr ""
+
+#: src/features.md:136
+msgid ""
+"Adds a dependency on [bytes](https://docs.rs/bytes/latest/bytes) and enables "
+"conversions into its [`Bytes`](https://docs.rs/bytes/latest/bytes/struct."
+"Bytes.html) type."
+msgstr ""
+
+#: src/features.md:138
+msgid "`chrono`"
+msgstr ""
+
+#: src/features.md:140
+msgid ""
+"Adds a dependency on [chrono](https://docs.rs/chrono). Enables a conversion "
+"from [chrono](https://docs.rs/chrono)'s types to python:"
+msgstr ""
+
+#: src/features.md:143
+msgid ""
+"[TimeDelta](https://docs.rs/chrono/latest/chrono/struct.TimeDelta.html) -> "
+"[`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
+msgstr ""
+
+#: src/features.md:144
+msgid ""
+"[FixedOffset](https://docs.rs/chrono/latest/chrono/offset/struct.FixedOffset."
+"html) -> [`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
+msgstr ""
+
+#: src/features.md:145
+msgid ""
+"[Utc](https://docs.rs/chrono/latest/chrono/offset/struct.Utc.html) -> "
+"[`PyTzInfo`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTzInfo.html)"
+msgstr ""
+
+#: src/features.md:146
+msgid ""
+"[NaiveDate](https://docs.rs/chrono/latest/chrono/naive/struct.NaiveDate."
+"html) -> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
+msgstr ""
+
+#: src/features.md:147
+msgid ""
+"[NaiveTime](https://docs.rs/chrono/latest/chrono/naive/struct.NaiveTime."
+"html) -> [`PyTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
+msgstr ""
+
+#: src/features.md:148
+msgid ""
+"[DateTime](https://docs.rs/chrono/latest/chrono/struct.DateTime.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:150
+msgid "`chrono-local`"
+msgstr ""
+
+#: src/features.md:152
+msgid ""
+"Enables conversion from and to [Local](https://docs.rs/chrono/latest/chrono/"
+"struct.Local.html) timezones. The current system timezone as determined by "
+"[`iana_time_zone::get_timezone()`](https://docs.rs/iana-time-zone/latest/"
+"iana_time_zone/fn.get_timezone.html) will be used for conversions."
+msgstr ""
+
+#: src/features.md:155
+msgid "`chrono::DateTime<Local>` will convert from either of:"
+msgstr ""
+
+#: src/features.md:157
+msgid ""
+"`datetime` objects with `tzinfo` equivalent to the current system timezone."
+msgstr ""
+
+#: src/features.md:158
+msgid ""
+"\"naive\" `datetime` objects (those without a `tzinfo`), as it is a "
+"convention that naive datetime objects should be treated as using the system "
+"timezone."
+msgstr ""
+
+#: src/features.md:160
+msgid ""
+"When converting to Python, `Local` tzinfo is converted to a `zoneinfo."
+"ZoneInfo` matching the current system timezone."
+msgstr ""
+
+#: src/features.md:162
+msgid "`chrono-tz`"
+msgstr ""
+
+#: src/features.md:164
+msgid ""
+"Adds a dependency on [chrono-tz](https://docs.rs/chrono-tz). Enables "
+"conversion from and to [`Tz`](https://docs.rs/chrono-tz/latest/chrono_tz/"
+"enum.Tz.html)."
+msgstr ""
+
+#: src/features.md:167
+msgid "`either`"
+msgstr ""
+
+#: src/features.md:169
+msgid ""
+"Adds a dependency on [either](https://docs.rs/either). Enables a conversions "
+"into [either](https://docs.rs/either)’s [`Either`](https://docs.rs/either/"
+"latest/either/enum.Either.html) type."
+msgstr ""
+
+#: src/features.md:172
+msgid "`eyre`"
+msgstr ""
+
+#: src/features.md:174
+msgid ""
+"Adds a dependency on [eyre](https://docs.rs/eyre). Enables a conversion from "
+"[eyre](https://docs.rs/eyre)’s [`Report`](https://docs.rs/eyre/latest/eyre/"
+"struct.Report.html) type to [`PyErr`](https://pyo3.rs/main/doc/pyo3/struct."
+"PyErr.html), for easy error handling."
+msgstr ""
+
+#: src/features.md:177
+msgid "`hashbrown`"
+msgstr ""
+
+#: src/features.md:179
+msgid ""
+"Adds a dependency on [hashbrown](https://docs.rs/hashbrown) and enables "
+"conversions into its [`HashMap`](https://docs.rs/hashbrown/latest/hashbrown/"
+"struct.HashMap.html) and [`HashSet`](https://docs.rs/hashbrown/latest/"
+"hashbrown/struct.HashSet.html) types."
+msgstr ""
+
+#: src/features.md:181
+msgid "`indexmap`"
+msgstr ""
+
+#: src/features.md:183
+msgid ""
+"Adds a dependency on [indexmap](https://docs.rs/indexmap) and enables "
+"conversions into its [`IndexMap`](https://docs.rs/indexmap/latest/indexmap/"
+"map/struct.IndexMap.html) type."
+msgstr ""
+
+#: src/features.md:185
+msgid "`jiff-02`"
+msgstr ""
+
+#: src/features.md:187
+msgid ""
+"Adds a dependency on [jiff@0.2](https://docs.rs/jiff/0.2). Enables a "
+"conversion from [jiff](https://docs.rs/jiff)'s types to python:"
+msgstr ""
+
+#: src/features.md:190
+msgid ""
+"[SignedDuration](https://docs.rs/jiff/0.2/jiff/struct.SignedDuration.html) -"
+"> [`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
+msgstr ""
+
+#: src/features.md:191
+msgid ""
+"[TimeZone](https://docs.rs/jiff/0.2/jiff/tz/struct.TimeZone.html) -> "
+"[`PyTzInfo`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTzInfo.html)"
+msgstr ""
+
+#: src/features.md:192
+msgid ""
+"[Offset](https://docs.rs/jiff/0.2/jiff/tz/struct.Offset.html) -> [`PyTzInfo`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyTzInfo.html)"
+msgstr ""
+
+#: src/features.md:193
+msgid ""
+"[Date](https://docs.rs/jiff/0.2/jiff/civil/struct.Date.html) -> [`PyDate`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
+msgstr ""
+
+#: src/features.md:194
+msgid ""
+"[Time](https://docs.rs/jiff/0.2/jiff/civil/struct.Time.html) -> [`PyTime`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
+msgstr ""
+
+#: src/features.md:195
+msgid ""
+"[DateTime](https://docs.rs/jiff/0.2/jiff/civil/struct.DateTime.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:196
+msgid ""
+"[Zoned](https://docs.rs/jiff/0.2/jiff/struct.Zoned.html) -> [`PyDateTime`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:197
+msgid ""
+"[Timestamp](https://docs.rs/jiff/0.2/jiff/struct.Timestamp.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:198
+msgid ""
+"[ISOWeekDate](https://docs.rs/jiff/0.2/jiff/civil/struct.ISOWeekDate.html) -"
+"> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
+msgstr ""
+
+#: src/features.md:200
+msgid "`lock_api`"
+msgstr ""
+
+#: src/features.md:202
+msgid ""
+"Adds a dependency on [lock_api](https://docs.rs/lock_api) and enables Pyo3's "
+"`MutexExt` trait for all mutexes that extend on [`lock_api::Mutex`](https://"
+"docs.rs/lock_api/latest/lock_api/struct.Mutex.html) and [`parking_lot::"
+"ReentrantMutex`](https://docs.rs/lock_api/latest/lock_api/struct."
+"ReentrantMutex.html) (like `parking_lot` or `spin`)."
+msgstr ""
+
+#: src/features.md:204
+msgid "`num-bigint`"
+msgstr ""
+
+#: src/features.md:206
+msgid ""
+"Adds a dependency on [num-bigint](https://docs.rs/num-bigint) and enables "
+"conversions into its [`BigInt`](https://docs.rs/num-bigint/latest/num_bigint/"
+"struct.BigInt.html) and [`BigUint`](https://docs.rs/num-bigint/latest/"
+"num_bigint/struct.BigUint.html) types."
+msgstr ""
+
+#: src/features.md:208
+msgid "`num-complex`"
+msgstr ""
+
+#: src/features.md:210
+msgid ""
+"Adds a dependency on [num-complex](https://docs.rs/num-complex) and enables "
+"conversions into its [`Complex`](https://docs.rs/num-complex/latest/"
+"num_complex/struct.Complex.html) type."
+msgstr ""
+
+#: src/features.md:212
+msgid "`num-rational`"
+msgstr ""
+
+#: src/features.md:214
+msgid ""
+"Adds a dependency on [num-rational](https://docs.rs/num-rational) and "
+"enables conversions into its [`Ratio`](https://docs.rs/num-rational/latest/"
+"num_rational/struct.Ratio.html) type."
+msgstr ""
+
+#: src/features.md:216
+msgid "`ordered-float`"
+msgstr ""
+
+#: src/features.md:218
+msgid ""
+"Adds a dependency on [ordered-float](https://docs.rs/ordered-float) and "
+"enables conversions between [ordered-float](https://docs.rs/ordered-float)'s "
+"types and Python:"
+msgstr ""
+
+#: src/features.md:220
+msgid ""
+"[NotNan](https://docs.rs/ordered-float/latest/ordered_float/struct.NotNan."
+"html) -> [`PyFloat`](https://pyo3.rs/main/doc/pyo3/types/struct.PyFloat.html)"
+msgstr ""
+
+#: src/features.md:221
+msgid ""
+"[OrderedFloat](https://docs.rs/ordered-float/latest/ordered_float/struct."
+"OrderedFloat.html) -> [`PyFloat`](https://pyo3.rs/main/doc/pyo3/types/struct."
+"PyFloat.html)"
+msgstr ""
+
+#: src/features.md:223
+msgid "`parking-lot`"
+msgstr ""
+
+#: src/features.md:225
+msgid ""
+"Adds a dependency on [parking_lot](https://docs.rs/parking_lot) and enables "
+"Pyo3's `OnceExt` & `MutexExt` traits for [`parking_lot::Once`](https://docs."
+"rs/parking_lot/latest/parking_lot/struct.Once.html) [`parking_lot::Mutex`]"
+"(https://docs.rs/parking_lot/latest/parking_lot/type.Mutex.html) and "
+"[`parking_lot::ReentrantMutex`](https://docs.rs/parking_lot/latest/"
+"parking_lot/type.ReentrantMutex.html) types."
+msgstr ""
+
+#: src/features.md:227
+msgid "`rust_decimal`"
+msgstr ""
+
+#: src/features.md:229
+msgid ""
+"Adds a dependency on [rust_decimal](https://docs.rs/rust_decimal) and "
+"enables conversions into its [`Decimal`](https://docs.rs/rust_decimal/latest/"
+"rust_decimal/struct.Decimal.html) type."
+msgstr ""
+
+#: src/features.md:231
+msgid "`time`"
+msgstr ""
+
+#: src/features.md:233
+msgid ""
+"Adds a dependency on [time](https://docs.rs/time). Enables conversions "
+"between [time](https://docs.rs/time)'s types and Python:"
+msgstr ""
+
+#: src/features.md:236
+msgid ""
+"[Date](https://docs.rs/time/0.3.38/time/struct.Date.html) -> [`PyDate`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
+msgstr ""
+
+#: src/features.md:237
+msgid ""
+"[Time](https://docs.rs/time/0.3.38/time/struct.Time.html) -> [`PyTime`]"
+"(https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
+msgstr ""
+
+#: src/features.md:238
+msgid ""
+"[OffsetDateTime](https://docs.rs/time/0.3.38/time/struct.OffsetDateTime."
+"html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct."
+"PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:239
+msgid ""
+"[PrimitiveDateTime](https://docs.rs/time/0.3.38/time/struct."
+"PrimitiveDateTime.html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/"
+"types/struct.PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:240
+msgid ""
+"[Duration](https://docs.rs/time/0.3.38/time/struct.Duration.html) -> "
+"[`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
+msgstr ""
+
+#: src/features.md:241
+msgid ""
+"[UtcOffset](https://docs.rs/time/0.3.38/time/struct.UtcOffset.html) -> "
+"[`PyTzInfo`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTzInfo.html)"
+msgstr ""
+
+#: src/features.md:242
+msgid ""
+"[UtcDateTime](https://docs.rs/time/0.3.38/time/struct.UtcDateTime.html) -> "
+"[`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDateTime.html)"
+msgstr ""
+
+#: src/features.md:244
+msgid "`serde`"
+msgstr ""
+
+#: src/features.md:246
+msgid ""
+"Enables (de)serialization of `Py<T>` objects via [serde](https://serde.rs/). "
+"This allows to use [`#[derive(Serialize, Deserialize)`](https://serde.rs/"
+"derive.html) on structs that hold references to `#[pyclass]` instances"
+msgstr ""
+
+#: src/features.md:250
+msgid "\"serde\""
+msgstr ""
+
+#: src/features.md:271
+msgid "`smallvec`"
+msgstr ""
+
+#: src/features.md:273
+msgid ""
+"Adds a dependency on [smallvec](https://docs.rs/smallvec) and enables "
+"conversions into its [`SmallVec`](https://docs.rs/smallvec/latest/smallvec/"
+"struct.SmallVec.html) type."
+msgstr ""
+
+#: src/features.md:277
+msgid "`uuid`"
+msgstr ""
+
+#: src/features.md:279
+msgid ""
+"Adds a dependency on [uuid](https://docs.rs/uuid) and enables conversions "
+"into its [`Uuid`](https://docs.rs/uuid/latest/uuid/struct.Uuid.html) type."
+msgstr ""
