@@ -62,7 +62,7 @@ msgstr ""
 
 #: src/trait_bounds.md:18
 msgid "Example"
-msgstr ""
+msgstr "範例"
 
 #: src/trait_bounds.md:20
 msgid ""
