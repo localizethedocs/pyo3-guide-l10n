@@ -87,7 +87,7 @@ msgstr ""
 
 #: src/class.md:21
 msgid "Defining a new class"
-msgstr ""
+msgstr "定義新類別"
 
 #: src/class.md:23
 msgid ""

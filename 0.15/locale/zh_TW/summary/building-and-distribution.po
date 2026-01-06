@@ -162,7 +162,7 @@ msgstr ""
 
 #: src/building_and_distribution.md:65
 msgid "Packaging tools"
-msgstr ""
+msgstr "打包工具"
 
 #: src/building_and_distribution.md:67
 msgid ""
