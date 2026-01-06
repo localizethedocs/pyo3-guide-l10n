@@ -90,7 +90,7 @@ msgstr ""
 
 #: src/class/thread-safety.md:44
 msgid "Using atomic data structures"
-msgstr ""
+msgstr "使用原子資料結構"
 
 #: src/class/thread-safety.md:46
 msgid ""

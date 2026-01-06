@@ -42,7 +42,7 @@ msgstr ""
 
 #: src/python-typing-hints.md:9
 msgid "Introduction to `pyi` files"
-msgstr ""
+msgstr "`pyi` 檔案介紹"
 
 #: src/python-typing-hints.md:11
 msgid ""
