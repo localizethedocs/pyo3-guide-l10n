@@ -168,7 +168,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:68
 msgid "Packaging tools"
-msgstr ""
+msgstr "打包工具"
 
 #: src/building-and-distribution.md:70
 msgid ""
@@ -282,7 +282,7 @@ msgstr ""
 
 #: src/building-and-distribution.md:98
 msgid "Platform tags"
-msgstr ""
+msgstr "平臺標記"
 
 #: src/building-and-distribution.md:100
 msgid ""
