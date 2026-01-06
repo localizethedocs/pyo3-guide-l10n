@@ -548,47 +548,47 @@ msgstr ""
 
 #: src/class/protocols.md:342
 msgid "`__add__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__add__(<self>, object) -> object`"
 
 #: src/class/protocols.md:343
 msgid "`__radd__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__radd__(<self>, object) -> object`"
 
 #: src/class/protocols.md:344
 msgid "`__sub__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__sub__(<self>, object) -> object`"
 
 #: src/class/protocols.md:345
 msgid "`__rsub__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rsub__(<self>, object) -> object`"
 
 #: src/class/protocols.md:346
 msgid "`__mul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__mul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:347
 msgid "`__rmul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rmul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:348
 msgid "`__matmul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__matmul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:349
 msgid "`__rmatmul__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rmatmul__(<self>, object) -> object`"
 
 #: src/class/protocols.md:350
 msgid "`__floordiv__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__floordiv__(<self>, object) -> object`"
 
 #: src/class/protocols.md:351
 msgid "`__rfloordiv__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rfloordiv__(<self>, object) -> object`"
 
 #: src/class/protocols.md:352
 msgid "`__truediv__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__truediv__(<self>, object) -> object`"
 
 #: src/class/protocols.md:353
 msgid "`__rtruediv__(<self>, object) -> object`"
@@ -636,27 +636,27 @@ msgstr ""
 
 #: src/class/protocols.md:364
 msgid "`__xor__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__xor__(<self>, object) -> object`"
 
 #: src/class/protocols.md:365
 msgid "`__rxor__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__rxor__(<self>, object) -> object`"
 
 #: src/class/protocols.md:366
 msgid "`__or__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__or__(<self>, object) -> object`"
 
 #: src/class/protocols.md:367
 msgid "`__ror__(<self>, object) -> object`"
-msgstr ""
+msgstr "`__ror__(<self>, object) -> object`"
 
 #: src/class/protocols.md:368
 msgid "`__pow__(<self>, object, object) -> object`"
-msgstr ""
+msgstr "`__pow__(<self>, object, object) -> object`"
 
 #: src/class/protocols.md:369
 msgid "`__rpow__(<self>, object, object) -> object`"
-msgstr ""
+msgstr "`__rpow__(<self>, object, object) -> object`"
 
 #: src/class/protocols.md:371
 msgid ""

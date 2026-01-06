@@ -45,7 +45,7 @@ msgstr "錯誤處理"
 
 #: src/SUMMARY.md:13
 msgid "Python classes"
-msgstr ""
+msgstr "Python 類別"
 
 #: src/SUMMARY.md:14
 msgid "Class customizations"
