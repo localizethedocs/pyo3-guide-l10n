@@ -1,0 +1,277 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:47Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function/error_handling.md:1
+msgid "Error handling"
+msgstr "錯誤處理"
+
+#: src/function/error_handling.md:3
+msgid ""
+"This chapter contains a little background of error handling in Rust and how "
+"PyO3 integrates this with Python exceptions."
+msgstr ""
+
+#: src/function/error_handling.md:5
+msgid ""
+"This covers enough detail to create a `#[pyfunction]` which raises Python "
+"exceptions from errors originating in Rust."
+msgstr ""
+
+#: src/function/error_handling.md:7
+msgid ""
+"There is a later section of the guide on [Python exceptions](../exception."
+"md) which covers exception types in more detail."
+msgstr ""
+
+#: src/function/error_handling.md:9
+msgid "Representing Python exceptions"
+msgstr ""
+
+#: src/function/error_handling.md:11
+msgid ""
+"Rust code uses the generic [`Result<T, E>`](https://doc.rust-lang.org/stable/"
+"std/result/enum.Result.html) enum to propagate errors. The error type `E` is "
+"chosen by the code author to describe the possible errors which can happen."
+msgstr ""
+
+#: src/function/error_handling.md:13
+msgid ""
+"PyO3 has the [`PyErr`](https://pyo3.rs/main/doc/pyo3/struct.PyErr.html) type "
+"which represents a Python exception. If a PyO3 API could result in a Python "
+"exception being raised, the return type of that `API` will be [`PyResult<T>`]"
+"(https://pyo3.rs/main/doc/pyo3/prelude/type.PyResult.html), which is an "
+"alias for the type `Result<T, PyErr>`."
+msgstr ""
+
+#: src/function/error_handling.md:15
+msgid "In summary:"
+msgstr ""
+
+#: src/function/error_handling.md:16
+msgid ""
+"When Python exceptions are raised and caught by PyO3, the exception will "
+"stored in the `Err` variant of the `PyResult`."
+msgstr ""
+
+#: src/function/error_handling.md:17
+msgid ""
+"Passing Python exceptions through Rust code then uses all the \"normal\" "
+"techniques such as the `?` operator, with `PyErr` as the error type."
+msgstr ""
+
+#: src/function/error_handling.md:18
+msgid ""
+"Finally, when a `PyResult` crosses from Rust back to Python via PyO3, if the "
+"result is an `Err` variant the contained exception will be raised."
+msgstr ""
+
+#: src/function/error_handling.md:20
+msgid ""
+"(There are many great tutorials on Rust error handling and the `?` operator, "
+"so this guide will not go into detail on Rust-specific topics.)"
+msgstr ""
+
+#: src/function/error_handling.md:22
+msgid "Raising an exception from a function"
+msgstr ""
+
+#: src/function/error_handling.md:24
+msgid ""
+"As indicated in the previous section, when a `PyResult` containing an `Err` "
+"crosses from Rust to Python, PyO3 will raise the exception contained within."
+msgstr ""
+
+#: src/function/error_handling.md:26
+msgid ""
+"Accordingly, to raise an exception from a `#[pyfunction]`, change the return "
+"type `T` to `PyResult<T>`. When the function returns an `Err` it will raise "
+"a Python exception. (Other `Result<T, E>` types can be used as long as the "
+"error `E` has a `From` conversion for `PyErr`, see [implementing a "
+"conversion](#implementing-an-error-conversion) below.)"
+msgstr ""
+
+#: src/function/error_handling.md:28
+msgid "This also works for functions in `#[pymethods]`."
+msgstr ""
+
+#: src/function/error_handling.md:30
+msgid ""
+"For example, the following `check_positive` function raises a `ValueError` "
+"when the input is negative:"
+msgstr ""
+
+#: src/function/error_handling.md:39
+msgid "\"x is negative\""
+msgstr ""
+
+#: src/function/error_handling.md:54
+msgid ""
+"All built-in Python exception types are defined in the [`pyo3::exceptions`]"
+"(https://pyo3.rs/main/doc/pyo3/exceptions/index.html) module. They have a "
+"`new_err` constructor to directly build a `PyErr`, as seen in the example "
+"above."
+msgstr ""
+
+#: src/function/error_handling.md:56
+msgid "Custom Rust error types"
+msgstr ""
+
+#: src/function/error_handling.md:58
+msgid ""
+"PyO3 will automatically convert a `Result<T, E>` returned by a "
+"`#[pyfunction]` into a `PyResult<T>` as long as there is an implementation "
+"of `std::from::From<E> for PyErr`. Many error types in the Rust standard "
+"library have a [`From`](https://doc.rust-lang.org/stable/std/convert/trait."
+"From.html) conversion defined in this way."
+msgstr ""
+
+#: src/function/error_handling.md:60
+msgid ""
+"If the type `E` you are handling is defined in a third-party crate, see the "
+"section on [foreign rust error types](#foreign-rust-error-types) below for "
+"ways to work with this error."
+msgstr ""
+
+#: src/function/error_handling.md:62
+msgid ""
+"The following example makes use of the implementation of "
+"`From<ParseIntError> for PyErr` to raise exceptions encountered when parsing "
+"strings as integers:"
+msgstr ""
+
+#: src/function/error_handling.md:76
+msgid "\"5\""
+msgstr ""
+
+#: src/function/error_handling.md:82
+msgid ""
+"When passed a string which doesn't contain a floating-point number, the "
+"exception raised will look like the below:"
+msgstr ""
+
+#: src/function/error_handling.md:85
+msgid "\"bar\""
+msgstr ""
+
+#: src/function/error_handling.md:87
+msgid "\"<stdin>\""
+msgstr ""
+
+#: src/function/error_handling.md:91
+msgid ""
+"As a more complete example, the following snippet defines a Rust error named "
+"`CustomIOError`. It then defines a `From<CustomIOError> for PyErr`, which "
+"returns a `PyErr` representing Python's `OSError`. Finally, it"
+msgstr ""
+
+#: src/function/error_handling.md:105
+msgid "\"Oh no!\""
+msgstr ""
+
+#: src/function/error_handling.md:115 src/function/error_handling.md:121
+msgid "/* ... */"
+msgstr ""
+
+#: src/function/error_handling.md:118 src/function/error_handling.md:134
+msgid "\"0.0.0.0\""
+msgstr ""
+
+#: src/function/error_handling.md:140
+msgid ""
+"If lazy construction of the Python exception instance is desired, the "
+"[`PyErrArguments`](https://pyo3.rs/main/doc/pyo3/trait.PyErrArguments.html) "
+"trait can be implemented instead of `From`. In that case, actual exception "
+"argument creation is delayed until the `PyErr` is needed."
+msgstr ""
+
+#: src/function/error_handling.md:145
+msgid ""
+"A final note is that any errors `E` which have a `From` conversion can be "
+"used with the `?` (\"try\") operator with them. An alternative "
+"implementation of the above `parse_int` which instead returns `PyResult` is "
+"below:"
+msgstr ""
+
+#: src/function/error_handling.md:160
+msgid "\"1\""
+msgstr ""
+
+#: src/function/error_handling.md:161
+msgid "\"1337\""
+msgstr ""
+
+#: src/function/error_handling.md:163
+msgid "\"-1\""
+msgstr ""
+
+#: src/function/error_handling.md:166
+msgid "\"foo\""
+msgstr ""
+
+#: src/function/error_handling.md:169
+msgid "\"13.37\""
+msgstr ""
+
+#: src/function/error_handling.md:176
+msgid "Foreign Rust error types"
+msgstr ""
+
+#: src/function/error_handling.md:178
+msgid ""
+"The Rust compiler will not permit implementation of traits for types outside "
+"of the crate where the type is defined. (This is known as the \"orphan "
+"rule\".)"
+msgstr ""
+
+#: src/function/error_handling.md:180
+msgid ""
+"Given a type `OtherError` which is defined in third-party code, there are "
+"two main strategies available to integrate it with PyO3:"
+msgstr ""
+
+#: src/function/error_handling.md:182
+msgid ""
+"Create a newtype wrapper, e.g. `MyOtherError`. Then implement "
+"`From<MyOtherError> for PyErr` (or `PyErrArguments`), as well as "
+"`From<OtherError>` for `MyOtherError`."
+msgstr ""
+
+#: src/function/error_handling.md:183
+msgid ""
+"Use Rust's Result combinators such as `map_err` to write code freely to "
+"convert `OtherError` into whatever is needed. This requires boilerplate at "
+"every usage however gives unlimited flexibility."
+msgstr ""
+
+#: src/function/error_handling.md:185
+msgid ""
+"To detail the newtype strategy a little further, the key trick is to return "
+"`Result<T, MyOtherError>` from the `#[pyfunction]`. This means that PyO3 "
+"will make use of `From<MyOtherError> for PyErr` to create Python exceptions "
+"while the `#[pyfunction]` implementation can use `?` to convert `OtherError` "
+"to `MyOtherError` automatically."
+msgstr ""
+
+#: src/function/error_handling.md:187
+msgid ""
+"The following example demonstrates this for some imaginary third-party crate "
+"`some_crate` with a function `get_x` returning `Result<i32, OtherError>`:"
+msgstr ""
+
+#: src/function/error_handling.md:193
+msgid "\"some error occurred\""
+msgstr ""
+
+#: src/function/error_handling.md:218
+msgid "// get_x is a function returning Result<i32, OtherError>\n"
+msgstr ""
