@@ -1,0 +1,234 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:45Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/get_started.md:1
+msgid "PyO3"
+msgstr ""
+
+#: src/get_started.md:3
+msgid ""
+"[Rust](http://www.rust-lang.org/) bindings for [Python](https://www.python."
+"org/). This includes running and interacting with python code from a rust "
+"binaries as well as writing native python modules."
+msgstr ""
+
+#: src/get_started.md:5
+msgid ""
+"User Guide: [stable](https://pyo3.rs) | [master](https://pyo3.rs/master)"
+msgstr ""
+
+#: src/get_started.md:7
+msgid "API Documentation: [master](https://pyo3.rs/master/doc)"
+msgstr ""
+
+#: src/get_started.md:9
+msgid ""
+"A comparison with rust-cpython can be found [in the guide](https://pyo3.rs/"
+"master/rust-cpython.html)."
+msgstr ""
+
+#: src/get_started.md:11
+msgid "Usage"
+msgstr ""
+
+#: src/get_started.md:13
+msgid ""
+"PyO3 supports python 2.7 as well as python 3.5 and up. The minimum required "
+"rust version is 1.30.0-nightly 2018-08-18."
+msgstr ""
+
+#: src/get_started.md:15
+msgid ""
+"You can either write a native python module in rust or use python from a "
+"rust binary."
+msgstr ""
+
+#: src/get_started.md:17
+msgid "On some OSs, you need some additional packages."
+msgstr ""
+
+#: src/get_started.md:19
+msgid "E.g. if you are on Ubuntu18.04, please run"
+msgstr ""
+
+#: src/get_started.md:25
+msgid "Using rust from python"
+msgstr ""
+
+#: src/get_started.md:27
+msgid "PyO3 can be used to generate a native python module."
+msgstr ""
+
+#: src/get_started.md:29
+msgid "**`Cargo.toml`:**"
+msgstr ""
+
+#: src/get_started.md:31
+msgid ""
+"```toml\n"
+"[package]\n"
+"name = \"string-sum\"\n"
+"version = \"0.1.0\"\n"
+"\n"
+"[lib]\n"
+"name = \"string_sum\"\n"
+"crate-type = [\"cdylib\"]\n"
+"\n"
+"[dependencies.pyo3]\n"
+"version = \"0.6.0-alpha.4\"\n"
+"features = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/get_started.md:45
+msgid "**`src/lib.rs`**"
+msgstr ""
+
+#: src/get_started.md:52
+msgid "/// Formats the sum of two numbers as string\n"
+msgstr ""
+
+#: src/get_started.md:57
+msgid "/// This module is a python module implemented in Rust.\n"
+msgstr ""
+
+#: src/get_started.md:67
+msgid ""
+"On windows and linux, you can build normally with `cargo build --release`. "
+"On macOS, you need to set additional linker arguments. One option is to "
+"compile with `cargo rustc --release -- -C link-arg=-undefined -C link-"
+"arg=dynamic_lookup`, the other is to create a `.cargo/config` with the "
+"following content:"
+msgstr ""
+
+#: src/get_started.md:69
+msgid ""
+"```toml\n"
+"[target.x86_64-apple-darwin]\n"
+"rustflags = [\n"
+"  \"-C\", \"link-arg=-undefined\",\n"
+"  \"-C\", \"link-arg=dynamic_lookup\",\n"
+"]\n"
+"```"
+msgstr ""
+
+#: src/get_started.md:77
+msgid ""
+"For developing, you can copy and rename the shared library from the target "
+"folder: On macOS, rename `libstring_sum.dylib` to `string_sum.so`, on "
+"windows `libstring_sum.dll` to `string_sum.pyd` and on linux `libstring_sum."
+"so` to `string_sum.so`. Then open a python shell in the same folder and "
+"you'll be able to `import string_sum`."
+msgstr ""
+
+#: src/get_started.md:79
+msgid ""
+"To build, test and publish your crate as python module, you can use [pyo3-"
+"pack](https://github.com/PyO3/pyo3-pack) or [setuptools-rust](https://github."
+"com/PyO3/setuptools-rust). You can find an example for setuptools-rust in "
+"[examples/word-count](examples/word-count), while pyo3-pack should work on "
+"your crate without any configuration."
+msgstr ""
+
+#: src/get_started.md:81
+msgid "Using python from rust"
+msgstr ""
+
+#: src/get_started.md:83
+msgid "Add `pyo3` this to your `Cargo.toml`:"
+msgstr ""
+
+#: src/get_started.md:85
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.5\"\n"
+"```"
+msgstr ""
+
+#: src/get_started.md:90
+msgid "Example program displaying the value of `sys.version`:"
+msgstr ""
+
+#: src/get_started.md:100
+msgid "\"sys\""
+msgstr ""
+
+#: src/get_started.md:101
+msgid "\"version\""
+msgstr ""
+
+#: src/get_started.md:103
+msgid "\"os\""
+msgstr ""
+
+#: src/get_started.md:104
+msgid "\"os.getenv('USER') or os.getenv('USERNAME')\""
+msgstr ""
+
+#: src/get_started.md:106
+msgid "\"Hello {}, I'm Python {}\""
+msgstr ""
+
+#: src/get_started.md:111
+msgid "Examples and tooling"
+msgstr ""
+
+#: src/get_started.md:113
+msgid ""
+"[examples/word-count](examples/word-count) _Counting the occurrences of a "
+"word in a text file_"
+msgstr ""
+
+#: src/get_started.md:114
+msgid ""
+"[hyperjson](https://github.com/mre/hyperjson) _A hyper-fast Python module "
+"for reading/writing JSON data using Rust's serde-json_"
+msgstr ""
+
+#: src/get_started.md:115
+msgid ""
+"[rust-numpy](https://github.com/rust-numpy/rust-numpy) _Rust binding of "
+"NumPy C-API_"
+msgstr ""
+
+#: src/get_started.md:116
+msgid ""
+"[html-py-ever](https://github.com/PyO3/setuptools-rust/tree/master/html-py-"
+"ever) _Using [html5ever](https://github.com/servo/html5ever) through "
+"[kuchiki](https://github.com/kuchiki-rs/kuchiki) to speed up html parsing "
+"and css-selecting._"
+msgstr ""
+
+#: src/get_started.md:117
+msgid ""
+"[pyo3-built](https://github.com/PyO3/pyo3-built) _Simple macro to expose "
+"metadata obtained with the [`built`](https://crates.io/crates/built) crate "
+"as a [`PyDict`](https://pyo3.github.io/pyo3/pyo3/struct.PyDict.html)_"
+msgstr ""
+
+#: src/get_started.md:118
+msgid ""
+"[point-process](https://github.com/ManifoldFR/point-process-rust/tree/master/"
+"pylib) _High level API for pointprocesses as a Python library_"
+msgstr ""
+
+#: src/get_started.md:119
+msgid ""
+"[autopy](https://github.com/autopilot-rs/autopy) _A simple, cross-platform "
+"GUI automation library for Python and Rust._"
+msgstr ""
+
+#: src/get_started.md:120
+msgid "[orjson](https://github.com/ijl/orjson)  _Fast Python JSON library_"
+msgstr ""
