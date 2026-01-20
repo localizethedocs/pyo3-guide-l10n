@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-01-19T08:26:00Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -133,10 +133,6 @@ msgstr ""
 msgid ""
 "If you need to create an exception with more complex behavior, you can also "
 "manually create a subclass of `PyException`:"
-msgstr ""
-
-#: src/exception.md:136
-msgid "\"abi3\""
 msgstr ""
 
 #: src/exception.md:164

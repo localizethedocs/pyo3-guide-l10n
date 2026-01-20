@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:30Z\n"
+"POT-Creation-Date: 2026-01-19T08:25:59Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -711,160 +711,166 @@ msgstr ""
 
 #: src/index.md:250
 msgid ""
+"[toml-rs](https://github.com/lava-sh/toml-rs) _A High-Performance TOML "
+"v1.0.0 and v1.1.0 parser for Python written in Rust._"
+msgstr ""
+
+#: src/index.md:251
+msgid ""
 "[utiles](https://github.com/jessekrubin/utiles) _Fast Python web-map tile "
 "utilities_"
 msgstr ""
 
-#: src/index.md:252
+#: src/index.md:253
 msgid "Articles and other media"
 msgstr "文章及其他媒體"
 
-#: src/index.md:254
+#: src/index.md:255
 msgid ""
 "[(Video) Using Rust in Free-Threaded vs Regular Python 3.13](https://www."
 "youtube.com/watch?v=J7phN_M4GLM) - Jun 4, 2025"
 msgstr ""
 
-#: src/index.md:255
+#: src/index.md:256
 msgid ""
 "[(Video) Techniques learned from five years finding the way for Rust in "
 "Python](https://www.youtube.com/watch?v=KTQn_PTHNCw) - Feb 26, 2025"
 msgstr ""
 
-#: src/index.md:256
+#: src/index.md:257
 msgid ""
 "[(Podcast) Bridging Python and Rust: An Interview with PyO3 Maintainer David "
 "Hewitt](https://www.youtube.com/watch?v=P47JUMSQagU) - Aug 30, 2024"
 msgstr ""
 
-#: src/index.md:257
+#: src/index.md:258
 msgid ""
 "[(Video) PyO3: From Python to Rust and Back Again](https://www.youtube.com/"
 "watch?v=UmL_CA-v3O8) - Jul 3, 2024"
 msgstr ""
 
-#: src/index.md:258
+#: src/index.md:259
 msgid ""
 "[Parsing Python ASTs 20x Faster with Rust](https://www.gauge.sh/blog/parsing-"
 "python-asts-20x-faster-with-rust) - Jun 17, 2024"
 msgstr ""
 
-#: src/index.md:259
+#: src/index.md:260
 msgid ""
 "[(Video) How Python Harnesses Rust through PyO3](https://www.youtube.com/"
 "watch?v=UilujdubqVU) - May 18, 2024"
 msgstr ""
 
-#: src/index.md:260
+#: src/index.md:261
 msgid ""
 "[(Video) Combining Rust and Python: The Best of Both Worlds?](https://www."
 "youtube.com/watch?v=lyG6AKzu4ew) - Mar 1, 2024"
 msgstr ""
 
-#: src/index.md:261
+#: src/index.md:262
 msgid ""
 "[(Video) Extending Python with Rust using PyO3](https://www.youtube.com/"
 "watch?v=T45ZEmSR1-s) - Dec 16, 2023"
 msgstr ""
 
-#: src/index.md:262
+#: src/index.md:263
 msgid ""
 "[A Week of PyO3 + rust-numpy (How to Speed Up Your Data Pipeline X Times)]"
 "(https://terencezl.github.io/blog/2023/06/06/a-week-of-pyo3-rust-numpy/) - "
 "Jun 6, 2023"
 msgstr ""
 
-#: src/index.md:263
+#: src/index.md:264
 msgid ""
 "[(Podcast) PyO3 with David Hewitt](https://rustacean-station.org/episode/"
 "david-hewitt/) - May 19, 2023"
 msgstr ""
 
-#: src/index.md:264
+#: src/index.md:265
 msgid ""
 "[Making Python 100x faster with less than 100 lines of Rust](https://"
 "ohadravid.github.io/posts/2023-03-rusty-python/) - Mar 28, 2023"
 msgstr ""
 
-#: src/index.md:265
+#: src/index.md:266
 msgid ""
 "[How Pydantic V2 leverages Rust's Superpowers](https://fosdem.org/2023/"
 "schedule/event/rust_how_pydantic_v2_leverages_rusts_superpowers/) - Feb 4, "
 "2023"
 msgstr ""
 
-#: src/index.md:266
+#: src/index.md:267
 msgid ""
 "[How we extended the River stats module with Rust using PyO3](https://boring-"
 "guy.sh/posts/river-rust/) - Dec 23, 2022"
 msgstr ""
 
-#: src/index.md:267
+#: src/index.md:268
 msgid ""
 "[Nine Rules for Writing Python Extensions in Rust](https://"
 "towardsdatascience.com/nine-rules-for-writing-python-extensions-in-rust-"
 "d35ea3a4ec29?sk=f8d808d5f414154fdb811e4137011437) - Dec 31, 2021"
 msgstr ""
 
-#: src/index.md:268
+#: src/index.md:269
 msgid ""
 "[Calling Rust from Python using PyO3](https://saidvandeklundert.net/"
 "learn/2021-11-18-calling-rust-from-python-using-pyo3/) - Nov 18, 2021"
 msgstr ""
 
-#: src/index.md:269
+#: src/index.md:270
 msgid ""
 "[davidhewitt's 2021 talk at Rust Manchester meetup](https://www.youtube.com/"
 "watch?v=-XyWG_klSAw&t=320s) - Aug 19, 2021"
 msgstr ""
 
-#: src/index.md:270
+#: src/index.md:271
 msgid ""
 "[Incrementally porting a small Python project to Rust](https://blog."
 "waleedkhan.name/port-python-to-rust/) - Apr 29, 2021"
 msgstr ""
 
-#: src/index.md:271
+#: src/index.md:272
 msgid ""
 "[Vortexa - Integrating Rust into Python](https://www.vortexa.com/blog/"
 "integrating-rust-into-python) - Apr 12, 2021"
 msgstr ""
 
-#: src/index.md:272
+#: src/index.md:273
 msgid ""
 "[Writing and publishing a Python module in Rust](https://blog.yossarian."
 "net/2020/08/02/Writing-and-publishing-a-python-module-in-rust) - Aug 2, 2020"
 msgstr ""
 
-#: src/index.md:274
+#: src/index.md:275
 msgid "Contributing"
 msgstr ""
 
-#: src/index.md:276
+#: src/index.md:277
 msgid ""
 "Everyone is welcomed to contribute to PyO3! There are many ways to support "
 "the project, such as:"
 msgstr ""
 
-#: src/index.md:278
+#: src/index.md:279
 msgid ""
 "help PyO3 users with issues on GitHub and [Discord](https://discord."
 "gg/33kcChzH7f)"
 msgstr ""
 
-#: src/index.md:279
+#: src/index.md:280
 msgid "improve documentation"
 msgstr ""
 
-#: src/index.md:280
+#: src/index.md:281
 msgid "write features and bugfixes"
 msgstr ""
 
-#: src/index.md:281
+#: src/index.md:282
 msgid "publish blogs and examples of how to use PyO3"
 msgstr ""
 
-#: src/index.md:283
+#: src/index.md:284
 msgid ""
 "Our [contributing notes](https://github.com/PyO3/pyo3/blob/main/Contributing."
 "md) and [architecture guide](https://github.com/PyO3/pyo3/blob/main/"
@@ -872,45 +878,45 @@ msgid ""
 "and are searching where to start."
 msgstr ""
 
-#: src/index.md:285
+#: src/index.md:286
 msgid ""
 "If you don't have time to contribute yourself but still wish to support the "
 "project's future success, some of our maintainers have GitHub sponsorship "
 "pages:"
 msgstr ""
 
-#: src/index.md:287
+#: src/index.md:288
 msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 msgstr ""
 
-#: src/index.md:288
+#: src/index.md:289
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr ""
 
-#: src/index.md:290
+#: src/index.md:291
 msgid "License"
 msgstr "授權條款"
 
-#: src/index.md:292
+#: src/index.md:293
 msgid ""
 "PyO3 is licensed under the [Apache-2.0 license](LICENSE-APACHE) or the [MIT "
 "license](LICENSE-MIT), at your option."
 msgstr ""
 
-#: src/index.md:294
+#: src/index.md:295
 msgid ""
 "Python is licensed under the [Python License](https://docs.python.org/3/"
 "license.html)."
 msgstr ""
 
-#: src/index.md:296
+#: src/index.md:297
 msgid ""
 "Unless you explicitly state otherwise, any contribution intentionally "
 "submitted for inclusion in PyO3 by you, as defined in the Apache License, "
 "shall be dual-licensed as above, without any additional terms or conditions."
 msgstr ""
 
-#: src/index.md:298
+#: src/index.md:299
 msgid ""
 "<a href=\"https://www.netlify.com\"> <img src=\"https://www.netlify.com/v3/"
 "img/components/netlify-color-accent.svg\" alt=\"Deploys by Netlify\" /> </a>"

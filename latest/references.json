@@ -16,9 +16,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2025-12-28 14:37:12 +0000",
-        "hash" : "e4f0818fc29dcb8575da035422752c38bf46f68c",
-        "title" : "Add fast-paseto to examples (#5715)"
+        "date" : "2026-01-18 15:27:39 +0000",
+        "hash" : "c969dd0253111b62e7b5c1153fc71d5cb3c139ce",
+        "title" : "remove all functionality deprecated in PyO3 0.26 (#5740)"
       }
     },
     "zh_TW" : 
@@ -26,9 +26,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2025-12-28 14:37:12 +0000",
-        "hash" : "e4f0818fc29dcb8575da035422752c38bf46f68c",
-        "title" : "Add fast-paseto to examples (#5715)"
+        "date" : "2026-01-18 15:27:39 +0000",
+        "hash" : "c969dd0253111b62e7b5c1153fc71d5cb3c139ce",
+        "title" : "remove all functionality deprecated in PyO3 0.26 (#5740)"
       }
     }
   },

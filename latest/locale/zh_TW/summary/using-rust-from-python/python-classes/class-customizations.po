@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:30Z\n"
+"POT-Creation-Date: 2026-01-19T08:25:59Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -871,12 +871,21 @@ msgstr ""
 
 #: src/class/protocols.md:476
 msgid ""
+"\\[!NOTE\\] When a class inherits from either a Python builtins type or "
+"another type declared in Rust and implement either or both `__traverse__` "
+"and `__clear__`, the parent class `__traverse__` and `__clear__` is called "
+"automatically. There is no need to explicitly call it from inside the class "
+"implementation."
+msgstr ""
+
+#: src/class/protocols.md:480
+msgid ""
 "Usually, an implementation of `__traverse__` should do nothing but calls to "
 "`visit.call`. Most importantly, safe access to the interpreter is prohibited "
 "inside implementations of `__traverse__`, i.e. `Python::attach` will panic."
 msgstr ""
 
-#: src/class/protocols.md:479
+#: src/class/protocols.md:483
 msgid ""
 "\\[!NOTE\\] These methods are part of the C API, PyPy does not necessarily "
 "honor them. If you are building for PyPy you should measure memory "

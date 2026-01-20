@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-01-19T08:26:00Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -180,56 +180,63 @@ msgstr ""
 
 #: src/contributing.md:50
 msgid ""
+"The Rust compiler's error output differs depending on whether the `rust-src` "
+"component is installed. PyO3's CI has `rust-src` installed, so you need it "
+"locally for your UI test output to match:"
+msgstr ""
+
+#: src/contributing.md:56
+msgid ""
 "Because there are several feature combinations for these UI tests, when "
 "updating them all (e.g. for a new Rust compiler version) it may be helpful "
 "to use the `update-ui-tests` nox session:"
 msgstr ""
 
-#: src/contributing.md:56
+#: src/contributing.md:61
 msgid "Ways to help"
 msgstr ""
 
-#: src/contributing.md:58
+#: src/contributing.md:63
 msgid "Help users identify bugs"
 msgstr ""
 
-#: src/contributing.md:60
+#: src/contributing.md:65
 msgid ""
 "The [PyO3 Discord server](https://discord.gg/33kcChzH7f) is very active with "
 "users who are new to PyO3, and often completely new to Rust. Helping them "
 "debug is a great way to get experience with the PyO3 codebase."
 msgstr ""
 
-#: src/contributing.md:62
+#: src/contributing.md:67
 msgid ""
 "Helping others often reveals bugs, documentation weaknesses, and missing "
 "APIs. It's a good idea to open GitHub issues for these immediately so the "
 "resolution can be designed and implemented!"
 msgstr ""
 
-#: src/contributing.md:64
+#: src/contributing.md:69
 msgid "Implement issues ready for development"
 msgstr ""
 
-#: src/contributing.md:66
+#: src/contributing.md:71
 msgid ""
 "Issues where the solution is clear and work is not in progress use the "
 "[needs-implementer](https://github.com/PyO3/pyo3/issues?"
 "q=is%3Aissue+is%3Aopen+label%3Aneeds-implementer) label."
 msgstr ""
 
-#: src/contributing.md:68
+#: src/contributing.md:73
 msgid ""
 "Don't be afraid if the solution is not clear to you! The core PyO3 "
 "contributors will be happy to mentor you through any questions you have to "
 "help you write the solution."
 msgstr ""
 
-#: src/contributing.md:70
+#: src/contributing.md:75
 msgid "Help write great docs"
 msgstr ""
 
-#: src/contributing.md:72
+#: src/contributing.md:77
 msgid ""
 "PyO3 has a user guide (using mdbook) as well as the usual Rust API docs. The "
 "aim is for both of these to be detailed, easy to understand, and up-to-date. "
@@ -237,20 +244,20 @@ msgid ""
 "etc."
 msgstr ""
 
-#: src/contributing.md:74
+#: src/contributing.md:79
 msgid ""
 "There are some specific areas of focus where help is currently needed for "
 "the documentation:"
 msgstr ""
 
-#: src/contributing.md:76
+#: src/contributing.md:81
 msgid ""
 "Issues requesting documentation improvements are tracked with the "
 "[documentation](https://github.com/PyO3/pyo3/issues?"
 "q=is%3Aissue+is%3Aopen+label%3Adocumentation) label."
 msgstr ""
 
-#: src/contributing.md:77
+#: src/contributing.md:82
 msgid ""
 "Not all APIs had docs or examples when they were made. The goal is to have "
 "documentation on all PyO3 APIs ([\\#306](https://github.com/PyO3/pyo3/"
@@ -258,17 +265,17 @@ msgid ""
 "PR!"
 msgstr ""
 
-#: src/contributing.md:79
+#: src/contributing.md:84
 msgid ""
 "To build the docs (including all features), install [`nox`](https://github."
 "com/theacodes/nox) and then run"
 msgstr ""
 
-#: src/contributing.md:85
+#: src/contributing.md:90
 msgid "Doctests"
 msgstr ""
 
-#: src/contributing.md:87
+#: src/contributing.md:92
 msgid ""
 "We use lots of code blocks in our docs. Run `cargo test --doc` when making "
 "changes to check that the doctests still work, or `cargo test` to run all "
@@ -276,68 +283,68 @@ msgid ""
 "documentation-tests.html for a guide on doctests."
 msgstr ""
 
-#: src/contributing.md:91
+#: src/contributing.md:96
 msgid "Building the guide"
 msgstr "建置指南"
 
-#: src/contributing.md:93
+#: src/contributing.md:98
 msgid "You can preview the user guide by building it locally with `mdbook`."
 msgstr ""
 
-#: src/contributing.md:95
+#: src/contributing.md:100
 msgid ""
 "First, install [`mdbook`](https://rust-lang.github.io/mdBook/cli/index."
 "html), the [`mdbook-tabs`](https://mdbook-plugins.rustforweb.org/tabs.html) "
 "plugin and [`nox`](https://github.com/theacodes/nox). Then, run"
 msgstr ""
 
-#: src/contributing.md:101
+#: src/contributing.md:106
 msgid ""
 "To check all links in the guide are valid, also install [`lychee`](https://"
 "github.com/lycheeverse/lychee) and use the `check-guide` session instead:"
 msgstr ""
 
-#: src/contributing.md:107
+#: src/contributing.md:112
 msgid "Help design the next PyO3"
 msgstr ""
 
-#: src/contributing.md:109
+#: src/contributing.md:114
 msgid ""
 "Issues which don't yet have a clear solution use the [needs-design](https://"
 "github.com/PyO3/pyo3/issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-design) "
 "label."
 msgstr ""
 
-#: src/contributing.md:111
+#: src/contributing.md:116
 msgid ""
 "If any of these issues interest you, please join in with the conversation on "
 "the issue! All opinions are valued, and if you're interested in going "
 "further with e.g. draft PRs to experiment with API designs, even better!"
 msgstr ""
 
-#: src/contributing.md:113
+#: src/contributing.md:118
 msgid "Review pull requests"
 msgstr "審查拉取請求"
 
-#: src/contributing.md:115
+#: src/contributing.md:120
 msgid ""
 "Everybody is welcome to submit comments on open PRs. Please help ensure new "
 "PyO3 APIs are safe, performant, tidy, and easy to use!"
 msgstr ""
 
-#: src/contributing.md:117
+#: src/contributing.md:122
 msgid "Writing pull requests"
 msgstr "撰寫拉取請求"
 
-#: src/contributing.md:119
+#: src/contributing.md:124
 msgid "Here are a few things to note when you are writing PRs."
 msgstr ""
 
-#: src/contributing.md:121
+#: src/contributing.md:126
 msgid "Testing and Continuous Integration"
 msgstr "測試與持續整合"
 
-#: src/contributing.md:123
+#: src/contributing.md:128
 msgid ""
 "The PyO3 repo uses GitHub Actions. PRs are blocked from merging if CI is not "
 "successful. Formatting, linting and tests are checked for all Rust and "
@@ -346,35 +353,35 @@ msgid ""
 "`RUSTFLAGS=\"-D warnings\"`)."
 msgstr ""
 
-#: src/contributing.md:128
+#: src/contributing.md:133
 msgid ""
 "Tests run with all supported Python versions with the latest stable Rust "
 "compiler, as well as for Python 3.9 with the minimum supported Rust version."
 msgstr ""
 
-#: src/contributing.md:130
+#: src/contributing.md:135
 msgid ""
 "If you are adding a new feature, you should add it to the `full` feature in "
 "our _Cargo.toml_\\* so that it is tested in CI."
 msgstr ""
 
-#: src/contributing.md:132
+#: src/contributing.md:137
 msgid ""
 "You can run the CI pipeline components yourself with `nox`, see [the testing "
 "section above](#testing-linting-etc-with-nox)."
 msgstr ""
 
-#: src/contributing.md:134
+#: src/contributing.md:139
 msgid "Documenting changes"
 msgstr ""
 
-#: src/contributing.md:136
+#: src/contributing.md:141
 msgid ""
 "We use [towncrier](https://towncrier.readthedocs.io/en/stable/index.html) to "
 "generate a CHANGELOG for each release."
 msgstr ""
 
-#: src/contributing.md:138
+#: src/contributing.md:143
 msgid ""
 "To include your changes in the release notes, you should create one (or "
 "more) news items in the `newsfragments` directory. Valid news items should "
@@ -382,103 +389,103 @@ msgid ""
 "`<CATEGORY>` is one of the following:"
 msgstr ""
 
-#: src/contributing.md:139
+#: src/contributing.md:144
 msgid ""
 "`packaging` - for dependency changes and Python / Rust version compatibility "
 "changes"
 msgstr ""
 
-#: src/contributing.md:140
+#: src/contributing.md:145
 msgid "`added` - for new features"
 msgstr ""
 
-#: src/contributing.md:141
+#: src/contributing.md:146
 msgid ""
 "`changed` - for features which already existed but have been altered or "
 "deprecated"
 msgstr ""
 
-#: src/contributing.md:142
+#: src/contributing.md:147
 msgid "`removed` - for features which have been removed"
 msgstr ""
 
-#: src/contributing.md:143
+#: src/contributing.md:148
 msgid "`fixed` - for \"changed\" features which were classed as a bugfix"
 msgstr ""
 
-#: src/contributing.md:145
+#: src/contributing.md:150
 msgid ""
 "Docs-only PRs do not need news items; start your PR title with `docs:` to "
 "skip the check."
 msgstr ""
 
-#: src/contributing.md:147
+#: src/contributing.md:152
 msgid "Style guide"
 msgstr ""
 
-#: src/contributing.md:149
+#: src/contributing.md:154
 msgid "Generic code"
 msgstr ""
 
-#: src/contributing.md:151
+#: src/contributing.md:156
 msgid ""
 "PyO3 has a lot of generic APIs to increase usability. These can come at the "
 "cost of generic code bloat. Where reasonable, try to implement a concrete "
 "sub-portion of generic functions. There are two forms of this:"
 msgstr ""
 
-#: src/contributing.md:153
+#: src/contributing.md:158
 msgid ""
 "If the concrete sub-portion doesn't benefit from re-use by other functions, "
 "name it `inner` and keep it as a local to the function."
 msgstr ""
 
-#: src/contributing.md:154
+#: src/contributing.md:159
 msgid ""
 "If the concrete sub-portion is re-used by other functions, preferably name "
 "it `_foo` and place it directly below `foo` in the source code (where `foo` "
 "is the original generic function)."
 msgstr ""
 
-#: src/contributing.md:156
+#: src/contributing.md:161
 msgid "FFI calls"
 msgstr ""
 
-#: src/contributing.md:158
+#: src/contributing.md:163
 msgid ""
 "PyO3 makes a lot of FFI calls to Python's C API using raw pointers. Where "
 "possible try to avoid using pointers-to-temporaries in expressions:"
 msgstr ""
 
-#: src/contributing.md:161
+#: src/contributing.md:166
 msgid "// dangerous\n"
 msgstr ""
 
-#: src/contributing.md:163
+#: src/contributing.md:168
 msgid "// because the following refactoring is a use-after-free error:\n"
 msgstr ""
 
-#: src/contributing.md:169
+#: src/contributing.md:174
 msgid ""
 "Instead, prefer to bind the safe owned `PyObject` wrapper before passing to "
 "ffi functions:"
 msgstr ""
 
-#: src/contributing.md:173
+#: src/contributing.md:178
 msgid "// name will automatically be freed when it falls out of scope\n"
 msgstr ""
 
-#: src/contributing.md:177
+#: src/contributing.md:182
 msgid "Python and Rust version support policy"
 msgstr ""
 
-#: src/contributing.md:179
+#: src/contributing.md:184
 msgid ""
 "PyO3 aims to keep sufficient compatibility to make packaging Python "
 "extensions built with PyO3 feasible on most common package managers."
 msgstr ""
 
-#: src/contributing.md:181
+#: src/contributing.md:186
 msgid ""
 "To keep package maintainers' lives simpler, PyO3 will commit, wherever "
 "possible, to only adjust minimum supported Rust and Python versions at the "
@@ -487,97 +494,97 @@ msgid ""
 "(Check https://endoflife.date/python for a clear timetable on these.)"
 msgstr ""
 
-#: src/contributing.md:183
+#: src/contributing.md:188
 msgid ""
 "Below are guidelines on what compatibility all PRs are expected to deliver "
 "for each language."
 msgstr ""
 
-#: src/contributing.md:185
+#: src/contributing.md:190
 msgid "Python"
 msgstr ""
 
-#: src/contributing.md:187
+#: src/contributing.md:192
 msgid ""
 "PyO3 supports all officially supported Python versions, as well as the "
 "latest PyPy3 release. All of these versions are tested in CI."
 msgstr ""
 
-#: src/contributing.md:189
+#: src/contributing.md:194
 msgid "Adding support for new CPython versions"
 msgstr ""
 
-#: src/contributing.md:191
+#: src/contributing.md:196
 msgid ""
 "If you plan to add support for a pre-release version of CPython, here's a "
 "(non-exhaustive) checklist:"
 msgstr ""
 
-#: src/contributing.md:193
+#: src/contributing.md:198
 msgid ""
 "Wait until the last alpha release (usually alpha7), since ABI is not "
 "guaranteed until the first beta release"
 msgstr ""
 
-#: src/contributing.md:194
+#: src/contributing.md:199
 msgid ""
 "Add prerelease_ver-dev (e.g. `3.14-dev`) to `.github/workflows/ci.yml`, and "
 "bump version in `noxfile.py`, `pyo3-ffi/Cargo.toml` under `max-version` "
 "within  `[package.metadata.cpython]`, and `max` within `pyo3-ffi/build.rs`"
 msgstr ""
 
-#: src/contributing.md:195
+#: src/contributing.md:200
 msgid "Add a new abi3-prerelease feature for the version (e.g. `abi3-py314`)"
 msgstr ""
 
-#: src/contributing.md:196
+#: src/contributing.md:201
 msgid ""
 "In `pyo3-build-config/Cargo.toml`, set abi3-most_current_stable to \\[\"abi3-"
 "prerelease\"\\] and abi3-prerelease to \\[\"abi3\"\\]"
 msgstr ""
 
-#: src/contributing.md:197
+#: src/contributing.md:202
 msgid ""
 "In `pyo3-ffi/Cargo.toml`, set abi3-most_current_stable to \\[\"abi3-"
 "prerelease\", \"pyo3-build-config/abi3-most_current_stable\"\\] and abi3-"
 "prerelease to \\[\"abi3\", \"pyo3-build-config/abi3-prerelease\"\\]"
 msgstr ""
 
-#: src/contributing.md:198
+#: src/contributing.md:203
 msgid ""
 "In `Cargo.toml`, set abi3-most_current_stable to \\[\"abi3-prerelease\", "
 "\"pyo3-ffi/abi3-most_current_stable\"\\] and abi3-prerelease to \\[\"abi3\", "
 "\"pyo3-ffi/abi3-prerelease\"\\]"
 msgstr ""
 
-#: src/contributing.md:199
+#: src/contributing.md:204
 msgid ""
 "Use `#[cfg(Py_prerelease])` (e.g. `#[cfg(Py_3_14)]`) and "
 "`#[cfg(not(Py_prerelease]))` to indicate changes between the stable branches "
 "of CPython and the pre-release"
 msgstr ""
 
-#: src/contributing.md:200
+#: src/contributing.md:205
 msgid ""
 "Do not add a Rust binding to any function, struct, or global variable "
 "prefixed with `_` in CPython's headers"
 msgstr ""
 
-#: src/contributing.md:201
+#: src/contributing.md:206
 msgid "Ping @ngoldbaum and @davidhewitt for assistance"
 msgstr ""
 
-#: src/contributing.md:203
+#: src/contributing.md:208
 msgid "Rust"
 msgstr ""
 
-#: src/contributing.md:205
+#: src/contributing.md:210
 msgid ""
 "PyO3 aims to make use of up-to-date Rust language features to keep the "
 "implementation as efficient as possible."
 msgstr ""
 
-#: src/contributing.md:207
+#: src/contributing.md:212
 msgid ""
 "The minimum Rust version supported will be decided when the release which "
 "bumps Python and Rust versions is made. At the time, the minimum Rust "
@@ -585,105 +592,105 @@ msgid ""
 "current Debian, RHEL and Alpine Linux distributions."
 msgstr ""
 
-#: src/contributing.md:209
+#: src/contributing.md:214
 msgid ""
 "CI tests both the most recent stable Rust version and the minimum supported "
 "Rust version. Because of Rust's stability guarantees this is sufficient to "
 "confirm support for all Rust versions in between."
 msgstr ""
 
-#: src/contributing.md:211
+#: src/contributing.md:216
 msgid "Benchmarking"
 msgstr ""
 
-#: src/contributing.md:213
+#: src/contributing.md:218
 msgid ""
 "PyO3 has two sets of benchmarks for evaluating some aspects of its "
 "performance. The benchmark suite is currently very small - please open PRs "
 "with new benchmarks if you're interested in helping to expand it!"
 msgstr ""
 
-#: src/contributing.md:215
+#: src/contributing.md:220
 msgid ""
 "First, there are Rust-based benchmarks located in the `pyo3-benches` "
 "subdirectory. You can run these benchmarks with:"
 msgstr ""
 
-#: src/contributing.md:219
+#: src/contributing.md:224
 msgid ""
 "Second, there is a Python-based benchmark contained in the `pytests` "
 "subdirectory. You can read more about it [here](https://github.com/PyO3/pyo3/"
 "tree/main/pytests)."
 msgstr ""
 
-#: src/contributing.md:221
+#: src/contributing.md:226
 msgid "Code coverage"
 msgstr ""
 
-#: src/contributing.md:223
+#: src/contributing.md:228
 msgid ""
 "You can view what code is and isn't covered by PyO3's tests. We aim to have "
 "100% coverage - please check coverage and add tests if you notice a lack of "
 "coverage!"
 msgstr ""
 
-#: src/contributing.md:225
+#: src/contributing.md:230
 msgid ""
 "First, ensure the llvm-cov cargo plugin is installed. You may need to run "
 "the plugin through cargo once before using it with `nox`."
 msgstr ""
 
-#: src/contributing.md:230
+#: src/contributing.md:235
 msgid "Then, generate an `lcov.info` file with"
 msgstr ""
 
-#: src/contributing.md:234
+#: src/contributing.md:239
 msgid ""
 "You can install an IDE plugin to view the coverage. For example, if you use "
 "VSCode:"
 msgstr ""
 
-#: src/contributing.md:235
+#: src/contributing.md:240
 msgid ""
 "Add the [coverage-gutters](https://marketplace.visualstudio.com/items?"
 "itemName=ryanluker.vscode-coverage-gutters) plugin."
 msgstr ""
 
-#: src/contributing.md:236
+#: src/contributing.md:241
 msgid "Add these settings to VSCode's `settings.json`:"
 msgstr ""
 
-#: src/contributing.md:239
+#: src/contributing.md:244
 msgid "\"coverage-gutters.coverageFileNames\""
 msgstr ""
 
-#: src/contributing.md:240
+#: src/contributing.md:245
 msgid "\"lcov.info\""
 msgstr ""
 
-#: src/contributing.md:241
+#: src/contributing.md:246
 msgid "\"cov.xml\""
 msgstr ""
 
-#: src/contributing.md:242
+#: src/contributing.md:247
 msgid "\"coverage.xml\""
 msgstr ""
 
-#: src/contributing.md:244
+#: src/contributing.md:249
 msgid "\"coverage-gutters.showLineCoverage\""
 msgstr ""
 
-#: src/contributing.md:247
+#: src/contributing.md:252
 msgid ""
 "You should now be able to see green highlights for code that is tested, and "
 "red highlights for code that is not tested."
 msgstr ""
 
-#: src/contributing.md:249
+#: src/contributing.md:254
 msgid "Sponsor this project"
 msgstr "贊助此專案"
 
-#: src/contributing.md:251
+#: src/contributing.md:256
 msgid ""
 "At the moment there is no official organisation that accepts sponsorship on "
 "PyO3's behalf. If you're seeking to provide significant funding to the PyO3 "
@@ -691,16 +698,16 @@ msgid ""
 "issues/new) or [Discord](https://discord.gg/33kcChzH7f) and we can discuss."
 msgstr ""
 
-#: src/contributing.md:253
+#: src/contributing.md:258
 msgid ""
 "In the meanwhile, some of our maintainers have personal GitHub sponsorship "
 "pages and would be grateful for your support:"
 msgstr ""
 
-#: src/contributing.md:255
+#: src/contributing.md:260
 msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 msgstr "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 
-#: src/contributing.md:256
+#: src/contributing.md:261
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr "[messense](https://github.com/sponsors/messense)"
