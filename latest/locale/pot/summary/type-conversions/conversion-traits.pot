@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-01-19T08:26:00Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -324,7 +324,7 @@ msgstr ""
 #: src/conversions/traits.md:447
 msgid ""
 "If the input is neither a string nor an integer, the error message will be: "
-"`\"'<INPUT_TYPE>' cannot be cast as 'str | int'\"`."
+"`\"'<INPUT_TYPE>' is not an instance of 'str | int'\"`."
 msgstr ""
 
 #: src/conversions/traits.md:449
