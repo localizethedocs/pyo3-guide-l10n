@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-01-18 15:27:39 +0000",
-      "hash" : "c969dd0253111b62e7b5c1153fc71d5cb3c139ce",
-      "title" : "remove all functionality deprecated in PyO3 0.26 (#5740)"
+      "date" : "2026-01-23 08:47:24 +0000",
+      "hash" : "eef6d645ec5fb87ae6fe2edfb6fbeccabbc05fe0",
+      "title" : "ci: updates for Rust 1.93 (#5749)"
     }
   },
   "type" : "branch",
