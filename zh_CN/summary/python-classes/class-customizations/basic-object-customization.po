@@ -1,0 +1,177 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/object.md:1
+msgid "Basic object customization"
+msgstr ""
+
+#: src/class/object.md:3
+msgid "Recall the `Number` class from the previous chapter:"
+msgstr ""
+
+#: src/class/object.md:26
+msgid ""
+"At this point Python code can import the module, access the class and create "
+"class instances - but nothing else."
+msgstr ""
+
+#: src/class/object.md:40
+msgid "String representations"
+msgstr ""
+
+#: src/class/object.md:42
+msgid ""
+"It can't even print an user-readable representation of itself! We can fix "
+"that by defining the `__repr__` and `__str__` methods inside a "
+"`#[pymethods]` block. We do this by accessing the value contained inside "
+"`Number`."
+msgstr ""
+
+#: src/class/object.md:54
+msgid ""
+"// For `__repr__` we want to return a string that Python code could use to "
+"recreate\n"
+"    // the `Number`, like `Number(5)` for example.\n"
+msgstr ""
+
+#: src/class/object.md:57
+msgid ""
+"// We use the `format!` macro to create a string. Its first argument is a\n"
+"        // format string, followed by any number of parameters which replace "
+"the\n"
+"        // `{}`'s in the format string.\n"
+"        //\n"
+"        //                       👇 Tuple field access in Rust uses a dot\n"
+msgstr ""
+
+#: src/class/object.md:62
+msgid "\"Number({})\""
+msgstr ""
+
+#: src/class/object.md:64
+msgid ""
+"// `__str__` is generally used to create an \"informal\" representation, so "
+"we\n"
+"    // just forward to `i32`'s `ToString` trait implementation to print a "
+"bare number.\n"
+msgstr ""
+
+#: src/class/object.md:72
+msgid "Accessing the class name"
+msgstr ""
+
+#: src/class/object.md:74
+msgid ""
+"In the `__repr__`, we used a hard-coded class name. This is sometimes not "
+"ideal, because if the class is subclassed in Python, we would like the repr "
+"to reflect the subclass name. This is typically done in Python code by "
+"accessing `self.__class__.__name__`. In order to be able to access the "
+"Python type information _and_ the Rust struct, we need to use a `PyCell` as "
+"the `self` argument."
+msgstr ""
+
+#: src/class/object.md:89
+msgid "// This is the equivalent of `self.__class__.__name__` in Python.\n"
+msgstr ""
+
+#: src/class/object.md:91
+msgid ""
+"// To access fields of the Rust struct, we need to borrow the `PyCell`.\n"
+msgstr ""
+
+#: src/class/object.md:92 src/class/object.md:264
+msgid "\"{}({})\""
+msgstr ""
+
+#: src/class/object.md:97
+msgid "Hashing"
+msgstr ""
+
+#: src/class/object.md:100
+msgid ""
+"Let's also implement hashing. We'll just hash the `i32`. For that we need a "
+"[`Hasher`](https://doc.rust-lang.org/std/hash/trait.Hasher.html). The one "
+"provided by `std` is [`DefaultHasher`](https://doc.rust-lang.org/std/"
+"collections/hash_map/struct.DefaultHasher.html), which uses the [SipHash]"
+"(https://en.wikipedia.org/wiki/SipHash) algorithm."
+msgstr ""
+
+#: src/class/object.md:105
+msgid ""
+"// Required to call the `.hash` and `.finish` methods, which are defined on "
+"traits.\n"
+msgstr ""
+
+#: src/class/object.md:124
+msgid ""
+"**Note**: When implementing `__hash__` and comparisons, it is important that "
+"the following property holds:"
+msgstr ""
+
+#: src/class/object.md:130
+msgid ""
+"In other words, if two keys are equal, their hashes must also be equal. In "
+"addition you must take care that your classes' hash doesn't change during "
+"its lifetime. In this tutorial we do that by not letting Python code change "
+"our `Number` class. In other words, it is immutable."
+msgstr ""
+
+#: src/class/object.md:134
+msgid ""
+"By default, all `#[pyclass]` types have a default hash implementation from "
+"Python. Types which should not be hashable can override this by setting "
+"`__hash__` to None. This is the same mechanism as for a pure-Python class. "
+"This is done like so:"
+msgstr ""
+
+#: src/class/object.md:150
+msgid "Comparisons"
+msgstr ""
+
+#: src/class/object.md:152
+msgid ""
+"Unlike in Python, PyO3 does not provide the magic comparison methods you "
+"might expect like `__eq__`, `__lt__` and so on. Instead you have to "
+"implement all six operations at once with `__richcmp__`. This method will be "
+"called with a value of `CompareOp` depending on the operation."
+msgstr ""
+
+#: src/class/object.md:179
+msgid ""
+"If you obtain the result by comparing two Rust values, as in this example, "
+"you can take a shortcut using `CompareOp::matches`:"
+msgstr ""
+
+#: src/class/object.md:198
+msgid ""
+"It checks that the `std::cmp::Ordering` obtained from Rust's `Ord` matches "
+"the given `CompareOp`."
+msgstr ""
+
+#: src/class/object.md:201
+msgid ""
+"Alternatively, if you want to leave some operations unimplemented, you can "
+"return `py.NotImplemented()` for some of the operations:"
+msgstr ""
+
+#: src/class/object.md:225
+msgid "Truthyness"
+msgstr ""
+
+#: src/class/object.md:227
+msgid "We'll consider `Number` to be `True` if it is nonzero:"
+msgstr ""
+
+#: src/class/object.md:243
+msgid "Final code"
+msgstr ""
