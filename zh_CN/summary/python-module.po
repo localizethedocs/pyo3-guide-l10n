@@ -1,0 +1,85 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:43Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/module.md:1
+msgid "Python Module"
+msgstr ""
+
+#: src/module.md:3
+msgid ""
+"As shown in the Getting Started chapter, you can create a module as follows:"
+msgstr ""
+
+#: src/module.md:12
+msgid ""
+"// add bindings to the generated python module\n"
+"// N.B: names: \"librust2py\" must be the name of the `.so` or `.pyd` file\n"
+"/// This module is implemented in Rust.\n"
+msgstr ""
+
+#: src/module.md:19
+msgid ""
+"// pyo3 aware function. All of our python interface could be declared in a "
+"separate module.\n"
+"    // Note that the `#[pyfn()]` annotation automatically converts the "
+"arguments from\n"
+"    // Python objects to Rust values; and the Rust return value back into a "
+"Python object.\n"
+msgstr ""
+
+#: src/module.md:22
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/module.md:30
+msgid "// logic implemented as a normal rust function\n"
+msgstr ""
+
+#: src/module.md:33
+msgid "\"{}\""
+msgstr ""
+
+#: src/module.md:39
+msgid ""
+"The `#[pymodinit}` procedural macro attribute takes care of exporting the "
+"initialization function of your module to Python. It takes one argument as "
+"the name of your module, it must be the name of the `.so` or `.pyd` file."
+msgstr ""
+
+#: src/module.md:41
+msgid ""
+"The [Rust doc comments](https://doc.rust-lang.org/stable/book/first-edition/"
+"comments.html) of the module initialization function will be applied "
+"automatically as the Python doc string of your module."
+msgstr ""
+
+#: src/module.md:49
+msgid ""
+"Which means that the above Python code will print `This module is "
+"implemented in Rust.`."
+msgstr ""
+
+#: src/module.md:51
+msgid "On macOS, you will need to rename the output from `*.dylib` to `*.so`."
+msgstr ""
+
+#: src/module.md:53
+msgid "On Windows, you will need to rename the output from `*.dll` to `*.pyd`."
+msgstr ""
+
+#: src/module.md:55
+msgid ""
+"For `setup.py` integration, You can use [setuptools-rust](https://github.com/"
+"PyO3/setuptools-rust), learn more about it in [Distribution](./distribution."
+"html)."
+msgstr ""
