@@ -1,0 +1,211 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:40:13Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/faq.md:1
+msgid "Frequently Asked Questions / Troubleshooting"
+msgstr ""
+
+#: src/faq.md:3
+msgid "I'm experiencing deadlocks using PyO3 with lazy_static or once_cell!"
+msgstr ""
+
+#: src/faq.md:5
+msgid ""
+"`lazy_static` and `once_cell::sync` both use locks to ensure that "
+"initialization is performed only by a single thread. Because the Python GIL "
+"is an additional lock this can lead to deadlocks in the following way:"
+msgstr ""
+
+#: src/faq.md:7
+msgid ""
+"A thread (thread A) which has acquired the Python GIL starts initialization "
+"of a `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:8
+msgid ""
+"The initialization code calls some Python API which temporarily releases the "
+"GIL e.g. `Python::import`."
+msgstr ""
+
+#: src/faq.md:9
+msgid ""
+"Another thread (thread B) acquires the Python GIL and attempts to access the "
+"same `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:10
+msgid ""
+"Thread B is blocked, because it waits for `lazy_static`'s initialization to "
+"lock to release."
+msgstr ""
+
+#: src/faq.md:11
+msgid ""
+"Thread A is blocked, because it waits to re-aquire the GIL which thread B "
+"still holds."
+msgstr ""
+
+#: src/faq.md:12
+msgid "Deadlock."
+msgstr ""
+
+#: src/faq.md:14
+msgid ""
+"PyO3 provides a struct [`GILOnceCell`](https://pyo3.rs/main/doc/pyo3/"
+"once_cell/struct.GILOnceCell.html) which works equivalently to `OnceCell` "
+"but relies solely on the Python GIL for thread safety. This means it can be "
+"used in place of `lazy_static` or `once_cell` where you are experiencing the "
+"deadlock described above. See the documentation for [`GILOnceCell`](https://"
+"pyo3.rs/main/doc/pyo3/once_cell/struct.GILOnceCell.html) for an example how "
+"to use it."
+msgstr ""
+
+#: src/faq.md:18
+msgid ""
+"I can't run `cargo test`: I'm having linker issues like \"Symbol not found\" "
+"or \"Undefined reference to \\_PyExc_SystemError\"!"
+msgstr ""
+
+#: src/faq.md:20
+msgid ""
+"Currently, [\\#340](https://github.com/PyO3/pyo3/issues/340) causes `cargo "
+"test` to fail with linking errors when the `extension-module` feature is "
+"activated. For now you can work around this by making the `extension-module` "
+"feature optional and running the tests with `cargo test --no-default-"
+"features`:"
+msgstr ""
+
+#: src/faq.md:22
+msgid ""
+"```toml\n"
+"[dependencies.pyo3]\n"
+"git = \"https://github.com/pyo3/pyo3\"\n"
+"\n"
+"[features]\n"
+"extension-module = [\"pyo3/extension-module\"]\n"
+"default = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/faq.md:31
+msgid ""
+"I can't run `cargo test`: my crate cannot be found for tests in `tests/` "
+"directory!"
+msgstr ""
+
+#: src/faq.md:33
+msgid ""
+"The Rust book suggests to [put integration tests inside a `tests/` directory]"
+"(https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-"
+"tests)."
+msgstr ""
+
+#: src/faq.md:35
+msgid ""
+"For a PyO3 `extension-module` project where the `crate-type` is set to "
+"`\"cdylib\"` in your `Cargo.toml`, the compiler won't be able to find your "
+"crate and will display errors such as `E0432` or `E0463`:"
+msgstr ""
+
+#: src/faq.md:46
+msgid ""
+"The best solution is to make your crate types include both `rlib` and "
+"`cdylib`:"
+msgstr ""
+
+#: src/faq.md:48
+msgid ""
+"```toml\n"
+"# Cargo.toml\n"
+"[lib]\n"
+"crate-type = [\"cdylib\", \"rlib\"]\n"
+"```"
+msgstr ""
+
+#: src/faq.md:54
+msgid "Ctrl-C doesn't do anything while my Rust code is executing!"
+msgstr ""
+
+#: src/faq.md:56
+msgid ""
+"This is because Ctrl-C raises a SIGINT signal, which is handled by the "
+"calling Python process by simply setting a flag to action upon later. This "
+"flag isn't checked while Rust code called from Python is executing, only "
+"once control returns to the Python interpreter."
+msgstr ""
+
+#: src/faq.md:58
+msgid ""
+"You can give the Python interpreter a chance to process the signal properly "
+"by calling `Python::check_signals`. It's good practice to call this function "
+"regularly if you have a long-running Rust function so that your users can "
+"cancel it."
+msgstr ""
+
+#: src/faq.md:60
+msgid "`#[pyo3(get)]` clones my field!"
+msgstr ""
+
+#: src/faq.md:62
+msgid "You may have a nested struct similar to this:"
+msgstr ""
+
+#: src/faq.md:68 src/faq.md:108
+msgid "/* fields omitted */"
+msgstr ""
+
+#: src/faq.md:85
+msgid ""
+"When Python code accesses `Outer`'s field, PyO3 will return a new object on "
+"every access (note that their addresses are different):"
+msgstr ""
+
+#: src/faq.md:93 src/faq.md:133 src/faq.md:134
+msgid "\"a: "
+msgstr ""
+
+#: src/faq.md:93 src/faq.md:133 src/faq.md:134
+msgid "\\nb: "
+msgstr ""
+
+#: src/faq.md:93 src/faq.md:133 src/faq.md:134
+msgid "\""
+msgstr ""
+
+#: src/faq.md:101
+msgid ""
+"This can be especially confusing if the field is mutable, as getting the "
+"field and then mutating it won't persist - you'll just get a fresh clone of "
+"the original on the next access. Unfortunately Python and Rust don't agree "
+"about ownership - if PyO3 gave out references to (possibly) temporary Rust "
+"objects to Python code, Python code could then keep that reference alive "
+"indefinitely. Therefore returning Rust objects requires cloning."
+msgstr ""
+
+#: src/faq.md:103
+msgid ""
+"If you don't want that cloning to happen, a workaround is to allocate the "
+"field on the Python heap and store a reference to that, by using [`Py<...>`]"
+"(https://pyo3.rs/main/doc/pyo3/struct.Py.html):"
+msgstr ""
+
+#: src/faq.md:126
+msgid "This time `a` and `b` _are_ the same object:"
+msgstr ""
+
+#: src/faq.md:141
+msgid ""
+"The downside to this approach is that any Rust code working on the `Outer` "
+"struct now has to acquire the GIL to do anything with its field."
+msgstr ""
