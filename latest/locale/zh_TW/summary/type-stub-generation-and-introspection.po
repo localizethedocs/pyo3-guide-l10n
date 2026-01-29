@@ -57,16 +57,20 @@ msgid ""
 "The `pyo3-introspection` crate that can parse the generated binaries, "
 "extract the JSON strings and build stub files from it."
 msgstr ""
+"`pyo3-introspection` 軟體箱可解析產生的二進位檔，抽取 JSON 字串並產生 stub 檔"
+"案。"
 
 #: src/type-stub.md:13
 msgid ""
 "\\[Not done yet\\] Build tools like `maturin` exposing `pyo3-introspection` "
 "features in their CLI API."
 msgstr ""
+"\\[尚未完成\\] 例如 `maturin` 等建置工具在其 CLI API 中暴露 `pyo3-"
+"introspection` 功能。"
 
 #: src/type-stub.md:15
 msgid "For example, the following Rust code"
-msgstr ""
+msgstr "例如，以下 Rust 程式碼"
 
 #: src/type-stub.md:23 src/type-stub.md:57
 msgid "\"FOO\""
@@ -78,7 +82,7 @@ msgstr ""
 
 #: src/type-stub.md:52
 msgid "will generate the following stub file:"
-msgstr ""
+msgstr "會產生以下 stub 檔案："
 
 #: src/type-stub.md:71
 msgid ""
@@ -88,6 +92,9 @@ msgid ""
 "annotations). This is useful when PyO3 is not able to derive proper type "
 "annotations by itself."
 msgstr ""
+"新增的語法只有一項：`#[pyo3(signature = ...)]` 屬性現在可以包含型別標註，例"
+"如 `#[pyo3(signature = (arg: \"list[int]\") -> \"list[int]\")]`（注意型別標註"
+"外層的 `\"\"`）。當 PyO3 無法自行推導適當的型別標註時，這會很有用。"
 
 #: src/type-stub.md:74
 msgid "Constraints and limitations"
@@ -97,25 +104,30 @@ msgstr "約束與限制"
 msgid ""
 "The `experimental-inspect` feature is required to generate the introspection "
 "fragments."
-msgstr ""
+msgstr "需要啟用 `experimental-inspect` 功能才能產生內省片段。"
 
 #: src/type-stub.md:77
 msgid ""
 "Lots of features are not implemented yet. See [the related issue](https://"
 "github.com/PyO3/pyo3/issues/5137) for a list of them."
 msgstr ""
+"許多功能尚未實作。清單請參考[相關議題](https://github.com/PyO3/pyo3/"
+"issues/5137)。"
 
 #: src/type-stub.md:79
 msgid ""
 "Introspection only works with Python modules declared with an inline Rust "
 "module. Modules declared using a function are not supported."
 msgstr ""
+"內省僅適用於以內嵌 Rust 模組宣告的 Python 模組，使用函式宣告的模組不受支援。"
 
 #: src/type-stub.md:81
 msgid ""
 "`FromPyObject::INPUT_TYPE` and `IntoPyObject::OUTPUT_TYPE` must be "
 "implemented for PyO3 to get the proper input/output type annotations to use."
 msgstr ""
+"必須實作 `FromPyObject::INPUT_TYPE` 與 `IntoPyObject::OUTPUT_TYPE`，PyO3 才能"
+"取得正確的輸入／輸出型別標註。"
 
 #: src/type-stub.md:82
 msgid ""
@@ -125,3 +137,7 @@ msgid ""
 "function [following best practices](https://typing.python.org/en/latest/"
 "guides/writing_stubs.html#incomplete-stubs)."
 msgstr ""
+"PyO3 無法內省 `#[pymodule]` 與 `#[pymodule_init]` 函式的內容。若存在這些函"
+"式，模組會用一個假的 `def __getattr__(name: str) -> Incomplete: ...` 函式標記"
+"為 incomplete（遵循[最佳實務](https://typing.python.org/en/latest/guides/"
+"writing_stubs.html#incomplete-stubs)）。"

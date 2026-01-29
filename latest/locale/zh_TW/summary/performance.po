@@ -19,11 +19,11 @@ msgstr "效能"
 msgid ""
 "To achieve the best possible performance, it is useful to be aware of "
 "several tricks and sharp edges concerning PyO3's API."
-msgstr ""
+msgstr "為了達到最佳效能，了解 PyO3 API 的一些技巧與陷阱很有幫助。"
 
 #: src/performance.md:5
 msgid "`extract` versus `cast`"
-msgstr ""
+msgstr "`extract` 與 `cast`"
 
 #: src/performance.md:7
 msgid ""
@@ -32,6 +32,9 @@ msgid ""
 "types to which the requested operation is applied. This often leads to "
 "chains of calls to `extract`, e.g."
 msgstr ""
+"使用 PyO3 實作的 Python 風格 API 通常是多型的，也就是接受 `&Bound<'_, "
+"PyAny>` 並嘗試轉換為多個更具體的型別以套用指定操作。這經常導致連串的 "
+"`extract` 呼叫，例如："
 
 #: src/performance.md:30 src/performance.md:54
 msgid "\"Cannot frobnicate that type.\""
@@ -45,16 +48,22 @@ msgid ""
 "ignored. This avoids the costly conversion of a `PyDowncastError` to a "
 "`PyErr` required to fulfil the `FromPyObject` contract, i.e."
 msgstr ""
+"這並不理想，因為 `FromPyObject<T>` 特徵要求 `extract` 回傳 `Result<T, "
+"PyErr>`。對於 `PyList` 這類原生型別，在忽略錯誤值時使用 `cast`（`extract` 內"
+"部會呼叫它）會更快。這可避免將 `PyDowncastError` 轉為 `PyErr` 的昂貴成本，以"
+"滿足 `FromPyObject` 合約，例如："
 
 #: src/performance.md:48
 msgid ""
 "// Use `cast` instead of `extract` as turning `PyDowncastError` into `PyErr` "
 "is quite costly.\n"
 msgstr ""
+"// 使用 `cast` 取代 `extract`，因為將 `PyDowncastError` 轉為 `PyErr` 成本很"
+"高。\n"
 
 #: src/performance.md:59
 msgid "Access to Bound implies access to Python token"
-msgstr ""
+msgstr "存取 Bound 代表可存取 Python token"
 
 #: src/performance.md:61
 msgid ""
@@ -65,22 +74,25 @@ msgid ""
 "can be avoided by exploiting that access to Python-bound reference gives "
 "zero-cost access to a Python token via `Bound::py`."
 msgstr ""
+"當我們已附加到直譯器時，呼叫 `Python::attach` 幾乎是 no-op，但檢查這件事仍有"
+"成本。若無法存取既有的 Python token（例如在實作既有特徵時），但已持有 Python "
+"綁定的參照，就可利用 `Bound::py` 以零成本取得 Python token，避免該成本。"
 
 #: src/performance.md:64
 msgid "For example, instead of writing"
-msgstr ""
+msgstr "例如，與其寫成"
 
 #: src/performance.md:85
 msgid "use the more efficient"
-msgstr ""
+msgstr "請改用較有效率的"
 
 #: src/performance.md:96
 msgid "// Access to `&Bound<'py, PyAny>` implies access to `Python<'py>`.\n"
-msgstr ""
+msgstr "// 存取 `&Bound<'py, PyAny>` 代表可存取 `Python<'py>`。\n"
 
 #: src/performance.md:104
 msgid "Calling Python callables (`__call__`)"
-msgstr ""
+msgstr "呼叫 Python 可呼叫物件（`__call__`）"
 
 #: src/performance.md:106
 msgid ""
@@ -96,10 +108,19 @@ msgid ""
 "using the (internal) `PyCallArgs` trait. It defines how Rust types can be "
 "used as Python `call` arguments. This trait is currently implemented for"
 msgstr ""
+"CPython 支援多種呼叫協定：[`tp_call`](https://docs.python.org/3/c-api/call."
+"html#the-tp-call-protocol) 與 [`vectorcall`](https://docs.python.org/3/c-api/"
+"call.html#the-vectorcall-protocol)。[`vectorcall`](https://docs.python.org/3/"
+"c-api/call.html#the-vectorcall-protocol) 是更高效的協定，可加速呼叫。PyO3 會"
+"在可能時嘗試使用 [`vectorcall`](https://docs.python.org/3/c-api/call."
+"html#the-vectorcall-protocol) 呼叫慣例來達到最高效能，否則退回 [`tp_call`]"
+"(https://docs.python.org/3/c-api/call.html#the-tp-call-protocol)。這是透過"
+"（內部的）`PyCallArgs` 特徵實作的，它定義 Rust 型別如何作為 Python `call` 參"
+"數使用。此特徵目前為以下項目實作："
 
 #: src/performance.md:112
 msgid "Rust tuples, where each member implements `IntoPyObject`,"
-msgstr ""
+msgstr "Rust tuple，其中每個成員都實作 `IntoPyObject`，"
 
 #: src/performance.md:113
 msgid "`Bound<'_, PyTuple>`"
@@ -117,10 +138,14 @@ msgid ""
 "html#the-tp-call-protocol). For maximum performance prefer using Rust tuples "
 "as arguments."
 msgstr ""
+"Rust tuple 可使用 [`vectorcall`](https://docs.python.org/3/c-api/call."
+"html#the-vectorcall-protocol)，而 `Bound<'_, PyTuple>` 與 `Py<PyTuple>` 只能"
+"使用 [`tp_call`](https://docs.python.org/3/c-api/call.html#the-tp-call-"
+"protocol)。為求最佳效能，請優先使用 Rust tuple 作為參數。"
 
 #: src/performance.md:122
 msgid "Detach from the interpreter for long-running Rust-only work"
-msgstr ""
+msgstr "長時間的純 Rust 工作請從直譯器分離"
 
 #: src/performance.md:124
 msgid ""
@@ -129,12 +154,16 @@ msgid ""
 "struct.Python.html#method.detach) to allow the Python interpreter to proceed "
 "without waiting for the current thread."
 msgstr ""
+"當執行不需要與 Python 直譯器互動的 Rust 程式碼時，請使用 [`Python::detach`]"
+"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach)，讓 "
+"Python 直譯器在不等待目前執行緒的情況下繼續執行。"
 
 #: src/performance.md:126
 msgid ""
 "On the GIL-enabled build, this is crucial for best performance as only a "
 "single thread may ever be attached at a time."
 msgstr ""
+"在啟用 GIL 的建置中，這對最佳效能至關重要，因為同一時間只能有單一執行緒附加。"
 
 #: src/performance.md:128
 msgid ""
@@ -142,6 +171,8 @@ msgid ""
 "\"stop the world\" events (such as garbage collection) where all threads "
 "attached to the Python interpreter are forced to wait."
 msgstr ""
+"在自由執行緒建置中，這仍是最佳實務，因為存在多個「stop the world」事件（如垃"
+"圾回收），會迫使所有附加到 Python 直譯器的執行緒等待。"
 
 #: src/performance.md:130
 msgid ""
@@ -149,6 +180,8 @@ msgid ""
 "takes less than a millisecond, so any work which is expected to take "
 "multiple milliseconds can likely benefit from detaching from the interpreter."
 msgstr ""
+"一般而言，附加與分離 Python 直譯器所需時間不到 1 毫秒，因此預期耗時數毫秒以上"
+"的工作，多半可受益於先從直譯器分離。"
 
 #: src/performance.md:134
 msgid "Disable the global reference pool"
@@ -163,6 +196,10 @@ msgid ""
 "the interpreter is somewhat expensive and can become a significant part of "
 "the cost of crossing the Python-Rust boundary."
 msgstr ""
+"PyO3 使用全域可變狀態來追蹤在未附加到直譯器時呼叫 `impl<T> Drop for Py<T>` 所"
+"隱含的延後參考計數更新。當 PyO3 程式碼下一次附加到直譯器時，需要進行同步以取"
+"得並套用這些參考計數更新，成本不低，且可能成為跨越 Python-Rust 邊界的重要開"
+"銷。"
 
 #: src/performance.md:139
 msgid ""
@@ -178,6 +215,12 @@ msgid ""
 "will be leaked instead which is always sound but might have determinal "
 "effects like resource exhaustion in the long term."
 msgstr ""
+"可透過設定 `pyo3_disable_reference_pool` 條件編譯旗標來避免此功能。這會完全移"
+"除全域參考池與相關成本。然而，它_不會_移除 `Py<T>` 的 `Drop` 實作，該實作對於"
+"與不以 PyO3 為前提撰寫的既有 Rust 程式碼互通是必要的。為了與更廣泛的 Rust 生"
+"態系相容，我們保留該實作，但在未附加到直譯器時呼叫 `Drop` 會中止。若另外啟用 "
+"`pyo3_leak_on_drop_without_reference_pool`，則在未附加到 Python 時被釋放的物"
+"件會改為洩漏，這永遠是安全的，但長期可能造成資源耗盡等不良影響。"
 
 #: src/performance.md:145
 msgid ""
@@ -187,7 +230,11 @@ msgid ""
 "`PyBackedStr` or `PyBackedBytes`) returned from `Python::attach` without "
 "making sure to re-attach beforehand. For example, the following code"
 msgstr ""
+"使用此設定時務必留意這項限制，特別是在把 Python 程式碼嵌入 Rust 應用程式時，"
+"因為很容易在未先重新附加的情況下，意外釋放由 `Python::attach` 回傳的 `Py<T>`"
+"（或包含它的型別，如 `PyErr`、`PyBackedStr` 或 `PyBackedBytes`）。例如，下列"
+"程式碼"
 
 #: src/performance.md:162
 msgid "will abort if the list not explicitly disposed via"
-msgstr ""
+msgstr "若清單未明確透過下列方式處理，將會中止"
