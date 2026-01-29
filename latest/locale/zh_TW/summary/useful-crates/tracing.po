@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/ecosystem/tracing.md:1
 msgid "Tracing"
-msgstr ""
+msgstr "追蹤"
 
 #: src/ecosystem/tracing.md:3
 msgid ""

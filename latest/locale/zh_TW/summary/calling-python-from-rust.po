@@ -13,43 +13,45 @@ msgstr ""
 
 #: src/python-from-rust.md:1
 msgid "Calling Python in Rust code"
-msgstr ""
+msgstr "在 Rust 程式碼中呼叫 Python"
 
 #: src/python-from-rust.md:3
 msgid ""
 "This chapter of the guide documents some ways to interact with Python code "
 "from Rust."
-msgstr ""
+msgstr "本章說明從 Rust 與 Python 程式碼互動的幾種方式。"
 
 #: src/python-from-rust.md:5
 msgid ""
 "Below is an introduction to the `'py` lifetime and some general remarks "
 "about how PyO3's API reasons about Python code."
 msgstr ""
+"以下將介紹 `'py` 生命週期，以及 PyO3 API 如何思考 Python 程式碼的一些一般說"
+"明。"
 
 #: src/python-from-rust.md:7
 msgid "The subchapters also cover the following topics:"
-msgstr ""
+msgstr "子章節也涵蓋以下主題："
 
 #: src/python-from-rust.md:9
 msgid "Python object types available in PyO3's API"
-msgstr ""
+msgstr "PyO3 API 中可用的 Python 物件型別"
 
 #: src/python-from-rust.md:10
 msgid "How to work with Python exceptions"
-msgstr ""
+msgstr "如何處理 Python 例外狀況"
 
 #: src/python-from-rust.md:11
 msgid "How to call Python functions"
-msgstr ""
+msgstr "如何呼叫 Python 函式"
 
 #: src/python-from-rust.md:12
 msgid "How to execute existing Python code"
-msgstr ""
+msgstr "如何執行既有的 Python 程式碼"
 
 #: src/python-from-rust.md:14
 msgid "The `'py` lifetime"
-msgstr ""
+msgstr "`'py` 生命週期"
 
 #: src/python-from-rust.md:16
 msgid ""
@@ -59,10 +61,14 @@ msgid ""
 "used to prove that these conditions are met. Its lifetime `'py` is a central "
 "part of PyO3's API."
 msgstr ""
+"要安全地與 Python 直譯器互動，Rust 執行緒必須[附著](https://docs.python."
+"org/3.14/glossary.html#term-attached-thread-state)於 Python 直譯器。PyO3 提"
+"供 `Python<'py>` token 用來證明已滿足這些條件，其生命週期 `'py` 是 PyO3 API "
+"的核心部分。"
 
 #: src/python-from-rust.md:20
 msgid "The `Python<'py>` token serves three purposes:"
-msgstr ""
+msgstr "`Python<'py>` token 有三個用途："
 
 #: src/python-from-rust.md:22
 msgid ""
@@ -71,6 +77,9 @@ msgid ""
 "[`py.import()`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
 "html#method.import)."
 msgstr ""
+"它提供 Python 直譯器的全域 API，例如 [`py.eval()`](https://pyo3.rs/main/doc/"
+"pyo3/marker/struct.Python.html#method.eval) 與 [`py.import()`](https://pyo3."
+"rs/main/doc/pyo3/marker/struct.Python.html#method.import)。"
 
 #: src/python-from-rust.md:23
 msgid ""
@@ -78,6 +87,8 @@ msgid ""
 "[`Py::clone_ref`](https://pyo3.rs/main/doc/pyo3/prelude/struct.Py."
 "html#method.clone_ref)."
 msgstr ""
+"它可傳遞給需要附著證明的函式，例如 [`Py::clone_ref`](https://pyo3.rs/main/"
+"doc/pyo3/prelude/struct.Py.html#method.clone_ref)。"
 
 #: src/python-from-rust.md:24
 msgid ""
@@ -85,6 +96,8 @@ msgid ""
 "interpreter, such as [`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/struct."
 "Bound.html)."
 msgstr ""
+"其生命週期 `'py` 用來將多種 PyO3 型別綁定到 Python 直譯器，例如 [`Bound<'py, "
+"T>`](https://pyo3.rs/main/doc/pyo3/struct.Bound.html)。"
 
 #: src/python-from-rust.md:26
 msgid ""
@@ -93,6 +106,9 @@ msgid ""
 "the Python interpreter and offer a complete API for interacting with Python "
 "objects."
 msgstr ""
+"綁定 `'py` 生命週期的 PyO3 型別（例如 `Bound<'py, T>`）都包含 `Python<'py>` "
+"token。這表示它們能完整存取 Python 直譯器，並提供與 Python 物件互動的完整 "
+"API。"
 
 #: src/python-from-rust.md:29
 msgid ""
@@ -100,10 +116,12 @@ msgid ""
 "struct.Python.html#obtaining-a-python-token) to learn how to acquire one of "
 "these tokens."
 msgstr ""
+"請參考 [PyO3 API 文件](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
+"html#obtaining-a-python-token) 了解如何取得此 token。"
 
 #: src/python-from-rust.md:31
 msgid "The Global Interpreter Lock"
-msgstr ""
+msgstr "全域直譯器鎖（GIL）"
 
 #: src/python-from-rust.md:33
 msgid ""
@@ -116,12 +134,19 @@ msgid ""
 "guarantee, but the introduction of free-threaded Python removed this "
 "possibility."
 msgstr ""
+"在自由執行緒 Python（於 3.13 首次提供、3.14 完整支援）推出之前，Python 直譯器"
+"藉由[全域直譯器鎖](https://docs.python.org/3/c-api/init.html#thread-state-"
+"and-the-global-interpreter-lock)來確保執行緒安全。這確保同一時間只有一個 "
+"Python 執行緒能使用直譯器及其 API。過去 Rust 程式碼可把 GIL 視為同步保證，但"
+"自由執行緒 Python 的推出使此做法不再成立。"
 
 #: src/python-from-rust.md:37
 msgid ""
 "The [`pyo3::sync`](https://pyo3.rs/main/doc/pyo3/sync/index.html) module "
 "offers synchronization tools which abstract over both Python builds."
 msgstr ""
+"[`pyo3::sync`](https://pyo3.rs/main/doc/pyo3/sync/index.html) 模組提供同步工"
+"具，可抽象化兩種 Python 版本的差異。"
 
 #: src/python-from-rust.md:39
 msgid ""
@@ -131,6 +156,9 @@ msgid ""
 "work to proceed. See [the section on parallelism](parallelism.md) for how to "
 "do that using PyO3's API."
 msgstr ""
+"為了在有 GIL 的版本中啟用並行、以及在自由執行緒版本中獲得最佳吞吐量，非 "
+"Python 的操作（系統呼叫與原生 Rust 程式碼）應考慮暫時與直譯器分離，以便其他工"
+"作繼續進行。如何使用 PyO3 API 進行分離，請見[並行章節](parallelism.md)。"
 
 #: src/python-from-rust.md:42
 msgid "Python's memory model"

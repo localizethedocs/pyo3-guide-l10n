@@ -21,20 +21,24 @@ msgid ""
 "version to the next. For a detailed list of all changes, see the [CHANGELOG]"
 "(changelog.md)."
 msgstr ""
+"本指南可協助你跨越 PyO3 版本間的破壞性變更來升級程式碼。完整變更清單請見 "
+"[CHANGELOG](changelog.md)。"
 
 #: src/migration.md:6
 msgid "from 0.27.\\* to 0.28"
-msgstr ""
+msgstr "從 0.27.* 到 0.28"
 
 #: src/migration.md:8
 msgid "Default to supporting free-threaded Python"
-msgstr ""
+msgstr "預設支援自由執行緒的 Python"
 
 #: src/migration.md:10
 msgid ""
 "When PyO3 0.23 added support for free-threaded Python, this was as an opt-in "
 "feature for modules by annotating with `#[pymodule(gil_used = false)]`."
 msgstr ""
+"當 PyO3 0.23 加入對自由執行緒 Python 的支援時，模組必須透過標註 "
+"`#[pymodule(gil_used = false)]` 來選擇加入這項功能。"
 
 #: src/migration.md:12
 msgid ""
@@ -43,12 +47,15 @@ msgid ""
 "automatically allow use on free-threaded Python, unless they directly state "
 "they require the GIL with `#[pymodule(gil_used = true)]`."
 msgstr ""
+"隨著支援逐漸成熟，且 PyO3 的 API 也演進到不再依賴 GIL，現在正是切換預設行為的"
+"好時機。模組現在會自動允許在自由執行緒的 Python 上使用，除非以 "
+"`#[pymodule(gil_used = true)]` 明確表示需要 GIL。"
 
 #: src/migration.md:15
 msgid ""
 "Deprecation of automatic `FromPyObject` for `#[pyclass]` types which "
 "implement `Clone`"
-msgstr ""
+msgstr "對實作 `Clone` 的 `#[pyclass]` 型別，自動 `FromPyObject` 已棄用"
 
 #: src/migration.md:17
 msgid ""
@@ -57,18 +64,20 @@ msgid ""
 "an explicit opt-in. Affected types will by marked by a deprecation message. "
 "To migrate use either"
 msgstr ""
+"過去實作 `Clone` 的 `#[pyclass]` 型別也會自動實作 `FromPyObject`。此行為正在"
+"逐步淘汰並改為顯式選擇加入。受影響的型別會以棄用訊息標示。遷移時可使用："
 
 #: src/migration.md:22
 msgid "`from_py_object` to keep the automatic derive, or"
-msgstr ""
+msgstr "使用 `from_py_object` 以保留自動衍生，或"
 
 #: src/migration.md:23
 msgid "`skip_from_py_object` to accept the new behaviour"
-msgstr ""
+msgstr "使用 `skip_from_py_object` 以採用新行為"
 
 #: src/migration.md:25
 msgid "Deprecation of `Py<T>` constructors from raw pointer"
-msgstr ""
+msgstr "從原始指標建立 `Py<T>` 的建構子已棄用"
 
 #: src/migration.md:27
 msgid ""
@@ -78,6 +87,10 @@ msgid ""
 "footgun on APIs where the primary concern is about constructing PyO3's safe "
 "smart pointer types correctly from the raw pointer value."
 msgstr ""
+"建構子 `Py::from_owned_ptr`、`Py::from_owned_ptr_or_opt`、`Py::"
+"from_owned_ptr_or_err`（以及類似的「borrowed」變體）會對目標型別 `T` 執行未檢"
+"查的轉型。對於主要關注如何從原始指標正確建構 PyO3 安全智慧指標型別的 API 而"
+"言，這種未檢查轉型是容易出錯的陷阱。"
 
 #: src/migration.md:30
 msgid ""
@@ -85,6 +98,8 @@ msgid ""
 "which encourages any subsequent cast to be done explicitly as either checked "
 "or unchecked. These should be used instead."
 msgstr ""
+"`Bound` 上的等價建構子一律產生 `Bound<PyAny>`，並鼓勵之後的轉型明確選擇要做檢"
+"查或不檢查。應改用這些建構子。"
 
 #: src/migration.md:33 src/migration.md:47 src/migration.md:124
 #: src/migration.md:154 src/migration.md:192 src/migration.md:296
@@ -99,7 +114,7 @@ msgstr ""
 #: src/migration.md:2446 src/migration.md:2475 src/migration.md:2516
 #: src/migration.md:2606 src/migration.md:2636 src/migration.md:2671
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/migration.md:54
 msgid ""
@@ -107,11 +122,13 @@ msgid ""
 "`.unbind()` to\n"
 "// produce `Py<T>` values.\n"
 msgstr ""
+"// Bound API 需要選擇做未檢查或檢查轉型。必要時可以使用 `.unbind()`\n"
+"// 產生 `Py<T>` 值。\n"
 
 #: src/migration.md:62
 msgid ""
 "Removal of `From<Bound<'_, T>` and `From<Py<T>> for PyClassInitializer<T>`"
-msgstr ""
+msgstr "移除 `From<Bound<'_, T>` 與 `From<Py<T>> for PyClassInitializer<T>`"
 
 #: src/migration.md:64
 msgid ""
@@ -119,14 +136,16 @@ msgid ""
 "its functionality was moved into the generated code for `#[new]`. As a small "
 "side side effect the following pattern will not be accepted anymore:"
 msgstr ""
+"作為初始化程式碼重構的一部分，這些實作被移除，其功能改移到 `#[new]` 產生的程"
+"式碼中。作為小小的副作用，下列模式將不再被接受："
 
 #: src/migration.md:78
 msgid "To migrate use `clone` or `clone_ref`:"
-msgstr ""
+msgstr "遷移時改用 `clone` 或 `clone_ref`："
 
 #: src/migration.md:91
 msgid "Internal change to use multi-phase initialization"
-msgstr ""
+msgstr "內部改為使用多階段初始化"
 
 #: src/migration.md:93
 msgid ""
@@ -135,6 +154,9 @@ msgid ""
 "clean up per-module state. This is a necessary step towards supporting "
 "Python \"subinterpreters\" which run on their own copy of state."
 msgstr ""
+"[PEP 489](https://peps.python.org/pep-0489/) 為擴充模組引入「多階段初始化」，"
+"提供配置與清理每個模組狀態的方法。這是支援 Python「子直譯器」的重要一步，子直"
+"譯器會在自己的狀態副本上執行。"
 
 #: src/migration.md:96
 msgid ""
@@ -144,20 +166,23 @@ msgid ""
 "version. This should not require migration, nor is there expected to be "
 "breakage caused by the change."
 msgstr ""
+"自 PyO3 0.28 起，`#[pymodule]` 巨集機制已重構為使用多階段初始化。建立與使用每"
+"模組狀態（以及支援子直譯器）的可能性留待未來版本。此變更不需要遷移，也預期不"
+"會造成破壞性影響。"
 
 #: src/migration.md:100
 msgid ""
 "Nevertheless, this affects the order of initialization so seemed worth "
 "noting in this guide."
-msgstr ""
+msgstr "不過它會影響初始化的順序，因此在本指南中特別註記。"
 
 #: src/migration.md:102
 msgid "from 0.26.\\* to 0.27"
-msgstr ""
+msgstr "從 0.26.* 到 0.27"
 
 #: src/migration.md:104
 msgid "`FromPyObject` reworked for flexibility and efficiency"
-msgstr ""
+msgstr "`FromPyObject` 重構以提升彈性與效率"
 
 #: src/migration.md:109
 msgid ""
@@ -166,6 +191,8 @@ msgid ""
 "allows borrowing from the input data without extending the lifetime of being "
 "attached to the interpreter."
 msgstr ""
+"隨著 PyO3 0.23 移除 `gil-ref` API，現在可以完全區分 Python 的生命週期 `'py` "
+"與輸入生命週期 `'a`。這讓你能借用輸入資料，而不必延長附著於直譯器的生命週期。"
 
 #: src/migration.md:112
 msgid ""
@@ -175,16 +202,21 @@ msgid ""
 "`&'a Bound<'py, PyAny>` would have an implicit restriction `'py: 'a` due to "
 "the reference type."
 msgstr ""
+"`FromPyObject` 現在多了一個描述輸入生命週期的 `'a`。`extract` 方法的參數型別"
+"從 `&Bound<'py, PyAny>` 改為 `Borrowed<'a, 'py, PyAny>`。這是因為 `&'a "
+"Bound<'py, PyAny>` 由於參照型別會隱含 `'py: 'a` 的限制。"
 
 #: src/migration.md:116
 msgid ""
 "This new form was partly implemented already in 0.22 using the internal "
 "`FromPyObjectBound` trait and is now extended to all types."
 msgstr ""
+"這個新形式在 0.22 已以內部 `FromPyObjectBound` trait 部分實作，現在擴展到所有"
+"型別。"
 
 #: src/migration.md:118
 msgid "Most implementations can just add an elided lifetime to migrate."
-msgstr ""
+msgstr "大多數實作只要補上省略的生命週期即可完成遷移。"
 
 #: src/migration.md:120
 msgid ""
@@ -194,6 +226,9 @@ msgid ""
 "to prevent unnecessary creation of Python exception objects and improved "
 "type safety."
 msgstr ""
+"此外，`FromPyObject` 新增了關聯型別 `Error`，用於轉換錯誤時的錯誤型別。遷移期"
+"間使用 `PyErr` 是很好的預設值，之後可改用自訂錯誤型別，以避免不必要的 Python "
+"例外物件建立並提升型別安全。"
 
 #: src/migration.md:134 src/migration.md:1805 src/migration.md:1890
 #: src/migration.md:2272

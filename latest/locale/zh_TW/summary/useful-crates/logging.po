@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/ecosystem/logging.md:1
 msgid "Logging"
-msgstr ""
+msgstr "日誌"
 
 #: src/ecosystem/logging.md:3
 msgid ""

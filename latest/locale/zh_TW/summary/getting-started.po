@@ -264,7 +264,7 @@ msgstr ""
 
 #: src/getting-started.md:176
 msgid "/// Formats the sum of two numbers as string.\n"
-msgstr ""
+msgstr "/// 將兩個數字的總和格式化為字串。\n"
 
 #: src/getting-started.md:184
 msgid ""
@@ -274,7 +274,7 @@ msgstr ""
 
 #: src/getting-started.md:187
 msgid "# lots of progress output as maturin runs the compilation...\n"
-msgstr ""
+msgstr "# maturin 執行編譯時會輸出大量進度訊息...\n"
 
 #: src/getting-started.md:191
 msgid "'25'"

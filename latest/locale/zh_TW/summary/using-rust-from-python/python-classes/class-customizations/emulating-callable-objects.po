@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/class/call.md:1
 msgid "Emulating callable objects"
-msgstr ""
+msgstr "仿真可呼叫物件"
 
 #: src/class/call.md:3
 msgid ""

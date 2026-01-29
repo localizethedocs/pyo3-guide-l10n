@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/contributing.md:1
 msgid "Contributing"
-msgstr ""
+msgstr "參與貢獻"
 
 #: src/contributing.md:3
 msgid ""
@@ -21,6 +21,8 @@ msgid ""
 "please consider reading our [Code of Conduct](https://github.com/PyO3/pyo3/"
 "blob/main/Code-of-Conduct.md) to keep our community positive and inclusive."
 msgstr ""
+"感謝你有興趣貢獻 PyO3！歡迎所有人參與——請閱讀我們的[行為準則](https://github."
+"com/PyO3/pyo3/blob/main/Code-of-Conduct.md)以維持社群的正向與包容。"
 
 #: src/contributing.md:5
 msgid ""
@@ -30,16 +32,21 @@ msgid ""
 "development process, you may find the section [\"Writing pull requests\"]"
 "(#writing-pull-requests) helpful."
 msgstr ""
+"如果你正在尋找貢獻方向，請參考[「開始參與貢獻」](#getting-started-"
+"contributing)一節。如果你已找到想處理的特定議題並需要開發流程資訊，可參考"
+"[「撰寫 Pull Request」](#writing-pull-requests)一節。"
 
 #: src/contributing.md:7
 msgid ""
 "If you want to become familiar with the codebase, see [Architecture.md]"
 "(https://github.com/PyO3/pyo3/blob/main/Architecture.md)."
 msgstr ""
+"若想熟悉程式碼庫，請參考 [Architecture.md](https://github.com/PyO3/pyo3/blob/"
+"main/Architecture.md)。"
 
 #: src/contributing.md:10
 msgid "Getting started contributing"
-msgstr ""
+msgstr "開始參與貢獻"
 
 #: src/contributing.md:12
 msgid ""
@@ -47,18 +54,22 @@ msgid ""
 "issues to record all bugs and ideas. Feel free to request an issue to be "
 "assigned to you if you want to work on it."
 msgstr ""
+"歡迎從你感興趣的 PyO3 領域加入。我們使用 GitHub issues 記錄所有錯誤與想法。若"
+"你想處理某個議題，請隨時申請指派。"
 
 #: src/contributing.md:14
 msgid ""
 "You can browse the API of the non-public parts of PyO3 [here](https://pyo3."
 "netlify.app/internal/doc/pyo3/index.html)."
 msgstr ""
+"你可以在[這裡](https://pyo3.netlify.app/internal/doc/pyo3/index.html)瀏覽 "
+"PyO3 非公開部分的 API。"
 
 #: src/contributing.md:16
 msgid ""
 "The following sections also contain specific ideas on where to start "
 "contributing to PyO3."
-msgstr ""
+msgstr "以下章節也提供一些適合開始貢獻 PyO3 的具體想法。"
 
 #: src/contributing.md:18
 msgid "Setting up a development environment"
@@ -67,35 +78,39 @@ msgstr "設定開發環境"
 #: src/contributing.md:20
 msgid ""
 "To work and develop PyO3, you need Python & Rust installed on your system."
-msgstr ""
+msgstr "要開發 PyO3，你需要在系統中安裝 Python 與 Rust。"
 
 #: src/contributing.md:22
 msgid ""
 "We encourage the use of [rustup](https://rustup.rs/) to be able to select "
 "and choose specific toolchains based on the project."
-msgstr ""
+msgstr "我們建議使用 [rustup](https://rustup.rs/) 以便依專案選擇特定工具鏈。"
 
 #: src/contributing.md:23
 msgid ""
 "[Pyenv](https://github.com/pyenv/pyenv) is also highly recommended for being "
 "able to choose a specific Python version."
 msgstr ""
+"也強烈建議使用 [Pyenv](https://github.com/pyenv/pyenv) 以便選擇特定 Python 版"
+"本。"
 
 #: src/contributing.md:24
 msgid ""
 "[virtualenv](https://virtualenv.pypa.io/en/latest/) can also be used with or "
 "without Pyenv to use specific installed Python versions."
 msgstr ""
+"[virtualenv](https://virtualenv.pypa.io/en/latest/) 也可搭配或不搭配 Pyenv 使"
+"用特定已安裝的 Python 版本。"
 
 #: src/contributing.md:25
 msgid ""
 "[`nox`](https://github.com/theacodes/nox) is used to automate many of our CI "
 "tasks."
-msgstr ""
+msgstr "[`nox`](https://github.com/theacodes/nox) 用於自動化多項 CI 任務。"
 
 #: src/contributing.md:27
 msgid "Testing, linting, etc. with nox"
-msgstr ""
+msgstr "使用 nox 進行測試、lint 等"
 
 #: src/contributing.md:29
 msgid ""
@@ -106,70 +121,79 @@ msgid ""
 "`pip install nox` or (recommended) with [`pipx`](https://pipx.pypa.io/"
 "stable/) `pip install pipx`, `pipx install nox`"
 msgstr ""
+"[`Nox`](https://github.com/theacodes/nox) 用於自動化多項 CI 任務，也可在本地"
+"用來處理程式撰寫時的驗證工作。我們建議透過 nox 執行這些動作，以使用我們偏好的"
+"設定選項。你可以用 pip 安裝 nox 到全域 Python：`pip install nox`，或（建議）"
+"使用 [`pipx`](https://pipx.pypa.io/stable/) 安裝：`pip install pipx`、`pipx "
+"install nox`。"
 
 #: src/contributing.md:31
 msgid "The main nox commands we have implemented are:"
-msgstr ""
+msgstr "我們提供的主要 nox 指令如下："
 
 #: src/contributing.md:33
 msgid ""
 "`nox -s test` will run the full suite of recommended rust and python tests "
 "(>10 minutes)"
-msgstr ""
+msgstr "`nox -s test` 會執行完整的 Rust 與 Python 測試套件（>10 分鐘）"
 
 #: src/contributing.md:34
 msgid ""
 "`nox -s test-rust -- skip-full` will run a short suite of rust tests (2-3 "
 "minutes)"
-msgstr ""
+msgstr "`nox -s test-rust -- skip-full` 會執行較短的 Rust 測試套件（2-3 分鐘）"
 
 #: src/contributing.md:35
 msgid ""
 "`nox -s ruff` will check python linting and apply standard formatting rules"
-msgstr ""
+msgstr "`nox -s ruff` 會檢查 Python lint 並套用標準格式規則"
 
 #: src/contributing.md:36
 msgid ""
 "`nox -s rustfmt` will check basic rust linting and apply standard formatting "
 "rules"
-msgstr ""
+msgstr "`nox -s rustfmt` 會檢查基本 Rust lint 並套用標準格式規則"
 
 #: src/contributing.md:37
 msgid "`nox -s rumdl` will check the markdown in the guide"
-msgstr ""
+msgstr "`nox -s rumdl` 會檢查指南中的 Markdown"
 
 #: src/contributing.md:38
 msgid "`nox -s clippy` will run clippy to make recommendations on rust style"
-msgstr ""
+msgstr "`nox -s clippy` 會執行 clippy 提供 Rust 風格建議"
 
 #: src/contributing.md:39
 msgid "`nox -s bench` will benchmark your rust code"
-msgstr ""
+msgstr "`nox -s bench` 會對 Rust 程式碼進行效能基準測試"
 
 #: src/contributing.md:40
 msgid ""
 "`nox -s codspeed` will run our suite of rust and python performance tests"
-msgstr ""
+msgstr "`nox -s codspeed` 會執行我們的 Rust 與 Python 效能測試套件"
 
 #: src/contributing.md:41
 msgid ""
 "`nox -s coverage` will analyse test coverage and output `coverage.json` "
 "(alternatively: `nox -s coverage lcov` outputs `lcov.info`)"
 msgstr ""
+"`nox -s coverage` 會分析測試覆蓋率並輸出 `coverage.json`（或使用 `nox -s "
+"coverage lcov` 輸出 `lcov.info`）"
 
 #: src/contributing.md:42
 msgid ""
 "`nox -s check-guide` will use [`lychee`](https://github.com/lycheeverse/"
 "lychee) to check all the links in the guide and doc comments."
 msgstr ""
+"`nox -s check-guide` 會使用 [`lychee`](https://github.com/lycheeverse/"
+"lychee) 檢查指南與文件註解中的所有連結。"
 
 #: src/contributing.md:44
 msgid "Use  `nox -l` to list the full set of subcommands you can run."
-msgstr ""
+msgstr "使用 `nox -l` 列出可執行的完整子指令。"
 
 #: src/contributing.md:46
 msgid "UI Tests"
-msgstr ""
+msgstr "UI 測試"
 
 #: src/contributing.md:48
 msgid ""
@@ -177,6 +201,8 @@ msgid ""
 "tests to capture error messages from the Rust compiler for some of the macro "
 "functionality."
 msgstr ""
+"PyO3 使用 [`trybuild`](https://github.com/dtolnay/trybuild) 來開發 UI 測試，"
+"以擷取某些巨集功能的 Rust 編譯器錯誤訊息。"
 
 #: src/contributing.md:50
 msgid ""
@@ -184,6 +210,8 @@ msgid ""
 "component is installed. PyO3's CI has `rust-src` installed, so you need it "
 "locally for your UI test output to match:"
 msgstr ""
+"Rust 編譯器的錯誤輸出會因是否安裝 `rust-src` 元件而不同。PyO3 的 CI 已安裝 "
+"`rust-src`，所以若要讓本地 UI 測試輸出一致，你也需要安裝它："
 
 #: src/contributing.md:56
 msgid ""
@@ -191,14 +219,16 @@ msgid ""
 "updating them all (e.g. for a new Rust compiler version) it may be helpful "
 "to use the `update-ui-tests` nox session:"
 msgstr ""
+"由於這些 UI 測試有多種 feature 組合，當你要全部更新（例如因新版 Rust 編譯器）"
+"時，使用 `update-ui-tests` nox session 會很有幫助："
 
 #: src/contributing.md:61
 msgid "Ways to help"
-msgstr ""
+msgstr "可協助的方式"
 
 #: src/contributing.md:63
 msgid "Help users identify bugs"
-msgstr ""
+msgstr "協助使用者找出錯誤"
 
 #: src/contributing.md:65
 msgid ""
@@ -206,6 +236,8 @@ msgid ""
 "users who are new to PyO3, and often completely new to Rust. Helping them "
 "debug is a great way to get experience with the PyO3 codebase."
 msgstr ""
+"[PyO3 Discord 伺服器](https://discord.gg/33kcChzH7f) 非常活躍，許多使用者對 "
+"PyO3 甚至 Rust 都很新。協助他們除錯是熟悉 PyO3 程式碼庫的好方法。"
 
 #: src/contributing.md:67
 msgid ""
@@ -213,10 +245,12 @@ msgid ""
 "APIs. It's a good idea to open GitHub issues for these immediately so the "
 "resolution can be designed and implemented!"
 msgstr ""
+"協助他人常會暴露錯誤、文件不足與缺漏的 API。建議立刻在 GitHub 開 issue，讓解"
+"法得以規劃並實作！"
 
 #: src/contributing.md:69
 msgid "Implement issues ready for development"
-msgstr ""
+msgstr "實作可直接開發的議題"
 
 #: src/contributing.md:71
 msgid ""
@@ -224,6 +258,8 @@ msgid ""
 "[needs-implementer](https://github.com/PyO3/pyo3/issues?"
 "q=is%3Aissue+is%3Aopen+label%3Aneeds-implementer) label."
 msgstr ""
+"解法清楚且尚未有人處理的議題會使用 [needs-implementer](https://github.com/"
+"PyO3/pyo3/issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-implementer) 標籤。"
 
 #: src/contributing.md:73
 msgid ""

@@ -24,6 +24,10 @@ msgid ""
 "such as the Python version to build for and the [linker](https://en."
 "wikipedia.org/wiki/Linker_(computing)) arguments to use."
 msgstr ""
+"本章將詳細說明如何使用 PyO3 建置與散布專案。具體做法會依專案是以 Rust 實作的 "
+"Python 模組，或是嵌入 Python 的 Rust 可執行檔而有很大差異。兩者也有共同問題，"
+"例如要建置的 Python 版本，以及要使用的[連結器](https://en.wikipedia.org/wiki/"
+"Linker_(computing))參數。"
 
 #: src/building-and-distribution.md:7
 msgid ""
@@ -32,16 +36,20 @@ msgid ""
 "for Python modules and for Rust binaries. There is also a section at the end "
 "about cross-compiling projects using PyO3."
 msgstr ""
+"本章內容面向已閱讀 PyO3 [README](./index.md) 的使用者。它依序說明 Python 模組"
+"與 Rust 可執行檔的選擇，最後還包含使用 PyO3 進行跨平台編譯的章節。"
 
 #: src/building-and-distribution.md:11
 msgid ""
 "There is an additional sub-chapter dedicated to [supporting multiple Python "
 "versions](./building-and-distribution/multiple-python-versions.md)."
 msgstr ""
+"另有一個子章節專門說明[支援多個 Python 版本](./building-and-distribution/"
+"multiple-python-versions.md)。"
 
 #: src/building-and-distribution.md:13
 msgid "Configuring the Python version"
-msgstr ""
+msgstr "設定 Python 版本"
 
 #: src/building-and-distribution.md:15
 msgid ""
@@ -50,14 +58,17 @@ msgid ""
 "version and set the correct linker arguments. By default it will attempt to "
 "use the following in order:"
 msgstr ""
+"PyO3 使用建置腳本（由 [`pyo3-build-config`](https://github.com/PyO3/pyo3/"
+"tree/main/pyo3-build-config) crate 支援）來判斷 Python 版本並設定正確的連結器"
+"參數。預設會依序嘗試使用："
 
 #: src/building-and-distribution.md:18
 msgid "Any active Python virtualenv."
-msgstr ""
+msgstr "任何已啟用的 Python 虛擬環境。"
 
 #: src/building-and-distribution.md:19
 msgid "The `python` executable (if it's a Python 3 interpreter)."
-msgstr ""
+msgstr "`python` 執行檔（若它是 Python 3 直譯器）。"
 
 #: src/building-and-distribution.md:20
 msgid "The `python3` executable."
@@ -69,6 +80,9 @@ msgid ""
 "environment variable, e.g. `PYO3_PYTHON=python3.7`, `PYO3_PYTHON=/usr/bin/"
 "python3.9`, or even a PyPy interpreter `PYO3_PYTHON=pypy3`."
 msgstr ""
+"你可以設定 `PYO3_PYTHON` 環境變數來覆寫 Python 直譯器，例如 "
+"`PYO3_PYTHON=python3.7`、`PYO3_PYTHON=/usr/bin/python3.9`，甚至是 PyPy 直譯"
+"器 `PYO3_PYTHON=pypy3`。"
 
 #: src/building-and-distribution.md:24
 msgid ""
@@ -76,6 +90,8 @@ msgid ""
 "query the information in the `sysconfig` module which is needed to configure "
 "the rest of the compilation."
 msgstr ""
+"找到 Python 直譯器後，`pyo3-build-config` 會執行它，以查詢 `sysconfig` 模組中"
+"的資訊，供後續編譯設定使用。"
 
 #: src/building-and-distribution.md:26
 msgid ""
@@ -83,16 +99,20 @@ msgid ""
 "with the environment variable `PYO3_PRINT_CONFIG=1` set. An example output "
 "of doing this is shown below:"
 msgstr ""
+"要驗證 PyO3 將採用的設定，你可以在編譯時設定 `PYO3_PRINT_CONFIG=1` 環境變數。"
+"其輸出範例如下："
 
 #: src/building-and-distribution.md:55
 msgid ""
 "The `PYO3_ENVIRONMENT_SIGNATURE` environment variable can be used to trigger "
 "rebuilds when its value changes, it has no other effect."
 msgstr ""
+"`PYO3_ENVIRONMENT_SIGNATURE` 環境變數可在其值變更時觸發重新建置，除此之外沒有"
+"其他作用。"
 
 #: src/building-and-distribution.md:57
 msgid "Advanced: config files"
-msgstr ""
+msgstr "進階：設定檔"
 
 #: src/building-and-distribution.md:59
 msgid ""
@@ -100,6 +120,8 @@ msgid ""
 "is possible to manually override the contents and feed it back into PyO3 "
 "using the `PYO3_CONFIG_FILE` env var."
 msgstr ""
+"若將 `PYO3_PRINT_CONFIG` 的輸出設定儲存成檔案，你就能手動覆寫內容，並透過 "
+"`PYO3_CONFIG_FILE` 環境變數回饋給 PyO3。"
 
 #: src/building-and-distribution.md:61
 msgid ""
@@ -110,6 +132,10 @@ msgid ""
 "(https://docs.rs/pyo3-build-config/latest/pyo3_build_config/struct."
 "InterpreterConfig.html)."
 msgstr ""
+"若你的建置環境較為特殊，導致 PyO3 的一般設定偵測無法運作，使用這種設定檔可提"
+"供彈性以讓 PyO3 正常運作。要查看完整可用選項，請參考 [`InterpreterConfig` "
+"struct](https://docs.rs/pyo3-build-config/latest/pyo3_build_config/struct."
+"InterpreterConfig.html) 文件。"
 
 #: src/building-and-distribution.md:64
 msgid "Building Python extension modules"
@@ -128,6 +154,11 @@ msgid ""
 "versions, reducing the number of wheels they need to compile, but restricts "
 "the functionality they can use."
 msgstr ""
+"Python 擴充模組的編譯方式會依目標作業系統（與架構）而不同。除了多種作業系統"
+"（與架構），也有許多仍在支援的 Python 版本。上傳到 [PyPI](https://pypi.org/) "
+"的套件通常會提供涵蓋多種 OS/架構/版本組合的預建「wheels」，讓不同平台的使用者"
+"不必自行編譯。套件提供者也可選擇使用受限的 Python API「abi3」，讓單一 wheel "
+"支援多個 Python 版本，以減少需要編譯的 wheel 數量，但功能也會受限。"
 
 #: src/building-and-distribution.md:71
 msgid ""
@@ -138,12 +169,16 @@ msgid ""
 "rust), which abstract over the OS difference and also support building "
 "wheels for PyPI upload."
 msgstr ""
+"實作方式有很多種：可以用 `cargo` 來建置擴充模組（並搭配一些手動步驟，會因 OS "
+"而異）。PyO3 生態系提供兩個打包工具 [`maturin`](https://github.com/PyO3/"
+"maturin) 和 [`setuptools-rust`](https://github.com/PyO3/setuptools-rust)，可"
+"抽象化 OS 差異並支援建置可上傳 PyPI 的 wheels。"
 
 #: src/building-and-distribution.md:74
 msgid ""
 "PyO3 has some functionality for configuring projects when building Python "
 "extension modules:"
-msgstr ""
+msgstr "PyO3 提供一些功能用於建置 Python 擴充模組時的專案設定："
 
 #: src/building-and-distribution.md:76
 msgid ""
@@ -151,6 +186,8 @@ msgid ""
 "when building Python extension modules. `maturin` and `setuptools-rust` set "
 "this automatically."
 msgstr ""
+"建立 Python 擴充模組時必須設定 `PYO3_BUILD_EXTENSION_MODULE` 環境變數；"
+"`maturin` 與 `setuptools-rust` 會自動設定它。"
 
 #: src/building-and-distribution.md:77
 msgid ""
@@ -158,6 +195,8 @@ msgid ""
 "which are used to opt-in to the limited Python API in order to support "
 "multiple Python versions in a single wheel."
 msgstr ""
+"`abi3` Cargo feature 及其版本特定的 `abi3-pyXY` 伴隨 feature，用於選擇受限 "
+"Python API，以在單一 wheel 中支援多個 Python 版本。"
 
 #: src/building-and-distribution.md:79
 msgid ""
@@ -166,6 +205,8 @@ msgid ""
 "`PYO3_BUILD_EXTENSION_MODULE` environment variable. Finally, there is a "
 "section describing PyO3's `abi3` features."
 msgstr ""
+"本節先介紹打包工具，再說明如何不使用它們手動建置。接著說明 "
+"`PYO3_BUILD_EXTENSION_MODULE` 環境變數，最後介紹 PyO3 的 `abi3` 功能。"
 
 #: src/building-and-distribution.md:83
 msgid "Packaging tools"
@@ -175,7 +216,7 @@ msgstr "打包工具"
 msgid ""
 "The PyO3 ecosystem has two main choices to abstract the process of "
 "developing Python extension modules:"
-msgstr ""
+msgstr "PyO3 生態系提供兩個主要選項來抽象化 Python 擴充模組的開發流程："
 
 #: src/building-and-distribution.md:87
 msgid ""

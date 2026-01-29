@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/conversions/traits.md:1
 msgid "Conversion traits"
-msgstr ""
+msgstr "轉換特徵"
 
 #: src/conversions/traits.md:3
 msgid ""

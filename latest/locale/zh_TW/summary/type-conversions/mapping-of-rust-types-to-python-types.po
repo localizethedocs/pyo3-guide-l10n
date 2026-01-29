@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/conversions/tables.md:1
 msgid "Mapping of Rust types to Python types"
-msgstr ""
+msgstr "Rust 型別對應到 Python 型別"
 
 #: src/conversions/tables.md:3
 msgid ""
