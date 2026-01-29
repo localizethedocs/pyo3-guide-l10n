@@ -13,29 +13,35 @@ msgstr ""
 
 #: src/type-stub.md:1
 msgid "Type stub generation (`*.pyi` files) and introspection"
-msgstr ""
+msgstr "型別 stub 產生（`*.pyi` 檔案）與內省"
 
 #: src/type-stub.md:3
 msgid ""
 "_This feature is still in active development. See [the related issue]"
 "(https://github.com/PyO3/pyo3/issues/5137)._"
 msgstr ""
+"_此功能仍在積極開發中。請參考[相關議題](https://github.com/PyO3/pyo3/"
+"issues/5137)。_"
 
 #: src/type-stub.md:5
 msgid ""
 "_For documentation on type stubs and how to use them with stable PyO3, refer "
 "to [this page](python-typing-hints.md)_"
 msgstr ""
+"_如需型別 stub 文件與在穩定版 PyO3 中的使用方式，請參考[此頁](python-typing-"
+"hints.md)_"
 
 #: src/type-stub.md:7
 msgid ""
 "PyO3 has a work in progress support to generate [type stub files](https://"
 "typing.python.org/en/latest/spec/distributing.html#stub-files)."
 msgstr ""
+"PyO3 正在開發產生[型別 stub 檔案](https://typing.python.org/en/latest/spec/"
+"distributing.html#stub-files)的支援。"
 
 #: src/type-stub.md:9
 msgid "It works using:"
-msgstr ""
+msgstr "其運作方式如下："
 
 #: src/type-stub.md:11
 msgid ""
@@ -43,6 +49,8 @@ msgid ""
 "included in the built binaries by rustc if the `experimental-inspect` "
 "feature is enabled."
 msgstr ""
+"PyO3 巨集（`#[pyclass]`）會產生固定的 JSON 字串，並在啟用 `experimental-"
+"inspect` 功能時由 rustc 內嵌到編譯出的二進位檔。"
 
 #: src/type-stub.md:12
 msgid ""
