@@ -1,0 +1,166 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/SUMMARY.md:1
+msgid "Summary"
+msgstr ""
+
+#: src/SUMMARY.md:3
+msgid "Introduction"
+msgstr ""
+
+#: src/SUMMARY.md:7
+msgid "Getting started"
+msgstr ""
+
+#: src/SUMMARY.md:8
+msgid "Using Rust from Python"
+msgstr ""
+
+#: src/SUMMARY.md:9
+msgid "Python modules"
+msgstr ""
+
+#: src/SUMMARY.md:10
+msgid "Python functions"
+msgstr ""
+
+#: src/SUMMARY.md:11
+msgid "Function signatures"
+msgstr ""
+
+#: src/SUMMARY.md:12
+msgid "Error handling"
+msgstr ""
+
+#: src/SUMMARY.md:13
+msgid "Python classes"
+msgstr ""
+
+#: src/SUMMARY.md:14
+msgid "Class customizations"
+msgstr ""
+
+#: src/SUMMARY.md:15
+msgid "Basic object customization"
+msgstr ""
+
+#: src/SUMMARY.md:16
+msgid "Emulating numeric types"
+msgstr ""
+
+#: src/SUMMARY.md:17
+msgid "Emulating callable objects"
+msgstr ""
+
+#: src/SUMMARY.md:18
+msgid "Thread safety"
+msgstr ""
+
+#: src/SUMMARY.md:19
+msgid "Calling Python from Rust"
+msgstr ""
+
+#: src/SUMMARY.md:20
+msgid "Python object types"
+msgstr ""
+
+#: src/SUMMARY.md:21
+msgid "Python exceptions"
+msgstr ""
+
+#: src/SUMMARY.md:22
+msgid "Calling Python functions"
+msgstr ""
+
+#: src/SUMMARY.md:23
+msgid "Executing existing Python code"
+msgstr ""
+
+#: src/SUMMARY.md:24
+msgid "Type conversions"
+msgstr ""
+
+#: src/SUMMARY.md:25
+msgid "Mapping of Rust types to Python types"
+msgstr ""
+
+#: src/SUMMARY.md:26
+msgid "Conversion traits"
+msgstr ""
+
+#: src/SUMMARY.md:27 src/SUMMARY.md:40
+msgid "Using `async` and `await`"
+msgstr ""
+
+#: src/SUMMARY.md:28
+msgid "Parallelism"
+msgstr ""
+
+#: src/SUMMARY.md:29
+msgid "Supporting Free-Threaded Python"
+msgstr ""
+
+#: src/SUMMARY.md:30
+msgid "Debugging"
+msgstr ""
+
+#: src/SUMMARY.md:31
+msgid "Features reference"
+msgstr ""
+
+#: src/SUMMARY.md:32
+msgid "Performance"
+msgstr ""
+
+#: src/SUMMARY.md:33
+msgid "Type stub generation and introspection"
+msgstr ""
+
+#: src/SUMMARY.md:34
+msgid "Advanced topics"
+msgstr ""
+
+#: src/SUMMARY.md:35
+msgid "Building and distribution"
+msgstr ""
+
+#: src/SUMMARY.md:36
+msgid "Supporting multiple Python versions"
+msgstr ""
+
+#: src/SUMMARY.md:37
+msgid "Useful crates"
+msgstr ""
+
+#: src/SUMMARY.md:38
+msgid "Logging"
+msgstr ""
+
+#: src/SUMMARY.md:39
+msgid "Tracing"
+msgstr ""
+
+#: src/SUMMARY.md:41
+msgid "FAQ and troubleshooting"
+msgstr ""
+
+#: src/SUMMARY.md:45
+msgid ""
+"Appendix A: Migration guide Appendix B: Trait bounds Appendix C: Python "
+"typing hints CHANGELOG"
+msgstr ""
+
+#: src/SUMMARY.md:52
+msgid "Contributing"
+msgstr ""
