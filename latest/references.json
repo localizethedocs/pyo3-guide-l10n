@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-01-18 15:27:39 +0000",
-      "hash" : "c969dd0253111b62e7b5c1153fc71d5cb3c139ce",
-      "title" : "remove all functionality deprecated in PyO3 0.26 (#5740)"
+      "date" : "2026-02-01 21:20:31 +0000",
+      "hash" : "f0c1523b69fd86f2a0e263d1b5830335912f574a",
+      "title" : "release: 0.28.0 (#5762)"
     }
   },
   "type" : "branch",
