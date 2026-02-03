@@ -1,0 +1,158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:34:09Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem/logging.md:1
+msgid "Logging"
+msgstr "日誌"
+
+#: src/ecosystem/logging.md:3
+msgid ""
+"It is desirable if both the Python and Rust parts of the application end up "
+"logging using the same configuration into the same place."
+msgstr ""
+"理想情況是應用程式中的 Python 與 Rust 部分都使用相同設定，並將日誌輸出到同一"
+"位置。"
+
+#: src/ecosystem/logging.md:6
+msgid ""
+"This section of the guide briefly discusses how to connect the two "
+"languages' logging ecosystems together. The recommended way for Python "
+"extension modules is to configure Rust's logger to send log messages to "
+"Python using the `pyo3-log` crate. For users who want to do the opposite and "
+"send Python log messages to Rust, see the note at the end of this guide."
+msgstr ""
+"本節簡要說明如何連結兩種語言的日誌生態系。對於 Python 擴充模組，建議的方式是"
+"使用 `pyo3-log` 軟體箱設定 Rust 的 logger，將日誌訊息送到 Python。若你想反向"
+"將 Python 日誌送到 Rust，請見本指南最後的說明。"
+
+#: src/ecosystem/logging.md:12
+msgid "Using `pyo3-log` to send Rust log messages to Python"
+msgstr "使用 `pyo3-log` 將 Rust 日誌訊息送到 Python"
+
+#: src/ecosystem/logging.md:14
+msgid ""
+"The [pyo3-log](https://crates.io/crates/pyo3-log) crate allows sending the "
+"messages from the Rust side to Python's [logging](https://docs.python.org/3/"
+"library/logging.html) system. This is mostly suitable for writing native "
+"extensions for Python programs."
+msgstr ""
+"[pyo3-log](https://crates.io/crates/pyo3-log) 軟體箱允許將 Rust 端訊息傳送到 "
+"Python 的 [logging](https://docs.python.org/3/library/logging.html) 系統。這"
+"主要適用於為 Python 程式撰寫原生擴充。"
+
+#: src/ecosystem/logging.md:18
+msgid ""
+"Use [`pyo3_log::init`](https://docs.rs/pyo3-log/*/pyo3_log/fn.init.html) to "
+"install the logger in its default configuration. It's also possible to tweak "
+"its configuration (mostly to tune its performance)."
+msgstr ""
+"使用 [`pyo3_log::init`](https://docs.rs/pyo3-log/*/pyo3_log/fn.init.html) 以"
+"預設設定安裝 logger。也可以調整其設定（多半用於效能調校）。"
+
+#: src/ecosystem/logging.md:27
+msgid ""
+"// This will use the logger installed in `my_module` to send the `info`\n"
+"    // message to the Python logging facilities.\n"
+msgstr ""
+
+#: src/ecosystem/logging.md:29
+msgid "\"Something!\""
+msgstr ""
+
+#: src/ecosystem/logging.md:34
+msgid "// A good place to install the Rust -> Python logger.\n"
+msgstr "// 安裝 Rust -> Python logger 的好位置。\n"
+
+#: src/ecosystem/logging.md:42
+msgid ""
+"Then it is up to the Python side to actually output the messages somewhere."
+msgstr "接著由 Python 端負責將訊息實際輸出到某處。"
+
+#: src/ecosystem/logging.md:48
+msgid ""
+"'%(levelname)s %(name)s %(asctime)-15s %(filename)s:%(lineno)d %(message)s'"
+msgstr ""
+
+#: src/ecosystem/logging.md:54
+msgid ""
+"It is important to initialize the Python loggers first, before calling any "
+"Rust functions that may log. This limitation can be worked around if it is "
+"not possible to satisfy, read the documentation about [caching](https://docs."
+"rs/pyo3-log/*/pyo3_log/#performance-filtering-and-caching)."
+msgstr ""
+"在呼叫任何可能產生日誌的 Rust 函式之前，務必先初始化 Python 的 logger。若無法"
+"滿足此限制，仍可用替代方式處理，請閱讀[快取](https://docs.rs/pyo3-log/*/"
+"pyo3_log/#performance-filtering-and-caching)相關文件。"
+
+#: src/ecosystem/logging.md:58
+msgid "The Python to Rust direction"
+msgstr "Python 到 Rust 的方向"
+
+#: src/ecosystem/logging.md:60
+msgid ""
+"To have python logs be handled by Rust, one need only register a rust "
+"function to handle logs emitted from the core python logging module."
+msgstr ""
+"若要讓 Rust 處理 Python 日誌，只需註冊一個 Rust 函式來處理由 Python 核心 "
+"logging 模組送出的日誌。"
+
+#: src/ecosystem/logging.md:62
+msgid ""
+"This has been implemented within the [pyo3-pylogger](https://crates.io/"
+"crates/pyo3-pylogger) crate."
+msgstr ""
+"這已由 [pyo3-pylogger](https://crates.io/crates/pyo3-pylogger) 軟體箱實作。"
+
+#: src/ecosystem/logging.md:69
+msgid ""
+"// register the host handler with python logger, providing a logger target\n"
+"    // set the name here to something appropriate for your application\n"
+msgstr ""
+"// 在 python logger 中註冊主機端處理器，並提供 logger target\n"
+"    // 這裡的名稱請設定為適合你的應用程式\n"
+
+#: src/ecosystem/logging.md:71
+msgid "\"example_application_py_logger\""
+msgstr ""
+
+#: src/ecosystem/logging.md:73
+msgid "// initialize up a logger\n"
+msgstr "// 初始化 logger\n"
+
+#: src/ecosystem/logging.md:74
+msgid "\"trace\""
+msgstr ""
+
+#: src/ecosystem/logging.md:76
+msgid "// Log some messages from Rust.\n"
+msgstr "// 從 Rust 紀錄一些訊息。\n"
+
+#: src/ecosystem/logging.md:77
+msgid "\"Just some normal information!\""
+msgstr ""
+
+#: src/ecosystem/logging.md:78
+msgid "\"Something spooky happened!\""
+msgstr ""
+
+#: src/ecosystem/logging.md:80
+msgid "// Log some messages from Python\n"
+msgstr "// 從 Python 紀錄一些訊息\n"
+
+#: src/ecosystem/logging.md:83
+msgid ""
+"\"\n"
+"import logging\n"
+"logging.error('Something bad happened')\n"
+"\""
+msgstr ""
