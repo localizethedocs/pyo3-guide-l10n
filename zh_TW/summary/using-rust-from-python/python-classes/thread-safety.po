@@ -1,0 +1,148 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:41Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/thread-safety.md:1
+msgid "`#[pyclass]` thread safety"
+msgstr "`#[pyclass]` 執行緒安全"
+
+#: src/class/thread-safety.md:3
+msgid ""
+"Python objects are freely shared between threads by the Python interpreter. "
+"This means that:"
+msgstr ""
+
+#: src/class/thread-safety.md:4
+msgid ""
+"there is no control which thread might eventually drop the `#[pyclass]` "
+"object, meaning `Send` is required."
+msgstr ""
+
+#: src/class/thread-safety.md:5
+msgid ""
+"multiple threads can potentially be reading the `#[pyclass]` data "
+"simultaneously, meaning `Sync` is required."
+msgstr ""
+
+#: src/class/thread-safety.md:7
+msgid ""
+"This section of the guide discusses various data structures which can be "
+"used to make types satisfy these requirements."
+msgstr ""
+
+#: src/class/thread-safety.md:9
+msgid ""
+"In special cases where it is known that your Python application is never "
+"going to use threads (this is rare!), these thread-safety requirements can "
+"be opted-out with [`#[pyclass(unsendable)]`](../class.md#customizing-the-"
+"class), at the cost of making concurrent access to the Rust data be runtime "
+"errors. This is only for very specific use cases; it is almost always better "
+"to make proper thread-safe types."
+msgstr ""
+
+#: src/class/thread-safety.md:11
+msgid "Making `#[pyclass]` types thread-safe"
+msgstr ""
+
+#: src/class/thread-safety.md:13
+msgid ""
+"The general challenge with thread-safety is to make sure that two threads "
+"cannot produce a data race, i.e. unsynchronized writes to the same data at "
+"the same time. A data race produces an unpredictable result and is forbidden "
+"by Rust."
+msgstr ""
+
+#: src/class/thread-safety.md:15
+msgid ""
+"By default, `#[pyclass]` employs an [\"interior mutability\" pattern](../"
+"class.md#bound-and-interior-mutability) to allow for either multiple `&T` "
+"references or a single exclusive `&mut T` reference to access the data. This "
+"allows for simple `#[pyclass]` types to be thread-safe automatically, at the "
+"cost of runtime checking for concurrent access. Errors will be raised if the "
+"usage overlaps."
+msgstr ""
+
+#: src/class/thread-safety.md:17
+msgid "For example, the below simple class is thread-safe:"
+msgstr ""
+
+#: src/class/thread-safety.md:40
+msgid ""
+"In the above example, if calls to `get_x` and `set_y` overlap (from two "
+"different threads) then at least one of those threads will experience a "
+"runtime error indicating that the data was \"already borrowed\"."
+msgstr ""
+
+#: src/class/thread-safety.md:42
+msgid ""
+"To avoid these errors, you can take control of the interior mutability "
+"yourself in one of the following ways."
+msgstr ""
+
+#: src/class/thread-safety.md:44
+msgid "Using atomic data structures"
+msgstr "使用原子資料結構"
+
+#: src/class/thread-safety.md:46
+msgid ""
+"To remove the possibility of having overlapping `&self` and `&mut self` "
+"references produce runtime errors, consider using `#[pyclass(frozen)]` and "
+"use [atomic data structures](https://doc.rust-lang.org/std/sync/atomic/) to "
+"control modifications directly."
+msgstr ""
+
+#: src/class/thread-safety.md:48
+msgid ""
+"For example, a thread-safe version of the above `MyClass` using atomic "
+"integers would be as follows:"
+msgstr ""
+
+#: src/class/thread-safety.md:72
+msgid "Using locks"
+msgstr ""
+
+#: src/class/thread-safety.md:74
+msgid ""
+"An alternative to atomic data structures is to use [locks](https://doc.rust-"
+"lang.org/std/sync/struct.Mutex.html) to make threads wait for access to "
+"shared data."
+msgstr ""
+
+#: src/class/thread-safety.md:76
+msgid ""
+"For example, a thread-safe version of the above `MyClass` using locks would "
+"be as follows:"
+msgstr ""
+
+#: src/class/thread-safety.md:95 src/class/thread-safety.md:99
+msgid "\"lock not poisoned\""
+msgstr ""
+
+#: src/class/thread-safety.md:104
+msgid "Wrapping unsynchronized data"
+msgstr ""
+
+#: src/class/thread-safety.md:106
+msgid ""
+"In some cases, the data structures stored within a `#[pyclass]` may "
+"themselves not be thread-safe. Rust will therefore not implement `Send` and "
+"`Sync` on the `#[pyclass]` type."
+msgstr ""
+
+#: src/class/thread-safety.md:108
+msgid ""
+"To achieve thread-safety, a manual `Send` and `Sync` implementation is "
+"required which is `unsafe` and should only be done following careful review "
+"of the soundness of the implementation. Doing this for PyO3 types is no "
+"different than for any other Rust code, [the Rustonomicon](https://doc.rust-"
+"lang.org/nomicon/send-and-sync.html) has a great discussion on this."
+msgstr ""

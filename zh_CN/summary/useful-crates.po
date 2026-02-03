@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:41Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem.md:1
+msgid "The PyO3 ecosystem"
+msgstr ""
+
+#: src/ecosystem.md:3
+msgid ""
+"This portion of the guide is dedicated to crates which are external to the "
+"main PyO3 project and provide additional functionality you might find useful."
+msgstr ""
+
+#: src/ecosystem.md:5
+msgid ""
+"Because these projects evolve independently of the PyO3 repository the "
+"content of these articles may fall out of date over time; please file issues "
+"on the PyO3 GitHub to alert maintainers when this is the case."
+msgstr ""
