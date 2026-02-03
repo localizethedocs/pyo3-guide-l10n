@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/class/protocols.md:1
 msgid "Class customizations"
-msgstr ""
+msgstr "類別自訂"
 
 #: src/class/protocols.md:3
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 
 #: src/class/protocols.md:11
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/class/protocols.md:13
 msgid ""
@@ -153,7 +153,7 @@ msgstr ""
 
 #: src/class/protocols.md:62
 msgid "Emulating numeric types"
-msgstr ""
+msgstr "仿真數值型別"
 
 #: src/class/protocols.md:64
 msgid ""

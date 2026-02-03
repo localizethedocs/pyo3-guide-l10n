@@ -58,7 +58,7 @@ msgstr ""
 
 #: src/faq.md:12
 msgid "Deadlock."
-msgstr ""
+msgstr "死鎖。"
 
 #: src/faq.md:14
 msgid ""
