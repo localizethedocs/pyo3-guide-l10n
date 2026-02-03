@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/python-from-rust/function-calls.md:1
 msgid "Calling Python functions"
-msgstr ""
+msgstr "呼叫 Python 函式"
 
 #: src/python-from-rust/function-calls.md:3
 msgid ""

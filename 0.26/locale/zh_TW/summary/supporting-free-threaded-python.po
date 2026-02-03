@@ -58,6 +58,11 @@ msgid ""
 "some Python code, free-threading will likely allow the use of Python threads "
 "instead for the same workflow."
 msgstr ""
+"自由執行緒建置移除了多執行緒 Python 擴展上的限制，意味著使用 Python 的 "
+"[`threading`](https://docs.python.org/3/library/threading.html) 模組更容易達"
+"成平行化。若你曾為了某些 Python 程式碼的平行加速而使用 [`multiprocessing`]"
+"(https://docs.python.org/3/library/multiprocessing.html)，自由執行緒很可能讓"
+"相同工作流程改以 Python 執行緒達成。"
 
 #: src/free-threading.md:35
 msgid ""
@@ -68,16 +73,21 @@ msgid ""
 "the native Python runtime by building on the Rust [`Send` and `Sync`]"
 "(https://doc.rust-lang.org/nomicon/send-and-sync.html) traits."
 msgstr ""
+"PyO3 對自由執行緒 Python 的支援，將能撰寫天生就具備執行緒安全的原生 Python 擴"
+"充，並提供比 C 擴充更強的安全保證。我們的目標是以 Rust 的 [`Send` 與 `Sync`]"
+"(https://doc.rust-lang.org/nomicon/send-and-sync.html) 特徵為基礎，在原生 "
+"Python 執行環境中實現[無畏並行](https://doc.rust-lang.org/book/ch16-00-"
+"concurrency.html)。"
 
 #: src/free-threading.md:42
 msgid ""
 "This document provides advice for porting Rust code using PyO3 to run under "
 "free-threaded Python."
-msgstr ""
+msgstr "本文提供將使用 PyO3 的 Rust 程式碼移植至自由執行緒 Python 的建議。"
 
 #: src/free-threading.md:45
 msgid "Supporting free-threaded Python with PyO3"
-msgstr ""
+msgstr "使用 PyO3 支援自由執行緒 Python"
 
 #: src/free-threading.md:47
 msgid ""
@@ -136,7 +146,7 @@ msgstr ""
 
 #: src/free-threading.md:88
 msgid "Or for a module that is set up without using the `pymodule` macro:"
-msgstr ""
+msgstr "或是針對未使用 `pymodule` 巨集設定的模組："
 
 #: src/free-threading.md:95
 msgid "\"child_module\""
@@ -157,6 +167,10 @@ msgid ""
 "[`sequential`](https://github.com/PyO3/pyo3/tree/main/pyo3-ffi/examples/"
 "sequential) example for modules using multi-phase initialization."
 msgstr ""
+"關於如何使用原始 FFI 呼叫為採用單階段初始化的模組宣告自由執行緒支援，請參考 "
+"[`string-sum`](https://github.com/PyO3/pyo3/tree/main/pyo3-ffi/examples/"
+"string-sum) 範例；採用多階段初始化的模組則可參考 [`sequential`](https://"
+"github.com/PyO3/pyo3/tree/main/pyo3-ffi/examples/sequential) 範例。"
 
 #: src/free-threading.md:113
 msgid ""
@@ -167,10 +181,14 @@ msgid ""
 "distribution/multiple-python-versions.md) for more details about supporting "
 "multiple different Python versions, including the free-threaded build."
 msgstr ""
+"若你想透過條件編譯在自由執行緒建置下觸發不同的程式路徑，可在設定軟體箱以產生"
+"必要的建置設定資料後，使用 `Py_GIL_DISABLED` 屬性。關於支援多個 Python 版本"
+"（含自由執行緒建置）的詳細內容，請參考[指南章節](./building-and-distribution/"
+"multiple-python-versions.md)。"
 
 #: src/free-threading.md:122
 msgid "Special considerations for the free-threaded build"
-msgstr ""
+msgstr "自由執行緒建置的特別注意事項"
 
 #: src/free-threading.md:124
 msgid ""
@@ -193,6 +211,12 @@ msgid ""
 "threads can be attached and detached from the interpreter runtime, in a "
 "manner analogous to releasing and acquiring the GIL in the GIL-enabled build."
 msgstr ""
+"只有在作業系統執行緒明確附加到直譯器執行環境時，呼叫 CPython C API 才是合法"
+"的。在啟用 GIL 的建置中，這會在取得 GIL 時發生。自由執行緒建置中沒有 GIL，但"
+"在啟用 GIL 的建置裡負責釋放或取得 GIL 的同一組 C 巨集，會改為要求直譯器將該執"
+"行緒附加到 Python 執行環境，且可能同時附加多個執行緒。更多關於執行緒如何附加/"
+"分離直譯器執行環境（類似於在啟用 GIL 建置中釋放或取得 GIL）的背景，請參考 "
+"[PEP 703](https://peps.python.org/pep-0703/#thread-states)。"
 
 #: src/free-threading.md:140
 msgid ""
@@ -203,10 +227,14 @@ msgid ""
 "Python interpreter -- other threads can be simultaneously interacting with "
 "the interpreter."
 msgstr ""
+"在啟用 GIL 的建置中，PyO3 使用 [`Python<'py>`](https://pyo3.rs/main/doc/pyo3/"
+"marker/struct.Python.html) 型別與 `'py` 生命週期來表示已持有全域直譯器鎖。在"
+"自由執行緒建置中，持有 `'py` 生命週期僅代表該執行緒目前已附加到 Python 直譯器"
+"——其他執行緒仍可同時與直譯器互動。"
 
 #: src/free-threading.md:146
 msgid "Attaching to the runtime"
-msgstr ""
+msgstr "附加到執行環境"
 
 #: src/free-threading.md:148
 msgid ""
@@ -219,45 +247,54 @@ msgid ""
 "up the [`Python<'py>`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
 "html) token when CPython calls into your extension."
 msgstr ""
+"你仍需要取得 `'py` 生命週期才能與 Python 物件互動或呼叫 CPython C API。若尚未"
+"附加到 Python 執行環境，可使用 [`Python::attach`](https://pyo3.rs/main/doc/"
+"pyo3/marker/struct.Python.html#method.attach) 註冊執行緒。由 Python 的 "
+"[`threading`](https://docs.python.org/3/library/threading.html) 模組建立的執"
+"行緒不需要這麼做，當 CPython 呼叫你的擴充時，pyo3 會負責設定 [`Python<'py>`]"
+"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html) token。"
 
 #: src/free-threading.md:155
 msgid "Detaching to avoid hangs and deadlocks"
-msgstr ""
+msgstr "分離以避免卡住與死結"
 
 #: src/free-threading.md:157
 msgid ""
 "The free-threaded build triggers global synchronization events in the "
 "following situations:"
-msgstr ""
+msgstr "自由執行緒建置在以下情況會觸發全域同步事件："
 
 #: src/free-threading.md:160
 msgid ""
 "During garbage collection in order to get a globally consistent view of "
 "reference counts and references between objects"
-msgstr ""
+msgstr "垃圾回收時，為取得參考計數與物件間參考的一致全域視圖"
 
 #: src/free-threading.md:162
 msgid ""
 "In Python 3.13, when the first background thread is started in order to mark "
 "certain objects as immortal"
-msgstr ""
+msgstr "在 Python 3.13 中，啟動第一個背景執行緒時用以將部分物件標記為不朽"
 
 #: src/free-threading.md:164
 msgid ""
 "When either `sys.settrace` or `sys.setprofile` are called in order to "
 "instrument running code objects and threads"
 msgstr ""
+"呼叫 `sys.settrace` 或 `sys.setprofile` 以對執行中的程式碼物件與執行緒進行追"
+"蹤時"
 
 #: src/free-threading.md:166
 msgid ""
 "During a call to `os.fork()`, to ensure a process-wide consistent state."
-msgstr ""
+msgstr "呼叫 `os.fork()` 時，為確保整個行程的一致狀態"
 
 #: src/free-threading.md:168
 msgid ""
 "This is a non-exhaustive list and there may be other situations in future "
 "Python versions that can trigger global synchronization events."
 msgstr ""
+"以上並非完整清單，未來的 Python 版本可能還會有其他觸發全域同步事件的情況。"
 
 #: src/free-threading.md:171
 msgid ""
@@ -273,11 +310,18 @@ msgid ""
 "tries to attach after the runtime triggers a global synchronization event, "
 "but the spawning thread prevents the synchronization event from completing."
 msgstr ""
+"這表示你應在與啟用 GIL 建置相同的情境下，使用 [`Python::detach`](https://"
+"pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach) 從直譯器執行環"
+"境分離：當進行不需要 CPython 執行環境的長時間工作，或進行任何需要重新附加執行"
+"環境的工作時（請見[指南章節](parallelism.md#sharing-python-objects-between-"
+"rust-threads)）。在前者情況，等待長時間工作完成的執行緒會卡住；在後者情況，當"
+"執行環境觸發全域同步事件後，執行緒嘗試附加時會發生死結，因為啟動該執行緒的執"
+"行緒阻止同步事件完成。"
 
 #: src/free-threading.md:183
 msgid ""
 "Exceptions and panics for multithreaded access of mutable `pyclass` instances"
-msgstr ""
+msgstr "多執行緒存取可變 `pyclass` 實例時的例外與恐慌"
 
 #: src/free-threading.md:185
 msgid ""
@@ -293,6 +337,14 @@ msgid ""
 "from Python because there is no GIL to lock concurrent access to mutably "
 "borrowed data from Python."
 msgstr ""
+"附加在 `pyclass` 實例上的資料會透過類似 `RefCell` 的執行期借用檢查來防止並發"
+"存取。如同 `RefCell`，PyO3 會拋出例外（或在某些情況下 panic）以強制對可變借用"
+"的獨占存取。過去在 PyO3 中就可能產生這類 panic，例如在使用 [`Python::detach`]"
+"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach) 釋放 "
+"GIL 的程式碼裡，或從 `&mut self` 呼叫接收 `&self` 的 Python 方法（見[內部可變"
+"性文件](./class.md#bound-and-interior-mutability)），但在自由執行緒 Python "
+"中，因為沒有 GIL 來鎖住來自 Python 的可變借用資料的並發存取，觸發這些 panic "
+"的機會更多。"
 
 #: src/free-threading.md:195
 msgid ""
@@ -302,14 +354,18 @@ msgid ""
 "(https://pyo3.rs/main/doc/pyo3/attr.pyclass.html) in multiple threads. For "
 "example, consider the following implementation:"
 msgstr ""
+"最直接觸發此問題的方式，是使用 Python 的 [`threading`](https://docs.python."
+"org/3/library/threading.html) 模組，在多個執行緒中同時呼叫會可變借用 "
+"[`pyclass`](https://pyo3.rs/main/doc/pyo3/attr.pyclass.html) 的 Rust 函式。例"
+"如，考慮以下實作："
 
 #: src/free-threading.md:222
 msgid "And then if we do something like this in Python:"
-msgstr ""
+msgstr "接著如果在 Python 中這樣做："
 
 #: src/free-threading.md:238
 msgid "We will see an exception:"
-msgstr ""
+msgstr "會看到以下例外："
 
 #: src/free-threading.md:240
 msgid ""
@@ -329,10 +385,13 @@ msgid ""
 "using conditional compilation or using the critical section API, to avoid "
 "creating deadlocks with the GIL."
 msgstr ""
+"未來版本的 PyO3 可能會允許為可變 pyclass 定義提供可由使用者選擇的語意，必要時"
+"可選擇性啟用鎖定以模擬 GIL。目前你應明確加入鎖定，可能透過條件編譯或臨界區 "
+"API，以避免與 GIL 造成死結。"
 
 #: src/free-threading.md:253
 msgid "Cannot build extensions using the limited API"
-msgstr ""
+msgstr "無法使用 limited API 建置擴充"
 
 #: src/free-threading.md:255
 msgid ""
@@ -342,6 +401,9 @@ msgid ""
 "PyO3 will print a warning and ignore that setting when building extensions "
 "using the free-threaded interpreter."
 msgstr ""
+"自由執行緒建置使用全新的 ABI，目前尚無與自由執行緒 ABI 對應的 limited API。這"
+"表示若你的軟體箱依賴 PyO3 並使用 `abi3` 功能或 `abi3-pyxx` 功能，PyO3 在使用"
+"自由執行緒直譯器建置擴充時會輸出警告並忽略該設定。"
 
 #: src/free-threading.md:261
 msgid ""
@@ -350,6 +412,8 @@ msgid ""
 "your package, you will need to update your release procedure to also upload "
 "a version-specific free-threaded wheel."
 msgstr ""
+"這表示若你的軟體包利用 limited API 提供的 ABI 向前相容性，只在每次發行時上傳"
+"一個 wheel，你就需要更新發佈流程，另外上傳針對自由執行緒版本的特定 wheel。"
 
 #: src/free-threading.md:266
 msgid ""
@@ -357,10 +421,12 @@ msgid ""
 "md) for more details about supporting multiple different Python versions, "
 "including the free-threaded build."
 msgstr ""
+"更多關於支援多個 Python 版本（含自由執行緒建置）的細節，請參考[指南章節](./"
+"building-and-distribution/multiple-python-versions.md)。"
 
 #: src/free-threading.md:270
 msgid "Thread-safe single initialization"
-msgstr ""
+msgstr "執行緒安全的單次初始化"
 
 #: src/free-threading.md:272
 msgid ""
@@ -384,7 +450,7 @@ msgstr ""
 
 #: src/free-threading.md:289 src/free-threading.md:323
 msgid "// guaranteed to be called once and only once\n"
-msgstr ""
+msgstr "// 保證只會被呼叫一次\n"
 
 #: src/free-threading.md:294
 msgid ""
@@ -409,6 +475,23 @@ msgid ""
 "rust-lang.org/stable/std/sync/struct.Once.html) instead of a [`PyOnceLock`]"
 "(https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html):"
 msgstr ""
+"若某函式必須恰好執行一次，可將 [`OnceExt`](https://pyo3.rs/main/doc/pyo3/"
+"sync/trait.OnceExt.html) 特徵引入範圍。[`OnceExt`](https://pyo3.rs/main/doc/"
+"pyo3/sync/trait.OnceExt.html) 特徵為 `std::sync::Once` 的 API 新增 "
+"[`OnceExt::call_once_py_attached`](https://pyo3.rs/main/doc/pyo3/sync/trait."
+"OnceExt.html#tymethod.call_once_py_attached) 與 [`OnceExt::"
+"call_once_force_py_attached`](https://pyo3.rs/main/doc/pyo3/sync/trait."
+"OnceExt.html#tymethod.call_once_force_py_attached) 函式，使 [`Once`](https://"
+"doc.rust-lang.org/stable/std/sync/struct.Once.html) 能在執行緒已附加到 "
+"Python 直譯器的情境中使用。這些函式類似於 [`Once::call_once`](https://doc."
+"rust-lang.org/stable/std/sync/struct.Once.html#method.call_once) 與 [`Once::"
+"call_once_force`](https://doc.rust-lang.org/stable/std/sync/struct.Once."
+"html#method.call_once_force)，差別在於它們除了 `FnOnce` 外還接受 "
+"[`Python<'py>`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html) "
+"token。這些函式會在阻塞前先從直譯器分離，並在執行函式前重新附加，以避免在未使"
+"用 PyO3 擴充特徵時可能發生的死結。以下是使用 [`Once`](https://doc.rust-lang."
+"org/stable/std/sync/struct.Once.html) 而非 [`PyOnceLock`](https://pyo3.rs/"
+"main/doc/pyo3/sync/struct.PyOnceLock.html) 的相同範例："
 
 #: src/free-threading.md:330
 msgid "`GILProtected` is not exposed"
@@ -427,11 +510,11 @@ msgstr ""
 
 #: src/free-threading.md:340
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/free-threading.md:355 src/free-threading.md:374
 msgid "// stand-in for something that executes arbitrary Python code\n"
-msgstr ""
+msgstr "// 代表執行任意 Python 程式碼的範例\n"
 
 #: src/free-threading.md:363
 msgid "After:"
@@ -442,6 +525,8 @@ msgid ""
 "// as with any `Mutex` usage, lock the mutex for as little time as possible\n"
 "    // in this case, we do it just while pushing into the `Vec`\n"
 msgstr ""
+"// 與任何 `Mutex` 用法相同，鎖住 mutex 的時間應盡可能短\n"
+"    // 在此例中，只在把元素推入 `Vec` 時上鎖\n"
 
 #: src/free-threading.md:384
 msgid ""
@@ -451,3 +536,7 @@ msgid ""
 "`lock`. This ensures that global synchronization events started by the "
 "Python runtime can proceed, avoiding possible deadlocks with the interpreter."
 msgstr ""
+"若在持有鎖的情況下執行任意 Python 程式碼，應引入 [`MutexExt`](https://pyo3."
+"rs/main/doc/pyo3/sync/trait.MutexExt.html) 特徵並使用 `lock_py_attached` 方法"
+"取代 `lock`。這能確保由 Python 執行環境啟動的全域同步事件可以繼續，避免與直譯"
+"器產生死結。"

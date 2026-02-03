@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/parallelism.md:1
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/parallelism.md:3
 msgid ""
@@ -38,11 +38,11 @@ msgstr ""
 
 #: src/parallelism.md:9
 msgid "// These traits let us use `par_lines` and `map`.\n"
-msgstr ""
+msgstr "// 這些特徵讓我們可以使用 `par_lines` 和 `map`。\n"
 
 #: src/parallelism.md:13
 msgid "/// Count the occurrences of needle in line, case insensitive\n"
-msgstr ""
+msgstr "/// 計算某行中 needle 出現次數，不區分大小寫\n"
 
 #: src/parallelism.md:17 src/parallelism.md:39 src/parallelism.md:59
 msgid "' '"
@@ -54,6 +54,8 @@ msgid ""
 "to execute several times in parallel. For the sake of example let's take a "
 "sequential version of the word count:"
 msgstr ""
+"假設你有一個耗時的 Rust 函式，想要平行執行多次。以下以字數統計的序列版作為範"
+"例："
 
 #: src/parallelism.md:52
 msgid ""
@@ -65,26 +67,33 @@ msgid ""
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach) to "
 "enable true parallelism:"
 msgstr ""
+"要讓此函式平行執行，可以使用 [`Python::detach`](https://pyo3.rs/main/doc/"
+"pyo3/marker/struct.Python.html#method.detach) 暫時釋放 GIL，讓其他 Python 執"
+"行緒得以運作。接著我們提供一個暴露給 Python 執行環境的函式，將 "
+"`search_sequential` 放在傳給 [`Python::detach`](https://pyo3.rs/main/doc/"
+"pyo3/marker/struct.Python.html#method.detach) 的閉包中，以實現真正的平行化："
 
 #: src/parallelism.md:76
 msgid ""
 "Now Python threads can use more than one CPU core, resolving the limitation "
 "which usually makes multi-threading in Python only good for IO-bound tasks:"
 msgstr ""
+"現在 Python 執行緒可使用多個 CPU 核心，解決了 Python 多執行緒通常只適合 I/O-"
+"bound 任務的限制："
 
 #: src/parallelism.md:93
 msgid "Benchmark"
-msgstr ""
+msgstr "基準測試"
 
 #: src/parallelism.md:95
 msgid ""
 "Let's benchmark the `word-count` example to verify that we really did unlock "
 "parallelism with PyO3."
-msgstr ""
+msgstr "讓我們對 `word-count` 範例做基準測試，確認 PyO3 確實解鎖了平行化。"
 
 #: src/parallelism.md:97
 msgid "We are using `pytest-benchmark` to benchmark four word count functions:"
-msgstr ""
+msgstr "我們使用 `pytest-benchmark` 來測試四個字數統計函式："
 
 #: src/parallelism.md:99
 msgid "Pure Python version"
@@ -92,15 +101,15 @@ msgstr "純 Python 版本"
 
 #: src/parallelism.md:100
 msgid "Rust parallel version"
-msgstr ""
+msgstr "Rust 平行版本"
 
 #: src/parallelism.md:101
 msgid "Rust sequential version"
-msgstr ""
+msgstr "Rust 序列版本"
 
 #: src/parallelism.md:102
 msgid "Rust sequential version executed twice with two Python threads"
-msgstr ""
+msgstr "Rust 序列版本在兩個 Python 執行緒中執行兩次"
 
 #: src/parallelism.md:104
 msgid ""
@@ -108,12 +117,15 @@ msgid ""
 "main/examples/word-count/tests/test_word_count.py), and we can run `nox` in "
 "the `word-count` folder to benchmark these functions."
 msgstr ""
+"基準測試腳本在[這裡](https://github.com/PyO3/pyo3/blob/main/examples/word-"
+"count/tests/test_word_count.py)，我們可在 `word-count` 資料夾中執行 `nox` 進"
+"行測試。"
 
 #: src/parallelism.md:106
 msgid ""
 "While the results of the benchmark of course depend on your machine, the "
 "relative results should be similar to this (mid 2020):"
-msgstr ""
+msgstr "雖然基準測試結果會因機器而異，但相對結果應與下圖（2020 年中）相近："
 
 #: src/parallelism.md:118
 msgid ""
@@ -121,10 +133,12 @@ msgid ""
 "Rust sequential version, which means compared to an execution on a single "
 "CPU core the speed has doubled."
 msgstr ""
+"可以看到 Python 執行緒版本沒有比 Rust 序列版本慢太多，這代表相較於單一 CPU 核"
+"心的執行，速度翻倍。"
 
 #: src/parallelism.md:120
 msgid "Sharing Python objects between Rust threads"
-msgstr ""
+msgstr "在 Rust 執行緒間共享 Python 物件"
 
 #: src/parallelism.md:122
 msgid ""
@@ -134,6 +148,9 @@ msgid ""
 "that acquire the GIL and operate on Python objects. However, care must be "
 "taken to avoid writing code that deadlocks with the GIL in these cases."
 msgstr ""
+"在上述範例中，我們為底層 Rust 函式建立了 Python 介面，並利用 Python 的 "
+"`threading` 模組平行執行該函式。也可以在 Rust 中啟動執行緒，取得 GIL 並操作 "
+"Python 物件。不過在這些情況下必須小心，避免寫出會與 GIL 死結的程式碼。"
 
 #: src/parallelism.md:128
 msgid ""
@@ -144,6 +161,9 @@ msgid ""
 "parallelize code that acquires and holds the GIL for the entire execution of "
 "the spawned thread."
 msgstr ""
+"注意：此範例用來示範如何釋放並重新取得 GIL 以避免死結。除非啟動的執行緒之後會"
+"釋放 GIL，或你使用的是 CPython 的自由執行緒建置，否則用 `rayon` 平行化會在整"
+"個執行期間取得並持有 GIL 的程式碼，並不會帶來多執行緒的速度提升。"
 
 #: src/parallelism.md:135
 msgid ""
@@ -151,10 +171,13 @@ msgid ""
 "`pyclass` macro and spawn threads to process the collection of data into a "
 "`Vec` of booleans based on a predicate using a `rayon` parallel iterator:"
 msgstr ""
+"在下方範例中，我們共享一個使用 `pyclass` 巨集定義的使用者 ID 物件 `Vec`，並啟"
+"動執行緒，透過 `rayon` 的平行迭代器以判斷條件將資料集合處理成 `Vec` 的布林"
+"值："
 
 #: src/parallelism.md:141
 msgid "// These traits let us use int_par_iter and map\n"
-msgstr ""
+msgstr "// 這些特徵讓我們可以使用 int_par_iter 和 map\n"
 
 #: src/parallelism.md:163
 msgid ""
@@ -163,6 +186,9 @@ msgid ""
 "and threads must individually attach to the interpreter to access data "
 "wrapped by a Python object."
 msgstr ""
+"請注意這裡同時有 `outer_py` 與 `inner_py` 兩個 Python token。在執行緒之間共"
+"享 Python token 是不允許的，執行緒必須各自附加到直譯器，才能存取 Python 物件"
+"包裹的資料。"
 
 #: src/parallelism.md:168
 msgid ""
@@ -176,3 +202,9 @@ msgid ""
 "`detach` in situations that spawn worker threads, but especially so in cases "
 "where worker threads need to acquire the GIL, to prevent deadlocks."
 msgstr ""
+"此外，此範例使用 [`Python::detach`](https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html#method.detach) 包裹透過 `rayon` 啟動 OS 執行緒的程式碼。若"
+"未使用 `detach`，`rayon` 工作執行緒會在取得 GIL 時阻塞，而擁有 GIL 的執行緒會"
+"無限等待 `rayon` 執行緒結果。呼叫 `detach` 可讓收集工作執行緒結果的執行緒釋"
+"放 GIL。只要會啟動工作執行緒，就應呼叫 `detach`，尤其在工作執行緒需要取得 "
+"GIL 的情況下，以避免死結。"
