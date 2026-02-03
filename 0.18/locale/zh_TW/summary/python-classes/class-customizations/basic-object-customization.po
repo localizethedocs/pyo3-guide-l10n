@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/class/object.md:1
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/class/object.md:3
 msgid "Recall the `Number` class from the previous chapter:"

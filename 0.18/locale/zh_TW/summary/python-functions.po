@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/function.md:1
 msgid "Python functions"
-msgstr ""
+msgstr "Python 函式"
 
 #: src/function.md:3
 msgid ""

@@ -124,7 +124,7 @@ msgstr ""
 
 #: src/class/protocols.md:35
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/class/protocols.md:37
 msgid "`__str__(<self>) -> object (str)`"

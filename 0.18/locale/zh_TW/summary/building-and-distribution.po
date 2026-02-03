@@ -24,6 +24,10 @@ msgid ""
 "such as the Python version to build for and the [linker](https://en."
 "wikipedia.org/wiki/Linker_(computing)) arguments to use."
 msgstr ""
+"本章將詳細說明如何使用 PyO3 建置與散布專案。具體做法會依專案是以 Rust 實作的 "
+"Python 模組，或是嵌入 Python 的 Rust 可執行檔而有很大差異。兩者也有共同問題，"
+"例如要建置的 Python 版本，以及要使用的[連結器](https://en.wikipedia.org/wiki/"
+"Linker_(computing))參數。"
 
 #: src/building_and_distribution.md:5
 msgid ""
@@ -41,7 +45,7 @@ msgstr ""
 
 #: src/building_and_distribution.md:9
 msgid "Configuring the Python version"
-msgstr ""
+msgstr "設定 Python 版本"
 
 #: src/building_and_distribution.md:11
 msgid ""
@@ -50,14 +54,17 @@ msgid ""
 "version and set the correct linker arguments. By default it will attempt to "
 "use the following in order:"
 msgstr ""
+"PyO3 使用建置腳本（由 [`pyo3-build-config`](https://github.com/PyO3/pyo3/"
+"tree/main/pyo3-build-config) crate 支援）來判斷 Python 版本並設定正確的連結器"
+"參數。預設會依序嘗試使用："
 
 #: src/building_and_distribution.md:12
 msgid "Any active Python virtualenv."
-msgstr ""
+msgstr "任何已啟用的 Python 虛擬環境。"
 
 #: src/building_and_distribution.md:13
 msgid "The `python` executable (if it's a Python 3 interpreter)."
-msgstr ""
+msgstr "`python` 執行檔（若它是 Python 3 直譯器）。"
 
 #: src/building_and_distribution.md:14
 msgid "The `python3` executable."
@@ -69,6 +76,9 @@ msgid ""
 "environment variable, e.g. `PYO3_PYTHON=python3.7`, `PYO3_PYTHON=/usr/bin/"
 "python3.9`, or even a PyPy interpreter `PYO3_PYTHON=pypy3`."
 msgstr ""
+"你可以設定 `PYO3_PYTHON` 環境變數來覆寫 Python 直譯器，例如 "
+"`PYO3_PYTHON=python3.7`、`PYO3_PYTHON=/usr/bin/python3.9`，甚至是 PyPy 直譯"
+"器 `PYO3_PYTHON=pypy3`。"
 
 #: src/building_and_distribution.md:18
 msgid ""
@@ -76,6 +86,8 @@ msgid ""
 "query the information in the `sysconfig` module which is needed to configure "
 "the rest of the compilation."
 msgstr ""
+"找到 Python 直譯器後，`pyo3-build-config` 會執行它，以查詢 `sysconfig` 模組中"
+"的資訊，供後續編譯設定使用。"
 
 #: src/building_and_distribution.md:20
 msgid ""
@@ -83,16 +95,20 @@ msgid ""
 "with the environment variable `PYO3_PRINT_CONFIG=1` set. An example output "
 "of doing this is shown below:"
 msgstr ""
+"要驗證 PyO3 將採用的設定，你可以在編譯時設定 `PYO3_PRINT_CONFIG=1` 環境變數。"
+"其輸出範例如下："
 
 #: src/building_and_distribution.md:48
 msgid ""
 "The `PYO3_ENVIRONMENT_SIGNATURE` environment variable can be used to trigger "
 "rebuilds when its value changes, it has no other effect."
 msgstr ""
+"`PYO3_ENVIRONMENT_SIGNATURE` 環境變數可在其值變更時觸發重新建置，除此之外沒有"
+"其他作用。"
 
 #: src/building_and_distribution.md:50
 msgid "Advanced: config files"
-msgstr ""
+msgstr "進階：設定檔"
 
 #: src/building_and_distribution.md:52
 msgid ""
@@ -100,6 +116,8 @@ msgid ""
 "is possible to manually override the contents and feed it back into PyO3 "
 "using the `PYO3_CONFIG_FILE` env var."
 msgstr ""
+"若將 `PYO3_PRINT_CONFIG` 的輸出設定儲存成檔案，你就能手動覆寫內容，並透過 "
+"`PYO3_CONFIG_FILE` 環境變數回饋給 PyO3。"
 
 #: src/building_and_distribution.md:54
 msgid ""
@@ -110,6 +128,10 @@ msgid ""
 "(https://docs.rs/pyo3-build-config/latest/pyo3_build_config/struct."
 "InterpreterConfig.html)."
 msgstr ""
+"若你的建置環境較為特殊，導致 PyO3 的一般設定偵測無法運作，使用這種設定檔可提"
+"供彈性以讓 PyO3 正常運作。要查看完整可用選項，請參考 [`InterpreterConfig` "
+"struct](https://docs.rs/pyo3-build-config/latest/pyo3_build_config/struct."
+"InterpreterConfig.html) 文件。"
 
 #: src/building_and_distribution.md:56
 msgid "Building Python extension modules"
@@ -128,6 +150,11 @@ msgid ""
 "versions, reducing the number of wheels they need to compile, but restricts "
 "the functionality they can use."
 msgstr ""
+"Python 擴充模組的編譯方式會依目標作業系統（與架構）而不同。除了多種作業系統"
+"（與架構），也有許多仍在支援的 Python 版本。上傳到 [PyPI](https://pypi.org/) "
+"的套件通常會提供涵蓋多種 OS/架構/版本組合的預建「wheels」，讓不同平台的使用者"
+"不必自行編譯。套件提供者也可選擇使用受限的 Python API「abi3」，讓單一 wheel "
+"支援多個 Python 版本，以減少需要編譯的 wheel 數量，但功能也會受限。"
 
 #: src/building_and_distribution.md:60
 msgid ""
@@ -138,6 +165,10 @@ msgid ""
 "rust), which abstract over the OS difference and also support building "
 "wheels for PyPI upload."
 msgstr ""
+"實作方式有很多種：可以用 `cargo` 來建置擴充模組（並搭配一些手動步驟，會因 OS "
+"而異）。PyO3 生態系提供兩個打包工具 [`maturin`](https://github.com/PyO3/"
+"maturin) 和 [`setuptools-rust`](https://github.com/PyO3/setuptools-rust)，可"
+"抽象化 OS 差異並支援建置可上傳 PyPI 的 wheels。"
 
 #: src/building_and_distribution.md:62
 msgid ""
@@ -174,7 +205,7 @@ msgstr "打包工具"
 msgid ""
 "The PyO3 ecosystem has two main choices to abstract the process of "
 "developing Python extension modules:"
-msgstr ""
+msgstr "PyO3 生態系提供兩個主要選項來抽象化 Python 擴充模組的開發流程："
 
 #: src/building_and_distribution.md:71
 msgid ""
