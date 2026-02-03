@@ -1,0 +1,349 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:40:13Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/python_typing_hints.md:1
+msgid "Typing and IDE hints for you Python package"
+msgstr ""
+
+#: src/python_typing_hints.md:3
+msgid ""
+"PyO3 provides an easy to use interface to code native Python libraries in "
+"Rust. The accompanying Maturin allows you to build and publish them as a "
+"package. Yet, for the better user experience, Python libraries should "
+"provide typing hints and documentation for all public entities, so that IDEs "
+"can show them during development and type analyzing tools such as `mypy` can "
+"use them to properly verify the code."
+msgstr ""
+
+#: src/python_typing_hints.md:5
+msgid ""
+"Currently the best solution for the problem is to maintain manually the `*."
+"pyi` files and ship them along with the package."
+msgstr ""
+
+#: src/python_typing_hints.md:7
+msgid "The `pyi` files introduction"
+msgstr ""
+
+#: src/python_typing_hints.md:9
+msgid ""
+"`pyi` (an abbreviation for `Python Interface`) is called a `Stub File` in "
+"most of the documentations related to them. Very good definition of what it "
+"is can be found in [old MyPy documentation](https://github.com/python/mypy/"
+"wiki/Creating-Stubs-For-Python-Modules):"
+msgstr ""
+
+#: src/python_typing_hints.md:11
+msgid ""
+"A stubs file only contains a description of the public interface of the "
+"module without any implementations."
+msgstr "Stub 檔案只包含模組公開介面的描述，不包含任何實作。"
+
+#: src/python_typing_hints.md:13
+msgid ""
+"Probably most Python developers encountered them already when trying to use "
+"the IDE \"Go to Definition\" function on any builtin type. For example the "
+"definitions of few standard exceptions look like this:"
+msgstr ""
+
+#: src/python_typing_hints.md:36
+msgid ""
+"As we can see those are not full definitions containing implementation, but "
+"just a description of interface. It is usually all that is needed by the "
+"user of the library."
+msgstr ""
+
+#: src/python_typing_hints.md:38
+msgid "What does the PEPs say?"
+msgstr ""
+
+#: src/python_typing_hints.md:40
+msgid ""
+"As of the time of writing this documentation the `pyi` files are referenced "
+"in three PEPs."
+msgstr ""
+
+#: src/python_typing_hints.md:42
+msgid ""
+"[PEP8 - Style Guide for Python Code - #Function Annotations](https://www."
+"python.org/dev/peps/pep-0008/#function-annotations) (last point) recommends "
+"all third party library creators to provide stub files as the source of "
+"knowledge about the package for type checker tools."
+msgstr ""
+"[PEP8 - Python 程式碼風格指南 - #Function Annotations](https://www.python."
+"org/dev/peps/pep-0008/#function-annotations)（最後一點）建議所有第三方函式庫"
+"作者提供 stub 檔案，作為型別檢查工具對套件的知識來源。"
+
+#: src/python_typing_hints.md:44
+msgid ""
+"(...) it is expected that users of third party library packages may want to "
+"run type checkers over those packages. For this purpose [PEP 484](https://"
+"www.python.org/dev/peps/pep-0484) recommends the use of stub files: .pyi "
+"files that are read by the type checker in preference of the corresponding ."
+"py files. (...)"
+msgstr ""
+"（……）預期第三方函式庫的使用者可能會對這些套件執行型別檢查。為此，[PEP 484]"
+"(https://www.python.org/dev/peps/pep-0484) 建議使用 stub 檔案：型別檢查器會優"
+"先讀取 .pyi 檔案而不是對應的 .py 檔案。（……）"
+
+#: src/python_typing_hints.md:46
+msgid ""
+"[PEP484 - Type Hints - #Stub Files](https://www.python.org/dev/peps/pep-0484/"
+"#stub-files) defines stub files as follows."
+msgstr ""
+"[PEP484 - Type Hints - #Stub Files](https://www.python.org/dev/peps/pep-0484/"
+"#stub-files) 對 stub 檔案的定義如下。"
+
+#: src/python_typing_hints.md:48
+msgid ""
+"Stub files are files containing type hints that are only for use by the type "
+"checker, not at runtime."
+msgstr "Stub 檔案是只提供給型別檢查器使用、而非執行階段使用的型別提示檔案。"
+
+#: src/python_typing_hints.md:50
+msgid ""
+"It contains a specification for them (highly recommended reading, since it "
+"contains at least one thing that is not used in normal Python code) and also "
+"some general information about where to store the stub files."
+msgstr ""
+"其中包含對 stub 檔案的規範（強烈建議閱讀，因為至少有一項是一般 Python 程式碼"
+"不會用到的）以及關於存放位置的一般資訊。"
+
+#: src/python_typing_hints.md:52
+msgid ""
+"[PEP561 - Distributing and Packaging Type Information](https://www.python."
+"org/dev/peps/pep-0561/) describes in detail how to build packages that will "
+"enable type checking. In particular it contains information about how the "
+"stub files must be distributed in order for type checkers to use them."
+msgstr ""
+"[PEP561 - Distributing and Packaging Type Information](https://www.python."
+"org/dev/peps/pep-0561/) 詳細描述如何建置能啟用型別檢查的套件，特別是如何散布 "
+"stub 檔案以供型別檢查器使用。"
+
+#: src/python_typing_hints.md:54
+msgid "How to do it?"
+msgstr "該怎麼做？"
+
+#: src/python_typing_hints.md:56
+msgid ""
+"[PEP561](https://www.python.org/dev/peps/pep-0561/) recognizes three ways of "
+"distributing type information:"
+msgstr ""
+"[PEP561](https://www.python.org/dev/peps/pep-0561/) 提出三種散布型別資訊的方"
+"式："
+
+#: src/python_typing_hints.md:58
+msgid "`inline` - the typing is placed directly in source (`py`) files;"
+msgstr "`inline` - 型別直接放在原始碼（`py`）檔案中；"
+
+#: src/python_typing_hints.md:59
+msgid ""
+"`separate package with stub files` - the typing is placed in `pyi` files "
+"distributed in their own, separate package;"
+msgstr ""
+"`separate package with stub files` - 型別放在 `pyi` 檔案中，並以獨立套件發"
+"布；"
+
+#: src/python_typing_hints.md:60
+msgid ""
+"`in-package stub files` - the typing is placed in `pyi` files distributed in "
+"the same package as source files."
+msgstr ""
+"`in-package stub files` - 型別放在 `pyi` 檔案中，並與原始碼同套件發布。"
+
+#: src/python_typing_hints.md:62
+msgid ""
+"The first way is tricky with PyO3 since we do not have `py` files. When it "
+"will be investigated and necessary changes are implemented, this document "
+"will be updated."
+msgstr ""
+
+#: src/python_typing_hints.md:64
+msgid ""
+"The second way is easy to do, and the whole work can be fully separated from "
+"the main library code. The example repo for the package with stub files can "
+"be found in [PEP561 references section](https://www.python.org/dev/peps/"
+"pep-0561/#references): [Stub package repository](https://github.com/ethanhs/"
+"stub-package)"
+msgstr ""
+"第二種方式很容易完成，而且可與主函式庫程式碼完全分離。帶有 stub 檔案的套件範"
+"例可在 [PEP561 參考資料](https://www.python.org/dev/peps/pep-0561/"
+"#references)中找到：[Stub package repository](https://github.com/ethanhs/"
+"stub-package)"
+
+#: src/python_typing_hints.md:66
+msgid "The third way is described below."
+msgstr "第三種方式如下所述。"
+
+#: src/python_typing_hints.md:68
+msgid "Including `pyi` files in your PyO3/Maturin build package"
+msgstr "在 PyO3/Maturin 建置套件中包含 `pyi` 檔案"
+
+#: src/python_typing_hints.md:70
+msgid ""
+"When source files are in the same package as stub files, they should be "
+"placed next to each other. We need a way to do that with Maturin. Also, in "
+"order to mark our package as typing-enabled we need to add an empty file "
+"named `py.typed` to the package."
+msgstr ""
+"當原始碼與 stub 檔案位於同一套件時，應該把它們放在彼此相鄰的位置。我們需要能"
+"用 Maturin 達成這點的方法。此外，為了標示套件具有型別資訊，我們需要在套件中新"
+"增一個名為 `py.typed` 的空檔案。"
+
+#: src/python_typing_hints.md:72
+msgid "If you do not have other Python files"
+msgstr "若你沒有其他 Python 檔案"
+
+#: src/python_typing_hints.md:74
+msgid ""
+"If you do not need to add any other Python files apart from `pyi` to the "
+"package, the Maturin provides a way to do most of the work for you. As "
+"documented in [Maturin Guide](https://github.com/PyO3/maturin/"
+"blob/084cfaced651b28616aeea1f818bdc933a536bfe/guide/src/project_layout."
+"md#adding-python-type-information) the only thing you need to do is create a "
+"stub file for your module named `<module_name>.pyi` in your project root and "
+"Maturin will do the rest."
+msgstr ""
+
+#: src/python_typing_hints.md:85
+msgid ""
+"For example of `pyi` file see [`my_project.pyi` content](#my_projectpyi-"
+"content) section."
+msgstr ""
+
+#: src/python_typing_hints.md:87
+msgid "If you need other Python files"
+msgstr ""
+
+#: src/python_typing_hints.md:89
+msgid ""
+"If you need to add other Python files apart from `pyi` to the package, you "
+"can do it also, but that requires some more work. Maturin provides easy way "
+"to add files to package ([documentation](https://github.com/PyO3/maturin/"
+"blob/0dee40510083c03607834c821eea76964140a126/Readme.md#mixed-rustpython-"
+"projects)). You just need to create a folder with the name of your module "
+"next to the `Cargo.toml` file (for customization see documentation linked "
+"above)."
+msgstr ""
+
+#: src/python_typing_hints.md:91
+msgid "The folder structure would be:"
+msgstr ""
+
+#: src/python_typing_hints.md:107
+msgid ""
+"Let's go a little bit more into details on the files inside the package "
+"folder."
+msgstr ""
+
+#: src/python_typing_hints.md:109
+msgid "`__init__.py` content"
+msgstr ""
+
+#: src/python_typing_hints.md:111
+msgid ""
+"As we now specify our own package content, we have to provide the `__init__."
+"py` file, so the folder is treated as a package and we can import things "
+"from it. We can always use the same content that the Maturin creates for us "
+"if we do not specify a python source folder. For PyO3 bindings it would be:"
+msgstr ""
+
+#: src/python_typing_hints.md:117
+msgid ""
+"That way everything that is exposed by our native module can be imported "
+"directly from the package."
+msgstr ""
+
+#: src/python_typing_hints.md:119
+msgid "`py.typed` requirement"
+msgstr ""
+
+#: src/python_typing_hints.md:121
+msgid "As stated in [PEP561](https://www.python.org/dev/peps/pep-0561/):"
+msgstr ""
+
+#: src/python_typing_hints.md:122
+msgid ""
+"Package maintainers who wish to support type checking of their code MUST add "
+"a marker file named py.typed to their package supporting typing. This marker "
+"applies recursively: if a top-level package includes it, all its sub-"
+"packages MUST support type checking as well."
+msgstr ""
+
+#: src/python_typing_hints.md:124
+msgid ""
+"If we do not include that file, some IDEs might still use our `pyi` files to "
+"show hints, but the type checkers might not. MyPy will raise an error in "
+"this situation:"
+msgstr ""
+
+#: src/python_typing_hints.md:126
+msgid ""
+"```text\n"
+"error: Skipping analyzing \"my_project\": found module but no type hints or "
+"library stubs\n"
+"```"
+msgstr ""
+
+#: src/python_typing_hints.md:130
+msgid "The file is just a marker file, so it should be empty."
+msgstr ""
+
+#: src/python_typing_hints.md:132
+msgid "`my_project.pyi` content"
+msgstr ""
+
+#: src/python_typing_hints.md:134
+msgid ""
+"Our module stub file. This document does not aim at describing how to write "
+"them, since you can find a lot of documentation on it, starting from already "
+"quoted [PEP484](https://www.python.org/dev/peps/pep-0484/#stub-files)."
+msgstr ""
+
+#: src/python_typing_hints.md:136
+msgid "The example can look like this:"
+msgstr ""
+
+#: src/python_typing_hints.md:140
+msgid ""
+"\"\"\"\n"
+"    A class representing a car.\n"
+"\n"
+"    :param body_type: the name of body type, e.g. hatchback, sedan\n"
+"    :param horsepower: power of the engine in horsepower\n"
+"    \"\"\""
+msgstr ""
+
+#: src/python_typing_hints.md:149
+msgid "'Car'"
+msgstr ""
+
+#: src/python_typing_hints.md:150
+msgid ""
+"\"\"\"\n"
+"        Creates a Car based on unique name\n"
+"\n"
+"        :param name: model name of a car to be created\n"
+"        :return: a Car instance with default data\n"
+"        \"\"\""
+msgstr ""
+
+#: src/python_typing_hints.md:158
+msgid ""
+"\"\"\"\n"
+"        Gets the best color for the car.\n"
+"\n"
+"        :return: the name of the color our great algorithm thinks is the "
+"best for this car\n"
+"        \"\"\""
+msgstr ""
