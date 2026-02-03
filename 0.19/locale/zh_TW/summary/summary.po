@@ -13,15 +13,15 @@ msgstr ""
 
 #: src/SUMMARY.md:1
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: src/SUMMARY.md:3
 msgid "Introduction"
-msgstr ""
+msgstr "介紹"
 
 #: src/SUMMARY.md:7
 msgid "Getting started"
-msgstr ""
+msgstr "開始使用"
 
 #: src/SUMMARY.md:8
 msgid "Python modules"
@@ -29,11 +29,11 @@ msgstr "Python 模組"
 
 #: src/SUMMARY.md:9
 msgid "Python functions"
-msgstr ""
+msgstr "Python 函式"
 
 #: src/SUMMARY.md:10
 msgid "Function signatures"
-msgstr ""
+msgstr "函式簽名"
 
 #: src/SUMMARY.md:11
 msgid "Error handling"
@@ -45,19 +45,19 @@ msgstr "Python 類別"
 
 #: src/SUMMARY.md:13
 msgid "Class customizations"
-msgstr ""
+msgstr "類別自訂"
 
 #: src/SUMMARY.md:14
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/SUMMARY.md:15
 msgid "Emulating numeric types"
-msgstr ""
+msgstr "仿真數值型別"
 
 #: src/SUMMARY.md:16
 msgid "Emulating callable objects"
-msgstr ""
+msgstr "仿真可呼叫物件"
 
 #: src/SUMMARY.md:17
 msgid "Type conversions"
@@ -85,15 +85,15 @@ msgstr ""
 
 #: src/SUMMARY.md:23
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/SUMMARY.md:24
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/SUMMARY.md:25
 msgid "Features reference"
-msgstr ""
+msgstr "功能參考"
 
 #: src/SUMMARY.md:26
 msgid "Memory management"
@@ -105,7 +105,7 @@ msgstr "效能"
 
 #: src/SUMMARY.md:28
 msgid "Advanced topics"
-msgstr ""
+msgstr "進階主題"
 
 #: src/SUMMARY.md:29
 msgid "Building and distribution"
@@ -113,15 +113,15 @@ msgstr "建置與散布"
 
 #: src/SUMMARY.md:30
 msgid "Supporting multiple Python versions"
-msgstr ""
+msgstr "支援多個 Python 版本"
 
 #: src/SUMMARY.md:31
 msgid "Useful crates"
-msgstr ""
+msgstr "實用 crate"
 
 #: src/SUMMARY.md:32
 msgid "Logging"
-msgstr ""
+msgstr "日誌"
 
 #: src/SUMMARY.md:33
 msgid "Using `async` and `await`"
@@ -129,7 +129,7 @@ msgstr "使用 `async` 和 `await`"
 
 #: src/SUMMARY.md:34
 msgid "FAQ and troubleshooting"
-msgstr ""
+msgstr "常見問題與疑難排解"
 
 #: src/SUMMARY.md:38
 msgid ""
@@ -139,4 +139,4 @@ msgstr ""
 
 #: src/SUMMARY.md:46
 msgid "Contributing"
-msgstr ""
+msgstr "參與貢獻"

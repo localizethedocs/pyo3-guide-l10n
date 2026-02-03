@@ -21,6 +21,8 @@ msgid ""
 "version to the next. For a detailed list of all changes, see the [CHANGELOG]"
 "(changelog.md)."
 msgstr ""
+"本指南可協助你跨越 PyO3 版本間的破壞性變更來升級程式碼。完整變更清單請見 "
+"[CHANGELOG](changelog.md)。"
 
 #: src/migration.md:6
 msgid "from 0.18.\\* to 0.19"
@@ -343,7 +345,7 @@ msgstr ""
 #: src/migration.md:871 src/migration.md:957 src/migration.md:984
 #: src/migration.md:1019
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/migration.md:268
 msgid "// Cannot infer either `Py<PyAny>` or `Py<PyString>`\n"

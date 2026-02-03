@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/python_from_rust.md:1
 msgid "Calling Python in Rust code"
-msgstr ""
+msgstr "在 Rust 程式碼中呼叫 Python"
 
 #: src/python_from_rust.md:3
 msgid ""
@@ -23,11 +23,11 @@ msgstr ""
 
 #: src/python_from_rust.md:4
 msgid "How to call Python functions"
-msgstr ""
+msgstr "如何呼叫 Python 函式"
 
 #: src/python_from_rust.md:5
 msgid "How to execute existing Python code"
-msgstr ""
+msgstr "如何執行既有的 Python 程式碼"
 
 #: src/python_from_rust.md:7
 msgid "Calling Python functions"

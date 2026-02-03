@@ -378,7 +378,7 @@ msgstr ""
 
 #: src/class.md:249
 msgid "Description"
-msgstr ""
+msgstr "說明"
 
 #: src/class.md:251
 msgid "<span style=\"white-space: pre\">`crate = \"some::path\"`</span>"
