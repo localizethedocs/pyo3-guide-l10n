@@ -39,7 +39,7 @@ msgstr ""
 
 #: src/get_started.md:11
 msgid "Usage"
-msgstr ""
+msgstr "使用方式"
 
 #: src/get_started.md:13
 msgid ""
