@@ -1,0 +1,141 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:43Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/call.md:1
+msgid "Emulating callable objects"
+msgstr ""
+
+#: src/class/call.md:3
+msgid ""
+"Classes can be callable if they have a `#[pymethod]` named `__call__`. This "
+"allows instances of a class to behave similar to functions."
+msgstr ""
+
+#: src/class/call.md:6
+msgid ""
+"This method's signature must look like `__call__(<self>, ...) -> object` - "
+"here, any argument list can be defined as for normal pymethods"
+msgstr ""
+
+#: src/class/call.md:9
+msgid "Example: Implementing a call counter"
+msgstr ""
+
+#: src/class/call.md:11
+msgid ""
+"The following pyclass is a basic decorator - its constructor takes a Python "
+"object as argument and calls that object when called. An equivalent Python "
+"implementation is linked at the end."
+msgstr ""
+
+#: src/class/call.md:15
+msgid ""
+"An example crate containing this pyclass can be found [here](https://github."
+"com/PyO3/pyo3/tree/main/examples/decorator)"
+msgstr ""
+
+#: src/class/call.md:20
+msgid ""
+"/// A function decorator that keeps track how often it is called.\n"
+"///\n"
+"/// It otherwise doesn't do anything special.\n"
+msgstr ""
+
+#: src/class/call.md:24
+msgid "\"Counter\""
+msgstr ""
+
+#: src/class/call.md:26
+msgid ""
+"// We use `#[pyo3(get)]` so that python can read the count but not mutate "
+"it.\n"
+msgstr ""
+
+#: src/class/call.md:30
+msgid "// This is the actual function being wrapped.\n"
+msgstr ""
+
+#: src/class/call.md:36
+msgid ""
+"// Note that we don't validate whether `wraps` is actually callable.\n"
+"    //\n"
+"    // While we could use `PyAny::is_callable` for that, it has some flaws:\n"
+"    //    1. It doesn't guarantee the object can actually be called "
+"successfully\n"
+"    //    2. We still need to handle any exceptions that the function might "
+"raise\n"
+msgstr ""
+
+#: src/class/call.md:46
+msgid "\"*\""
+msgstr ""
+
+#: src/class/call.md:46
+msgid "\"**\""
+msgstr ""
+
+#: src/class/call.md:54
+msgid "\"__name__\""
+msgstr ""
+
+#: src/class/call.md:56
+msgid "\"{} has been called {} time(s).\""
+msgstr ""
+
+#: src/class/call.md:58
+msgid ""
+"// After doing something, we finally forward the call to the wrapped "
+"function\n"
+msgstr ""
+
+#: src/class/call.md:61
+msgid ""
+"// We could do something with the return value of\n"
+"        // the function before returning it\n"
+msgstr ""
+
+#: src/class/call.md:74
+msgid "Python code:"
+msgstr ""
+
+#: src/class/call.md:79
+msgid "\"hello\""
+msgstr ""
+
+#: src/class/call.md:90
+msgid "Output:"
+msgstr ""
+
+#: src/class/call.md:103
+msgid "Pure Python implementation"
+msgstr ""
+
+#: src/class/call.md:105
+msgid "A Python implementation of this looks similar to the Rust version:"
+msgstr ""
+
+#: src/class/call.md:115 src/class/call.md:127
+msgid "\""
+msgstr ""
+
+#: src/class/call.md:115 src/class/call.md:127
+msgid " has been called "
+msgstr ""
+
+#: src/class/call.md:115 src/class/call.md:127
+msgid " time(s)\""
+msgstr ""
+
+#: src/class/call.md:119
+msgid "Note that it can also be implemented as a higher order function:"
+msgstr ""
