@@ -1,0 +1,224 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:47Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/class/call.md:1
+msgid "Emulating callable objects"
+msgstr "仿真可呼叫物件"
+
+#: src/class/call.md:3
+msgid ""
+"Classes can be callable if they have a `#[pymethod]` named `__call__`. This "
+"allows instances of a class to behave similar to functions."
+msgstr ""
+
+#: src/class/call.md:6
+msgid ""
+"This method's signature must look like `__call__(<self>, ...) -> object` - "
+"here, any argument list can be defined as for normal pymethods"
+msgstr ""
+
+#: src/class/call.md:9
+msgid "Example: Implementing a call counter"
+msgstr ""
+
+#: src/class/call.md:11
+msgid ""
+"The following pyclass is a basic decorator - its constructor takes a Python "
+"object as argument and calls that object when called. An equivalent Python "
+"implementation is linked at the end."
+msgstr ""
+
+#: src/class/call.md:15
+msgid ""
+"An example crate containing this pyclass can be found [here](https://github."
+"com/PyO3/pyo3/tree/main/examples/decorator)"
+msgstr ""
+
+#: src/class/call.md:21
+msgid ""
+"/// A function decorator that keeps track how often it is called.\n"
+"///\n"
+"/// It otherwise doesn't do anything special.\n"
+msgstr ""
+
+#: src/class/call.md:25
+msgid "\"Counter\""
+msgstr ""
+
+#: src/class/call.md:27
+msgid ""
+"// Keeps track of how many calls have gone through.\n"
+"    //\n"
+"    // See the discussion at the end for why `Cell` is used.\n"
+msgstr ""
+
+#: src/class/call.md:32
+msgid "// This is the actual function being wrapped.\n"
+msgstr ""
+
+#: src/class/call.md:38
+msgid ""
+"// Note that we don't validate whether `wraps` is actually callable.\n"
+"    //\n"
+"    // While we could use `PyAny::is_callable` for that, it has some flaws:\n"
+"    //    1. It doesn't guarantee the object can actually be called "
+"successfully\n"
+"    //    2. We still need to handle any exceptions that the function might "
+"raise\n"
+msgstr ""
+
+#: src/class/call.md:56 src/class/call.md:149
+msgid "\"*\""
+msgstr ""
+
+#: src/class/call.md:56 src/class/call.md:149
+msgid "\"**\""
+msgstr ""
+
+#: src/class/call.md:66 src/class/call.md:152
+msgid "\"__name__\""
+msgstr ""
+
+#: src/class/call.md:68 src/class/call.md:154
+msgid "\"{} has been called {} time(s).\""
+msgstr ""
+
+#: src/class/call.md:70 src/class/call.md:156
+msgid ""
+"// After doing something, we finally forward the call to the wrapped "
+"function\n"
+msgstr ""
+
+#: src/class/call.md:73
+msgid ""
+"// We could do something with the return value of\n"
+"        // the function before returning it\n"
+msgstr ""
+
+#: src/class/call.md:86
+msgid "Python code:"
+msgstr ""
+
+#: src/class/call.md:91
+msgid "\"hello\""
+msgstr ""
+
+#: src/class/call.md:102
+msgid "Output:"
+msgstr "輸出："
+
+#: src/class/call.md:115
+msgid "Pure Python implementation"
+msgstr "純 Python 實現"
+
+#: src/class/call.md:117
+msgid "A Python implementation of this looks similar to the Rust version:"
+msgstr ""
+
+#: src/class/call.md:127 src/class/call.md:139
+msgid "\""
+msgstr ""
+
+#: src/class/call.md:127 src/class/call.md:139
+msgid " has been called "
+msgstr ""
+
+#: src/class/call.md:127 src/class/call.md:139
+msgid " time(s)\""
+msgstr ""
+
+#: src/class/call.md:131
+msgid "Note that it can also be implemented as a higher order function:"
+msgstr ""
+
+#: src/class/call.md:144
+msgid "What is the `Cell` for?"
+msgstr ""
+
+#: src/class/call.md:146
+msgid ""
+"A [previous implementation](https://github.com/PyO3/pyo3/discussions/2598 "
+"\"Thread Safe Decorator <Help Wanted> · Discussion #2598 · PyO3/pyo3\") used "
+"a normal `u64`, which meant it required a `&mut self` receiver to update the "
+"count:"
+msgstr ""
+
+#: src/class/call.md:159
+msgid ""
+"// We could do something with the return value of\n"
+"    // the function before returning it\n"
+msgstr ""
+
+#: src/class/call.md:165
+msgid ""
+"The problem with this is that the `&mut self` receiver means PyO3 has to "
+"borrow it exclusively, and hold this borrow across the`self.wraps.call(py, "
+"args, kwargs)` call. This call returns control to the user's Python code "
+"which is free to call arbitrary things, _including_ the decorated function. "
+"If that happens PyO3 is unable to create a second unique borrow and will be "
+"forced to raise an exception."
+msgstr ""
+
+#: src/class/call.md:169
+msgid "As a result, something innocent like this will raise an exception:"
+msgstr ""
+
+#: src/class/call.md:175
+msgid "\"hello from decorator\""
+msgstr ""
+
+#: src/class/call.md:177
+msgid "# RuntimeError: Already borrowed\n"
+msgstr ""
+
+#: src/class/call.md:181
+msgid ""
+"The implementation in this chapter fixes that by never borrowing "
+"exclusively; all the methods take `&self` as receivers, of which multiple "
+"may exist simultaneously. This requires a shared counter and the easiest way "
+"to do that is to use [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell."
+"html \"Cell in std::cell - Rust\"), so that's what is used here."
+msgstr ""
+
+#: src/class/call.md:183
+msgid ""
+"This shows the dangers of running arbitrary Python code - note that "
+"\"running arbitrary Python code\" can be far more subtle than the example "
+"above:"
+msgstr ""
+
+#: src/class/call.md:184
+msgid ""
+"Python's asynchronous executor may park the current thread in the middle of "
+"Python code, even in Python code that _you_ control, and let other Python "
+"code run."
+msgstr ""
+
+#: src/class/call.md:185
+msgid ""
+"Dropping arbitrary Python objects may invoke destructors defined in Python "
+"(`__del__` methods)."
+msgstr ""
+
+#: src/class/call.md:186
+msgid ""
+"Calling Python's C-api (most PyO3 apis call C-api functions internally) may "
+"raise exceptions, which may allow Python code in signal handlers to run."
+msgstr ""
+
+#: src/class/call.md:188
+msgid ""
+"This is especially important if you are writing unsafe code; Python code "
+"must never be able to cause undefined behavior. You must ensure that your "
+"Rust code is in a consistent state before doing any of the above things."
+msgstr ""

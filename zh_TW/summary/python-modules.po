@@ -1,0 +1,125 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:47Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/module.md:1
+msgid "Python modules"
+msgstr "Python 模組"
+
+#: src/module.md:3
+msgid "You can create a module using `#[pymodule]`:"
+msgstr "您可以使用 `#[pymodule]` 建立模組："
+
+#: src/module.md:12
+msgid "/// This module is implemented in Rust.\n"
+msgstr ""
+
+#: src/module.md:21
+msgid ""
+"The `#[pymodule]` procedural macro takes care of exporting the "
+"initialization function of your module to Python."
+msgstr ""
+
+#: src/module.md:24
+msgid ""
+"The module's name defaults to the name of the Rust function. You can "
+"override the module name by using `#[pyo3(name = \"custom_name\")]`:"
+msgstr ""
+
+#: src/module.md:36
+msgid "\"custom_name\""
+msgstr ""
+
+#: src/module.md:43
+msgid ""
+"The name of the module must match the name of the `.so` or `.pyd` file. "
+"Otherwise, you will get an import error in Python with the following "
+"message: `ImportError: dynamic module does not define module export function "
+"(PyInit_name_of_your_module)`"
+msgstr ""
+
+#: src/module.md:47
+msgid "To import the module, either:"
+msgstr ""
+
+#: src/module.md:48
+msgid ""
+"copy the shared library as described in [Manual builds]"
+"(building_and_distribution.html#manual-builds), or"
+msgstr ""
+
+#: src/module.md:49
+msgid ""
+"use a tool, e.g. `maturin develop` with [maturin](https://github.com/PyO3/"
+"maturin) or `python setup.py develop` with [setuptools-rust](https://github."
+"com/PyO3/setuptools-rust)."
+msgstr ""
+
+#: src/module.md:52
+msgid "Documentation"
+msgstr "文件"
+
+#: src/module.md:54
+msgid ""
+"The [Rust doc comments](https://doc.rust-lang.org/stable/book/ch03-04-"
+"comments.html) of the module initialization function will be applied "
+"automatically as the Python docstring of your module."
+msgstr ""
+
+#: src/module.md:57
+msgid ""
+"For example, building off of the above code, this will print `This module is "
+"implemented in Rust.`:"
+msgstr ""
+
+#: src/module.md:65
+msgid "Python submodules"
+msgstr "Python 子模組"
+
+#: src/module.md:67
+msgid ""
+"You can create a module hierarchy within a single extension module by using "
+"[`PyModule.add_submodule()`](https://pyo3.rs/main/doc/pyo3/prelude/struct."
+"PyModule.html#method.add_submodule). For example, you could define the "
+"modules `parent_module` and `parent_module.child_module`."
+msgstr ""
+
+#: src/module.md:81
+msgid "\"child_module\""
+msgstr ""
+
+#: src/module.md:89
+msgid "\"func\""
+msgstr ""
+
+#: src/module.md:96
+msgid "\"parent_module\""
+msgstr ""
+
+#: src/module.md:98
+msgid "\"assert parent_module.child_module.func() == 'func'\""
+msgstr ""
+
+#: src/module.md:102
+msgid ""
+"Note that this does not define a package, so this won’t allow Python code to "
+"directly import submodules by using `from parent_module import "
+"child_module`. For more information, see [\\#759](https://github.com/PyO3/"
+"pyo3/issues/759) and [\\#1517](https://github.com/PyO3/pyo3/"
+"issues/1517#issuecomment-808664021)."
+msgstr ""
+
+#: src/module.md:107
+msgid ""
+"It is not necessary to add `#[pymodule]` on nested modules, which is only "
+"required on the top-level module."
+msgstr ""

@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:47Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/function/signature.md:1
+msgid "Function signatures"
+msgstr "函式簽名"
+
+#: src/function/signature.md:3
+msgid ""
+"The `#[pyfunction]` attribute also accepts parameters to control how the "
+"generated Python function accepts arguments. Just like in Python, arguments "
+"can be positional-only, keyword-only, or accept either. `*args` lists and "
+"`**kwargs` dicts can also be accepted. These parameters also work for "
+"`#[pymethods]` which will be introduced in the [Python Classes](../class.md) "
+"section of the guide."
+msgstr ""
+
+#: src/function/signature.md:5
+msgid ""
+"Like Python, by default PyO3 accepts all arguments as either positional or "
+"keyword arguments. The extra arguments to `#[pyfunction]` modify this "
+"behaviour. For example, below is a function that accepts arbitrary keyword "
+"arguments (`**kwargs` in Python syntax) and returns the number that was "
+"passed:"
+msgstr ""
+
+#: src/function/signature.md:11 src/function/signature.md:60
+msgid "\"**\""
+msgstr ""
+
+#: src/function/signature.md:23
+msgid ""
+"The following parameters can be passed to the `#[pyfunction]` attribute:"
+msgstr ""
+
+#: src/function/signature.md:25
+msgid ""
+"`\"/\"`: positional-only arguments separator, each parameter defined before "
+"`\"/\"` is a positional-only parameter. Corresponds to python's `def "
+"meth(arg1, arg2, ..., /, argN..)`."
+msgstr ""
+
+#: src/function/signature.md:28
+msgid ""
+"`\"*\"`: var arguments separator, each parameter defined after `\"*\"` is a "
+"keyword-only parameter. Corresponds to python's `def meth(*, arg1.., "
+"arg2=..)`."
+msgstr ""
+
+#: src/function/signature.md:30
+msgid ""
+"`args=\"*\"`: \"args\" is var args, corresponds to Python's `def "
+"meth(*args)`. Type of the `args` parameter has to be `&PyTuple`."
+msgstr ""
+
+#: src/function/signature.md:32
+msgid ""
+"`kwargs=\"**\"`: \"kwargs\" receives keyword arguments, corresponds to "
+"Python's `def meth(**kwargs)`. The type of the `kwargs` parameter has to be "
+"`Option<&PyDict>`."
+msgstr ""
+
+#: src/function/signature.md:34
+msgid ""
+"`arg=\"Value\"`: arguments with default value. Corresponds to Python's `def "
+"meth(arg=Value)`. If the `arg` argument is defined after var arguments, it "
+"is treated as a keyword-only argument. Note that `Value` has to be valid "
+"rust code, PyO3 just inserts it into the generated code unmodified."
+msgstr ""
+
+#: src/function/signature.md:39
+msgid "Example:"
+msgstr ""
+
+#: src/function/signature.md:51
+msgid "\"-1\""
+msgstr ""
+
+#: src/function/signature.md:57
+msgid "\"10\""
+msgstr ""
+
+#: src/function/signature.md:58
+msgid "\"*\""
+msgstr ""
+
+#: src/function/signature.md:59
+msgid "\"\\\"Hello\\\"\""
+msgstr ""
+
+#: src/function/signature.md:71
+msgid "\"py_args={:?}, py_kwargs={:?}, name={}, num={}\""
+msgstr ""
+
+#: src/function/signature.md:78
+msgid "\"num={}\""
+msgstr ""
+
+#: src/function/signature.md:82
+msgid ""
+"N.B. the position of the `\"/\"` and `\"*\"` arguments (if included) control "
+"the system of handling positional and keyword arguments. In Python:"
+msgstr ""
+
+#: src/function/signature.md:87 src/function/signature.md:88
+msgid "\"World\""
+msgstr ""
+
+#: src/function/signature.md:91
+msgid "Produces output:"
+msgstr ""
