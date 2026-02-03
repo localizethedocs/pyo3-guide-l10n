@@ -21,9 +21,12 @@ msgid ""
 "Rust types offered by PyO3, as well as the traits available to perform "
 "conversions between them."
 msgstr ""
+"本節指南將介紹 PyO3 提供的 Python 型別到 Rust 型別的對應，以及用於在兩者之間"
+"進行轉換的特徵。"
 
 #: src/conversions.md:5
 msgid ""
 "See also the conversion [tables](conversions/tables.md) and [traits]"
 "(conversions/traits.md)."
 msgstr ""
+"另請參考轉換[表格](conversions/tables.md)與[特徵](conversions/traits.md)。"

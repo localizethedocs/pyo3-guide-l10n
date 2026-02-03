@@ -22,12 +22,17 @@ msgid ""
 "Discussions](https://github.com/PyO3/pyo3/discussions) and on [Discord]"
 "(https://discord.gg/33kcChzH7f)."
 msgstr ""
+"很抱歉你在使用 PyO3 時遇到問題。如果在下列清單中找不到答案，也可以到 [GitHub "
+"Discussions](https://github.com/PyO3/pyo3/discussions) 或 [Discord](https://"
+"discord.gg/33kcChzH7f) 尋求協助。"
 
 #: src/faq.md:5
 msgid ""
 "I'm experiencing deadlocks using PyO3 with `std::sync::OnceLock`, `std::"
 "sync::LazyLock`, `lazy_static`, and `once_cell`"
 msgstr ""
+"使用 PyO3 搭配 `std::sync::OnceLock`、`std::sync::LazyLock`、`lazy_static` "
+"與 `once_cell` 時遇到死鎖"
 
 #: src/faq.md:7
 msgid ""
@@ -36,30 +41,35 @@ msgid ""
 "can introduce additional locks (the Python GIL and GC can both require all "
 "other threads to pause) this can lead to deadlocks in the following way:"
 msgstr ""
+"`OnceLock`、`LazyLock` 以及其第三方前身會透過阻塞來確保只有一個執行緒進行初始"
+"化。由於 Python 直譯器可能引入額外鎖（Python 的 GIL 與 GC 都可能要求其他執行"
+"緒暫停），因此可能以以下方式造成死鎖："
 
 #: src/faq.md:9
 msgid ""
 "A thread (thread A) which is attached to the Python interpreter starts "
 "initialization of a `OnceLock` value."
-msgstr ""
+msgstr "已附著到 Python 直譯器的執行緒（執行緒 A）開始初始化 `OnceLock` 值。"
 
 #: src/faq.md:10
 msgid ""
 "The initialization code calls some Python API which temporarily detaches "
 "from the interpreter e.g. `Python::import`."
 msgstr ""
+"初始化程式碼呼叫了會暫時與直譯器分離的 Python API，例如 `Python::import`。"
 
 #: src/faq.md:11
 msgid ""
 "Another thread (thread B) attaches to the Python interpreter and attempts to "
 "access the same `OnceLock` value."
 msgstr ""
+"另一個執行緒（執行緒 B）附著到 Python 直譯器並嘗試存取相同的 `OnceLock` 值。"
 
 #: src/faq.md:12
 msgid ""
 "Thread B is blocked, because it waits for `OnceLock`'s initialization to "
 "lock to release."
-msgstr ""
+msgstr "執行緒 B 被阻塞，因為它在等待 `OnceLock` 的初始化鎖釋放。"
 
 #: src/faq.md:13
 msgid ""
@@ -67,10 +77,12 @@ msgid ""
 "to re-attach to the interpreter (by taking the GIL which thread B still "
 "holds)."
 msgstr ""
+"在非自由執行緒的 Python 中，執行緒 A 現在也會被阻塞，因為它等待重新附著到直譯"
+"器（必須取得執行緒 B 仍持有的 GIL）。"
 
 #: src/faq.md:14
 msgid "Deadlock."
-msgstr ""
+msgstr "死鎖。"
 
 #: src/faq.md:16
 msgid ""
@@ -88,6 +100,14 @@ msgid ""
 "pyo3/sync/trait.OnceExt.html) for further details and an example how to use "
 "them."
 msgstr ""
+"PyO3 提供 [`PyOnceLock`](https://pyo3.rs/main/doc/pyo3/sync/struct."
+"PyOnceLock.html) 結構，基於這些型別實作單次初始化 API，可避免死鎖。你也可以使"
+"用 [`OnceExt`](https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html) 與 "
+"[`OnceLockExt`](https://pyo3.rs/main/doc/pyo3/sync/trait.OnceLockExt.html) 擴"
+"充 trait，透過為標準函式庫型別提供新方法來避免與 Python 直譯器死鎖的風險。當"
+"你遇到上述死鎖時，可用它們取代其他選擇。更多細節與使用範例請參考 "
+"[`PyOnceLock`](https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html) 與 "
+"[`OnceExt`](https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html) 文件。"
 
 #: src/faq.md:22
 msgid ""
@@ -95,6 +115,8 @@ msgid ""
 "linker issues like \"Symbol not found\" or \"Undefined reference to "
 "\\_PyExc_SystemError\""
 msgstr ""
+"無法執行 `cargo test`；或在 Cargo workspace 中無法建置：遇到連結器錯誤如"
+"「Symbol not found」或「Undefined reference to \\_PyExc_SystemError」"
 
 #: src/faq.md:24
 msgid ""
@@ -161,7 +183,7 @@ msgstr ""
 msgid ""
 "I can't run `cargo test`: my crate cannot be found for tests in `tests/` "
 "directory"
-msgstr ""
+msgstr "無法執行 `cargo test`：`tests/` 目錄中的測試找不到我的 crate"
 
 #: src/faq.md:58
 msgid ""
@@ -169,6 +191,8 @@ msgid ""
 "(https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-"
 "tests)."
 msgstr ""
+"Rust 書籍建議[將整合測試放在 `tests/` 目錄中](https://doc.rust-lang.org/book/"
+"ch11-03-test-organization.html#integration-tests)。"
 
 #: src/faq.md:60
 msgid ""
@@ -181,7 +205,7 @@ msgstr ""
 msgid ""
 "The best solution is to make your crate types include both `rlib` and "
 "`cdylib`:"
-msgstr ""
+msgstr "最佳解法是讓 crate 型別同時包含 `rlib` 與 `cdylib`："
 
 #: src/faq.md:73
 msgid ""
@@ -194,7 +218,7 @@ msgstr ""
 
 #: src/faq.md:79
 msgid "Ctrl-C doesn't do anything while my Rust code is executing"
-msgstr ""
+msgstr "在 Rust 程式碼執行期間按 Ctrl-C 沒有效果"
 
 #: src/faq.md:81
 msgid ""
@@ -203,6 +227,9 @@ msgid ""
 "flag isn't checked while Rust code called from Python is executing, only "
 "once control returns to the Python interpreter."
 msgstr ""
+"這是因為 Ctrl-C 會送出 SIGINT 訊號，呼叫端 Python 程序只會設定一個旗標以便稍"
+"後處理。當 Python 呼叫的 Rust 程式碼執行中時，不會檢查此旗標，直到控制權回到 "
+"Python 直譯器才會處理。"
 
 #: src/faq.md:83
 msgid ""
@@ -211,14 +238,16 @@ msgid ""
 "regularly if you have a long-running Rust function so that your users can "
 "cancel it."
 msgstr ""
+"你可以呼叫 `Python::check_signals` 讓 Python 直譯器有機會正確處理訊號。若你"
+"的 Rust 函式會長時間執行，建議定期呼叫此函式，讓使用者能取消。"
 
 #: src/faq.md:85
 msgid "`#[pyo3(get)]` clones my field"
-msgstr ""
+msgstr "`#[pyo3(get)]` 會複製我的欄位"
 
 #: src/faq.md:87
 msgid "You may have a nested struct similar to this:"
-msgstr ""
+msgstr "你可能有如下的巢狀結構："
 
 #: src/faq.md:93 src/faq.md:133
 msgid "/* fields omitted */"
@@ -229,6 +258,8 @@ msgid ""
 "When Python code accesses `Outer`'s field, PyO3 will return a new object on "
 "every access (note that their addresses are different):"
 msgstr ""
+"當 Python 程式碼存取 `Outer` 的欄位時，PyO3 會在每次存取時回傳新的物件（注意"
+"位址不同）："
 
 #: src/faq.md:118 src/faq.md:164 src/faq.md:165
 msgid "\"a: "
@@ -251,6 +282,10 @@ msgid ""
 "objects to Python code, Python code could then keep that reference alive "
 "indefinitely. Therefore returning Rust objects requires cloning."
 msgstr ""
+"若欄位是可變的，這會特別令人困惑，因為取得欄位後再修改並不會持久化——下次存取"
+"只會拿到原始物件的新複本。不幸的是，Python 與 Rust 對所有權的理解不同——如果 "
+"PyO3 將（可能是暫時的）Rust 物件參照交給 Python，Python 可能會無限期保留該參"
+"照。因此回傳 Rust 物件需要進行複製。"
 
 #: src/faq.md:128
 msgid ""

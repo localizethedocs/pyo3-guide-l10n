@@ -21,7 +21,7 @@ msgstr ""
 
 #: src/advanced.md:5
 msgid "PyO3 exposes much of Python's C API through the `ffi` module."
-msgstr ""
+msgstr "PyO3 透過 `ffi` 模組公開了 Python C API 的大部分內容。"
 
 #: src/advanced.md:7
 msgid ""
@@ -31,3 +31,6 @@ msgid ""
 "(https://doc.rust-lang.org/nightly/nomicon/ffi.html) before using any "
 "function from that API."
 msgstr ""
+"C API 天生不安全，必須由你自行管理引用計數、錯誤與特定不變式。在使用該 API 中"
+"的任何函式之前，請參考 [C API 參考手冊](https://docs.python.org/3/c-api/) 以"
+"及 [The Rustonomicon](https://doc.rust-lang.org/nightly/nomicon/ffi.html)。"

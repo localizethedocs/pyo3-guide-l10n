@@ -21,14 +21,16 @@ msgid ""
 "version to the next. For a detailed list of all changes, see the [CHANGELOG]"
 "(changelog.md)."
 msgstr ""
+"本指南可協助你跨越 PyO3 版本間的破壞性變更來升級程式碼。完整變更清單請見 "
+"[CHANGELOG](changelog.md)。"
 
 #: src/migration.md:6
 msgid "from 0.26.\\* to 0.27"
-msgstr ""
+msgstr "從 0.26.* 到 0.27"
 
 #: src/migration.md:8
 msgid "`FromPyObject` reworked for flexibility and efficiency"
-msgstr ""
+msgstr "`FromPyObject` 重構以提升彈性與效率"
 
 #: src/migration.md:13
 msgid ""
@@ -37,6 +39,8 @@ msgid ""
 "allows borrowing from the input data without extending the lifetime of being "
 "attached to the interpreter."
 msgstr ""
+"隨著 PyO3 0.23 移除 `gil-ref` API，現在可以完全區分 Python 的生命週期 `'py` "
+"與輸入生命週期 `'a`。這讓你能借用輸入資料，而不必延長附著於直譯器的生命週期。"
 
 #: src/migration.md:17
 msgid ""
@@ -46,16 +50,21 @@ msgid ""
 "`&'a Bound<'py, PyAny>` would have an implicit restriction `'py: 'a` due to "
 "the reference type."
 msgstr ""
+"`FromPyObject` 現在多了一個描述輸入生命週期的 `'a`。`extract` 方法的參數型別"
+"從 `&Bound<'py, PyAny>` 改為 `Borrowed<'a, 'py, PyAny>`。這是因為 `&'a "
+"Bound<'py, PyAny>` 由於參照型別會隱含 `'py: 'a` 的限制。"
 
 #: src/migration.md:21
 msgid ""
 "This new form was partly implemented already in 0.22 using the internal "
 "`FromPyObjectBound` trait and is now extended to all types."
 msgstr ""
+"這個新形式在 0.22 已以內部 `FromPyObjectBound` trait 部分實作，現在擴展到所有"
+"型別。"
 
 #: src/migration.md:24
 msgid "Most implementations can just add an elided lifetime to migrate."
-msgstr ""
+msgstr "大多數實作只要補上省略的生命週期即可完成遷移。"
 
 #: src/migration.md:26
 msgid ""
@@ -79,7 +88,7 @@ msgstr ""
 #: src/migration.md:2355 src/migration.md:2451 src/migration.md:2481
 #: src/migration.md:2518
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/migration.md:40 src/migration.md:1634 src/migration.md:1715
 #: src/migration.md:2104
