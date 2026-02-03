@@ -1,0 +1,615 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:35Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/contributing.md:1
+msgid "Contributing"
+msgstr "參與貢獻"
+
+#: src/contributing.md:3
+msgid ""
+"Thank you for your interest in contributing to PyO3! All are welcome - "
+"please consider reading our [Code of Conduct](https://github.com/PyO3/pyo3/"
+"blob/main/Code-of-Conduct.md) to keep our community positive and inclusive."
+msgstr ""
+"感謝你有興趣貢獻 PyO3！歡迎所有人參與——請閱讀我們的[行為準則](https://github."
+"com/PyO3/pyo3/blob/main/Code-of-Conduct.md)以維持社群的正向與包容。"
+
+#: src/contributing.md:5
+msgid ""
+"If you are searching for ideas how to contribute, proceed to the [\"Getting "
+"started contributing\"](#getting-started-contributing) section. If you have "
+"found a specific issue to contribute to and need information about the "
+"development process, you may find the section [\"Writing pull requests\"]"
+"(#writing-pull-requests) helpful."
+msgstr ""
+"如果你正在尋找貢獻方向，請參考[「開始參與貢獻」](#getting-started-"
+"contributing)一節。如果你已找到想處理的特定議題並需要開發流程資訊，可參考"
+"[「撰寫 Pull Request」](#writing-pull-requests)一節。"
+
+#: src/contributing.md:7
+msgid ""
+"If you want to become familiar with the codebase, see [Architecture.md]"
+"(https://github.com/PyO3/pyo3/blob/main/Architecture.md)."
+msgstr ""
+"若想熟悉程式碼庫，請參考 [Architecture.md](https://github.com/PyO3/pyo3/blob/"
+"main/Architecture.md)。"
+
+#: src/contributing.md:10
+msgid "Getting started contributing"
+msgstr "開始參與貢獻"
+
+#: src/contributing.md:12
+msgid ""
+"Please join in with any part of PyO3 which interests you. We use GitHub "
+"issues to record all bugs and ideas. Feel free to request an issue to be "
+"assigned to you if you want to work on it."
+msgstr ""
+"歡迎從你感興趣的 PyO3 領域加入。我們使用 GitHub issues 記錄所有錯誤與想法。若"
+"你想處理某個議題，請隨時申請指派。"
+
+#: src/contributing.md:14
+msgid ""
+"You can browse the API of the non-public parts of PyO3 [here](https://pyo3."
+"netlify.app/internal/doc/pyo3/index.html)."
+msgstr ""
+"你可以在[這裡](https://pyo3.netlify.app/internal/doc/pyo3/index.html)瀏覽 "
+"PyO3 非公開部分的 API。"
+
+#: src/contributing.md:16
+msgid ""
+"The following sections also contain specific ideas on where to start "
+"contributing to PyO3."
+msgstr "以下章節也提供一些適合開始貢獻 PyO3 的具體想法。"
+
+#: src/contributing.md:18
+msgid "Setting up a development environment"
+msgstr "設定開發環境"
+
+#: src/contributing.md:20
+msgid ""
+"To work and develop PyO3, you need Python & Rust installed on your system."
+msgstr "要開發 PyO3，你需要在系統中安裝 Python 與 Rust。"
+
+#: src/contributing.md:21
+msgid ""
+"We encourage the use of [rustup](https://rustup.rs/) to be able to select "
+"and choose specific toolchains based on the project."
+msgstr "我們建議使用 [rustup](https://rustup.rs/) 以便依專案選擇特定工具鏈。"
+
+#: src/contributing.md:22
+msgid ""
+"[Pyenv](https://github.com/pyenv/pyenv) is also highly recommended for being "
+"able to choose a specific Python version."
+msgstr ""
+"也強烈建議使用 [Pyenv](https://github.com/pyenv/pyenv) 以便選擇特定 Python 版"
+"本。"
+
+#: src/contributing.md:23
+msgid ""
+"[virtualenv](https://virtualenv.pypa.io/en/latest/) can also be used with or "
+"without Pyenv to use specific installed Python versions."
+msgstr ""
+"[virtualenv](https://virtualenv.pypa.io/en/latest/) 也可搭配或不搭配 Pyenv 使"
+"用特定已安裝的 Python 版本。"
+
+#: src/contributing.md:24
+msgid ""
+"[`nox`](https://github.com/theacodes/nox) is used to automate many of our CI "
+"tasks."
+msgstr "[`nox`](https://github.com/theacodes/nox) 用於自動化多項 CI 任務。"
+
+#: src/contributing.md:26
+msgid "Caveats"
+msgstr ""
+
+#: src/contributing.md:28
+msgid ""
+"When using pyenv on macOS, installing a Python version using `--enable-"
+"shared` is required to make it work. i.e `env PYTHON_CONFIGURE_OPTS=\"--"
+"enable-shared\" pyenv install 3.7.12`"
+msgstr ""
+
+#: src/contributing.md:30
+msgid "Help users identify bugs"
+msgstr "協助使用者找出錯誤"
+
+#: src/contributing.md:32
+msgid ""
+"The [PyO3 Gitter channel](https://gitter.im/PyO3/Lobby) is very active with "
+"users who are new to PyO3, and often completely new to Rust. Helping them "
+"debug is a great way to get experience with the PyO3 codebase."
+msgstr ""
+
+#: src/contributing.md:34
+msgid ""
+"Helping others often reveals bugs, documentation weaknesses, and missing "
+"APIs. It's a good idea to open GitHub issues for these immediately so the "
+"resolution can be designed and implemented!"
+msgstr ""
+"協助他人常會暴露錯誤、文件不足與缺漏的 API。建議立刻在 GitHub 開 issue，讓解"
+"法得以規劃並實作！"
+
+#: src/contributing.md:36
+msgid "Implement issues ready for development"
+msgstr "實作可直接開發的議題"
+
+#: src/contributing.md:38
+msgid ""
+"Issues where the solution is clear and work is not in progress use the "
+"[needs-implementer](https://github.com/PyO3/pyo3/issues?"
+"q=is%3Aissue+is%3Aopen+label%3Aneeds-implemeter) label."
+msgstr ""
+
+#: src/contributing.md:40
+msgid ""
+"Don't be afraid if the solution is not clear to you! The core PyO3 "
+"contributors will be happy to mentor you through any questions you have to "
+"help you write the solution."
+msgstr ""
+"若你覺得解法不夠清楚也別擔心！PyO3 核心貢獻者很樂意針對你的任何疑問提供指導，"
+"幫助你完成解法。"
+
+#: src/contributing.md:42
+msgid "Help write great docs"
+msgstr "協助撰寫優質文件"
+
+#: src/contributing.md:44
+msgid ""
+"PyO3 has a user guide (using mdbook) as well as the usual Rust API docs. The "
+"aim is for both of these to be detailed, easy to understand, and up-to-date. "
+"Pull requests are always welcome to fix typos, change wording, add examples, "
+"etc."
+msgstr ""
+"PyO3 有使用 mdbook 的使用者指南，以及一般的 Rust API 文件。我們的目標是讓兩者"
+"都詳盡、易懂且保持最新。歡迎提出拉取請求來修正錯字、調整措辭、補充範例等。"
+
+#: src/contributing.md:46
+msgid ""
+"There are some specific areas of focus where help is currently needed for "
+"the documentation:"
+msgstr "目前文件有一些需要協助的特定重點領域："
+
+#: src/contributing.md:48
+msgid ""
+"Issues requesting documentation improvements are tracked with the "
+"[documentation](https://github.com/PyO3/pyo3/issues?"
+"q=is%3Aissue+is%3Aopen+label%3Adocumentation) label."
+msgstr ""
+"與文件改進相關的議題會以 [documentation](https://github.com/PyO3/pyo3/issues?"
+"q=is%3Aissue+is%3Aopen+label%3Adocumentation) 標籤追蹤。"
+
+#: src/contributing.md:49
+msgid ""
+"Not all APIs had docs or examples when they were made. The goal is to have "
+"documentation on all PyO3 APIs ([\\#306](https://github.com/PyO3/pyo3/"
+"issues/306)). If you see an API lacking a doc, please write one and open a "
+"PR!"
+msgstr ""
+"並非所有 API 在建立時都有文件或範例。我們的目標是讓所有 PyO3 API 都有文件"
+"（[\\#306](https://github.com/PyO3/pyo3/issues/306)）。若你看到某個 API 缺少"
+"文件，請撰寫並開啟 PR！"
+
+#: src/contributing.md:51
+msgid "You can build the docs (including all features) with"
+msgstr ""
+
+#: src/contributing.md:57
+msgid "Doctests"
+msgstr "文件測試"
+
+#: src/contributing.md:59
+msgid ""
+"We use lots of code blocks in our docs. Run `cargo test --doc` when making "
+"changes to check that the doctests still work, or `cargo test` to run all "
+"the tests including doctests. See https://doc.rust-lang.org/rustdoc/"
+"documentation-tests.html for a guide on doctests."
+msgstr ""
+
+#: src/contributing.md:63
+msgid "Building the guide"
+msgstr "建置指南"
+
+#: src/contributing.md:65
+msgid "You can preview the user guide by building it locally with `mdbook`."
+msgstr "你可以使用 `mdbook` 在本地建置以預覽使用者指南。"
+
+#: src/contributing.md:67
+msgid ""
+"First, install [`mdbook`](https://rust-lang.github.io/mdBook/cli/index.html) "
+"and [`nox`](https://github.com/theacodes/nox). Then, run"
+msgstr ""
+
+#: src/contributing.md:73
+msgid "Help design the next PyO3"
+msgstr "協助設計下一代 PyO3"
+
+#: src/contributing.md:75
+msgid ""
+"Issues which don't yet have a clear solution use the [needs-design](https://"
+"github.com/PyO3/pyo3/issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-design) "
+"label."
+msgstr ""
+"尚未有明確解法的議題會使用 [needs-design](https://github.com/PyO3/pyo3/"
+"issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-design) 標籤。"
+
+#: src/contributing.md:77
+msgid ""
+"If any of these issues interest you, please join in with the conversation on "
+"the issue! All opinions are valued, and if you're interested in going "
+"further with e.g. draft PRs to experiment with API designs, even better!"
+msgstr ""
+"如果這些議題有你感興趣的，請加入該議題的討論！所有意見都很重要；若你還願意透"
+"過草稿 PR 嘗試 API 設計，那就更好了！"
+
+#: src/contributing.md:79
+msgid "Review pull requests"
+msgstr "審查拉取請求"
+
+#: src/contributing.md:81
+msgid ""
+"Everybody is welcome to submit comments on open PRs. Please help ensure new "
+"PyO3 APIs are safe, performant, tidy, and easy to use!"
+msgstr ""
+"歡迎所有人對開放中的 PR 提出意見。請協助確保新的 PyO3 API 安全、效能良好、整"
+"潔且易用！"
+
+#: src/contributing.md:83
+msgid "Writing pull requests"
+msgstr "撰寫拉取請求"
+
+#: src/contributing.md:85
+msgid "Here are a few things to note when you are writing PRs."
+msgstr "以下是撰寫 PR 時需要注意的幾點。"
+
+#: src/contributing.md:87
+msgid "Continuous Integration"
+msgstr ""
+
+#: src/contributing.md:89
+msgid ""
+"The PyO3 repo uses GitHub Actions. PRs are blocked from merging if CI is not "
+"successful."
+msgstr ""
+
+#: src/contributing.md:91
+msgid ""
+"Formatting, linting and tests are checked for all Rust and Python code. In "
+"addition, all warnings in Rust code are disallowed (using `RUSTFLAGS=\"-D "
+"warnings\"`)."
+msgstr ""
+
+#: src/contributing.md:93
+msgid ""
+"Tests run with all supported Python versions with the latest stable Rust "
+"compiler, as well as for Python 3.9 with the minimum supported Rust version."
+msgstr ""
+"測試會在最新穩定版 Rust 編譯器與所有支援的 Python 版本上執行，並以最低支援的 "
+"Rust 版本測試 Python 3.9。"
+
+#: src/contributing.md:95
+msgid ""
+"If you are adding a new feature, you should add it to the `full` feature in "
+"our _Cargo.toml_\\* so that it is tested in CI."
+msgstr ""
+"如果你新增了功能，請將其加入 _Cargo.toml_\\* 中的 `full` 功能集合，以便在 CI "
+"中進行測試。"
+
+#: src/contributing.md:97
+msgid ""
+"You can run these tests yourself with `nox` and `nox -l` lists further "
+"commands you can run."
+msgstr ""
+
+#: src/contributing.md:103
+msgid "Documenting changes"
+msgstr "變更文件化"
+
+#: src/contributing.md:105
+msgid ""
+"We use [towncrier](https://towncrier.readthedocs.io/en/stable/index.html) to "
+"generate a CHANGELOG for each release."
+msgstr ""
+"我們使用 [towncrier](https://towncrier.readthedocs.io/en/stable/index.html) "
+"為每次發行生成變更日誌。"
+
+#: src/contributing.md:107
+msgid ""
+"To include your changes in the release notes, you should create one (or "
+"more) news items in the `newsfragments` directory. Valid news items should "
+"be saved as `<PR>.<CATEGORY>.md` where `<PR>` is the pull request number and "
+"`<CATEGORY>` is one of the following:"
+msgstr ""
+"要將你的變更納入發行說明，請在 `newsfragments` 目錄中建立一個或多個新聞項目。"
+"有效的新聞項目應儲存為 `<PR>.<CATEGORY>.md`，其中 `<PR>` 為拉取請求編號，"
+"`<CATEGORY>` 為下列其中之一："
+
+#: src/contributing.md:108
+msgid ""
+"`packaging` - for dependency changes and Python / Rust version compatibility "
+"changes"
+msgstr "`packaging` - 用於相依性變更與 Python／Rust 版本相容性變更"
+
+#: src/contributing.md:109
+msgid "`added` - for new features"
+msgstr "`added` - 用於新增功能"
+
+#: src/contributing.md:110
+msgid ""
+"`changed` - for features which already existed but have been altered or "
+"deprecated"
+msgstr "`changed` - 用於既有功能的修改或棄用"
+
+#: src/contributing.md:111
+msgid "`removed` - for features which have been removed"
+msgstr "`removed` - 用於移除的功能"
+
+#: src/contributing.md:112
+msgid "`fixed` - for \"changed\" features which were classed as a bugfix"
+msgstr "`fixed` - 用於被歸類為錯誤修復的「變更」功能"
+
+#: src/contributing.md:114
+msgid ""
+"Docs-only PRs do not need news items; start your PR title with `docs:` to "
+"skip the check."
+msgstr "僅文件的 PR 不需要新聞項目；將 PR 標題以 `docs:` 開頭即可略過檢查。"
+
+#: src/contributing.md:116
+msgid "Style guide"
+msgstr "風格指南"
+
+#: src/contributing.md:118
+msgid "Generic code"
+msgstr "泛型程式碼"
+
+#: src/contributing.md:120
+msgid ""
+"PyO3 has a lot of generic APIs to increase usability. These can come at the "
+"cost of generic code bloat. Where reasonable, try to implement a concrete "
+"sub-portion of generic functions. There are two forms of this:"
+msgstr ""
+"PyO3 有許多泛型 API 以提升易用性，但代價可能是泛型程式碼膨脹。在合理的情況"
+"下，請嘗試實作泛型函式的具體子部分。這有兩種形式："
+
+#: src/contributing.md:122
+msgid ""
+"If the concrete sub-portion doesn't benefit from re-use by other functions, "
+"name it `inner` and keep it as a local to the function."
+msgstr ""
+"若該具體子部分無法被其他函式重用，請命名為 `inner` 並保留為函式內部的區域項。"
+
+#: src/contributing.md:123
+msgid ""
+"If the concrete sub-portion is re-used by other functions, preferably name "
+"it `_foo` and place it directly below `foo` in the source code (where `foo` "
+"is the original generic function)."
+msgstr ""
+"若該具體子部分會被其他函式重用，建議命名為 `_foo`，並將其放在原泛型函式 "
+"`foo` 的下方。"
+
+#: src/contributing.md:125
+msgid "FFI calls"
+msgstr "FFI 呼叫"
+
+#: src/contributing.md:127
+msgid ""
+"PyO3 makes a lot of FFI calls to Python's C API using raw pointers. Where "
+"possible try to avoid using pointers-to-temporaries in expressions:"
+msgstr ""
+"PyO3 使用原始指標對 Python 的 C API 進行大量 FFI 呼叫。能避免時請避免在運算式"
+"中使用指向暫時值的指標："
+
+#: src/contributing.md:130
+msgid "// dangerous\n"
+msgstr "// 危險\n"
+
+#: src/contributing.md:132
+msgid "// because the following refactoring is a use-after-free error:\n"
+msgstr "// 因為以下重構會造成 use-after-free 錯誤：\n"
+
+#: src/contributing.md:138
+msgid ""
+"Instead, prefer to bind the safe owned `PyObject` wrapper before passing to "
+"ffi functions:"
+msgstr "改用先綁定安全擁有的 `PyObject` 包裝，再傳給 ffi 函式："
+
+#: src/contributing.md:142
+msgid "// name will automatically be freed when it falls out of scope\n"
+msgstr "// name 在離開作用域後會自動釋放\n"
+
+#: src/contributing.md:146
+msgid "Python and Rust version support policy"
+msgstr "Python 與 Rust 版本支援政策"
+
+#: src/contributing.md:148
+msgid ""
+"PyO3 aims to keep sufficient compatibility to make packaging Python "
+"extensions built with PyO3 feasible on most common package managers."
+msgstr ""
+"PyO3 旨在維持足夠的相容性，讓以 PyO3 建置的 Python 擴充能在多數常見軟體包管理"
+"系統中可行。"
+
+#: src/contributing.md:150
+msgid ""
+"To keep package maintainers' lives simpler, PyO3 will commit, wherever "
+"possible, to only adjust minimum supported Rust and Python versions at the "
+"same time. This bump will only come in an `0.x` release, roughly once per "
+"year, after the oldest supported Python version reaches its end-of-life. "
+"(Check https://endoflife.date/python for a clear timetable on these.)"
+msgstr ""
+"為了讓軟體包維護者的工作更簡單，PyO3 會盡可能承諾僅在同一時間調整最低支援的 "
+"Rust 與 Python 版本。此升級僅會出現在 `0.x` 版本，約每年一次，並在最舊支援的 "
+"Python 版本到達生命週期終點後進行。（可參考 https://endoflife.date/python 了"
+"解時間表。）"
+
+#: src/contributing.md:152
+msgid ""
+"Below are guidelines on what compatibility all PRs are expected to deliver "
+"for each language."
+msgstr "以下為各語言的相容性指引，所有 PR 都應遵循。"
+
+#: src/contributing.md:154
+msgid "Python"
+msgstr ""
+
+#: src/contributing.md:156
+msgid ""
+"PyO3 supports all officially supported Python versions, as well as the "
+"latest PyPy3 release. All of these versions are tested in CI."
+msgstr ""
+"PyO3 支援所有官方支援的 Python 版本，以及最新的 PyPy3 版本。這些版本都會在 "
+"CI 中測試。"
+
+#: src/contributing.md:158
+msgid "Rust"
+msgstr ""
+
+#: src/contributing.md:160
+msgid ""
+"PyO3 aims to make use of up-to-date Rust language features to keep the "
+"implementation as efficient as possible."
+msgstr "PyO3 旨在使用最新的 Rust 語言功能，以盡可能提高實作效率。"
+
+#: src/contributing.md:162
+msgid ""
+"The minimum Rust version supported will be decided when the release which "
+"bumps Python and Rust versions is made. At the time, the minimum Rust "
+"version will be set no higher than the lowest Rust version shipped in the "
+"current Debian, RHEL and Alpine Linux distributions."
+msgstr ""
+"最低支援的 Rust 版本會在提升 Python 與 Rust 版本的發行時決定。當時設定的最低 "
+"Rust 版本不會高於當前 Debian、RHEL 與 Alpine Linux 發行版隨附的最低 Rust 版"
+"本。"
+
+#: src/contributing.md:164
+msgid ""
+"CI tests both the most recent stable Rust version and the minimum supported "
+"Rust version. Because of Rust's stability guarantees this is sufficient to "
+"confirm support for all Rust versions in between."
+msgstr ""
+"CI 會測試最新穩定版 Rust 與最低支援 Rust 版本。由於 Rust 的穩定性保證，這足以"
+"確認中間所有版本的支援。"
+
+#: src/contributing.md:166
+msgid "Benchmarking"
+msgstr "效能基準測試"
+
+#: src/contributing.md:168
+msgid ""
+"PyO3 has two sets of benchmarks for evaluating some aspects of its "
+"performance. The benchmark suite is currently very small - please open PRs "
+"with new benchmarks if you're interested in helping to expand it!"
+msgstr ""
+"PyO3 有兩組效能基準測試用於評估部分效能面向。目前測試套件還很小——若你願意協助"
+"擴充，歡迎新增基準測試並開 PR！"
+
+#: src/contributing.md:170
+msgid ""
+"First, there are Rust-based benchmarks located in the `pyo3-benches` "
+"subdirectory. You can run these benchmarks with:"
+msgstr ""
+"首先，在 `pyo3-benches` 子目錄中有以 Rust 為基礎的基準測試。你可以透過以下方"
+"式執行："
+
+#: src/contributing.md:174
+msgid ""
+"Second, there is a Python-based benchmark contained in the `pytests` "
+"subdirectory. You can read more about it [here](pytests)."
+msgstr ""
+
+#: src/contributing.md:176
+msgid "Code coverage"
+msgstr "程式碼覆蓋率"
+
+#: src/contributing.md:178
+msgid ""
+"You can view what code is and isn't covered by PyO3's tests. We aim to have "
+"100% coverage - please check coverage and add tests if you notice a lack of "
+"coverage!"
+msgstr ""
+"你可以檢視 PyO3 測試涵蓋與未涵蓋的程式碼。我們目標是 100% 覆蓋率——如果你發現"
+"覆蓋不足，請檢查覆蓋率並補上測試！"
+
+#: src/contributing.md:180
+msgid "First, generate a `lcov.info` file with"
+msgstr ""
+
+#: src/contributing.md:184
+msgid ""
+"You can install an IDE plugin to view the coverage. For example, if you use "
+"VSCode:"
+msgstr "你可以安裝 IDE 外掛來檢視覆蓋率。例如使用 VSCode："
+
+#: src/contributing.md:185
+msgid ""
+"Add the [coverage-gutters](https://marketplace.visualstudio.com/items?"
+"itemName=ryanluker.vscode-coverage-gutters) plugin."
+msgstr ""
+"安裝 [coverage-gutters](https://marketplace.visualstudio.com/items?"
+"itemName=ryanluker.vscode-coverage-gutters) 外掛。"
+
+#: src/contributing.md:186
+msgid "Add these settings to VSCode's `settings.json`:"
+msgstr "在 VSCode 的 `settings.json` 加入以下設定："
+
+#: src/contributing.md:189
+msgid "\"coverage-gutters.coverageFileNames\""
+msgstr ""
+
+#: src/contributing.md:190
+msgid "\"lcov.info\""
+msgstr ""
+
+#: src/contributing.md:191
+msgid "\"cov.xml\""
+msgstr ""
+
+#: src/contributing.md:192
+msgid "\"coverage.xml\""
+msgstr ""
+
+#: src/contributing.md:194
+msgid "\"coverage-gutters.showLineCoverage\""
+msgstr ""
+
+#: src/contributing.md:197
+msgid ""
+"You should now be able to see green highlights for code that is tested, and "
+"red highlights for code that is not tested."
+msgstr ""
+"你現在應該可以看到綠色高亮代表已測試的程式碼，紅色高亮代表未測試的程式碼。"
+
+#: src/contributing.md:199
+msgid "Sponsor this project"
+msgstr "贊助此專案"
+
+#: src/contributing.md:201
+msgid ""
+"At the moment there is no official organisation that accepts sponsorship on "
+"PyO3's behalf. If you're seeking to provide significant funding to the PyO3 "
+"ecosystem, please reach out to us on [GitHub](https://github.com/PyO3/pyo3/"
+"issues/new) or [Gitter](https://gitter.im/PyO3/Lobby) and we can discuss."
+msgstr ""
+
+#: src/contributing.md:203
+msgid ""
+"In the meanwhile, some of our maintainers have personal GitHub sponsorship "
+"pages and would be grateful for your support:"
+msgstr "此外，我們部分維護者有個人的 GitHub 贊助頁面，若你願意支持將非常感謝："
+
+#: src/contributing.md:205
+msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
+msgstr "[davidhewitt](https://github.com/sponsors/davidhewitt)"
+
+#: src/contributing.md:206
+msgid "[messense](https://github.com/sponsors/messense)"
+msgstr "[messense](https://github.com/sponsors/messense)"
