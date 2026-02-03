@@ -66,7 +66,7 @@ msgstr ""
 #: src/migration.md:110 src/migration.md:138 src/migration.md:224
 #: src/migration.md:251 src/migration.md:286
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/migration.md:36 src/migration.md:67 src/migration.md:92
 #: src/migration.md:120 src/migration.md:152 src/migration.md:234

@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/python_from_rust.md:1
 msgid "Calling Python in Rust code"
-msgstr ""
+msgstr "在 Rust 程式碼中呼叫 Python"
 
 #: src/python_from_rust.md:3
 msgid ""
