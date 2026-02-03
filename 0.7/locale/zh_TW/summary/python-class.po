@@ -434,7 +434,7 @@ msgstr ""
 
 #: src/class.md:469
 msgid "Class customizations"
-msgstr ""
+msgstr "類別自訂"
 
 #: src/class.md:471
 msgid ""
@@ -448,7 +448,7 @@ msgstr ""
 
 #: src/class.md:476
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/class.md:478
 msgid ""

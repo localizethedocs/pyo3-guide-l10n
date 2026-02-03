@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/parallelism.md:1
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/parallelism.md:3
 msgid ""
@@ -51,7 +51,7 @@ msgstr ""
 
 #: src/parallelism.md:47
 msgid "Benchmark"
-msgstr ""
+msgstr "基準測試"
 
 #: src/parallelism.md:49
 msgid ""

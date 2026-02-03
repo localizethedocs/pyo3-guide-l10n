@@ -39,7 +39,7 @@ msgstr ""
 
 #: src/get_started.md:11
 msgid "Usage"
-msgstr ""
+msgstr "使用方式"
 
 #: src/get_started.md:13
 msgid ""
@@ -166,7 +166,7 @@ msgstr ""
 msgid ""
 "Example program displaying the value of `sys.version` and the current user "
 "name:"
-msgstr ""
+msgstr "顯示 `sys.version` 與目前使用者名稱的範例程式："
 
 #: src/get_started.md:100
 msgid "\"sys\""
