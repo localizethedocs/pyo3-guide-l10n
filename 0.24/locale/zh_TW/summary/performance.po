@@ -19,7 +19,7 @@ msgstr "效能"
 msgid ""
 "To achieve the best possible performance, it is useful to be aware of "
 "several tricks and sharp edges concerning PyO3's API."
-msgstr ""
+msgstr "為了達到最佳效能，了解 PyO3 API 的一些技巧與陷阱很有幫助。"
 
 #: src/performance.md:5
 msgid "`extract` versus `downcast`"
@@ -32,6 +32,9 @@ msgid ""
 "types to which the requested operation is applied. This often leads to "
 "chains of calls to `extract`, e.g."
 msgstr ""
+"使用 PyO3 實作的 Python 風格 API 通常是多型的，也就是接受 `&Bound<'_, "
+"PyAny>` 並嘗試轉換為多個更具體的型別以套用指定操作。這經常導致連串的 "
+"`extract` 呼叫，例如："
 
 #: src/performance.md:29 src/performance.md:51
 msgid "\"Cannot frobnicate that type.\""
@@ -68,19 +71,19 @@ msgstr ""
 
 #: src/performance.md:60
 msgid "For example, instead of writing"
-msgstr ""
+msgstr "例如，與其寫成"
 
 #: src/performance.md:81
 msgid "use the more efficient"
-msgstr ""
+msgstr "請改用較有效率的"
 
 #: src/performance.md:92
 msgid "// Access to `&Bound<'py, PyAny>` implies access to `Python<'py>`.\n"
-msgstr ""
+msgstr "// 存取 `&Bound<'py, PyAny>` 代表可存取 `Python<'py>`。\n"
 
 #: src/performance.md:100
 msgid "Calling Python callables (`__call__`)"
-msgstr ""
+msgstr "呼叫 Python 可呼叫物件（`__call__`）"
 
 #: src/performance.md:101
 msgid ""
@@ -96,10 +99,19 @@ msgid ""
 "using the (internal) `PyCallArgs` trait. It defines how Rust types can be "
 "used as Python `call` arguments. This trait is currently implemented for"
 msgstr ""
+"CPython 支援多種呼叫協定：[`tp_call`](https://docs.python.org/3/c-api/call."
+"html#the-tp-call-protocol) 與 [`vectorcall`](https://docs.python.org/3/c-api/"
+"call.html#the-vectorcall-protocol)。[`vectorcall`](https://docs.python.org/3/"
+"c-api/call.html#the-vectorcall-protocol) 是更高效的協定，可加速呼叫。PyO3 會"
+"在可能時嘗試使用 [`vectorcall`](https://docs.python.org/3/c-api/call."
+"html#the-vectorcall-protocol) 呼叫慣例來達到最高效能，否則退回 [`tp_call`]"
+"(https://docs.python.org/3/c-api/call.html#the-tp-call-protocol)。這是透過"
+"（內部的）`PyCallArgs` 特徵實作的，它定義 Rust 型別如何作為 Python `call` 參"
+"數使用。此特徵目前為以下項目實作："
 
 #: src/performance.md:104
 msgid "Rust tuples, where each member implements `IntoPyObject`,"
-msgstr ""
+msgstr "Rust tuple，其中每個成員都實作 `IntoPyObject`，"
 
 #: src/performance.md:105
 msgid "`Bound<'_, PyTuple>`"
@@ -154,4 +166,4 @@ msgstr ""
 
 #: src/performance.md:135
 msgid "will abort if the list not explicitly disposed via"
-msgstr ""
+msgstr "若清單未明確透過下列方式處理，將會中止"
