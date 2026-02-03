@@ -20,6 +20,7 @@ msgid ""
 "_`async`/`await` support is currently being integrated in PyO3. See the "
 "[dedicated documentation](../async-await.md)_"
 msgstr ""
+"_`async`/`await` 支援目前正整合進 PyO3。請參考[專門文件](../async-await.md)_"
 
 #: src/ecosystem/async-await.md:5
 msgid ""
@@ -578,7 +579,7 @@ msgstr ""
 
 #: src/ecosystem/async-await.md:553
 msgid "Additional Information"
-msgstr ""
+msgstr "補充資訊"
 
 #: src/ecosystem/async-await.md:554
 msgid ""
