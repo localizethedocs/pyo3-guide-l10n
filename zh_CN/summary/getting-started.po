@@ -1,0 +1,274 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:37Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/getting_started.md:1
+msgid "Installation"
+msgstr ""
+
+#: src/getting_started.md:3
+msgid ""
+"To get started using PyO3 you will need three things: a Rust toolchain, a "
+"Python environment, and a way to build. We'll cover each of these below."
+msgstr ""
+
+#: src/getting_started.md:5
+msgid "Rust"
+msgstr ""
+
+#: src/getting_started.md:7
+msgid ""
+"First, make sure you have Rust installed on your system. If you haven't "
+"already done so, try following the instructions [here](https://www.rust-lang."
+"org/tools/install). PyO3 runs on both the `stable` and `nightly` versions so "
+"you can choose whichever one fits you best. The minimum required Rust "
+"version is 1.48."
+msgstr ""
+
+#: src/getting_started.md:9
+msgid ""
+"If you can run `rustc --version` and the version is new enough you're good "
+"to go!"
+msgstr ""
+
+#: src/getting_started.md:11
+msgid "Python"
+msgstr ""
+
+#: src/getting_started.md:13
+msgid ""
+"To use PyO3, you need at least Python 3.7. While you can simply use the "
+"default Python interpreter on your system, it is recommended to use a "
+"virtual environment."
+msgstr ""
+
+#: src/getting_started.md:15
+msgid "Virtualenvs"
+msgstr ""
+
+#: src/getting_started.md:17
+msgid ""
+"While you can use any virtualenv manager you like, we recommend the use of "
+"`pyenv` in particular if you want to develop or test for multiple different "
+"Python versions, so that is what the examples in this book will use. The "
+"installation instructions for `pyenv` can be found [here](https://github.com/"
+"pyenv/pyenv#getting-pyenv)."
+msgstr ""
+
+#: src/getting_started.md:19
+msgid ""
+"Note that when using `pyenv`, you should also set the following environment "
+"variable:"
+msgstr ""
+
+#: src/getting_started.md:21
+msgid "\"--enable-shared\""
+msgstr ""
+
+#: src/getting_started.md:24
+msgid "Building"
+msgstr ""
+
+#: src/getting_started.md:26
+msgid ""
+"There are a number of build and Python package management systems such as "
+"[`setuptools-rust`](https://github.com/PyO3/setuptools-rust) or [manually]"
+"(https://pyo3.rs/latest/building_and_distribution.html#manual-builds). We "
+"recommend the use of `maturin`, which you can install [here](https://maturin."
+"rs/installation.html). It is developed to work with PyO3 and provides the "
+"most \"batteries included\" experience. `maturin` is just a Python package, "
+"so you can add it in the same you already install Python packages."
+msgstr ""
+
+#: src/getting_started.md:28
+msgid "System Python:"
+msgstr ""
+
+#: src/getting_started.md:33
+msgid "pipx:"
+msgstr ""
+
+#: src/getting_started.md:38
+msgid "pyenv:"
+msgstr ""
+
+#: src/getting_started.md:44
+msgid "poetry:"
+msgstr ""
+
+#: src/getting_started.md:49
+msgid ""
+"After installation, you can run `maturin --version` to check that you have "
+"correctly installed it."
+msgstr ""
+
+#: src/getting_started.md:51
+msgid "Starting a new project"
+msgstr ""
+
+#: src/getting_started.md:53
+msgid ""
+"First you should create the folder and virtual environment that are going to "
+"contain your new project. Here we will use the recommended `pyenv`:"
+msgstr ""
+
+#: src/getting_started.md:62
+msgid ""
+"After this, you should install your build manager. In this example, we will "
+"use `maturin`. After you've activated your virtualenv, add `maturin` to it:"
+msgstr ""
+
+#: src/getting_started.md:68
+msgid "Now you can initialize the new project:"
+msgstr ""
+
+#: src/getting_started.md:74
+msgid ""
+"If `maturin` is already installed, you can create a new project using that "
+"directly as well:"
+msgstr ""
+
+#: src/getting_started.md:83
+msgid "Adding to an existing project"
+msgstr ""
+
+#: src/getting_started.md:85
+msgid ""
+"Sadly, `maturin` cannot currently be run in existing projects, so if you "
+"want to use Python in an existing project you basically have two options:"
+msgstr ""
+
+#: src/getting_started.md:87
+msgid ""
+"Create a new project as above and move your existing code into that project"
+msgstr ""
+
+#: src/getting_started.md:88
+msgid "Manually edit your project configuration as necessary"
+msgstr ""
+
+#: src/getting_started.md:90
+msgid ""
+"If you opt for the second option, here are the things you need to pay "
+"attention to:"
+msgstr ""
+
+#: src/getting_started.md:92
+msgid "Cargo.toml"
+msgstr ""
+
+#: src/getting_started.md:94
+msgid ""
+"Make sure that the Rust crate you want to be able to access from Python is "
+"compiled into a library. You can have a binary output as well, but the code "
+"you want to access from Python has to be in the library part. Also, make "
+"sure that the crate type is `cdylib` and add PyO3 as a dependency as so:"
+msgstr ""
+
+#: src/getting_started.md:97
+msgid ""
+"```toml\n"
+"# If you already have [package] information in `Cargo.toml`, you can ignore\n"
+"# this section!\n"
+"[package]\n"
+"# `name` here is name of the package.\n"
+"name = \"pyo3_start\"\n"
+"# these are good defaults:\n"
+"version = \"0.1.0\"\n"
+"edition = \"2021\"\n"
+"\n"
+"[lib]\n"
+"# The name of the native library. This is the name which will be used in "
+"Python to import the\n"
+"# library (i.e. `import string_sum`). If you change this, you must also "
+"change the name of the\n"
+"# `#[pymodule]` in `src/lib.rs`.\n"
+"name = \"pyo3_example\"\n"
+"\n"
+"# \"cdylib\" is necessary to produce a shared library for Python to import "
+"from.\n"
+"crate-type = [\"cdylib\"]\n"
+"\n"
+"[dependencies]\n"
+"pyo3 = { git = \"https://github.com/pyo3/pyo3\", features = [\"extension-"
+"module\"] }\n"
+"```"
+msgstr ""
+
+#: src/getting_started.md:120
+msgid "pyproject.toml"
+msgstr ""
+
+#: src/getting_started.md:122
+msgid "You should also create a `pyproject.toml` with the following contents:"
+msgstr ""
+
+#: src/getting_started.md:124
+msgid ""
+"```toml\n"
+"[build-system]\n"
+"requires = [\"maturin>=0.14,<0.15\"]\n"
+"build-backend = \"maturin\"\n"
+"\n"
+"[project]\n"
+"name = \"pyo3_example\"\n"
+"requires-python = \">=3.7\"\n"
+"classifiers = [\n"
+"    \"Programming Language :: Rust\",\n"
+"    \"Programming Language :: Python :: Implementation :: CPython\",\n"
+"    \"Programming Language :: Python :: Implementation :: PyPy\",\n"
+"]\n"
+"```"
+msgstr ""
+
+#: src/getting_started.md:139
+msgid "Running code"
+msgstr ""
+
+#: src/getting_started.md:141
+msgid ""
+"After this you can setup Rust code to be available in Python as below; for "
+"example, you can place this code in `src/lib.rs`:"
+msgstr ""
+
+#: src/getting_started.md:145
+msgid "/// Formats the sum of two numbers as string.\n"
+msgstr ""
+
+#: src/getting_started.md:151
+msgid ""
+"/// A Python module implemented in Rust. The name of this function must "
+"match\n"
+"/// the `lib.name` setting in the `Cargo.toml`, else Python will not be able "
+"to\n"
+"/// import the module.\n"
+msgstr ""
+
+#: src/getting_started.md:162
+msgid ""
+"Now you can run `maturin develop` to prepare the Python package, after which "
+"you can use it like so:"
+msgstr ""
+
+#: src/getting_started.md:165
+msgid "# lots of progress output as maturin runs the compilation...\n"
+msgstr ""
+
+#: src/getting_started.md:169
+msgid "'25'"
+msgstr ""
+
+#: src/getting_started.md:173
+msgid ""
+"For more instructions on how to use Python code from Rust, see the [Python "
+"from Rust](python_from_rust.md) page."
+msgstr ""

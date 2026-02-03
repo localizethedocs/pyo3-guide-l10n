@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:37Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/SUMMARY.md:1
+msgid "Summary"
+msgstr "摘要"
+
+#: src/SUMMARY.md:3
+msgid "Introduction"
+msgstr "介紹"
+
+#: src/SUMMARY.md:7
+msgid "Getting started"
+msgstr "開始使用"
+
+#: src/SUMMARY.md:8
+msgid "Python modules"
+msgstr "Python 模組"
+
+#: src/SUMMARY.md:9
+msgid "Python functions"
+msgstr "Python 函式"
+
+#: src/SUMMARY.md:10
+msgid "Function signatures"
+msgstr "函式簽名"
+
+#: src/SUMMARY.md:11
+msgid "Error handling"
+msgstr "錯誤處理"
+
+#: src/SUMMARY.md:12
+msgid "Python classes"
+msgstr "Python 類別"
+
+#: src/SUMMARY.md:13
+msgid "Class customizations"
+msgstr "類別自訂"
+
+#: src/SUMMARY.md:14
+msgid "Basic object customization"
+msgstr "基本物件自訂"
+
+#: src/SUMMARY.md:15
+msgid "Emulating numeric types"
+msgstr "仿真數值型別"
+
+#: src/SUMMARY.md:16
+msgid "Emulating callable objects"
+msgstr "仿真可呼叫物件"
+
+#: src/SUMMARY.md:17
+msgid "Type conversions"
+msgstr "型別轉換"
+
+#: src/SUMMARY.md:18
+msgid "Mapping of Rust types to Python types\\]"
+msgstr ""
+
+#: src/SUMMARY.md:19
+msgid "Conversion traits\\]"
+msgstr ""
+
+#: src/SUMMARY.md:20
+msgid "Python exceptions"
+msgstr "Python 例外狀況"
+
+#: src/SUMMARY.md:21
+msgid "Calling Python from Rust"
+msgstr "從 Rust 呼叫 Python"
+
+#: src/SUMMARY.md:22
+msgid "GIL, mutability and object types"
+msgstr ""
+
+#: src/SUMMARY.md:23
+msgid "Parallelism"
+msgstr "平行化"
+
+#: src/SUMMARY.md:24
+msgid "Debugging"
+msgstr "除錯"
+
+#: src/SUMMARY.md:25
+msgid "Features reference"
+msgstr "功能參考"
+
+#: src/SUMMARY.md:26
+msgid "Memory management"
+msgstr ""
+
+#: src/SUMMARY.md:27
+msgid "Advanced topics"
+msgstr "進階主題"
+
+#: src/SUMMARY.md:28
+msgid "Building and distribution"
+msgstr "建置與散布"
+
+#: src/SUMMARY.md:29
+msgid "Supporting multiple Python versions"
+msgstr "支援多個 Python 版本"
+
+#: src/SUMMARY.md:30
+msgid "Useful crates"
+msgstr "實用 crate"
+
+#: src/SUMMARY.md:31
+msgid "Logging"
+msgstr "日誌"
+
+#: src/SUMMARY.md:32
+msgid "Using `async` and `await`"
+msgstr "使用 `async` 和 `await`"
+
+#: src/SUMMARY.md:33
+msgid "FAQ and troubleshooting"
+msgstr "常見問題與疑難排解"
+
+#: src/SUMMARY.md:37
+msgid ""
+"Appendix A: Migration guide Appendix B: PyO3 and rust-cpython Appendix C: "
+"Trait bounds Appendix D: Python typing hints CHANGELOG"
+msgstr ""
+
+#: src/SUMMARY.md:45
+msgid "Contributing"
+msgstr "參與貢獻"
