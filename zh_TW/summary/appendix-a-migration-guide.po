@@ -1,0 +1,565 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:42Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/migration.md:1
+msgid "Migrating from older PyO3 versions"
+msgstr "從舊版 PyO3 遷移"
+
+#: src/migration.md:3
+msgid ""
+"This guide can help you upgrade code through breaking changes from one PyO3 "
+"version to the next. For a detailed list of all changes, see the [CHANGELOG]"
+"(changelog.md)."
+msgstr ""
+"本指南可協助你跨越 PyO3 版本間的破壞性變更來升級程式碼。完整變更清單請見 "
+"[CHANGELOG](changelog.md)。"
+
+#: src/migration.md:6
+msgid "from 0.13.\\* to 0.14"
+msgstr ""
+
+#: src/migration.md:8
+msgid "`auto-initialize` feature is now opt-in"
+msgstr ""
+
+#: src/migration.md:10
+msgid ""
+"For projects embedding Python in Rust, PyO3 no longer automatically "
+"initalizes a Python interpreter on the first call to `Python::with_gil` (or "
+"`Python::acquire_gil`) unless the [`auto-initalize` feature](features."
+"md#auto-initalize) is enabled."
+msgstr ""
+
+#: src/migration.md:12
+msgid "New `multiple-pymethods` feature"
+msgstr ""
+
+#: src/migration.md:14
+msgid ""
+"`#[pymethods]` have been reworked with a simpler default implementation "
+"which removes the dependency on the `inventory` crate. This reduces "
+"dependencies and compile times for the majority of users."
+msgstr ""
+
+#: src/migration.md:16
+msgid ""
+"The limitation of the new default implementation is that it cannot support "
+"multiple `#[pymethods]` blocks for the same `#[pyclass]`. If you need this "
+"functionality, you must enable the `multiple-pymethods` feature which will "
+"switch `#[pymethods]` to the inventory-based implementation."
+msgstr ""
+
+#: src/migration.md:18
+msgid "Deprecated `#[pyproto]` methods"
+msgstr ""
+
+#: src/migration.md:20
+msgid ""
+"Some protocol (aka `__dunder__`) methods such as `__bytes__` and "
+"`__format__` have been possible to implement two ways in PyO3 for some time: "
+"via a `#[pyproto]` (e.g. `PyBasicProtocol` for the methods listed here), or "
+"by writing them directly in `#[pymethods]`. This is only true for a handful "
+"of the `#[pyproto]` methods (for technical reasons to do with the way PyO3 "
+"currently interacts with the Python C-API)."
+msgstr ""
+
+#: src/migration.md:22
+msgid ""
+"In the interest of having onle one way to do things, the `#[pyproto]` forms "
+"of these methods have been deprecated."
+msgstr ""
+
+#: src/migration.md:24
+msgid ""
+"To migrate just move the affected methods from a `#[pyproto]` to a "
+"`#[pymethods]` block."
+msgstr ""
+
+#: src/migration.md:26 src/migration.md:111 src/migration.md:160
+#: src/migration.md:186 src/migration.md:214 src/migration.md:249
+#: src/migration.md:283 src/migration.md:308 src/migration.md:330
+#: src/migration.md:360 src/migration.md:445 src/migration.md:472
+#: src/migration.md:507
+msgid "Before:"
+msgstr "之前："
+
+#: src/migration.md:38 src/migration.md:54
+msgid "b\"hello, world\""
+msgstr ""
+
+#: src/migration.md:43 src/migration.md:134 src/migration.md:194
+#: src/migration.md:223 src/migration.md:262 src/migration.md:293
+#: src/migration.md:315 src/migration.md:341 src/migration.md:374
+#: src/migration.md:455 src/migration.md:479 src/migration.md:525
+msgid "After:"
+msgstr ""
+
+#: src/migration.md:59
+msgid "from 0.12.\\* to 0.13"
+msgstr ""
+
+#: src/migration.md:61
+msgid "Minimum Rust version increased to Rust 1.45"
+msgstr ""
+
+#: src/migration.md:63
+msgid ""
+"PyO3 `0.13` makes use of new Rust language features stabilised between Rust "
+"1.40 and Rust 1.45. If you are using a Rust compiler older than Rust 1.45, "
+"you will need to update your toolchain to be able to continue using PyO3."
+msgstr ""
+
+#: src/migration.md:65
+msgid "Runtime changes to support the CPython limited API"
+msgstr ""
+
+#: src/migration.md:67
+msgid ""
+"In PyO3 `0.13` support was added for compiling against the CPython limited "
+"API. This had a number of implications for _all_ PyO3 users, described here."
+msgstr ""
+
+#: src/migration.md:69
+msgid ""
+"The largest of these is that all types created from PyO3 are what CPython "
+"calls \"heap\" types. The specific implications of this are:"
+msgstr ""
+
+#: src/migration.md:71
+msgid ""
+"If you wish to subclass one of these types _from Rust_ you must mark it "
+"`#[pyclass(subclass)]`, as you would if you wished to allow subclassing it "
+"from Python code."
+msgstr ""
+
+#: src/migration.md:72
+msgid "Type objects are now mutable - Python code can set attributes on them."
+msgstr ""
+
+#: src/migration.md:73
+msgid ""
+"`__module__` on types without `#[pyclass(module=\"mymodule\")]` no longer "
+"returns `builtins`, it now raises `AttributeError`."
+msgstr ""
+
+#: src/migration.md:75
+msgid "from 0.11.\\* to 0.12"
+msgstr ""
+
+#: src/migration.md:77
+msgid "`PyErr` has been reworked"
+msgstr ""
+
+#: src/migration.md:79
+msgid ""
+"In PyO3 `0.12` the `PyErr` type has been re-implemented to be significantly "
+"more compatible with the standard Rust error handling ecosystem. "
+"Specificially `PyErr` now implements `Error + Send + Sync`, which are the "
+"standard traits used for error types."
+msgstr ""
+
+#: src/migration.md:83
+msgid ""
+"While this has necessitated the removal of a number of APIs, the resulting "
+"`PyErr` type should now be much more easier to work with. The following "
+"sections list the changes in detail and how to migrate to the new APIs."
+msgstr ""
+
+#: src/migration.md:87
+msgid ""
+"`PyErr::new` and `PyErr::from_type` now require `Send + Sync` for their "
+"argument"
+msgstr ""
+
+#: src/migration.md:89
+msgid ""
+"For most uses no change will be needed. If you are trying to construct "
+"`PyErr` from a value that is not `Send + Sync`, you will need to first "
+"create the Python object and then use `PyErr::from_instance`."
+msgstr ""
+
+#: src/migration.md:93
+msgid ""
+"Similarly, any types which implemented `PyErrArguments` will now need to be "
+"`Send + Sync`."
+msgstr ""
+
+#: src/migration.md:95
+msgid "`PyErr`'s contents are now private"
+msgstr ""
+
+#: src/migration.md:97
+msgid ""
+"It is no longer possible to access the fields `.ptype`, `.pvalue` and `."
+"ptraceback` of a `PyErr`. You should instead now use the new methods `PyErr::"
+"ptype()`, `PyErr::pvalue()` and `PyErr::ptraceback()`."
+msgstr ""
+
+#: src/migration.md:100
+msgid "`PyErrValue` and `PyErr::from_value` have been removed"
+msgstr ""
+
+#: src/migration.md:102
+msgid ""
+"As these were part the internals of `PyErr` which have been reworked, these "
+"APIs no longer exist."
+msgstr ""
+
+#: src/migration.md:104
+msgid ""
+"If you used this API, it is recommended to use `PyException::new_err` (see "
+"[the section on Exception types](#exception-types-have-been-reworked))."
+msgstr ""
+
+#: src/migration.md:107
+msgid "`Into<PyResult<T>>` for `PyErr` has been removed"
+msgstr ""
+
+#: src/migration.md:109
+msgid ""
+"This implementation was redundant. Just construct the `Result::Err` variant "
+"directly."
+msgstr ""
+
+#: src/migration.md:113 src/migration.md:119 src/migration.md:131
+#: src/migration.md:140
+msgid "\"error message\""
+msgstr ""
+
+#: src/migration.md:116
+msgid ""
+"After (also using the new reworked exception types; see the following "
+"section):"
+msgstr ""
+
+#: src/migration.md:122
+msgid "Exception types have been reworked"
+msgstr ""
+
+#: src/migration.md:124
+msgid ""
+"Previously exception types were zero-sized marker types purely used to "
+"construct `PyErr`. In PyO3 0.12, these types have been replaced with full "
+"definitions and are usable in the same way as `PyAny`, `PyDict` etc. This "
+"makes it possible to interact with Python exception objects."
+msgstr ""
+
+#: src/migration.md:128
+msgid ""
+"The new types also have names starting with the \"Py\" prefix. For example, "
+"before:"
+msgstr ""
+
+#: src/migration.md:141
+msgid "// Uses Display for PyErr, new for PyO3 0.12\n"
+msgstr ""
+
+#: src/migration.md:143
+msgid "\"TypeError: error message\""
+msgstr ""
+
+#: src/migration.md:144
+msgid ""
+"// Now possible to interact with exception instances, new for PyO3 0.12\n"
+msgstr ""
+
+#: src/migration.md:147
+msgid "\"__class__\""
+msgstr ""
+
+#: src/migration.md:152
+msgid "`FromPy` has been removed"
+msgstr ""
+
+#: src/migration.md:153
+msgid ""
+"To simplify the PyO3 conversion traits, the `FromPy` trait has been removed. "
+"Previously there were two ways to define the to-Python conversion for a "
+"type: `FromPy<T> for PyObject` and `IntoPy<PyObject> for T`."
+msgstr ""
+
+#: src/migration.md:157
+msgid ""
+"Now there is only one way to define the conversion, `IntoPy`, so downstream "
+"crates may need to adjust accordingly."
+msgstr ""
+
+#: src/migration.md:172
+msgid "After"
+msgstr ""
+
+#: src/migration.md:184
+msgid ""
+"Similarly, code which was using the `FromPy` trait can be trivially "
+"rewritten to use `IntoPy`."
+msgstr ""
+
+#: src/migration.md:202
+msgid "`PyObject` is now a type alias of `Py<PyAny>`"
+msgstr ""
+
+#: src/migration.md:203
+msgid ""
+"This should change very little from a usage perspective. If you implemented "
+"traits for both `PyObject` and `Py<T>`, you may find you can just remove the "
+"`PyObject` implementation."
+msgstr ""
+
+#: src/migration.md:206
+msgid "`AsPyRef` has been removed"
+msgstr ""
+
+#: src/migration.md:207
+msgid ""
+"As `PyObject` has been changed to be just a type alias, the only remaining "
+"implementor of `AsPyRef` was `Py<T>`. This removed the need for a trait, so "
+"the `AsPyRef::as_ref` method has been moved to `Py::as_ref`."
+msgstr ""
+
+#: src/migration.md:211
+msgid ""
+"This should require no code changes except removing `use pyo3::AsPyRef` for "
+"code which did not use `pyo3::prelude::*`."
+msgstr ""
+
+#: src/migration.md:232
+msgid "from 0.10.\\* to 0.11"
+msgstr ""
+
+#: src/migration.md:234
+msgid "Stable Rust"
+msgstr ""
+
+#: src/migration.md:235
+msgid ""
+"PyO3 now supports the stable Rust toolchain. The minimum required version is "
+"1.39.0."
+msgstr ""
+
+#: src/migration.md:237
+msgid "`#[pyclass]` structs must now be `Send` or `unsendable`"
+msgstr ""
+
+#: src/migration.md:238
+msgid ""
+"Because `#[pyclass]` structs can be sent between threads by the Python "
+"interpreter, they must implement `Send` or declared as `unsendable` (by "
+"`#[pyclass(unsendable)]`). Note that `unsendable` is added in PyO3 `0.11.1` "
+"and `Send` is always required in PyO3 `0.11.0`."
+msgstr ""
+
+#: src/migration.md:242
+msgid ""
+"This may \"break\" some code which previously was accepted, even though it "
+"could be unsound. There can be two fixes:"
+msgstr ""
+
+#: src/migration.md:245
+msgid ""
+"If you think that your `#[pyclass]` actually must be `Send`able, then let's "
+"implement `Send`. A common, safer way is using thread-safe types. E.g., "
+"`Arc` instead of `Rc`, `Mutex` instead of `RefCell`, and `Box<dyn Send + T>` "
+"instead of `Box<dyn T>`."
+msgstr ""
+
+#: src/migration.md:274
+msgid ""
+"In situations where you cannot change your `#[pyclass]` to automatically "
+"implement `Send` (e.g., when it contains a raw pointer), you can use `unsafe "
+"impl Send`. In such cases, care should be taken to ensure the struct is "
+"actually thread safe. See [the Rustnomicon](https://doc.rust-lang.org/"
+"nomicon/send-and-sync.html) for more."
+msgstr ""
+
+#: src/migration.md:279
+msgid ""
+"If you think that your `#[pyclass]` should not be accessed by another "
+"thread, you can use `unsendable` flag. A class marked with `unsendable` "
+"panics when accessed by another thread, making it thread-safe to expose an "
+"unsendable object to the Python interpreter."
+msgstr ""
+
+#: src/migration.md:303
+msgid "All `PyObject` and `Py<T>` methods now take `Python` as an argument"
+msgstr ""
+
+#: src/migration.md:304
+msgid ""
+"Previously, a few methods such as `Object::get_refcnt` did not take `Python` "
+"as an argument (to ensure that the Python GIL was held by the current "
+"thread). Technically, this was not sound. To migrate, just pass a `py` "
+"argument to any calls to these methods."
+msgstr ""
+
+#: src/migration.md:322
+msgid "from 0.9.\\* to 0.10"
+msgstr ""
+
+#: src/migration.md:324
+msgid "`ObjectProtocol` is removed"
+msgstr ""
+
+#: src/migration.md:325
+msgid ""
+"All methods are moved to [`PyAny`](https://pyo3.rs/main/doc/pyo3/types/"
+"struct.PyAny.html). And since now all native types (e.g., `PyList`) "
+"implements `Deref<Target=PyAny>`, all you need to do is remove "
+"`ObjectProtocol` from your code. Or if you use `ObjectProtocol` by `use "
+"pyo3::prelude::*`, you have to do nothing."
+msgstr ""
+
+#: src/migration.md:335 src/migration.md:344
+msgid "\"lambda: 'Hi :)'\""
+msgstr ""
+
+#: src/migration.md:350
+msgid "No `#![feature(specialization)]` in user code"
+msgstr ""
+
+#: src/migration.md:351
+msgid ""
+"While PyO3 itself still requires specialization and nightly Rust, now you "
+"don't have to use `#![feature(specialization)]` in your crate."
+msgstr ""
+
+#: src/migration.md:354
+msgid "from 0.8.\\* to 0.9"
+msgstr ""
+
+#: src/migration.md:356
+msgid "`#[new]` interface"
+msgstr ""
+
+#: src/migration.md:357
+msgid ""
+"[`PyRawObject`](https://docs.rs/pyo3/0.8.5/pyo3/type_object/struct."
+"PyRawObject.html) is now removed and our syntax for constructors has changed."
+msgstr ""
+
+#: src/migration.md:389
+msgid ""
+"Basically you can return `Self` or `Result<Self>` directly. For more, see "
+"[the constructor section](class.html#constructor) of this guide."
+msgstr ""
+
+#: src/migration.md:392
+msgid "PyCell"
+msgstr ""
+
+#: src/migration.md:393
+msgid ""
+"PyO3 0.9 introduces [`PyCell`](https://pyo3.rs/main/doc/pyo3/pycell/struct."
+"PyCell.html), which is a [`RefCell`](https://doc.rust-lang.org/std/cell/"
+"struct.RefCell.html)\\-like object wrapper for ensuring Rust's rules "
+"regarding aliasing of references are upheld. For more detail, see the [Rust "
+"Book's section on Rust's rules of references](https://doc.rust-lang.org/book/"
+"ch04-02-references-and-borrowing.html#the-rules-of-references)"
+msgstr ""
+
+#: src/migration.md:398
+msgid ""
+"For `#[pymethods]` or `#[pyfunction]`s, your existing code should continue "
+"to work without any change. Python exceptions will automatically be raised "
+"when your functions are used in a way which breaks Rust's rules of "
+"references."
+msgstr ""
+
+#: src/migration.md:402
+msgid "Here is an example."
+msgstr ""
+
+#: src/migration.md:422
+msgid ""
+"r\"\n"
+"#     try:\n"
+"#        names.merge(names)\n"
+"#        assert False, 'Unreachable'\n"
+"#     except RuntimeError as e:\n"
+"#        assert str(e) == 'Already borrowed'\n"
+"#     \""
+msgstr ""
+
+#: src/migration.md:431
+msgid ""
+"`Names` has a `merge` method, which takes `&mut self` and another argument "
+"of type `&mut Self`. Given this `#[pyclass]`, calling `names.merge(names)` "
+"in Python raises a [`PyBorrowMutError`](https://pyo3.rs/main/doc/pyo3/pycell/"
+"struct.PyBorrowMutError.html) exception, since it requires two mutable "
+"borrows of `names`."
+msgstr ""
+
+#: src/migration.md:435
+msgid ""
+"However, for `#[pyproto]` and some functions, you need to manually fix the "
+"code."
+msgstr ""
+
+#: src/migration.md:437
+msgid "Object creation"
+msgstr ""
+
+#: src/migration.md:438
+msgid ""
+"In 0.8 object creation was done with `PyRef::new` and `PyRefMut::new`. In "
+"0.9 these have both been removed. To upgrade code, please use [`PyCell::new`]"
+"(https://pyo3.rs/main/doc/pyo3/pycell/struct.PyCell.html#method.new) "
+"instead. If you need [`PyRef`](https://pyo3.rs/main/doc/pyo3/pycell/struct."
+"PyRef.html) or [`PyRefMut`](https://pyo3.rs/main/doc/pyo3/pycell/struct."
+"PyRef.html), just call `.borrow()` or `.borrow_mut()` on the newly-created "
+"`PyCell`."
+msgstr ""
+
+#: src/migration.md:466
+msgid "Object extraction"
+msgstr ""
+
+#: src/migration.md:467
+msgid ""
+"For `PyClass` types `T`, `&T` and `&mut T` no longer have [`FromPyObject`]"
+"(https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject.html) "
+"implementations. Instead you should extract `PyRef<T>` or `PyRefMut<T>`, "
+"respectively. If `T` implements `Clone`, you can extract `T` itself. In "
+"addition, you can also extract `&PyCell<T>`, though you rarely need it."
+msgstr ""
+
+#: src/migration.md:487
+msgid "\"c\""
+msgstr ""
+
+#: src/migration.md:488
+msgid "\"c()\""
+msgstr ""
+
+#: src/migration.md:491
+msgid "// extracted by cloning the object\n"
+msgstr ""
+
+#: src/migration.md:494
+msgid ""
+"// we need to drop obj_ref before we can extract a PyRefMut due to Rust's "
+"rules of references\n"
+msgstr ""
+
+#: src/migration.md:501
+msgid "`#[pyproto]`"
+msgstr ""
+
+#: src/migration.md:502
+msgid ""
+"Most of the arguments to methods in `#[pyproto]` impls require a "
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
+"html) implementation. So if your protocol methods take `&T` or `&mut T` "
+"(where `T: PyClass`), please use [`PyRef`](https://pyo3.rs/main/doc/pyo3/"
+"pycell/struct.PyRef.html) or [`PyRefMut`](https://pyo3.rs/main/doc/pyo3/"
+"pycell/struct.PyRef.html) instead."
+msgstr ""
