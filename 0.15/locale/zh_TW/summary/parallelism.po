@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/parallelism.md:1
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/parallelism.md:3
 msgid ""
@@ -39,6 +39,8 @@ msgid ""
 "to execute several times in parallel. For the sake of example let's take a "
 "sequential version of the word count:"
 msgstr ""
+"假設你有一個耗時的 Rust 函式，想要平行執行多次。以下以字數統計的序列版作為範"
+"例："
 
 #: src/parallelism.md:23
 msgid ""
@@ -56,20 +58,22 @@ msgid ""
 "Now Python threads can use more than one CPU core, resolving the limitation "
 "which usually makes multi-threading in Python only good for IO-bound tasks:"
 msgstr ""
+"現在 Python 執行緒可使用多個 CPU 核心，解決了 Python 多執行緒通常只適合 I/O-"
+"bound 任務的限制："
 
 #: src/parallelism.md:48
 msgid "Benchmark"
-msgstr ""
+msgstr "基準測試"
 
 #: src/parallelism.md:50
 msgid ""
 "Let's benchmark the `word-count` example to verify that we really did unlock "
 "parallelism with PyO3."
-msgstr ""
+msgstr "讓我們對 `word-count` 範例做基準測試，確認 PyO3 確實解鎖了平行化。"
 
 #: src/parallelism.md:52
 msgid "We are using `pytest-benchmark` to benchmark four word count functions:"
-msgstr ""
+msgstr "我們使用 `pytest-benchmark` 來測試四個字數統計函式："
 
 #: src/parallelism.md:54
 msgid "Pure Python version"
@@ -77,15 +81,15 @@ msgstr "純 Python 版本"
 
 #: src/parallelism.md:55
 msgid "Rust parallel version"
-msgstr ""
+msgstr "Rust 平行版本"
 
 #: src/parallelism.md:56
 msgid "Rust sequential version"
-msgstr ""
+msgstr "Rust 序列版本"
 
 #: src/parallelism.md:57
 msgid "Rust sequential version executed twice with two Python threads"
-msgstr ""
+msgstr "Rust 序列版本在兩個 Python 執行緒中執行兩次"
 
 #: src/parallelism.md:59
 msgid ""
@@ -98,7 +102,7 @@ msgstr ""
 msgid ""
 "While the results of the benchmark of course depend on your machine, the "
 "relative results should be similar to this (mid 2020):"
-msgstr ""
+msgstr "雖然基準測試結果會因機器而異，但相對結果應與下圖（2020 年中）相近："
 
 #: src/parallelism.md:73
 msgid ""
@@ -106,3 +110,5 @@ msgid ""
 "Rust sequential version, which means compared to an execution on a single "
 "CPU core the speed has doubled."
 msgstr ""
+"可以看到 Python 執行緒版本沒有比 Rust 序列版本慢太多，這代表相較於單一 CPU 核"
+"心的執行，速度翻倍。"

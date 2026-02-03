@@ -47,7 +47,7 @@ msgstr ""
 msgid ""
 "A stubs file only contains a description of the public interface of the "
 "module without any implementations."
-msgstr ""
+msgstr "Stub 檔案只包含模組公開介面的描述，不包含任何實作。"
 
 #: src/python_typing_hints.md:13
 msgid ""
@@ -80,6 +80,9 @@ msgid ""
 "all third party library creators to provide stub files as the source of "
 "knowledge about the package for type checker tools."
 msgstr ""
+"[PEP8 - Python 程式碼風格指南 - #Function Annotations](https://www.python."
+"org/dev/peps/pep-0008/#function-annotations)（最後一點）建議所有第三方函式庫"
+"作者提供 stub 檔案，作為型別檢查工具對套件的知識來源。"
 
 #: src/python_typing_hints.md:44
 msgid ""
@@ -89,18 +92,23 @@ msgid ""
 "files that are read by the type checker in preference of the corresponding ."
 "py files. (...)"
 msgstr ""
+"（……）預期第三方函式庫的使用者可能會對這些套件執行型別檢查。為此，[PEP 484]"
+"(https://www.python.org/dev/peps/pep-0484) 建議使用 stub 檔案：型別檢查器會優"
+"先讀取 .pyi 檔案而不是對應的 .py 檔案。（……）"
 
 #: src/python_typing_hints.md:46
 msgid ""
 "[PEP484 - Type Hints - #Stub Files](https://www.python.org/dev/peps/pep-0484/"
 "#stub-files) defines stub files as follows."
 msgstr ""
+"[PEP484 - Type Hints - #Stub Files](https://www.python.org/dev/peps/pep-0484/"
+"#stub-files) 對 stub 檔案的定義如下。"
 
 #: src/python_typing_hints.md:48
 msgid ""
 "Stub files are files containing type hints that are only for use by the type "
 "checker, not at runtime."
-msgstr ""
+msgstr "Stub 檔案是只提供給型別檢查器使用、而非執行階段使用的型別提示檔案。"
 
 #: src/python_typing_hints.md:50
 msgid ""
@@ -108,6 +116,8 @@ msgid ""
 "contains at least one thing that is not used in normal Python code) and also "
 "some general information about where to store the stub files."
 msgstr ""
+"其中包含對 stub 檔案的規範（強烈建議閱讀，因為至少有一項是一般 Python 程式碼"
+"不會用到的）以及關於存放位置的一般資訊。"
 
 #: src/python_typing_hints.md:52
 msgid ""
@@ -116,32 +126,40 @@ msgid ""
 "enable type checking. In particular it contains information about how the "
 "stub files must be distributed in order for type checkers to use them."
 msgstr ""
+"[PEP561 - Distributing and Packaging Type Information](https://www.python."
+"org/dev/peps/pep-0561/) 詳細描述如何建置能啟用型別檢查的套件，特別是如何散布 "
+"stub 檔案以供型別檢查器使用。"
 
 #: src/python_typing_hints.md:54
 msgid "How to do it?"
-msgstr ""
+msgstr "該怎麼做？"
 
 #: src/python_typing_hints.md:56
 msgid ""
 "[PEP561](https://www.python.org/dev/peps/pep-0561/) recognizes three ways of "
 "distributing type information:"
 msgstr ""
+"[PEP561](https://www.python.org/dev/peps/pep-0561/) 提出三種散布型別資訊的方"
+"式："
 
 #: src/python_typing_hints.md:58
 msgid "`inline` - the typing is placed directly in source (`py`) files;"
-msgstr ""
+msgstr "`inline` - 型別直接放在原始碼（`py`）檔案中；"
 
 #: src/python_typing_hints.md:59
 msgid ""
 "`separate package with stub files` - the typing is placed in `pyi` files "
 "distributed in their own, separate package;"
 msgstr ""
+"`separate package with stub files` - 型別放在 `pyi` 檔案中，並以獨立套件發"
+"布；"
 
 #: src/python_typing_hints.md:60
 msgid ""
 "`in-package stub files` - the typing is placed in `pyi` files distributed in "
 "the same package as source files."
 msgstr ""
+"`in-package stub files` - 型別放在 `pyi` 檔案中，並與原始碼同套件發布。"
 
 #: src/python_typing_hints.md:62
 msgid ""
@@ -158,14 +176,18 @@ msgid ""
 "pep-0561/#references): [Stub package repository](https://github.com/ethanhs/"
 "stub-package)"
 msgstr ""
+"第二種方式很容易完成，而且可與主函式庫程式碼完全分離。帶有 stub 檔案的套件範"
+"例可在 [PEP561 參考資料](https://www.python.org/dev/peps/pep-0561/"
+"#references)中找到：[Stub package repository](https://github.com/ethanhs/"
+"stub-package)"
 
 #: src/python_typing_hints.md:66
 msgid "The third way is described below."
-msgstr ""
+msgstr "第三種方式如下所述。"
 
 #: src/python_typing_hints.md:68
 msgid "Including `pyi` files in your PyO3/Maturin build package"
-msgstr ""
+msgstr "在 PyO3/Maturin 建置套件中包含 `pyi` 檔案"
 
 #: src/python_typing_hints.md:70
 msgid ""
@@ -174,10 +196,13 @@ msgid ""
 "order to mark our package as typing-enabled we need to add an empty file "
 "named `py.typed` to the package."
 msgstr ""
+"當原始碼與 stub 檔案位於同一套件時，應該把它們放在彼此相鄰的位置。我們需要能"
+"用 Maturin 達成這點的方法。此外，為了標示套件具有型別資訊，我們需要在套件中新"
+"增一個名為 `py.typed` 的空檔案。"
 
 #: src/python_typing_hints.md:72
 msgid "If you do not have other Python files"
-msgstr ""
+msgstr "若你沒有其他 Python 檔案"
 
 #: src/python_typing_hints.md:74
 msgid ""
