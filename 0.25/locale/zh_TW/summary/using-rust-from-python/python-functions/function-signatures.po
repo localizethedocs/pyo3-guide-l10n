@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/function/signature.md:1
 msgid "Function signatures"
-msgstr ""
+msgstr "函式簽名"
 
 #: src/function/signature.md:3
 msgid ""
