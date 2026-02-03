@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/SUMMARY.md:1
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: src/SUMMARY.md:3
 msgid "Get Started"
@@ -41,11 +41,11 @@ msgstr ""
 
 #: src/SUMMARY.md:9
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/SUMMARY.md:10
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/SUMMARY.md:11
 msgid "Distribution"

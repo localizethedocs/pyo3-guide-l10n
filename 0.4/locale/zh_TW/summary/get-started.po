@@ -24,7 +24,7 @@ msgstr ""
 
 #: src/overview.md:5
 msgid "Usage"
-msgstr ""
+msgstr "使用方式"
 
 #: src/overview.md:7
 msgid ""
