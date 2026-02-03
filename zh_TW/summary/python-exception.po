@@ -1,0 +1,194 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:50Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/exception.md:1
+msgid "Python Exceptions"
+msgstr ""
+
+#: src/exception.md:3
+msgid "Define a new exception"
+msgstr ""
+
+#: src/exception.md:5
+msgid ""
+"You can use the `create_exception!` macro to define a new exception type:"
+msgstr ""
+
+#: src/exception.md:13
+msgid "`module` is the name of the containing module."
+msgstr ""
+
+#: src/exception.md:14
+msgid "`MyError` is the name of the new exception type."
+msgstr ""
+
+#: src/exception.md:16
+msgid "For example:"
+msgstr "例如："
+
+#: src/exception.md:29
+msgid "\"CustomError\""
+msgstr ""
+
+#: src/exception.md:31
+msgid "\"assert str(CustomError) == \\\"<class 'mymodule.CustomError'>\\\"\""
+msgstr ""
+
+#: src/exception.md:32
+msgid "\"assert CustomError('oops').args == ('oops',)\""
+msgstr ""
+
+#: src/exception.md:36
+msgid "Raise an exception"
+msgstr ""
+
+#: src/exception.md:38
+msgid ""
+"To raise an exception, first you need to obtain an exception type and "
+"construct a new [`PyErr`](https://docs.rs/pyo3/0.7.0/pyo3/struct.PyErr."
+"html), then call the [`PyErr::restore()`](https://docs.rs/pyo3/0.7.0/pyo3/"
+"struct.PyErr.html#method.restore) method to write the exception back to the "
+"Python interpreter's global state."
+msgstr ""
+
+#: src/exception.md:47
+msgid "\"Error\""
+msgstr ""
+
+#: src/exception.md:53
+msgid ""
+"If you already have a Python exception instance, you can simply call "
+"[`PyErr::from_instance()`](https://docs.rs/pyo3/0.7.0/pyo3/struct.PyErr."
+"html#method.from_instance)."
+msgstr ""
+
+#: src/exception.md:59
+msgid ""
+"If a Rust type exists for the exception, then it is possible to use the "
+"`new` method. For example, each standard exception defined in the `pyo3::"
+"exceptions` module has a corresponding Rust type, exceptions defined by "
+"`create_exception!` and `import_exception!` macro have Rust types as well."
+msgstr ""
+
+#: src/exception.md:70
+msgid "\"argument is wrong\""
+msgstr ""
+
+#: src/exception.md:77
+msgid "Check exception type"
+msgstr ""
+
+#: src/exception.md:79
+msgid ""
+"Python has an [`isinstance`](https://docs.python.org/3/library/functions."
+"html#isinstance) method to check an object's type, in PyO3 there is a "
+"[`Python::is_instance()`](https://docs.rs/pyo3/0.7.0/pyo3/struct.Python."
+"html#method.is_instance) method which does the same thing."
+msgstr ""
+
+#: src/exception.md:96
+msgid ""
+"[`Python::is_instance()`](https://docs.rs/pyo3/0.7.0/pyo3/struct.Python."
+"html#method.is_instance) calls the underlying [`PyType::is_instance`]"
+"(https://docs.rs/pyo3/0.7.0/pyo3/types/struct.PyType.html#method."
+"is_instance) method to do the actual work."
+msgstr ""
+
+#: src/exception.md:98
+msgid "To check the type of an exception, you can simply do:"
+msgstr ""
+
+#: src/exception.md:111
+msgid "Handle Rust Errors"
+msgstr ""
+
+#: src/exception.md:113
+msgid ""
+"The vast majority of operations in this library will return [`PyResult<T>`]"
+"(https://docs.rs/pyo3/0.7.0/pyo3/prelude/type.PyResult.html). This is an "
+"alias for the type `Result<T, PyErr>`."
+msgstr ""
+
+#: src/exception.md:116
+msgid ""
+"A [`PyErr`](https://docs.rs/pyo3/0.7.0/pyo3/struct.PyErr.html) represents a "
+"Python exception. Errors within the PyO3 library are also exposed as Python "
+"exceptions."
+msgstr ""
+
+#: src/exception.md:119
+msgid ""
+"The PyO3 library handles Python exceptions in two stages. During the first "
+"stage, a `PyErr` instance is created. At this stage, holding Python's GIL is "
+"not required. During the second stage, an actual Python exception instance "
+"is created and set active in the Python interpreter."
+msgstr ""
+
+#: src/exception.md:123
+msgid ""
+"In simple cases, for custom errors adding an implementation of `std::"
+"convert::From<T>` trait for this custom error is enough. `PyErr::new` "
+"accepts an argument in the form of `ToPyObject + 'static`. If the `'static` "
+"constraint can not be satisfied or more complex arguments are required, the "
+"[`PyErrArguments`](https://docs.rs/pyo3/0.7.0/pyo3/trait.PyErrArguments."
+"html) trait can be implemented. In that case, actual exception argument "
+"creation is delayed until a `Python` object is available."
+msgstr ""
+
+#: src/exception.md:142
+msgid "\"127.0.0.1:80\""
+msgstr ""
+
+#: src/exception.md:147
+msgid ""
+"The code snippet above will raise an `OSError` in Python if `TcpListener::"
+"bind()` returns an error."
+msgstr ""
+
+#: src/exception.md:149
+msgid ""
+"The `std::convert::From<T>` trait is implemented for most of the Rust "
+"standard library's error types so the `try!` macro or the `?` operator can "
+"be used."
+msgstr ""
+
+#: src/exception.md:160
+msgid ""
+"The code snippet above will raise a `ValueError` in Python if `String::"
+"parse()` returns an error."
+msgstr ""
+
+#: src/exception.md:163
+msgid "Using exceptions defined in python code"
+msgstr ""
+
+#: src/exception.md:165
+msgid ""
+"It is possible to use an exception defined in Python code as a native Rust "
+"type. The `import_exception!` macro allows importing a specific exception "
+"class and defines a zero-sized Rust type for that exception."
+msgstr ""
+
+#: src/exception.md:181
+msgid "\"tell\""
+msgstr ""
+
+#: src/exception.md:182
+msgid "\"not supported: tell\""
+msgstr ""
+
+#: src/exception.md:189
+msgid ""
+"[`pyo3::exceptions`](https://docs.rs/pyo3/0.7.0/pyo3/exceptions/index.html) "
+"defines exceptions for several standard library modules."
+msgstr ""
