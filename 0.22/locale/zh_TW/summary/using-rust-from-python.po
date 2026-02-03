@@ -19,13 +19,15 @@ msgstr "從 Python 使用 Rust"
 msgid ""
 "This chapter of the guide is dedicated to explaining how to wrap Rust code "
 "into Python objects."
-msgstr ""
+msgstr "本章專門說明如何將 Rust 程式碼封裝成 Python 物件。"
 
 #: src/rust-from-python.md:5
 msgid ""
 "PyO3 uses Rust's \"procedural macros\" to provide a powerful yet simple API "
 "to denote what Rust code should map into Python objects."
 msgstr ""
+"PyO3 使用 Rust 的「程序巨集」提供強大而簡單的 API，用來標示哪些 Rust 程式碼要"
+"對應為 Python 物件。"
 
 #: src/rust-from-python.md:7
 msgid "The three types of Python objects which PyO3 can produce are:"
@@ -33,11 +35,11 @@ msgstr ""
 
 #: src/rust-from-python.md:9
 msgid "Python modules, via the `#[pymodule]` macro"
-msgstr ""
+msgstr "Python 模組，透過 `#[pymodule]` 巨集"
 
 #: src/rust-from-python.md:10
 msgid "Python functions, via the `#[pyfunction]` macro"
-msgstr ""
+msgstr "Python 函式，透過 `#[pyfunction]` 巨集"
 
 #: src/rust-from-python.md:11
 msgid ""

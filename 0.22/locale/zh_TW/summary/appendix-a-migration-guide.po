@@ -21,6 +21,8 @@ msgid ""
 "version to the next. For a detailed list of all changes, see the [CHANGELOG]"
 "(changelog.md)."
 msgstr ""
+"本指南可協助你跨越 PyO3 版本間的破壞性變更來升級程式碼。完整變更清單請見 "
+"[CHANGELOG](changelog.md)。"
 
 #: src/migration.md:6
 msgid "from 0.21.\\* to 0.22"
@@ -71,7 +73,7 @@ msgstr ""
 #: src/migration.md:1639 src/migration.md:1677 src/migration.md:1767
 #: src/migration.md:1794 src/migration.md:1829
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/migration.md:36 src/migration.md:79 src/migration.md:126
 #: src/migration.md:187 src/migration.md:221 src/migration.md:451

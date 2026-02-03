@@ -22,6 +22,9 @@ msgid ""
 "Discussions](https://github.com/PyO3/pyo3/discussions) and on [Discord]"
 "(https://discord.gg/33kcChzH7f)."
 msgstr ""
+"很抱歉你在使用 PyO3 時遇到問題。如果在下列清單中找不到答案，也可以到 [GitHub "
+"Discussions](https://github.com/PyO3/pyo3/discussions) 或 [Discord](https://"
+"discord.gg/33kcChzH7f) 尋求協助。"
 
 #: src/faq.md:5
 msgid "I'm experiencing deadlocks using PyO3 with lazy_static or once_cell!"
@@ -66,7 +69,7 @@ msgstr ""
 
 #: src/faq.md:14
 msgid "Deadlock."
-msgstr ""
+msgstr "死鎖。"
 
 #: src/faq.md:16
 msgid ""
@@ -159,6 +162,8 @@ msgid ""
 "(https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-"
 "tests)."
 msgstr ""
+"Rust 書籍建議[將整合測試放在 `tests/` 目錄中](https://doc.rust-lang.org/book/"
+"ch11-03-test-organization.html#integration-tests)。"
 
 #: src/faq.md:58
 msgid ""
@@ -171,7 +176,7 @@ msgstr ""
 msgid ""
 "The best solution is to make your crate types include both `rlib` and "
 "`cdylib`:"
-msgstr ""
+msgstr "最佳解法是讓 crate 型別同時包含 `rlib` 與 `cdylib`："
 
 #: src/faq.md:71
 msgid ""
@@ -193,6 +198,9 @@ msgid ""
 "flag isn't checked while Rust code called from Python is executing, only "
 "once control returns to the Python interpreter."
 msgstr ""
+"這是因為 Ctrl-C 會送出 SIGINT 訊號，呼叫端 Python 程序只會設定一個旗標以便稍"
+"後處理。當 Python 呼叫的 Rust 程式碼執行中時，不會檢查此旗標，直到控制權回到 "
+"Python 直譯器才會處理。"
 
 #: src/faq.md:81
 msgid ""
@@ -201,6 +209,8 @@ msgid ""
 "regularly if you have a long-running Rust function so that your users can "
 "cancel it."
 msgstr ""
+"你可以呼叫 `Python::check_signals` 讓 Python 直譯器有機會正確處理訊號。若你"
+"的 Rust 函式會長時間執行，建議定期呼叫此函式，讓使用者能取消。"
 
 #: src/faq.md:83
 msgid "`#[pyo3(get)]` clones my field!"
@@ -208,7 +218,7 @@ msgstr ""
 
 #: src/faq.md:85
 msgid "You may have a nested struct similar to this:"
-msgstr ""
+msgstr "你可能有如下的巢狀結構："
 
 #: src/faq.md:91 src/faq.md:130
 msgid "/* fields omitted */"
@@ -219,6 +229,8 @@ msgid ""
 "When Python code accesses `Outer`'s field, PyO3 will return a new object on "
 "every access (note that their addresses are different):"
 msgstr ""
+"當 Python 程式碼存取 `Outer` 的欄位時，PyO3 會在每次存取時回傳新的物件（注意"
+"位址不同）："
 
 #: src/faq.md:116 src/faq.md:159 src/faq.md:160
 msgid "\"a: "
@@ -241,6 +253,10 @@ msgid ""
 "objects to Python code, Python code could then keep that reference alive "
 "indefinitely. Therefore returning Rust objects requires cloning."
 msgstr ""
+"若欄位是可變的，這會特別令人困惑，因為取得欄位後再修改並不會持久化——下次存取"
+"只會拿到原始物件的新複本。不幸的是，Python 與 Rust 對所有權的理解不同——如果 "
+"PyO3 將（可能是暫時的）Rust 物件參照交給 Python，Python 可能會無限期保留該參"
+"照。因此回傳 Rust 物件需要進行複製。"
 
 #: src/faq.md:126
 msgid ""

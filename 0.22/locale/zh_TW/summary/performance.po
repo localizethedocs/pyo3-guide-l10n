@@ -19,7 +19,7 @@ msgstr "效能"
 msgid ""
 "To achieve the best possible performance, it is useful to be aware of "
 "several tricks and sharp edges concerning PyO3's API."
-msgstr ""
+msgstr "為了達到最佳效能，了解 PyO3 API 的一些技巧與陷阱很有幫助。"
 
 #: src/performance.md:5
 msgid "`extract` versus `downcast`"
@@ -32,6 +32,9 @@ msgid ""
 "types to which the requested operation is applied. This often leads to "
 "chains of calls to `extract`, e.g."
 msgstr ""
+"使用 PyO3 實作的 Python 風格 API 通常是多型的，也就是接受 `&Bound<'_, "
+"PyAny>` 並嘗試轉換為多個更具體的型別以套用指定操作。這經常導致連串的 "
+"`extract` 呼叫，例如："
 
 #: src/performance.md:29 src/performance.md:51
 msgid "\"Cannot frobnicate that type.\""
@@ -68,15 +71,15 @@ msgstr ""
 
 #: src/performance.md:60
 msgid "For example, instead of writing"
-msgstr ""
+msgstr "例如，與其寫成"
 
 #: src/performance.md:81
 msgid "use the more efficient"
-msgstr ""
+msgstr "請改用較有效率的"
 
 #: src/performance.md:92
 msgid "// Access to `&Bound<'py, PyAny>` implies access to `Python<'py>`.\n"
-msgstr ""
+msgstr "// 存取 `&Bound<'py, PyAny>` 代表可存取 `Python<'py>`。\n"
 
 #: src/performance.md:100
 msgid "Disable the global reference pool"
@@ -118,4 +121,4 @@ msgstr ""
 
 #: src/performance.md:122
 msgid "will abort if the list not explicitly disposed via"
-msgstr ""
+msgstr "若清單未明確透過下列方式處理，將會中止"
