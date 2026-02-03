@@ -20,6 +20,7 @@ msgid ""
 "This portion of the guide is dedicated to crates which are external to the "
 "main PyO3 project and provide additional functionality you might find useful."
 msgstr ""
+"本指南此部分介紹主 PyO3 專案之外的軟體箱，它們提供你可能覺得有用的額外功能。"
 
 #: src/ecosystem.md:5
 msgid ""

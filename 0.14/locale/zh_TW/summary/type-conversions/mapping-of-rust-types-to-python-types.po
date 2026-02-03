@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/conversions/tables.md:1
 msgid "Mapping of Rust types to Python types"
-msgstr ""
+msgstr "Rust 型別對應到 Python 型別"
 
 #: src/conversions/tables.md:3
 msgid ""
@@ -26,7 +26,7 @@ msgstr ""
 msgid ""
 "Consult the tables in the following section to find the Rust types provided "
 "by PyO3 which implement these traits."
-msgstr ""
+msgstr "請參考下一節的表格，找出 PyO3 提供且實作這些特徵的 Rust 型別。"
 
 #: src/conversions/tables.md:7
 msgid "Argument Types"
@@ -38,12 +38,14 @@ msgid ""
 "library types or PyO3's Python-native types. (See the next section for "
 "discussion on when to use each.)"
 msgstr ""
+"接受函式引數時，可以使用 Rust 函式庫型別或 PyO3 的 Python 原生型別。（何時使"
+"用哪種型別，請見下一節。）"
 
 #: src/conversions/tables.md:11
 msgid ""
 "The table below contains the Python type and the corresponding function "
 "argument types that will accept them:"
-msgstr ""
+msgstr "下表列出 Python 型別及其對應可接受的函式引數型別："
 
 #: src/conversions/tables.md:13
 msgid "Python"
@@ -55,7 +57,7 @@ msgstr ""
 
 #: src/conversions/tables.md:13
 msgid "Rust (Python-native)"
-msgstr ""
+msgstr "Rust（Python 原生）"
 
 #: src/conversions/tables.md:15
 msgid "`object`"
@@ -321,11 +323,11 @@ msgstr ""
 
 #: src/conversions/tables.md:43
 msgid "What"
-msgstr ""
+msgstr "項目"
 
 #: src/conversions/tables.md:43
 msgid "Description"
-msgstr ""
+msgstr "說明"
 
 #: src/conversions/tables.md:45
 msgid "`Python`"
@@ -368,7 +370,7 @@ msgstr ""
 
 #: src/conversions/tables.md:49
 msgid "A `#[pyclass]` borrowed immutably."
-msgstr ""
+msgstr "不可變借用的 `#[pyclass]`。"
 
 #: src/conversions/tables.md:50
 msgid "`PyRefMut<T>`"
@@ -376,17 +378,19 @@ msgstr ""
 
 #: src/conversions/tables.md:50
 msgid "A `#[pyclass]` borrowed mutably."
-msgstr ""
+msgstr "可變借用的 `#[pyclass]`。"
 
 #: src/conversions/tables.md:52
 msgid ""
 "For more detail on accepting `#[pyclass]` values as function arguments, see "
 "[the section of this guide on Python Classes](../class.md)."
 msgstr ""
+"更多關於將 `#[pyclass]` 作為函式引數的細節，請見本指南的[Python 類別章節](../"
+"class.md)。"
 
 #: src/conversions/tables.md:54
 msgid "Using Rust library types vs Python-native types"
-msgstr ""
+msgstr "使用 Rust 函式庫型別 vs Python 原生型別"
 
 #: src/conversions/tables.md:56
 msgid ""
@@ -395,22 +399,25 @@ msgid ""
 "almost zero-cost (they just require a type check similar to the Python "
 "builtin function `isinstance()`)."
 msgstr ""
+"使用 Rust 函式庫型別作為函式引數，相較於 Python 原生型別會產生轉換成本。使用 "
+"Python 原生型別幾乎是零成本（只需進行類似 Python 內建函式 `isinstance()` 的型"
+"別檢查）。"
 
 #: src/conversions/tables.md:58
 msgid ""
 "However, once that conversion cost has been paid, the Rust standard library "
 "types offer a number of benefits:"
-msgstr ""
+msgstr "不過，一旦付出轉換成本，Rust 標準函式庫型別會帶來多項好處："
 
 #: src/conversions/tables.md:59
 msgid ""
 "You can write functionality in native-speed Rust code (free of Python's "
 "runtime costs)."
-msgstr ""
+msgstr "你可以用原生速度的 Rust 程式碼實作功能（不受 Python 執行期成本影響）。"
 
 #: src/conversions/tables.md:60
 msgid "You get better interoperability with the rest of the Rust ecosystem."
-msgstr ""
+msgstr "可與 Rust 生態系的其他元件有更好的互通性。"
 
 #: src/conversions/tables.md:61
 msgid ""
@@ -425,6 +432,9 @@ msgid ""
 "Python-native equivalent, `&PyList`, would accept a Python `list` containing "
 "Python objects of any type."
 msgstr ""
+"你也會受益於更嚴格的型別檢查。例如指定 `Vec<i32>`，只會接受包含整數的 Python "
+"`list`。相對的 Python 原生等價型別 `&PyList` 會接受包含任何型別 Python 物件"
+"的 `list`。"
 
 #: src/conversions/tables.md:64
 msgid ""
@@ -432,10 +442,12 @@ msgid ""
 "benefits. As always, if you're not sure it's worth it in your case, "
 "benchmark it!"
 msgstr ""
+"對於多數 PyO3 使用情境，付出轉換成本以換取上述好處是值得的。一如往常，若不確"
+"定是否值得，請進行基準測試！"
 
 #: src/conversions/tables.md:66
 msgid "Returning Rust values to Python"
-msgstr ""
+msgstr "將 Rust 值回傳給 Python"
 
 #: src/conversions/tables.md:68
 msgid ""
@@ -458,20 +470,22 @@ msgid ""
 "E>` where `E` implements `From<E> for PyErr`. This will raise a `Python` "
 "exception if the `Err` variant is returned."
 msgstr ""
+"若函式可能失敗，應回傳 `PyResult<T>` 或 `Result<T, E>`，其中 `E` 需實作 "
+"`From<E> for PyErr`。若回傳 `Err` 變體，將拋出 `Python` 例外。"
 
 #: src/conversions/tables.md:74
 msgid ""
 "Finally, the following Rust types are also able to convert to Python as "
 "return values:"
-msgstr ""
+msgstr "最後，以下 Rust 型別也可作為回傳值轉換為 Python："
 
 #: src/conversions/tables.md:76
 msgid "Rust type"
-msgstr ""
+msgstr "Rust 型別"
 
 #: src/conversions/tables.md:76
 msgid "Resulting Python Type"
-msgstr ""
+msgstr "對應的 Python 型別"
 
 #: src/conversions/tables.md:78
 msgid "`String`"
@@ -540,12 +554,12 @@ msgstr "`PyRefMut<T: PyClass>`"
 
 #: src/conversions/tables.md:94
 msgid "Requires the `num-complex` optional feature."
-msgstr ""
+msgstr "需要 `num-complex` 選用功能。"
 
 #: src/conversions/tables.md:96
 msgid "Requires the `hashbrown` optional feature."
-msgstr ""
+msgstr "需要 `hashbrown` 選用功能。"
 
 #: src/conversions/tables.md:98
 msgid "Requires the `indexmap` optional feature."
-msgstr ""
+msgstr "需要 `indexmap` 選用功能。"

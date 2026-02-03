@@ -21,12 +21,14 @@ msgid ""
 "(https://docs.rs/pyo3). It contains examples and documentation to explain "
 "all of PyO3's use cases in detail."
 msgstr ""
+"歡迎閱讀 PyO3 使用者指南！本書是 [PyO3 API 文件](https://docs.rs/pyo3) 的輔助"
+"說明，包含範例與文件，詳細解釋 PyO3 的各種使用情境。"
 
 #: src/index.md:5
 msgid ""
 "Please choose from the chapters on the left to jump to individual topics, or "
 "continue below to start with PyO3's README."
-msgstr ""
+msgstr "請從左側章節選擇主題，或繼續往下閱讀 PyO3 的 README。"
 
 #: src/index.md:7
 msgid "PyO3"
@@ -67,7 +69,7 @@ msgstr ""
 
 #: src/index.md:23
 msgid "Usage"
-msgstr ""
+msgstr "使用方式"
 
 #: src/index.md:25
 msgid "PyO3 supports the following software versions:"
@@ -86,6 +88,8 @@ msgid ""
 "You can use PyO3 to write a native Python module in Rust, or to embed Python "
 "in a Rust binary. The following sections explain each of these in turn."
 msgstr ""
+"你可以使用 PyO3 以 Rust 撰寫原生 Python 模組，或在 Rust 二進位程式中嵌入 "
+"Python。以下各節將依序說明。"
 
 #: src/index.md:31
 msgid "Using Rust from Python"
@@ -143,7 +147,7 @@ msgstr ""
 
 #: src/index.md:63
 msgid "/// Formats the sum of two numbers as string.\n"
-msgstr ""
+msgstr "/// 將兩個數字的總和格式化為字串。\n"
 
 #: src/index.md:69
 msgid ""
@@ -167,7 +171,7 @@ msgstr ""
 
 #: src/index.md:93
 msgid "# lots of progress output as maturin runs the compilation...\n"
-msgstr ""
+msgstr "# maturin 執行編譯時會輸出大量進度訊息...\n"
 
 #: src/index.md:97
 msgid "'25'"
@@ -192,16 +196,19 @@ msgid ""
 "to ensure this (for Ubuntu), and then give some example code which runs an "
 "embedded Python interpreter."
 msgstr ""
+"若要在 Rust 二進位程式中嵌入 Python，你需要確保 Python 安裝包含共享函式庫。以"
+"下步驟示範如何在 Ubuntu 上完成此設定，並提供一段執行嵌入式 Python 直譯器的範"
+"例程式碼。"
 
 #: src/index.md:107
 msgid "To install the Python shared library on Ubuntu:"
-msgstr ""
+msgstr "在 Ubuntu 上安裝 Python 共享函式庫："
 
 #: src/index.md:113
 msgid ""
 "Start a new project with `cargo new` and add  `pyo3` to the `Cargo.toml` "
 "like this:"
-msgstr ""
+msgstr "使用 `cargo new` 建立新專案，並在 `Cargo.toml` 中加入 `pyo3`："
 
 #: src/index.md:115
 msgid ""
@@ -216,7 +223,7 @@ msgstr ""
 msgid ""
 "Example program displaying the value of `sys.version` and the current user "
 "name:"
-msgstr ""
+msgstr "顯示 `sys.version` 與目前使用者名稱的範例程式："
 
 #: src/index.md:129
 msgid "\"sys\""
@@ -259,6 +266,8 @@ msgid ""
 "[setuptools-rust](https://github.com/PyO3/setuptools-rust) _Setuptools "
 "plugin for Rust support_."
 msgstr ""
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust) _為 Rust 提供支援"
+"的 Setuptools 外掛_。"
 
 #: src/index.md:149
 msgid ""
@@ -272,24 +281,31 @@ msgid ""
 "[rust-numpy](https://github.com/PyO3/rust-numpy) _Rust binding of NumPy C-"
 "API_"
 msgstr ""
+"[rust-numpy](https://github.com/PyO3/rust-numpy) _NumPy C-API 的 Rust 綁定_"
 
 #: src/index.md:151
 msgid ""
 "[dict-derive](https://github.com/gperinazzo/dict-derive) _Derive "
 "FromPyObject to automatically transform Python dicts into Rust structs_"
 msgstr ""
+"[dict-derive](https://github.com/gperinazzo/dict-derive) _Derive "
+"FromPyObject 以自動將 Python dict 轉為 Rust struct_"
 
 #: src/index.md:152
 msgid ""
 "[pyo3-log](https://github.com/vorner/pyo3-log) _Bridge from Rust to Python "
 "logging_"
 msgstr ""
+"[pyo3-log](https://github.com/vorner/pyo3-log) _將 Rust 連接到 Python 日誌系"
+"統的橋接_"
 
 #: src/index.md:153
 msgid ""
 "[pythonize](https://github.com/davidhewitt/pythonize) _Serde serializer for "
 "converting Rust objects to JSON-compatible Python objects_"
 msgstr ""
+"[pythonize](https://github.com/davidhewitt/pythonize) _用於將 Rust 物件轉成相"
+"容 JSON 的 Python 物件的 Serde 序列化工具_"
 
 #: src/index.md:154
 msgid ""
@@ -314,6 +330,9 @@ msgid ""
 "[kuchiki](https://github.com/kuchiki-rs/kuchiki) to speed up html parsing "
 "and css-selecting._"
 msgstr ""
+"[html-py-ever](https://github.com/PyO3/setuptools-rust/tree/main/examples/"
+"html-py-ever) _透過 [kuchiki](https://github.com/kuchiki-rs/kuchiki) 使用 "
+"[html5ever](https://github.com/servo/html5ever) 加速 HTML 解析與 CSS 選取_"
 
 #: src/index.md:160
 msgid ""
@@ -417,13 +436,13 @@ msgstr ""
 
 #: src/index.md:178
 msgid "Contributing"
-msgstr ""
+msgstr "參與貢獻"
 
 #: src/index.md:180
 msgid ""
 "Everyone is welcomed to contribute to PyO3! There are many ways to support "
 "the project, such as:"
-msgstr ""
+msgstr "歡迎大家參與 PyO3！你可以用許多方式支持專案，例如："
 
 #: src/index.md:182
 msgid "help PyO3 users with issues on Github and Gitter"
@@ -431,15 +450,15 @@ msgstr ""
 
 #: src/index.md:183
 msgid "improve documentation"
-msgstr ""
+msgstr "改善文件"
 
 #: src/index.md:184
 msgid "write features and bugfixes"
-msgstr ""
+msgstr "撰寫功能與修復錯誤"
 
 #: src/index.md:185
 msgid "publish blogs and examples of how to use PyO3"
-msgstr ""
+msgstr "發表如何使用 PyO3 的部落格與範例"
 
 #: src/index.md:187
 msgid ""
