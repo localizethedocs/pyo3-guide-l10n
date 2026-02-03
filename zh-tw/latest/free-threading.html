@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang="zh_TW" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>支援自由執行緒的 Python - PyO3 user guide</title>
+
+
+        <!-- Custom HTML head -->
+        <script type="text/javascript" src="ltd-provenance.js"></script>
+        <script type="text/javascript" src="ltd-current.js"></script>
+        <script type="text/javascript" src="../../ltd-config.js"></script>
+        <script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+        <meta name="description" content="PyO3 user guide">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs-52f01167.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b333650e.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-14353cc4.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">PyO3 user guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/PyO3/pyo3/tree/main/guide" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/PyO3/pyo3/edit/main/guide/src/free-threading.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="支援自由執行緒的-cpython"><a class="header" href="#支援自由執行緒的-cpython">支援自由執行緒的 CPython</a></h1>
+<p>CPython 3.14 宣告支援不依賴<a href="https://docs.python.org/3/glossary.html#term-global-interpreter-lock">全域直譯器鎖</a>（通常稱為 GIL）來提供執行緒安全的「自由執行緒」建置。自 0.23 版起，PyO3 支援為自由執行緒的 Python 建置 Rust 擴充，並可從 Rust 呼叫自由執行緒的 Python。</p>
+<p>若想了解自由執行緒 Python 的更多背景，可參考 3.13 版更新說明中<a href="https://docs.python.org/3/whatsnew/3.13.html#whatsnew313-free-threaded-cpython">What’s New</a> 的條目（首次以實驗模式加入「自由執行緒」建置）、CPython 文件中的<a href="https://docs.python.org/3/howto/free-threading-extensions.html#freethreading-extensions-howto">自由執行緒 HOWTO 指南</a>、社群維護的自由執行緒指南中的<a href="https://py-free-threading.github.io/porting-extensions/">擴充移植指南</a>，以及提供 CPython 自由執行緒實作技術背景的 <a href="https://peps.python.org/pep-0703/">PEP 703</a>。</p>
+<p>在啟用 GIL 的建置中（在「自由執行緒」建置出現之前的唯一選擇），全域直譯器鎖會序列化對 Python 執行環境的存取。因此，依據<a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">阿姆達爾定律</a>，GIL 是多執行緒 Python 工作流程平行擴展的根本限制，因為任何只在單一執行內容中進行的平行處理，都不可能藉由平行化而加速。</p>
+<p>自由執行緒建置移除了多執行緒 Python 擴展上的限制，意味著使用 Python 的 <a href="https://docs.python.org/3/library/threading.html"><code>threading</code></a> 模組更容易達成平行化。若你曾為了某些 Python 程式碼的平行加速而使用 <a href="https://docs.python.org/3/library/multiprocessing.html"><code>multiprocessing</code></a>，自由執行緒很可能讓相同工作流程改以 Python 執行緒達成。</p>
+<p>PyO3 對自由執行緒 Python 的支援，將能撰寫天生就具備執行緒安全的原生 Python 擴充，並提供比 C 擴充更強的安全保證。我們的目標是以 Rust 的 <a href="https://doc.rust-lang.org/nomicon/send-and-sync.html"><code>Send</code> 與 <code>Sync</code></a> 特徵為基礎，在原生 Python 執行環境中實現<a href="https://doc.rust-lang.org/book/ch16-00-concurrency.html">無畏並行</a>。</p>
+<p>本文提供將使用 PyO3 的 Rust 程式碼移植至自由執行緒 Python 的建議。</p>
+<h2 id="使用-pyo3-支援自由執行緒-python"><a class="header" href="#使用-pyo3-支援自由執行緒-python">使用 PyO3 支援自由執行緒 Python</a></h2>
+<p>自 PyO3 0.28 起，PyO3 預設假設以它建立的 Python 模組是執行緒安全的。除非某些 Rust 程式碼使用 <code>unsafe</code> 錯誤地假設執行緒安全，否則應該成立。典型例子是曾基於歷史假設（Python 因 GIL 而是單執行緒）所撰寫的 <code>unsafe</code> 程式碼，並假定 PyO3 使用的 <code>Python&lt;'py&gt;</code> token 可保證執行緒安全。模組可在完成 <code>unsafe</code> 程式碼正確性稽核前，透過 <code>#[pymodule(gil_used = true)]</code> 宣告選擇不支援自由執行緒 Python（見下文）。</p>
+<p>較複雜的 <code>#[pyclass]</code> 型別可能需要直接處理執行緒安全；指南中有<a href="./class/thread-safety.html">專門章節</a>討論此議題。</p>
+<p>在較低層級，為模組加註會將擴充所定義模組的 <code>Py_MOD_GIL</code> slot 設為 <code>Py_MOD_GIL_NOT_USED</code>，讓直譯器在執行期得知擴充作者認為該擴充具備執行緒安全性。</p>
+<p>若選擇不支援自由執行緒 Python，Python 直譯器會在匯入你的模組時於執行期重新啟用 GIL，並輸出含有觸發此行為之模組名稱的 <code>RuntimeWarning</code>。你可以設定環境變數 <code>PYTHON_GIL=0</code> 或在啟動 Python 時傳入 <code>-Xgil=0</code> 強制 GIL 維持關閉（<code>0</code> 代表關閉 GIL）。</p>
+<p>如果你確定 <code>PyModule</code> 中暴露的所有資料結構都是執行緒安全的，請在宣告模組的 <code>pymodule</code> 程序巨集中傳入 <code>gil_used = false</code>，或在 <code>PyModule</code> 實例上呼叫 <code>PyModule::gil_used</code>。例如：</p>
+<h3 id="選擇支援範例"><a class="header" href="#選擇支援範例">選擇支援範例</a></h3>
+<p>（注意：在 PyO3 0.23 至 0.27 版中，預設為 <code>gil_used = true</code>，因此必須反向設定；模組需要以 <code>gil_used = false</code> 選擇支援自由執行緒 Python。）</p>
+<pre><code class="language-rust no_run">/// 此模組依賴 GIL 以確保執行緒安全
+#[pyo3::pymodule(gil_used = true)]
+mod my_extension {
+    use pyo3::prelude::*;
+
+    // 此型別不是執行緒安全
+    #[pyclass]
+    struct MyNotThreadSafeType {
+        // 插入非執行緒安全的程式碼
+    }
+}</code></pre>
+<p>或是針對未使用 <code>pymodule</code> 巨集設定的模組：</p>
+<pre><code class="language-rust no_run">use pyo3::prelude::*;
+
+<span class="boring">#[allow(dead_code)]
+</span>fn register_child_module(parent_module: &amp;Bound&lt;'_, PyModule&gt;) -&gt; PyResult&lt;()&gt; {
+    let child_module = PyModule::new(parent_module.py(), "child_module")?;
+    child_module.gil_used(true)?;
+    parent_module.add_submodule(&amp;child_module)
+}
+</code></pre>
+<p>關於如何使用原始 FFI 呼叫為採用單階段初始化的模組宣告自由執行緒支援，請參考 <a href="https://github.com/PyO3/pyo3/tree/main/pyo3-ffi/examples/string-sum"><code>string-sum</code></a> 範例；採用多階段初始化的模組則可參考 <a href="https://github.com/PyO3/pyo3/tree/main/pyo3-ffi/examples/sequential"><code>sequential</code></a> 範例。</p>
+<p>若你想透過條件編譯在自由執行緒建置下觸發不同的程式路徑，可在設定軟體箱以產生必要的建置設定資料後，使用 <code>Py_GIL_DISABLED</code> 屬性。關於支援多個 Python 版本（含自由執行緒建置）的詳細內容，請參考<a href="./building-and-distribution/multiple-python-versions.html">指南章節</a>。</p>
+<h2 id="自由執行緒建置的特別注意事項"><a class="header" href="#自由執行緒建置的特別注意事項">自由執行緒建置的特別注意事項</a></h2>
+<p>自由執行緒直譯器沒有 GIL。許多既有擴充提供可變資料結構時仰賴 GIL 來鎖住 Python 物件，使內部可變性具備執行緒安全。</p>
+<p>只有在作業系統執行緒明確附加到直譯器執行環境時，呼叫 CPython C API 才是合法的。在啟用 GIL 的建置中，這會在取得 GIL 時發生。自由執行緒建置中沒有 GIL，但在啟用 GIL 的建置裡負責釋放或取得 GIL 的同一組 C 巨集，會改為要求直譯器將該執行緒附加到 Python 執行環境，且可能同時附加多個執行緒。更多關於執行緒如何附加/分離直譯器執行環境（類似於在啟用 GIL 建置中釋放或取得 GIL）的背景，請參考 <a href="https://peps.python.org/pep-0703/#thread-states">PEP 703</a>。</p>
+<p>在啟用 GIL 的建置中，PyO3 使用 <a href="https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html"><code>Python&lt;'py&gt;</code></a> 型別與 <code>'py</code> 生命週期來表示已持有全域直譯器鎖。在自由執行緒建置中，持有 <code>'py</code> 生命週期僅代表該執行緒目前已附加到 Python 直譯器——其他執行緒仍可同時與直譯器互動。</p>
+<h3 id="附加到執行環境"><a class="header" href="#附加到執行環境">附加到執行環境</a></h3>
+<p>你仍需要取得 <code>'py</code> 生命週期才能與 Python 物件互動或呼叫 CPython C API。若尚未附加到 Python 執行環境，可使用 <a href="https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.attach"><code>Python::attach</code></a> 註冊執行緒。由 Python 的 <a href="https://docs.python.org/3/library/threading.html"><code>threading</code></a> 模組建立的執行緒不需要這麼做，當 CPython 呼叫你的擴充時，pyo3 會負責設定 <a href="https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html"><code>Python&lt;'py&gt;</code></a> token。</p>
+<h3 id="分離以避免卡住與死結"><a class="header" href="#分離以避免卡住與死結">分離以避免卡住與死結</a></h3>
+<p>自由執行緒建置在以下情況會觸發全域同步事件：</p>
+<ul>
+<li>垃圾回收時，為取得參考計數與物件間參考的一致全域視圖</li>
+<li>在 Python 3.13 中，啟動第一個背景執行緒時用以將部分物件標記為不朽</li>
+<li>呼叫 <code>sys.settrace</code> 或 <code>sys.setprofile</code> 以對執行中的程式碼物件與執行緒進行追蹤時</li>
+<li>呼叫 <code>os.fork()</code> 時，為確保整個行程的一致狀態</li>
+</ul>
+<p>以上並非完整清單，未來的 Python 版本可能還會有其他觸發全域同步事件的情況。</p>
+<p>這表示你應在與啟用 GIL 建置相同的情境下，使用 <a href="https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach"><code>Python::detach</code></a> 從直譯器執行環境分離：當進行不需要 CPython 執行環境的長時間工作，或進行任何需要重新附加執行環境的工作時（請見<a href="parallelism.html#sharing-python-objects-between-rust-threads">指南章節</a>）。在前者情況，等待長時間工作完成的執行緒會卡住；在後者情況，當執行環境觸發全域同步事件後，執行緒嘗試附加時會發生死結，因為啟動該執行緒的執行緒阻止同步事件完成。</p>
+<h3 id="多執行緒存取可變-pyclass-實例時的例外與恐慌"><a class="header" href="#多執行緒存取可變-pyclass-實例時的例外與恐慌">多執行緒存取可變 <code>pyclass</code> 實例時的例外與恐慌</a></h3>
+<p>附加在 <code>pyclass</code> 實例上的資料會透過類似 <code>RefCell</code> 的執行期借用檢查來防止並發存取。如同 <code>RefCell</code>，PyO3 會拋出例外（或在某些情況下 panic）以強制對可變借用的獨占存取。過去在 PyO3 中就可能產生這類 panic，例如在使用 <a href="https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach"><code>Python::detach</code></a> 釋放 GIL 的程式碼裡，或從 <code>&amp;mut self</code> 呼叫接收 <code>&amp;self</code> 的 Python 方法（見<a href="./class.html#bound-and-interior-mutability">內部可變性文件</a>），但在自由執行緒 Python 中，因為沒有 GIL 來鎖住來自 Python 的可變借用資料的並發存取，觸發這些 panic 的機會更多。</p>
+<p>最直接觸發此問題的方式，是使用 Python 的 <a href="https://docs.python.org/3/library/threading.html"><code>threading</code></a> 模組，在多個執行緒中同時呼叫會可變借用 <a href="https://pyo3.rs/main/doc/pyo3/attr.pyclass.html"><code>pyclass</code></a> 的 Rust 函式。例如，考慮以下實作：</p>
+<pre><code class="language-rust no_run"><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+#[derive(Default)]
+struct ThreadIter {
+    count: usize,
+}
+
+#[pymethods]
+impl ThreadIter {
+    #[new]
+    pub fn new() -&gt; Self {
+        Default::default()
+    }
+
+    fn __next__(&amp;mut self, py: Python&lt;'_&gt;) -&gt; usize {
+        self.count += 1;
+        self.count
+    }
+}</code></pre>
+<p>接著如果在 Python 中這樣做：</p>
+<pre><code class="language-python">import concurrent.futures
+from my_module import ThreadIter
+
+i = ThreadIter()
+
+def increment():
+    next(i)
+
+with concurrent.futures.ThreadPoolExecutor(max_workers=16) as tpe:
+    futures = [tpe.submit(increment) for _ in range(100)]
+    [f.result() for f in futures]
+</code></pre>
+<p>會看到以下例外：</p>
+<pre><code class="language-text">Traceback (most recent call last)
+  File "example.py", line 5, in &lt;module&gt;
+    next(i)
+RuntimeError: Already borrowed
+</code></pre>
+<p>未來版本的 PyO3 可能會允許為可變 pyclass 定義提供可由使用者選擇的語意，必要時可選擇性啟用鎖定以模擬 GIL。目前你應明確加入鎖定，可能透過條件編譯或臨界區 API，以避免與 GIL 造成死結。</p>
+<h3 id="無法使用-limited-api-建置擴充"><a class="header" href="#無法使用-limited-api-建置擴充">無法使用 limited API 建置擴充</a></h3>
+<p>自由執行緒建置使用全新的 ABI，目前尚無與自由執行緒 ABI 對應的 limited API。這表示若你的軟體箱依賴 PyO3 並使用 <code>abi3</code> 功能或 <code>abi3-pyxx</code> 功能，PyO3 在使用自由執行緒直譯器建置擴充時會輸出警告並忽略該設定。</p>
+<p>這表示若你的軟體包利用 limited API 提供的 ABI 向前相容性，只在每次發行時上傳一個 wheel，你就需要更新發佈流程，另外上傳針對自由執行緒版本的特定 wheel。</p>
+<p>更多關於支援多個 Python 版本（含自由執行緒建置）的細節，請參考<a href="./building-and-distribution/multiple-python-versions.html">指南章節</a>。</p>
+<h3 id="執行緒安全的單次初始化"><a class="header" href="#執行緒安全的單次初始化">執行緒安全的單次初始化</a></h3>
+<p>若要只初始化一次資料，請使用 <a href="https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html"><code>PyOnceLock</code></a> 型別，它與 <a href="https://doc.rust-lang.org/stable/std/sync/struct.OnceLock.html"><code>std::sync::OnceLock</code></a> 類似，且在執行緒等待其他執行緒完成初始化時會從 Python 直譯器分離，以避免死結。若已使用 <a href="https://doc.rust-lang.org/stable/std/sync/struct.OnceLock.html"><code>OnceLock</code></a>，且不便改用 <a href="https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html"><code>PyOnceLock</code></a>，可使用 <a href="https://pyo3.rs/main/doc/pyo3/sync/trait.OnceLockExt.html"><code>OnceLockExt</code></a> 擴充特徵，其新增 <a href="https://pyo3.rs/main/doc/pyo3/sync/trait.OnceLockExt.html#tymethod.get_or_init_py_attached"><code>OnceLockExt::get_or_init_py_attached</code></a> 方法，在阻塞時以與 <a href="https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html"><code>PyOnceLock</code></a> 相同方式從直譯器分離。以下為使用 <a href="https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html"><code>PyOnceLock</code></a> 單次初始化持有 <code>Py&lt;PyDict&gt;</code> 之執行期快取的範例：</p>
+<pre><code class="language-rust"><span class="boring">use pyo3::prelude::*;
+</span>use pyo3::sync::PyOnceLock;
+use pyo3::types::PyDict;
+
+let cache: PyOnceLock&lt;Py&lt;PyDict&gt;&gt; = PyOnceLock::new();
+
+Python::attach(|py| {
+    // 保證只會被呼叫一次
+    cache.get_or_init(py, || PyDict::new(py).unbind())
+});</code></pre>
+<p>若某函式必須恰好執行一次，可將 <a href="https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html"><code>OnceExt</code></a> 特徵引入範圍。<a href="https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html"><code>OnceExt</code></a> 特徵為 <code>std::sync::Once</code> 的 API 新增 <a href="https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html#tymethod.call_once_py_attached"><code>OnceExt::call_once_py_attached</code></a> 與 <a href="https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html#tymethod.call_once_force_py_attached"><code>OnceExt::call_once_force_py_attached</code></a> 函式，使 <a href="https://doc.rust-lang.org/stable/std/sync/struct.Once.html"><code>Once</code></a> 能在執行緒已附加到 Python 直譯器的情境中使用。這些函式類似於 <a href="https://doc.rust-lang.org/stable/std/sync/struct.Once.html#method.call_once"><code>Once::call_once</code></a> 與 <a href="https://doc.rust-lang.org/stable/std/sync/struct.Once.html#method.call_once_force"><code>Once::call_once_force</code></a>，差別在於它們除了 <code>FnOnce</code> 外還接受 <a href="https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html"><code>Python&lt;'py&gt;</code></a> token。這些函式會在阻塞前先從直譯器分離，並在執行函式前重新附加，以避免在未使用 PyO3 擴充特徵時可能發生的死結。以下是使用 <a href="https://doc.rust-lang.org/stable/std/sync/struct.Once.html"><code>Once</code></a> 而非 <a href="https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html"><code>PyOnceLock</code></a> 的相同範例：</p>
+<pre><code class="language-rust"><span class="boring">use pyo3::prelude::*;
+</span>use std::sync::Once;
+use pyo3::sync::OnceExt;
+use pyo3::types::PyDict;
+
+struct RuntimeCache {
+    once: Once,
+    cache: Option&lt;Py&lt;PyDict&gt;&gt;
+}
+
+let mut cache = RuntimeCache {
+    once: Once::new(),
+    cache: None
+};
+
+Python::attach(|py| {
+    // 保證只會被呼叫一次
+    cache.once.call_once_py_attached(py, || {
+        cache.cache = Some(PyDict::new(py).unbind());
+    });
+});</code></pre>
+<h3 id="gilprotected-已被移除"><a class="header" href="#gilprotected-已被移除"><code>GILProtected</code> 已被移除</a></h3>
+<p><a href="https://docs.rs/pyo3/0.22/pyo3/sync/struct.GILProtected.html"><code>GILProtected</code></a> 是 PyO3 的一種型別，透過 GIL 鎖住其他執行緒的並發存取，允許對靜態資料進行可變存取。在自由執行緒 Python 中沒有 GIL，因此此型別必須改以其他鎖定方式取代。多數情況下，使用 <a href="https://doc.rust-lang.org/std/sync/atomic/"><code>std::sync::atomic</code></a> 的型別或 <a href="https://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>std::sync::Mutex</code></a> 就足夠了。</p>
+<p>之前：</p>
+<pre><code class="language-rust ignore"><span class="boring">fn main() {
+</span><span class="boring">#[cfg(not(Py_GIL_DISABLED))] {
+</span><span class="boring">use pyo3::prelude::*;
+</span>use pyo3::sync::GILProtected;
+use pyo3::types::{PyDict, PyNone};
+use std::cell::RefCell;
+
+static OBJECTS: GILProtected&lt;RefCell&lt;Vec&lt;Py&lt;PyDict&gt;&gt;&gt;&gt; =
+    GILProtected::new(RefCell::new(Vec::new()));
+
+Python::attach(|py| {
+    // 代表執行任意 Python 程式碼的範例
+    let d = PyDict::new(py);
+    d.set_item(PyNone::get(py), PyNone::get(py)).unwrap();
+    OBJECTS.get(py).borrow_mut().push(d.unbind());
+});
+<span class="boring">}}</span></code></pre>
+<p>之後（使用 <code>Mutex</code>）：</p>
+<pre><code class="language-rust"><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">fn main() {
+</span>use pyo3::types::{PyDict, PyNone};
+use std::sync::Mutex;
+
+static OBJECTS: Mutex&lt;Vec&lt;Py&lt;PyDict&gt;&gt;&gt; = Mutex::new(Vec::new());
+
+Python::attach(|py| {
+    // 代表執行任意 Python 程式碼的範例
+    let d = PyDict::new(py);
+    d.set_item(PyNone::get(py), PyNone::get(py)).unwrap();
+    // 與任何 `Mutex` 用法相同，鎖住 mutex 的時間應盡可能短
+    // 在此例中，只在把元素推入 `Vec` 時上鎖
+    OBJECTS.lock().unwrap().push(d.unbind());
+});
+<span class="boring">}</span></code></pre>
+<p>若在持有鎖的情況下執行任意 Python 程式碼，應引入 <a href="https://pyo3.rs/main/doc/pyo3/sync/trait.MutexExt.html"><code>MutexExt</code></a> 特徵並使用 <code>lock_py_attached</code> 方法取代 <code>lock</code>。這能確保由 Python 執行環境啟動的全域同步事件可以繼續，避免與直譯器產生死結。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="parallelism.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="debugging.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="parallelism.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="debugging.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs-6977231d.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

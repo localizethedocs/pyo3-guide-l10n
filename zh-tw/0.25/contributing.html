@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html lang="zh_TW" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>參與貢獻 - PyO3 user guide</title>
+
+
+        <!-- Custom HTML head -->
+        <script type="text/javascript" src="ltd-provenance.js"></script>
+        <script type="text/javascript" src="ltd-current.js"></script>
+        <script type="text/javascript" src="../../ltd-config.js"></script>
+        <script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+        <meta name="description" content="PyO3 user guide">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">PyO3 user guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/PyO3/pyo3/tree/main/guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/PyO3/pyo3/edit/main/guide/src/contributing.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="參與貢獻"><a class="header" href="#參與貢獻">參與貢獻</a></h1>
+<p>感謝你有興趣貢獻 PyO3！歡迎所有人參與——請閱讀我們的<a href="https://github.com/PyO3/pyo3/blob/main/Code-of-Conduct.md">行為準則</a>以維持社群的正向與包容。</p>
+<p>如果你正在尋找貢獻方向，請參考<a href="#getting-started-contributing">「開始參與貢獻」</a>一節。如果你已找到想處理的特定議題並需要開發流程資訊，可參考<a href="#writing-pull-requests">「撰寫 Pull Request」</a>一節。</p>
+<p>若想熟悉程式碼庫，請參考 <a href="https://github.com/PyO3/pyo3/blob/main/Architecture.md">Architecture.md</a>。</p>
+<h2 id="開始參與貢獻"><a class="header" href="#開始參與貢獻">開始參與貢獻</a></h2>
+<p>歡迎從你感興趣的 PyO3 領域加入。我們使用 GitHub issues 記錄所有錯誤與想法。若你想處理某個議題，請隨時申請指派。</p>
+<p>你可以在<a href="https://pyo3.netlify.app/internal/doc/pyo3/index.html">這裡</a>瀏覽 PyO3 非公開部分的 API。</p>
+<p>以下章節也提供一些適合開始貢獻 PyO3 的具體想法。</p>
+<h2 id="設定開發環境"><a class="header" href="#設定開發環境">設定開發環境</a></h2>
+<p>要開發 PyO3，你需要在系統中安裝 Python 與 Rust。</p>
+<ul>
+<li>我們建議使用 <a href="https://rustup.rs/">rustup</a> 以便依專案選擇特定工具鏈。</li>
+<li>也強烈建議使用 <a href="https://github.com/pyenv/pyenv">Pyenv</a> 以便選擇特定 Python 版本。</li>
+<li><a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> 也可搭配或不搭配 Pyenv 使用特定已安裝的 Python 版本。</li>
+<li><a href="https://github.com/theacodes/nox"><code>nox</code></a> 用於自動化多項 CI 任務。</li>
+</ul>
+<h3 id="協助使用者找出錯誤"><a class="header" href="#協助使用者找出錯誤">協助使用者找出錯誤</a></h3>
+<p><a href="https://discord.gg/33kcChzH7f">PyO3 Discord 伺服器</a> 非常活躍，許多使用者對 PyO3 甚至 Rust 都很新。協助他們除錯是熟悉 PyO3 程式碼庫的好方法。</p>
+<p>協助他人常會暴露錯誤、文件不足與缺漏的 API。建議立刻在 GitHub 開 issue，讓解法得以規劃並實作！</p>
+<h3 id="實作可直接開發的議題"><a class="header" href="#實作可直接開發的議題">實作可直接開發的議題</a></h3>
+<p>解法清楚且尚未有人處理的議題會使用 <a href="https://github.com/PyO3/pyo3/issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-implementer">needs-implementer</a> 標籤。</p>
+<p>若你覺得解法不夠清楚也別擔心！PyO3 核心貢獻者很樂意針對你的任何疑問提供指導，幫助你完成解法。</p>
+<h3 id="協助撰寫優質文件"><a class="header" href="#協助撰寫優質文件">協助撰寫優質文件</a></h3>
+<p>PyO3 有使用 mdbook 的使用者指南，以及一般的 Rust API 文件。我們的目標是讓兩者都詳盡、易懂且保持最新。歡迎提出拉取請求來修正錯字、調整措辭、補充範例等。</p>
+<p>目前文件有一些需要協助的特定重點領域：</p>
+<ul>
+<li>與文件改進相關的議題會以 <a href="https://github.com/PyO3/pyo3/issues?q=is%3Aissue+is%3Aopen+label%3Adocumentation">documentation</a> 標籤追蹤。</li>
+<li>並非所有 API 在建立時都有文件或範例。我們的目標是讓所有 PyO3 API 都有文件（<a href="https://github.com/PyO3/pyo3/issues/306">#306</a>）。若你看到某個 API 缺少文件，請撰寫並開啟 PR！</li>
+</ul>
+<p>若要建置文件（包含所有功能），請安裝 <a href="https://github.com/theacodes/nox"><code>nox</code></a> 並執行</p>
+<pre><code class="language-shell">nox -s docs -- open
+</code></pre>
+<h4 id="文件測試"><a class="header" href="#文件測試">文件測試</a></h4>
+<p>我們在文件中使用大量程式碼區塊。變更時請執行 <code>cargo test --doc</code> 以確認文件測試仍可正常運作，或執行 <code>cargo test</code> 來跑包含文件測試在內的所有 Rust 測試。文件測試指南請見 https://doc.rust-lang.org/rustdoc/documentation-tests.html。</p>
+<h4 id="建置指南"><a class="header" href="#建置指南">建置指南</a></h4>
+<p>你可以使用 <code>mdbook</code> 在本地建置以預覽使用者指南。</p>
+<p>首先安裝 <a href="https://rust-lang.github.io/mdBook/cli/index.html"><code>mdbook</code></a>、<a href="https://mdbook-plugins.rustforweb.org/tabs.html"><code>mdbook-tabs</code></a> 外掛，以及 <a href="https://github.com/theacodes/nox"><code>nox</code></a>。然後執行</p>
+<pre><code class="language-shell">nox -s build-guide -- --open
+</code></pre>
+<p>若要檢查指南中所有連結是否有效，請另行安裝 <a href="https://github.com/lycheeverse/lychee"><code>lychee</code></a> 並改用 <code>check-guide</code> session：</p>
+<pre><code class="language-shell">nox -s check-guide
+</code></pre>
+<h3 id="協助設計下一代-pyo3"><a class="header" href="#協助設計下一代-pyo3">協助設計下一代 PyO3</a></h3>
+<p>尚未有明確解法的議題會使用 <a href="https://github.com/PyO3/pyo3/issues?q=is%3Aissue+is%3Aopen+label%3Aneeds-design">needs-design</a> 標籤。</p>
+<p>如果這些議題有你感興趣的，請加入該議題的討論！所有意見都很重要；若你還願意透過草稿 PR 嘗試 API 設計，那就更好了！</p>
+<h3 id="審查拉取請求"><a class="header" href="#審查拉取請求">審查拉取請求</a></h3>
+<p>歡迎所有人對開放中的 PR 提出意見。請協助確保新的 PyO3 API 安全、效能良好、整潔且易用！</p>
+<h2 id="撰寫拉取請求"><a class="header" href="#撰寫拉取請求">撰寫拉取請求</a></h2>
+<p>以下是撰寫 PR 時需要注意的幾點。</p>
+<h3 id="測試與持續整合"><a class="header" href="#測試與持續整合">測試與持續整合</a></h3>
+<p>The PyO3 repo uses GitHub Actions. PRs are blocked from merging if CI is not successful. Formatting, linting and tests are checked for all Rust and Python code. In addition, all warnings in Rust code are disallowed (using <code>RUSTFLAGS="-D warnings"</code>).</p>
+<p>測試會在最新穩定版 Rust 編譯器與所有支援的 Python 版本上執行，並以最低支援的 Rust 版本測試 Python 3.9。</p>
+<p>如果你新增了功能，請將其加入 <em>Cargo.toml</em>* 中的 <code>full</code> 功能集合，以便在 CI 中進行測試。</p>
+<p>You can run these checks yourself with <code>nox</code>. Use  <code>nox -l</code> to list the full set of subcommands you can run.</p>
+<h4 id="linting-python-code"><a class="header" href="#linting-python-code">Linting Python code</a></h4>
+<p><code>nox -s ruff</code></p>
+<h4 id="linting-rust-code"><a class="header" href="#linting-rust-code">Linting Rust code</a></h4>
+<p><code>nox -s rustfmt</code></p>
+<h4 id="semver-checks"><a class="header" href="#semver-checks">Semver checks</a></h4>
+<p><code>cargo semver-checks check-release</code></p>
+<h4 id="clippy"><a class="header" href="#clippy">Clippy</a></h4>
+<p><code>nox -s clippy-all</code></p>
+<h4 id="tests"><a class="header" href="#tests">Tests</a></h4>
+<p><code>nox -s test</code> or <code>cargo test</code> for Rust tests only, <code>nox -f pytests/noxfile.py -s test</code> for Python tests only</p>
+<h4 id="check-all-conditional-compilation"><a class="header" href="#check-all-conditional-compilation">Check all conditional compilation</a></h4>
+<p><code>nox -s check-feature-powerset</code></p>
+<h4 id="ui-測試"><a class="header" href="#ui-測試">UI 測試</a></h4>
+<p>PyO3 使用 <a href="https://github.com/dtolnay/trybuild"><code>trybuild</code></a> 來開發 UI 測試，以擷取某些巨集功能的 Rust 編譯器錯誤訊息。</p>
+<p>由於這些 UI 測試有多種 feature 組合，當你要全部更新（例如因新版 Rust 編譯器）時，使用 <code>update-ui-tests</code> nox session 會很有幫助：</p>
+<pre><code class="language-bash">nox -s update-ui-tests
+</code></pre>
+<h3 id="變更文件化"><a class="header" href="#變更文件化">變更文件化</a></h3>
+<p>我們使用 <a href="https://towncrier.readthedocs.io/en/stable/index.html">towncrier</a> 為每次發行生成變更日誌。</p>
+<p>要將你的變更納入發行說明，請在 <code>newsfragments</code> 目錄中建立一個或多個新聞項目。有效的新聞項目應儲存為 <code>&lt;PR&gt;.&lt;CATEGORY&gt;.md</code>，其中 <code>&lt;PR&gt;</code> 為拉取請求編號，<code>&lt;CATEGORY&gt;</code> 為下列其中之一：</p>
+<ul>
+<li><code>packaging</code> - 用於相依性變更與 Python／Rust 版本相容性變更</li>
+<li><code>added</code> - 用於新增功能</li>
+<li><code>changed</code> - 用於既有功能的修改或棄用</li>
+<li><code>removed</code> - 用於移除的功能</li>
+<li><code>fixed</code> - 用於被歸類為錯誤修復的「變更」功能</li>
+</ul>
+<p>僅文件的 PR 不需要新聞項目；將 PR 標題以 <code>docs:</code> 開頭即可略過檢查。</p>
+<h3 id="風格指南"><a class="header" href="#風格指南">風格指南</a></h3>
+<h4 id="泛型程式碼"><a class="header" href="#泛型程式碼">泛型程式碼</a></h4>
+<p>PyO3 有許多泛型 API 以提升易用性，但代價可能是泛型程式碼膨脹。在合理的情況下，請嘗試實作泛型函式的具體子部分。這有兩種形式：</p>
+<ul>
+<li>若該具體子部分無法被其他函式重用，請命名為 <code>inner</code> 並保留為函式內部的區域項。</li>
+<li>若該具體子部分會被其他函式重用，建議命名為 <code>_foo</code>，並將其放在原泛型函式 <code>foo</code> 的下方。</li>
+</ul>
+<h4 id="ffi-呼叫"><a class="header" href="#ffi-呼叫">FFI 呼叫</a></h4>
+<p>PyO3 使用原始指標對 Python 的 C API 進行大量 FFI 呼叫。能避免時請避免在運算式中使用指向暫時值的指標：</p>
+<pre><code class="language-rust">// 危險
+pyo3::ffi::Something(name.to_object(py).as_ptr());
+
+// 因為以下重構會造成 use-after-free 錯誤：
+let name = name.to_object(py).as_ptr();
+pyo3::ffi::Something(name)</code></pre>
+<p>改用先綁定安全擁有的 <code>PyObject</code> 包裝，再傳給 ffi 函式：</p>
+<pre><code class="language-rust">let name: PyObject = name.to_object(py);
+pyo3::ffi::Something(name.as_ptr())
+// name 在離開作用域後會自動釋放</code></pre>
+<h2 id="python-與-rust-版本支援政策"><a class="header" href="#python-與-rust-版本支援政策">Python 與 Rust 版本支援政策</a></h2>
+<p>PyO3 旨在維持足夠的相容性，讓以 PyO3 建置的 Python 擴充能在多數常見軟體包管理系統中可行。</p>
+<p>為了讓軟體包維護者的工作更簡單，PyO3 會盡可能承諾僅在同一時間調整最低支援的 Rust 與 Python 版本。此升級僅會出現在 <code>0.x</code> 版本，約每年一次，並在最舊支援的 Python 版本到達生命週期終點後進行。（可參考 https://endoflife.date/python 了解時間表。）</p>
+<p>以下為各語言的相容性指引，所有 PR 都應遵循。</p>
+<h3 id="python"><a class="header" href="#python">Python</a></h3>
+<p>PyO3 支援所有官方支援的 Python 版本，以及最新的 PyPy3 版本。這些版本都會在 CI 中測試。</p>
+<h4 id="新增對新-cpython-版本的支援"><a class="header" href="#新增對新-cpython-版本的支援">新增對新 CPython 版本的支援</a></h4>
+<p>如果你打算新增對 CPython 預發行版本的支援，以下是（非完整）檢查清單：</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Wait until the last alpha release (usually alpha7), since ABI is not guranteed until the first beta release</li>
+<li><input disabled="" type="checkbox"/>
+Add prelease_ver-dev (e.g. <code>3.14-dev</code>) to <code>‎.github/workflows/ci.yml</code>, and bump version in <code>noxfile.py</code>, <code>pyo3-ffi/Cargo.toml</code> under <code>max-version</code> within  <code>[package.metadata.cpython]</code>, and <code>max</code> within <code>pyo3-ffi/build.rs</code></li>
+<li><input disabled="" type="checkbox"/>
+為該版本新增 abi3-prerelease 功能（例如 <code>abi3-py314</code>）
+<ul>
+<li>在 <code>pyo3-build-config/Cargo.toml</code> 中，將 abi3-most_current_stable 設為 ["abi3-prerelease"]，並將 abi3-prerelease 設為 ["abi3"]</li>
+<li>在 <code>pyo3-ffi/Cargo.toml</code> 中，將 abi3-most_current_stable 設為 ["abi3-prerelease", "pyo3-build-config/abi3-most_current_stable"]，並將 abi3-prerelease 設為 ["abi3", "pyo3-build-config/abi3-prerelease"]</li>
+<li>在 <code>Cargo.toml</code> 中，將 abi3-most_current_stable 設為 ["abi3-prerelease", "pyo3-ffi/abi3-most_current_stable"]，並將 abi3-prerelease 設為 ["abi3", "pyo3-ffi/abi3-prerelease"]</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"/>
+使用 <code>#[cfg(Py_prerelease])</code>（例如 <code>#[cfg(Py_3_14)]</code>）與 <code>#[cfg(not(Py_prerelease]))</code> 來標示 CPython 穩定分支與預發行版之間的變更</li>
+<li><input disabled="" type="checkbox"/>
+不要為 CPython 標頭中任何以 <code>_</code> 開頭的函式、結構或全域變數新增 Rust 綁定</li>
+<li><input disabled="" type="checkbox"/>
+如需協助請聯絡 @ngoldbaum 與 @davidhewitt</li>
+</ul>
+<h3 id="rust"><a class="header" href="#rust">Rust</a></h3>
+<p>PyO3 旨在使用最新的 Rust 語言功能，以盡可能提高實作效率。</p>
+<p>最低支援的 Rust 版本會在提升 Python 與 Rust 版本的發行時決定。當時設定的最低 Rust 版本不會高於當前 Debian、RHEL 與 Alpine Linux 發行版隨附的最低 Rust 版本。</p>
+<p>CI 會測試最新穩定版 Rust 與最低支援 Rust 版本。由於 Rust 的穩定性保證，這足以確認中間所有版本的支援。</p>
+<h2 id="效能基準測試"><a class="header" href="#效能基準測試">效能基準測試</a></h2>
+<p>PyO3 有兩組效能基準測試用於評估部分效能面向。目前測試套件還很小——若你願意協助擴充，歡迎新增基準測試並開 PR！</p>
+<p>首先，在 <code>pyo3-benches</code> 子目錄中有以 Rust 為基礎的基準測試。你可以透過以下方式執行：</p>
+<pre><code>nox -s bench
+</code></pre>
+<p>其次，<code>pytests</code> 子目錄中包含一個以 Python 為基礎的基準測試。更多資訊請見<a href="https://github.com/PyO3/pyo3/tree/main/pytests">此處</a>。</p>
+<h2 id="程式碼覆蓋率"><a class="header" href="#程式碼覆蓋率">程式碼覆蓋率</a></h2>
+<p>你可以檢視 PyO3 測試涵蓋與未涵蓋的程式碼。我們目標是 100% 覆蓋率——如果你發現覆蓋不足，請檢查覆蓋率並補上測試！</p>
+<ul>
+<li>首先，請確保已安裝 llvm-cov cargo 外掛。在與 <code>nox</code> 搭配使用前，你可能需要先透過 cargo 執行外掛一次。</li>
+</ul>
+<pre><code class="language-shell">cargo install cargo-llvm-cov
+cargo llvm-cov
+</code></pre>
+<ul>
+<li>接著用以下方式產生 <code>lcov.info</code> 檔案</li>
+</ul>
+<pre><code class="language-shell">nox -s coverage -- lcov
+</code></pre>
+<p>你可以安裝 IDE 外掛來檢視覆蓋率。例如使用 VSCode：</p>
+<ul>
+<li>安裝 <a href="https://marketplace.visualstudio.com/items?itemName=ryanluker.vscode-coverage-gutters">coverage-gutters</a> 外掛。</li>
+<li>在 VSCode 的 <code>settings.json</code> 加入以下設定：</li>
+</ul>
+<pre><code class="language-json">{
+    "coverage-gutters.coverageFileNames": [
+        "lcov.info",
+        "cov.xml",
+        "coverage.xml",
+    ],
+    "coverage-gutters.showLineCoverage": true
+}
+</code></pre>
+<ul>
+<li>你現在應該可以看到綠色高亮代表已測試的程式碼，紅色高亮代表未測試的程式碼。</li>
+</ul>
+<h2 id="贊助此專案"><a class="header" href="#贊助此專案">贊助此專案</a></h2>
+<p>目前沒有代表 PyO3 接受贊助的官方組織。若你想為 PyO3 生態系提供較大規模的資金支持，請透過 <a href="https://github.com/PyO3/pyo3/issues/new">GitHub</a> 或 <a href="https://discord.gg/33kcChzH7f">Discord</a> 與我們聯絡，我們可進一步討論。</p>
+<p>此外，我們部分維護者有個人的 GitHub 贊助頁面，若你願意支持將非常感謝：</p>
+<ul>
+<li><a href="https://github.com/sponsors/davidhewitt">davidhewitt</a></li>
+<li><a href="https://github.com/sponsors/messense">messense</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="changelog.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="changelog.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

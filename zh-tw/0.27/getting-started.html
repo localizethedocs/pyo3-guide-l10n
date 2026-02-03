@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html lang="zh_TW" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>開始使用 - PyO3 user guide</title>
+
+
+        <!-- Custom HTML head -->
+        <script type="text/javascript" src="ltd-provenance.js"></script>
+        <script type="text/javascript" src="ltd-current.js"></script>
+        <script type="text/javascript" src="../../ltd-config.js"></script>
+        <script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+        <meta name="description" content="PyO3 user guide">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">PyO3 user guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/PyO3/pyo3/tree/main/guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/PyO3/pyo3/edit/main/guide/src/getting-started.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="安裝"><a class="header" href="#安裝">安裝</a></h1>
+<p>要開始使用 PyO3，你需要三樣東西：Rust 工具鏈、Python 環境，以及建置方式。下面將逐一說明。</p>
+<blockquote>
+<p>If you'd like to chat to the PyO3 maintainers and other PyO3 users, consider joining the <a href="https://discord.gg/33kcChzH7f">PyO3 Discord server</a>. We're keen to hear about your experience getting started, so we can make PyO3 as accessible as possible for everyone!</p>
+</blockquote>
+<h2 id="rust"><a class="header" href="#rust">Rust</a></h2>
+<p>First, make sure you have Rust installed on your system. If you haven't already done so, try following the instructions <a href="https://www.rust-lang.org/tools/install">here</a>. PyO3 runs on both the <code>stable</code> and <code>nightly</code> versions so you can choose whichever one fits you best. The minimum required Rust version is 1.74.</p>
+<p>如果你能執行 <code>rustc --version</code> 並且版本足夠新，就可以開始了！</p>
+<h2 id="python"><a class="header" href="#python">Python</a></h2>
+<p>要使用 PyO3，至少需要 Python 3.7。雖然可直接使用系統預設的 Python 直譯器，但建議使用虛擬環境。</p>
+<h2 id="虛擬環境"><a class="header" href="#虛擬環境">虛擬環境</a></h2>
+<p>雖然你可以使用任何 virtualenv 管理工具，但若要開發或測試多個 Python 版本，我們特別建議使用 <code>pyenv</code>，本書範例亦採用它。<code>pyenv</code> 的安裝指引請見<a href="https://github.com/pyenv/pyenv#a-getting-pyenv">此處</a>。（注意：若要使用 <code>pyenv activate</code> 與 <code>pyenv virtualenv</code> 命令，還需要安裝 <a href="https://github.com/pyenv/pyenv-virtualenv"><code>pyenv-virtualenv</code></a> 外掛。<a href="https://github.com/pyenv/pyenv-installer#installation--update--uninstallation">pyenv installer</a> 會一併安裝兩者。）</p>
+<p>使用 <code>pyenv</code> 安裝時保留來源檔可能對日後除錯有幫助，可在 <code>pyenv install</code> 命令中加入 <code>--keep</code> 旗標。</p>
+<p>例如：</p>
+<pre><code class="language-bash">pyenv install 3.12 --keep
+</code></pre>
+<h3 id="建置"><a class="header" href="#建置">建置</a></h3>
+<p>建置與 Python 軟體包管理系統有多種選擇，例如 <a href="https://github.com/PyO3/setuptools-rust"><code>setuptools-rust</code></a> 或<a href="./building-and-distribution.html#manual-builds">手動</a>建置。我們建議使用 <code>maturin</code>，可在<a href="https://maturin.rs/installation.html">此處</a>安裝。它專為 PyO3 開發，提供最「開箱即用」的體驗，特別適合要發佈到 PyPI 的情境。<code>maturin</code> 本身只是 Python 軟體包，因此可用你慣用的方式安裝 Python 軟體包。</p>
+<p>系統 Python：</p>
+<pre><code class="language-bash">pip install maturin --user
+</code></pre>
+<p>pipx：</p>
+<pre><code class="language-bash">pipx install maturin
+</code></pre>
+<p>pyenv：</p>
+<pre><code class="language-bash">pyenv activate pyo3
+pip install maturin
+</code></pre>
+<p>poetry：</p>
+<pre><code class="language-bash">poetry add -G dev maturin
+</code></pre>
+<p>安裝完成後，可執行 <code>maturin --version</code> 以確認是否安裝成功。</p>
+<h2 id="開始新專案"><a class="header" href="#開始新專案">開始新專案</a></h2>
+<p>首先建立要放置新專案的資料夾與虛擬環境。此處將使用推薦的 <code>pyenv</code>：</p>
+<pre><code class="language-bash">mkdir pyo3-example
+cd pyo3-example
+pyenv virtualenv pyo3
+pyenv local pyo3
+</code></pre>
+<p>接著安裝建置工具。這個例子使用 <code>maturin</code>。啟用 virtualenv 後，將 <code>maturin</code> 安裝進去：</p>
+<pre><code class="language-bash">pip install maturin
+</code></pre>
+<p>現在可以初始化新專案：</p>
+<pre><code class="language-bash">maturin init
+</code></pre>
+<p>如果已安裝 <code>maturin</code>，也可直接用它建立新專案：</p>
+<pre><code class="language-bash">maturin new -b pyo3 pyo3-example
+cd pyo3-example
+pyenv virtualenv pyo3
+pyenv local pyo3
+</code></pre>
+<h2 id="加入既有專案"><a class="header" href="#加入既有專案">加入既有專案</a></h2>
+<p>可惜目前 <code>maturin</code> 無法在既有專案中執行，因此若要在既有專案中使用 Python，基本上有兩個選擇：</p>
+<ol>
+<li>如上建立新專案並將既有程式碼移入</li>
+<li>依需求手動編輯專案設定</li>
+</ol>
+<p>若選擇第二種作法，請注意以下事項：</p>
+<h2 id="cargotoml"><a class="header" href="#cargotoml">Cargo.toml</a></h2>
+<p>請確保你要讓 Python 存取的 Rust 軟體箱是以函式庫形式編譯。你也可以同時輸出二進位檔，但要讓 Python 存取的程式碼必須在函式庫部分。此外，請確保軟體箱型別為 <code>cdylib</code>，並依下列方式加入 PyO3 相依性：</p>
+<pre><code class="language-toml"># If you already have [package] information in `Cargo.toml`, you can ignore
+# this section!
+[package]
+# `name` here is name of the package.
+name = "pyo3_start"
+# these are good defaults:
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+# The name of the native library. This is the name which will be used in Python to import the
+# library (i.e. `import string_sum`). If you change this, you must also change the name of the
+# `#[pymodule]` in `src/lib.rs`.
+name = "pyo3_example"
+
+# "cdylib" is necessary to produce a shared library for Python to import from.
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { {{#PYO3_CRATE_VERSION}}, features = ["extension-module"] }
+</code></pre>
+<h2 id="pyprojecttoml"><a class="header" href="#pyprojecttoml">pyproject.toml</a></h2>
+<p>你也應建立一個 <code>pyproject.toml</code>，內容如下：</p>
+<pre><code class="language-toml">[build-system]
+requires = ["maturin&gt;=1,&lt;2"]
+build-backend = "maturin"
+
+[project]
+name = "pyo3_example"
+requires-python = "&gt;=3.7"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+</code></pre>
+<h2 id="執行程式碼"><a class="header" href="#執行程式碼">執行程式碼</a></h2>
+<p>接著可依下列方式設定讓 Python 可使用 Rust 程式碼；例如將程式碼放在 <code>src/lib.rs</code>：</p>
+<pre><code class="language-rust no_run">/// 以 Rust 實作的 Python 模組。此函式名稱必須
+/// 與 `Cargo.toml` 中的 `lib.name` 設定一致，
+/// 否則 Python 將無法匯入該模組。
+#[pyo3::pymodule]
+mod pyo3_example {
+    use pyo3::prelude::*;
+
+    /// 將兩個數字的總和格式化為字串。
+    #[pyfunction]
+    fn sum_as_string(a: usize, b: usize) -&gt; PyResult&lt;String&gt; {
+        Ok((a + b).to_string())
+    }
+}</code></pre>
+<p>現在可以執行 <code>maturin develop</code> 準備 Python 軟體包，之後可如下使用：</p>
+<pre><code class="language-bash">$ maturin develop
+# maturin 執行編譯時會輸出大量進度訊息...
+$ python
+&gt;&gt;&gt; import pyo3_example
+&gt;&gt;&gt; pyo3_example.sum_as_string(5, 20)
+'25'
+</code></pre>
+<p>更多關於如何從 Rust 使用 Python 程式碼的說明，請見 <a href="python-from-rust.html">Python from Rust</a>。</p>
+<h2 id="maturin-匯入掛鉤"><a class="header" href="#maturin-匯入掛鉤">Maturin 匯入掛鉤</a></h2>
+<p>In development, any changes in the code would require running <code>maturin develop</code> before testing. To streamline the development process, you may want to install <a href="https://github.com/PyO3/maturin-import-hook">Maturin Import Hook</a> which will run <code>maturin develop</code> automatically when the library with code changes is being imported.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="rust-from-python.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="rust-from-python.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
