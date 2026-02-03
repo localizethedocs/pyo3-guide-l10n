@@ -1,0 +1,93 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:56Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/logging.md:1
+msgid "Logging"
+msgstr ""
+
+#: src/logging.md:3
+msgid ""
+"It is desirable if both the Python and Rust parts of the application end up "
+"logging using the same configuration into the same place."
+msgstr ""
+
+#: src/logging.md:6
+msgid ""
+"This section of the guide briefly discusses how to connect the two "
+"languages' logging ecosystems together. The recommended way for Python "
+"extension modules is to configure Rust's logger to send log messages to "
+"Python using the `pyo3-log` crate. For users who want to do the opposite and "
+"send Python log messages to Rust, see the note at the end of this guide."
+msgstr ""
+
+#: src/logging.md:12
+msgid "Using `pyo3-log` to send Rust log messages to Python"
+msgstr ""
+
+#: src/logging.md:14
+msgid ""
+"The [pyo3-log](https://crates.io/crates/pyo3-log) crate allows sending the "
+"messages from the Rust side to Python's [logging](https://docs.python.org/3/"
+"library/logging.html) system. This is mostly suitable for writing native "
+"extensions for Python programs."
+msgstr ""
+
+#: src/logging.md:18
+msgid ""
+"Use [`pyo3_log::init`](https://docs.rs/pyo3-log/*/pyo3_log/fn.init.html) to "
+"install the logger in its default configuration. It's also possible to tweak "
+"its configuration (mostly to tune its performance)."
+msgstr ""
+
+#: src/logging.md:28
+msgid ""
+"// This will use the logger installed in `my_module` to send the `info`\n"
+"    // message to the Python logging facilities.\n"
+msgstr ""
+
+#: src/logging.md:30
+msgid "\"Something!\""
+msgstr ""
+
+#: src/logging.md:35
+msgid "// A good place to install the Rust -> Python logger.\n"
+msgstr ""
+
+#: src/logging.md:43
+msgid ""
+"Then it is up to the Python side to actually output the messages somewhere."
+msgstr ""
+
+#: src/logging.md:49
+msgid ""
+"'%(levelname)s %(name)s %(asctime)-15s %(filename)s:%(lineno)d %(message)s'"
+msgstr ""
+
+#: src/logging.md:55
+msgid ""
+"It is important to initialize the Python loggers first, before calling any "
+"Rust functions that may log. This limitation can be worked around if it is "
+"not possible to satisfy, read the documentation about [caching](https://docs."
+"rs/pyo3-log/*/pyo3_log/#performance-filtering-and-caching)."
+msgstr ""
+
+#: src/logging.md:59
+msgid "The Python to Rust direction"
+msgstr ""
+
+#: src/logging.md:61
+msgid ""
+"To best of our knowledge nobody implemented the reverse direction yet, "
+"though it should be possible. If interested, the `pyo3` community would be "
+"happy to provide guidance."
+msgstr ""

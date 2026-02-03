@@ -1,0 +1,394 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:56Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/index.md:1
+msgid "The PyO3 user guide"
+msgstr "PyO3 使用者指南"
+
+#: src/index.md:3
+msgid ""
+"Welcome to the PyO3 user guide! This book is a companion to [PyO3's API docs]"
+"(https://docs.rs/pyo3). It contains examples and documentation to explain "
+"all of PyO3's use cases in detail."
+msgstr ""
+"歡迎閱讀 PyO3 使用者指南！本書是 [PyO3 API 文件](https://docs.rs/pyo3) 的輔助"
+"說明，包含範例與文件，詳細解釋 PyO3 的各種使用情境。"
+
+#: src/index.md:5
+msgid ""
+"Please choose from the chapters on the left to jump to individual topics, or "
+"continue below to start with PyO3's README."
+msgstr "請從左側章節選擇主題，或繼續往下閱讀 PyO3 的 README。"
+
+#: src/index.md:7
+msgid "PyO3"
+msgstr ""
+
+#: src/index.md:9
+msgid ""
+"[![Actions Status](https://github.com/PyO3/pyo3/workflows/Test/badge.svg)]"
+"(https://github.com/PyO3/pyo3/actions) [![codecov](https://codecov.io/gh/"
+"PyO3/pyo3/branch/master/graph/badge.svg)](https://codecov.io/gh/PyO3/pyo3) [!"
+"[crates.io](http://meritbadge.herokuapp.com/pyo3)](https://crates.io/crates/"
+"pyo3) [![minimum rustc 1.39](https://img.shields.io/badge/rustc-1.39+-blue."
+"svg)](https://rust-lang.github.io/rfcs/2495-min-rust-version.html) [![Join "
+"the dev chat](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://"
+"gitter.im/PyO3/Lobby)"
+msgstr ""
+
+#: src/index.md:15
+msgid ""
+"[Rust](http://www.rust-lang.org/) bindings for [Python](https://www.python."
+"org/). This includes running and interacting with Python code from a Rust "
+"binary, as well as writing native Python modules."
+msgstr ""
+
+#: src/index.md:17
+msgid ""
+"User Guide: [stable](https://pyo3.rs) | [master](https://pyo3.rs/master)"
+msgstr ""
+
+#: src/index.md:19
+msgid ""
+"API Documentation: [stable](https://docs.rs/pyo3/) |  [master](https://pyo3."
+"rs/master/doc)"
+msgstr ""
+
+#: src/index.md:21
+msgid ""
+"Contributing Notes: [github](https://github.com/PyO3/pyo3/blob/master/"
+"Contributing.md)"
+msgstr ""
+
+#: src/index.md:23
+msgid ""
+"A comparison with rust-cpython can be found [in the guide](https://pyo3.rs/"
+"master/rust_cpython.html)."
+msgstr ""
+
+#: src/index.md:25
+msgid "Usage"
+msgstr "使用方式"
+
+#: src/index.md:27
+msgid ""
+"PyO3 supports Python 3.5 and up. The minimum required Rust version is 1.39.0."
+msgstr ""
+
+#: src/index.md:29
+msgid ""
+"Building with PyPy is also possible (via cpyext) for Python 3.6, targeted "
+"PyPy version is 7.3+. Please refer to the [pypy section in the guide]"
+"(https://pyo3.rs/master/pypy.html)."
+msgstr ""
+
+#: src/index.md:32
+msgid ""
+"You can either write a native Python module in Rust, or use Python from a "
+"Rust binary."
+msgstr ""
+
+#: src/index.md:34
+msgid ""
+"However, on some OSs, you need some additional packages. E.g. if you are on "
+"_Ubuntu 18.04_, please run"
+msgstr ""
+
+#: src/index.md:40
+msgid "Using Rust from Python"
+msgstr "從 Python 使用 Rust"
+
+#: src/index.md:42
+msgid "PyO3 can be used to generate a native Python module."
+msgstr ""
+
+#: src/index.md:44
+msgid "**`Cargo.toml`**"
+msgstr "**`Cargo.toml`**"
+
+#: src/index.md:46
+msgid ""
+"```toml\n"
+"[package]\n"
+"name = \"string-sum\"\n"
+"version = \"0.1.0\"\n"
+"edition = \"2018\"\n"
+"\n"
+"[lib]\n"
+"name = \"string_sum\"\n"
+"crate-type = [\"cdylib\"]\n"
+"\n"
+"[dependencies.pyo3]\n"
+"version = \"0.12.4\"\n"
+"features = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/index.md:61
+msgid "**`src/lib.rs`**"
+msgstr ""
+
+#: src/index.md:66
+msgid "/// Formats the sum of two numbers as string.\n"
+msgstr "/// 將兩個數字的總和格式化為字串。\n"
+
+#: src/index.md:72
+msgid "/// A Python module implemented in Rust.\n"
+msgstr ""
+
+#: src/index.md:82
+msgid ""
+"On Windows and Linux, you can build normally with `cargo build --release`. "
+"On macOS, you need to set additional linker arguments. One option is to "
+"compile with `cargo rustc --release -- -C link-arg=-undefined -C link-"
+"arg=dynamic_lookup`, the other is to create a `.cargo/config` with the "
+"following content:"
+msgstr ""
+
+#: src/index.md:84
+msgid ""
+"```toml\n"
+"[target.x86_64-apple-darwin]\n"
+"rustflags = [\n"
+"  \"-C\", \"link-arg=-undefined\",\n"
+"  \"-C\", \"link-arg=dynamic_lookup\",\n"
+"]\n"
+"```"
+msgstr ""
+
+#: src/index.md:92
+msgid ""
+"While developing, you can symlink (or copy) and rename the shared library "
+"from the target folder: On MacOS, rename `libstring_sum.dylib` to "
+"`string_sum.so`, on Windows `libstring_sum.dll` to `string_sum.pyd`, and on "
+"Linux `libstring_sum.so` to `string_sum.so`. Then open a Python shell in the "
+"same folder and you'll be able to `import string_sum`."
+msgstr ""
+
+#: src/index.md:94
+msgid ""
+"Adding the `cdylib` arguments in the `Cargo.toml` files changes the way your "
+"crate is compiled. Other Rust projects using your crate will have to link "
+"against the `.so` or `.pyd` file rather than include your library directly "
+"as normal. In order to make available your crate in the usual way for Rust "
+"user, you you might want to consider using both `crate-type = [\"cdylib\", "
+"\"rlib\"]` so that Rust users can use the `rlib` (the default lib crate "
+"type). Another possibility is to create a new crate to perform the binding."
+msgstr ""
+
+#: src/index.md:99
+msgid ""
+"To build, test and publish your crate as a Python module, you can use "
+"[maturin](https://github.com/PyO3/maturin) or [setuptools-rust](https://"
+"github.com/PyO3/setuptools-rust). You can find an example for setuptools-"
+"rust in [examples/word-count](https://github.com/PyO3/pyo3/tree/master/"
+"examples/word-count), while maturin should work on your crate without any "
+"configuration."
+msgstr ""
+
+#: src/index.md:101
+msgid "Using Python from Rust"
+msgstr "從 Rust 使用 Python"
+
+#: src/index.md:103
+msgid ""
+"If you want your Rust application to create a Python interpreter internally "
+"and use it to run Python code, add `pyo3` to your `Cargo.toml` like this:"
+msgstr ""
+
+#: src/index.md:106
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.12.4\"\n"
+"```"
+msgstr ""
+
+#: src/index.md:111
+msgid ""
+"Example program displaying the value of `sys.version` and the current user "
+"name:"
+msgstr "顯示 `sys.version` 與目前使用者名稱的範例程式："
+
+#: src/index.md:120
+msgid ""
+"// We can't display Python exceptions via std::fmt::Display,\n"
+"          // so print the error here manually.\n"
+msgstr ""
+
+#: src/index.md:128
+msgid "\"sys\""
+msgstr ""
+
+#: src/index.md:129
+msgid "\"version\""
+msgstr ""
+
+#: src/index.md:130
+msgid "\"os\""
+msgstr ""
+
+#: src/index.md:131
+msgid "\"os.getenv('USER') or os.getenv('USERNAME') or 'Unknown'\""
+msgstr ""
+
+#: src/index.md:133
+msgid "\"Hello {}, I'm Python {}\""
+msgstr ""
+
+#: src/index.md:138
+msgid ""
+"Our guide has [a section](https://pyo3.rs/master/python_from_rust.html) with "
+"lots of examples about this topic."
+msgstr ""
+
+#: src/index.md:141
+msgid "Tools and libraries"
+msgstr "工具與程式庫"
+
+#: src/index.md:142
+msgid ""
+"[maturin](https://github.com/PyO3/maturin) _Zero configuration build tool "
+"for Rust-made Python extensions_."
+msgstr ""
+
+#: src/index.md:143
+msgid ""
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust) _Setuptools "
+"plugin for Rust support_."
+msgstr ""
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust) _為 Rust 提供支援"
+"的 Setuptools 外掛_。"
+
+#: src/index.md:144
+msgid ""
+"[pyo3-built](https://github.com/PyO3/pyo3-built) _Simple macro to expose "
+"metadata obtained with the [`built`](https://crates.io/crates/built) crate "
+"as a [`PyDict`](https://docs.rs/pyo3/0.12.0/pyo3/types/struct.PyDict.html)_"
+msgstr ""
+
+#: src/index.md:145
+msgid ""
+"[rust-numpy](https://github.com/PyO3/rust-numpy) _Rust binding of NumPy C-"
+"API_"
+msgstr ""
+"[rust-numpy](https://github.com/PyO3/rust-numpy) _NumPy C-API 的 Rust 綁定_"
+
+#: src/index.md:146
+msgid ""
+"[dict-derive](https://github.com/gperinazzo/dict-derive) _Derive "
+"FromPyObject to automatically transform Python dicts into Rust structs_"
+msgstr ""
+"[dict-derive](https://github.com/gperinazzo/dict-derive) _Derive "
+"FromPyObject 以自動將 Python dict 轉為 Rust struct_"
+
+#: src/index.md:147
+msgid ""
+"[pyo3-log](https://github.com/vorner/pyo3-log) _Bridge from Rust to Python "
+"logging_"
+msgstr ""
+"[pyo3-log](https://github.com/vorner/pyo3-log) _將 Rust 連接到 Python 日誌系"
+"統的橋接_"
+
+#: src/index.md:149
+msgid "Examples"
+msgstr "範例"
+
+#: src/index.md:151
+msgid ""
+"[hyperjson](https://github.com/mre/hyperjson) _A hyper-fast Python module "
+"for reading/writing JSON data using Rust's serde-json_"
+msgstr ""
+
+#: src/index.md:152
+msgid ""
+"[html-py-ever](https://github.com/PyO3/setuptools-rust/tree/master/html-py-"
+"ever) _Using [html5ever](https://github.com/servo/html5ever) through "
+"[kuchiki](https://github.com/kuchiki-rs/kuchiki) to speed up html parsing "
+"and css-selecting._"
+msgstr ""
+
+#: src/index.md:153
+msgid ""
+"[point-process](https://github.com/ManifoldFR/point-process-rust/tree/master/"
+"pylib) _High level API for pointprocesses as a Python library_"
+msgstr ""
+
+#: src/index.md:154
+msgid ""
+"[autopy](https://github.com/autopilot-rs/autopy) _A simple, cross-platform "
+"GUI automation library for Python and Rust._"
+msgstr ""
+
+#: src/index.md:155
+msgid ""
+"Contains an example of building wheels on TravisCI and appveyor using "
+"[cibuildwheel](https://github.com/joerick/cibuildwheel)"
+msgstr ""
+
+#: src/index.md:156
+msgid "[orjson](https://github.com/ijl/orjson)  _Fast Python JSON library_"
+msgstr ""
+
+#: src/index.md:157
+msgid ""
+"[inline-python](https://github.com/dronesforwork/inline-python) _Inline "
+"Python code directly in your Rust code_"
+msgstr ""
+
+#: src/index.md:158
+msgid ""
+"[Rogue-Gym](https://github.com/kngwyu/rogue-gym) _Customizable rogue-like "
+"game for AI experiments_"
+msgstr ""
+
+#: src/index.md:159
+msgid "Contains an example of building wheels on Azure Pipelines"
+msgstr ""
+
+#: src/index.md:160
+msgid ""
+"[fastuuid](https://github.com/thedrow/fastuuid/) _Python bindings to Rust's "
+"UUID library_"
+msgstr ""
+
+#: src/index.md:161
+msgid ""
+"[wasmer-python](https://github.com/wasmerio/wasmer-python) _Python library "
+"to run WebAssembly binaries_"
+msgstr ""
+
+#: src/index.md:162
+msgid ""
+"[mocpy](https://github.com/cds-astro/mocpy) _Astronomical Python library "
+"offering data structures for describing any arbitrary coverage regions on "
+"the unit sphere_"
+msgstr ""
+
+#: src/index.md:163
+msgid ""
+"[tokenizers](https://github.com/huggingface/tokenizers/tree/master/bindings/"
+"python) _Python bindings to the Hugging Face tokenizers (NLP) written in "
+"Rust_"
+msgstr ""
+
+#: src/index.md:165
+msgid "License"
+msgstr "授權條款"
+
+#: src/index.md:167
+msgid ""
+"PyO3 is licensed under the [Apache-2.0 license](http://opensource.org/"
+"licenses/APACHE-2.0). Python is licensed under the [Python License](https://"
+"docs.python.org/2/license.html)."
+msgstr ""
