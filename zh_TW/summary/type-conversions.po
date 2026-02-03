@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:22Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/conversions.md:1
+msgid "Type conversions"
+msgstr "型別轉換"
+
+#: src/conversions.md:3
+msgid ""
+"In this portion of the guide we'll talk about the mapping of Python types to "
+"Rust types offered by PyO3, as well as the traits available to perform "
+"conversions between them."
+msgstr ""
+"本節指南將介紹 PyO3 提供的 Python 型別到 Rust 型別的對應，以及用於在兩者之間"
+"進行轉換的特徵。"
+
+#: src/conversions.md:5
+msgid ""
+"See also the conversion [tables](conversions/tables.md) and [traits]"
+"(conversions/traits.md)."
+msgstr ""
+"另請參考轉換[表格](conversions/tables.md)與[特徵](conversions/traits.md)。"

@@ -1,0 +1,215 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:22Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem/tracing.md:1
+msgid "Tracing"
+msgstr "追蹤"
+
+#: src/ecosystem/tracing.md:3
+msgid ""
+"Python projects that write extension modules for performance reasons may "
+"want to tap into [Rust's `tracing` ecosystem](https://crates.io/crates/"
+"tracing) to gain insight into the performance of their extension module."
+msgstr ""
+"為了效能而撰寫擴充模組的 Python 專案，可能會想使用 [Rust 的 `tracing` 生態系]"
+"(https://crates.io/crates/tracing) 來了解擴充模組的效能表現。"
+
+#: src/ecosystem/tracing.md:7
+msgid ""
+"This section of the guide describes a few crates that provide ways to do "
+"that. They build on [`tracing_subscriber`](https://docs.rs/tracing-"
+"subscriber/*/tracing_subscriber/) and require code changes in both Python "
+"and Rust to integrate. Note that each extension module must configure its "
+"own `tracing` integration; one extension module will not see `tracing` data "
+"from a different module."
+msgstr ""
+"本節介紹幾個提供此能力的軟體箱。它們建立在 [`tracing_subscriber`](https://"
+"docs.rs/tracing-subscriber/*/tracing_subscriber/) 之上，並需要同時修改 "
+"Python 與 Rust 程式碼來整合。請注意每個擴充模組都必須設定自己的 `tracing` 整"
+"合；一個擴充模組無法看到另一個模組的 `tracing` 資料。"
+
+#: src/ecosystem/tracing.md:13
+msgid ""
+"`pyo3-tracing-subscriber` ([documentation](https://docs.rs/pyo3-tracing-"
+"subscriber))"
+msgstr ""
+"`pyo3-tracing-subscriber`（[文件](https://docs.rs/pyo3-tracing-subscriber)）"
+
+#: src/ecosystem/tracing.md:15
+msgid ""
+"[`pyo3-tracing-subscriber`](https://crates.io/crates/pyo3-tracing-"
+"subscriber) provides a way for Python projects to configure "
+"`tracing_subscriber`. It exposes a few `tracing_subscriber` layers:"
+msgstr ""
+"[`pyo3-tracing-subscriber`](https://crates.io/crates/pyo3-tracing-"
+"subscriber) 提供 Python 專案設定 `tracing_subscriber` 的方式，並暴露幾個 "
+"`tracing_subscriber` layer："
+
+#: src/ecosystem/tracing.md:18
+msgid ""
+"`tracing_subscriber::fmt` for writing human-readable output to file or stdout"
+msgstr "`tracing_subscriber::fmt`：輸出易讀格式到檔案或 stdout"
+
+#: src/ecosystem/tracing.md:19
+msgid "`opentelemetry-stdout` for writing OTLP output to file or stdout"
+msgstr "`opentelemetry-stdout`：輸出 OTLP 到檔案或 stdout"
+
+#: src/ecosystem/tracing.md:20
+msgid "`opentelemetry-otlp` for writing OTLP output to an OTLP endpoint"
+msgstr "`opentelemetry-otlp`：輸出 OTLP 到 OTLP 端點"
+
+#: src/ecosystem/tracing.md:22
+msgid ""
+"The extension module must call [`pyo3_tracing_subscriber::add_submodule`]"
+"(https://docs.rs/pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/fn."
+"add_submodule.html) to export the Python classes needed to configure and "
+"initialize `tracing`."
+msgstr ""
+"擴充模組必須呼叫 [`pyo3_tracing_subscriber::add_submodule`](https://docs.rs/"
+"pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/fn.add_submodule.html) 來導"
+"出設定與初始化 `tracing` 所需的 Python 類別。"
+
+#: src/ecosystem/tracing.md:25
+msgid ""
+"On the Python side, use the `Tracing` context manager to initialize tracing "
+"and run Rust code inside the context manager's block. `Tracing` takes a "
+"`GlobalTracingConfig` instance describing the layers to be used."
+msgstr ""
+"在 Python 端，使用 `Tracing` 內容管理器來初始化 tracing，並在其區塊內執行 "
+"Rust 程式碼。`Tracing` 需要一個描述使用哪些 layer 的 `GlobalTracingConfig` 實"
+"例。"
+
+#: src/ecosystem/tracing.md:29
+msgid ""
+"See [the README on crates.io](https://crates.io/crates/pyo3-tracing-"
+"subscriber) for example code."
+msgstr ""
+"範例程式碼請見 [crates.io 的 README](https://crates.io/crates/pyo3-tracing-"
+"subscriber)。"
+
+#: src/ecosystem/tracing.md:32
+msgid ""
+"`pyo3-python-tracing-subscriber` ([documentation](https://docs.rs/pyo3-"
+"python-tracing-subscriber))"
+msgstr ""
+"`pyo3-python-tracing-subscriber`（[文件](https://docs.rs/pyo3-python-tracing-"
+"subscriber)）"
+
+#: src/ecosystem/tracing.md:34
+msgid ""
+"The similarly-named [`pyo3-python-tracing-subscriber`](https://crates.io/"
+"crates/pyo3-python-tracing-subscriber) implements a shim in Rust that "
+"forwards `tracing` data to a `Layer` implementation defined in and passed in "
+"from Python."
+msgstr ""
+"名稱相近的 [`pyo3-python-tracing-subscriber`](https://crates.io/crates/pyo3-"
+"python-tracing-subscriber) 在 Rust 中實作一個 shim，將 `tracing` 資料轉送到"
+"由 Python 定義並傳入的 `Layer` 實作。"
+
+#: src/ecosystem/tracing.md:38
+msgid ""
+"There are many ways an extension module could integrate `pyo3-python-tracing-"
+"subscriber` but a simple one may look something like this:"
+msgstr ""
+"擴充模組可用多種方式整合 `pyo3-python-tracing-subscriber`，其中一個簡單做法可"
+"能如下："
+
+#: src/ecosystem/tracing.md:44
+msgid "// ...\n"
+msgstr ""
+
+#: src/ecosystem/tracing.md:54
+msgid ""
+"The extension module must provide some way for Python to pass in one or more "
+"Python objects that implement [the `Layer` interface](https://docs.rs/"
+"tracing-subscriber/*/tracing_subscriber/layer/trait.Layer.html). Then it "
+"should construct [`pyo3_python_tracing_subscriber::"
+"PythonCallbackLayerBridge`](https://docs.rs/pyo3-python-tracing-subscriber/*/"
+"pyo3_python_tracing_subscriber/struct.PythonCallbackLayerBridge.html) "
+"instances with each of those Python objects and initialize "
+"`tracing_subscriber` as shown above."
+msgstr ""
+"擴充模組必須提供某種方式，讓 Python 傳入一個或多個實作了 [`Layer` 介面]"
+"(https://docs.rs/tracing-subscriber/*/tracing_subscriber/layer/trait.Layer."
+"html) 的 Python 物件。接著應使用這些物件建立 "
+"[`pyo3_python_tracing_subscriber::PythonCallbackLayerBridge`](https://docs."
+"rs/pyo3-python-tracing-subscriber/*/pyo3_python_tracing_subscriber/struct."
+"PythonCallbackLayerBridge.html) 實例，並如上所示初始化 `tracing_subscriber`。"
+
+#: src/ecosystem/tracing.md:60
+msgid ""
+"The Python objects implement a modified version of the `Layer` interface:"
+msgstr "Python 物件實作的是改良版的 `Layer` 介面："
+
+#: src/ecosystem/tracing.md:61
+msgid ""
+"`on_new_span()` may return some state that will stored inside the Rust span"
+msgstr "`on_new_span()` 可回傳狀態，該狀態會儲存在 Rust span 中"
+
+#: src/ecosystem/tracing.md:62
+msgid ""
+"other callbacks will be given that state as an additional positional argument"
+msgstr "其他回呼會以額外的位置參數取得該狀態"
+
+#: src/ecosystem/tracing.md:64
+msgid "A dummy `Layer` implementation may look like this:"
+msgstr "一個假的 `Layer` 實作可能如下："
+
+#: src/ecosystem/tracing.md:72
+msgid "# `on_new_span` can return some state\n"
+msgstr "# `on_new_span` 可以回傳某些狀態\n"
+
+#: src/ecosystem/tracing.md:74
+msgid "\"[on_new_span]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:74 src/ecosystem/tracing.md:79
+#: src/ecosystem/tracing.md:82 src/ecosystem/tracing.md:85
+msgid " | "
+msgstr ""
+
+#: src/ecosystem/tracing.md:74 src/ecosystem/tracing.md:79
+#: src/ecosystem/tracing.md:82 src/ecosystem/tracing.md:85
+msgid "\""
+msgstr ""
+
+#: src/ecosystem/tracing.md:77
+msgid ""
+"# The state from `on_new_span` is passed back into other trait methods\n"
+msgstr "# 來自 `on_new_span` 的狀態會傳回其他特徵方法\n"
+
+#: src/ecosystem/tracing.md:79
+msgid "\"[on_event]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:82
+msgid "\"[on_close]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:85
+msgid "\"[on_record]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:90
+msgid "\"10th fibonacci number: \""
+msgstr ""
+
+#: src/ecosystem/tracing.md:93
+msgid ""
+"`pyo3-python-tracing-subscriber` has [working examples](https://github.com/"
+"getsentry/pyo3-python-tracing-subscriber/tree/main/demo) showing both the "
+"Rust side and the Python side of an integration."
+msgstr ""
+"`pyo3-python-tracing-subscriber` 提供[可運作的範例](https://github.com/"
+"getsentry/pyo3-python-tracing-subscriber/tree/main/demo)，展示 Rust 與 "
+"Python 端的整合方式。"

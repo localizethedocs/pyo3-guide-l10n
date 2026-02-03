@@ -1,0 +1,181 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:41:22Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/ecosystem/tracing.md:1
+msgid "Tracing"
+msgstr ""
+
+#: src/ecosystem/tracing.md:3
+msgid ""
+"Python projects that write extension modules for performance reasons may "
+"want to tap into [Rust's `tracing` ecosystem](https://crates.io/crates/"
+"tracing) to gain insight into the performance of their extension module."
+msgstr ""
+
+#: src/ecosystem/tracing.md:7
+msgid ""
+"This section of the guide describes a few crates that provide ways to do "
+"that. They build on [`tracing_subscriber`](https://docs.rs/tracing-"
+"subscriber/*/tracing_subscriber/) and require code changes in both Python "
+"and Rust to integrate. Note that each extension module must configure its "
+"own `tracing` integration; one extension module will not see `tracing` data "
+"from a different module."
+msgstr ""
+
+#: src/ecosystem/tracing.md:13
+msgid ""
+"`pyo3-tracing-subscriber` ([documentation](https://docs.rs/pyo3-tracing-"
+"subscriber))"
+msgstr ""
+
+#: src/ecosystem/tracing.md:15
+msgid ""
+"[`pyo3-tracing-subscriber`](https://crates.io/crates/pyo3-tracing-"
+"subscriber) provides a way for Python projects to configure "
+"`tracing_subscriber`. It exposes a few `tracing_subscriber` layers:"
+msgstr ""
+
+#: src/ecosystem/tracing.md:18
+msgid ""
+"`tracing_subscriber::fmt` for writing human-readable output to file or stdout"
+msgstr ""
+
+#: src/ecosystem/tracing.md:19
+msgid "`opentelemetry-stdout` for writing OTLP output to file or stdout"
+msgstr ""
+
+#: src/ecosystem/tracing.md:20
+msgid "`opentelemetry-otlp` for writing OTLP output to an OTLP endpoint"
+msgstr ""
+
+#: src/ecosystem/tracing.md:22
+msgid ""
+"The extension module must call [`pyo3_tracing_subscriber::add_submodule`]"
+"(https://docs.rs/pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/fn."
+"add_submodule.html) to export the Python classes needed to configure and "
+"initialize `tracing`."
+msgstr ""
+
+#: src/ecosystem/tracing.md:25
+msgid ""
+"On the Python side, use the `Tracing` context manager to initialize tracing "
+"and run Rust code inside the context manager's block. `Tracing` takes a "
+"`GlobalTracingConfig` instance describing the layers to be used."
+msgstr ""
+
+#: src/ecosystem/tracing.md:29
+msgid ""
+"See [the README on crates.io](https://crates.io/crates/pyo3-tracing-"
+"subscriber) for example code."
+msgstr ""
+
+#: src/ecosystem/tracing.md:32
+msgid ""
+"`pyo3-python-tracing-subscriber` ([documentation](https://docs.rs/pyo3-"
+"python-tracing-subscriber))"
+msgstr ""
+
+#: src/ecosystem/tracing.md:34
+msgid ""
+"The similarly-named [`pyo3-python-tracing-subscriber`](https://crates.io/"
+"crates/pyo3-python-tracing-subscriber) implements a shim in Rust that "
+"forwards `tracing` data to a `Layer` implementation defined in and passed in "
+"from Python."
+msgstr ""
+
+#: src/ecosystem/tracing.md:38
+msgid ""
+"There are many ways an extension module could integrate `pyo3-python-tracing-"
+"subscriber` but a simple one may look something like this:"
+msgstr ""
+
+#: src/ecosystem/tracing.md:44
+msgid "// ...\n"
+msgstr ""
+
+#: src/ecosystem/tracing.md:54
+msgid ""
+"The extension module must provide some way for Python to pass in one or more "
+"Python objects that implement [the `Layer` interface](https://docs.rs/"
+"tracing-subscriber/*/tracing_subscriber/layer/trait.Layer.html). Then it "
+"should construct [`pyo3_python_tracing_subscriber::"
+"PythonCallbackLayerBridge`](https://docs.rs/pyo3-python-tracing-subscriber/*/"
+"pyo3_python_tracing_subscriber/struct.PythonCallbackLayerBridge.html) "
+"instances with each of those Python objects and initialize "
+"`tracing_subscriber` as shown above."
+msgstr ""
+
+#: src/ecosystem/tracing.md:60
+msgid ""
+"The Python objects implement a modified version of the `Layer` interface:"
+msgstr ""
+
+#: src/ecosystem/tracing.md:61
+msgid ""
+"`on_new_span()` may return some state that will stored inside the Rust span"
+msgstr ""
+
+#: src/ecosystem/tracing.md:62
+msgid ""
+"other callbacks will be given that state as an additional positional argument"
+msgstr ""
+
+#: src/ecosystem/tracing.md:64
+msgid "A dummy `Layer` implementation may look like this:"
+msgstr ""
+
+#: src/ecosystem/tracing.md:72
+msgid "# `on_new_span` can return some state\n"
+msgstr ""
+
+#: src/ecosystem/tracing.md:74
+msgid "\"[on_new_span]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:74 src/ecosystem/tracing.md:79
+#: src/ecosystem/tracing.md:82 src/ecosystem/tracing.md:85
+msgid " | "
+msgstr ""
+
+#: src/ecosystem/tracing.md:74 src/ecosystem/tracing.md:79
+#: src/ecosystem/tracing.md:82 src/ecosystem/tracing.md:85
+msgid "\""
+msgstr ""
+
+#: src/ecosystem/tracing.md:77
+msgid ""
+"# The state from `on_new_span` is passed back into other trait methods\n"
+msgstr ""
+
+#: src/ecosystem/tracing.md:79
+msgid "\"[on_event]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:82
+msgid "\"[on_close]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:85
+msgid "\"[on_record]: "
+msgstr ""
+
+#: src/ecosystem/tracing.md:90
+msgid "\"10th fibonacci number: \""
+msgstr ""
+
+#: src/ecosystem/tracing.md:93
+msgid ""
+"`pyo3-python-tracing-subscriber` has [working examples](https://github.com/"
+"getsentry/pyo3-python-tracing-subscriber/tree/main/demo) showing both the "
+"Rust side and the Python side of an integration."
+msgstr ""
