@@ -1,0 +1,4024 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:54Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/advanced.md:1
+msgid "Advanced topics"
+msgstr "進階話題"
+
+#: src/advanced.md:3
+msgid "FFI"
+msgstr ""
+
+#: src/advanced.md:5
+msgid "PyO3 exposes much of Python's C API through the `ffi` module."
+msgstr "PyO3 透過 `ffi` 模組公開了 Python C API 的大部分內容。"
+
+#: src/advanced.md:7
+msgid ""
+"The C API is naturally unsafe and requires you to manage reference counts, "
+"errors and specific invariants yourself. Please refer to the [C API "
+"Reference Manual](https://docs.python.org/3/c-api/) and [The Rustonomicon]"
+"(https://doc.rust-lang.org/nightly/nomicon/ffi.html) before using any "
+"function from that API."
+msgstr ""
+"C API 天生不安全，必須由你自行管理引用計數、錯誤與特定不變式。在使用該 API 中"
+"的任何函式之前，請參考 [C API 參考手冊](https://docs.python.org/3/c-api/) 以"
+"及 [The Rustonomicon](https://doc.rust-lang.org/nightly/nomicon/ffi.html)。"
+
+#: src/advanced.md:9
+msgid "Memory Management"
+msgstr ""
+
+#: src/advanced.md:11
+msgid ""
+"PyO3's \"owned references\" (`&PyAny` etc.) make PyO3 more ergonomic to use "
+"by ensuring that their lifetime can never be longer than the duration the "
+"Python GIL is held. This means that most of PyO3's API can assume the GIL is "
+"held. (If PyO3 could not assume this, every PyO3 API would need to take a "
+"`Python` GIL token to prove that the GIL is held.)"
+msgstr ""
+
+#: src/advanced.md:13
+msgid ""
+"The caveat to these \"owned references\" is that Rust references do not "
+"normally convey ownership (they are always `Copy`, and cannot implement "
+"`Drop`). Whenever a PyO3 API returns an owned reference, PyO3 stores it "
+"internally, so that PyO3 can decrease the reference count just before PyO3 "
+"releases the GIL."
+msgstr ""
+
+#: src/advanced.md:15
+msgid ""
+"For most use cases this behaviour is invisible. Occasionally, however, users "
+"may need to clear memory usage sooner than PyO3 usually does. PyO3 exposes "
+"this functionality with the  the `GILPool` struct. When a `GILPool` is "
+"dropped, _**all**_ owned references created after the `GILPool` was created "
+"will be cleared."
+msgstr ""
+
+#: src/advanced.md:17
+msgid ""
+"The unsafe function `Python::new_pool` allows you to create a new `GILPool`. "
+"When doing this, you must be very careful to ensure that once the `GILPool` "
+"is dropped you do not retain access any owned references created after the "
+"`GILPool` was created."
+msgstr ""
+
+#: src/advanced.md:19
+msgid "The `nightly` feature"
+msgstr ""
+
+#: src/advanced.md:21
+msgid ""
+"The `pyo3/nightly` feature needs the nightly Rust compiler. This allows PyO3 "
+"to use Rust's unstable specialization feature to apply the following "
+"optimizations:"
+msgstr ""
+
+#: src/advanced.md:22
+msgid ""
+"`FromPyObject` for `Vec` and `[T;N]` can perform a `memcpy` when the object "
+"is a `PyBuffer`"
+msgstr ""
+
+#: src/advanced.md:23
+msgid ""
+"`ToBorrowedObject` can skip a reference count increase when the provided "
+"object is a Python native type."
+msgstr ""
+
+#: src/rust_cpython.md:1
+msgid "Appendix A: PyO3 and rust-cpython"
+msgstr ""
+
+#: src/rust_cpython.md:3
+msgid ""
+"PyO3 began as fork of [rust-cpython](https://github.com/dgrunwald/rust-"
+"cpython) when rust-cpython wasn't maintained. Over the time PyO3 has become "
+"fundamentally different from rust-cpython."
+msgstr ""
+
+#: src/rust_cpython.md:5
+msgid ""
+"This chapter is based on the discussion in [PyO3/pyo3#55](https://github.com/"
+"PyO3/pyo3/issues/55)."
+msgstr ""
+
+#: src/rust_cpython.md:7
+msgid "Macros"
+msgstr ""
+
+#: src/rust_cpython.md:9
+msgid ""
+"While rust-cpython has a `macro_rules!` based dsl for declaring modules and "
+"classes, PyO3 uses proc macros. PyO3 also doesn't change your struct and "
+"functions so you can still use them as normal Rust functions."
+msgstr ""
+
+#: src/rust_cpython.md:11 src/rust_cpython.md:55
+msgid "**rust-cpython**"
+msgstr ""
+
+#: src/rust_cpython.md:25 src/rust_cpython.md:66
+msgid "**pyo3**"
+msgstr ""
+
+#: src/rust_cpython.md:48
+msgid "Ownership and lifetimes"
+msgstr ""
+
+#: src/rust_cpython.md:50
+msgid ""
+"While in rust-cpython you always own python objects, PyO3 allows efficient "
+"_borrowed objects_ and most APIs are available with references."
+msgstr ""
+
+#: src/rust_cpython.md:53
+msgid "Here is an example of the PyList API:"
+msgstr ""
+
+#: src/rust_cpython.md:77
+msgid ""
+"In PyO3, all object references are bounded by the GIL lifetime. So the owned "
+"Python object is not required, and it is safe to have functions like `fn "
+"py<'p>(&'p self) -> Python<'p> {}`."
+msgstr ""
+
+#: src/rust_cpython.md:80
+msgid "Error handling"
+msgstr "錯誤處理"
+
+#: src/rust_cpython.md:82
+msgid ""
+"rust-cpython requires a `Python` parameter for constructing a `PyErr`, so "
+"error handling ergonomics is pretty bad. It is not possible to use `?` with "
+"Rust errors."
+msgstr ""
+
+#: src/rust_cpython.md:84
+msgid ""
+"PyO3 on other hand does not require `Python` for constructing a `PyErr`, it "
+"is only required if you want to raise an exception in Python with the "
+"`PyErr::restore()` method. Due to various `std::convert::From<E> for PyErr` "
+"implementations for Rust standard error types `E`, propagating `?` is "
+"supported automatically."
+msgstr ""
+
+#: src/migration.md:1
+msgid "Appendix B: Migrating from older PyO3 versions"
+msgstr ""
+
+#: src/migration.md:3
+msgid ""
+"This guide can help you upgrade code through breaking changes from one PyO3 "
+"version to the next. For a detailed list of all changes, see [CHANGELOG.md]"
+"(https://github.com/PyO3/pyo3/blob/master/CHANGELOG.md)"
+msgstr ""
+
+#: src/migration.md:6
+msgid "from 0.10.\\* to 0.11"
+msgstr ""
+
+#: src/migration.md:8
+msgid "Stable Rust"
+msgstr ""
+
+#: src/migration.md:9
+msgid ""
+"PyO3 now supports the stable Rust toolchain. The minimum required version is "
+"1.39.0."
+msgstr ""
+
+#: src/migration.md:11
+msgid "`#[pyclass]` structs must now be `Send` or `unsendable`"
+msgstr ""
+
+#: src/migration.md:12
+msgid ""
+"Because `#[pyclass]` structs can be sent between threads by the Python "
+"interpreter, they must implement `Send` or declared as `unsendable` (by "
+"`#[pyclass(unsendable)]`). Note that `unsendable` is added in PyO3 `0.11.1` "
+"and `Send` is always required in PyO3 `0.11.0`."
+msgstr ""
+
+#: src/migration.md:16
+msgid ""
+"This may \"break\" some code which previously was accepted, even though it "
+"could be unsound. There can be two fixes:"
+msgstr ""
+
+#: src/migration.md:19
+msgid ""
+"If you think that your `#[pyclass]` actually must be `Send`able, then let's "
+"implement `Send`. A common, safer way is using thread-safe types. E.g., "
+"`Arc` instead of `Rc`, `Mutex` instead of `RefCell`, and `Box<dyn Send + T>` "
+"instead of `Box<dyn T>`."
+msgstr ""
+
+#: src/migration.md:23 src/migration.md:57 src/migration.md:82
+#: src/migration.md:110 src/migration.md:138 src/migration.md:224
+#: src/migration.md:251 src/migration.md:286
+msgid "Before:"
+msgstr "之前："
+
+#: src/migration.md:36 src/migration.md:67 src/migration.md:92
+#: src/migration.md:120 src/migration.md:152 src/migration.md:234
+#: src/migration.md:258 src/migration.md:304
+msgid "After:"
+msgstr ""
+
+#: src/migration.md:48
+msgid ""
+"In situations where you cannot change your `#[pyclass]` to automatically "
+"implement `Send` (e.g., when it contains a raw pointer), you can use `unsafe "
+"impl Send`. In such cases, care should be taken to ensure the struct is "
+"actually thread safe. See [the Rustnomicon](https://doc.rust-lang.org/"
+"nomicon/send-and-sync.html) for more."
+msgstr ""
+
+#: src/migration.md:53
+msgid ""
+"If you think that your `#[pyclass]` should not be accessed by another "
+"thread, you can use `unsendable` flag. A class marked with `unsendable` "
+"panics when accessed by another thread, making it thread-safe to expose an "
+"unsendable object to the Python interpreter."
+msgstr ""
+
+#: src/migration.md:77
+msgid "All `PyObject` and `Py<T>` methods now take `Python` as an argument"
+msgstr ""
+
+#: src/migration.md:78
+msgid ""
+"Previously, a few methods such as `Object::get_refcnt` did not take `Python` "
+"as an argument (to ensure that the Python GIL was held by the current "
+"thread). Technically, this was not sound. To migrate, just pass a `py` "
+"argument to any calls to these methods."
+msgstr ""
+
+#: src/migration.md:102
+msgid "from 0.9.\\* to 0.10"
+msgstr ""
+
+#: src/migration.md:104
+msgid "`ObjectProtocol` is removed"
+msgstr ""
+
+#: src/migration.md:105
+msgid ""
+"All methods are moved to [`PyAny`](https://docs.rs/pyo3/latest/pyo3/types/"
+"struct.PyAny.html). And since now all native types (e.g., `PyList`) "
+"implements `Deref<Target=PyAny>`, all you need to do is remove "
+"`ObjectProtocol` from your code. Or if you use `ObjectProtocol` by `use "
+"pyo3::prelude::*`, you have to do nothing."
+msgstr ""
+
+#: src/migration.md:115 src/migration.md:123
+msgid "\"lambda: 'Hi :)'\""
+msgstr ""
+
+#: src/migration.md:128
+msgid "No `#![feature(specialization)]` in user code"
+msgstr ""
+
+#: src/migration.md:129
+msgid ""
+"While PyO3 itself still requires specialization and nightly Rust, now you "
+"don't have to use `#![feature(specialization)]` in your crate."
+msgstr ""
+
+#: src/migration.md:132
+msgid "from 0.8.\\* to 0.9"
+msgstr ""
+
+#: src/migration.md:134
+msgid "`#[new]` interface"
+msgstr ""
+
+#: src/migration.md:135
+msgid ""
+"[`PyRawObject`](https://docs.rs/pyo3/0.8.5/pyo3/type_object/struct."
+"PyRawObject.html) is now removed and our syntax for constructors has changed."
+msgstr ""
+
+#: src/migration.md:167
+msgid ""
+"Basically you can return `Self` or `Result<Self>` directly. For more, see "
+"[the constructor section](https://pyo3.rs/master/class.html#constructor) of "
+"this guide."
+msgstr ""
+
+#: src/migration.md:170
+msgid "PyCell"
+msgstr ""
+
+#: src/migration.md:171
+msgid ""
+"PyO3 0.9 introduces [`PyCell`](https://docs.rs/pyo3/latest/pyo3/pycell/"
+"struct.PyCell.html), which is a [`RefCell`](https://doc.rust-lang.org/std/"
+"cell/struct.RefCell.html)\\-like object wrapper for ensuring Rust's rules "
+"regarding aliasing of references are upheld. For more detail, see the [Rust "
+"Book's section on Rust's rules of references](https://doc.rust-lang.org/book/"
+"ch04-02-references-and-borrowing.html#the-rules-of-references)"
+msgstr ""
+
+#: src/migration.md:176
+msgid ""
+"For `#[pymethods]` or `#[pyfunction]`s, your existing code should continue "
+"to work without any change. Python exceptions will automatically be raised "
+"when your functions are used in a way which breaks Rust's rules of "
+"references."
+msgstr ""
+
+#: src/migration.md:180
+msgid "Here is an example."
+msgstr ""
+
+#: src/migration.md:202
+msgid ""
+"r\"\n"
+"# try:\n"
+"#    names.merge(names)\n"
+"#    assert False, 'Unreachable'\n"
+"# except RuntimeError as e:\n"
+"#    isinstance(e, borrow_mut_err)\n"
+"# \""
+msgstr ""
+
+#: src/migration.md:210
+msgid ""
+"`Names` has a `merge` method, which takes `&mut self` and another argument "
+"of type `&mut Self`. Given this `#[pyclass]`, calling `names.merge(names)` "
+"in Python raises a [`PyBorrowMutError`](https://docs.rs/pyo3/latest/pyo3/"
+"pycell/struct.PyBorrowMutError.html) exception, since it requires two "
+"mutable borrows of `names`."
+msgstr ""
+
+#: src/migration.md:214
+msgid ""
+"However, for `#[pyproto]` and some functions, you need to manually fix the "
+"code."
+msgstr ""
+
+#: src/migration.md:216
+msgid "Object creation"
+msgstr ""
+
+#: src/migration.md:217
+msgid ""
+"In 0.8 object creation was done with `PyRef::new` and `PyRefMut::new`. In "
+"0.9 these have both been removed. To upgrade code, please use [`PyCell::new`]"
+"(https://pyo3.rs/master/doc/pyo3/pycell/struct.PyCell.html#method.new) "
+"instead. If you need [`PyRef`](https://docs.rs/pyo3/latest/pyo3/pycell/"
+"struct.PyRef.html) or [`PyRefMut`](https://docs.rs/pyo3/latest/pyo3/pycell/"
+"struct.PyRef.html), just call `.borrow()` or `.borrow_mut()` on the newly-"
+"created `PyCell`."
+msgstr ""
+
+#: src/migration.md:245
+msgid "Object extraction"
+msgstr ""
+
+#: src/migration.md:246
+msgid ""
+"For `PyClass` types `T`, `&T` and `&mut T` no longer have [`FromPyObject`]"
+"(https://docs.rs/pyo3/latest/pyo3/conversion/trait.FromPyObject.html) "
+"implementations. Instead you should extract `PyRef<T>` or `PyRefMut<T>`, "
+"respectively. If `T` implements `Clone`, you can extract `T` itself. In "
+"addition, you can also extract `&PyCell<T>`, though you rarely need it."
+msgstr ""
+
+#: src/migration.md:267
+msgid "\"c\""
+msgstr ""
+
+#: src/migration.md:268
+msgid "\"c()\""
+msgstr ""
+
+#: src/migration.md:271
+msgid "// extracted by cloning the object\n"
+msgstr ""
+
+#: src/migration.md:274
+msgid ""
+"// we need to drop obj_ref before we can extract a PyRefMut due to Rust's "
+"rules of references\n"
+msgstr ""
+
+#: src/migration.md:280
+msgid "`#[pyproto]`"
+msgstr ""
+
+#: src/migration.md:281
+msgid ""
+"Most of the arguments to methods in `#[pyproto]` impls require a "
+"[`FromPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPyObject.html) implementation. So if your protocol methods take `&T` or "
+"`&mut T` (where `T: PyClass`), please use [`PyRef`](https://docs.rs/pyo3/"
+"latest/pyo3/pycell/struct.PyRef.html) or [`PyRefMut`](https://docs.rs/pyo3/"
+"latest/pyo3/pycell/struct.PyRef.html) instead."
+msgstr ""
+
+#: src/trait_bounds.md:1
+msgid "Using in Python a Rust function with trait bounds"
+msgstr "在 Python 中使用帶有 trait bounds 的 Rust 函式"
+
+#: src/trait_bounds.md:3
+msgid ""
+"PyO3 allows for easy conversion from Rust to Python for certain functions "
+"and classes (see the [conversion table](https://pyo3.rs/master/conversions."
+"html)). However, it is not always straightforward to convert Rust code that "
+"requires a given trait implementation as an argument."
+msgstr ""
+
+#: src/trait_bounds.md:6
+msgid ""
+"This tutorial explains how to convert a Rust function that takes a trait as "
+"argument for use in Python with classes implementing the same methods as the "
+"trait."
+msgstr ""
+"本教學說明如何將以 trait 作為參數的 Rust 函式轉換成可在 Python 中使用，並讓具"
+"備相同方法的 Python 類別能夠配合使用。"
+
+#: src/trait_bounds.md:8
+msgid "Why is this useful?"
+msgstr "為什麼這很有用？"
+
+#: src/trait_bounds.md:10
+msgid "Pros"
+msgstr "優點"
+
+#: src/trait_bounds.md:11
+msgid "Make your Rust code available to Python users"
+msgstr "讓你的 Rust 程式碼可供 Python 使用者使用"
+
+#: src/trait_bounds.md:12
+msgid "Code complex algorithms in Rust with the help of the borrow checker"
+msgstr "在 Rust 中編寫複雜演算法並受惠於借用檢查器"
+
+#: src/trait_bounds.md:14
+msgid "Cons"
+msgstr "缺點"
+
+#: src/trait_bounds.md:15
+msgid ""
+"Not as fast as native Rust (type conversion has to be performed and one part "
+"of the code runs in Python)"
+msgstr "不如原生 Rust 快（需要進行型別轉換，且部分程式碼在 Python 端執行）"
+
+#: src/trait_bounds.md:16
+msgid "You need to adapt your code to expose it"
+msgstr "你需要調整程式碼以便對外暴露"
+
+#: src/trait_bounds.md:18
+msgid "Example"
+msgstr "範例"
+
+#: src/trait_bounds.md:20
+msgid ""
+"Let's work with the following basic example of an implementation of a "
+"optimization solver operating on a given model."
+msgstr "讓我們以一個基本範例開始：一個在給定模型上運作的最佳化求解器實作。"
+
+#: src/trait_bounds.md:22
+msgid ""
+"Let's say we have a function `solve` that operates on a model and mutates "
+"its state. The argument of the function can be any model that implements the "
+"`Model` trait :"
+msgstr ""
+"假設我們有一個 `solve` 函式，會在模型上運作並改變其狀態。該函式的參數可以是任"
+"何實作 `Model` trait 的模型："
+
+#: src/trait_bounds.md:33 src/trait_bounds.md:481
+msgid "\"Magic solver that mutates the model into a resolved state\""
+msgstr ""
+
+#: src/trait_bounds.md:36
+msgid "Let's assume we have the following constraints:"
+msgstr "假設我們有以下限制："
+
+#: src/trait_bounds.md:37
+msgid "We cannot change that code as it runs on many Rust models."
+msgstr "我們不能修改該程式碼，因為它已用在許多 Rust 模型上。"
+
+#: src/trait_bounds.md:38
+msgid ""
+"We also have many Python models that cannot be solved as this solver is not "
+"available in that language. Rewriting it in Python would be cumbersome and "
+"error-prone, as everything is already available in Rust."
+msgstr ""
+
+#: src/trait_bounds.md:41
+msgid "How could we expose this solver to Python thanks to PyO3 ?"
+msgstr "那我們該如何透過 PyO3 將此求解器提供給 Python 使用？"
+
+#: src/trait_bounds.md:43
+msgid "Implementation of the trait bounds for the Python class"
+msgstr "為 Python 類別實作 trait bounds"
+
+#: src/trait_bounds.md:45
+msgid ""
+"If a Python class implements the same three methods as the `Model` trait, it "
+"seems logical it could be adapted to use the solver. However, it is not "
+"possible to pass a `PyObject` to it as it does not implement the Rust trait "
+"(even if the Python model has the required methods)."
+msgstr ""
+
+#: src/trait_bounds.md:48
+msgid ""
+"In order to implement the trait, we must write a wrapper around the calls in "
+"Rust to the Python model. The method signatures must be the same as the "
+"trait, keeping in mind that the Rust trait cannot be changed for the purpose "
+"of making the code available in Python."
+msgstr ""
+"為了實作該 trait，我們必須在 Rust 端撰寫一個包裝器來呼叫 Python 模型。方法簽"
+"章必須與 trait 相同，因為 Rust trait 不能為了讓程式碼可在 Python 使用而被修"
+"改。"
+
+#: src/trait_bounds.md:51
+msgid ""
+"The Python model we want to expose is the following one, which already "
+"contains all the required methods:"
+msgstr "以下是我們想要對外暴露的 Python 模型，已包含所有必要方法："
+
+#: src/trait_bounds.md:63
+msgid ""
+"The following wrapper will call the Python model from Rust, using a struct "
+"to hold the model as a `PyAny` object:"
+msgstr ""
+"以下包裝器會從 Rust 呼叫 Python 模型，使用結構來持有該模型的 `PyAny` 物件："
+
+#: src/trait_bounds.md:81 src/trait_bounds.md:182 src/trait_bounds.md:369
+#: src/trait_bounds.md:426
+msgid "\"Rust calling Python to set the variables\""
+msgstr ""
+
+#: src/trait_bounds.md:88 src/trait_bounds.md:189 src/trait_bounds.md:376
+#: src/trait_bounds.md:433 src/trait_bounds.md:539
+msgid "\"set_variables\""
+msgstr ""
+
+#: src/trait_bounds.md:93 src/trait_bounds.md:194
+msgid "\"Rust calling Python to get the results\""
+msgstr ""
+
+#: src/trait_bounds.md:99 src/trait_bounds.md:200 src/trait_bounds.md:363
+#: src/trait_bounds.md:417 src/trait_bounds.md:550
+msgid "\"get_results\""
+msgstr ""
+
+#: src/trait_bounds.md:106 src/trait_bounds.md:207 src/trait_bounds.md:381
+#: src/trait_bounds.md:438
+msgid "\"Rust calling Python to perform the computation\""
+msgstr ""
+
+#: src/trait_bounds.md:111 src/trait_bounds.md:212 src/trait_bounds.md:386
+#: src/trait_bounds.md:443 src/trait_bounds.md:565
+msgid "\"compute\""
+msgstr ""
+
+#: src/trait_bounds.md:117
+msgid ""
+"Now that this bit is implemented, let's expose the model wrapper to Python. "
+"Let's add the PyO3 annotations and add a constructor:"
+msgstr ""
+"上述部分完成後，讓我們將模型包裝器對外暴露給 Python。加上 PyO3 標註並新增建構"
+"子："
+
+#: src/trait_bounds.md:149
+msgid "Now we add the PyO3 annotations to the trait implementation:"
+msgstr "接著在 trait 實作上加入 PyO3 標註："
+
+#: src/trait_bounds.md:154
+msgid "// the previous trait implementation\n"
+msgstr "// 前述的 trait 實作\n"
+
+#: src/trait_bounds.md:158
+msgid ""
+"However, the previous code will not compile. The compilation error is the "
+"following one: `error: #[pymethods] cannot be used on trait impl blocks`"
+msgstr ""
+"然而，前述程式碼無法編譯。錯誤訊息如下：`error: #[pymethods] cannot be used "
+"on trait impl blocks`"
+
+#: src/trait_bounds.md:161
+msgid ""
+"That's a bummer! However, we can write a second wrapper around these "
+"functions to call them directly. This wrapper will also perform the type "
+"conversions between Python and Rust."
+msgstr ""
+"這很可惜！不過，我們可以再寫一個包裝器來直接呼叫這些函式。該包裝器也會負責在 "
+"Python 與 Rust 之間進行型別轉換。"
+
+#: src/trait_bounds.md:220 src/trait_bounds.md:510
+msgid "\"Set variables from Python calling Rust\""
+msgstr "\"從 Python 呼叫 Rust 來設定變數\""
+
+#: src/trait_bounds.md:226 src/trait_bounds.md:516
+msgid "\"Get results from Python calling Rust\""
+msgstr "\"從 Python 呼叫 Rust 取得結果\""
+
+#: src/trait_bounds.md:235
+msgid "\"Compute from Python calling Rust\""
+msgstr "\"從 Python 呼叫 Rust 執行計算\""
+
+#: src/trait_bounds.md:241
+msgid ""
+"This wrapper handles the type conversion between the PyO3 requirements and "
+"the trait. In order to meet PyO3 requirements, this wrapper must:"
+msgstr ""
+"這個包裝器會處理 PyO3 要求與 trait 之間的型別轉換。為了符合 PyO3 的要求，此包"
+"裝器必須："
+
+#: src/trait_bounds.md:243
+msgid "return an object of type `PyResult`"
+msgstr "回傳 `PyResult` 型別的物件"
+
+#: src/trait_bounds.md:244
+msgid "use only values, not references in the method signatures"
+msgstr "在方法簽章中僅使用值，而非參照"
+
+#: src/trait_bounds.md:246
+msgid "Let's run the file python file:"
+msgstr "讓我們執行這個 Python 檔案："
+
+#: src/trait_bounds.md:257
+msgid "\"__main__\""
+msgstr ""
+
+#: src/trait_bounds.md:263
+msgid "\"Print value from Python: \""
+msgstr ""
+
+#: src/trait_bounds.md:265
+msgid "\"Print value from Python through Rust: \""
+msgstr ""
+
+#: src/trait_bounds.md:266
+msgid "\"Print value directly from Python: \""
+msgstr ""
+
+#: src/trait_bounds.md:269
+msgid "This outputs:"
+msgstr ""
+
+#: src/trait_bounds.md:283
+msgid ""
+"We have now successfully exposed a Rust model that implements the `Model` "
+"trait to Python!"
+msgstr ""
+
+#: src/trait_bounds.md:285
+msgid ""
+"We will now expose the `solve` function, but before, let's talk about types "
+"errors."
+msgstr ""
+
+#: src/trait_bounds.md:287
+msgid "Type errors in Python"
+msgstr ""
+
+#: src/trait_bounds.md:289
+msgid ""
+"What happens if you have type errors when using Python and how can you "
+"improve the error messages?"
+msgstr ""
+
+#: src/trait_bounds.md:292
+msgid "Wrong types in Python function arguments"
+msgstr ""
+
+#: src/trait_bounds.md:294
+msgid ""
+"Let's assume in the first case that you will use in your Python file "
+"`my_rust_model.set_variables(2.0)` instead of `my_rust_model."
+"set_variables([2.0])`."
+msgstr ""
+
+#: src/trait_bounds.md:296
+msgid ""
+"The Rust signature expects a vector, which corresponds to a list in Python. "
+"What happens if instead of a vector, we pass a single value ?"
+msgstr ""
+
+#: src/trait_bounds.md:299
+msgid "At the execution of Python, we get :"
+msgstr ""
+
+#: src/trait_bounds.md:301
+msgid ""
+"```block\n"
+"File \"main.py\", line 15, in <module>\n"
+"   my_rust_model.set_variables(2)\n"
+"TypeError\n"
+"```"
+msgstr ""
+
+#: src/trait_bounds.md:307
+msgid ""
+"It is a type error and Python points to it, so it's easy to identify and "
+"solve."
+msgstr ""
+
+#: src/trait_bounds.md:309
+msgid "Wrong types in Python method signatures"
+msgstr ""
+
+#: src/trait_bounds.md:311
+msgid ""
+"Let's assume now that the return type of one of the methods of our Model "
+"class is wrong, for example the `get_results` method that is expected to "
+"return a `Vec<f64>` in Rust, a list in Python."
+msgstr ""
+
+#: src/trait_bounds.md:321
+msgid "#return self.results <-- this is the expected output\n"
+msgstr ""
+
+#: src/trait_bounds.md:324
+msgid "This call results in the following panic:"
+msgstr ""
+
+#: src/trait_bounds.md:330
+msgid ""
+"This error code is not helpful for a Python user that does not know anything "
+"about Rust, or someone that does not know PyO3 was used to interface the "
+"Rust code."
+msgstr ""
+
+#: src/trait_bounds.md:332
+msgid ""
+"However, as we are responsible for making the Rust code available to Python, "
+"we can do something about it."
+msgstr ""
+
+#: src/trait_bounds.md:334
+msgid ""
+"The issue is that we called `unwrap` anywhere we could, and therefore any "
+"panic from PyO3 will be directly forwarded to the end user."
+msgstr ""
+
+#: src/trait_bounds.md:336
+msgid ""
+"Let's modify the code performing the type conversion to give a helpful error "
+"message to the Python user:"
+msgstr ""
+
+#: src/trait_bounds.md:338
+msgid ""
+"We used in our `get_results` method the following call that performs the "
+"type conversion:"
+msgstr ""
+
+#: src/trait_bounds.md:357 src/trait_bounds.md:411 src/trait_bounds.md:544
+msgid "\"Get results from Rust calling Python\""
+msgstr ""
+
+#: src/trait_bounds.md:392
+msgid "Let's break it down in order to perform better error handling:"
+msgstr ""
+
+#: src/trait_bounds.md:420 src/trait_bounds.md:553
+msgid "\"list\""
+msgstr ""
+
+#: src/trait_bounds.md:421 src/trait_bounds.md:554
+msgid "\"Expected a list for the get_results() method signature, got {}\""
+msgstr ""
+
+#: src/trait_bounds.md:449
+msgid ""
+"By doing so, you catch the result of the Python computation and check its "
+"type in order to be able to deliver a better error message before performing "
+"the unwrapping."
+msgstr ""
+
+#: src/trait_bounds.md:451
+msgid ""
+"Of course, it does not cover all the possible wrong outputs: the user could "
+"return a list of strings instead of a list of floats. In this case, a "
+"runtime panic would still occur due to PyO3, but with an error message much "
+"more difficult to decipher for non-rust user."
+msgstr ""
+
+#: src/trait_bounds.md:455
+msgid ""
+"It is up to the developer exposing the rust code to decide how much effort "
+"to invest into Python type error handling and improved error messages."
+msgstr ""
+
+#: src/trait_bounds.md:457
+msgid "The final code"
+msgstr ""
+
+#: src/trait_bounds.md:459
+msgid ""
+"Now let's expose the `solve()` function to make it available from Python."
+msgstr ""
+
+#: src/trait_bounds.md:461
+msgid ""
+"It is not possible to directly expose the `solve` function to Python, as the "
+"type conversion cannot be performed. It requires an object implementing the "
+"`Model` trait as input."
+msgstr ""
+
+#: src/trait_bounds.md:464
+msgid ""
+"However, the `UserModel` already implements this trait. Because of this, we "
+"can write a function wrapper that takes the `UserModel`\\--which has already "
+"been exposed to Python--as an argument in order to call the core function "
+"`solve`."
+msgstr ""
+
+#: src/trait_bounds.md:467
+msgid "It is also required to make the struct public."
+msgstr ""
+
+#: src/trait_bounds.md:485
+msgid "\"solve\""
+msgstr ""
+
+#: src/trait_bounds.md:532
+msgid "\"Set variables from Rust calling Python\""
+msgstr ""
+
+#: src/trait_bounds.md:560
+msgid "\"Compute from Rust calling Python\""
+msgstr ""
+
+#: src/building_and_distribution.md:1
+msgid "Building and Distribution"
+msgstr ""
+
+#: src/building_and_distribution.md:3
+msgid "Python version"
+msgstr ""
+
+#: src/building_and_distribution.md:5
+msgid ""
+"PyO3 uses a build script to determine the Python version and set the correct "
+"linker arguments. By default it uses the `python3` executable. You can "
+"override the Python interpreter by setting `PYTHON_SYS_EXECUTABLE`, e.g., "
+"`PYTHON_SYS_EXECUTABLE=python3.6`."
+msgstr ""
+
+#: src/building_and_distribution.md:7
+msgid "Linking"
+msgstr ""
+
+#: src/building_and_distribution.md:9
+msgid ""
+"Different linker arguments must be set for libraries/extension modules and "
+"binaries, which includes both standalone binaries and tests. (More "
+"specifically, binaries must be told where to find libpython and libraries "
+"must not link to libpython for [manylinux](https://www.python.org/dev/peps/"
+"pep-0513/) compliance)."
+msgstr ""
+
+#: src/building_and_distribution.md:11
+msgid ""
+"Since PyO3's build script can't know whether you're building a binary or a "
+"library, you have to activate the `extension-module` feature to get the "
+"build options for a library, or it'll default to binary."
+msgstr ""
+
+#: src/building_and_distribution.md:13
+msgid ""
+"If you have e.g. a library crate and a profiling crate alongside, you need "
+"to use optional features. E.g. you put the following in the library crate:"
+msgstr ""
+
+#: src/building_and_distribution.md:15
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = \"0.6\"\n"
+"\n"
+"[lib]\n"
+"name = \"hyperjson\"\n"
+"crate-type = [\"rlib\", \"cdylib\"]\n"
+"\n"
+"[features]\n"
+"default = [\"pyo3/extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:27
+msgid "And this in the profiling crate:"
+msgstr ""
+
+#: src/building_and_distribution.md:29
+msgid ""
+"```toml\n"
+"[dependencies]\n"
+"my_main_crate = { path = \"..\", default-features = false }\n"
+"pyo3 = \"0.6\"\n"
+"```"
+msgstr ""
+
+#: src/building_and_distribution.md:35
+msgid ""
+"On Linux/macOS you might have to change `LD_LIBRARY_PATH` to include "
+"libpython, while on windows you might need to set `LIB` to include `pythonxy."
+"lib` (where x and y are major and minor version), which is normally either "
+"in the `libs` or `Lib` folder of a Python installation."
+msgstr ""
+
+#: src/building_and_distribution.md:37
+msgid "Distribution"
+msgstr ""
+
+#: src/building_and_distribution.md:39
+msgid ""
+"There are two ways to distribute your module as a Python package: the old, "
+"[setuptools-rust](https://github.com/PyO3/setuptools-rust), and the new, "
+"[maturin](https://github.com/pyo3/maturin). setuptools-rust needs some "
+"configuration files (`setup.py`, `MANIFEST.in`, `build-wheels.sh`, etc.) and "
+"external tools (docker, twine). maturin doesn't need any configuration "
+"files, however it does not support some functionality of setuptools such as "
+"package data ([pyo3/maturin#258](https://github.com/PyO3/maturin/"
+"issues/258))."
+msgstr ""
+
+#: src/building_and_distribution.md:41
+msgid "Cross Compiling"
+msgstr ""
+
+#: src/building_and_distribution.md:43
+msgid ""
+"Cross compiling PyO3 modules is relatively straightforward and requires a "
+"few pieces of software:"
+msgstr ""
+
+#: src/building_and_distribution.md:45
+msgid "A toolchain for your target."
+msgstr ""
+
+#: src/building_and_distribution.md:46
+msgid ""
+"The appropriate options in your Cargo `.config` for the platform you're "
+"targeting and the toolchain you are using."
+msgstr ""
+
+#: src/building_and_distribution.md:47
+msgid "A Python interpreter that's already been compiled for your target."
+msgstr ""
+
+#: src/building_and_distribution.md:48
+msgid "The headers that match the above interpreter."
+msgstr ""
+
+#: src/building_and_distribution.md:50
+msgid ""
+"See https://github.com/japaric/rust-cross for a primer on cross compiling "
+"Rust in general."
+msgstr ""
+
+#: src/building_and_distribution.md:52
+msgid ""
+"After you've obtained the above, you can build a cross compiled PyO3 module "
+"by setting a few extra environment variables:"
+msgstr ""
+
+#: src/building_and_distribution.md:54
+msgid ""
+"`PYO3_CROSS_INCLUDE_DIR`: This variable must be set to the directory "
+"containing the headers for the target's Python interpreter."
+msgstr ""
+
+#: src/building_and_distribution.md:55
+msgid ""
+"`PYO3_CROSS_LIB_DIR`: This variable must be set to the directory containing "
+"the target's libpython DSO."
+msgstr ""
+
+#: src/building_and_distribution.md:57
+msgid ""
+"An example might look like the following (assuming your target's sysroot is "
+"at `/home/pyo3/cross/sysroot` and that your target is `armv7`):"
+msgstr ""
+
+#: src/building_and_distribution.md:60
+msgid "\"/home/pyo3/cross/sysroot/usr/include\""
+msgstr ""
+
+#: src/building_and_distribution.md:61
+msgid "\"/home/pyo3/cross/sysroot/usr/lib\""
+msgstr ""
+
+#: src/python_from_rust.md:1
+msgid "Calling Python in Rust code"
+msgstr "在 Rust 程式碼中呼叫 Python"
+
+#: src/python_from_rust.md:3
+msgid ""
+"These APIs work from Rust whenever you have a `Python` object handy, whether "
+"PyO3 is built for an extension module or not."
+msgstr ""
+
+#: src/python_from_rust.md:6
+msgid "Want to access Python APIs? Then use `PyModule::import`."
+msgstr ""
+
+#: src/python_from_rust.md:8
+msgid ""
+"[`Pymodule::import`](https://pyo3.rs/master/doc/pyo3/types/struct.PyModule."
+"html#method.import) can be used to get handle to a Python module from Rust. "
+"You can use this to import and use any Python module available in your "
+"environment."
+msgstr ""
+
+#: src/python_from_rust.md:18
+msgid "\"builtins\""
+msgstr ""
+
+#: src/python_from_rust.md:19
+msgid "\"sum\""
+msgstr ""
+
+#: src/python_from_rust.md:25
+msgid "Want to run just an expression? Then use `eval`."
+msgstr ""
+
+#: src/python_from_rust.md:27
+msgid ""
+"[`Python::eval`](https://pyo3.rs/master/doc/pyo3/struct.Python.html#method."
+"eval) is a method to execute a [Python expression](https://docs.python."
+"org/3.7/reference/expressions.html) and return the evaluated value as a "
+"`&PyAny` object."
+msgstr ""
+
+#: src/python_from_rust.md:38
+msgid "\"[i * 10 for i in range(5)]\""
+msgstr ""
+
+#: src/python_from_rust.md:47
+msgid "Want to run statements? Then use `run`."
+msgstr ""
+
+#: src/python_from_rust.md:49
+msgid ""
+"[`Python::run`](https://pyo3.rs/master/doc/pyo3/struct.Python.html#method."
+"run) is a method to execute one or more [Python statements](https://docs."
+"python.org/3.7/reference/simple_stmts.html). This method returns nothing "
+"(like any Python statement), but you can get access to manipulated objects "
+"via the `locals` dict."
+msgstr ""
+
+#: src/python_from_rust.md:54
+msgid ""
+"You can also use the [`py_run!`](https://pyo3.rs/master/doc/pyo3/macro."
+"py_run.html) macro, which is a shorthand for [`Python::run`](https://pyo3.rs/"
+"master/doc/pyo3/struct.Python.html#method.run). Since [`py_run!`](https://"
+"pyo3.rs/master/doc/pyo3/macro.py_run.html) panics on exceptions, we "
+"recommend you use this macro only for quickly testing your Python extensions."
+msgstr ""
+
+#: src/python_from_rust.md:76
+msgid "\"User {}(id: {})\""
+msgstr ""
+
+#: src/python_from_rust.md:83 src/python_from_rust.md:86
+msgid "\"Yu\""
+msgstr ""
+
+#: src/python_from_rust.md:87
+msgid ""
+"r#\"\n"
+"assert repr(userdata) == \"User Yu(id: 34)\"\n"
+"assert userdata.as_tuple() == userdata_as_tuple\n"
+"\"#"
+msgstr ""
+
+#: src/python_from_rust.md:94
+msgid ""
+"You have a Python file or Python function? Then use `PyModule::from_code`."
+msgstr ""
+
+#: src/python_from_rust.md:96
+msgid ""
+"[PyModule::from_code](https://pyo3.rs/master/doc/pyo3/types/struct.PyModule."
+"html#method.from_code) can be used to generate a Python module which can "
+"then be used just as if it was imported with `PyModule::import`."
+msgstr ""
+
+#: src/python_from_rust.md:105
+msgid ""
+"r#\"\n"
+"def relu(x):\n"
+"    \"\"\"see https://en.wikipedia.org/wiki/"
+"Rectifier_(neural_networks)\"\"\"\n"
+"    return max(0.0, x)\n"
+"\n"
+"def leaky_relu(x, slope=0.01):\n"
+"    return x if x >= 0 else x * slope\n"
+"\"#"
+msgstr ""
+
+#: src/python_from_rust.md:112
+msgid "\"activators.py\""
+msgstr ""
+
+#: src/python_from_rust.md:112
+msgid "\"activators\""
+msgstr ""
+
+#: src/python_from_rust.md:114
+msgid "\"relu\""
+msgstr ""
+
+#: src/python_from_rust.md:117
+msgid "\"slope\""
+msgstr ""
+
+#: src/python_from_rust.md:119
+msgid "\"leaky_relu\""
+msgstr ""
+
+#: src/debugging.md:1
+msgid "Debugging"
+msgstr "除錯"
+
+#: src/debugging.md:5
+msgid ""
+"PyO3's attributes (`#[pyclass]`, `#[pymodule]`, etc.) are [procedural macros]"
+"(https://doc.rust-lang.org/reference/procedural-macros.html), which means "
+"that they rewrite the source of the annotated item. You can view the "
+"generated source with the following command, which also expands a few other "
+"things:"
+msgstr ""
+
+#: src/debugging.md:11
+msgid ""
+"(You might need to install [rustfmt](https://github.com/rust-lang-nursery/"
+"rustfmt) if you don't already have it.)"
+msgstr ""
+
+#: src/debugging.md:13
+msgid "You can also debug classic `!`\\-macros by adding `-Z trace-macros`:"
+msgstr ""
+
+#: src/debugging.md:19
+msgid ""
+"See [cargo expand](https://github.com/dtolnay/cargo-expand) for a more "
+"elaborate version of those commands."
+msgstr ""
+
+#: src/debugging.md:21
+msgid "Running with Valgrind"
+msgstr ""
+
+#: src/debugging.md:23
+msgid ""
+"Valgrind is a tool to detect memory management bugs such as memory leaks."
+msgstr ""
+
+#: src/debugging.md:25
+msgid ""
+"You first need to install a debug build of Python, otherwise Valgrind won't "
+"produce usable results. In Ubuntu there's e.g. a `python3-dbg` package."
+msgstr ""
+
+#: src/debugging.md:27
+msgid ""
+"Activate an environment with the debug interpreter and recompile. If you're "
+"on Linux, use `ldd` with the name of your binary and check that you're "
+"linking e.g. `libpython3.6dm.so.1.0` instead of `libpython3.6m.so.1.0`."
+msgstr ""
+
+#: src/debugging.md:29
+msgid ""
+"[Download the suppressions file for cpython](https://raw.githubusercontent."
+"com/python/cpython/master/Misc/valgrind-python.supp)."
+msgstr ""
+
+#: src/debugging.md:31
+msgid ""
+"Run Valgrind with `valgrind --suppressions=valgrind-python.supp ./my-command "
+"--with-options`"
+msgstr ""
+
+#: src/debugging.md:33
+msgid "Getting a stacktrace"
+msgstr ""
+
+#: src/debugging.md:35
+msgid ""
+"The best start to investigate a crash such as an segmentation fault is a "
+"backtrace."
+msgstr ""
+
+#: src/debugging.md:37
+msgid ""
+"Link against a debug build of python as described in the previous chapter"
+msgstr ""
+
+#: src/debugging.md:38
+msgid "Run `gdb <my-binary>`"
+msgstr ""
+
+#: src/debugging.md:39
+msgid "Enter `r` to run"
+msgstr ""
+
+#: src/debugging.md:40
+msgid ""
+"After the crash occurred, enter `bt` or `bt full` to print the stacktrace"
+msgstr ""
+
+#: src/faq.md:1
+msgid "Frequently Asked Questions / Troubleshooting"
+msgstr ""
+
+#: src/faq.md:3
+msgid "I'm experiencing deadlocks using PyO3 with lazy_static or once_cell!"
+msgstr ""
+
+#: src/faq.md:5
+msgid ""
+"`lazy_static` and `once_cell::sync` both use locks to ensure that "
+"initialization is performed only by a single thread. Because the Python GIL "
+"is an additional lock this can lead to deadlocks in the following way:"
+msgstr ""
+
+#: src/faq.md:7
+msgid ""
+"A thread (thread A) which has acquired the Python GIL starts initialization "
+"of a `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:8
+msgid ""
+"The initialization code calls some Python API which temporarily releases the "
+"GIL e.g. `Python::import`."
+msgstr ""
+
+#: src/faq.md:9
+msgid ""
+"Another thread (thread B) acquires the Python GIL and attempts to access the "
+"same `lazy_static` value."
+msgstr ""
+
+#: src/faq.md:10
+msgid ""
+"Thread B is blocked, because it waits for `lazy_static`'s initialization to "
+"lock to release."
+msgstr ""
+
+#: src/faq.md:11
+msgid ""
+"Thread A is blocked, because it waits to re-aquire the GIL which thread B "
+"still holds."
+msgstr ""
+
+#: src/faq.md:12
+msgid "Deadlock."
+msgstr "死鎖。"
+
+#: src/faq.md:14
+msgid ""
+"PyO3 provides a struct [`GILOnceCell`](https://docs.rs/pyo3/latest/pyo3/"
+"once_cell/struct.GILOnceCell.html) which works equivalently to `OnceCell` "
+"but relies solely on the Python GIL for thread safety. This means it can be "
+"used in place of `lazy_static` or `once_cell` where you are experiencing the "
+"deadlock described above. See the documentation for [`GILOnceCell`](https://"
+"docs.rs/pyo3/latest/pyo3/once_cell/struct.GILOnceCell.html) for an example "
+"how to use it."
+msgstr ""
+
+#: src/faq.md:18
+msgid ""
+"I can't run `cargo test`: I'm having linker issues like \"Symbol not found\" "
+"or \"Undefined reference to \\_PyExc_SystemError\"!"
+msgstr ""
+
+#: src/faq.md:20
+msgid ""
+"Currently, [\\#341](https://github.com/PyO3/pyo3/issues/341) causes `cargo "
+"test` to fail with linking errors when the `extension-module` feature is "
+"activated. For now you can work around this by making the `extension-module` "
+"feature optional and running the tests with `cargo test --no-default-"
+"features`:"
+msgstr ""
+
+#: src/faq.md:22
+msgid ""
+"```toml\n"
+"[dependencies.pyo3]\n"
+"version = \"*\"\n"
+"\n"
+"[features]\n"
+"extension-module = [\"pyo3/extension-module\"]\n"
+"default = [\"extension-module\"]\n"
+"```"
+msgstr ""
+
+#: src/types.md:1
+msgid "GIL lifetimes, mutability and Python object types"
+msgstr ""
+
+#: src/types.md:3
+msgid ""
+"On first glance, PyO3 provides a huge number of different types that can be "
+"used to wrap or refer to Python objects.  This page delves into the details "
+"and gives an overview of their intended meaning, with examples when each "
+"type is best used."
+msgstr ""
+
+#: src/types.md:9
+msgid "Mutability and Rust types"
+msgstr ""
+
+#: src/types.md:11
+msgid ""
+"Since Python has no concept of ownership, and works solely with boxed "
+"objects, any Python object can be referenced any number of times, and "
+"mutation is allowed from any reference."
+msgstr ""
+
+#: src/types.md:15
+msgid ""
+"The situation is helped a little by the Global Interpreter Lock (GIL), which "
+"ensures that only one thread can use the Python interpreter and its API at "
+"the same time, while non-Python operations (system calls and extension code) "
+"can unlock the GIL.  (See [the section on parallelism](parallelism.md) for "
+"how to do that in PyO3.)"
+msgstr ""
+
+#: src/types.md:21
+msgid ""
+"In PyO3, holding the GIL is modeled by acquiring a token of the type "
+"`Python<'py>`, which serves three purposes:"
+msgstr ""
+
+#: src/types.md:24
+msgid ""
+"It provides some global API for the Python interpreter, such as [`eval`]"
+"(https://docs.rs/pyo3/latest/pyo3/struct.Python.html#method.eval)."
+msgstr ""
+
+#: src/types.md:26
+msgid ""
+"It can be passed to functions that require a proof of holding the GIL, such "
+"as [`PyObject::clone_ref`](https://docs.rs/pyo3/latest/pyo3/struct.PyObject."
+"html#method.clone_ref)."
+msgstr ""
+
+#: src/types.md:28
+msgid ""
+"Its lifetime can be used to create Rust references that implicitly guarantee "
+"holding the GIL, such as [`&'py PyAny`](https://docs.rs/pyo3/latest/pyo3/"
+"types/struct.PyAny.html)."
+msgstr ""
+
+#: src/types.md:31
+msgid ""
+"The latter two points are the reason why some APIs in PyO3 require the `py: "
+"Python` argument, while others don't."
+msgstr ""
+
+#: src/types.md:34
+msgid ""
+"The PyO3 API for Python objects is written such that instead of requiring a "
+"mutable Rust reference for mutating operations such as [`PyList::append`]"
+"(https://docs.rs/pyo3/latest/pyo3/types/struct.PyList.html#method.append), a "
+"shared reference (which, in turn, can only be created through `Python<'_>` "
+"with a GIL lifetime) is sufficient."
+msgstr ""
+
+#: src/types.md:39
+msgid ""
+"However, Rust structs wrapped as Python objects (called `pyclass` types) "
+"usually _do_ need `&mut` access.  Due to the GIL, PyO3 _can_ guarantee "
+"thread-safe acces to them, but it cannot statically guarantee uniqueness of "
+"`&mut` references once an object's ownership has been passed to the Python "
+"interpreter, ensuring references is done at runtime using `PyCell`, a scheme "
+"very similar to `std::cell::RefCell`."
+msgstr ""
+
+#: src/types.md:47
+msgid "Object types"
+msgstr ""
+
+#: src/types.md:49
+msgid "[`PyAny`](https://docs.rs/pyo3/latest/pyo3/types/struct.PyAny.html)"
+msgstr ""
+
+#: src/types.md:51
+msgid ""
+"**Represents:** a Python object of unspecified type, restricted to a GIL "
+"lifetime.  Currently, `PyAny` can only ever occur as a reference, `&PyAny`."
+msgstr ""
+
+#: src/types.md:54
+msgid ""
+"**Used:** Whenever you want to refer to some Python object and will have the "
+"GIL for the whole duration you need to access that object. For example, "
+"intermediate values and arguments to `pyfunction`s or `pymethod`s "
+"implemented in Rust where any type is allowed."
+msgstr ""
+
+#: src/types.md:59
+msgid ""
+"Many general methods for interacting with Python objects are on the `PyAny` "
+"struct, such as `getattr`, `setattr`, and `.call`."
+msgstr ""
+
+#: src/types.md:62 src/types.md:100 src/types.md:137 src/types.md:164
+#: src/types.md:198
+msgid "**Conversions:**"
+msgstr ""
+
+#: src/types.md:70
+msgid "// Convert to &ConcreteType using PyAny::downcast\n"
+msgstr ""
+
+#: src/types.md:73
+msgid "// Convert to PyObject using .into() or .to_object(py)\n"
+msgstr ""
+
+#: src/types.md:76
+msgid "// Convert to Py<PyAny> using .into() or Py::from\n"
+msgstr ""
+
+#: src/types.md:79
+msgid "// Convert to Py<ConcreteType> using PyAny::extract\n"
+msgstr ""
+
+#: src/types.md:85
+msgid "`PyTuple`, `PyDict`, and many more"
+msgstr ""
+
+#: src/types.md:87
+msgid ""
+"**Represents:** a native Python object of known type, restricted to a GIL "
+"lifetime just like `PyAny`."
+msgstr ""
+
+#: src/types.md:90
+msgid ""
+"**Used:** Whenever you want to operate with native Python types while "
+"holding the GIL.  Like `PyAny`, this is the most convenient form to use for "
+"function arguments and intermediate values."
+msgstr ""
+
+#: src/types.md:94
+msgid ""
+"These types all implement `Deref<Target = PyAny>`, so they all expose the "
+"same methods which can be found on `PyAny`."
+msgstr ""
+
+#: src/types.md:97
+msgid ""
+"To see all Python types exposed by `PyO3` you should consult the [`pyo3::"
+"types`](https://pyo3.rs/master/doc/pyo3/types/index.html) module."
+msgstr ""
+
+#: src/types.md:108
+msgid ""
+"// Can use methods from PyAny on all Python types due to Deref "
+"implementation\n"
+msgstr ""
+
+#: src/types.md:111
+msgid ""
+"// Rust will convert &PyList etc. to &PyAny automatically due to Deref "
+"implementation\n"
+msgstr ""
+
+#: src/types.md:114 src/types.md:221
+msgid "// For more explicit &PyAny conversion, use .as_ref()\n"
+msgstr ""
+
+#: src/types.md:117
+msgid "// To convert to PyObject use .into() or .to_object(py)\n"
+msgstr ""
+
+#: src/types.md:120
+msgid "// To convert to Py<T> use .into() or Py::from()\n"
+msgstr ""
+
+#: src/types.md:125
+msgid "`PyObject`"
+msgstr ""
+
+#: src/types.md:127
+msgid ""
+"**Represents:** a GIL independent reference to a Python object of "
+"unspecified type."
+msgstr ""
+
+#: src/types.md:130
+msgid ""
+"**Used:** Whenever you want to carry around references to \"some\" Python "
+"object, without caring about a GIL lifetime.  For example, storing Python "
+"object references in a Rust struct that outlives the Python-Rust FFI "
+"boundary, or returning objects from functions implemented in Rust back to "
+"Python."
+msgstr ""
+
+#: src/types.md:135
+msgid "Can be cloned using Python reference counts with `.clone_ref()`."
+msgstr ""
+
+#: src/types.md:145
+msgid "// Convert to &PyAny using AsPyRef::as_ref\n"
+msgstr ""
+
+#: src/types.md:148
+msgid "// Convert to &ConcreteType using PyObject::cast_as\n"
+msgstr ""
+
+#: src/types.md:151
+msgid "// Convert to Py<ConcreteType> using PyObject::extract\n"
+msgstr ""
+
+#: src/types.md:156
+msgid "`Py<SomeType>`"
+msgstr ""
+
+#: src/types.md:158
+msgid ""
+"**Represents:** a GIL independent reference to a Python object of known "
+"type. This can be a Python native type (like `PyTuple`), or a `pyclass` type "
+"implemented in Rust."
+msgstr ""
+
+#: src/types.md:162
+msgid "**Used:** Like `PyObject`, but with a known inner type."
+msgstr ""
+
+#: src/types.md:172
+msgid ""
+"// Access the native type using AsPyRef::as_ref(py)\n"
+"// (For #[pyclass] types, as_ref() will return &PyCell<T>)\n"
+msgstr ""
+
+#: src/types.md:176
+msgid "// Convert to PyObject with .into()\n"
+msgstr ""
+
+#: src/types.md:181
+msgid ""
+"**Note:** `PyObject` is semantically equivalent to `Py<PyAny>` and might be "
+"merged with it in the future."
+msgstr ""
+
+#: src/types.md:185
+msgid "`PyCell<SomeType>`"
+msgstr ""
+
+#: src/types.md:187
+msgid ""
+"**Represents:** a reference to a Rust object (instance of `PyClass`) which "
+"is wrapped in a Python object.  The cell part is an analog to stdlib's "
+"[`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) to allow "
+"access to `&mut` references."
+msgstr ""
+
+#: src/types.md:191
+msgid ""
+"**Used:** for accessing pure-Rust API of the instance (members and functions "
+"taking `&SomeType` or `&mut SomeType`) while maintaining the aliasing rules "
+"of Rust references."
+msgstr ""
+
+#: src/types.md:195
+msgid ""
+"Like pyo3's Python native types, `PyCell<T>` implements `Deref<Target = "
+"PyAny>`, so it also exposes all of the methods on `PyAny`."
+msgstr ""
+
+#: src/types.md:207
+msgid "// Obtain PyRef<T> with .try_borrow()\n"
+msgstr ""
+
+#: src/types.md:211
+msgid "// Obtain PyRefMut<T> with .try_borrow_mut()\n"
+msgstr ""
+
+#: src/types.md:215
+msgid ""
+"// Can use methods from PyAny on PyCell<T> due to Deref implementation\n"
+msgstr ""
+
+#: src/types.md:218
+msgid ""
+"// Rust will convert &PyCell<T> to &PyAny automatically due to Deref "
+"implementation\n"
+msgstr ""
+
+#: src/types.md:224
+msgid "// To obtain a PyCell<T> from PyAny, use PyAny::downcast\n"
+msgstr ""
+
+#: src/types.md:229
+msgid "`PyRef<SomeType>` and `PyRefMut<SomeType>`"
+msgstr ""
+
+#: src/types.md:231
+msgid ""
+"**Represents:** reference wrapper types employed by `PyCell` to keep track "
+"of borrows, analog to `Ref` and `RefMut` used by `RefCell`."
+msgstr ""
+
+#: src/types.md:234
+msgid ""
+"**Used:** while borrowing a `PyCell`.  They can also be used with `."
+"extract()` on types like `Py<T>` and `PyAny` to get a reference quickly."
+msgstr ""
+
+#: src/types.md:238
+msgid "Related traits and types"
+msgstr ""
+
+#: src/types.md:240
+msgid "`PyClass`"
+msgstr ""
+
+#: src/types.md:242
+msgid ""
+"This trait marks structs defined in Rust that are also usable as Python "
+"classes, usually defined using the `#[pyclass]` macro."
+msgstr ""
+
+#: src/types.md:245
+msgid "`PyNativeType`"
+msgstr ""
+
+#: src/types.md:247
+msgid ""
+"This trait marks structs that mirror native Python types, such as `PyList`."
+msgstr ""
+
+#: src/parallelism.md:1
+msgid "Parallelism"
+msgstr "平行化"
+
+#: src/parallelism.md:3
+msgid ""
+"CPython has the infamous [Global Interpreter Lock](https://docs.python.org/3/"
+"glossary.html#term-global-interpreter-lock), which prevents several threads "
+"from executing Python bytecode in parallel. This makes threading in Python a "
+"bad fit for [CPU-bound](https://stackoverflow.com/questions/868568/) tasks "
+"and often forces developers to accept the overhead of multiprocessing."
+msgstr ""
+
+#: src/parallelism.md:5
+msgid ""
+"In PyO3 parallelism can be easily achieved in Rust-only code. Let's take a "
+"look at our [word-count](https://github.com/PyO3/pyo3/blob/master/examples/"
+"word-count/src/lib.rs) example, where we have a `search` function that "
+"utilizes the [rayon](https://github.com/nikomatsakis/rayon) crate to count "
+"words in parallel."
+msgstr ""
+
+#: src/parallelism.md:16
+msgid ""
+"But let's assume you have a long running Rust function which you would like "
+"to execute several times in parallel. For the sake of example let's take a "
+"sequential version of the word count:"
+msgstr ""
+"假設你有一個耗時的 Rust 函式，想要平行執行多次。以下以字數統計的序列版作為範"
+"例："
+
+#: src/parallelism.md:23
+msgid ""
+"To enable parallel execution of this function, the [`Python::allow_threads`]"
+"(https://docs.rs/pyo3/latest/pyo3/struct.Python.html#method.allow_threads) "
+"method can be used to temporarily release the GIL, thus allowing other "
+"Python threads to run. We then have a function exposed to the Python runtime "
+"which calls `search_sequential` inside a closure passed to [`Python::"
+"allow_threads`](https://docs.rs/pyo3/latest/pyo3/struct.Python.html#method."
+"allow_threads) to enable true parallelism:"
+msgstr ""
+
+#: src/parallelism.md:31
+msgid ""
+"Now Python threads can use more than one CPU core, resolving the limitation "
+"which usually makes multi-threading in Python only good for IO-bound tasks:"
+msgstr ""
+"現在 Python 執行緒可使用多個 CPU 核心，解決了 Python 多執行緒通常只適合 I/O-"
+"bound 任務的限制："
+
+#: src/parallelism.md:48
+msgid "Benchmark"
+msgstr "基準測試"
+
+#: src/parallelism.md:50
+msgid ""
+"Let's benchmark the `word-count` example to verify that we really did unlock "
+"parallelism with PyO3."
+msgstr "讓我們對 `word-count` 範例做基準測試，確認 PyO3 確實解鎖了平行化。"
+
+#: src/parallelism.md:52
+msgid "We are using `pytest-benchmark` to benchmark four word count functions:"
+msgstr "我們使用 `pytest-benchmark` 來測試四個字數統計函式："
+
+#: src/parallelism.md:54
+msgid "Pure Python version"
+msgstr "純 Python 版本"
+
+#: src/parallelism.md:55
+msgid "Rust parallel version"
+msgstr "Rust 平行版本"
+
+#: src/parallelism.md:56
+msgid "Rust sequential version"
+msgstr "Rust 序列版本"
+
+#: src/parallelism.md:57
+msgid "Rust sequential version executed twice with two Python threads"
+msgstr "Rust 序列版本在兩個 Python 執行緒中執行兩次"
+
+#: src/parallelism.md:59
+msgid ""
+"The benchmark script can be found [here](https://github.com/PyO3/pyo3/blob/"
+"master/examples/word-count/tests/test_word_count.py), and we can run `tox` "
+"in the `word-count` folder to benchmark these functions."
+msgstr ""
+
+#: src/parallelism.md:61
+msgid ""
+"While the results of the benchmark of course depend on your machine, the "
+"relative results should be similar to this (mid 2020):"
+msgstr "雖然基準測試結果會因機器而異，但相對結果應與下圖（2020 年中）相近："
+
+#: src/parallelism.md:73
+msgid ""
+"You can see that the Python threaded version is not much slower than the "
+"Rust sequential version, which means compared to an execution on a single "
+"CPU core the speed has doubled."
+msgstr ""
+"可以看到 Python 執行緒版本沒有比 Rust 序列版本慢太多，這代表相較於單一 CPU 核"
+"心的執行，速度翻倍。"
+
+#: src/pypy.md:1
+msgid "PyPy Support"
+msgstr ""
+
+#: src/pypy.md:3
+msgid "Using PyPy is supported via cpyext."
+msgstr ""
+
+#: src/pypy.md:5
+msgid ""
+"Support is only provided for building Rust extension for code running under "
+"PyPy. This means that PyPy **cannot** be called from rust via cpyext. Note "
+"that there some differences in the ffi module between PyPy and CPython."
+msgstr ""
+
+#: src/pypy.md:7
+msgid ""
+"This is a limitation of cpyext and support for embedding cpyext is not "
+"planned."
+msgstr ""
+
+#: src/pypy.md:9
+msgid ""
+"Compilation against PyPy is done by exporting the `PYTHON_SYS_EXECUTABLE` to "
+"point to a PyPy binary or by compiling in a PyPy virtualenv."
+msgstr ""
+
+#: src/pypy.md:11
+msgid ""
+"For example, `PYTHON_SYS_EXECUTABLE=\"/path/to/pypy3\" /path/to/pypy3 setup."
+"py install`"
+msgstr ""
+
+#: src/pypy.md:14
+msgid "Unsupported features"
+msgstr ""
+
+#: src/pypy.md:16
+msgid ""
+"These are features currently supported by PyO3, but not yet implemented in "
+"cpyext."
+msgstr ""
+
+#: src/pypy.md:18
+msgid "Complex number functions (`_Py_c_sum`, `_Py_c_sum` ..)"
+msgstr ""
+
+#: src/pypy.md:19
+msgid "Conversion to rust's i128, u128 types."
+msgstr ""
+
+#: src/pypy.md:20
+msgid "`PySequence_Count` (which is used to count number of element in array)"
+msgstr ""
+
+#: src/pypy.md:21
+msgid "`PyDict_MergeFromSeq2` (used in `PyDict::from_sequence`)"
+msgstr ""
+
+#: src/class.md:1
+msgid "Python Classes"
+msgstr ""
+
+#: src/class.md:3
+msgid "Defining a new class"
+msgstr "定義新類別"
+
+#: src/class.md:5
+msgid ""
+"To define a custom Python class, a Rust struct needs to be annotated with "
+"the `#[pyclass]` attribute."
+msgstr ""
+
+#: src/class.md:17
+msgid ""
+"Because Python objects are freely shared between threads by the Python "
+"interpreter, all structs annotated with `#[pyclass]` must implement `Send`."
+msgstr ""
+
+#: src/class.md:19
+msgid ""
+"The above example generates implementations for [`PyTypeInfo`](https://docs."
+"rs/pyo3/latest/pyo3/type_object/trait.PyTypeInfo.html), [`PyTypeObject`]"
+"(https://docs.rs/pyo3/latest/pyo3/type_object/trait.PyTypeObject.html), and "
+"[`PyClass`](https://pyo3.rs/master/doc/pyo3/pyclass/trait.PyClass.html) for "
+"`MyClass`. To see these generated implementations, refer to the section [How "
+"methods are implemented](#how-methods-are-implemented) at the end of this "
+"chapter."
+msgstr ""
+
+#: src/class.md:21
+msgid "Adding the class to a module"
+msgstr ""
+
+#: src/class.md:23
+msgid ""
+"Custom Python classes can then be added to a module using `add_class()`."
+msgstr ""
+
+#: src/class.md:39
+msgid "PyCell and interior mutability"
+msgstr ""
+
+#: src/class.md:41
+msgid ""
+"You sometimes need to convert your `pyclass` into a Python object and access "
+"it from Rust code (e.g., for testing it). [`PyCell`](https://pyo3.rs/master/"
+"doc/pyo3/pycell/struct.PyCell.html) is the primary interface for that."
+msgstr ""
+
+#: src/class.md:45
+msgid ""
+"`PyCell<T: PyClass>` is always allocated in the Python heap, so Rust doesn't "
+"have ownership of it. In other words, Rust code can only extract a "
+"`&PyCell<T>`, not a `PyCell<T>`."
+msgstr ""
+
+#: src/class.md:48
+msgid ""
+"Thus, to mutate data behind `&PyCell` safely, PyO3 employs the [Interior "
+"Mutability Pattern](https://doc.rust-lang.org/book/ch15-05-interior-"
+"mutability.html) like [`RefCell`](https://doc.rust-lang.org/std/cell/struct."
+"RefCell.html)."
+msgstr ""
+
+#: src/class.md:52
+msgid ""
+"Users who are familiar with `RefCell` can use `PyCell` just like `RefCell`."
+msgstr ""
+
+#: src/class.md:54
+msgid ""
+"For users who are not very familiar with `RefCell`, here is a reminder of "
+"Rust's rules of borrowing:"
+msgstr ""
+
+#: src/class.md:55
+msgid ""
+"At any given time, you can have either (but not both of) one mutable "
+"reference or any number of immutable references."
+msgstr ""
+
+#: src/class.md:56
+msgid "References must always be valid."
+msgstr ""
+
+#: src/class.md:58
+msgid ""
+"`PyCell`, like `RefCell`, ensures these borrowing rules by tracking "
+"references at runtime."
+msgstr ""
+
+#: src/class.md:73
+msgid "// Get PyRef\n"
+msgstr ""
+
+#: src/class.md:75
+msgid "// You cannot get PyRefMut unless all PyRefs are dropped\n"
+msgstr ""
+
+#: src/class.md:79
+msgid "// Get PyRefMut\n"
+msgstr ""
+
+#: src/class.md:81
+msgid "// You cannot get any other refs until the PyRefMut is dropped\n"
+msgstr ""
+
+#: src/class.md:85
+msgid "// You can convert `&PyCell` to a Python object\n"
+msgstr ""
+
+#: src/class.md:87
+msgid "\"assert obj.num == 5\""
+msgstr ""
+
+#: src/class.md:90
+msgid ""
+"`&PyCell<T>` is bounded by the same lifetime as a [`GILGuard`](https://docs."
+"rs/pyo3/latest/pyo3/struct.GILGuard.html). To make the object longer lived "
+"(for example, to store it in a struct on the Rust side), you can use "
+"`Py<T>`, which stores an object longer than the GIL lifetime, and therefore "
+"needs a `Python<'_>` token to access."
+msgstr ""
+
+#: src/class.md:108
+msgid "// AsPyRef::as_ref returns &PyCell\n"
+msgstr ""
+
+#: src/class.md:109
+msgid "// Get PyRef<T>\n"
+msgstr ""
+
+#: src/class.md:113
+msgid "Customizing the class"
+msgstr ""
+
+#: src/class.md:115
+msgid "The `#[pyclass]` macro accepts the following parameters:"
+msgstr ""
+
+#: src/class.md:117
+msgid ""
+"`name=XXX` - Set the class name shown in Python code. By default, the struct "
+"name is used as the class name."
+msgstr ""
+
+#: src/class.md:118
+msgid ""
+"`freelist=XXX` - The `freelist` parameter adds support of free allocation "
+"list to custom class. The performance improvement applies to types that are "
+"often created and deleted in a row, so that they can benefit from a "
+"freelist. `XXX` is a number of items for the free list."
+msgstr ""
+
+#: src/class.md:121
+msgid ""
+"`gc` - Classes with the `gc` parameter participate in Python garbage "
+"collection. If a custom class contains references to other Python objects "
+"that can be collected, the [`PyGCProtocol`](https://docs.rs/pyo3/latest/pyo3/"
+"class/gc/trait.PyGCProtocol.html) trait has to be implemented."
+msgstr ""
+
+#: src/class.md:123
+msgid "`weakref` - Adds support for Python weak references."
+msgstr ""
+
+#: src/class.md:124
+msgid ""
+"`extends=BaseType` - Use a custom base class. The base `BaseType` must "
+"implement `PyTypeInfo`."
+msgstr ""
+
+#: src/class.md:125
+msgid "`subclass` - Allows Python classes to inherit from this class."
+msgstr ""
+
+#: src/class.md:126
+msgid ""
+"`dict` - Adds `__dict__` support, so that the instances of this type have a "
+"dictionary containing arbitrary instance variables."
+msgstr ""
+
+#: src/class.md:127
+msgid ""
+"`unsendable` - Making it safe to expose `!Send` structs to Python, where all "
+"object can be accessed by multiple threads. A class marked with `unsendable` "
+"panics when accessed by another thread."
+msgstr ""
+
+#: src/class.md:129
+msgid ""
+"`module=\"XXX\"` - Set the name of the module the class will be shown as "
+"defined in. If not given, the class will be a virtual member of the "
+"`builtins` module."
+msgstr ""
+
+#: src/class.md:132
+msgid "Constructor"
+msgstr ""
+
+#: src/class.md:134
+msgid ""
+"By default it is not possible to create an instance of a custom class from "
+"Python code. To declare a constructor, you need to define a method and "
+"annotate it with the `#[new]` attribute. Only Python's `__new__` method can "
+"be specified, `__init__` is not available."
+msgstr ""
+
+#: src/class.md:154
+msgid ""
+"If no method marked with `#[new]` is declared, object instances can only be "
+"created from Rust, but not from Python."
+msgstr ""
+
+#: src/class.md:157
+msgid "For arguments, see the `Method arguments` section below."
+msgstr ""
+
+#: src/class.md:159
+msgid "Return type"
+msgstr ""
+
+#: src/class.md:161
+msgid ""
+"Generally, `#[new]` method have to return `T: "
+"Into<PyClassInitializer<Self>>` or `PyResult<T> where T: "
+"Into<PyClassInitializer<Self>>`."
+msgstr ""
+
+#: src/class.md:164
+msgid ""
+"For constructors that may fail, you should wrap the return type in a "
+"PyResult as well. Consult the table below to determine which type your "
+"constructor should return:"
+msgstr ""
+
+#: src/class.md:167
+msgid "**Cannot fail**"
+msgstr ""
+
+#: src/class.md:167
+msgid "**May fail**"
+msgstr ""
+
+#: src/class.md:169
+msgid "**No inheritance**"
+msgstr ""
+
+#: src/class.md:169
+msgid "`T`"
+msgstr "`T`"
+
+#: src/class.md:169
+msgid "`PyResult<T>`"
+msgstr ""
+
+#: src/class.md:170
+msgid "**Inheritance(T Inherits U)**"
+msgstr ""
+
+#: src/class.md:170
+msgid "`(T, U)`"
+msgstr "`(T, U)`"
+
+#: src/class.md:170
+msgid "`PyResult<(T, U)>`"
+msgstr ""
+
+#: src/class.md:171
+msgid "**Inheritance(General Case)**"
+msgstr ""
+
+#: src/class.md:171
+msgid ""
+"[`PyClassInitializer<T>`](https://pyo3.rs/master/doc/pyo3/pyclass_init/"
+"struct.PyClassInitializer.html)"
+msgstr ""
+
+#: src/class.md:171
+msgid "`PyResult<PyClassInitializer<T>>`"
+msgstr ""
+
+#: src/class.md:173
+msgid "Inheritance"
+msgstr ""
+
+#: src/class.md:175
+msgid ""
+"By default, `PyAny` is used as the base class. To override this default, use "
+"the `extends` parameter for `pyclass` with the full path to the base class."
+msgstr ""
+
+#: src/class.md:178
+msgid ""
+"For convenience, `(T, U)` implements `Into<PyClassInitializer<T>>` where `U` "
+"is the baseclass of `T`. But for more deeply nested inheritance, you have to "
+"return `PyClassInitializer<T>` explicitly."
+msgstr ""
+
+#: src/class.md:183
+msgid ""
+"To get a parent class from a child, use [`PyRef`](https://pyo3.rs/master/doc/"
+"pyo3/pycell/struct.PyRef.html) instead of `&self` for methods, or "
+"[`PyRefMut`](https://pyo3.rs/master/doc/pyo3/pycell/struct.PyRefMut.html) "
+"instead of `&mut self`. Then you can access a parent class by `self_."
+"as_ref()` as `&Self::BaseClass`, or by `self_.into_super()` as `PyRef<Self::"
+"BaseClass>`."
+msgstr ""
+
+#: src/class.md:221
+msgid "// Get &BaseClass\n"
+msgstr ""
+
+#: src/class.md:241
+msgid "// Get PyRef<SubClass>\n"
+msgstr ""
+
+#: src/class.md:248
+msgid "\"assert subsub.method3() == 3000\""
+msgstr ""
+
+#: src/class.md:251
+msgid ""
+"You can also inherit native types such as `PyDict`, if they implement "
+"[`PySizedLayout`](https://pyo3.rs/master/doc/pyo3/type_object/trait."
+"PySizedLayout.html)."
+msgstr ""
+
+#: src/class.md:254
+msgid ""
+"However, because of some technical problems, we don't currently provide safe "
+"upcasting methods for types that inherit native types. Even in such cases, "
+"you can unsafely get a base class by raw pointer conversion."
+msgstr ""
+
+#: src/class.md:285
+msgid "\"cnt.set('abc', 10); assert cnt['abc'] == 10\""
+msgstr ""
+
+#: src/class.md:288
+msgid ""
+"If `SubClass` does not provide a baseclass initialization, the compilation "
+"fails."
+msgstr ""
+
+#: src/class.md:311
+msgid "Object properties"
+msgstr ""
+
+#: src/class.md:313
+msgid "PyO3 supports two ways to add properties to your `#[pyclass]`:"
+msgstr ""
+
+#: src/class.md:314
+msgid ""
+"For simple fields with no side effects, a `#[pyo3(get, set)]` attribute can "
+"be added directly to the field definition in the `#[pyclass]`."
+msgstr ""
+
+#: src/class.md:315
+msgid ""
+"For properties which require computation you can define `#[getter]` and "
+"`#[setter]` functions in the `#[pymethods]` block."
+msgstr ""
+
+#: src/class.md:317
+msgid "We'll cover each of these in the following sections."
+msgstr ""
+
+#: src/class.md:319
+msgid "Object properties using `#[pyo3(get, set)]`"
+msgstr ""
+
+#: src/class.md:321
+msgid ""
+"For simple cases where a member variable is just read and written with no "
+"side effects, you can declare getters and setters in your `#[pyclass]` field "
+"definition using the `pyo3` attribute, like in the example below:"
+msgstr ""
+
+#: src/class.md:332
+msgid ""
+"The above would make the `num` property available for reading and writing "
+"from Python code as `self.num`."
+msgstr ""
+
+#: src/class.md:334
+msgid ""
+"Properties can be readonly or writeonly by using just `#[pyo3(get)]` or "
+"`#[pyo3(set)]` respectively."
+msgstr ""
+
+#: src/class.md:336
+msgid ""
+"To use these annotations, your field type must implement some conversion "
+"traits:"
+msgstr ""
+
+#: src/class.md:337
+msgid ""
+"For `get` the field type must implement both `IntoPy<PyObject>` and `Clone`."
+msgstr ""
+
+#: src/class.md:338
+msgid "For `set` the field type must implement `FromPyObject`."
+msgstr ""
+
+#: src/class.md:340
+msgid "Object properties using `#[getter]` and `#[setter]`"
+msgstr ""
+
+#: src/class.md:342
+msgid ""
+"For cases which don't satisfy the `#[pyo3(get, set)]` trait requirements, or "
+"need side effects, descriptor methods can be defined in a `#[pymethods]` "
+"`impl` block."
+msgstr ""
+
+#: src/class.md:344
+msgid ""
+"This is done using the `#[getter]` and `#[setter]` attributes, like in the "
+"example below:"
+msgstr ""
+
+#: src/class.md:362
+msgid ""
+"A getter or setter's function name is used as the property name by default. "
+"There are several ways how to override the name."
+msgstr ""
+
+#: src/class.md:365
+msgid ""
+"If a function name starts with `get_` or `set_` for getter or setter "
+"respectively, the descriptor name becomes the function name with this prefix "
+"removed. This is also useful in case of Rust keywords like `type` ([raw "
+"identifiers](https://doc.rust-lang.org/edition-guide/rust-2018/module-system/"
+"raw-identifiers.html) can be used since Rust 2018)."
+msgstr ""
+
+#: src/class.md:392
+msgid ""
+"In this case, a property `num` is defined and available from Python code as "
+"`self.num`."
+msgstr ""
+
+#: src/class.md:394
+msgid ""
+"Both the `#[getter]` and `#[setter]` attributes accept one parameter. If "
+"this parameter is specified, it is used as the property name, i.e."
+msgstr ""
+
+#: src/class.md:418
+msgid ""
+"In this case, the property `number` is defined and available from Python "
+"code as `self.number`."
+msgstr ""
+
+#: src/class.md:420
+msgid "Instance methods"
+msgstr ""
+
+#: src/class.md:422
+msgid ""
+"To define a Python compatible method, an `impl` block for your struct has to "
+"be annotated with the `#[pymethods]` attribute. PyO3 generates Python "
+"compatible wrappers for all functions in this block with some variations, "
+"like descriptors, class method static methods, etc."
+msgstr ""
+
+#: src/class.md:426
+msgid ""
+"Since Rust allows any number of `impl` blocks, you can easily split methods "
+"between those accessible to Python (and Rust) and those accessible only to "
+"Rust."
+msgstr ""
+
+#: src/class.md:448
+msgid ""
+"Calls to these methods are protected by the GIL, so both `&self` and `&mut "
+"self` can be used. The return type must be `PyResult<T>` or `T` for some `T` "
+"that implements `IntoPy<PyObject>`; the latter is allowed if the method "
+"cannot raise Python exceptions."
+msgstr ""
+
+#: src/class.md:452
+msgid ""
+"A `Python` parameter can be specified as part of method signature, in this "
+"case the `py` argument gets injected by the method wrapper, e.g."
+msgstr ""
+
+#: src/class.md:470
+msgid ""
+"From the Python perspective, the `method2` in this example does not accept "
+"any arguments."
+msgstr ""
+
+#: src/class.md:472
+msgid "Class methods"
+msgstr ""
+
+#: src/class.md:474
+msgid ""
+"To create a class method for a custom class, the method needs to be "
+"annotated with the `#[classmethod]` attribute. This is the equivalent of the "
+"Python decorator `@classmethod`."
+msgstr ""
+
+#: src/class.md:495
+msgid "Declares a class method callable from Python."
+msgstr ""
+
+#: src/class.md:497
+msgid ""
+"The first parameter is the type object of the class on which the method is "
+"called. This may be the type object of a derived class."
+msgstr ""
+
+#: src/class.md:499
+msgid "The first parameter implicitly has type `&PyType`."
+msgstr ""
+
+#: src/class.md:500
+msgid ""
+"For details on `parameter-list`, see the documentation of `Method arguments` "
+"section."
+msgstr ""
+
+#: src/class.md:501
+msgid ""
+"The return type must be `PyResult<T>` or `T` for some `T` that implements "
+"`IntoPy<PyObject>`."
+msgstr ""
+
+#: src/class.md:503
+msgid "Static methods"
+msgstr ""
+
+#: src/class.md:505
+msgid ""
+"To create a static method for a custom class, the method needs to be "
+"annotated with the `#[staticmethod]` attribute. The return type must be `T` "
+"or `PyResult<T>` for some `T` that implements `IntoPy<PyObject>`."
+msgstr ""
+
+#: src/class.md:525
+msgid "Class attributes"
+msgstr ""
+
+#: src/class.md:527
+msgid ""
+"To create a class attribute (also called [class variable](https://docs."
+"python.org/3/tutorial/classes.html#class-and-instance-variables)), a method "
+"without any arguments can be annotated with the `#[classattr]` attribute. "
+"The return type must be `T` for some `T` that implements `IntoPy<PyObject>`."
+msgstr ""
+
+#: src/class.md:539
+msgid "\"hello\""
+msgstr ""
+
+#: src/class.md:546
+msgid "\"assert my_class.my_attribute == 'hello'\""
+msgstr ""
+
+#: src/class.md:549
+msgid ""
+"Note that unlike class variables defined in Python code, class attributes "
+"defined in Rust cannot be mutated at all:"
+msgstr ""
+
+#: src/class.md:552
+msgid ""
+"// Would raise a `TypeError: can't set attributes of built-in/extension type "
+"'MyClass'`\n"
+msgstr ""
+
+#: src/class.md:553
+msgid "\"my_class.my_attribute = 'foo'\""
+msgstr ""
+
+#: src/class.md:556
+msgid ""
+"If the class attribute is defined with `const` code only, one can also "
+"annotate associated constants:"
+msgstr ""
+
+#: src/class.md:566
+msgid "\"foobar\""
+msgstr ""
+
+#: src/class.md:570
+msgid "Callable objects"
+msgstr ""
+
+#: src/class.md:572
+msgid ""
+"To specify a custom `__call__` method for a custom class, the method needs "
+"to be annotated with the `#[call]` attribute. Arguments of the method are "
+"specified as for instance methods."
+msgstr ""
+
+#: src/class.md:586 src/class.md:636
+msgid "\"*\""
+msgstr ""
+
+#: src/class.md:588
+msgid "\"MyClass has been called\""
+msgstr ""
+
+#: src/class.md:594
+msgid "Method arguments"
+msgstr ""
+
+#: src/class.md:596
+msgid ""
+"By default, PyO3 uses function signatures to determine which arguments are "
+"required. Then it scans the incoming `args` and `kwargs` parameters. If it "
+"can not find all required parameters, it raises a `TypeError` exception. It "
+"is possible to override the default behavior with the `#[args(...)]` "
+"attribute. This attribute accepts a comma separated list of parameters in "
+"the form of `attr_name=\"default value\"`. Each parameter has to match the "
+"method parameter by name."
+msgstr ""
+
+#: src/class.md:602
+msgid "Each parameter can be one of the following types:"
+msgstr ""
+
+#: src/class.md:604
+msgid ""
+"`\"*\"`: var arguments separator, each parameter defined after `\"*\"` is a "
+"keyword-only parameter. Corresponds to python's `def meth(*, arg1.., "
+"arg2=..)`."
+msgstr ""
+
+#: src/class.md:606
+msgid ""
+"`args=\"*\"`: \"args\" is var args, corresponds to Python's `def "
+"meth(*args)`. Type of the `args` parameter has to be `&PyTuple`."
+msgstr ""
+
+#: src/class.md:608
+msgid ""
+"`kwargs=\"**\"`: \"kwargs\" receives keyword arguments, corresponds to "
+"Python's `def meth(**kwargs)`. The type of the `kwargs` parameter has to be "
+"`Option<&PyDict>`."
+msgstr ""
+
+#: src/class.md:610
+msgid ""
+"`arg=\"Value\"`: arguments with default value. Corresponds to Python's `def "
+"meth(arg=Value)`. If the `arg` argument is defined after var arguments, it "
+"is treated as a keyword-only argument. Note that `Value` has to be valid "
+"rust code, PyO3 just inserts it into the generated code unmodified."
+msgstr ""
+
+#: src/class.md:615 src/class.md:812
+msgid "Example:"
+msgstr ""
+
+#: src/class.md:628
+msgid "\"-1\""
+msgstr ""
+
+#: src/class.md:628 src/class.md:635
+msgid "\"true\""
+msgstr ""
+
+#: src/class.md:634
+msgid "\"10\""
+msgstr ""
+
+#: src/class.md:637
+msgid "\"\\\"Hello\\\"\""
+msgstr ""
+
+#: src/class.md:638
+msgid "\"**\""
+msgstr ""
+
+#: src/class.md:651
+msgid "\"py_args={:?}, py_kwargs={:?}, name={}, num={}, debug={}\""
+msgstr ""
+
+#: src/class.md:659
+msgid "\"num={}, debug={}\""
+msgstr ""
+
+#: src/class.md:663
+msgid ""
+"N.B. the position of the `\"*\"` argument (if included) controls the system "
+"of handling positional and keyword arguments. In Python:"
+msgstr ""
+
+#: src/class.md:668 src/class.md:669
+msgid "\"World\""
+msgstr ""
+
+#: src/class.md:673
+msgid "Produces output:"
+msgstr ""
+
+#: src/class.md:681
+msgid "Class customizations"
+msgstr "類別自訂"
+
+#: src/class.md:683
+msgid ""
+"Python's object model defines several protocols for different object "
+"behavior, like sequence, mapping or number protocols. PyO3 defines separate "
+"traits for each of them. To provide specific Python object behavior, you "
+"need to implement the specific trait for your struct. Important note, each "
+"protocol implementation block has to be annotated with the `#[pyproto]` "
+"attribute."
+msgstr ""
+
+#: src/class.md:688
+msgid ""
+"All `#[pyproto]` methods which can be defined below can return `T` instead "
+"of `PyResult<T>` if the method implementation is infallible. In addition, if "
+"the return type is `()`, it can be omitted altogether."
+msgstr ""
+
+#: src/class.md:691
+msgid "Basic object customization"
+msgstr "基本物件自訂"
+
+#: src/class.md:693
+msgid ""
+"The [`PyObjectProtocol`](https://docs.rs/pyo3/latest/pyo3/class/basic/trait."
+"PyObjectProtocol.html) trait provides several basic customizations."
+msgstr ""
+
+#: src/class.md:695
+msgid "Attribute access"
+msgstr ""
+
+#: src/class.md:697
+msgid "To customize object attribute access, define the following methods:"
+msgstr ""
+
+#: src/class.md:699
+msgid ""
+"`fn __getattr__(&self, name: FromPyObject) -> PyResult<impl "
+"IntoPy<PyObject>>`"
+msgstr ""
+
+#: src/class.md:700
+msgid ""
+"`fn __setattr__(&mut self, name: FromPyObject, value: FromPyObject) -> "
+"PyResult<()>`"
+msgstr ""
+
+#: src/class.md:701
+msgid "`fn __delattr__(&mut self, name: FromPyObject) -> PyResult<()>`"
+msgstr ""
+
+#: src/class.md:703
+msgid ""
+"Each method corresponds to Python's `self.attr`, `self.attr = value` and "
+"`del self.attr` code."
+msgstr ""
+
+#: src/class.md:705
+msgid "String Conversions"
+msgstr ""
+
+#: src/class.md:707
+msgid "`fn __repr__(&self) -> PyResult<impl ToPyObject<ObjectType=PyString>>`"
+msgstr ""
+
+#: src/class.md:708
+msgid "`fn __str__(&self) -> PyResult<impl ToPyObject<ObjectType=PyString>>`"
+msgstr ""
+
+#: src/class.md:710
+msgid ""
+"Possible return types for `__str__` and `__repr__` are `PyResult<String>` or "
+"`PyResult<PyString>`."
+msgstr ""
+
+#: src/class.md:712
+msgid "`fn __bytes__(&self) -> PyResult<PyBytes>`"
+msgstr ""
+
+#: src/class.md:714
+msgid "Provides the conversion to `bytes`."
+msgstr ""
+
+#: src/class.md:716
+msgid ""
+"`fn __format__(&self, format_spec: &str) -> PyResult<impl "
+"ToPyObject<ObjectType=PyString>>`"
+msgstr ""
+
+#: src/class.md:718
+msgid ""
+"Special method that is used by the `format()` builtin and the `str.format()` "
+"method. Possible return types are `PyResult<String>` or `PyResult<PyString>`."
+msgstr ""
+
+#: src/class.md:721
+msgid "Comparison operators"
+msgstr ""
+
+#: src/class.md:723
+msgid ""
+"`fn __richcmp__(&self, other: impl FromPyObject, op: CompareOp) -> "
+"PyResult<impl ToPyObject>`"
+msgstr ""
+
+#: src/class.md:725
+msgid ""
+"Overloads Python comparison operations (`==`, `!=`, `<`, `<=`, `>`, and "
+"`>=`). The `op` argument indicates the comparison operation being performed. "
+"The return type will normally be `PyResult<bool>`, but any Python object can "
+"be returned. If `other` is not of the type specified in the signature, the "
+"generated code will automatically `return NotImplemented`."
+msgstr ""
+
+#: src/class.md:731
+msgid "`fn __hash__(&self) -> PyResult<impl PrimInt>`"
+msgstr ""
+
+#: src/class.md:733
+msgid ""
+"Objects that compare equal must have the same hash value. The return type "
+"must be `PyResult<T>` where `T` is one of Rust's primitive integer types."
+msgstr ""
+
+#: src/class.md:736
+msgid "Other methods"
+msgstr ""
+
+#: src/class.md:738
+msgid "`fn __bool__(&self) -> PyResult<bool>`"
+msgstr ""
+
+#: src/class.md:740
+msgid "Determines the \"truthyness\" of the object."
+msgstr ""
+
+#: src/class.md:742
+msgid "Garbage Collector Integration"
+msgstr ""
+
+#: src/class.md:744
+msgid ""
+"If your type owns references to other Python objects, you will need to "
+"integrate with Python's garbage collector so that the GC is aware of those "
+"references. To do this, implement the [`PyGCProtocol`](https://docs.rs/pyo3/"
+"latest/pyo3/class/gc/trait.PyGCProtocol.html) trait for your struct. It "
+"includes two methods `__traverse__` and `__clear__`. These correspond to the "
+"slots `tp_traverse` and `tp_clear` in the Python C API. `__traverse__` must "
+"call `visit.call()` for each reference to another Python object. `__clear__` "
+"must clear out any mutable references to other Python objects (thus breaking "
+"reference cycles). Immutable references do not have to be cleared, as every "
+"cycle must contain at least one mutable reference. Example:"
+msgstr ""
+
+#: src/class.md:778
+msgid "// Release reference, this decrements ref counter.\n"
+msgstr ""
+
+#: src/class.md:787
+msgid ""
+"Special protocol trait implementations have to be annotated with the "
+"`#[pyproto]` attribute."
+msgstr ""
+
+#: src/class.md:789
+msgid ""
+"It is also possible to enable GC for custom classes using the `gc` parameter "
+"of the `pyclass` attribute. i.e. `#[pyclass(gc)]`. In that case instances of "
+"custom class participate in Python garbage collection, and it is possible to "
+"track them with `gc` module methods. When using the `gc` parameter, it is "
+"_required_ to implement the `PyGCProtocol` trait, failure to do so will "
+"result in an error at compile time:"
+msgstr ""
+
+#: src/class.md:795
+msgid ""
+"```compile_fail\n"
+"#[pyclass(gc)]\n"
+"struct GCTracked {} // Fails because it does not implement PyGCProtocol\n"
+"```"
+msgstr ""
+
+#: src/class.md:800
+msgid "Iterator Types"
+msgstr ""
+
+#: src/class.md:802
+msgid ""
+"Iterators can be defined using the [`PyIterProtocol`](https://docs.rs/pyo3/"
+"latest/pyo3/class/iter/trait.PyIterProtocol.html) trait. It includes two "
+"methods `__iter__` and `__next__`:"
+msgstr ""
+
+#: src/class.md:805
+msgid "`fn __iter__(slf: PyRefMut<Self>) -> PyResult<impl IntoPy<PyObject>>`"
+msgstr ""
+
+#: src/class.md:806
+msgid ""
+"`fn __next__(slf: PyRefMut<Self>) -> PyResult<Option<impl IntoPy<PyObject>>>`"
+msgstr ""
+
+#: src/class.md:808
+msgid ""
+"Returning `None` from `__next__` indicates that that there are no further "
+"items. These two methods can be take either `PyRef<Self>` or "
+"`PyRefMut<Self>` as their first argument, so that mutable borrow can be "
+"avoided if needed."
+msgstr ""
+
+#: src/class.md:834
+msgid ""
+"In many cases you'll have a distinction between the type being iterated over "
+"(i.e. the _iterable_) and the iterator it provides. In this case, you should "
+"implement `PyIterProtocol` for both the iterable and the iterator, but the "
+"iterable only needs to support `__iter__()` while the iterator must support "
+"both `__iter__()` and `__next__()`. The default implementations in "
+"`PyIterProtocol` will ensure that the objects behave correctly in Python. "
+"For example:"
+msgstr ""
+
+#: src/class.md:883
+msgid "\"assert list(inst) == [1, 2, 3, 4]\""
+msgstr ""
+
+#: src/class.md:884
+msgid "\"assert list(iter(iter(inst))) == [1, 2, 3, 4]\""
+msgstr ""
+
+#: src/class.md:887
+msgid ""
+"For more details on Python's iteration protocols, check out [the \"Iterator "
+"Types\" section of the library documentation](https://docs.python.org/3/"
+"library/stdtypes.html#iterator-types)."
+msgstr ""
+
+#: src/class.md:890
+msgid "Returning a value from iteration"
+msgstr ""
+
+#: src/class.md:892
+msgid ""
+"This guide has so far shown how to use `Option<T>` to implement yielding "
+"values during iteration. In Python a generator can also return a value. To "
+"express this in Rust, PyO3 provides the [`IterNextOutput`](https://docs.rs/"
+"pyo3/latest/pyo3/class/iter/enum.IterNextOutput.html) enum to both `Yield` "
+"values and `Return` a final value - see its docs for further details and an "
+"example."
+msgstr ""
+
+#: src/class.md:898
+msgid "How methods are implemented"
+msgstr ""
+
+#: src/class.md:900
+msgid ""
+"Users should be able to define a `#[pyclass]` with or without "
+"`#[pymethods]`, while PyO3 needs a trait with a function that returns all "
+"methods. Since it's impossible to make the code generation in pyclass "
+"dependent on whether there is an impl block, we'd need to implement the "
+"trait on `#[pyclass]` and override the implementation in `#[pymethods]`. To "
+"enable this, we use a static registry type provided by [inventory](https://"
+"github.com/dtolnay/inventory), which allows us to collect `impl`s from "
+"arbitrary source code by exploiting some binary trick. See [inventory: how "
+"it works](https://github.com/dtolnay/inventory#how-it-works) and "
+"`pyo3_derive_backend::py_class` for more details. Also for `#[pyproto]`, we "
+"use a similar, but more task-specific registry and initialize it using the "
+"[ctor](https://github.com/mmastrac/rust-ctor) crate."
+msgstr ""
+
+#: src/class.md:910
+msgid "Specifically, the following implementation is generated:"
+msgstr ""
+
+#: src/class.md:914
+msgid "/// Class for demonstration\n"
+msgstr ""
+
+#: src/class.md:931
+msgid "\"MyClass\""
+msgstr ""
+
+#: src/class.md:933
+msgid "\"Class for demonstration\""
+msgstr ""
+
+#: src/class.md:986
+msgid "\"assert cls.__name__ == 'MyClass'\""
+msgstr ""
+
+#: src/exception.md:1
+msgid "Python Exceptions"
+msgstr ""
+
+#: src/exception.md:3
+msgid "Defining a new exception"
+msgstr ""
+
+#: src/exception.md:5
+msgid ""
+"You can use the [`create_exception!`](https://docs.rs/pyo3/latest/pyo3/macro."
+"create_exception.html) macro to define a new exception type:"
+msgstr ""
+
+#: src/exception.md:13
+msgid "`module` is the name of the containing module."
+msgstr ""
+
+#: src/exception.md:14
+msgid "`MyError` is the name of the new exception type."
+msgstr ""
+
+#: src/exception.md:16
+msgid "For example:"
+msgstr "例如："
+
+#: src/exception.md:29
+msgid "\"CustomError\""
+msgstr ""
+
+#: src/exception.md:31
+msgid "\"assert str(CustomError) == \\\"<class 'mymodule.CustomError'>\\\"\""
+msgstr ""
+
+#: src/exception.md:32
+msgid "\"assert CustomError('oops').args == ('oops',)\""
+msgstr ""
+
+#: src/exception.md:36
+msgid "Raising an exception"
+msgstr "拋出例外狀況"
+
+#: src/exception.md:38
+msgid ""
+"To raise an exception, first you need to obtain an exception type and "
+"construct a new [`PyErr`](https://docs.rs/pyo3/latest/pyo3/struct.PyErr."
+"html), then call the [`PyErr::restore`](https://docs.rs/pyo3/latest/pyo3/"
+"struct.PyErr.html#method.restore) method to write the exception back to the "
+"Python interpreter's global state."
+msgstr ""
+
+#: src/exception.md:47
+msgid "\"Error\""
+msgstr ""
+
+#: src/exception.md:53
+msgid ""
+"From `pyfunction`s and `pyclass` methods, returning an `Err(PyErr)` is "
+"enough; PyO3 will handle restoring the exception on the Python interpreter "
+"side."
+msgstr ""
+
+#: src/exception.md:56
+msgid ""
+"If you already have a Python exception instance, you can simply call "
+"[`PyErr::from_instance`](https://docs.rs/pyo3/latest/pyo3/struct.PyErr."
+"html#method.from_instance)."
+msgstr ""
+
+#: src/exception.md:62
+msgid ""
+"If a Rust type exists for the exception, then it is possible to use the "
+"`py_err` method. For example, each standard exception defined in the `pyo3::"
+"exceptions` module has a corresponding Rust type, exceptions defined by "
+"[`create_exception!`](https://docs.rs/pyo3/latest/pyo3/macro."
+"create_exception.html) and [`import_exception!`](https://docs.rs/pyo3/latest/"
+"pyo3/macro.import_exception.html) macro have Rust types as well."
+msgstr ""
+
+#: src/exception.md:73
+msgid "\"argument is wrong\""
+msgstr ""
+
+#: src/exception.md:80
+msgid "Checking exception types"
+msgstr ""
+
+#: src/exception.md:82
+msgid ""
+"Python has an [`isinstance`](https://docs.python.org/3/library/functions."
+"html#isinstance) method to check an object's type, in PyO3 there is a "
+"[`Python::is_instance`](https://docs.rs/pyo3/latest/pyo3/struct.Python."
+"html#method.is_instance) method which does the same thing."
+msgstr ""
+
+#: src/exception.md:98
+msgid ""
+"[`Python::is_instance`](https://docs.rs/pyo3/latest/pyo3/struct.Python."
+"html#method.is_instance) calls the underlying [`PyType::is_instance`]"
+"(https://docs.rs/pyo3/latest/pyo3/types/struct.PyType.html#method."
+"is_instance) method to do the actual work."
+msgstr ""
+
+#: src/exception.md:101
+msgid "To check the type of an exception, you can simply do:"
+msgstr ""
+
+#: src/exception.md:114
+msgid "Handling Rust errors"
+msgstr ""
+
+#: src/exception.md:116
+msgid ""
+"The vast majority of operations in this library will return [`PyResult<T>`]"
+"(https://docs.rs/pyo3/latest/pyo3/prelude/type.PyResult.html), which is an "
+"alias for the type `Result<T, PyErr>`."
+msgstr ""
+
+#: src/exception.md:119
+msgid ""
+"A [`PyErr`](https://docs.rs/pyo3/latest/pyo3/struct.PyErr.html) represents a "
+"Python exception. Errors within the PyO3 library are also exposed as Python "
+"exceptions."
+msgstr ""
+
+#: src/exception.md:122
+msgid ""
+"The PyO3 library handles Python exceptions in two stages. During the first "
+"stage, a [`PyErr`](https://docs.rs/pyo3/latest/pyo3/struct.PyErr.html) "
+"instance is created. At this stage, holding Python's GIL is not required. "
+"During the second stage, an actual Python exception instance is created and "
+"set active in the Python interpreter."
+msgstr ""
+
+#: src/exception.md:126
+msgid ""
+"In simple cases, for custom errors adding an implementation of `std::"
+"convert::From<T>` trait for this custom error is enough. `PyErr::new` "
+"accepts an argument in the form of `ToPyObject + 'static`. If the `'static` "
+"constraint can not be satisfied or more complex arguments are required, the "
+"[`PyErrArguments`](https://docs.rs/pyo3/latest/pyo3/trait.PyErrArguments."
+"html) trait can be implemented. In that case, actual exception argument "
+"creation is delayed until a `Python` object is available."
+msgstr ""
+
+#: src/exception.md:146
+msgid "\"Oh no!\""
+msgstr ""
+
+#: src/exception.md:160
+msgid "\"127.0.0.1:80\""
+msgstr ""
+
+#: src/exception.md:165
+msgid ""
+"The code snippet above will raise an `OSError` in Python if `bind()` returns "
+"a `CustomIOError`."
+msgstr ""
+
+#: src/exception.md:167
+msgid ""
+"The `std::convert::From<T>` trait is implemented for most of the Rust "
+"standard library's error types so the `?` operator can be used."
+msgstr ""
+
+#: src/exception.md:178
+msgid ""
+"The code snippet above will raise a `ValueError` in Python if `String::"
+"parse()` returns an error."
+msgstr ""
+
+#: src/exception.md:181
+msgid "Using exceptions defined in Python code"
+msgstr "使用 Python 程式碼中定義的例外狀況"
+
+#: src/exception.md:183
+msgid ""
+"It is possible to use an exception defined in Python code as a native Rust "
+"type. The `import_exception!` macro allows importing a specific exception "
+"class and defines a zero-sized Rust type for that exception."
+msgstr ""
+
+#: src/exception.md:199
+msgid "\"tell\""
+msgstr ""
+
+#: src/exception.md:200
+msgid "\"not supported: tell\""
+msgstr ""
+
+#: src/exception.md:207
+msgid ""
+"[`pyo3::exceptions`](https://docs.rs/pyo3/latest/pyo3/exceptions/index.html) "
+"defines exceptions for several standard library modules."
+msgstr ""
+
+#: src/function.md:1
+msgid "Python Functions"
+msgstr ""
+
+#: src/function.md:3
+msgid ""
+"PyO3 supports two ways to define a free function in Python. Both require "
+"registering the function to a [module](./module.md)."
+msgstr ""
+
+#: src/function.md:6
+msgid ""
+"One way is defining the function in the module definition, annotated with "
+"`#[pyfn]`."
+msgstr ""
+
+#: src/function.md:14
+msgid "\"sum_as_string\""
+msgstr ""
+
+#: src/function.md:16
+msgid "\"{}\""
+msgstr ""
+
+#: src/function.md:25
+msgid ""
+"The other is annotating a function with `#[pyfunction]` and then adding it "
+"to the module using the `wrap_pyfunction!` macro."
+msgstr ""
+
+#: src/function.md:47
+msgid "Argument parsing"
+msgstr ""
+
+#: src/function.md:49
+msgid ""
+"Both the `#[pyfunction]` and `#[pyfn]` attributes support specifying details "
+"of argument parsing.  The details are given in the section \"Method "
+"arguments\" in the [Classes](class.md) chapter.  Here is an example for a "
+"function that accepts arbitrary keyword arguments (`**kwargs` in Python "
+"syntax) and returns the number that was passed:"
+msgstr ""
+
+#: src/function.md:75
+msgid "Making the function signature available to Python"
+msgstr ""
+
+#: src/function.md:77
+msgid ""
+"In order to make the function signature available to Python to be retrieved "
+"via `inspect.signature`, use the `#[text_signature]` annotation as in the "
+"example below. The `/` signifies the end of positional-only arguments. (This "
+"is not a feature of this library in particular, but the general format used "
+"by CPython for annotating signatures of built-in functions.)"
+msgstr ""
+
+#: src/function.md:85
+msgid "/// This function adds two unsigned 64-bit integers.\n"
+msgstr ""
+
+#: src/function.md:88
+msgid "\"(a, b, /)\""
+msgstr ""
+
+#: src/function.md:94
+msgid "This also works for classes and methods:"
+msgstr ""
+
+#: src/function.md:99
+msgid "// it works even if the item is not documented:\n"
+msgstr ""
+
+#: src/function.md:103
+msgid "\"(c, d, /)\""
+msgstr ""
+
+#: src/function.md:108
+msgid ""
+"// the signature for the constructor is attached\n"
+"    // to the struct definition instead.\n"
+msgstr ""
+
+#: src/function.md:114
+msgid "// the self argument should be written $self\n"
+msgstr ""
+
+#: src/function.md:115
+msgid "\"($self, e, f)\""
+msgstr ""
+
+#: src/function.md:120
+msgid "\"(cls, e, f)\""
+msgstr ""
+
+#: src/function.md:125
+msgid "\"(e, f)\""
+msgstr ""
+
+#: src/function.md:132
+msgid "Making the function signature available to Python (old method)"
+msgstr ""
+
+#: src/function.md:134
+msgid ""
+"Alternatively, simply make sure the first line of your docstring is "
+"formatted like in the following example. Please note that the newline after "
+"the `--` is mandatory. The `/` signifies the end of positional-only "
+"arguments."
+msgstr ""
+
+#: src/function.md:138
+msgid ""
+"`#[text_signature]` should be preferred, since it will override "
+"automatically generated signatures when those are added in a future version "
+"of PyO3."
+msgstr ""
+
+#: src/function.md:143
+msgid ""
+"/// add(a, b, /)\n"
+"/// --\n"
+"///\n"
+"/// This function adds two unsigned 64-bit integers.\n"
+msgstr ""
+
+#: src/function.md:152
+msgid ""
+"// a function with a signature but without docs. Both blank lines after the "
+"`--` are mandatory.\n"
+msgstr ""
+
+#: src/function.md:154
+msgid ""
+"/// sub(a, b, /)\n"
+"/// --\n"
+"///\n"
+"///\n"
+msgstr ""
+
+#: src/function.md:165
+msgid ""
+"When annotated like this, signatures are also correctly displayed in IPython."
+msgstr ""
+
+#: src/function.md:174
+msgid "Closures"
+msgstr ""
+
+#: src/function.md:176
+msgid ""
+"Currently, there are no conversions between `Fn`s in Rust and callables in "
+"Python. This would definitely be possible and very useful, so contributions "
+"are welcome. In the meantime, you can do the following:"
+msgstr ""
+
+#: src/function.md:178
+msgid "Calling Python functions in Rust"
+msgstr ""
+
+#: src/function.md:180
+msgid ""
+"You can use [`PyAny::is_callable`](https://docs.rs/pyo3/latest/pyo3/struct."
+"PyAny.html#tymethod.is_callable) to check if you have a callable object. "
+"`is_callable` will return `true` for functions (including lambdas), methods "
+"and objects with a `__call__` method. You can call the object with [`PyAny::"
+"call`](https://docs.rs/pyo3/latest/pyo3/struct.PyAny.html#tymethod.call) "
+"with the args as first parameter and the kwargs (or `None`) as second "
+"parameter. There are also [`PyAny::call0`](https://docs.rs/pyo3/latest/pyo3/"
+"struct.PyAny.html#tymethod.call0) with no args and [`PyAny::call1`](https://"
+"docs.rs/pyo3/latest/pyo3/struct.PyAny.html#tymethod.call1) with only "
+"positional args."
+msgstr ""
+
+#: src/function.md:182
+msgid "Calling Rust functions in Python"
+msgstr ""
+
+#: src/function.md:184
+msgid ""
+"If you have a static function, you can expose it with `#[pyfunction]` and "
+"use [`wrap_pyfunction!`](https://docs.rs/pyo3/latest/pyo3/macro."
+"wrap_pyfunction.html) to get the corresponding [`PyObject`](https://docs.rs/"
+"pyo3/latest/pyo3/struct.PyObject.html). For dynamic functions, e.g. lambdas "
+"and functions that were passed as arguments, you must put them in some kind "
+"of owned container, e.g. a `Box`. (A long-term solution will be a special "
+"container similar to wasm-bindgen's `Closure`). You can then use a "
+"`#[pyclass]` struct with that container as a field as a way to pass the "
+"function over the FFI barrier. You can even make that class callable with "
+"`__call__` so it looks like a function in Python code."
+msgstr ""
+
+#: src/module.md:1
+msgid "Python Modules"
+msgstr ""
+
+#: src/module.md:3
+msgid "You can create a module as follows:"
+msgstr ""
+
+#: src/module.md:7
+msgid ""
+"// add bindings to the generated Python module\n"
+"// N.B: \"rust2py\" must be the name of the `.so` or `.pyd` file.\n"
+msgstr ""
+
+#: src/module.md:10
+msgid "/// This module is implemented in Rust.\n"
+msgstr ""
+
+#: src/module.md:14
+msgid ""
+"// PyO3 aware function. All of our Python interfaces could be declared in a "
+"separate module.\n"
+"    // Note that the `#[pyfn()]` annotation automatically converts the "
+"arguments from\n"
+"    // Python objects to Rust values, and the Rust return value back into a "
+"Python object.\n"
+"    // The `_py` argument represents that we're holding the GIL.\n"
+msgstr ""
+
+#: src/module.md:26
+msgid "// logic implemented as a normal Rust function\n"
+msgstr ""
+
+#: src/module.md:35
+msgid ""
+"The `#[pymodule]` procedural macro attribute takes care of exporting the "
+"initialization function of your module to Python. It can take as an argument "
+"the name of your module, which must be the name of the `.so` or `.pyd` file; "
+"the default is the Rust function's name."
+msgstr ""
+
+#: src/module.md:37
+msgid ""
+"If the name of the module (the default being the function name) does not "
+"match the name of the `.so` or `.pyd` file, you will get an import error in "
+"Python with the following message: `ImportError: dynamic module does not "
+"define module export function (PyInit_name_of_your_module)`"
+msgstr ""
+
+#: src/module.md:40
+msgid ""
+"To import the module, either copy the shared library as described in [the "
+"README](https://github.com/PyO3/pyo3) or use a tool, e.g. `maturin develop` "
+"with [maturin](https://github.com/PyO3/maturin) or `python setup.py develop` "
+"with [setuptools-rust](https://github.com/PyO3/setuptools-rust)."
+msgstr ""
+
+#: src/module.md:42
+msgid "Documentation"
+msgstr "文件"
+
+#: src/module.md:44
+msgid ""
+"The [Rust doc comments](https://doc.rust-lang.org/stable/book/first-edition/"
+"comments.html) of the module initialization function will be applied "
+"automatically as the Python docstring of your module."
+msgstr ""
+
+#: src/module.md:52
+msgid ""
+"Which means that the above Python code will print `This module is "
+"implemented in Rust.`."
+msgstr ""
+
+#: src/module.md:54
+msgid "Modules as objects"
+msgstr ""
+
+#: src/module.md:56
+msgid ""
+"In Python, modules are first class objects. This means that you can store "
+"them as values or add them to dicts or other modules:"
+msgstr ""
+
+#: src/module.md:65
+msgid "\"Subfunction\""
+msgstr ""
+
+#: src/module.md:84
+msgid "\"supermodule\""
+msgstr ""
+
+#: src/module.md:86
+msgid "\"assert supermodule.submodule.subfunction() == 'Subfunction'\""
+msgstr ""
+
+#: src/module.md:90
+msgid ""
+"This way, you can create a module hierarchy within a single extension module."
+msgstr ""
+
+#: src/SUMMARY.md:1
+msgid "Summary"
+msgstr "摘要"
+
+#: src/SUMMARY.md:6
+msgid "Type Conversions"
+msgstr ""
+
+#: src/SUMMARY.md:8
+msgid "Calling Python from Rust"
+msgstr "從 Rust 呼叫 Python"
+
+#: src/SUMMARY.md:9
+msgid "GIL, mutability and object types"
+msgstr ""
+
+#: src/SUMMARY.md:12
+msgid "Advanced Topics"
+msgstr ""
+
+#: src/SUMMARY.md:14
+msgid "PyPy support"
+msgstr ""
+
+#: src/SUMMARY.md:15
+msgid "FAQ & Troubleshooting"
+msgstr ""
+
+#: src/SUMMARY.md:17
+msgid "Appendix B: Migration Guide"
+msgstr ""
+
+#: src/SUMMARY.md:18
+msgid "Appendix C: Trait bounds"
+msgstr ""
+
+#: src/conversions.md:3
+msgid ""
+"In this portion of the guide we'll talk about the mapping of Python types to "
+"Rust types offered by PyO3, as well as the traits available to perform "
+"conversions between them."
+msgstr ""
+"本節指南將介紹 PyO3 提供的 Python 型別到 Rust 型別的對應，以及用於在兩者之間"
+"進行轉換的特徵。"
+
+#: src/conversions.md:5
+msgid "Mapping of Rust types to Python types"
+msgstr ""
+
+#: src/conversions.md:7
+msgid ""
+"When writing functions callable from Python (such as a `#[pyfunction]` or in "
+"a `#[pymethods]` block), the trait `FromPyObject` is required for function "
+"arguments, and `IntoPy<PyObject>` is required for function return values."
+msgstr ""
+
+#: src/conversions.md:9
+msgid ""
+"Consult the tables in the following section to find the Rust types provided "
+"by PyO3 which implement these traits."
+msgstr ""
+
+#: src/conversions.md:11
+msgid "Argument Types"
+msgstr ""
+
+#: src/conversions.md:13
+msgid ""
+"When accepting a function argument, it is possible to either use Rust "
+"library types or PyO3's Python-native types. (See the next section for "
+"discussion on when to use each.)"
+msgstr ""
+
+#: src/conversions.md:15
+msgid ""
+"The table below contains the Python type and the corresponding function "
+"argument types that will accept them:"
+msgstr ""
+
+#: src/conversions.md:17
+msgid "Python"
+msgstr ""
+
+#: src/conversions.md:17
+msgid "Rust"
+msgstr ""
+
+#: src/conversions.md:17
+msgid "Rust (Python-native)"
+msgstr ""
+
+#: src/conversions.md:19
+msgid "`object`"
+msgstr ""
+
+#: src/conversions.md:19 src/conversions.md:32 src/conversions.md:33
+#: src/conversions.md:34 src/conversions.md:35 src/conversions.md:36
+#: src/conversions.md:37 src/conversions.md:38 src/conversions.md:39
+#: src/conversions.md:40 src/conversions.md:42
+msgid "\\-"
+msgstr ""
+
+#: src/conversions.md:19
+msgid "`&PyAny`"
+msgstr ""
+
+#: src/conversions.md:20 src/conversions.md:81 src/conversions.md:82
+msgid "`str`"
+msgstr ""
+
+#: src/conversions.md:20
+msgid "`String`, `Cow<str>`, `&str`"
+msgstr ""
+
+#: src/conversions.md:20
+msgid "`&PyUnicode`"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`bytes`"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`Vec<u8>`, `&[u8]`"
+msgstr ""
+
+#: src/conversions.md:21
+msgid "`&PyBytes`"
+msgstr ""
+
+#: src/conversions.md:22 src/conversions.md:83
+msgid "`bool`"
+msgstr ""
+
+#: src/conversions.md:22
+msgid "`&PyBool`"
+msgstr ""
+
+#: src/conversions.md:23 src/conversions.md:84
+msgid "`int`"
+msgstr ""
+
+#: src/conversions.md:23 src/conversions.md:84
+msgid "Any integer type (`i32`, `u32`, `usize`, etc)"
+msgstr ""
+
+#: src/conversions.md:23
+msgid "`&PyLong`"
+msgstr ""
+
+#: src/conversions.md:24 src/conversions.md:85
+msgid "`float`"
+msgstr ""
+
+#: src/conversions.md:24 src/conversions.md:85
+msgid "`f32`, `f64`"
+msgstr ""
+
+#: src/conversions.md:24
+msgid "`&PyFloat`"
+msgstr ""
+
+#: src/conversions.md:25
+msgid "`complex`"
+msgstr ""
+
+#: src/conversions.md:25
+msgid "`num_complex::Complex`[^1]"
+msgstr ""
+
+#: src/conversions.md:25
+msgid "`&PyComplex`"
+msgstr ""
+
+#: src/conversions.md:26
+msgid "`list[T]`"
+msgstr ""
+
+#: src/conversions.md:26 src/conversions.md:41 src/conversions.md:88
+msgid "`Vec<T>`"
+msgstr ""
+
+#: src/conversions.md:26
+msgid "`&PyList`"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`dict[K, V]`"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`HashMap<K, V>`, `BTreeMap<K, V>`"
+msgstr ""
+
+#: src/conversions.md:27
+msgid "`&PyDict`"
+msgstr ""
+
+#: src/conversions.md:28
+msgid "`tuple[T, U]`"
+msgstr ""
+
+#: src/conversions.md:28
+msgid "`(T, U)`, `Vec<T>`"
+msgstr ""
+
+#: src/conversions.md:28
+msgid "`&PyTuple`"
+msgstr ""
+
+#: src/conversions.md:29
+msgid "`set[T]`"
+msgstr ""
+
+#: src/conversions.md:29 src/conversions.md:30
+msgid "`HashSet<T>`, `BTreeSet<T>`"
+msgstr ""
+
+#: src/conversions.md:29
+msgid "`&PySet`"
+msgstr ""
+
+#: src/conversions.md:30
+msgid "`frozenset[T]`"
+msgstr ""
+
+#: src/conversions.md:30
+msgid "`&PyFrozenSet`"
+msgstr ""
+
+#: src/conversions.md:31
+msgid "`bytearray`"
+msgstr ""
+
+#: src/conversions.md:31
+msgid "`Vec<u8>`"
+msgstr ""
+
+#: src/conversions.md:31
+msgid "`&PyByteArray`"
+msgstr ""
+
+#: src/conversions.md:32
+msgid "`slice`"
+msgstr ""
+
+#: src/conversions.md:32
+msgid "`&PySlice`"
+msgstr ""
+
+#: src/conversions.md:33
+msgid "`type`"
+msgstr ""
+
+#: src/conversions.md:33
+msgid "`&PyType`"
+msgstr ""
+
+#: src/conversions.md:34
+msgid "`module`"
+msgstr ""
+
+#: src/conversions.md:34
+msgid "`&PyModule`"
+msgstr ""
+
+#: src/conversions.md:35
+msgid "`datetime.datetime`"
+msgstr ""
+
+#: src/conversions.md:35
+msgid "`&PyDateTime`"
+msgstr ""
+
+#: src/conversions.md:36
+msgid "`datetime.date`"
+msgstr ""
+
+#: src/conversions.md:36
+msgid "`&PyDate`"
+msgstr ""
+
+#: src/conversions.md:37
+msgid "`datetime.time`"
+msgstr ""
+
+#: src/conversions.md:37
+msgid "`&PyTime`"
+msgstr ""
+
+#: src/conversions.md:38
+msgid "`datetime.tzinfo`"
+msgstr ""
+
+#: src/conversions.md:38
+msgid "`&PyTzInfo`"
+msgstr ""
+
+#: src/conversions.md:39
+msgid "`datetime.timedelta`"
+msgstr ""
+
+#: src/conversions.md:39
+msgid "`&PyDelta`"
+msgstr ""
+
+#: src/conversions.md:40
+msgid "`typing.Optional[T]`"
+msgstr ""
+
+#: src/conversions.md:40 src/conversions.md:86
+msgid "`Option<T>`"
+msgstr ""
+
+#: src/conversions.md:41
+msgid "`typing.Sequence[T]`"
+msgstr ""
+
+#: src/conversions.md:41
+msgid "`&PySequence`"
+msgstr ""
+
+#: src/conversions.md:42
+msgid "`typing.Iterator[Any]`"
+msgstr ""
+
+#: src/conversions.md:42
+msgid "`&PyIterator`"
+msgstr ""
+
+#: src/conversions.md:44
+msgid ""
+"There are also a few special types related to the GIL and Rust-defined "
+"`#[pyclass]`es which may come in useful:"
+msgstr ""
+
+#: src/conversions.md:46
+msgid "What"
+msgstr ""
+
+#: src/conversions.md:46
+msgid "Description"
+msgstr ""
+
+#: src/conversions.md:48
+msgid "`Python`"
+msgstr ""
+
+#: src/conversions.md:48
+msgid ""
+"A GIL token, used to pass to PyO3 constructors to prove ownership of the GIL"
+msgstr ""
+
+#: src/conversions.md:49
+msgid ""
+"A Python object isolated from the GIL lifetime. This can be sent to other "
+"threads. To call Python APIs using this object, it must be used with "
+"`AsPyRef::as_ref` to get a `&PyAny` reference."
+msgstr ""
+
+#: src/conversions.md:50
+msgid "`Py<T>`"
+msgstr ""
+
+#: src/conversions.md:50
+msgid "Same as above, for a specific Python type or `#[pyclass]` T."
+msgstr ""
+
+#: src/conversions.md:51
+msgid "`&PyCell<T>`"
+msgstr ""
+
+#: src/conversions.md:51
+msgid "A `#[pyclass]` value owned by Python."
+msgstr ""
+
+#: src/conversions.md:52
+msgid "`PyRef<T>`"
+msgstr ""
+
+#: src/conversions.md:52
+msgid "A `#[pyclass]` borrowed immutably."
+msgstr ""
+
+#: src/conversions.md:53
+msgid "`PyRefMut<T>`"
+msgstr ""
+
+#: src/conversions.md:53
+msgid "A `#[pyclass]` borrowed mutably."
+msgstr ""
+
+#: src/conversions.md:55
+msgid ""
+"For more detail on accepting `#[pyclass]` values as function arguments, see "
+"[the section of this guide on Python Classes](class.md)."
+msgstr ""
+
+#: src/conversions.md:57
+msgid "Using Rust library types vs Python-native types"
+msgstr ""
+
+#: src/conversions.md:59
+msgid ""
+"Using Rust library types as function arguments will incur a conversion cost "
+"compared to using the Python-native types. Using the Python-native types is "
+"almost zero-cost (they just require a type check similar to the Python "
+"builtin function `isinstance()`)."
+msgstr ""
+
+#: src/conversions.md:61
+msgid ""
+"However, once that conversion cost has been paid, the Rust standard library "
+"types offer a number of benefits:"
+msgstr ""
+
+#: src/conversions.md:62
+msgid ""
+"You can write functionality in native-speed Rust code (free of Python's "
+"runtime costs)."
+msgstr ""
+
+#: src/conversions.md:63
+msgid "You get better interoperability with the rest of the Rust ecosystem."
+msgstr ""
+
+#: src/conversions.md:64
+msgid ""
+"You can use `Python::allow_threads` to release the Python GIL and let other "
+"Python threads make progress while your Rust code is executing."
+msgstr ""
+
+#: src/conversions.md:65
+msgid ""
+"You also benefit from stricter type checking. For example you can specify "
+"`Vec<i32>`, which will only accept a Python `list` containing integers. The "
+"Python-native equivalent, `&PyList`, would accept a Python `list` containing "
+"Python objects of any type."
+msgstr ""
+
+#: src/conversions.md:67
+msgid ""
+"For most PyO3 usage the conversion cost is worth paying to get these "
+"benefits. As always, if you're not sure it's worth it in your case, "
+"benchmark it!"
+msgstr ""
+
+#: src/conversions.md:69
+msgid "Returning Rust values to Python"
+msgstr ""
+
+#: src/conversions.md:71
+msgid ""
+"When returning values from functions callable from Python, Python-native "
+"types (`&PyAny`, `&PyDict` etc.) can be used with zero cost."
+msgstr ""
+
+#: src/conversions.md:73
+msgid ""
+"Because these types are references, in some situations the Rust compiler may "
+"ask for lifetime annotations. If this is the case, you should use "
+"`Py<PyAny>`, `Py<PyDict>` etc. instead - which are also zero-cost. For all "
+"of these Python-native types `T`, `Py<T>` can be created from `T` with an `."
+"into()` conversion."
+msgstr ""
+
+#: src/conversions.md:75
+msgid ""
+"If your function is fallible, it should return `PyResult<T>`, which will "
+"raise a `Python` exception if the `Err` variant is returned."
+msgstr ""
+
+#: src/conversions.md:77
+msgid ""
+"Finally, the following Rust types are also able to convert to Python as "
+"return values:"
+msgstr ""
+
+#: src/conversions.md:79
+msgid "Rust type"
+msgstr ""
+
+#: src/conversions.md:79
+msgid "Resulting Python Type"
+msgstr ""
+
+#: src/conversions.md:81
+msgid "`String`"
+msgstr ""
+
+#: src/conversions.md:82
+msgid "`&str`"
+msgstr ""
+
+#: src/conversions.md:86
+msgid "`Optional[T]`"
+msgstr ""
+
+#: src/conversions.md:87
+msgid "`Tuple[T, U]`"
+msgstr ""
+
+#: src/conversions.md:88
+msgid "`List[T]`"
+msgstr ""
+
+#: src/conversions.md:89
+msgid "`HashMap<K, V>`"
+msgstr ""
+
+#: src/conversions.md:89 src/conversions.md:90
+msgid "`Dict[K, V]`"
+msgstr ""
+
+#: src/conversions.md:90
+msgid "`BTreeMap<K, V>`"
+msgstr ""
+
+#: src/conversions.md:91
+msgid "`HashSet<T>`"
+msgstr ""
+
+#: src/conversions.md:91 src/conversions.md:92
+msgid "`Set[T]`"
+msgstr ""
+
+#: src/conversions.md:92
+msgid "`BTreeSet<T>`"
+msgstr ""
+
+#: src/conversions.md:93
+msgid "`&PyCell<T: PyClass>`"
+msgstr ""
+
+#: src/conversions.md:94
+msgid "`PyRef<T: PyClass>`"
+msgstr ""
+
+#: src/conversions.md:95
+msgid "`PyRefMut<T: PyClass>`"
+msgstr ""
+
+#: src/conversions.md:97
+msgid "Traits"
+msgstr ""
+
+#: src/conversions.md:99
+msgid ""
+"PyO3 provides some handy traits to convert between Python types and Rust "
+"types."
+msgstr ""
+
+#: src/conversions.md:101
+msgid "`.extract()` and the `FromPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:103
+msgid ""
+"The easiest way to convert a Python object to a Rust value is using `."
+"extract()`.  It returns a `PyResult` with a type error if the conversion "
+"fails, so usually you will use something like"
+msgstr ""
+
+#: src/conversions.md:111
+msgid ""
+"This method is available for many Python object types, and can produce a "
+"wide variety of Rust types, which you can check out in the implementor list "
+"of [`FromPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPyObject.html)."
+msgstr ""
+
+#: src/conversions.md:115
+msgid ""
+"[`FromPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPyObject.html) is also implemented for your own Rust types wrapped as "
+"Python objects (see [the chapter about classes](class.md)).  There, in order "
+"to both be able to operate on mutable references _and_ satisfy Rust's rules "
+"of non-aliasing mutable references, you have to extract the PyO3 reference "
+"wrappers [`PyRef`](https://pyo3.rs/master/doc/pyo3/pycell/struct.PyRef.html) "
+"and [`PyRefMut`](https://pyo3.rs/master/doc/pyo3/pycell/struct.PyRefMut."
+"html).  They work like the reference wrappers of `std::cell::RefCell` and "
+"ensure (at runtime) that Rust borrows are allowed."
+msgstr ""
+
+#: src/conversions.md:123
+msgid "The `ToPyObject` trait"
+msgstr ""
+
+#: src/conversions.md:125
+msgid ""
+"[`ToPyObject`](https://docs.rs/pyo3/latest/pyo3/conversion/trait.ToPyObject."
+"html) is a conversion trait that allows various objects to be converted into "
+"[`PyObject`](https://docs.rs/pyo3/latest/pyo3/struct.PyObject.html). "
+"`IntoPy<PyObject>` serves the same purpose, except that it consumes `self`."
+msgstr ""
+
+#: src/conversions.md:130
+msgid "`*args` and `**kwargs` for Python object calls"
+msgstr ""
+
+#: src/conversions.md:132
+msgid ""
+"There are several ways how to pass positional and keyword arguments to a "
+"Python object call. [`PyAny`](https://docs.rs/pyo3/latest/pyo3/struct.PyAny."
+"html) provides two methods:"
+msgstr ""
+
+#: src/conversions.md:135
+msgid "`call` - call any callable Python object."
+msgstr ""
+
+#: src/conversions.md:136
+msgid ""
+"`call_method` - call a specific method on the object, shorthand for "
+"`get_attr` then `call`."
+msgstr ""
+
+#: src/conversions.md:138
+msgid ""
+"Both methods need `args` and `kwargs` arguments, but there are variants for "
+"less complex calls, such as `call1` for only `args` and `call0` for no "
+"arguments at all."
+msgstr ""
+
+#: src/conversions.md:153
+msgid "\"arg1\""
+msgstr ""
+
+#: src/conversions.md:154
+msgid "\"arg2\""
+msgstr ""
+
+#: src/conversions.md:155
+msgid "\"arg3\""
+msgstr ""
+
+#: src/conversions.md:162
+msgid "// call object without empty arguments\n"
+msgstr ""
+
+#: src/conversions.md:165
+msgid "// call object with PyTuple\n"
+msgstr ""
+
+#: src/conversions.md:169
+msgid "// pass arguments as rust tuple\n"
+msgstr ""
+
+#: src/conversions.md:175
+msgid ""
+"`kwargs` can be `None` or `Some(&PyDict)`. You can use the [`IntoPyDict`]"
+"(https://docs.rs/pyo3/latest/pyo3/types/trait.IntoPyDict.html) trait to "
+"convert other dict-like containers, e.g. `HashMap` or `BTreeMap`, as well as "
+"tuples with up to 10 elements and `Vec`s where each element is a two-element "
+"tuple."
+msgstr ""
+
+#: src/conversions.md:194
+msgid "\"key1\""
+msgstr ""
+
+#: src/conversions.md:196
+msgid "\"key2\""
+msgstr ""
+
+#: src/conversions.md:204
+msgid "// call object with PyDict\n"
+msgstr ""
+
+#: src/conversions.md:208
+msgid "// pass arguments as Vec\n"
+msgstr ""
+
+#: src/conversions.md:212
+msgid "// pass arguments as HashMap\n"
+msgstr ""
+
+#: src/conversions.md:219
+msgid "`FromPy<T>` and `IntoPy<T>`"
+msgstr ""
+
+#: src/conversions.md:221
+msgid ""
+"Many conversions in PyO3 can't use `std::convert::From` because they need a "
+"GIL token. The [`FromPy`](https://docs.rs/pyo3/latest/pyo3/conversion/trait."
+"FromPy.html) trait offers an `from_py` method that works just like `from`, "
+"except for taking a `Python<'_>` argument. I.e. `FromPy<T>` could be "
+"converting a Rust object into a Python object even though it is called "
+"[`FromPy`](https://docs.rs/pyo3/latest/pyo3/conversion/trait.FromPy.html) - "
+"it doesn't say anything about which side of the conversion is a Python "
+"object."
+msgstr ""
+
+#: src/conversions.md:225
+msgid ""
+"Just like `From<T>`, if you implement `FromPy<T>` you gain a blanket "
+"implementation of [`IntoPy`](https://docs.rs/pyo3/latest/pyo3/conversion/"
+"trait.IntoPy.html) for free."
+msgstr ""
+
+#: src/conversions.md:227
+msgid ""
+"Eventually, traits such as [`ToPyObject`](https://docs.rs/pyo3/latest/pyo3/"
+"conversion/trait.ToPyObject.html) will be replaced by this trait and a "
+"[`FromPy`](https://docs.rs/pyo3/latest/pyo3/conversion/trait.FromPy.html) "
+"trait will be added that will implement [`IntoPy`](https://docs.rs/pyo3/"
+"latest/pyo3/conversion/trait.IntoPy.html), just like with `From` and `Into`."
+msgstr ""
+
+#: src/conversions.md:242
+msgid "Requires the `num-complex` optional feature."
+msgstr ""
