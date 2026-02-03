@@ -13,11 +13,11 @@ msgstr ""
 
 #: src/SUMMARY.md:1
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: src/SUMMARY.md:3
 msgid "Introduction"
-msgstr ""
+msgstr "介紹"
 
 #: src/SUMMARY.md:7
 msgid "Python Modules"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: src/SUMMARY.md:10
 msgid "Class customizations"
-msgstr ""
+msgstr "類別自訂"
 
 #: src/SUMMARY.md:11
 msgid "Type Conversions"
@@ -61,11 +61,11 @@ msgstr ""
 
 #: src/SUMMARY.md:17
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/SUMMARY.md:18
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/SUMMARY.md:19
 msgid "Features Reference"
@@ -89,7 +89,7 @@ msgstr ""
 
 #: src/SUMMARY.md:24
 msgid "Logging"
-msgstr ""
+msgstr "日誌"
 
 #: src/SUMMARY.md:25
 msgid "Async / Await"
