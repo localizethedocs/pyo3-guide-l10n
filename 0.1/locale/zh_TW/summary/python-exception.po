@@ -33,7 +33,7 @@ msgstr ""
 
 #: src/exception.md:14
 msgid "For example:"
-msgstr ""
+msgstr "例如："
 
 #: src/exception.md:28
 msgid "\"CustomError\""
