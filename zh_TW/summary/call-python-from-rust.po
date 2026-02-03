@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:33:48Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/python_from_rust.md:1
+msgid "Call Python functions from Rust"
+msgstr ""
+
+#: src/python_from_rust.md:3
+msgid "Want to run just an expression? Then use eval."
+msgstr ""
+
+#: src/python_from_rust.md:5
+msgid ""
+"[`Python::eval`](https://pyo3.rs/master/doc/pyo3/struct.Python.html#method."
+"eval) is a method to execute a [Python expression](https://docs.python."
+"org/3.7/reference/expressions.html) and returns the evaluated value as "
+"`PyAny`."
+msgstr ""
+
+#: src/python_from_rust.md:16
+msgid "\"[i * 10 for i in range(5)]\""
+msgstr ""
+
+#: src/python_from_rust.md:25
+msgid "Want to run statements? Then use run."
+msgstr ""
+
+#: src/python_from_rust.md:27
+msgid ""
+"[`Python::run`](https://pyo3.rs/master/doc/pyo3/struct.Python.html#method."
+"run) is a method to execute one or more [Python statements](https://docs."
+"python.org/3.7/reference/simple_stmts.html). This method returns nothing, "
+"but you can get objects via `locals` dict."
+msgstr ""
+
+#: src/python_from_rust.md:32
+msgid ""
+"You can also use the [`py_run!`](https://pyo3.rs/master/doc/pyo3/macro."
+"py_run.html) macro, which is a shorthand for `Python::run`. Since `py_run!` "
+"can cause panic, we recommend you to use this macro only for testing your "
+"Python extensions quickly."
+msgstr ""
+
+#: src/python_from_rust.md:54
+msgid "\"User {}(id: {})\""
+msgstr ""
+
+#: src/python_from_rust.md:61 src/python_from_rust.md:64
+msgid "\"Yu\""
+msgstr ""
+
+#: src/python_from_rust.md:65
+msgid ""
+"r#\"\n"
+"assert repr(userdata) == \"User Yu(id: 34)\"\n"
+"assert userdata.as_tuple() == userdata_as_tuple\n"
+"\"#"
+msgstr ""
+
+#: src/python_from_rust.md:72
+msgid "You have a python file or Python function? Then use PyModule."
+msgstr ""
+
+#: src/python_from_rust.md:73
+msgid ""
+"[PyModule](https://pyo3.rs/master/doc/pyo3/types/struct.PyModule.html) also "
+"can execute Python codes by calling a function."
+msgstr ""
+
+#: src/python_from_rust.md:81
+msgid ""
+"\"\n"
+"def relu(x):\n"
+"    return max(0.0, x)\n"
+"\n"
+"def leaky_relu(x, slope=0.01):\n"
+"    return x if x >= 0 else x * slope\n"
+"\""
+msgstr ""
+
+#: src/python_from_rust.md:87
+msgid "\"activators.py\""
+msgstr ""
+
+#: src/python_from_rust.md:87
+msgid "\"activators\""
+msgstr ""
+
+#: src/python_from_rust.md:88
+msgid "\"relu\""
+msgstr ""
+
+#: src/python_from_rust.md:90
+msgid "\"slope\""
+msgstr ""
+
+#: src/python_from_rust.md:92
+msgid "\"leaky_relu\""
+msgstr ""
