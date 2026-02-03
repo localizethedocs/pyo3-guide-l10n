@@ -13,11 +13,11 @@ msgstr ""
 
 #: src/SUMMARY.md:1
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: src/SUMMARY.md:3
 msgid "Introduction"
-msgstr ""
+msgstr "介紹"
 
 #: src/SUMMARY.md:7
 msgid "Python Modules"
@@ -33,19 +33,19 @@ msgstr ""
 
 #: src/SUMMARY.md:10
 msgid "Class customizations"
-msgstr ""
+msgstr "類別自訂"
 
 #: src/SUMMARY.md:11
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/SUMMARY.md:12
 msgid "Emulating numeric types"
-msgstr ""
+msgstr "仿真數值型別"
 
 #: src/SUMMARY.md:13
 msgid "Emulating callable objects"
-msgstr ""
+msgstr "仿真可呼叫物件"
 
 #: src/SUMMARY.md:14
 msgid "Type Conversions"
@@ -73,11 +73,11 @@ msgstr ""
 
 #: src/SUMMARY.md:20
 msgid "Parallelism"
-msgstr ""
+msgstr "平行化"
 
 #: src/SUMMARY.md:21
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/SUMMARY.md:22
 msgid "Features Reference"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: src/SUMMARY.md:26
 msgid "Supporting multiple Python versions"
-msgstr ""
+msgstr "支援多個 Python 版本"
 
 #: src/SUMMARY.md:27
 msgid "Useful Crates"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: src/SUMMARY.md:28
 msgid "Logging"
-msgstr ""
+msgstr "日誌"
 
 #: src/SUMMARY.md:29
 msgid "Async / Await"

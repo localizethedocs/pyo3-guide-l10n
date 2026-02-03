@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/trait_bounds.md:1
 msgid "Using in Python a Rust function with trait bounds"
-msgstr ""
+msgstr "在 Python 中使用帶有 trait bounds 的 Rust 函式"
 
 #: src/trait_bounds.md:3
 msgid ""
@@ -29,36 +29,38 @@ msgid ""
 "argument for use in Python with classes implementing the same methods as the "
 "trait."
 msgstr ""
+"本教學說明如何將以 trait 作為參數的 Rust 函式轉換成可在 Python 中使用，並讓具"
+"備相同方法的 Python 類別能夠配合使用。"
 
 #: src/trait_bounds.md:8
 msgid "Why is this useful?"
-msgstr ""
+msgstr "為什麼這很有用？"
 
 #: src/trait_bounds.md:10
 msgid "Pros"
-msgstr ""
+msgstr "優點"
 
 #: src/trait_bounds.md:11
 msgid "Make your Rust code available to Python users"
-msgstr ""
+msgstr "讓你的 Rust 程式碼可供 Python 使用者使用"
 
 #: src/trait_bounds.md:12
 msgid "Code complex algorithms in Rust with the help of the borrow checker"
-msgstr ""
+msgstr "在 Rust 中編寫複雜演算法並受惠於借用檢查器"
 
 #: src/trait_bounds.md:14
 msgid "Cons"
-msgstr ""
+msgstr "缺點"
 
 #: src/trait_bounds.md:15
 msgid ""
 "Not as fast as native Rust (type conversion has to be performed and one part "
 "of the code runs in Python)"
-msgstr ""
+msgstr "不如原生 Rust 快（需要進行型別轉換，且部分程式碼在 Python 端執行）"
 
 #: src/trait_bounds.md:16
 msgid "You need to adapt your code to expose it"
-msgstr ""
+msgstr "你需要調整程式碼以便對外暴露"
 
 #: src/trait_bounds.md:18
 msgid "Example"
@@ -68,7 +70,7 @@ msgstr "範例"
 msgid ""
 "Let's work with the following basic example of an implementation of a "
 "optimization solver operating on a given model."
-msgstr ""
+msgstr "讓我們以一個基本範例開始：一個在給定模型上運作的最佳化求解器實作。"
 
 #: src/trait_bounds.md:22
 msgid ""
@@ -76,6 +78,8 @@ msgid ""
 "its state. The argument of the function can be any model that implements the "
 "`Model` trait :"
 msgstr ""
+"假設我們有一個 `solve` 函式，會在模型上運作並改變其狀態。該函式的參數可以是任"
+"何實作 `Model` trait 的模型："
 
 #: src/trait_bounds.md:34 src/trait_bounds.md:475
 msgid "\"Magic solver that mutates the model into a resolved state\""
@@ -83,11 +87,11 @@ msgstr ""
 
 #: src/trait_bounds.md:37
 msgid "Let's assume we have the following constraints:"
-msgstr ""
+msgstr "假設我們有以下限制："
 
 #: src/trait_bounds.md:38
 msgid "We cannot change that code as it runs on many Rust models."
-msgstr ""
+msgstr "我們不能修改該程式碼，因為它已用在許多 Rust 模型上。"
 
 #: src/trait_bounds.md:39
 msgid ""
@@ -98,11 +102,11 @@ msgstr ""
 
 #: src/trait_bounds.md:42
 msgid "How could we expose this solver to Python thanks to PyO3 ?"
-msgstr ""
+msgstr "那我們該如何透過 PyO3 將此求解器提供給 Python 使用？"
 
 #: src/trait_bounds.md:44
 msgid "Implementation of the trait bounds for the Python class"
-msgstr ""
+msgstr "為 Python 類別實作 trait bounds"
 
 #: src/trait_bounds.md:46
 msgid ""
@@ -119,18 +123,22 @@ msgid ""
 "trait, keeping in mind that the Rust trait cannot be changed for the purpose "
 "of making the code available in Python."
 msgstr ""
+"為了實作該 trait，我們必須在 Rust 端撰寫一個包裝器來呼叫 Python 模型。方法簽"
+"章必須與 trait 相同，因為 Rust trait 不能為了讓程式碼可在 Python 使用而被修"
+"改。"
 
 #: src/trait_bounds.md:52
 msgid ""
 "The Python model we want to expose is the following one, which already "
 "contains all the required methods:"
-msgstr ""
+msgstr "以下是我們想要對外暴露的 Python 模型，已包含所有必要方法："
 
 #: src/trait_bounds.md:64
 msgid ""
 "The following wrapper will call the Python model from Rust, using a struct "
 "to hold the model as a `PyAny` object:"
 msgstr ""
+"以下包裝器會從 Rust 呼叫 Python 模型，使用結構來持有該模型的 `PyAny` 物件："
 
 #: src/trait_bounds.md:82 src/trait_bounds.md:183 src/trait_bounds.md:363
 #: src/trait_bounds.md:421 src/trait_bounds.md:520
@@ -166,20 +174,24 @@ msgid ""
 "Now that this bit is implemented, let's expose the model wrapper to Python. "
 "Let's add the PyO3 annotations and add a constructor:"
 msgstr ""
+"上述部分完成後，讓我們將模型包裝器對外暴露給 Python。加上 PyO3 標註並新增建構"
+"子："
 
 #: src/trait_bounds.md:150
 msgid "Now we add the PyO3 annotations to the trait implementation:"
-msgstr ""
+msgstr "接著在 trait 實作上加入 PyO3 標註："
 
 #: src/trait_bounds.md:155
 msgid "// the previous trait implementation\n"
-msgstr ""
+msgstr "// 前述的 trait 實作\n"
 
 #: src/trait_bounds.md:159
 msgid ""
 "However, the previous code will not compile. The compilation error is the "
 "following one: `error: #[pymethods] cannot be used on trait impl blocks`"
 msgstr ""
+"然而，前述程式碼無法編譯。錯誤訊息如下：`error: #[pymethods] cannot be used "
+"on trait impl blocks`"
 
 #: src/trait_bounds.md:162
 msgid ""
@@ -187,36 +199,40 @@ msgid ""
 "functions to call them directly. This wrapper will also perform the type "
 "conversions between Python and Rust."
 msgstr ""
+"這很可惜！不過，我們可以再寫一個包裝器來直接呼叫這些函式。該包裝器也會負責在 "
+"Python 與 Rust 之間進行型別轉換。"
 
 #: src/trait_bounds.md:221 src/trait_bounds.md:504
 msgid "\"Set variables from Python calling Rust\""
-msgstr ""
+msgstr "\"從 Python 呼叫 Rust 來設定變數\""
 
 #: src/trait_bounds.md:226 src/trait_bounds.md:509
 msgid "\"Get results from Python calling Rust\""
-msgstr ""
+msgstr "\"從 Python 呼叫 Rust 取得結果\""
 
 #: src/trait_bounds.md:231
 msgid "\"Compute from Python calling Rust\""
-msgstr ""
+msgstr "\"從 Python 呼叫 Rust 執行計算\""
 
 #: src/trait_bounds.md:236
 msgid ""
 "This wrapper handles the type conversion between the PyO3 requirements and "
 "the trait. In order to meet PyO3 requirements, this wrapper must:"
 msgstr ""
+"這個包裝器會處理 PyO3 要求與 trait 之間的型別轉換。為了符合 PyO3 的要求，此包"
+"裝器必須："
 
 #: src/trait_bounds.md:238
 msgid "return an object of type `PyResult`"
-msgstr ""
+msgstr "回傳 `PyResult` 型別的物件"
 
 #: src/trait_bounds.md:239
 msgid "use only values, not references in the method signatures"
-msgstr ""
+msgstr "在方法簽章中僅使用值，而非參照"
 
 #: src/trait_bounds.md:241
 msgid "Let's run the file python file:"
-msgstr ""
+msgstr "讓我們執行這個 Python 檔案："
 
 #: src/trait_bounds.md:252
 msgid "\"__main__\""
