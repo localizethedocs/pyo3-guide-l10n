@@ -1,0 +1,166 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:34:06Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/python-from-rust/function-calls.md:1
+msgid "Calling Python functions"
+msgstr "呼叫 Python 函式"
+
+#: src/python-from-rust/function-calls.md:3
+msgid ""
+"The `Bound<'py, T>` smart pointer (such as `Bound<'py, PyAny>`, `Bound<'py, "
+"PyList>`, or `Bound<'py, MyClass>`) can be used to call Python functions."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:5
+msgid "PyO3 offers two APIs to make function calls:"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:7
+msgid ""
+"[`call`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
+"html#tymethod.call) - call any callable Python object."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:8
+msgid ""
+"[`call_method`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
+"html#tymethod.call_method) - call a method on the Python object."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:10
+msgid ""
+"Both of these APIs take `args` and `kwargs` arguments (for positional and "
+"keyword arguments respectively). There are variants for less complex calls:"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:12
+msgid ""
+"[`call1`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
+"html#tymethod.call1) and [`call_method1`](https://pyo3.rs/main/doc/pyo3/"
+"types/trait.PyAnyMethods.html#tymethod.call_method1) to call only with "
+"positional `args`."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:13
+msgid ""
+"[`call0`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
+"html#tymethod.call0) and [`call_method0`](https://pyo3.rs/main/doc/pyo3/"
+"types/trait.PyAnyMethods.html#tymethod.call_method0) to call with no "
+"arguments."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:15
+msgid ""
+"For convenience the [`Py<T>`](../types.md#pyt) smart pointer also exposes "
+"these same six API methods, but needs a `Python` token as an additional "
+"first argument to prove the GIL is held."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:17
+msgid ""
+"The example below calls a Python function behind a `Py<PyAny>` reference:"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:25
+msgid "\"arg1\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:26
+msgid "\"arg2\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:27
+msgid "\"arg3\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:32
+#: src/python-from-rust/function-calls.md:79
+msgid ""
+"\"def example(*args, **kwargs):\n"
+"                if args != ():\n"
+"                    print('called with args', args)\n"
+"                if kwargs != {}:\n"
+"                    print('called with kwargs', kwargs)\n"
+"                if args == () and kwargs == {}:\n"
+"                    print('called with no arguments')\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:39
+#: src/python-from-rust/function-calls.md:86
+msgid "\"example.py\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:40
+#: src/python-from-rust/function-calls.md:87
+msgid "\"\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:42
+#: src/python-from-rust/function-calls.md:89
+msgid "\"example\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:45
+msgid "// call object without any arguments\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:48
+msgid "// pass object with Rust tuple of positional arguments\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:52
+msgid "// call object with Python tuple of positional arguments\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:60
+msgid "Creating keyword arguments"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:62
+msgid ""
+"For the `call` and `call_method` APIs, `kwargs` are `Option<&Bound<'py, "
+"PyDict>>`, so can either be `None` or `Some(&dict)`. You can use the "
+"[`IntoPyDict`](https://pyo3.rs/main/doc/pyo3/types/trait.IntoPyDict.html) "
+"trait to convert other dict-like containers, e.g. `HashMap` or `BTreeMap`, "
+"as well as tuples with up to 10 elements and `Vec`s where each element is a "
+"two-element tuple. To pass keyword arguments of different types, construct a "
+"`PyDict` object."
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:71
+msgid "\"key1\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:73
+msgid "\"key2\""
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:92
+msgid "// call object with PyDict\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:96
+msgid "// pass arguments as Vec\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:100
+msgid "// pass arguments as HashMap\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:105
+msgid "// pass arguments of different types as PyDict\n"
+msgstr ""
+
+#: src/python-from-rust/function-calls.md:108
+msgid "\"string\""
+msgstr ""

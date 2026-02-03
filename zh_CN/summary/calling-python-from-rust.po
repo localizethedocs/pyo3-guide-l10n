@@ -1,0 +1,160 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2025-12-16T11:34:06Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/python-from-rust.md:1
+msgid "Calling Python in Rust code"
+msgstr ""
+
+#: src/python-from-rust.md:3
+msgid ""
+"This chapter of the guide documents some ways to interact with Python code "
+"from Rust."
+msgstr ""
+
+#: src/python-from-rust.md:5
+msgid ""
+"Below is an introduction to the `'py` lifetime and some general remarks "
+"about how PyO3's API reasons about Python code."
+msgstr ""
+
+#: src/python-from-rust.md:7
+msgid "The subchapters also cover the following topics:"
+msgstr ""
+
+#: src/python-from-rust.md:8
+msgid "Python object types available in PyO3's API"
+msgstr ""
+
+#: src/python-from-rust.md:9
+msgid "How to work with Python exceptions"
+msgstr ""
+
+#: src/python-from-rust.md:10
+msgid "How to call Python functions"
+msgstr ""
+
+#: src/python-from-rust.md:11
+msgid "How to execute existing Python code"
+msgstr ""
+
+#: src/python-from-rust.md:13
+msgid "The `'py` lifetime"
+msgstr ""
+
+#: src/python-from-rust.md:15
+msgid ""
+"To safely interact with the Python interpreter a Rust thread must have a "
+"corresponding Python thread state and hold the [Global Interpreter Lock "
+"(GIL)](#the-global-interpreter-lock). PyO3 has a `Python<'py>` token that is "
+"used to prove that these conditions are met. Its lifetime `'py` is a central "
+"part of PyO3's API."
+msgstr ""
+
+#: src/python-from-rust.md:18
+msgid "The `Python<'py>` token serves three purposes:"
+msgstr ""
+
+#: src/python-from-rust.md:20
+msgid ""
+"It provides global APIs for the Python interpreter, such as [`py.eval()`]"
+"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.eval) and "
+"[`py.import()`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
+"html#method.import)."
+msgstr ""
+
+#: src/python-from-rust.md:21
+msgid ""
+"It can be passed to functions that require a proof of holding the GIL, such "
+"as [`Py::clone_ref`](https://pyo3.rs/main/doc/pyo3/prelude/struct.Py."
+"html#method.clone_ref)."
+msgstr ""
+
+#: src/python-from-rust.md:22
+msgid ""
+"Its lifetime `'py` is used to bind many of PyO3's types to the Python "
+"interpreter, such as [`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/struct."
+"Bound.html)."
+msgstr ""
+
+#: src/python-from-rust.md:24
+msgid ""
+"PyO3's types that are bound to the `'py` lifetime, for example `Bound<'py, "
+"T>`, all contain a `Python<'py>` token. This means they have full access to "
+"the Python interpreter and offer a complete API for interacting with Python "
+"objects."
+msgstr ""
+
+#: src/python-from-rust.md:26
+msgid ""
+"Consult [PyO3's API documentation](https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html#obtaining-a-python-token) to learn how to acquire one of "
+"these tokens."
+msgstr ""
+
+#: src/python-from-rust.md:28
+msgid "The Global Interpreter Lock"
+msgstr ""
+
+#: src/python-from-rust.md:30
+msgid ""
+"Concurrent programming in Python is aided by the Global Interpreter Lock "
+"(GIL), which ensures that only one Python thread can use the Python "
+"interpreter and its API at the same time. This allows it to be used to "
+"synchronize code. See the [`pyo3::sync`](https://pyo3.rs/main/doc/pyo3/sync/"
+"index.html) module for synchronization tools PyO3 offers that are based on "
+"the GIL's guarantees."
+msgstr ""
+
+#: src/python-from-rust.md:32
+msgid ""
+"Non-Python operations (system calls and native Rust code) can unlock the "
+"GIL. See [the section on parallelism](parallelism.md) for how to do that "
+"using PyO3's API."
+msgstr ""
+
+#: src/python-from-rust.md:34
+msgid "Python's memory model"
+msgstr ""
+
+#: src/python-from-rust.md:36
+msgid "Python's memory model differs from Rust's memory model in two key ways:"
+msgstr ""
+
+#: src/python-from-rust.md:37
+msgid ""
+"There is no concept of ownership; all Python objects are shared and usually "
+"implemented via reference counting"
+msgstr ""
+
+#: src/python-from-rust.md:38
+msgid ""
+"There is no concept of exclusive (`&mut`) references; any reference can "
+"mutate a Python object"
+msgstr ""
+
+#: src/python-from-rust.md:40
+msgid ""
+"PyO3's API reflects this by providing [smart pointer](https://doc.rust-lang."
+"org/book/ch15-00-smart-pointers.html) types, `Py<T>`, `Bound<'py, T>`, and "
+"(the very rarely used) `Borrowed<'a, 'py, T>`. These smart pointers all use "
+"Python reference counting. See the [subchapter on types](./types.md) for "
+"more detail on these types."
+msgstr ""
+
+#: src/python-from-rust.md:42
+msgid ""
+"Because of the lack of exclusive `&mut` references, PyO3's APIs for Python "
+"objects, for example \\[`PyListMethods::append`\\], use shared references. "
+"This is safe because Python objects have internal mechanisms to prevent data "
+"races (as of time of writing, the Python GIL)."
+msgstr ""
