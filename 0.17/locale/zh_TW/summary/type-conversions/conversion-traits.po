@@ -13,17 +13,17 @@ msgstr ""
 
 #: src/conversions/traits.md:1
 msgid "Conversion traits"
-msgstr ""
+msgstr "轉換特徵"
 
 #: src/conversions/traits.md:3
 msgid ""
 "PyO3 provides some handy traits to convert between Python types and Rust "
 "types."
-msgstr ""
+msgstr "PyO3 提供一些方便的特徵，用於在 Python 與 Rust 型別之間進行轉換。"
 
 #: src/conversions/traits.md:5
 msgid "`.extract()` and the `FromPyObject` trait"
-msgstr ""
+msgstr "`.extract()` 與 `FromPyObject` 特徵"
 
 #: src/conversions/traits.md:7
 msgid ""
@@ -43,6 +43,9 @@ msgid ""
 "of [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "FromPyObject.html)."
 msgstr ""
+"這個方法可用於多種 Python 物件型別，並能產生各式各樣的 Rust 型別；你可以在 "
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
+"html) 的實作清單中查看。"
 
 #: src/conversions/traits.md:28
 msgid ""
@@ -62,6 +65,8 @@ msgid ""
 "Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "FromPyObject.html)"
 msgstr ""
+"衍生 [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html)"
 
 #: src/conversions/traits.md:37
 msgid ""
@@ -71,12 +76,18 @@ msgid ""
 "members with a generic type `T: FromPyObject`. Derivation for empty enums, "
 "enum variants and structs is not supported."
 msgstr ""
+"若成員型別本身實作 `FromPyObject`，則可為多種結構與列舉自動衍生 "
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
+"html)。這甚至包含泛型成員 `T: FromPyObject`。不支援對空列舉、列舉變體與結構進"
+"行衍生。"
 
 #: src/conversions/traits.md:42
 msgid ""
 "Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "FromPyObject.html) for structs"
 msgstr ""
+"為結構衍生 [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html)"
 
 #: src/conversions/traits.md:44
 msgid ""
@@ -84,6 +95,8 @@ msgid ""
 "`my_string` on the Python object, i.e. `obj.getattr(\"my_string\")`, and "
 "call `extract()` on the attribute."
 msgstr ""
+"衍生會產生程式碼，嘗試存取 Python 物件上的 `my_string` 屬性，也就是 `obj."
+"getattr(\"my_string\")`，並對該屬性呼叫 `extract()`。"
 
 #: src/conversions/traits.md:59
 msgid ""
@@ -118,6 +131,8 @@ msgid ""
 "By setting the `#[pyo3(item)]` attribute on the field, PyO3 will attempt to "
 "extract the value by calling the `get_item` method on the Python object."
 msgstr ""
+"在欄位上設定 `#[pyo3(item)]` 屬性時，PyO3 會嘗試透過呼叫 Python 物件的 "
+"`get_item` 方法來提取值。"
 
 #: src/conversions/traits.md:91
 msgid "\"my_string\""
@@ -125,7 +140,7 @@ msgstr ""
 
 #: src/conversions/traits.md:100
 msgid "The argument passed to `getattr` and `get_item` can also be configured:"
-msgstr ""
+msgstr "傳給 `getattr` 與 `get_item` 的引數也可進行設定："
 
 #: src/conversions/traits.md:117
 msgid ""
@@ -147,12 +162,17 @@ msgid ""
 "`attribute` are restricted to non-empty string literals while `item` can "
 "take any valid literal that implements `ToBorrowedObject`."
 msgstr ""
+"這會嘗試從 `name` 屬性提取 `string_attr`，並從鍵為 `\"key\"` 的對映中提取 "
+"`string_in_mapping`。`attribute` 的引數限制為非空字串常值，而 `item` 可接受任"
+"何實作 `ToBorrowedObject` 的有效常值。"
 
 #: src/conversions/traits.md:141
 msgid ""
 "Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "FromPyObject.html) for tuple structs"
 msgstr ""
+"為元組結構衍生 [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html)"
 
 #: src/conversions/traits.md:143
 msgid ""
@@ -161,6 +181,8 @@ msgid ""
 "length as the Rust type, the `n`th field is extracted from the `n`th item in "
 "the Python tuple."
 msgstr ""
+"元組結構也受支援，但不允許自訂提取方式。輸入一律視為與 Rust 型別長度相同的 "
+"Python tuple，第 `n` 個欄位會從 Python tuple 的第 `n` 個項目提取。"
 
 #: src/conversions/traits.md:167
 msgid ""
@@ -168,12 +190,16 @@ msgid ""
 "described in the following section. To override this behaviour and ensure "
 "that the input is in fact a tuple, specify the struct as"
 msgstr ""
+"只有單一欄位的元組結構會被視為包裝型別，並在下一節說明。若要覆寫此行為並確保"
+"輸入確實為 tuple，請將結構指定為"
 
 #: src/conversions/traits.md:189
 msgid ""
 "Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "FromPyObject.html) for wrapper types"
 msgstr ""
+"為包裝型別衍生 [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html)"
 
 #: src/conversions/traits.md:191
 msgid ""
@@ -183,12 +209,17 @@ msgid ""
 "behaviour is enabled per default for newtype structs and tuple-variants with "
 "a single field."
 msgstr ""
+"`pyo3(transparent)` 屬性可用於只有一個欄位的結構。這會直接從輸入物件提取（即 "
+"`obj.extract()`），而不是嘗試存取項目或屬性。此行為預設啟用於 newtype 結構與"
+"單一欄位的元組變體。"
 
 #: src/conversions/traits.md:224
 msgid ""
 "Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "FromPyObject.html) for enums"
 msgstr ""
+"為列舉衍生 [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
+"FromPyObject.html)"
 
 #: src/conversions/traits.md:226
 msgid ""
@@ -197,6 +228,9 @@ msgid ""
 "extracted successfully, that variant is returned. This makes it possible to "
 "extract Python union types like `str | int`."
 msgstr ""
+"針對列舉的 `FromPyObject` 衍生會產生程式碼，依欄位順序嘗試提取各變體。一旦某"
+"個變體成功提取，就會回傳該變體。這使得提取 `str | int` 等 Python union 型別成"
+"為可能。"
 
 #: src/conversions/traits.md:230
 msgid ""
@@ -206,6 +240,9 @@ msgid ""
 "attributes but can be configured in the same manner. The `transparent` "
 "attribute can be applied to single-field-variants."
 msgstr ""
+"結構衍生的相同自訂與限制也適用於列舉變體：元組變體假設輸入為 Python tuple，結"
+"構變體預設以屬性提取欄位，但可用相同方式設定。`transparent` 屬性可套用於單一"
+"欄位的變體。"
 
 #: src/conversions/traits.md:241
 msgid "// input is a positive int\n"

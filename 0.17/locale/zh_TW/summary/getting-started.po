@@ -53,7 +53,7 @@ msgstr ""
 
 #: src/getting_started.md:16
 msgid "Virtualenvs"
-msgstr ""
+msgstr "虛擬環境"
 
 #: src/getting_started.md:18
 msgid ""
@@ -76,7 +76,7 @@ msgstr ""
 
 #: src/getting_started.md:25
 msgid "Building"
-msgstr ""
+msgstr "建置"
 
 #: src/getting_started.md:27
 msgid ""
@@ -113,7 +113,7 @@ msgstr ""
 
 #: src/getting_started.md:52
 msgid "Starting a new project"
-msgstr ""
+msgstr "開始新專案"
 
 #: src/getting_started.md:54
 msgid ""
@@ -139,7 +139,7 @@ msgstr ""
 
 #: src/getting_started.md:83
 msgid "Adding to an existing project"
-msgstr ""
+msgstr "加入既有專案"
 
 #: src/getting_started.md:85
 msgid ""
@@ -209,7 +209,7 @@ msgstr ""
 
 #: src/getting_started.md:120
 msgid "You should also create a `pyproject.toml` with the following contents:"
-msgstr ""
+msgstr "你也應建立一個 `pyproject.toml`，內容如下："
 
 #: src/getting_started.md:122
 msgid ""
@@ -231,7 +231,7 @@ msgstr ""
 
 #: src/getting_started.md:137
 msgid "Running code"
-msgstr ""
+msgstr "執行程式碼"
 
 #: src/getting_started.md:139
 msgid ""
@@ -241,7 +241,7 @@ msgstr ""
 
 #: src/getting_started.md:143
 msgid "/// Formats the sum of two numbers as string.\n"
-msgstr ""
+msgstr "/// 將兩個數字的總和格式化為字串。\n"
 
 #: src/getting_started.md:149
 msgid ""
@@ -251,6 +251,9 @@ msgid ""
 "to\n"
 "/// import the module.\n"
 msgstr ""
+"/// 以 Rust 實作的 Python 模組。此函式名稱必須\n"
+"/// 與 `Cargo.toml` 中的 `lib.name` 設定一致，\n"
+"/// 否則 Python 將無法匯入該模組。\n"
 
 #: src/getting_started.md:160
 msgid ""
@@ -260,7 +263,7 @@ msgstr ""
 
 #: src/getting_started.md:163
 msgid "# lots of progress output as maturin runs the compilation...\n"
-msgstr ""
+msgstr "# maturin 執行編譯時會輸出大量進度訊息...\n"
 
 #: src/getting_started.md:167
 msgid "'25'"

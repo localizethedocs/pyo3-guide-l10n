@@ -573,7 +573,7 @@ msgstr ""
 
 #: src/ecosystem/async-await.md:557
 msgid "Additional Information"
-msgstr ""
+msgstr "補充資訊"
 
 #: src/ecosystem/async-await.md:558
 msgid ""
