@@ -39,7 +39,7 @@ msgstr ""
 
 #: src/get_started.md:11
 msgid "Usage"
-msgstr ""
+msgstr "使用方式"
 
 #: src/get_started.md:13
 msgid ""
@@ -174,7 +174,7 @@ msgstr ""
 msgid ""
 "Example program displaying the value of `sys.version` and the current user "
 "name:"
-msgstr ""
+msgstr "顯示 `sys.version` 與目前使用者名稱的範例程式："
 
 #: src/get_started.md:105
 msgid ""
@@ -229,6 +229,7 @@ msgid ""
 "[rust-numpy](https://github.com/PyO3/rust-numpy) _Rust binding of NumPy C-"
 "API_"
 msgstr ""
+"[rust-numpy](https://github.com/PyO3/rust-numpy) _NumPy C-API 的 Rust 綁定_"
 
 #: src/get_started.md:130
 msgid ""
@@ -300,3 +301,5 @@ msgid ""
 "[dict-derive](https://github.com/gperinazzo/dict-derive) _Derive "
 "FromPyObject to automatically transform Python dicts into Rust structs_"
 msgstr ""
+"[dict-derive](https://github.com/gperinazzo/dict-derive) _Derive "
+"FromPyObject 以自動將 Python dict 轉為 Rust struct_"
