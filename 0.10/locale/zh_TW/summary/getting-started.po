@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/get_started.md:57
 msgid "/// Formats the sum of two numbers as string.\n"
-msgstr ""
+msgstr "/// 將兩個數字的總和格式化為字串。\n"
 
 #: src/get_started.md:63
 msgid "/// A Python module implemented in Rust.\n"

@@ -42,7 +42,7 @@ msgstr ""
 #: src/migration.md:14 src/migration.md:42 src/migration.md:128
 #: src/migration.md:155 src/migration.md:190
 msgid "Before:"
-msgstr ""
+msgstr "之前："
 
 #: src/migration.md:19 src/migration.md:27
 msgid "\"lambda: 'Hi :)'\""
