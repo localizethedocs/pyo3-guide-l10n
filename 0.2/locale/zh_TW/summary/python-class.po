@@ -373,7 +373,7 @@ msgstr ""
 
 #: src/class.md:364
 msgid "Class customizations"
-msgstr ""
+msgstr "類別自訂"
 
 #: src/class.md:366
 msgid ""
@@ -386,7 +386,7 @@ msgstr ""
 
 #: src/class.md:372
 msgid "Basic object customization"
-msgstr ""
+msgstr "基本物件自訂"
 
 #: src/class.md:374
 msgid ""

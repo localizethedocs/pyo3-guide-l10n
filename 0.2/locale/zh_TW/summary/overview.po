@@ -51,7 +51,7 @@ msgstr ""
 
 #: src/overview.md:18
 msgid "Usage"
-msgstr ""
+msgstr "使用方式"
 
 #: src/overview.md:20
 msgid "To use `pyo3`, add this to your `Cargo.toml`:"
