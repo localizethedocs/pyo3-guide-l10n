@@ -38,7 +38,7 @@ msgid ""
 "library types or PyO3's Python-native types. (See the next section for "
 "discussion on when to use each.)"
 msgstr ""
-"接受函式引數時，可以使用 Rust 函式庫型別或 PyO3 的 Python 原生型別。（何時使"
+"接受函式引數時，可以使用 Rust 程式庫型別或 PyO3 的 Python 原生型別。（何時使"
 "用哪種型別，請見下一節。）"
 
 #: src/conversions/tables.md:11
@@ -478,7 +478,7 @@ msgstr ""
 
 #: src/conversions/tables.md:63
 msgid "Using Rust library types vs Python-native types"
-msgstr "使用 Rust 函式庫型別 vs Python 原生型別"
+msgstr "使用 Rust 程式庫型別 vs Python 原生型別"
 
 #: src/conversions/tables.md:65
 msgid ""
