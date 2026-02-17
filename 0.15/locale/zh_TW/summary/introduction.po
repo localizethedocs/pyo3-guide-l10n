@@ -199,13 +199,13 @@ msgid ""
 "to ensure this (for Ubuntu), and then give some example code which runs an "
 "embedded Python interpreter."
 msgstr ""
-"若要在 Rust 二進位程式中嵌入 Python，你需要確保 Python 安裝包含共享函式庫。以"
-"下步驟示範如何在 Ubuntu 上完成此設定，並提供一段執行嵌入式 Python 直譯器的範"
-"例程式碼。"
+"若要在 Rust 二進位程式中嵌入 Python，你需要確保 Python 安裝包含共享程式庫。以"
+"下步驟示範如何（在 Ubuntu 上）完成此設定，並提供一段執行嵌入式 Python 直譯器"
+"的範例程式碼。"
 
 #: src/index.md:107
 msgid "To install the Python shared library on Ubuntu:"
-msgstr "在 Ubuntu 上安裝 Python 共享函式庫："
+msgstr "在 Ubuntu 上安裝 Python 共享程式庫："
 
 #: src/index.md:113
 msgid ""
