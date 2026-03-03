@@ -68,7 +68,7 @@ msgstr ""
 
 #: src/index.md:24
 msgid "PyO3"
-msgstr ""
+msgstr "PyO3"
 
 #: src/index.md:26
 msgid ""
