@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/overview.md:1
 msgid "PyO3"
-msgstr ""
+msgstr "PyO3"
 
 #: src/overview.md:3
 msgid ""
@@ -58,7 +58,7 @@ msgstr ""
 
 #: src/overview.md:29
 msgid "\"version\""
-msgstr ""
+msgstr "\"version\""
 
 #: src/overview.md:32
 msgid "\"os\""
