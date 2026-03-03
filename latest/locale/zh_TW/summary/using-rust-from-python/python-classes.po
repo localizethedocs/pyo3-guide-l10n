@@ -42,11 +42,11 @@ msgstr ""
 
 #: src/class.md:11
 msgid "[`#[pyclass]`](#defining-a-new-class)"
-msgstr ""
+msgstr "[`#[pyclass]`](#defining-a-new-class)"
 
 #: src/class.md:12
 msgid "[`#[pyo3(get, set)]`](#object-properties-using-pyo3get-set)"
-msgstr ""
+msgstr "[`#[pyo3(get, set)]`](#object-properties-using-pyo3get-set)"
 
 #: src/class.md:13
 msgid "[`#[pymethods]`](#instance-methods)"
@@ -66,7 +66,7 @@ msgstr "[`#[setter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:17
 msgid "[`#[deleter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[deleter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:18
 msgid "[`#[staticmethod]`](#static-methods)"
@@ -489,11 +489,11 @@ msgstr ""
 
 #: src/class.md:394
 msgid "Parameter"
-msgstr ""
+msgstr "參數"
 
 #: src/class.md:394
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: src/class.md:396
 msgid "`constructor`"

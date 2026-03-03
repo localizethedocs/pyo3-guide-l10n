@@ -17,7 +17,7 @@ msgstr "除錯"
 
 #: src/debugging.md:3
 msgid "Macros"
-msgstr ""
+msgstr "巨集"
 
 #: src/debugging.md:5
 msgid ""
@@ -212,11 +212,11 @@ msgstr ""
 
 #: src/debugging.md:109 src/debugging.md:139
 msgid "# Option 2: Run a Python script\n"
-msgstr ""
+msgstr "# 選項 2：執行 Python 腳本\n"
 
 #: src/debugging.md:112 src/debugging.md:142
 msgid "# Option 3: Run pytest tests\n"
-msgstr ""
+msgstr "# 選項 3：執行 pytest 測試\n"
 
 #: src/debugging.md:121
 msgid "Start rust-lldb with Python:"
@@ -274,38 +274,38 @@ msgstr ""
 
 #: src/debugging.md:165 src/debugging.md:283
 msgid "\"version\""
-msgstr ""
+msgstr "\"version\""
 
 #: src/debugging.md:165 src/debugging.md:283
 msgid "\"0.2.0\""
-msgstr ""
+msgstr "\"0.2.0\""
 
 #: src/debugging.md:166 src/debugging.md:284 src/debugging.md:317
 #: src/debugging.md:324
 msgid "\"configurations\""
-msgstr ""
+msgstr "\"configurations\""
 
 #: src/debugging.md:168 src/debugging.md:178 src/debugging.md:187
 #: src/debugging.md:196 src/debugging.md:236 src/debugging.md:286
 #: src/debugging.md:294 src/debugging.md:318
 msgid "\"name\""
-msgstr ""
+msgstr "\"name\""
 
 #: src/debugging.md:168
 msgid "\"Debug PyO3\""
-msgstr ""
+msgstr "\"Debug PyO3\""
 
 #: src/debugging.md:169 src/debugging.md:179 src/debugging.md:188
 #: src/debugging.md:197 src/debugging.md:237 src/debugging.md:287
 #: src/debugging.md:295
 msgid "\"type\""
-msgstr ""
+msgstr "\"type\""
 
 #: src/debugging.md:169 src/debugging.md:179 src/debugging.md:188
 #: src/debugging.md:197 src/debugging.md:237 src/debugging.md:287
 #: src/debugging.md:295
 msgid "\"lldb\""
-msgstr ""
+msgstr "\"lldb\""
 
 #: src/debugging.md:170 src/debugging.md:180 src/debugging.md:189
 #: src/debugging.md:198 src/debugging.md:238 src/debugging.md:288
@@ -360,57 +360,57 @@ msgstr ""
 #: src/debugging.md:182 src/debugging.md:191 src/debugging.md:200
 #: src/debugging.md:240 src/debugging.md:298
 msgid "\"args\""
-msgstr ""
+msgstr "\"args\""
 
 #: src/debugging.md:182 src/debugging.md:240 src/debugging.md:298
 msgid "\"${file}\""
-msgstr ""
+msgstr "\"${file}\""
 
 #: src/debugging.md:183 src/debugging.md:192 src/debugging.md:201
 #: src/debugging.md:299
 msgid "\"cwd\""
-msgstr ""
+msgstr "\"cwd\""
 
 #: src/debugging.md:183 src/debugging.md:192 src/debugging.md:201
 #: src/debugging.md:243 src/debugging.md:299
 msgid "\"${workspaceFolder}\""
-msgstr ""
+msgstr "\"${workspaceFolder}\""
 
 #: src/debugging.md:187
 msgid "\"Debug PyO3 with Args\""
-msgstr ""
+msgstr "\"Debug PyO3 with Args\""
 
 #: src/debugging.md:191
 msgid "\"path/to/your/script.py\""
-msgstr ""
+msgstr "\"path/to/your/script.py\""
 
 #: src/debugging.md:191
 msgid "\"arg1\""
-msgstr ""
+msgstr "\"arg1\""
 
 #: src/debugging.md:191
 msgid "\"arg2\""
-msgstr ""
+msgstr "\"arg2\""
 
 #: src/debugging.md:196
 msgid "\"Debug PyO3 Tests\""
-msgstr ""
+msgstr "\"Debug PyO3 Tests\""
 
 #: src/debugging.md:200
 msgid "\"-m\""
-msgstr ""
+msgstr "\"-m\""
 
 #: src/debugging.md:200
 msgid "\"pytest\""
-msgstr ""
+msgstr "\"pytest\""
 
 #: src/debugging.md:200
 msgid "\"tests/your_test.py::test_function\""
-msgstr ""
+msgstr "\"tests/your_test.py::test_function\""
 
 #: src/debugging.md:200
 msgid "\"-v\""
-msgstr ""
+msgstr "\"-v\""
 
 #: src/debugging.md:208
 msgid "This configuration supports multiple debugging scenarios:"
@@ -430,7 +430,7 @@ msgstr ""
 
 #: src/debugging.md:213
 msgid "Running pytest tests"
-msgstr ""
+msgstr "執行 pytest 測試"
 
 #: src/debugging.md:215
 msgid ""
@@ -440,7 +440,7 @@ msgstr ""
 
 #: src/debugging.md:217
 msgid "Start debugging:"
-msgstr ""
+msgstr "開始除錯："
 
 #: src/debugging.md:218
 msgid ""
@@ -556,15 +556,15 @@ msgstr ""
 
 #: src/debugging.md:278
 msgid "# Get Python interpreter path\n"
-msgstr ""
+msgstr "# 獲取 Python 直譯器路徑\n"
 
 #: src/debugging.md:281
 msgid "# Default debugger config\n"
-msgstr ""
+msgstr "# 預設除錯器組態\n"
 
 #: src/debugging.md:286 src/debugging.md:318
 msgid "\"Debug PyO3 (Jupyter)\""
-msgstr ""
+msgstr "\"Debug PyO3 (Jupyter)\""
 
 #: src/debugging.md:305
 msgid "# Create .vscode directory if it doesn't exist\n"
@@ -705,7 +705,7 @@ msgstr ""
 
 #: src/debugging.md:385
 msgid "\"-Zsanitizer=thread\""
-msgstr ""
+msgstr "\"-Zsanitizer=thread\""
 
 #: src/debugging.md:388
 msgid ""
