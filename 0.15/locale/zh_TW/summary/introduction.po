@@ -32,7 +32,7 @@ msgstr "請從左側章節選擇主題，或繼續往下閱讀 PyO3 的 README�
 
 #: src/index.md:7
 msgid "PyO3"
-msgstr ""
+msgstr "PyO3"
 
 #: src/index.md:9
 msgid ""
