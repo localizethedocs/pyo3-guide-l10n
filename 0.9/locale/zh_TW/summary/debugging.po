@@ -17,7 +17,7 @@ msgstr "除錯"
 
 #: src/debugging.md:3
 msgid "Macros"
-msgstr ""
+msgstr "巨集"
 
 #: src/debugging.md:5
 msgid ""
