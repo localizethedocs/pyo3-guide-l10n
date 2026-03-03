@@ -75,7 +75,7 @@ msgstr ""
 
 #: src/overview.md:41
 msgid "\"version\""
-msgstr ""
+msgstr "\"version\""
 
 #: src/overview.md:44
 msgid "\"os\""
