@@ -395,6 +395,10 @@ msgid ""
 "pyo3 = { git = \"https://github.com/pyo3/pyo3\", features = [\"abi3\"] }\n"
 "```"
 msgstr ""
+"```toml\n"
+"[dependencies]\n"
+"pyo3 = { git = \"https://github.com/pyo3/pyo3\", features = [\"abi3\"] }\n"
+"```"
 
 #: src/building_and_distribution.md:137
 msgid ""
