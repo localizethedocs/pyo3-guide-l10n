@@ -115,7 +115,7 @@ msgstr "Rust tuple，其中每個成員都實作 `IntoPyObject`，"
 
 #: src/performance.md:105
 msgid "`Bound<'_, PyTuple>`"
-msgstr ""
+msgstr "`Bound<'_, PyTuple>`"
 
 #: src/performance.md:106
 msgid ""
