@@ -30,7 +30,7 @@ msgstr ""
 
 #: src/rust-cpython.md:7
 msgid "Macros"
-msgstr ""
+msgstr "巨集"
 
 #: src/rust-cpython.md:9
 msgid ""

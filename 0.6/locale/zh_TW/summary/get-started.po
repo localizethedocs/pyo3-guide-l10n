@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/get_started.md:1
 msgid "PyO3"
-msgstr ""
+msgstr "PyO3"
 
 #: src/get_started.md:3
 msgid ""
@@ -166,7 +166,7 @@ msgstr ""
 
 #: src/get_started.md:101
 msgid "\"version\""
-msgstr ""
+msgstr "\"version\""
 
 #: src/get_started.md:103
 msgid "\"os\""
