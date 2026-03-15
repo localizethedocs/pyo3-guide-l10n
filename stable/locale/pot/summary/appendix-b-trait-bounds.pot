@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:19Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/trait-bounds.md:1
@@ -77,7 +77,7 @@ msgid ""
 "`Model` trait :"
 msgstr ""
 
-#: src/trait-bounds.md:36 src/trait-bounds.md:479
+#: src/trait-bounds.md:36 src/trait-bounds.md:478
 msgid "\"Magic solver that mutates the model into a resolved state\""
 msgstr ""
 
@@ -138,12 +138,12 @@ msgid ""
 msgstr ""
 
 #: src/trait-bounds.md:88 src/trait-bounds.md:188 src/trait-bounds.md:367
-#: src/trait-bounds.md:426 src/trait-bounds.md:523
+#: src/trait-bounds.md:426 src/trait-bounds.md:522
 msgid "\"Rust calling Python to set the variables\""
 msgstr ""
 
 #: src/trait-bounds.md:92 src/trait-bounds.md:191 src/trait-bounds.md:370
-#: src/trait-bounds.md:429 src/trait-bounds.md:527
+#: src/trait-bounds.md:429 src/trait-bounds.md:526
 msgid "\"set_variables\""
 msgstr ""
 
@@ -152,17 +152,17 @@ msgid "\"Rust calling Python to get the results\""
 msgstr ""
 
 #: src/trait-bounds.md:102 src/trait-bounds.md:201 src/trait-bounds.md:360
-#: src/trait-bounds.md:412 src/trait-bounds.md:538
+#: src/trait-bounds.md:412 src/trait-bounds.md:537
 msgid "\"get_results\""
 msgstr ""
 
 #: src/trait-bounds.md:110 src/trait-bounds.md:209 src/trait-bounds.md:376
-#: src/trait-bounds.md:435 src/trait-bounds.md:553
+#: src/trait-bounds.md:435 src/trait-bounds.md:552
 msgid "\"Rust calling Python to perform the computation\""
 msgstr ""
 
 #: src/trait-bounds.md:114 src/trait-bounds.md:213 src/trait-bounds.md:380
-#: src/trait-bounds.md:439 src/trait-bounds.md:557
+#: src/trait-bounds.md:439 src/trait-bounds.md:556
 msgid "\"compute\""
 msgstr ""
 
@@ -193,11 +193,11 @@ msgid ""
 "conversions between Python and Rust."
 msgstr ""
 
-#: src/trait-bounds.md:223 src/trait-bounds.md:501
+#: src/trait-bounds.md:223 src/trait-bounds.md:500
 msgid "\"Set variables from Python calling Rust\""
 msgstr ""
 
-#: src/trait-bounds.md:228 src/trait-bounds.md:506
+#: src/trait-bounds.md:228 src/trait-bounds.md:505
 msgid "\"Get results from Python calling Rust\""
 msgstr ""
 
@@ -355,15 +355,15 @@ msgstr ""
 msgid "Let's break it down in order to perform better error handling:"
 msgstr ""
 
-#: src/trait-bounds.md:407 src/trait-bounds.md:533
+#: src/trait-bounds.md:407 src/trait-bounds.md:532
 msgid "\"Get results from Rust calling Python\""
 msgstr ""
 
-#: src/trait-bounds.md:415 src/trait-bounds.md:541
+#: src/trait-bounds.md:415 src/trait-bounds.md:540
 msgid "\"list\""
 msgstr ""
 
-#: src/trait-bounds.md:417 src/trait-bounds.md:543
+#: src/trait-bounds.md:417 src/trait-bounds.md:542
 msgid "\"Expected a list for the get_results() method signature, got {}\""
 msgstr ""
 
@@ -382,29 +382,29 @@ msgid ""
 "more difficult to decipher for non-rust user."
 msgstr ""
 
-#: src/trait-bounds.md:452
+#: src/trait-bounds.md:451
 msgid ""
 "It is up to the developer exposing the rust code to decide how much effort "
 "to invest into Python type error handling and improved error messages."
 msgstr ""
 
-#: src/trait-bounds.md:454
+#: src/trait-bounds.md:453
 msgid "The final code"
 msgstr ""
 
-#: src/trait-bounds.md:456
+#: src/trait-bounds.md:455
 msgid ""
 "Now let's expose the `solve()` function to make it available from Python."
 msgstr ""
 
-#: src/trait-bounds.md:458
+#: src/trait-bounds.md:457
 msgid ""
 "It is not possible to directly expose the `solve` function to Python, as the "
 "type conversion cannot be performed. It requires an object implementing the "
 "`Model` trait as input."
 msgstr ""
 
-#: src/trait-bounds.md:461
+#: src/trait-bounds.md:460
 msgid ""
 "However, the `UserModel` already implements this trait. Because of this, we "
 "can write a function wrapper that takes the `UserModel`\\--which has already "
@@ -412,10 +412,10 @@ msgid ""
 "`solve`."
 msgstr ""
 
-#: src/trait-bounds.md:464
+#: src/trait-bounds.md:463
 msgid "It is also required to make the struct public."
 msgstr ""
 
-#: src/trait-bounds.md:483
+#: src/trait-bounds.md:482
 msgid "\"solve\""
 msgstr ""
