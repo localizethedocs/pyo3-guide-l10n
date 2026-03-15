@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -25,11 +25,11 @@ msgid ""
 "class instances - but nothing else."
 msgstr ""
 
-#: src/class/object.md:42
+#: src/class/object.md:41
 msgid "String representations"
 msgstr ""
 
-#: src/class/object.md:44
+#: src/class/object.md:43
 msgid ""
 "It can't even print an user-readable representation of itself! We can fix "
 "that by defining the `__repr__` and `__str__` methods inside a "
@@ -37,14 +37,14 @@ msgid ""
 "`Number`."
 msgstr ""
 
-#: src/class/object.md:56
+#: src/class/object.md:55
 msgid ""
 "// For `__repr__` we want to return a string that Python code could use to "
 "recreate\n"
 "    // the `Number`, like `Number(5)` for example.\n"
 msgstr ""
 
-#: src/class/object.md:59
+#: src/class/object.md:58
 msgid ""
 "// We use the `format!` macro to create a string. Its first argument is a\n"
 "        // format string, followed by any number of parameters which replace "
@@ -54,11 +54,11 @@ msgid ""
 "        //                       👇 Tuple field access in Rust uses a dot\n"
 msgstr ""
 
-#: src/class/object.md:64
+#: src/class/object.md:63
 msgid "\"Number({})\""
 msgstr ""
 
-#: src/class/object.md:66
+#: src/class/object.md:65
 msgid ""
 "// `__str__` is generally used to create an \"informal\" representation, so "
 "we\n"
@@ -66,20 +66,20 @@ msgid ""
 "bare number.\n"
 msgstr ""
 
-#: src/class/object.md:74
+#: src/class/object.md:73
 msgid ""
 "To automatically generate the `__str__` implementation using a `Display` "
 "trait implementation, pass the `str` argument to `pyclass`."
 msgstr ""
 
-#: src/class/object.md:90
+#: src/class/object.md:89
 msgid "\"({}, {}, {})\""
 msgstr ""
 
-#: src/class/object.md:95
+#: src/class/object.md:94
 msgid ""
 "For convenience, a shorthand format string can be passed to `str` as "
-"`str=\"<format string>\"` for **structs only**.  It expands and is passed "
+"`str=\"<format string>\"` for **structs only**. It expands and is passed "
 "into the `format!` macro in the following ways:"
 msgstr ""
 
@@ -103,15 +103,15 @@ msgid ""
 "shorthand format string and will raise a compile time error._"
 msgstr ""
 
-#: src/class/object.md:108
+#: src/class/object.md:107
 msgid "\"({x}, {y}, {z})\""
 msgstr ""
 
-#: src/class/object.md:116
+#: src/class/object.md:115
 msgid "Accessing the class name"
 msgstr ""
 
-#: src/class/object.md:118
+#: src/class/object.md:117
 msgid ""
 "In the `__repr__`, we used a hard-coded class name. This is sometimes not "
 "ideal, because if the class is subclassed in Python, we would like the repr "
@@ -121,25 +121,25 @@ msgid ""
 "the `self` argument."
 msgstr ""
 
-#: src/class/object.md:135
+#: src/class/object.md:133
 msgid "// This is the equivalent of `self.__class__.__name__` in Python.\n"
 msgstr ""
 
-#: src/class/object.md:137
+#: src/class/object.md:135
 msgid ""
 "// To access fields of the Rust struct, we need to borrow from the Bound "
 "object.\n"
 msgstr ""
 
-#: src/class/object.md:138 src/class/object.md:358
+#: src/class/object.md:136 src/class/object.md:352
 msgid "\"{}({})\""
 msgstr ""
 
-#: src/class/object.md:143
+#: src/class/object.md:141
 msgid "Hashing"
 msgstr ""
 
-#: src/class/object.md:145
+#: src/class/object.md:143
 msgid ""
 "Let's also implement hashing. We'll just hash the `i32`. For that we need a "
 "[`Hasher`](https://doc.rust-lang.org/std/hash/trait.Hasher.html). The one "
@@ -167,13 +167,13 @@ msgid ""
 "either\""
 msgstr ""
 
-#: src/class/object.md:187
+#: src/class/object.md:184
 msgid ""
-"**Note**: When implementing `__hash__` and comparisons, it is important that "
-"the following property holds:"
+"\\[!NOTE\\] When implementing `__hash__` and comparisons, it is important "
+"that the following property holds:"
 msgstr ""
 
-#: src/class/object.md:193
+#: src/class/object.md:191
 msgid ""
 "In other words, if two keys are equal, their hashes must also be equal. In "
 "addition you must take care that your classes' hash doesn't change during "
@@ -181,7 +181,7 @@ msgid ""
 "our `Number` class. In other words, it is immutable."
 msgstr ""
 
-#: src/class/object.md:197
+#: src/class/object.md:195
 msgid ""
 "By default, all `#[pyclass]` types have a default hash implementation from "
 "Python. Types which should not be hashable can override this by setting "
@@ -189,11 +189,11 @@ msgid ""
 "This is done like so:"
 msgstr ""
 
-#: src/class/object.md:215
+#: src/class/object.md:211
 msgid "Comparisons"
 msgstr ""
 
-#: src/class/object.md:217
+#: src/class/object.md:213
 msgid ""
 "PyO3 supports the usual magic comparison methods available in Python such as "
 "`__eq__`, `__lt__` and so on. It is also possible to support all six "
@@ -201,44 +201,44 @@ msgid ""
 "value of `CompareOp` depending on the operation."
 msgstr ""
 
-#: src/class/object.md:245
+#: src/class/object.md:241
 msgid ""
 "If you obtain the result by comparing two Rust values, as in this example, "
 "you can take a shortcut using `CompareOp::matches`:"
 msgstr ""
 
-#: src/class/object.md:265
+#: src/class/object.md:260
 msgid ""
 "It checks that the `std::cmp::Ordering` obtained from Rust's `Ord` matches "
 "the given `CompareOp`."
 msgstr ""
 
-#: src/class/object.md:268
+#: src/class/object.md:262
 msgid "Alternatively, you can implement just equality using `__eq__`:"
 msgstr ""
 
-#: src/class/object.md:294
+#: src/class/object.md:288
 msgid ""
 "To implement `__eq__` using the Rust [`PartialEq`](https://doc.rust-lang.org/"
 "stable/std/cmp/trait.PartialEq.html) trait implementation, the `eq` option "
 "can be used."
 msgstr ""
 
-#: src/class/object.md:305
+#: src/class/object.md:299
 msgid ""
 "To implement `__lt__`, `__le__`, `__gt__`, & `__ge__` using the Rust "
 "`PartialOrd` trait implementation, the `ord` option can be used. _Note: "
 "Requires `eq`._"
 msgstr ""
 
-#: src/class/object.md:316
+#: src/class/object.md:310
 msgid "Truthyness"
 msgstr ""
 
-#: src/class/object.md:318
+#: src/class/object.md:312
 msgid "We'll consider `Number` to be `True` if it is nonzero:"
 msgstr ""
 
-#: src/class/object.md:335
+#: src/class/object.md:329
 msgid "Final code"
 msgstr ""

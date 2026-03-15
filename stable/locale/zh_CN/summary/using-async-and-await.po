@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -25,14 +25,14 @@ msgstr ""
 msgid "`#[pyfunction]` and `#[pymethods]` attributes also support `async fn`."
 msgstr ""
 
-#: src/async-await.md:9 src/async-await.md:82
+#: src/async-await.md:9 src/async-await.md:86
 msgid "\"experimental-async\""
 msgstr ""
 
 #: src/async-await.md:28
 msgid ""
 "_Python awaitables instantiated with this method can only be awaited in "
-"_asyncio_ context. Other Python async runtime may be supported in the future."
+"`asyncio` context. Other Python async runtime may be supported in the future."
 "_"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 #: src/async-await.md:36
 msgid ""
 "However, there is an exception for method receivers, so async methods can "
-"accept `&self`/`&mut self`. Note that this means that the class instance is "
+"accept `&self`/ `&mut self`. Note that this means that the class instance is "
 "borrowed for as long as the returned future is not completed, even across "
 "yield points and while waiting for I/O operations to complete. Hence, other "
 "methods cannot obtain exclusive borrows while the future is still being "
@@ -67,11 +67,11 @@ msgid ""
 "at runtime."
 msgstr ""
 
-#: src/async-await.md:38
+#: src/async-await.md:42
 msgid "Implicitly attached to the interpreter"
 msgstr ""
 
-#: src/async-await.md:40
+#: src/async-await.md:44
 msgid ""
 "Even if it is not possible to pass a `py: Python<'py>` token to an `async "
 "fn`, we're still attached to the interpreter during the execution of the "
@@ -79,51 +79,51 @@ msgid ""
 "PyAny>` parameter"
 msgstr ""
 
-#: src/async-await.md:42
+#: src/async-await.md:46
 msgid ""
 "It is still possible to get a `Python` marker using [`Python::attach`]"
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.attach); "
 "because `attach` is reentrant and optimized, the cost will be negligible."
 msgstr ""
 
-#: src/async-await.md:44
+#: src/async-await.md:48
 msgid "Detaching from the interpreter across `.await`"
 msgstr ""
 
-#: src/async-await.md:46
+#: src/async-await.md:50
 msgid ""
 "There is currently no simple way to detach from the interpreter when "
 "awaiting a future, _but solutions are currently in development_."
 msgstr ""
 
-#: src/async-await.md:48
+#: src/async-await.md:52
 msgid "Here is the advised workaround for now:"
 msgstr ""
 
-#: src/async-await.md:76
+#: src/async-await.md:80
 msgid "Cancellation"
 msgstr ""
 
-#: src/async-await.md:78
+#: src/async-await.md:82
 msgid ""
 "Cancellation on the Python side can be caught using [`CancelHandle`](https://"
 "pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle.html) type, by "
 "annotating a function parameter with `#[pyo3(cancel_handle)]`."
 msgstr ""
 
-#: src/async-await.md:90
+#: src/async-await.md:94
 msgid "/* _ = ... => println!(\"done\"), */"
 msgstr ""
 
-#: src/async-await.md:91
+#: src/async-await.md:95
 msgid "\"cancelled\""
 msgstr ""
 
-#: src/async-await.md:97
+#: src/async-await.md:101
 msgid "The `Coroutine` type"
 msgstr ""
 
-#: src/async-await.md:99
+#: src/async-await.md:103
 msgid ""
 "To make a Rust future awaitable in Python, PyO3 defines a [`Coroutine`]"
 "(https://pyo3.rs/main/doc/pyo3/coroutine/struct.Coroutine.html) type, which "
@@ -131,7 +131,7 @@ msgid ""
 "collections.abc.html#collections.abc.Coroutine)."
 msgstr ""
 
-#: src/async-await.md:101
+#: src/async-await.md:105
 msgid ""
 "Each `coroutine.send` call is translated to a `Future::poll` call. If a "
 "[`CancelHandle`](https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle."
@@ -142,7 +142,7 @@ msgid ""
 "reraised;"
 msgstr ""
 
-#: src/async-await.md:103
+#: src/async-await.md:108
 msgid ""
 "_The type does not yet have a public constructor until the design is "
 "finalized._"

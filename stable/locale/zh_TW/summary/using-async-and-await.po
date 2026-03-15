@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,14 +27,14 @@ msgstr ""
 msgid "`#[pyfunction]` and `#[pymethods]` attributes also support `async fn`."
 msgstr "`#[pyfunction]` 與 `#[pymethods]` 屬性也支援 `async fn`。"
 
-#: src/async-await.md:9 src/async-await.md:82
+#: src/async-await.md:9 src/async-await.md:86
 msgid "\"experimental-async\""
 msgstr ""
 
 #: src/async-await.md:28
 msgid ""
 "_Python awaitables instantiated with this method can only be awaited in "
-"_asyncio_ context. Other Python async runtime may be supported in the future."
+"`asyncio` context. Other Python async runtime may be supported in the future."
 "_"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 #: src/async-await.md:36
 msgid ""
 "However, there is an exception for method receivers, so async methods can "
-"accept `&self`/`&mut self`. Note that this means that the class instance is "
+"accept `&self`/ `&mut self`. Note that this means that the class instance is "
 "borrowed for as long as the returned future is not completed, even across "
 "yield points and while waiting for I/O operations to complete. Hence, other "
 "methods cannot obtain exclusive borrows while the future is still being "
@@ -74,11 +74,11 @@ msgid ""
 "at runtime."
 msgstr ""
 
-#: src/async-await.md:38
+#: src/async-await.md:42
 msgid "Implicitly attached to the interpreter"
 msgstr "隱式附加到直譯器"
 
-#: src/async-await.md:40
+#: src/async-await.md:44
 msgid ""
 "Even if it is not possible to pass a `py: Python<'py>` token to an `async "
 "fn`, we're still attached to the interpreter during the execution of the "
@@ -89,7 +89,7 @@ msgstr ""
 "會附加到直譯器——就像一般不帶 `Python<'py>`/`Bound<'py, PyAny>` 參數的 `fn` 一"
 "樣。"
 
-#: src/async-await.md:42
+#: src/async-await.md:46
 msgid ""
 "It is still possible to get a `Python` marker using [`Python::attach`]"
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.attach); "
@@ -99,25 +99,25 @@ msgstr ""
 "Python.html#method.attach) 取得 `Python` 標記；由於 `attach` 具備可重入性且已"
 "最佳化，其成本可忽略不計。"
 
-#: src/async-await.md:44
+#: src/async-await.md:48
 msgid "Detaching from the interpreter across `.await`"
 msgstr "跨越 `.await` 時從直譯器分離"
 
-#: src/async-await.md:46
+#: src/async-await.md:50
 msgid ""
 "There is currently no simple way to detach from the interpreter when "
 "awaiting a future, _but solutions are currently in development_."
 msgstr "目前沒有簡單的方法在等待 future 時從直譯器分離，_但解法正在開發中_。"
 
-#: src/async-await.md:48
+#: src/async-await.md:52
 msgid "Here is the advised workaround for now:"
 msgstr "目前建議的替代作法如下："
 
-#: src/async-await.md:76
+#: src/async-await.md:80
 msgid "Cancellation"
 msgstr "取消"
 
-#: src/async-await.md:78
+#: src/async-await.md:82
 msgid ""
 "Cancellation on the Python side can be caught using [`CancelHandle`](https://"
 "pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle.html) type, by "
@@ -127,19 +127,19 @@ msgstr ""
 "CancelHandle.html) 型別捕捉 Python 端的取消事件，方法是在函式參數上加註 "
 "`#[pyo3(cancel_handle)]`。"
 
-#: src/async-await.md:90
+#: src/async-await.md:94
 msgid "/* _ = ... => println!(\"done\"), */"
 msgstr ""
 
-#: src/async-await.md:91
+#: src/async-await.md:95
 msgid "\"cancelled\""
 msgstr ""
 
-#: src/async-await.md:97
+#: src/async-await.md:101
 msgid "The `Coroutine` type"
 msgstr "`Coroutine` 型別"
 
-#: src/async-await.md:99
+#: src/async-await.md:103
 msgid ""
 "To make a Rust future awaitable in Python, PyO3 defines a [`Coroutine`]"
 "(https://pyo3.rs/main/doc/pyo3/coroutine/struct.Coroutine.html) type, which "
@@ -151,7 +151,7 @@ msgstr ""
 "的[協程協定](https://docs.python.org/3/library/collections.abc."
 "html#collections.abc.Coroutine)。"
 
-#: src/async-await.md:101
+#: src/async-await.md:105
 msgid ""
 "Each `coroutine.send` call is translated to a `Future::poll` call. If a "
 "[`CancelHandle`](https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle."
@@ -168,7 +168,7 @@ msgstr ""
 "CancelHandle.html#method.cancelled) 取得；否則會取消 Rust future，並重新拋出"
 "該例外；"
 
-#: src/async-await.md:103
+#: src/async-await.md:108
 msgid ""
 "_The type does not yet have a public constructor until the design is "
 "finalized._"

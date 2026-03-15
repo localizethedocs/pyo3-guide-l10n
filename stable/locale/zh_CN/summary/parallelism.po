@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -25,7 +25,7 @@ msgid ""
 "multiprocessing."
 msgstr ""
 
-#: src/parallelism.md:5
+#: src/parallelism.md:6
 msgid ""
 "Rust is well-suited to multithreaded code, and libraries like [`rayon`]"
 "(https://github.com/rayon-rs/rayon) can help you leverage safe parallelism "
@@ -34,17 +34,17 @@ msgid ""
 "Python interpreter to do other work while the Rust work is ongoing."
 msgstr ""
 
-#: src/parallelism.md:7
+#: src/parallelism.md:9
 msgid ""
 "To enable full parallelism in your application, consider also using [free-"
 "threaded Python](./free-threading.md) which is supported since Python 3.14."
 msgstr ""
 
-#: src/parallelism.md:9
+#: src/parallelism.md:11
 msgid "Parallelism under the Python GIL"
 msgstr ""
 
-#: src/parallelism.md:11
+#: src/parallelism.md:13
 msgid ""
 "Let's take a look at our [word-count](https://github.com/PyO3/pyo3/blob/main/"
 "examples/word-count/src/lib.rs) example, where we have a `search` function "
@@ -52,26 +52,26 @@ msgid ""
 "count words in parallel."
 msgstr ""
 
-#: src/parallelism.md:16
+#: src/parallelism.md:18
 msgid "// These traits let us use `par_lines` and `map`.\n"
 msgstr ""
 
-#: src/parallelism.md:20
+#: src/parallelism.md:22
 msgid "/// Count the occurrences of needle in line, case insensitive\n"
 msgstr ""
 
-#: src/parallelism.md:24 src/parallelism.md:47 src/parallelism.md:68
+#: src/parallelism.md:26 src/parallelism.md:50 src/parallelism.md:72
 msgid "' '"
 msgstr ""
 
-#: src/parallelism.md:41
+#: src/parallelism.md:43
 msgid ""
 "But let's assume you have a long running Rust function which you would like "
 "to execute several times in parallel. For the sake of example let's take a "
 "sequential version of the word count:"
 msgstr ""
 
-#: src/parallelism.md:60
+#: src/parallelism.md:63
 msgid ""
 "To enable parallel execution of this function, the [`Python::detach`]"
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach) "
@@ -82,67 +82,67 @@ msgid ""
 "enable true parallelism:"
 msgstr ""
 
-#: src/parallelism.md:85
+#: src/parallelism.md:89
 msgid ""
 "Now Python threads can use more than one CPU core, resolving the limitation "
 "which usually makes multi-threading in Python only good for IO-bound tasks:"
 msgstr ""
 
-#: src/parallelism.md:103
+#: src/parallelism.md:107
 msgid "Benchmark"
 msgstr ""
 
-#: src/parallelism.md:105
+#: src/parallelism.md:109
 msgid ""
 "Let's benchmark the `word-count` example to verify that we really did unlock "
 "parallelism with PyO3."
 msgstr ""
 
-#: src/parallelism.md:107
+#: src/parallelism.md:111
 msgid "We are using `pytest-benchmark` to benchmark four word count functions:"
 msgstr ""
 
-#: src/parallelism.md:109
+#: src/parallelism.md:113
 msgid "Pure Python version"
 msgstr ""
 
-#: src/parallelism.md:110
+#: src/parallelism.md:114
 msgid "Rust parallel version"
 msgstr ""
 
-#: src/parallelism.md:111
+#: src/parallelism.md:115
 msgid "Rust sequential version"
 msgstr ""
 
-#: src/parallelism.md:112
+#: src/parallelism.md:116
 msgid "Rust sequential version executed twice with two Python threads"
 msgstr ""
 
-#: src/parallelism.md:114
+#: src/parallelism.md:118
 msgid ""
 "The benchmark script can be found [here](https://github.com/PyO3/pyo3/blob/"
 "main/examples/word-count/tests/test_word_count.py), and we can run `nox` in "
 "the `word-count` folder to benchmark these functions."
 msgstr ""
 
-#: src/parallelism.md:116
+#: src/parallelism.md:120
 msgid ""
 "While the results of the benchmark of course depend on your machine, the "
 "relative results should be similar to this (mid 2020):"
 msgstr ""
 
-#: src/parallelism.md:129
+#: src/parallelism.md:133
 msgid ""
 "You can see that the Python threaded version is not much slower than the "
 "Rust sequential version, which means compared to an execution on a single "
 "CPU core the speed has doubled."
 msgstr ""
 
-#: src/parallelism.md:131
+#: src/parallelism.md:135
 msgid "Sharing Python objects between Rust threads"
 msgstr ""
 
-#: src/parallelism.md:133
+#: src/parallelism.md:137
 msgid ""
 "In the example above we made a Python interface to a low-level rust "
 "function, and then leveraged the python `threading` module to run the low-"
@@ -151,7 +151,7 @@ msgid ""
 "taken to avoid writing code that deadlocks with the GIL in these cases."
 msgstr ""
 
-#: src/parallelism.md:139
+#: src/parallelism.md:141
 msgid ""
 "Note: This example is meant to illustrate how to drop and re-acquire the GIL "
 "to avoid creating deadlocks. Unless the spawned threads subsequently release "
@@ -161,7 +161,7 @@ msgid ""
 "the spawned thread."
 msgstr ""
 
-#: src/parallelism.md:146
+#: src/parallelism.md:148
 msgid ""
 "In the example below, we share a `Vec` of User ID objects defined using the "
 "`pyclass` macro and spawn threads to process the collection of data into a "
@@ -180,7 +180,7 @@ msgid ""
 "wrapped by a Python object."
 msgstr ""
 
-#: src/parallelism.md:179
+#: src/parallelism.md:177
 msgid ""
 "It's also important to see that this example uses [`Python::detach`](https://"
 "pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach) to wrap the "

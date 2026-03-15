@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -94,18 +94,18 @@ msgid ""
 "objects."
 msgstr ""
 
-#: src/python-from-rust.md:28
+#: src/python-from-rust.md:29
 msgid ""
 "Consult [PyO3's API documentation](https://pyo3.rs/main/doc/pyo3/marker/"
 "struct.Python.html#obtaining-a-python-token) to learn how to acquire one of "
 "these tokens."
 msgstr ""
 
-#: src/python-from-rust.md:30
+#: src/python-from-rust.md:31
 msgid "The Global Interpreter Lock"
 msgstr ""
 
-#: src/python-from-rust.md:32
+#: src/python-from-rust.md:33
 msgid ""
 "Prior to the introduction of free-threaded Python (first available in 3.13, "
 "fully supported in 3.14), the Python interpreter was made thread-safe by the "
@@ -117,13 +117,13 @@ msgid ""
 "possibility."
 msgstr ""
 
-#: src/python-from-rust.md:36
+#: src/python-from-rust.md:37
 msgid ""
 "The [`pyo3::sync`](https://pyo3.rs/main/doc/pyo3/sync/index.html) module "
 "offers synchronization tools which abstract over both Python builds."
 msgstr ""
 
-#: src/python-from-rust.md:38
+#: src/python-from-rust.md:39
 msgid ""
 "To enable any parallelism on the GIL-enabled build, and best throughput on "
 "the free-threaded build, non-Python operations (system calls and native Rust "
@@ -132,27 +132,27 @@ msgid ""
 "do that using PyO3's API."
 msgstr ""
 
-#: src/python-from-rust.md:40
+#: src/python-from-rust.md:42
 msgid "Python's memory model"
 msgstr ""
 
-#: src/python-from-rust.md:42
+#: src/python-from-rust.md:44
 msgid "Python's memory model differs from Rust's memory model in two key ways:"
 msgstr ""
 
-#: src/python-from-rust.md:44
+#: src/python-from-rust.md:46
 msgid ""
 "There is no concept of ownership; all Python objects are shared and usually "
 "implemented via reference counting"
 msgstr ""
 
-#: src/python-from-rust.md:45
+#: src/python-from-rust.md:47
 msgid ""
 "There is no concept of exclusive (`&mut`) references; any reference can "
 "mutate a Python object"
 msgstr ""
 
-#: src/python-from-rust.md:47
+#: src/python-from-rust.md:49
 msgid ""
 "PyO3's API reflects this by providing [smart pointer](https://doc.rust-lang."
 "org/book/ch15-00-smart-pointers.html) types, `Py<T>`, `Bound<'py, T>`, and "
@@ -161,7 +161,7 @@ msgid ""
 "more detail on these types."
 msgstr ""
 
-#: src/python-from-rust.md:49
+#: src/python-from-rust.md:53
 msgid ""
 "Because of the lack of exclusive `&mut` references, PyO3's APIs for Python "
 "objects, for example [`PyListMethods::append`](https://pyo3.rs/main/doc/pyo3/"

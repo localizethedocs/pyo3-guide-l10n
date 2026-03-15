@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgstr ""
 "為了效能而撰寫擴充模組的 Python 專案，可能會想使用 [Rust 的 `tracing` 生態系]"
 "(https://crates.io/crates/tracing) 來了解擴充模組的效能表現。"
 
-#: src/ecosystem/tracing.md:7
+#: src/ecosystem/tracing.md:5
 msgid ""
 "This section of the guide describes a few crates that provide ways to do "
 "that. They build on [`tracing_subscriber`](https://docs.rs/tracing-"
@@ -38,14 +38,14 @@ msgstr ""
 "Python 與 Rust 程式碼來整合。請注意每個擴充模組都必須設定自己的 `tracing` 整"
 "合；一個擴充模組無法看到另一個模組的 `tracing` 資料。"
 
-#: src/ecosystem/tracing.md:13
+#: src/ecosystem/tracing.md:9
 msgid ""
 "`pyo3-tracing-subscriber` ([documentation](https://docs.rs/pyo3-tracing-"
 "subscriber))"
 msgstr ""
 "`pyo3-tracing-subscriber`（[文件](https://docs.rs/pyo3-tracing-subscriber)）"
 
-#: src/ecosystem/tracing.md:15
+#: src/ecosystem/tracing.md:11
 msgid ""
 "[`pyo3-tracing-subscriber`](https://crates.io/crates/pyo3-tracing-"
 "subscriber) provides a way for Python projects to configure "
@@ -55,20 +55,20 @@ msgstr ""
 "subscriber) 提供 Python 專案設定 `tracing_subscriber` 的方式，並暴露幾個 "
 "`tracing_subscriber` layer："
 
-#: src/ecosystem/tracing.md:19
+#: src/ecosystem/tracing.md:14
 msgid ""
 "`tracing_subscriber::fmt` for writing human-readable output to file or stdout"
 msgstr "`tracing_subscriber::fmt`：輸出易讀格式到檔案或 stdout"
 
-#: src/ecosystem/tracing.md:20
+#: src/ecosystem/tracing.md:15
 msgid "`opentelemetry-stdout` for writing OTLP output to file or stdout"
 msgstr "`opentelemetry-stdout`：輸出 OTLP 到檔案或 stdout"
 
-#: src/ecosystem/tracing.md:21
+#: src/ecosystem/tracing.md:16
 msgid "`opentelemetry-otlp` for writing OTLP output to an OTLP endpoint"
 msgstr "`opentelemetry-otlp`：輸出 OTLP 到 OTLP 端點"
 
-#: src/ecosystem/tracing.md:23
+#: src/ecosystem/tracing.md:18
 msgid ""
 "The extension module must call [`pyo3_tracing_subscriber::add_submodule`]"
 "(https://docs.rs/pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/fn."
@@ -79,7 +79,7 @@ msgstr ""
 "pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/fn.add_submodule.html) 來導"
 "出設定與初始化 `tracing` 所需的 Python 類別。"
 
-#: src/ecosystem/tracing.md:26
+#: src/ecosystem/tracing.md:20
 msgid ""
 "On the Python side, use the `Tracing` context manager to initialize tracing "
 "and run Rust code inside the context manager's block. `Tracing` takes a "
@@ -89,7 +89,7 @@ msgstr ""
 "Rust 程式碼。`Tracing` 需要一個描述使用哪些 layer 的 `GlobalTracingConfig` 實"
 "例。"
 
-#: src/ecosystem/tracing.md:30
+#: src/ecosystem/tracing.md:22
 msgid ""
 "See [the README on crates.io](https://crates.io/crates/pyo3-tracing-"
 "subscriber) for example code."
@@ -97,7 +97,7 @@ msgstr ""
 "範例程式碼請見 [crates.io 的 README](https://crates.io/crates/pyo3-tracing-"
 "subscriber)。"
 
-#: src/ecosystem/tracing.md:33
+#: src/ecosystem/tracing.md:24
 msgid ""
 "`pyo3-python-tracing-subscriber` ([documentation](https://docs.rs/pyo3-"
 "python-tracing-subscriber))"
@@ -105,7 +105,7 @@ msgstr ""
 "`pyo3-python-tracing-subscriber`（[文件](https://docs.rs/pyo3-python-tracing-"
 "subscriber)）"
 
-#: src/ecosystem/tracing.md:35
+#: src/ecosystem/tracing.md:26
 msgid ""
 "The similarly-named [`pyo3-python-tracing-subscriber`](https://crates.io/"
 "crates/pyo3-python-tracing-subscriber) implements a shim in Rust that "
@@ -116,7 +116,7 @@ msgstr ""
 "python-tracing-subscriber) 在 Rust 中實作一個 shim，將 `tracing` 資料轉送到"
 "由 Python 定義並傳入的 `Layer` 實作。"
 
-#: src/ecosystem/tracing.md:39
+#: src/ecosystem/tracing.md:28
 msgid ""
 "There are many ways an extension module could integrate `pyo3-python-tracing-"
 "subscriber` but a simple one may look something like this:"
@@ -124,11 +124,11 @@ msgstr ""
 "擴充模組可用多種方式整合 `pyo3-python-tracing-subscriber`，其中一個簡單做法可"
 "能如下："
 
-#: src/ecosystem/tracing.md:46
+#: src/ecosystem/tracing.md:34
 msgid "// ...\n"
 msgstr ""
 
-#: src/ecosystem/tracing.md:57
+#: src/ecosystem/tracing.md:45
 msgid ""
 "The extension module must provide some way for Python to pass in one or more "
 "Python objects that implement [the `Layer` interface](https://docs.rs/"
@@ -146,65 +146,65 @@ msgstr ""
 "rs/pyo3-python-tracing-subscriber/*/pyo3_python_tracing_subscriber/struct."
 "PythonCallbackLayerBridge.html) 實例，並如上所示初始化 `tracing_subscriber`。"
 
-#: src/ecosystem/tracing.md:63
+#: src/ecosystem/tracing.md:48
 msgid ""
 "The Python objects implement a modified version of the `Layer` interface:"
 msgstr "Python 物件實作的是改良版的 `Layer` 介面："
 
-#: src/ecosystem/tracing.md:65
+#: src/ecosystem/tracing.md:50
 msgid ""
 "`on_new_span()` may return some state that will stored inside the Rust span"
 msgstr "`on_new_span()` 可回傳狀態，該狀態會儲存在 Rust span 中"
 
-#: src/ecosystem/tracing.md:66
+#: src/ecosystem/tracing.md:51
 msgid ""
 "other callbacks will be given that state as an additional positional argument"
 msgstr "其他回呼會以額外的位置參數取得該狀態"
 
-#: src/ecosystem/tracing.md:68
+#: src/ecosystem/tracing.md:53
 msgid "A dummy `Layer` implementation may look like this:"
 msgstr "一個假的 `Layer` 實作可能如下："
 
-#: src/ecosystem/tracing.md:77
+#: src/ecosystem/tracing.md:62
 msgid "# `on_new_span` can return some state\n"
 msgstr "# `on_new_span` 可以回傳某些狀態\n"
 
-#: src/ecosystem/tracing.md:79
+#: src/ecosystem/tracing.md:64
 msgid "\"[on_new_span]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:79 src/ecosystem/tracing.md:84
-#: src/ecosystem/tracing.md:87 src/ecosystem/tracing.md:90
+#: src/ecosystem/tracing.md:64 src/ecosystem/tracing.md:69
+#: src/ecosystem/tracing.md:72 src/ecosystem/tracing.md:75
 msgid " | "
 msgstr ""
 
-#: src/ecosystem/tracing.md:79 src/ecosystem/tracing.md:84
-#: src/ecosystem/tracing.md:87 src/ecosystem/tracing.md:90
+#: src/ecosystem/tracing.md:64 src/ecosystem/tracing.md:69
+#: src/ecosystem/tracing.md:72 src/ecosystem/tracing.md:75
 msgid "\""
 msgstr ""
 
-#: src/ecosystem/tracing.md:82
+#: src/ecosystem/tracing.md:67
 msgid ""
 "# The state from `on_new_span` is passed back into other trait methods\n"
 msgstr "# 來自 `on_new_span` 的狀態會傳回其他特徵方法\n"
 
-#: src/ecosystem/tracing.md:84
+#: src/ecosystem/tracing.md:69
 msgid "\"[on_event]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:87
+#: src/ecosystem/tracing.md:72
 msgid "\"[on_close]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:90
+#: src/ecosystem/tracing.md:75
 msgid "\"[on_record]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:95
+#: src/ecosystem/tracing.md:80
 msgid "\"10th fibonacci number: \""
 msgstr ""
 
-#: src/ecosystem/tracing.md:98
+#: src/ecosystem/tracing.md:83
 msgid ""
 "`pyo3-python-tracing-subscriber` has [working examples](https://github.com/"
 "getsentry/pyo3-python-tracing-subscriber/tree/main/demo) showing both the "

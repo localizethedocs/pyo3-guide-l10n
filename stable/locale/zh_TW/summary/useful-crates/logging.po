@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,7 +23,7 @@ msgstr ""
 "理想情況是應用程式中的 Python 與 Rust 部分都使用相同設定，並將日誌輸出到同一"
 "位置。"
 
-#: src/ecosystem/logging.md:6
+#: src/ecosystem/logging.md:5
 msgid ""
 "This section of the guide briefly discusses how to connect the two "
 "languages' logging ecosystems together. The recommended way for Python "
@@ -35,11 +35,11 @@ msgstr ""
 "使用 `pyo3-log` 軟體箱設定 Rust 的 logger，將日誌訊息送到 Python。若你想反向"
 "將 Python 日誌送到 Rust，請見本指南最後的說明。"
 
-#: src/ecosystem/logging.md:12
+#: src/ecosystem/logging.md:9
 msgid "Using `pyo3-log` to send Rust log messages to Python"
 msgstr "使用 `pyo3-log` 將 Rust 日誌訊息送到 Python"
 
-#: src/ecosystem/logging.md:14
+#: src/ecosystem/logging.md:11
 msgid ""
 "The [pyo3-log](https://crates.io/crates/pyo3-log) crate allows sending the "
 "messages from the Rust side to Python's [logging](https://docs.python.org/3/"
@@ -50,7 +50,7 @@ msgstr ""
 "Python 的 [logging](https://docs.python.org/3/library/logging.html) 系統。這"
 "主要適用於為 Python 程式撰寫原生擴充。"
 
-#: src/ecosystem/logging.md:18
+#: src/ecosystem/logging.md:14
 msgid ""
 "Use [`pyo3_log::init`](https://docs.rs/pyo3-log/*/pyo3_log/fn.init.html) to "
 "install the logger in its default configuration. It's also possible to tweak "
@@ -59,7 +59,7 @@ msgstr ""
 "使用 [`pyo3_log::init`](https://docs.rs/pyo3-log/*/pyo3_log/fn.init.html) 以"
 "預設設定安裝 logger。也可以調整其設定（多半用於效能調校）。"
 
-#: src/ecosystem/logging.md:29
+#: src/ecosystem/logging.md:25
 msgid ""
 "// This will use the logger installed in `my_module` to send the `info`\n"
 "        // message to the Python logging facilities.\n"
@@ -67,25 +67,25 @@ msgstr ""
 "// 這會使用安裝在 `my_module` 的 logger，將 `info`\n"
 "        // 訊息送到 Python 的 logging 系統。\n"
 
-#: src/ecosystem/logging.md:31
+#: src/ecosystem/logging.md:27
 msgid "\"Something!\""
 msgstr ""
 
-#: src/ecosystem/logging.md:36
+#: src/ecosystem/logging.md:32
 msgid "// A good place to install the Rust -> Python logger.\n"
 msgstr "// 安裝 Rust -> Python logger 的好位置。\n"
 
-#: src/ecosystem/logging.md:42
+#: src/ecosystem/logging.md:38
 msgid ""
 "Then it is up to the Python side to actually output the messages somewhere."
 msgstr "接著由 Python 端負責將訊息實際輸出到某處。"
 
-#: src/ecosystem/logging.md:48
+#: src/ecosystem/logging.md:44
 msgid ""
 "'%(levelname)s %(name)s %(asctime)-15s %(filename)s:%(lineno)d %(message)s'"
 msgstr ""
 
-#: src/ecosystem/logging.md:54
+#: src/ecosystem/logging.md:50
 msgid ""
 "It is important to initialize the Python loggers first, before calling any "
 "Rust functions that may log. This limitation can be worked around if it is "
@@ -96,11 +96,11 @@ msgstr ""
 "滿足此限制，仍可用替代方式處理，請閱讀[快取](https://docs.rs/pyo3-log/*/"
 "pyo3_log/#performance-filtering-and-caching)相關文件。"
 
-#: src/ecosystem/logging.md:58
+#: src/ecosystem/logging.md:53
 msgid "The Python to Rust direction"
 msgstr "Python 到 Rust 的方向"
 
-#: src/ecosystem/logging.md:60
+#: src/ecosystem/logging.md:55
 msgid ""
 "To have python logs be handled by Rust, one need only register a rust "
 "function to handle logs emitted from the core python logging module."
@@ -108,14 +108,14 @@ msgstr ""
 "若要讓 Rust 處理 Python 日誌，只需註冊一個 Rust 函式來處理由 Python 核心 "
 "logging 模組送出的日誌。"
 
-#: src/ecosystem/logging.md:62
+#: src/ecosystem/logging.md:57
 msgid ""
 "This has been implemented within the [pyo3-pylogger](https://crates.io/"
 "crates/pyo3-pylogger) crate."
 msgstr ""
 "這已由 [pyo3-pylogger](https://crates.io/crates/pyo3-pylogger) 軟體箱實作。"
 
-#: src/ecosystem/logging.md:69
+#: src/ecosystem/logging.md:64
 msgid ""
 "// register the host handler with python logger, providing a logger target\n"
 "    // set the name here to something appropriate for your application\n"
@@ -123,35 +123,35 @@ msgstr ""
 "// 在 python logger 中註冊主機端處理器，並提供 logger target\n"
 "    // 這裡的名稱請設定為適合你的應用程式\n"
 
-#: src/ecosystem/logging.md:71
+#: src/ecosystem/logging.md:66
 msgid "\"example_application_py_logger\""
 msgstr ""
 
-#: src/ecosystem/logging.md:73
+#: src/ecosystem/logging.md:68
 msgid "// initialize up a logger\n"
 msgstr "// 初始化 logger\n"
 
-#: src/ecosystem/logging.md:74
+#: src/ecosystem/logging.md:69
 msgid "\"trace\""
 msgstr ""
 
-#: src/ecosystem/logging.md:76
+#: src/ecosystem/logging.md:71
 msgid "// Log some messages from Rust.\n"
 msgstr "// 從 Rust 紀錄一些訊息。\n"
 
-#: src/ecosystem/logging.md:77
+#: src/ecosystem/logging.md:72
 msgid "\"Just some normal information!\""
 msgstr ""
 
-#: src/ecosystem/logging.md:78
+#: src/ecosystem/logging.md:73
 msgid "\"Something spooky happened!\""
 msgstr ""
 
-#: src/ecosystem/logging.md:80
+#: src/ecosystem/logging.md:75
 msgid "// Log some messages from Python\n"
 msgstr "// 從 Python 紀錄一些訊息\n"
 
-#: src/ecosystem/logging.md:83
+#: src/ecosystem/logging.md:78
 msgid ""
 "\"\n"
 "import logging\n"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 
 #: src/module.md:22
-msgid "// Inline definition of a pyfunction, also made availlable to Python\n"
+msgid "// Inline definition of a pyfunction, also made available to Python\n"
 msgstr ""
 
 #: src/module.md:30
@@ -39,17 +39,17 @@ msgid ""
 "function of your module and exposing it to Python."
 msgstr ""
 
-#: src/module.md:33
+#: src/module.md:32
 msgid ""
 "The module's name defaults to the name of the Rust module. You can override "
 "the module name by using `#[pyo3(name = \"custom_name\")]`:"
 msgstr ""
 
-#: src/module.md:45
+#: src/module.md:44
 msgid "\"custom_name\""
 msgstr ""
 
-#: src/module.md:53
+#: src/module.md:52
 msgid ""
 "The name of the module must match the name of the `.so` or `.pyd` file. "
 "Otherwise, you will get an import error in Python with the following "
@@ -57,64 +57,64 @@ msgid ""
 "(PyInit_name_of_your_module)`"
 msgstr ""
 
-#: src/module.md:57
+#: src/module.md:55
 msgid "To import the module, either:"
 msgstr ""
 
-#: src/module.md:59
+#: src/module.md:57
 msgid ""
 "copy the shared library as described in [Manual builds](building-and-"
 "distribution.md#manual-builds), or"
 msgstr ""
 
-#: src/module.md:60
+#: src/module.md:58
 msgid ""
 "use a tool, e.g. `maturin develop` with [maturin](https://github.com/PyO3/"
 "maturin) or `python setup.py develop` with [setuptools-rust](https://github."
 "com/PyO3/setuptools-rust)."
 msgstr ""
 
-#: src/module.md:63
+#: src/module.md:61
 msgid "Documentation"
 msgstr ""
 
-#: src/module.md:65
+#: src/module.md:63
 msgid ""
 "The [Rust doc comments](https://doc.rust-lang.org/stable/book/ch03-04-"
 "comments.html) of the Rust module will be applied automatically as the "
 "Python docstring of your module."
 msgstr ""
 
-#: src/module.md:67
+#: src/module.md:65
 msgid ""
 "For example, building off of the above code, this will print `This module is "
 "implemented in Rust.`:"
 msgstr ""
 
-#: src/module.md:75
+#: src/module.md:73
 msgid "Python submodules"
 msgstr ""
 
-#: src/module.md:77
+#: src/module.md:75
 msgid ""
 "You can create a module hierarchy within a single extension module by just "
 "`use`ing modules like functions or classes. For example, you could define "
 "the modules `parent_module` and `parent_module.child_module`:"
 msgstr ""
 
-#: src/module.md:97
+#: src/module.md:95
 msgid "\"func\""
 msgstr ""
 
-#: src/module.md:106
+#: src/module.md:103
 msgid "\"parent_module\""
 msgstr ""
 
-#: src/module.md:108
+#: src/module.md:105
 msgid "\"assert parent_module.child_module.func() == 'func'\""
 msgstr ""
 
-#: src/module.md:113
+#: src/module.md:110
 msgid ""
 "Note that this does not define a package, so this won’t allow Python code to "
 "directly import submodules by using `from parent_module import "
@@ -123,40 +123,40 @@ msgid ""
 "issues/1517#issuecomment-808664021)."
 msgstr ""
 
-#: src/module.md:118
+#: src/module.md:113
 msgid ""
 "You can provide the `submodule` argument to `#[pymodule()]` for modules that "
 "are not top-level modules in order for them to properly generate the "
 "`#[pyclass]` `module` attribute automatically."
 msgstr ""
 
-#: src/module.md:120
+#: src/module.md:115
 msgid "Inline declaration"
 msgstr ""
 
-#: src/module.md:122
+#: src/module.md:117
 msgid ""
 "It is possible to declare functions, classes, sub-modules and constants "
 "inline in a module:"
 msgstr ""
 
-#: src/module.md:124
+#: src/module.md:119
 msgid "For example:"
 msgstr ""
 
-#: src/module.md:133
+#: src/module.md:128
 msgid "// Exports PI constant as part of the module\n"
 msgstr ""
 
-#: src/module.md:135 src/module.md:140
+#: src/module.md:130 src/module.md:135
 msgid "// This will be part of the module\n"
 msgstr ""
 
-#: src/module.md:145
+#: src/module.md:140
 msgid "// This is a submodule\n"
 msgstr ""
 
-#: src/module.md:155
+#: src/module.md:150
 msgid ""
 "In this case, `#[pymodule]` macro automatically sets the `module` attribute "
 "of the `#[pyclass]` macros declared inside of it with its name. For nested "
@@ -165,24 +165,24 @@ msgid ""
 "submodule`."
 msgstr ""
 
-#: src/module.md:159
+#: src/module.md:154
 msgid "Procedural initialization"
 msgstr ""
 
-#: src/module.md:161
+#: src/module.md:156
 msgid ""
 "If the macros provided by PyO3 are not enough, it is possible to run code at "
 "the module initialization:"
 msgstr ""
 
-#: src/module.md:176
+#: src/module.md:171
 msgid "// Arbitrary code to run at the module initialization\n"
 msgstr ""
 
-#: src/module.md:177
+#: src/module.md:172
 msgid "\"double2\""
 msgstr ""
 
-#: src/module.md:177
+#: src/module.md:172
 msgid "\"double\""
 msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-16T11:33:17Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:18Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -43,7 +43,7 @@ msgid ""
 "keyword arguments respectively). There are variants for less complex calls:"
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:12
+#: src/python-from-rust/function-calls.md:13
 msgid ""
 "[`call1`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
 "html#tymethod.call1) and [`call_method1`](https://pyo3.rs/main/doc/pyo3/"
@@ -51,7 +51,7 @@ msgid ""
 "positional `args`."
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:13
+#: src/python-from-rust/function-calls.md:14
 msgid ""
 "[`call0`](https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods."
 "html#tymethod.call0) and [`call_method0`](https://pyo3.rs/main/doc/pyo3/"
@@ -59,14 +59,14 @@ msgid ""
 "arguments."
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:15
+#: src/python-from-rust/function-calls.md:16
 msgid ""
 "For convenience the [`Py<T>`](../types.md#pyt) smart pointer also exposes "
 "these same six API methods, but needs a `Python` token as an additional "
 "first argument to prove the thread is attached to the Python interpreter."
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:17
+#: src/python-from-rust/function-calls.md:18
 msgid ""
 "The example below calls a Python function behind a `Py<PyAny>` reference:"
 msgstr ""
@@ -84,7 +84,7 @@ msgid "\"arg3\""
 msgstr ""
 
 #: src/python-from-rust/function-calls.md:32
-#: src/python-from-rust/function-calls.md:79
+#: src/python-from-rust/function-calls.md:80
 msgid ""
 "\"def example(*args, **kwargs):\n"
 "                if args != ():\n"
@@ -96,17 +96,17 @@ msgid ""
 msgstr ""
 
 #: src/python-from-rust/function-calls.md:39
-#: src/python-from-rust/function-calls.md:86
+#: src/python-from-rust/function-calls.md:87
 msgid "\"example.py\""
 msgstr ""
 
 #: src/python-from-rust/function-calls.md:40
-#: src/python-from-rust/function-calls.md:87
+#: src/python-from-rust/function-calls.md:88
 msgid "\"\""
 msgstr ""
 
 #: src/python-from-rust/function-calls.md:42
-#: src/python-from-rust/function-calls.md:89
+#: src/python-from-rust/function-calls.md:90
 msgid "\"example\""
 msgstr ""
 
@@ -137,30 +137,30 @@ msgid ""
 "`PyDict` object."
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:71
+#: src/python-from-rust/function-calls.md:72
 msgid "\"key1\""
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:73
+#: src/python-from-rust/function-calls.md:74
 msgid "\"key2\""
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:92
+#: src/python-from-rust/function-calls.md:93
 msgid "// call object with PyDict\n"
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:96
+#: src/python-from-rust/function-calls.md:97
 msgid "// pass arguments as Vec\n"
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:100
+#: src/python-from-rust/function-calls.md:101
 msgid "// pass arguments as HashMap\n"
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:105
+#: src/python-from-rust/function-calls.md:106
 msgid "// pass arguments of different types as PyDict\n"
 msgstr ""
 
-#: src/python-from-rust/function-calls.md:108
+#: src/python-from-rust/function-calls.md:109
 msgid "\"string\""
 msgstr ""
