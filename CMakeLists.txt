@@ -173,9 +173,9 @@ get_members_of_json_object(
 #   - Set VERSION_TYPE    to "tag"
 #   - Set TAG_PATTERN     to "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
 #   - Set TAG_SUFFIX      to ""
-# - For "[MAJOR].[MINOR]":
+# - For "[MAJOR]":
 #   - Set VERSION_TYPE    to "tag"
-#   - Set TAG_PATTERN     to "^v([MAJOR])\\.([MINOR])\\.([0-9]+)$"
+#   - Set TAG_PATTERN     to "^v([MAJOR])\\.([0-9]+)\\.([0-9]+)$"
 #   - Set TAG_SUFFIX      to ""
 #]============================================================]
 
@@ -186,16 +186,10 @@ elseif (VERSION MATCHES "^(stable)$")
     set(VERSION_TYPE    "tag")
     set(TAG_PATTERN     "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
     set(TAG_SUFFIX      "")
-elseif (VERSION MATCHES "^([0-9]+)\\.([0-9]+)$")
+elseif (VERSION MATCHES "^([0-9]+)$")
     set(MAJOR           "${CMAKE_MATCH_1}")
-    set(MINOR           "${CMAKE_MATCH_2}")
     set(VERSION_TYPE    "tag")
-    if (VERSION VERSION_EQUAL "0.1")
-        set(TAG_PATTERN "^(${MAJOR})\\.(${MINOR})\\.([0-9]+)$")
-    else()
-        set(TAG_PATTERN "^v(${MAJOR})\\.(${MINOR})\\.([0-9]+)$")
-    endif()
-    set(TAG_SUFFIX      "")
+    set(TAG_PATTERN     "^v(${MAJOR})\\.([0-9]+)\\.([0-9]+)$")
 else()
     message(FATAL_ERROR "Invalid VERSION value. (${VERSION})")
 endif()
@@ -262,18 +256,18 @@ if     (VERSION MATCHES "^(latest)$")
 elseif (VERSION MATCHES "^(stable)$")
     set(VERSION_OF_RUST                 "1.90")
     set(VERSION_OF_DASEL                "2")
-    set(VERSION_OF_MDBOOK               "^0.4")
-    set(VERSION_OF_MDBOOK_I18N_HELPERS  "^0.3")
-    set(VERSION_OF_MDBOOK_TABS          "^0.2")
+    set(VERSION_OF_MDBOOK               "^0.5")
+    set(VERSION_OF_MDBOOK_I18N_HELPERS  "^0.4")
+    set(VERSION_OF_MDBOOK_TABS          "^0.3")
     set(VERSION_OF_PYTHON               "3.12")
-elseif (VERSION MATCHES "^([0-9]+)\\.([0-9]+)$")
-    if     (VERSION VERSION_LESS_EQUAL    "0.27" AND
-            VERSION VERSION_GREATER_EQUAL "0.1")
+elseif (VERSION MATCHES "^([0-9]+)$")
+    if     (VERSION VERSION_LESS_EQUAL    "0" AND
+            VERSION VERSION_GREATER_EQUAL "0")
         set(VERSION_OF_RUST                 "1.90")
         set(VERSION_OF_DASEL                "2")
-        set(VERSION_OF_MDBOOK               "^0.4")
-        set(VERSION_OF_MDBOOK_I18N_HELPERS  "^0.3")
-        set(VERSION_OF_MDBOOK_TABS          "^0.2")
+        set(VERSION_OF_MDBOOK               "^0.5")
+        set(VERSION_OF_MDBOOK_I18N_HELPERS  "^0.4")
+        set(VERSION_OF_MDBOOK_TABS          "^0.3")
         set(VERSION_OF_PYTHON               "3.12")
     else()
         message(FATAL_ERROR "Invalid VERSION value. (${VERSION})")
