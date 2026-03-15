@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -129,8 +129,7 @@ msgstr ""
 
 #: src/conversions/tables.md:20
 msgid ""
-"`f32`, `f64`, `ordered_float::NotNan`[^10], `ordered_float::"
-"OrderedFloat`[^10]"
+"`f32`, `f64`, `ordered_float::NotNan`[^2], `ordered_float::OrderedFloat`[^2]"
 msgstr ""
 
 #: src/conversions/tables.md:20
@@ -142,7 +141,7 @@ msgid "`complex`"
 msgstr ""
 
 #: src/conversions/tables.md:21
-msgid "`num_complex::Complex`[^2]"
+msgid "`num_complex::Complex`[^3]"
 msgstr ""
 
 #: src/conversions/tables.md:21
@@ -154,7 +153,7 @@ msgid "`fractions.Fraction`"
 msgstr ""
 
 #: src/conversions/tables.md:22
-msgid "`num_rational::Ratio`[^8]"
+msgid "`num_rational::Ratio`[^4]"
 msgstr ""
 
 #: src/conversions/tables.md:23
@@ -176,8 +175,8 @@ msgstr ""
 
 #: src/conversions/tables.md:24 src/conversions/tables.md:46
 msgid ""
-"`HashMap<K, V>`, `BTreeMap<K, V>`, `hashbrown::HashMap<K, V>`[^3], "
-"`indexmap::IndexMap<K, V>`[^4]"
+"`HashMap<K, V>`, `BTreeMap<K, V>`, `hashbrown::HashMap<K, V>`[^5], "
+"`indexmap::IndexMap<K, V>`[^6]"
 msgstr ""
 
 #: src/conversions/tables.md:24
@@ -201,7 +200,7 @@ msgid "`set[T]`"
 msgstr ""
 
 #: src/conversions/tables.md:26 src/conversions/tables.md:27
-msgid "`HashSet<T>`, `BTreeSet<T>`, `hashbrown::HashSet<T>`[^3]"
+msgid "`HashSet<T>`, `BTreeSet<T>`, `hashbrown::HashSet<T>`[^5]"
 msgstr ""
 
 #: src/conversions/tables.md:26
@@ -265,7 +264,7 @@ msgid "`datetime.datetime`"
 msgstr ""
 
 #: src/conversions/tables.md:33
-msgid "`SystemTime`, `chrono::DateTime<Tz>`[^5], `chrono::NaiveDateTime`[^5]"
+msgid "`SystemTime`, `chrono::DateTime<Tz>`[^7], `chrono::NaiveDateTime`[^7]"
 msgstr ""
 
 #: src/conversions/tables.md:33
@@ -277,7 +276,7 @@ msgid "`datetime.date`"
 msgstr ""
 
 #: src/conversions/tables.md:34
-msgid "`chrono::NaiveDate`[^5]"
+msgid "`chrono::NaiveDate`[^7]"
 msgstr ""
 
 #: src/conversions/tables.md:34
@@ -289,7 +288,7 @@ msgid "`datetime.time`"
 msgstr ""
 
 #: src/conversions/tables.md:35
-msgid "`chrono::NaiveTime`[^5]"
+msgid "`chrono::NaiveTime`[^7]"
 msgstr ""
 
 #: src/conversions/tables.md:35
@@ -301,7 +300,7 @@ msgid "`datetime.tzinfo`"
 msgstr ""
 
 #: src/conversions/tables.md:36
-msgid "`chrono::FixedOffset`[^5], `chrono::Utc`[^5], `chrono_tz::TimeZone`[^6]"
+msgid "`chrono::FixedOffset`[^7], `chrono::Utc`[^7], `chrono_tz::TimeZone`[^8]"
 msgstr ""
 
 #: src/conversions/tables.md:36
@@ -313,7 +312,7 @@ msgid "`datetime.timedelta`"
 msgstr ""
 
 #: src/conversions/tables.md:37
-msgid "`Duration`, `chrono::Duration`[^5]"
+msgid "`Duration`, `chrono::Duration`[^7]"
 msgstr ""
 
 #: src/conversions/tables.md:37
@@ -325,11 +324,11 @@ msgid "`decimal.Decimal`"
 msgstr ""
 
 #: src/conversions/tables.md:38
-msgid "`rust_decimal::Decimal`[^7]"
+msgid "`rust_decimal::Decimal`[^9]"
 msgstr ""
 
 #: src/conversions/tables.md:39
-msgid "`bigdecimal::BigDecimal`[^9]"
+msgid "`bigdecimal::BigDecimal`[^10]"
 msgstr ""
 
 #: src/conversions/tables.md:40
@@ -634,37 +633,37 @@ msgid "Requires the `num-bigint` optional feature."
 msgstr ""
 
 #: src/conversions/tables.md:113
-msgid "Requires the `num-complex` optional feature."
+msgid "Requires the `ordered-float` optional feature."
 msgstr ""
 
 #: src/conversions/tables.md:115
-msgid "Requires the `hashbrown` optional feature."
+msgid "Requires the `num-complex` optional feature."
 msgstr ""
 
 #: src/conversions/tables.md:117
-msgid "Requires the `indexmap` optional feature."
-msgstr ""
-
-#: src/conversions/tables.md:119
-msgid "Requires the `chrono` (and maybe `chrono-local`) optional feature(s)."
-msgstr ""
-
-#: src/conversions/tables.md:121
-msgid "Requires the `chrono-tz` optional feature."
-msgstr ""
-
-#: src/conversions/tables.md:123
-msgid "Requires the `rust_decimal` optional feature."
-msgstr ""
-
-#: src/conversions/tables.md:125
 msgid "Requires the `num-rational` optional feature."
 msgstr ""
 
+#: src/conversions/tables.md:119
+msgid "Requires the `hashbrown` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:121
+msgid "Requires the `indexmap` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:123
+msgid "Requires the `chrono` (and maybe `chrono-local`) optional feature(s)."
+msgstr ""
+
+#: src/conversions/tables.md:125
+msgid "Requires the `chrono-tz` optional feature."
+msgstr ""
+
 #: src/conversions/tables.md:127
-msgid "Requires the `bigdecimal` optional feature."
+msgid "Requires the `rust_decimal` optional feature."
 msgstr ""
 
 #: src/conversions/tables.md:129
-msgid "Requires the `ordered-float` optional feature."
+msgid "Requires the `bigdecimal` optional feature."
 msgstr ""

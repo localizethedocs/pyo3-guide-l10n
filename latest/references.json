@@ -16,9 +16,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2026-01-18 15:27:39 +0000",
-        "hash" : "c969dd0253111b62e7b5c1153fc71d5cb3c139ce",
-        "title" : "remove all functionality deprecated in PyO3 0.26 (#5740)"
+        "date" : "2026-03-14 15:06:53 +0000",
+        "hash" : "d07a1abf347d84b1b266640622cd8b6272abeec1",
+        "title" : "use raw references instead of `addr_of!` / `addr_of_mut!` (#5879)"
       }
     },
     "zh_TW" : 
@@ -26,9 +26,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2026-01-18 15:27:39 +0000",
-        "hash" : "c969dd0253111b62e7b5c1153fc71d5cb3c139ce",
-        "title" : "remove all functionality deprecated in PyO3 0.26 (#5740)"
+        "date" : "2026-03-14 15:06:53 +0000",
+        "hash" : "d07a1abf347d84b1b266640622cd8b6272abeec1",
+        "title" : "use raw references instead of `addr_of!` / `addr_of_mut!` (#5879)"
       }
     }
   },

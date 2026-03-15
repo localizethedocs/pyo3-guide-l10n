@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-01-19T08:26:00Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -161,6 +161,6 @@ msgstr ""
 
 #: src/exception.md:175
 msgid ""
-"Note that this is not possible when the `abi3` feature is enabled, as that "
-"prevents subclassing `PyException`."
+"Note that when the `abi3` feature is enabled, subclassing `PyException` is "
+"only possible on Python 3.12 or greater."
 msgstr ""

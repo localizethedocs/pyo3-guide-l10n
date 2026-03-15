@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -118,19 +118,19 @@ msgstr ""
 "（內部的）`PyCallArgs` 特徵實作的，它定義 Rust 型別如何作為 Python `call` 參"
 "數使用。此特徵目前為以下項目實作："
 
-#: src/performance.md:112
+#: src/performance.md:113
 msgid "Rust tuples, where each member implements `IntoPyObject`,"
 msgstr "Rust tuple，其中每個成員都實作 `IntoPyObject`，"
 
-#: src/performance.md:113
+#: src/performance.md:114
 msgid "`Bound<'_, PyTuple>`"
 msgstr "`Bound<'_, PyTuple>`"
 
-#: src/performance.md:114
+#: src/performance.md:115
 msgid "`Py<PyTuple>`"
 msgstr "`Py<PyTuple>`"
 
-#: src/performance.md:116
+#: src/performance.md:117
 msgid ""
 "Rust tuples may make use of [`vectorcall`](https://docs.python.org/3/c-api/"
 "call.html#the-vectorcall-protocol) where as `Bound<'_, PyTuple>` and "
@@ -143,11 +143,11 @@ msgstr ""
 "使用 [`tp_call`](https://docs.python.org/3/c-api/call.html#the-tp-call-"
 "protocol)。為求最佳效能，請優先使用 Rust tuple 作為參數。"
 
-#: src/performance.md:122
+#: src/performance.md:123
 msgid "Detach from the interpreter for long-running Rust-only work"
 msgstr "長時間的純 Rust 工作請從直譯器分離"
 
-#: src/performance.md:124
+#: src/performance.md:125
 msgid ""
 "When executing Rust code which does not need to interact with the Python "
 "interpreter, use [`Python::detach`](https://pyo3.rs/main/doc/pyo3/marker/"
@@ -158,14 +158,14 @@ msgstr ""
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach)，讓 "
 "Python 直譯器在不等待目前執行緒的情況下繼續執行。"
 
-#: src/performance.md:126
+#: src/performance.md:127
 msgid ""
 "On the GIL-enabled build, this is crucial for best performance as only a "
 "single thread may ever be attached at a time."
 msgstr ""
 "在啟用 GIL 的建置中，這對最佳效能至關重要，因為同一時間只能有單一執行緒附加。"
 
-#: src/performance.md:128
+#: src/performance.md:129
 msgid ""
 "On the free-threaded build, this is still best practice as there are several "
 "\"stop the world\" events (such as garbage collection) where all threads "
@@ -174,7 +174,7 @@ msgstr ""
 "在自由執行緒建置中，這仍是最佳實務，因為存在多個「stop the world」事件（如垃"
 "圾回收），會迫使所有附加到 Python 直譯器的執行緒等待。"
 
-#: src/performance.md:130
+#: src/performance.md:131
 msgid ""
 "As a rule of thumb, attaching and detaching from the Python interpreter "
 "takes less than a millisecond, so any work which is expected to take "
@@ -183,11 +183,11 @@ msgstr ""
 "一般而言，附加與分離 Python 直譯器所需時間不到 1 毫秒，因此預期耗時數毫秒以上"
 "的工作，多半可受益於先從直譯器分離。"
 
-#: src/performance.md:134
+#: src/performance.md:135
 msgid "Disable the global reference pool"
 msgstr "停用全域參考池"
 
-#: src/performance.md:136
+#: src/performance.md:137
 msgid ""
 "PyO3 uses global mutable state to keep track of deferred reference count "
 "updates implied by `impl<T> Drop for Py<T>` being called without being "
@@ -201,7 +201,7 @@ msgstr ""
 "得並套用這些參考計數更新，成本不低，且可能成為跨越 Python-Rust 邊界的重要開"
 "銷。"
 
-#: src/performance.md:139
+#: src/performance.md:140
 msgid ""
 "This functionality can be avoided by setting the "
 "`pyo3_disable_reference_pool` conditional compilation flag. This removes the "
@@ -222,7 +222,7 @@ msgstr ""
 "`pyo3_leak_on_drop_without_reference_pool`，則在未附加到 Python 時被釋放的物"
 "件會改為洩漏，這永遠是安全的，但長期可能造成資源耗盡等不良影響。"
 
-#: src/performance.md:145
+#: src/performance.md:146
 msgid ""
 "This limitation is important to keep in mind when this setting is used, "
 "especially when embedding Python code into a Rust application as it is quite "
@@ -235,6 +235,6 @@ msgstr ""
 "（或包含它的型別，如 `PyErr`、`PyBackedStr` 或 `PyBackedBytes`）。例如，下列"
 "程式碼"
 
-#: src/performance.md:162
+#: src/performance.md:163
 msgid "will abort if the list not explicitly disposed via"
 msgstr "若清單未明確透過下列方式處理，將會中止"

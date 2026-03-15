@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-01-19T08:25:59Z\n"
+"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -199,7 +199,7 @@ msgid ""
 "crate-type = [\"cdylib\"]\n"
 "\n"
 "[dependencies]\n"
-"pyo3 = \"0.27.2\"\n"
+"pyo3 = \"0.28.2\"\n"
 "```"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr "使用 `cargo new` 建立新專案，並在 `Cargo.toml` 中加入 `pyo3
 msgid ""
 "```toml\n"
 "[dependencies.pyo3]\n"
-"version = \"0.27.2\"\n"
+"version = \"0.28.2\"\n"
 "# Enabling this cargo feature will cause PyO3 to start a Python interpreter "
 "on first call to `Python::attach`\n"
 "features = [\"auto-initialize\"]\n"
@@ -474,31 +474,38 @@ msgstr "範例"
 
 #: src/index.md:202
 msgid ""
+"[anise](https://github.com/nyx-space/anise) _A modern, high-performance "
+"toolkit for spacecraft mission design, notably used to help softly land "
+"Firefly Blue Ghost on the Moon on 02 Feb 2025._"
+msgstr ""
+
+#: src/index.md:203
+msgid ""
 "[arro3](https://github.com/kylebarron/arro3) _A minimal Python library for "
 "Apache Arrow, connecting to the Rust arrow crate._"
 msgstr ""
 "[arro3](https://github.com/kylebarron/arro3) _連結 Rust arrow crate 的最小化 "
 "Apache Arrow Python 函式庫_"
 
-#: src/index.md:203
+#: src/index.md:204
 msgid ""
 "[arro3-compute](https://github.com/kylebarron/arro3/tree/main/arro3-compute) "
 "_`arro3-compute`_"
 msgstr ""
 
-#: src/index.md:204
+#: src/index.md:205
 msgid ""
 "[arro3-core](https://github.com/kylebarron/arro3/tree/main/arro3-core) "
 "_`arro3-core`_"
 msgstr ""
 
-#: src/index.md:205
+#: src/index.md:206
 msgid ""
 "[arro3-io](https://github.com/kylebarron/arro3/tree/main/arro3-io) _`arro3-"
 "io`_"
 msgstr ""
 
-#: src/index.md:206
+#: src/index.md:207
 msgid ""
 "[bed-reader](https://github.com/fastlmm/bed-reader) _Read and write the "
 "PLINK BED format, simply and efficiently._"
@@ -506,7 +513,7 @@ msgstr ""
 "[bed-reader](https://github.com/fastlmm/bed-reader) _簡潔且高效地讀寫 PLINK "
 "BED 格式_"
 
-#: src/index.md:207
+#: src/index.md:208
 msgid ""
 "Shows Rayon/ndarray::parallel (including capturing errors, controlling "
 "thread num), Python types to Rust generics, Github Actions"
@@ -514,7 +521,7 @@ msgstr ""
 "展示 Rayon/ndarray::parallel（包含錯誤擷取與控制執行緒數）、Python 型別到 "
 "Rust 泛型，以及 GitHub Actions"
 
-#: src/index.md:208
+#: src/index.md:209
 msgid ""
 "[blake3-py](https://github.com/oconnor663/blake3-py) _Python bindings for "
 "the [BLAKE3](https://github.com/BLAKE3-team/BLAKE3) cryptographic hash "
@@ -523,7 +530,7 @@ msgstr ""
 "[blake3-py](https://github.com/oconnor663/blake3-py) _[BLAKE3](https://"
 "github.com/BLAKE3-team/BLAKE3) 密碼雜湊函式的 Python 綁定_"
 
-#: src/index.md:209
+#: src/index.md:210
 msgid ""
 "Parallelized [builds](https://github.com/oconnor663/blake3-py/blob/master/."
 "github/workflows/dists.yml) on GitHub Actions for MacOS, Linux, Windows, "
@@ -533,7 +540,7 @@ msgstr ""
 "github.com/oconnor663/blake3-py/blob/master/.github/workflows/dists.yml)，包"
 "含 free-threaded 3.13t 的 wheel。"
 
-#: src/index.md:210
+#: src/index.md:211
 msgid ""
 "[cellular_raza](https://cellular-raza.com) _A cellular agent-based "
 "simulation framework for building complex models from a clean slate._"
@@ -541,7 +548,7 @@ msgstr ""
 "[cellular_raza](https://cellular-raza.com) _以細胞代理為基礎的模擬框架，用於"
 "從零構建複雜模型_"
 
-#: src/index.md:211
+#: src/index.md:212
 msgid ""
 "[connector-x](https://github.com/sfu-db/connector-x/tree/main/connectorx-"
 "python) _Fastest library to load data from DB to DataFrames in Rust and "
@@ -550,7 +557,7 @@ msgstr ""
 "[connector-x](https://github.com/sfu-db/connector-x/tree/main/connectorx-"
 "python) _在 Rust 與 Python 中將資料從資料庫載入到 DataFrame 的高速函式庫_"
 
-#: src/index.md:212
+#: src/index.md:213
 msgid ""
 "[cryptography](https://github.com/pyca/cryptography/tree/main/src/rust) "
 "_Python cryptography library with some functionality in Rust._"
@@ -558,7 +565,7 @@ msgstr ""
 "[cryptography](https://github.com/pyca/cryptography/tree/main/src/rust) _部分"
 "功能以 Rust 實作的 Python 密碼學函式庫_"
 
-#: src/index.md:213
+#: src/index.md:214
 msgid ""
 "[css-inline](https://github.com/Stranger6667/css-inline/tree/master/bindings/"
 "python) _CSS inlining for Python implemented in Rust._"
@@ -566,7 +573,7 @@ msgstr ""
 "[css-inline](https://github.com/Stranger6667/css-inline/tree/master/bindings/"
 "python) _以 Rust 實作的 Python CSS 內嵌工具_"
 
-#: src/index.md:214
+#: src/index.md:215
 msgid ""
 "[datafusion-python](https://github.com/apache/arrow-datafusion-python) _A "
 "Python library that binds to Apache Arrow in-memory query engine DataFusion._"
@@ -574,7 +581,7 @@ msgstr ""
 "[datafusion-python](https://github.com/apache/arrow-datafusion-python) _綁定 "
 "Apache Arrow 記憶體內查詢引擎 DataFusion 的 Python 函式庫_"
 
-#: src/index.md:215
+#: src/index.md:216
 msgid ""
 "[deltalake-python](https://github.com/delta-io/delta-rs/tree/main/python) "
 "_Native Delta Lake Python binding based on delta-rs with Pandas integration._"
@@ -582,7 +589,7 @@ msgstr ""
 "[deltalake-python](https://github.com/delta-io/delta-rs/tree/main/python) _基"
 "於 delta-rs 並整合 Pandas 的原生 Delta Lake Python 綁定_"
 
-#: src/index.md:216
+#: src/index.md:217
 msgid ""
 "[fastbloom](https://github.com/yankun1992/fastbloom) _A fast [bloom filter]"
 "(https://github.com/yankun1992/fastbloom#BloomFilter) | [counting bloom "
@@ -594,7 +601,7 @@ msgstr ""
 "[counting bloom filter](https://github.com/yankun1992/"
 "fastbloom#countingbloomfilter)，同時支援 Rust 與 Python_"
 
-#: src/index.md:217
+#: src/index.md:218
 msgid ""
 "[fastuuid](https://github.com/thedrow/fastuuid/) _Python bindings to Rust's "
 "UUID library._"
@@ -602,7 +609,7 @@ msgstr ""
 "[fastuuid](https://github.com/thedrow/fastuuid/) _Rust UUID 函式庫的 Python "
 "綁定_"
 
-#: src/index.md:218
+#: src/index.md:219
 msgid ""
 "[fast-paseto](https://github.com/CodingCogs-OSS/Fast-Paseto) _High-"
 "performance PASETO (Platform-Agnostic Security Tokens) implementation with "
@@ -611,7 +618,7 @@ msgstr ""
 "[fast-paseto](https://github.com/CodingCogs-OSS/Fast-Paseto) _高效能 PASETO"
 "（Platform-Agnostic Security Tokens）實作，提供 Python 綁定_"
 
-#: src/index.md:219
+#: src/index.md:220
 msgid ""
 "[feos](https://github.com/feos-org/feos) _Lightning fast thermodynamic "
 "modeling in Rust with fully developed Python interface._"
@@ -619,7 +626,7 @@ msgstr ""
 "[feos](https://github.com/feos-org/feos) _以 Rust 進行極速熱力學建模，並提供"
 "完善的 Python 介面_"
 
-#: src/index.md:220
+#: src/index.md:221
 msgid ""
 "[finalytics](https://github.com/Nnamdi-sys/finalytics) _Investment Analysis "
 "library in Rust | Python._"
@@ -627,7 +634,7 @@ msgstr ""
 "[finalytics](https://github.com/Nnamdi-sys/finalytics) _Rust | Python 投資分"
 "析函式庫_"
 
-#: src/index.md:221
+#: src/index.md:222
 msgid ""
 "[forust](https://github.com/jinlow/forust) _A lightweight gradient boosted "
 "decision tree library written in Rust._"
@@ -635,7 +642,7 @@ msgstr ""
 "[forust](https://github.com/jinlow/forust) _以 Rust 撰寫的輕量級梯度提升決策"
 "樹函式庫_"
 
-#: src/index.md:222
+#: src/index.md:223
 msgid ""
 "[geo-index](https://github.com/kylebarron/geo-index) _A Rust crate and "
 "[Python library](https://github.com/kylebarron/geo-index/tree/main/python) "
@@ -645,7 +652,7 @@ msgstr ""
 "貝空間索引的 Rust crate 與 [Python 函式庫](https://github.com/kylebarron/geo-"
 "index/tree/main/python)_"
 
-#: src/index.md:223
+#: src/index.md:224
 msgid ""
 "[granian](https://github.com/emmett-framework/granian) _A Rust HTTP server "
 "for Python applications._"
@@ -653,14 +660,21 @@ msgstr ""
 "[granian](https://github.com/emmett-framework/granian) _供 Python 應用使用的 "
 "Rust HTTP 伺服器_"
 
-#: src/index.md:224
+#: src/index.md:225
 msgid ""
 "[haem](https://github.com/BooleanCat/haem) _A Python library for working on "
 "Bioinformatics problems._"
 msgstr ""
 "[haem](https://github.com/BooleanCat/haem) _用於生物資訊問題的 Python 函式庫_"
 
-#: src/index.md:225
+#: src/index.md:226
+msgid ""
+"[hifitime](https://github.com/nyx-space/hifitime) _A high fidelity time "
+"management library for engineering and scientific applications where general "
+"relativity and time dilation matter._"
+msgstr ""
+
+#: src/index.md:227
 msgid ""
 "[html2text-rs](https://github.com/deedy5/html2text_rs) _Python library for "
 "converting HTML to markup or plain text._"
@@ -668,7 +682,7 @@ msgstr ""
 "[html2text-rs](https://github.com/deedy5/html2text_rs) _將 HTML 轉為標記或純"
 "文字的 Python 函式庫_"
 
-#: src/index.md:226
+#: src/index.md:228
 msgid ""
 "[html-py-ever](https://github.com/PyO3/setuptools-rust/tree/main/examples/"
 "html-py-ever) _Using [html5ever](https://github.com/servo/html5ever) through "
@@ -679,7 +693,7 @@ msgstr ""
 "html-py-ever) _透過 [kuchiki](https://github.com/kuchiki-rs/kuchiki) 使用 "
 "[html5ever](https://github.com/servo/html5ever) 加速 HTML 解析與 CSS 選取_"
 
-#: src/index.md:227
+#: src/index.md:229
 msgid ""
 "[hudi-rs](https://github.com/apache/hudi-rs) _The native Rust implementation "
 "for Apache Hudi, with C++ & Python API bindings._"
@@ -687,7 +701,7 @@ msgstr ""
 "[hudi-rs](https://github.com/apache/hudi-rs) _Apache Hudi 的原生 Rust 實作，"
 "並提供 C++ 與 Python API 綁定_"
 
-#: src/index.md:228
+#: src/index.md:230
 msgid ""
 "[inline-python](https://github.com/m-ou-se/inline-python) _Inline Python "
 "code directly in your Rust code._"
@@ -695,7 +709,7 @@ msgstr ""
 "[inline-python](https://github.com/m-ou-se/inline-python) _在 Rust 程式碼中直"
 "接內嵌 Python 程式碼_"
 
-#: src/index.md:229
+#: src/index.md:231
 msgid ""
 "[johnnycanencrypt](https://github.com/kushaldas/johnnycanencrypt) OpenPGP "
 "library with Yubikey support."
@@ -703,7 +717,7 @@ msgstr ""
 "[johnnycanencrypt](https://github.com/kushaldas/johnnycanencrypt) 支援 "
 "Yubikey 的 OpenPGP 函式庫。"
 
-#: src/index.md:230
+#: src/index.md:232
 msgid ""
 "[jsonschema](https://github.com/Stranger6667/jsonschema/tree/master/crates/"
 "jsonschema-py) _A high-performance JSON Schema validator for Python._"
@@ -711,7 +725,7 @@ msgstr ""
 "[jsonschema](https://github.com/Stranger6667/jsonschema/tree/master/crates/"
 "jsonschema-py) _高效能的 Python JSON Schema 驗證器_"
 
-#: src/index.md:231
+#: src/index.md:233
 msgid ""
 "[mocpy](https://github.com/cds-astro/mocpy) _Astronomical Python library "
 "offering data structures for describing any arbitrary coverage regions on "
@@ -720,7 +734,7 @@ msgstr ""
 "[mocpy](https://github.com/cds-astro/mocpy) _天文 Python 函式庫，提供用於描述"
 "單位球面上任意覆蓋區域的資料結構_"
 
-#: src/index.md:232
+#: src/index.md:234
 msgid ""
 "[obstore](https://github.com/developmentseed/obstore) _The simplest, highest-"
 "throughput Python interface to Amazon S3, Google Cloud Storage, Azure "
@@ -730,7 +744,7 @@ msgstr ""
 "高吞吐量的 Python 介面，可存取 Amazon S3、Google Cloud Storage、Azure "
 "Storage 與其他相容 S3 的 API_"
 
-#: src/index.md:233
+#: src/index.md:235
 msgid ""
 "[opendal](https://github.com/apache/opendal/tree/main/bindings/python) _A "
 "data access layer that allows users to easily and efficiently retrieve data "
@@ -739,11 +753,11 @@ msgstr ""
 "[opendal](https://github.com/apache/opendal/tree/main/bindings/python) _資料"
 "存取層，可讓使用者以統一方式輕鬆且高效地從各種儲存服務取回資料_"
 
-#: src/index.md:234
+#: src/index.md:236
 msgid "[orjson](https://github.com/ijl/orjson) _Fast Python JSON library._"
 msgstr "[orjson](https://github.com/ijl/orjson) _快速的 Python JSON 函式庫_"
 
-#: src/index.md:235
+#: src/index.md:237
 msgid ""
 "[ormsgpack](https://github.com/aviramha/ormsgpack) _Fast Python msgpack "
 "library._"
@@ -751,7 +765,7 @@ msgstr ""
 "[ormsgpack](https://github.com/aviramha/ormsgpack) _快速的 Python msgpack 函"
 "式庫_"
 
-#: src/index.md:236
+#: src/index.md:238
 msgid ""
 "[polars](https://github.com/pola-rs/polars) _Fast multi-threaded DataFrame "
 "library in Rust | Python | Node.js._"
@@ -759,7 +773,7 @@ msgstr ""
 "[polars](https://github.com/pola-rs/polars) _Rust | Python | Node.js 的高速多"
 "執行緒 DataFrame 函式庫_"
 
-#: src/index.md:237
+#: src/index.md:239
 msgid ""
 "[pycrdt](https://github.com/jupyter-server/pycrdt) _Python bindings for the "
 "Rust CRDT implementation [Yrs](https://github.com/y-crdt/y-crdt)._"
@@ -767,7 +781,7 @@ msgstr ""
 "[pycrdt](https://github.com/jupyter-server/pycrdt) _Rust CRDT 實作 [Yrs]"
 "(https://github.com/y-crdt/y-crdt) 的 Python 綁定_"
 
-#: src/index.md:238
+#: src/index.md:240
 msgid ""
 "[pydantic-core](https://github.com/pydantic/pydantic-core) _Core validation "
 "logic for pydantic written in Rust._"
@@ -775,7 +789,7 @@ msgstr ""
 "[pydantic-core](https://github.com/pydantic/pydantic-core) _以 Rust 撰寫的 "
 "pydantic 核心驗證邏輯_"
 
-#: src/index.md:239
+#: src/index.md:241
 msgid ""
 "[primp](https://github.com/deedy5/primp) _The fastest python HTTP client "
 "that can impersonate web browsers by mimicking their headers and TLS/JA3/JA4/"
@@ -784,7 +798,7 @@ msgstr ""
 "[primp](https://github.com/deedy5/primp) _可透過模擬標頭與 TLS/JA3/JA4/HTTP2 "
 "指紋來偽裝瀏覽器的最快 Python HTTP 用戶端_"
 
-#: src/index.md:240
+#: src/index.md:242
 msgid ""
 "[radiate](https://github.com/pkalivas/radiate): _A high-performance "
 "evolution engine for genetic programming and evolutionary algorithms._"
@@ -792,7 +806,7 @@ msgstr ""
 "[radiate](https://github.com/pkalivas/radiate)：_用於遺傳程式設計與演化演算法"
 "的高效能演化引擎_"
 
-#: src/index.md:241
+#: src/index.md:243
 msgid ""
 "[rateslib](https://github.com/attack68/rateslib) _A fixed income library for "
 "Python using Rust extensions._"
@@ -800,7 +814,7 @@ msgstr ""
 "[rateslib](https://github.com/attack68/rateslib) _使用 Rust 擴充的 Python 固"
 "定收益函式庫_"
 
-#: src/index.md:242
+#: src/index.md:244
 msgid ""
 "[river](https://github.com/online-ml/river) _Online machine learning in "
 "python, the computationally heavy statistics algorithms are implemented in "
@@ -809,7 +823,7 @@ msgstr ""
 "[river](https://github.com/online-ml/river) _Python 的線上機器學習，計算量大"
 "的統計演算法以 Rust 實作_"
 
-#: src/index.md:243
+#: src/index.md:245
 msgid ""
 "[robyn](https://github.com/sparckles/Robyn) A Super Fast Async Python Web "
 "Framework with a Rust runtime."
@@ -817,7 +831,7 @@ msgstr ""
 "[robyn](https://github.com/sparckles/Robyn) 具備 Rust runtime 的超高速非同步 "
 "Python Web 框架。"
 
-#: src/index.md:244
+#: src/index.md:246
 msgid ""
 "[rust-python-coverage](https://github.com/cjermain/rust-python-coverage) "
 "_Example PyO3 project with automated test coverage for Rust and Python._"
@@ -825,7 +839,7 @@ msgstr ""
 "[rust-python-coverage](https://github.com/cjermain/rust-python-coverage) _含 "
 "Rust 與 Python 自動化測試覆蓋的 PyO3 專案範例_"
 
-#: src/index.md:245
+#: src/index.md:247
 msgid ""
 "[rnet](https://github.com/0x676e67/rnet) Asynchronous Python HTTP Client "
 "with Black Magic"
@@ -833,7 +847,7 @@ msgstr ""
 "[rnet](https://github.com/0x676e67/rnet) 帶有黑魔法的非同步 Python HTTP 用戶"
 "端"
 
-#: src/index.md:246
+#: src/index.md:248
 msgid ""
 "[sail](https://github.com/lakehq/sail) _Unifying stream, batch, and AI "
 "workloads with Apache Spark compatibility._"
@@ -841,7 +855,7 @@ msgstr ""
 "[sail](https://github.com/lakehq/sail) _在相容 Apache Spark 的前提下統一串"
 "流、批次與 AI 工作負載_"
 
-#: src/index.md:247
+#: src/index.md:249
 msgid ""
 "[tiktoken](https://github.com/openai/tiktoken) _A fast BPE tokeniser for use "
 "with OpenAI's models._"
@@ -849,7 +863,7 @@ msgstr ""
 "[tiktoken](https://github.com/openai/tiktoken) _可搭配 OpenAI 模型使用的快速 "
 "BPE 分詞器_"
 
-#: src/index.md:248
+#: src/index.md:250
 msgid ""
 "[tokenizers](https://github.com/huggingface/tokenizers/tree/main/bindings/"
 "python) _Python bindings to the Hugging Face tokenizers (NLP) written in "
@@ -858,7 +872,7 @@ msgstr ""
 "[tokenizers](https://github.com/huggingface/tokenizers/tree/main/bindings/"
 "python) _Rust 撰寫的 Hugging Face tokenizers（NLP）的 Python 綁定_"
 
-#: src/index.md:249
+#: src/index.md:251
 msgid ""
 "[tzfpy](http://github.com/ringsaturn/tzfpy) _A fast package to convert "
 "longitude/latitude to timezone name._"
@@ -866,7 +880,7 @@ msgstr ""
 "[tzfpy](http://github.com/ringsaturn/tzfpy) _快速將經緯度轉為時區名稱的軟體包"
 "_"
 
-#: src/index.md:250
+#: src/index.md:252
 msgid ""
 "[toml-rs](https://github.com/lava-sh/toml-rs) _A High-Performance TOML "
 "v1.0.0 and v1.1.0 parser for Python written in Rust._"
@@ -874,7 +888,7 @@ msgstr ""
 "[toml-rs](https://github.com/lava-sh/toml-rs) _以 Rust 撰寫的 Python 高效能 "
 "TOML v1.0.0 與 v1.1.0 解析器_"
 
-#: src/index.md:251
+#: src/index.md:253
 msgid ""
 "[utiles](https://github.com/jessekrubin/utiles) _Fast Python web-map tile "
 "utilities_"
@@ -882,11 +896,11 @@ msgstr ""
 "[utiles](https://github.com/jessekrubin/utiles) _快速的 Python 網路地圖磚工具"
 "_"
 
-#: src/index.md:253
+#: src/index.md:255
 msgid "Articles and other media"
 msgstr "文章及其他媒體"
 
-#: src/index.md:255
+#: src/index.md:257
 msgid ""
 "[(Video) Using Rust in Free-Threaded vs Regular Python 3.13](https://www."
 "youtube.com/watch?v=J7phN_M4GLM) - Jun 4, 2025"
@@ -894,7 +908,7 @@ msgstr ""
 "[(影片) 在 Free-Threaded 與一般 Python 3.13 中使用 Rust](https://www.youtube."
 "com/watch?v=J7phN_M4GLM) - 2025/06/04"
 
-#: src/index.md:256
+#: src/index.md:258
 msgid ""
 "[(Video) Techniques learned from five years finding the way for Rust in "
 "Python](https://www.youtube.com/watch?v=KTQn_PTHNCw) - Feb 26, 2025"
@@ -902,7 +916,7 @@ msgstr ""
 "[(影片) 五年探索 Rust 在 Python 中的技巧與心得](https://www.youtube.com/"
 "watch?v=KTQn_PTHNCw) - 2025/02/26"
 
-#: src/index.md:257
+#: src/index.md:259
 msgid ""
 "[(Podcast) Bridging Python and Rust: An Interview with PyO3 Maintainer David "
 "Hewitt](https://www.youtube.com/watch?v=P47JUMSQagU) - Aug 30, 2024"
@@ -910,7 +924,7 @@ msgstr ""
 "[(Podcast) Bridging Python and Rust：訪談 PyO3 維護者 David Hewitt](https://"
 "www.youtube.com/watch?v=P47JUMSQagU) - 2024/08/30"
 
-#: src/index.md:258
+#: src/index.md:260
 msgid ""
 "[(Video) PyO3: From Python to Rust and Back Again](https://www.youtube.com/"
 "watch?v=UmL_CA-v3O8) - Jul 3, 2024"
@@ -918,7 +932,7 @@ msgstr ""
 "[(影片) PyO3：從 Python 到 Rust 再回來](https://www.youtube.com/watch?"
 "v=UmL_CA-v3O8) - 2024/07/03"
 
-#: src/index.md:259
+#: src/index.md:261
 msgid ""
 "[Parsing Python ASTs 20x Faster with Rust](https://www.gauge.sh/blog/parsing-"
 "python-asts-20x-faster-with-rust) - Jun 17, 2024"
@@ -926,7 +940,7 @@ msgstr ""
 "[用 Rust 解析 Python AST 快 20 倍](https://www.gauge.sh/blog/parsing-python-"
 "asts-20x-faster-with-rust) - 2024/06/17"
 
-#: src/index.md:260
+#: src/index.md:262
 msgid ""
 "[(Video) How Python Harnesses Rust through PyO3](https://www.youtube.com/"
 "watch?v=UilujdubqVU) - May 18, 2024"
@@ -934,7 +948,7 @@ msgstr ""
 "[(影片) Python 如何透過 PyO3 結合 Rust](https://www.youtube.com/watch?"
 "v=UilujdubqVU) - 2024/05/18"
 
-#: src/index.md:261
+#: src/index.md:263
 msgid ""
 "[(Video) Combining Rust and Python: The Best of Both Worlds?](https://www."
 "youtube.com/watch?v=lyG6AKzu4ew) - Mar 1, 2024"
@@ -942,7 +956,7 @@ msgstr ""
 "[(影片) 結合 Rust 與 Python：兩全其美？](https://www.youtube.com/watch?"
 "v=lyG6AKzu4ew) - 2024/03/01"
 
-#: src/index.md:262
+#: src/index.md:264
 msgid ""
 "[(Video) Extending Python with Rust using PyO3](https://www.youtube.com/"
 "watch?v=T45ZEmSR1-s) - Dec 16, 2023"
@@ -950,7 +964,7 @@ msgstr ""
 "[(影片) 使用 PyO3 以 Rust 擴充 Python](https://www.youtube.com/watch?"
 "v=T45ZEmSR1-s) - 2023/12/16"
 
-#: src/index.md:263
+#: src/index.md:265
 msgid ""
 "[A Week of PyO3 + rust-numpy (How to Speed Up Your Data Pipeline X Times)]"
 "(https://terencezl.github.io/blog/2023/06/06/a-week-of-pyo3-rust-numpy/) - "
@@ -959,7 +973,7 @@ msgstr ""
 "[一週 PyO3 + rust-numpy（如何讓資料管線加速 X 倍）](https://terencezl.github."
 "io/blog/2023/06/06/a-week-of-pyo3-rust-numpy/) - 2023/06/06"
 
-#: src/index.md:264
+#: src/index.md:266
 msgid ""
 "[(Podcast) PyO3 with David Hewitt](https://rustacean-station.org/episode/"
 "david-hewitt/) - May 19, 2023"
@@ -967,7 +981,7 @@ msgstr ""
 "[(Podcast) PyO3 與 David Hewitt](https://rustacean-station.org/episode/david-"
 "hewitt/) - 2023/05/19"
 
-#: src/index.md:265
+#: src/index.md:267
 msgid ""
 "[Making Python 100x faster with less than 100 lines of Rust](https://"
 "ohadravid.github.io/posts/2023-03-rusty-python/) - Mar 28, 2023"
@@ -975,7 +989,7 @@ msgstr ""
 "[不到 100 行 Rust 讓 Python 快 100 倍](https://ohadravid.github.io/"
 "posts/2023-03-rusty-python/) - 2023/03/28"
 
-#: src/index.md:266
+#: src/index.md:268
 msgid ""
 "[How Pydantic V2 leverages Rust's Superpowers](https://fosdem.org/2023/"
 "schedule/event/rust_how_pydantic_v2_leverages_rusts_superpowers/) - Feb 4, "
@@ -984,7 +998,7 @@ msgstr ""
 "[Pydantic V2 如何運用 Rust 的超能力](https://fosdem.org/2023/schedule/event/"
 "rust_how_pydantic_v2_leverages_rusts_superpowers/) - 2023/02/04"
 
-#: src/index.md:267
+#: src/index.md:269
 msgid ""
 "[How we extended the River stats module with Rust using PyO3](https://boring-"
 "guy.sh/posts/river-rust/) - Dec 23, 2022"
@@ -992,7 +1006,7 @@ msgstr ""
 "[我們如何使用 PyO3 以 Rust 擴充 River 統計模組](https://boring-guy.sh/posts/"
 "river-rust/) - 2022/12/23"
 
-#: src/index.md:268
+#: src/index.md:270
 msgid ""
 "[Nine Rules for Writing Python Extensions in Rust](https://"
 "towardsdatascience.com/nine-rules-for-writing-python-extensions-in-rust-"
@@ -1002,7 +1016,7 @@ msgstr ""
 "rules-for-writing-python-extensions-in-rust-d35ea3a4ec29?"
 "sk=f8d808d5f414154fdb811e4137011437) - 2021/12/31"
 
-#: src/index.md:269
+#: src/index.md:271
 msgid ""
 "[Calling Rust from Python using PyO3](https://saidvandeklundert.net/"
 "learn/2021-11-18-calling-rust-from-python-using-pyo3/) - Nov 18, 2021"
@@ -1010,7 +1024,7 @@ msgstr ""
 "[使用 PyO3 從 Python 呼叫 Rust](https://saidvandeklundert.net/"
 "learn/2021-11-18-calling-rust-from-python-using-pyo3/) - 2021/11/18"
 
-#: src/index.md:270
+#: src/index.md:272
 msgid ""
 "[davidhewitt's 2021 talk at Rust Manchester meetup](https://www.youtube.com/"
 "watch?v=-XyWG_klSAw&t=320s) - Aug 19, 2021"
@@ -1018,7 +1032,7 @@ msgstr ""
 "[davidhewitt 在 Rust Manchester meetup 的 2021 演講](https://www.youtube.com/"
 "watch?v=-XyWG_klSAw&t=320s) - 2021/08/19"
 
-#: src/index.md:271
+#: src/index.md:273
 msgid ""
 "[Incrementally porting a small Python project to Rust](https://blog."
 "waleedkhan.name/port-python-to-rust/) - Apr 29, 2021"
@@ -1026,7 +1040,7 @@ msgstr ""
 "[逐步將小型 Python 專案移植到 Rust](https://blog.waleedkhan.name/port-python-"
 "to-rust/) - 2021/04/29"
 
-#: src/index.md:272
+#: src/index.md:274
 msgid ""
 "[Vortexa - Integrating Rust into Python](https://www.vortexa.com/blog/"
 "integrating-rust-into-python) - Apr 12, 2021"
@@ -1034,7 +1048,7 @@ msgstr ""
 "[Vortexa - 將 Rust 整合進 Python](https://www.vortexa.com/blog/integrating-"
 "rust-into-python) - 2021/04/12"
 
-#: src/index.md:273
+#: src/index.md:275
 msgid ""
 "[Writing and publishing a Python module in Rust](https://blog.yossarian."
 "net/2020/08/02/Writing-and-publishing-a-python-module-in-rust) - Aug 2, 2020"
@@ -1042,17 +1056,17 @@ msgstr ""
 "[以 Rust 撰寫並發布 Python 模組](https://blog.yossarian.net/2020/08/02/"
 "Writing-and-publishing-a-python-module-in-rust) - 2020/08/02"
 
-#: src/index.md:275
+#: src/index.md:277
 msgid "Contributing"
 msgstr "參與貢獻"
 
-#: src/index.md:277
+#: src/index.md:279
 msgid ""
 "Everyone is welcomed to contribute to PyO3! There are many ways to support "
 "the project, such as:"
 msgstr "歡迎大家參與 PyO3！你可以用許多方式支持專案，例如："
 
-#: src/index.md:279
+#: src/index.md:281
 msgid ""
 "help PyO3 users with issues on GitHub and [Discord](https://discord."
 "gg/33kcChzH7f)"
@@ -1060,19 +1074,19 @@ msgstr ""
 "在 GitHub 與 [Discord](https://discord.gg/33kcChzH7f) 協助 PyO3 使用者解決問"
 "題"
 
-#: src/index.md:280
+#: src/index.md:282
 msgid "improve documentation"
 msgstr "改善文件"
 
-#: src/index.md:281
+#: src/index.md:283
 msgid "write features and bugfixes"
 msgstr "撰寫功能與修復錯誤"
 
-#: src/index.md:282
+#: src/index.md:284
 msgid "publish blogs and examples of how to use PyO3"
 msgstr "發表如何使用 PyO3 的部落格與範例"
 
-#: src/index.md:284
+#: src/index.md:286
 msgid ""
 "Our [contributing notes](https://github.com/PyO3/pyo3/blob/main/Contributing."
 "md) and [architecture guide](https://github.com/PyO3/pyo3/blob/main/"
@@ -1083,7 +1097,7 @@ msgstr ""
 "(https://github.com/PyO3/pyo3/blob/main/Contributing.md)與[架構指南](https://"
 "github.com/PyO3/pyo3/blob/main/Architecture.md)取得更多資源。"
 
-#: src/index.md:286
+#: src/index.md:288
 msgid ""
 "If you don't have time to contribute yourself but still wish to support the "
 "project's future success, some of our maintainers have GitHub sponsorship "
@@ -1092,19 +1106,19 @@ msgstr ""
 "如果你沒有時間親自貢獻，但仍想支持專案的長期發展，部分維護者有 GitHub 贊助頁"
 "面："
 
-#: src/index.md:288
+#: src/index.md:290
 msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 msgstr ""
 
-#: src/index.md:289
+#: src/index.md:291
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr ""
 
-#: src/index.md:291
+#: src/index.md:293
 msgid "License"
 msgstr "授權條款"
 
-#: src/index.md:293
+#: src/index.md:295
 msgid ""
 "PyO3 is licensed under the [Apache-2.0 license](LICENSE-APACHE) or the [MIT "
 "license](LICENSE-MIT), at your option."
@@ -1112,14 +1126,14 @@ msgstr ""
 "PyO3 採用 [Apache-2.0 授權](LICENSE-APACHE) 或 [MIT 授權](LICENSE-MIT)，可自"
 "行選擇。"
 
-#: src/index.md:295
+#: src/index.md:297
 msgid ""
 "Python is licensed under the [Python License](https://docs.python.org/3/"
 "license.html)."
 msgstr ""
 "Python 採用 [Python License](https://docs.python.org/3/license.html) 授權。"
 
-#: src/index.md:297
+#: src/index.md:299
 msgid ""
 "Unless you explicitly state otherwise, any contribution intentionally "
 "submitted for inclusion in PyO3 by you, as defined in the Apache License, "
@@ -1128,7 +1142,7 @@ msgstr ""
 "除非你明確另行說明，否則你提交且意圖納入 PyO3 的任何貢獻（依 Apache License "
 "定義）將採用上述雙重授權，不附加任何額外條款或條件。"
 
-#: src/index.md:299
+#: src/index.md:301
 msgid ""
 "<a href=\"https://www.netlify.com\"> <img src=\"https://www.netlify.com/v3/"
 "img/components/netlify-color-accent.svg\" alt=\"Deploys by Netlify\" /> </a>"
