@@ -5,15 +5,15 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/class.md:1
 msgid "Python classes"
-msgstr ""
+msgstr "Python 類別"
 
 #: src/class.md:3
 msgid ""
@@ -42,47 +42,47 @@ msgstr ""
 
 #: src/class.md:11
 msgid "[`#[pyclass]`](#defining-a-new-class)"
-msgstr ""
+msgstr "[`#[pyclass]`](#defining-a-new-class)"
 
 #: src/class.md:12
 msgid "[`#[pyo3(get, set)]`](#object-properties-using-pyo3get-set)"
-msgstr ""
+msgstr "[`#[pyo3(get, set)]`](#object-properties-using-pyo3get-set)"
 
 #: src/class.md:13
 msgid "[`#[pymethods]`](#instance-methods)"
-msgstr ""
+msgstr "[`#[pymethods]`](#instance-methods)"
 
 #: src/class.md:14
 msgid "[`#[new]`](#constructor)"
-msgstr ""
+msgstr "[`#[new]`](#constructor)"
 
 #: src/class.md:15
 msgid "[`#[getter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[getter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:16
 msgid "[`#[setter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[setter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:17
 msgid "[`#[deleter]`](#object-properties-using-getter-and-setter)"
-msgstr ""
+msgstr "[`#[deleter]`](#object-properties-using-getter-and-setter)"
 
 #: src/class.md:18
 msgid "[`#[staticmethod]`](#static-methods)"
-msgstr ""
+msgstr "[`#[staticmethod]`](#static-methods)"
 
 #: src/class.md:19
 msgid "[`#[classmethod]`](#class-methods)"
-msgstr ""
+msgstr "[`#[classmethod]`](#class-methods)"
 
 #: src/class.md:20
 msgid "[`#[classattr]`](#class-attributes)"
-msgstr ""
+msgstr "[`#[classattr]`](#class-attributes)"
 
 #: src/class.md:21
 msgid "[`#[args]`](#method-arguments)"
-msgstr ""
+msgstr "[`#[args]`](#method-arguments)"
 
 #: src/class.md:22
 msgid "[Magic methods and slots](class/protocols.md)"
@@ -94,7 +94,7 @@ msgstr ""
 
 #: src/class.md:25
 msgid "Defining a new class"
-msgstr ""
+msgstr "定義新類別"
 
 #: src/class.md:27
 msgid ""
@@ -489,11 +489,11 @@ msgstr ""
 
 #: src/class.md:394
 msgid "Parameter"
-msgstr ""
+msgstr "參數"
 
 #: src/class.md:394
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: src/class.md:396
 msgid "`constructor`"
