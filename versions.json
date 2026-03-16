@@ -1,18 +1,18 @@
 {
   "dev" : [
     {
-      "VERSION" : "latest",
+      "VERSION" : "main",
       "VERSION_COMPENDIUM" : ""
     },
     {
       "VERSION" : "stable",
-      "VERSION_COMPENDIUM" : "latest"
+      "VERSION_COMPENDIUM" : "main"
     }
   ],
   "rel" : [
     {
       "VERSION" : "0",
-      "VERSION_COMPENDIUM" : "latest"
+      "VERSION_COMPENDIUM" : "main"
     }
   ]
 }

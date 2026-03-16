@@ -32,11 +32,11 @@ set(LANGUAGE_SOURCE "en_US"
     CACHE STRING "The source language of the documentation")
     # Possible values are "en_US".
 
-set(VERSION "latest"
+set(VERSION "main"
     CACHE STRING "The current version of the documentation.")
     # Possible values are versions listed in versions.json.
 
-set(VERSION_COMPENDIUM "latest"
+set(VERSION_COMPENDIUM "main"
     CACHE STRING "The version of compendium from which the current version will merge translations.")
     # Possible values are NULL and versions listed in versions.json.
 
@@ -166,7 +166,7 @@ get_members_of_json_object(
 
 #[============================================================[
 # Validate the VERSION cache variable.
-# - For "latest":
+# - For "main":
 #   - Set VERSION_TYPE    to "branch"
 #   - Set BRANCH_NAME     to "main"
 # - For "stable":
@@ -179,7 +179,7 @@ get_members_of_json_object(
 #   - Set TAG_SUFFIX      to ""
 #]============================================================]
 
-if     (VERSION MATCHES "^(latest)$")
+if     (VERSION MATCHES "^(main)$")
     set(VERSION_TYPE    "branch")
     set(BRANCH_NAME     "main")
 elseif (VERSION MATCHES "^(stable)$")
@@ -246,7 +246,7 @@ endif()
 # Set VERSION_OF_XXX to $CACHE{VERSION_OF_XXX} if it's not "[default]".
 #]============================================================]
 
-if     (VERSION MATCHES "^(latest)$")
+if     (VERSION MATCHES "^(main)$")
     set(VERSION_OF_RUST                 "1.90")
     set(VERSION_OF_DASEL                "2")
     set(VERSION_OF_MDBOOK               "^0.5")
