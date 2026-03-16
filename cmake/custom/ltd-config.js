@@ -7,7 +7,7 @@ var CONFIG_OPTIONS = {
     ["zh-tw",     "繁體中文"],
   ],
   CONFIG_VERSIONS: [
-    ["latest",    "Development"],
+    ["main",      "Development"],
     ["stable",    "Stable Release"],
     ["0",         "Release 0.x"],
   ],
