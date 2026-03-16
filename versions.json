@@ -3,10 +3,6 @@
     {
       "VERSION" : "main",
       "VERSION_COMPENDIUM" : ""
-    },
-    {
-      "VERSION" : "stable",
-      "VERSION_COMPENDIUM" : "main"
     }
   ],
   "rel" : [

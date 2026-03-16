@@ -169,10 +169,6 @@ get_members_of_json_object(
 # - For "main":
 #   - Set VERSION_TYPE    to "branch"
 #   - Set BRANCH_NAME     to "main"
-# - For "stable":
-#   - Set VERSION_TYPE    to "tag"
-#   - Set TAG_PATTERN     to "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)$"
-#   - Set TAG_SUFFIX      to ""
 # - For "[MAJOR]":
 #   - Set VERSION_TYPE    to "tag"
 #   - Set TAG_PATTERN     to "^v([MAJOR])\\.([0-9]+)\\.([0-9]+)$"
@@ -182,14 +178,11 @@ get_members_of_json_object(
 if     (VERSION MATCHES "^(main)$")
     set(VERSION_TYPE    "branch")
     set(BRANCH_NAME     "main")
-elseif (VERSION MATCHES "^(stable)$")
-    set(VERSION_TYPE    "tag")
-    set(TAG_PATTERN     "^v([0-9]+)\\.([0-9]+)\\.([0-9]+)$")
-    set(TAG_SUFFIX      "")
 elseif (VERSION MATCHES "^([0-9]+)$")
     set(MAJOR           "${CMAKE_MATCH_1}")
     set(VERSION_TYPE    "tag")
     set(TAG_PATTERN     "^v(${MAJOR})\\.([0-9]+)\\.([0-9]+)$")
+    set(TAG_SUFFIX      "")
 else()
     message(FATAL_ERROR "Invalid VERSION value. (${VERSION})")
 endif()
@@ -247,13 +240,6 @@ endif()
 #]============================================================]
 
 if     (VERSION MATCHES "^(main)$")
-    set(VERSION_OF_RUST                 "1.90")
-    set(VERSION_OF_DASEL                "2")
-    set(VERSION_OF_MDBOOK               "^0.5")
-    set(VERSION_OF_MDBOOK_I18N_HELPERS  "^0.4")
-    set(VERSION_OF_MDBOOK_TABS          "^0.3")
-    set(VERSION_OF_PYTHON               "3.12")
-elseif (VERSION MATCHES "^(stable)$")
     set(VERSION_OF_RUST                 "1.90")
     set(VERSION_OF_DASEL                "2")
     set(VERSION_OF_MDBOOK               "^0.5")
