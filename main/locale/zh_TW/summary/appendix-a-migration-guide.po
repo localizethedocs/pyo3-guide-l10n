@@ -2758,18 +2758,3 @@ msgid ""
 "pycell/struct.PyRef.html) or [`PyRefMut`](https://pyo3.rs/main/doc/pyo3/"
 "pycell/struct.PyRef.html) instead."
 msgstr ""
-
-#~ msgid ""
-#~ "`#[pyclass]` types which implement `Clone` used to also implement "
-#~ "`FromPyObject` automatically. This behaviour is phased out and replaced "
-#~ "by an explicit opt-in. Affected types will by marked by a deprecation "
-#~ "message. To migrate use either"
-#~ msgstr ""
-#~ "過去實作 `Clone` 的 `#[pyclass]` 型別也會自動實作 `FromPyObject`。此行為正"
-#~ "在逐步淘汰並改為顯式選擇加入。受影響的型別會以棄用訊息標示。遷移時可使用："
-
-#~ msgid "`from_py_object` to keep the automatic derive, or"
-#~ msgstr "使用 `from_py_object` 以保留自動衍生，或"
-
-#~ msgid "`skip_from_py_object` to accept the new behaviour"
-#~ msgstr "使用 `skip_from_py_object` 以採用新行為"
