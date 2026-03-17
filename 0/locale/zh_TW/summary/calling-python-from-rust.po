@@ -134,11 +134,6 @@ msgid ""
 "guarantee, but the introduction of free-threaded Python removed this "
 "possibility."
 msgstr ""
-"在自由執行緒 Python（於 3.13 首次提供、3.14 完整支援）推出之前，Python 直譯器"
-"藉由[全域直譯器鎖](https://docs.python.org/3/c-api/init.html#thread-state-"
-"and-the-global-interpreter-lock)來確保執行緒安全。這確保同一時間只有一個 "
-"Python 執行緒能使用直譯器及其 API。過去 Rust 程式碼可把 GIL 視為同步保證，但"
-"自由執行緒 Python 的推出使此做法不再成立。"
 
 #: src/python-from-rust.md:37
 msgid ""

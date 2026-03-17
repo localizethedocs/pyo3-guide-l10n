@@ -104,8 +104,6 @@ msgid ""
 "`my_string` on the Python object, i.e. `obj.getattr(\"my_string\")`, and "
 "call `extract()` on the attribute."
 msgstr ""
-"衍生會產生程式碼，嘗試存取 Python 物件上的 `my_string` 屬性，也就是 `obj."
-"getattr(\"my_string\")`，並對該屬性呼叫 `extract()`。"
 
 #: src/conversions/traits.md:51
 msgid ""
