@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:22Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -256,8 +256,8 @@ msgstr ""
 
 #: src/python-typing-hints.md:139
 msgid ""
-"That way everything that is exposed by our native module can be imported "
-"directly from the package."
+"That way everything that is exposed by our [extension module](glossary."
+"md#extension-module) can be imported directly from the package."
 msgstr ""
 
 #: src/python-typing-hints.md:141
@@ -356,56 +356,56 @@ msgid ""
 "classes inherit from the `typing.Generic` metaclass."
 msgstr ""
 
-#: src/python-typing-hints.md:195
+#: src/python-typing-hints.md:196
 msgid ""
 "Take for example the following `.pyi` file that specifies a `Car` that can "
 "accept multiple types of wheels:"
 msgstr ""
 
-#: src/python-typing-hints.md:200
+#: src/python-typing-hints.md:201
 msgid "'W'"
 msgstr ""
 
-#: src/python-typing-hints.md:210
+#: src/python-typing-hints.md:211
 msgid ""
 "This way, the end-user can specify the type with variables such as `truck: "
 "Car[SteelWheel] = ...` and `f1_car: Car[AlloyWheel] = ...`."
 msgstr ""
 
-#: src/python-typing-hints.md:212
+#: src/python-typing-hints.md:213
 msgid ""
 "There is also a special syntax for specifying generic types in Python 3.12+:"
 msgstr ""
 
-#: src/python-typing-hints.md:221
+#: src/python-typing-hints.md:222
 msgid "Runtime Behaviour"
 msgstr ""
 
-#: src/python-typing-hints.md:223
+#: src/python-typing-hints.md:224
 msgid ""
 "Stub files (`pyi`) are only useful for static type checkers and ignored at "
 "runtime. Therefore, PyO3 classes do not inherit from `typing.Generic` even "
 "if specified in the stub files."
 msgstr ""
 
-#: src/python-typing-hints.md:226
+#: src/python-typing-hints.md:227
 msgid ""
 "This can cause some runtime issues, as annotating a variable like `f1_car: "
 "Car[AlloyWheel] = ...` can make Python call magic methods that are not "
 "defined."
 msgstr ""
 
-#: src/python-typing-hints.md:228
+#: src/python-typing-hints.md:229
 msgid ""
 "To overcome this limitation, implementers can pass the `generic` parameter "
 "to `pyclass` in Rust:"
 msgstr ""
 
-#: src/python-typing-hints.md:234
+#: src/python-typing-hints.md:235
 msgid "Advanced Users"
 msgstr ""
 
-#: src/python-typing-hints.md:236
+#: src/python-typing-hints.md:237
 msgid ""
 "`#[pyclass(generic)]` implements a very simple runtime behavior that accepts "
 "any generic argument. Advanced users can opt to manually implement "
@@ -413,7 +413,7 @@ msgid ""
 "html#emulating-generic-types) for the generic class to have more control."
 msgstr ""
 
-#: src/python-typing-hints.md:252
+#: src/python-typing-hints.md:253
 msgid ""
 "Note that [`pyo3::types::PyGenericAlias`](https://pyo3.rs/main/doc/pyo3/"
 "types/struct.PyGenericAlias.html) can be helpful when implementing "

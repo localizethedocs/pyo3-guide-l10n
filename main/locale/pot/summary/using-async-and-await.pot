@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -74,9 +74,9 @@ msgstr ""
 #: src/async-await.md:46
 msgid ""
 "Even if it is not possible to pass a `py: Python<'py>` token to an `async "
-"fn`, we're still attached to the interpreter during the execution of the "
-"future – the same as for a regular `fn` without `Python<'py>`/`Bound<'py, "
-"PyAny>` parameter"
+"fn`, we're still [attached](glossary.md#attached) to the interpreter during "
+"the execution of the future – the same as for a regular `fn` without "
+"`Python<'py>`/`Bound<'py, PyAny>` parameter"
 msgstr ""
 
 #: src/async-await.md:48

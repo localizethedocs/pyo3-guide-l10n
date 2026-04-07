@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-03-14 15:06:53 +0000",
-      "hash" : "d07a1abf347d84b1b266640622cd8b6272abeec1",
-      "title" : "use raw references instead of `addr_of!` / `addr_of_mut!` (#5879)"
+      "date" : "2026-04-07 07:44:26 +0000",
+      "hash" : "cd87dcf519b52d7aada2e7d768707eca42d20c78",
+      "title" : "ffi-check: ignore mingw types (#5954)"
     }
   },
   "type" : "branch",

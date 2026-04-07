@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -33,14 +33,15 @@ msgstr ""
 msgid ""
 "`OnceLock`, `LazyLock`, and their thirdparty predecessors use blocking to "
 "ensure only one thread ever initializes them. Because the Python interpreter "
-"can introduce additional locks (the Python GIL and GC can both require all "
-"other threads to pause) this can lead to deadlocks in the following way:"
+"can introduce additional locks (the Python [GIL](https://docs.python.org/3/"
+"glossary.html#term-GIL) and GC can both require all other threads to pause) "
+"this can lead to deadlocks in the following way:"
 msgstr ""
 
 #: src/faq.md:11
 msgid ""
-"A thread (thread A) which is attached to the Python interpreter starts "
-"initialization of a `OnceLock` value."
+"A thread (thread A) which is [attached](glossary.md#attached) to the Python "
+"interpreter starts initialization of a `OnceLock` value."
 msgstr ""
 
 #: src/faq.md:12
@@ -63,9 +64,9 @@ msgstr ""
 
 #: src/faq.md:15
 msgid ""
-"On non-free-threaded Python, thread A is now also blocked, because it waits "
-"to re-attach to the interpreter (by taking the GIL which thread B still "
-"holds)."
+"On [GIL-enabled Python](glossary.md#gil-enabled-python), thread A is now "
+"also blocked, because it waits to re-attach to the interpreter (by taking "
+"the GIL which thread B still holds)."
 msgstr ""
 
 #: src/faq.md:16

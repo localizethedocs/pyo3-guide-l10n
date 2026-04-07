@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:31Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -121,23 +121,24 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:66
 msgid ""
-"This `#[cfg]` marks code that will only be present on Python 3.7 and "
-"upwards. There are similar options `Py_3_8`, `Py_3_9`, `Py_3_10` and so on "
+"This `#[cfg]` marks code that will only be present on Python 3.8 and "
+"upwards. There are similar options `Py_3_9`, `Py_3_10`, `Py_3_11` and so on "
 "for each minor version."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:73
 msgid ""
 "This `#[cfg]` marks code that will only be present on Python versions before "
-"(but not including) Python 3.7."
+"(but not including) Python 3.8."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:79
 msgid ""
 "This `#[cfg]` marks code that is only available when building for the "
 "unlimited Python API (i.e. PyO3's `abi3` feature is not enabled). This might "
-"be useful if you want to ship your extension module as an `abi3` wheel and "
-"also allow users to compile it from source to make use of optimizations only "
+"be useful if you want to ship your [extension module](../glossary."
+"md#extension-module) as an `abi3` [wheel](../glossary.md#wheel) and also "
+"allow users to compile it from source to make use of optimizations only "
 "possible with the unlimited API."
 msgstr ""
 
@@ -167,10 +168,10 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:99
 msgid ""
-"For example with PyO3's `abi3-py38` feature, your extension will be compiled "
-"as if it were for Python 3.8. If you were using `pyo3-build-config`, "
-"`#[cfg(Py_3_8)]` would be present. Your user could freely install and run "
-"your abi3 extension on Python 3.9."
+"For example with PyO3's `abi3-py38` feature, your extension module will be "
+"compiled as if it were for Python 3.8. If you were using `pyo3-build-"
+"config`, `#[cfg(Py_3_8)]` would be present. Your user could freely install "
+"and run your abi3 extension module on Python 3.9."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:103
@@ -189,5 +190,5 @@ msgid ""
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:112
-msgid "// PyO3 supports Python 3.7 and up.\n"
+msgid "// PyO3 supports Python 3.8 and up.\n"
 msgstr ""
