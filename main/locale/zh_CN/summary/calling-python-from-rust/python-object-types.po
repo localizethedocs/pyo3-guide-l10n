@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,11 +24,10 @@ msgstr ""
 
 #: src/types.md:6
 msgid ""
-"The first set of types are the [smart pointers](https://doc.rust-lang.org/"
-"book/ch15-00-smart-pointers.html) which all Python objects are wrapped in. "
-"These are `Py<T>`, `Bound<'py, T>`, and `Borrowed<'a, 'py, T>`. The [first "
-"section below](#pyo3s-smart-pointers) expands on each of these in detail and "
-"why there are three of them."
+"The first set of types are the [smart pointers](glossary.md#smart-pointer) "
+"which all Python objects are wrapped in. These are `Py<T>`, `Bound<'py, T>`, "
+"and `Borrowed<'a, 'py, T>`. The [first section below](#pyo3s-smart-pointers) "
+"expands on each of these in detail and why there are three of them."
 msgstr ""
 
 #: src/types.md:10
@@ -47,11 +46,11 @@ msgstr ""
 
 #: src/types.md:18
 msgid ""
-"PyO3's API offers three generic smart pointers: `Py<T>`, `Bound<'py, T>` and "
-"`Borrowed<'a, 'py, T>`. For each of these the type parameter `T` will be "
-"filled by a [concrete Python type](#concrete-python-types). For example, a "
-"Python list object can be represented by `Py<PyList>`, `Bound<'py, PyList>`, "
-"and `Borrowed<'a, 'py, PyList>`."
+"PyO3's API offers three generic [smart pointers](glossary.md#smart-pointer): "
+"`Py<T>`, `Bound<'py, T>` and `Borrowed<'a, 'py, T>`. For each of these the "
+"type parameter `T` will be filled by a [concrete Python type](#concrete-"
+"python-types). For example, a Python list object can be represented by "
+"`Py<PyList>`, `Bound<'py, PyList>`, and `Borrowed<'a, 'py, PyList>`."
 msgstr ""
 
 #: src/types.md:22

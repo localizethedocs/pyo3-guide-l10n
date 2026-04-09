@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2025-12-29T08:25:30Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -160,17 +160,21 @@ msgid "Appendix A: Migration guide"
 msgstr "附錄 A：遷移指南"
 
 #: src/SUMMARY.md:47
+msgid "Appendix B: Glossary"
+msgstr ""
+
+#: src/SUMMARY.md:49
 msgid "Appendix B: Trait bounds"
 msgstr "附錄 B：特徵邊界"
 
-#: src/SUMMARY.md:49
+#: src/SUMMARY.md:51
 msgid "Appendix C: Python typing hints"
 msgstr "附錄 C：Python 型別提示"
 
-#: src/SUMMARY.md:51
+#: src/SUMMARY.md:53
 msgid "CHANGELOG"
 msgstr "變更日誌"
 
-#: src/SUMMARY.md:55
+#: src/SUMMARY.md:57
 msgid "Contributing"
 msgstr "參與貢獻"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -756,7 +756,7 @@ msgid ""
 "In this example if we wanted to combine `ints_as_pyints` and "
 "`bools_as_pybool` into a single `Vec<Py<PyAny>>` to return from the `Python::"
 "attach` closure, we would have to manually convert the concrete types for "
-"the smart pointers and the python types."
+"the [smart pointers](../glossary.md#smart-pointer) and the python types."
 msgstr ""
 
 #: src/conversions/traits.md:715

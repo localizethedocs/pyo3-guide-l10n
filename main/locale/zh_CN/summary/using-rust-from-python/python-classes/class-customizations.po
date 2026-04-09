@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -51,7 +51,8 @@ msgstr ""
 #: src/class/protocols.md:12
 msgid ""
 "PyO3 adds [`__traverse__` and `__clear__`](#garbage-collector-integration) "
-"methods for controlling garbage collection."
+"methods for controlling [garbage collection](https://docs.python.org/3/"
+"glossary.html#term-garbage-collection)."
 msgstr ""
 
 #: src/class/protocols.md:13

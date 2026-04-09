@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -184,8 +184,9 @@ msgstr ""
 msgid ""
 "When you need to share ownership of data between Python and Rust, instead of "
 "using borrowed references with lifetimes consider using reference-counted "
-"smart pointers such as [`Arc`](https://doc.rust-lang.org/std/sync/struct.Arc."
-"html) or [`Py`](https://pyo3.rs/main/doc/pyo3/struct.Py.html)."
+"[smart pointers](glossary.md#smart-pointer) such as [`Arc`](https://doc.rust-"
+"lang.org/std/sync/struct.Arc.html) or [`Py`](https://pyo3.rs/main/doc/pyo3/"
+"struct.Py.html)."
 msgstr ""
 
 #: src/class.md:96
@@ -1240,116 +1241,126 @@ msgstr ""
 #: src/class.md:941
 msgid ""
 "To create a class attribute (also called [class variable](https://docs."
-"python.org/3/tutorial/classes.html#class-and-instance-variables)), a method "
-"without any arguments can be annotated with the `#[classattr]` attribute."
+"python.org/3/tutorial/classes.html#class-and-instance-variables)), an "
+"associated constant can be annotated with the `#[classattr]` attribute."
 msgstr ""
 
-#: src/class.md:951
-msgid "\"hello\""
+#: src/class.md:950
+msgid "\"foobar\""
 msgstr ""
 
-#: src/class.md:957
-msgid "\"assert my_class.my_attribute == 'hello'\""
+#: src/class.md:955
+msgid "\"assert my_class.MY_ATTRIBUTE == 'foobar'\""
+msgstr ""
+
+#: src/class.md:959
+msgid ""
+"If `const` code is too limiting, a method without any arguments can be "
+"annotated with the `#[classattr]` attribute."
 msgstr ""
 
 #: src/class.md:961
+msgid ""
+"\\[!NOTE\\] Here too, the class attribute value is computed once during the "
+"class creation and not each time the attribute is accessed."
+msgstr ""
+
+#: src/class.md:972
+msgid "\"hello\""
+msgstr ""
+
+#: src/class.md:978
+msgid "\"assert my_class.my_attribute == 'hello'\""
+msgstr ""
+
+#: src/class.md:982
 msgid ""
 "\\[!NOTE\\] If the method has a `Result` return type and returns an `Err`, "
 "PyO3 will panic during class creation."
 msgstr ""
 
-#: src/class.md:965
+#: src/class.md:986
 msgid ""
 "\\[!NOTE\\] `#[classattr]` does not work with [`#[pyo3(warn(...))]`](./"
 "function.md#warn) attribute."
 msgstr ""
 
-#: src/class.md:968
-msgid ""
-"If the class attribute is defined with `const` code only, one can also "
-"annotate associated constants:"
-msgstr ""
-
-#: src/class.md:977
-msgid "\"foobar\""
-msgstr ""
-
-#: src/class.md:981
+#: src/class.md:989
 msgid "Classes as function arguments"
 msgstr ""
 
-#: src/class.md:983
+#: src/class.md:991
 msgid ""
 "Class objects can be used as arguments to `#[pyfunction]`s and "
 "`#[pymethods]` in the same way as the self parameters of instance methods, i."
 "e. they can be passed as:"
 msgstr ""
 
-#: src/class.md:985
+#: src/class.md:993
 msgid "`Py<T>` or `Bound<'py, T>` smart pointers to the class Python object,"
 msgstr ""
 
-#: src/class.md:986
+#: src/class.md:994
 msgid ""
 "`&T` or `&mut T` references to the Rust data contained in the Python object, "
 "or"
 msgstr ""
 
-#: src/class.md:987
+#: src/class.md:995
 msgid "`PyRef<T>` and `PyRefMut<T>` reference wrappers."
 msgstr ""
 
-#: src/class.md:989
+#: src/class.md:997
 msgid "Examples of each of these below:"
 msgstr ""
 
-#: src/class.md:998
+#: src/class.md:1006
 msgid ""
 "// Take a reference to Rust data when the Python object is irrelevant.\n"
 msgstr ""
 
-#: src/class.md:1004
+#: src/class.md:1012
 msgid ""
 "// Take a reference wrapper when borrowing should be automatic,\n"
 "// but access to the Python object is still needed\n"
 msgstr ""
 
-#: src/class.md:1009 src/class.md:1018 src/class.md:1025
+#: src/class.md:1017 src/class.md:1026 src/class.md:1033
 msgid "\"{}\""
 msgstr ""
 
-#: src/class.md:1012
+#: src/class.md:1020
 msgid ""
 "// Take (a reference to) a Python object smart pointer when borrowing needs "
 "to be managed manually.\n"
 msgstr ""
 
-#: src/class.md:1020
+#: src/class.md:1028
 msgid ""
 "// When the Python object smart pointer needs to be stored elsewhere prefer "
 "`Py<T>` over `Bound<'py, T>`\n"
 "// to avoid the lifetime restrictions.\n"
 msgstr ""
 
-#: src/class.md:1029
+#: src/class.md:1037
 msgid ""
 "Classes can also be passed by value if they can be cloned, i.e. they "
 "automatically implement `FromPyObject` if they implement `Clone`, e.g. via "
 "`#[derive(Clone)]`:"
 msgstr ""
 
-#: src/class.md:1047
+#: src/class.md:1055
 msgid ""
 "Note that `#[derive(FromPyObject)]` on a class is usually not useful as it "
 "tries to construct a new Rust value by filling in the fields by looking up "
 "attributes of any given Python value."
 msgstr ""
 
-#: src/class.md:1049
+#: src/class.md:1057
 msgid "Method arguments"
 msgstr ""
 
-#: src/class.md:1051
+#: src/class.md:1059
 msgid ""
 "Similar to `#[pyfunction]`, the `#[pyo3(signature = (...))]` attribute can "
 "be used to specify the way that `#[pymethods]` accept arguments. Consult the "
@@ -1357,7 +1368,7 @@ msgid ""
 "the parameters this attribute accepts."
 msgstr ""
 
-#: src/class.md:1054
+#: src/class.md:1062
 msgid ""
 "The following example defines a class `MyClass` with a method `method`. This "
 "method has a signature that sets default values for `num` and `name`, and "
@@ -1365,131 +1376,131 @@ msgid ""
 "`py_kwargs` all extra keyword arguments:"
 msgstr ""
 
-#: src/class.md:1073
+#: src/class.md:1081
 msgid "\"Hello\""
 msgstr ""
 
-#: src/class.md:1084
+#: src/class.md:1092
 msgid "\"num={} (was previously={}), py_args={:?}, name={}, py_kwargs={:?} \""
 msgstr ""
 
-#: src/class.md:1091
+#: src/class.md:1099
 msgid "In Python, this might be used like:"
 msgstr ""
 
-#: src/class.md:1096 src/class.md:1098
+#: src/class.md:1104 src/class.md:1106
 msgid "\"World\""
 msgstr ""
 
-#: src/class.md:1097
+#: src/class.md:1105
 msgid "'World'"
 msgstr ""
 
-#: src/class.md:1097
+#: src/class.md:1105
 msgid "'x'"
 msgstr ""
 
-#: src/class.md:1097
+#: src/class.md:1105
 msgid "'y'"
 msgstr ""
 
-#: src/class.md:1102
+#: src/class.md:1110
 msgid ""
 "The [`#[pyo3(text_signature = \"...\")`](./function/signature.md#overriding-"
 "the-generated-signature) option for `#[pyfunction]` also works for "
 "`#[pymethods]`."
 msgstr ""
 
-#: src/class.md:1115 src/class.md:1152
+#: src/class.md:1123 src/class.md:1160
 msgid "\"(c, d)\""
 msgstr ""
 
-#: src/class.md:1119
+#: src/class.md:1127
 msgid "// the self argument should be written $self\n"
 msgstr ""
 
-#: src/class.md:1120
+#: src/class.md:1128
 msgid "\"($self, e, f)\""
 msgstr ""
 
-#: src/class.md:1124
+#: src/class.md:1132
 msgid "// similarly for classmethod arguments, use $cls\n"
 msgstr ""
 
-#: src/class.md:1126
+#: src/class.md:1134
 msgid "\"($cls, e, f)\""
 msgstr ""
 
-#: src/class.md:1131 src/class.md:1181 src/class.md:1193
+#: src/class.md:1139 src/class.md:1189 src/class.md:1201
 msgid "\"(e, f)\""
 msgstr ""
 
-#: src/class.md:1139
+#: src/class.md:1147
 msgid "\"inspect\""
 msgstr ""
 
-#: src/class.md:1139
+#: src/class.md:1147
 msgid "\"signature\""
 msgstr ""
 
-#: src/class.md:1140
+#: src/class.md:1148
 msgid "\"my_module\""
 msgstr ""
 
-#: src/class.md:1142 src/class.md:1558 src/class.md:1575
+#: src/class.md:1150 src/class.md:1566 src/class.md:1583
 msgid "\"MyClass\""
 msgstr ""
 
-#: src/class.md:1145 src/class.md:1154 src/class.md:1163 src/class.md:1175
-#: src/class.md:1187
+#: src/class.md:1153 src/class.md:1162 src/class.md:1171 src/class.md:1183
+#: src/class.md:1195
 msgid "\"__doc__\""
 msgstr ""
 
-#: src/class.md:1146 src/class.md:1155
+#: src/class.md:1154 src/class.md:1163
 msgid "\"\""
 msgstr ""
 
-#: src/class.md:1150 src/class.md:1167 src/class.md:1179 src/class.md:1191
+#: src/class.md:1158 src/class.md:1175 src/class.md:1187 src/class.md:1199
 msgid "\"__str__\""
 msgstr ""
 
-#: src/class.md:1157
+#: src/class.md:1165
 msgid ""
 "\"`text_signature` on classes is not compatible with compilation in `abi3` "
 "mode until Python 3.10 or greater\""
 msgstr ""
 
-#: src/class.md:1161
+#: src/class.md:1169
 msgid "\"my_method\""
 msgstr ""
 
-#: src/class.md:1169
+#: src/class.md:1177
 msgid "\"(self, /, e, f)\""
 msgstr ""
 
-#: src/class.md:1173
+#: src/class.md:1181
 msgid "\"my_class_method\""
 msgstr ""
 
-#: src/class.md:1181
+#: src/class.md:1189
 msgid "// inspect.signature skips the $cls arg\n"
 msgstr ""
 
-#: src/class.md:1185
+#: src/class.md:1193
 msgid "\"my_static_method\""
 msgstr ""
 
-#: src/class.md:1201
+#: src/class.md:1209
 msgid ""
 "Note that `text_signature` on `#[new]` is not compatible with compilation in "
 "`abi3` mode until Python 3.10 or greater."
 msgstr ""
 
-#: src/class.md:1203
+#: src/class.md:1211
 msgid "Method receivers and lifetime elision"
 msgstr ""
 
-#: src/class.md:1205
+#: src/class.md:1213
 msgid ""
 "PyO3 supports writing instance methods using the normal method receivers for "
 "shared `&self` and unique `&mut self` references. This interacts with "
@@ -1498,7 +1509,7 @@ msgid ""
 "output lifetime parameters."
 msgstr ""
 
-#: src/class.md:1208
+#: src/class.md:1216
 msgid ""
 "This is a good default for general Rust code where return values are more "
 "likely to borrow from the receiver than from the other arguments, if they "
@@ -1508,60 +1519,60 @@ msgid ""
 "the receiver."
 msgstr ""
 
-#: src/class.md:1211
+#: src/class.md:1219
 msgid "Specifically, signatures like"
 msgstr ""
 
-#: src/class.md:1217
+#: src/class.md:1225
 msgid "will not work as they are inferred as"
 msgstr ""
 
-#: src/class.md:1223
+#: src/class.md:1231
 msgid "instead of the intended"
 msgstr ""
 
-#: src/class.md:1229
+#: src/class.md:1237
 msgid "and should usually be written as"
 msgstr ""
 
-#: src/class.md:1235
+#: src/class.md:1243
 msgid ""
 "The same problem does not exist for `#[pyfunction]`s as the special case for "
 "receiver lifetimes does not apply and indeed a signature like"
 msgstr ""
 
-#: src/class.md:1241
+#: src/class.md:1249
 msgid ""
 "will yield compiler error [E0106 \"missing lifetime specifier\"](https://doc."
 "rust-lang.org/error_codes/E0106.html)."
 msgstr ""
 
-#: src/class.md:1243
+#: src/class.md:1251
 msgid "`#[pyclass]` enums"
 msgstr ""
 
-#: src/class.md:1245
+#: src/class.md:1253
 msgid ""
 "Enum support in PyO3 comes in two flavors, depending on what kind of "
 "variants the enum has: simple and complex."
 msgstr ""
 
-#: src/class.md:1247
+#: src/class.md:1255
 msgid "Simple enums"
 msgstr ""
 
-#: src/class.md:1249
+#: src/class.md:1257
 msgid "A simple enum (a.k.a. C-like enum) has only unit variants."
 msgstr ""
 
-#: src/class.md:1252
+#: src/class.md:1260
 msgid ""
 "PyO3 adds a class attribute for each variant, so you can access them in "
 "Python without defining `#[new]`. PyO3 also provides default implementations "
 "of `__richcmp__` and `__int__`, so they can be compared using `==`:"
 msgstr ""
 
-#: src/class.md:1268
+#: src/class.md:1276
 msgid ""
 "r#\"\n"
 "        assert x == cls.Variant\n"
@@ -1570,15 +1581,15 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1276
+#: src/class.md:1284
 msgid "You can also convert your simple enums into `int`:"
 msgstr ""
 
-#: src/class.md:1289
+#: src/class.md:1297
 msgid "// The exact value is assigned by the compiler.\n"
 msgstr ""
 
-#: src/class.md:1290
+#: src/class.md:1298
 msgid ""
 "r#\"\n"
 "        assert int(cls.Variant) == x\n"
@@ -1586,11 +1597,11 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1297
+#: src/class.md:1305
 msgid "PyO3 also provides `__repr__` for enums:"
 msgstr ""
 
-#: src/class.md:1311
+#: src/class.md:1319
 msgid ""
 "r#\"\n"
 "        assert repr(x) == 'MyEnum.Variant'\n"
@@ -1598,33 +1609,33 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1318
+#: src/class.md:1326
 msgid ""
 "All methods defined by PyO3 can be overridden. For example here's how you "
 "override `__repr__`:"
 msgstr ""
 
-#: src/class.md:1332
+#: src/class.md:1340
 msgid "\"42\""
 msgstr ""
 
-#: src/class.md:1338
+#: src/class.md:1346
 msgid "\"assert repr(cls.Answer) == '42'\""
 msgstr ""
 
-#: src/class.md:1342
+#: src/class.md:1350
 msgid "Enums and their variants can also be renamed using `#[pyo3(name)]`."
 msgstr ""
 
-#: src/class.md:1346
+#: src/class.md:1354
 msgid "\"RenamedEnum\""
 msgstr ""
 
-#: src/class.md:1349
+#: src/class.md:1357
 msgid "\"UPPERCASE\""
 msgstr ""
 
-#: src/class.md:1356
+#: src/class.md:1364
 msgid ""
 "r#\"\n"
 "        assert repr(x) == 'RenamedEnum.UPPERCASE'\n"
@@ -1632,14 +1643,14 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1363
+#: src/class.md:1371
 msgid ""
 "Ordering of enum variants is optionally added using `#[pyo3(ord)]`. _Note: "
 "Implementation of the `PartialOrd` trait is required when passing the `ord` "
 "argument._ _If not implemented, a compile time error is raised._"
 msgstr ""
 
-#: src/class.md:1382
+#: src/class.md:1390
 msgid ""
 "r#\"\n"
 "        assert (a < b) == True\n"
@@ -1648,40 +1659,40 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1390
+#: src/class.md:1398
 msgid ""
 "You may not use enums as a base class or let enums inherit from other "
 "classes."
 msgstr ""
 
-#: src/class.md:1412
+#: src/class.md:1420
 msgid ""
 "`#[pyclass]` enums are currently not interoperable with `IntEnum` in Python."
 msgstr ""
 
-#: src/class.md:1414
+#: src/class.md:1422
 msgid "Complex enums"
 msgstr ""
 
-#: src/class.md:1416
+#: src/class.md:1424
 msgid "An enum is complex if it has any non-unit (struct or tuple) variants."
 msgstr ""
 
-#: src/class.md:1418
+#: src/class.md:1426
 msgid ""
 "PyO3 supports only struct and tuple variants in a complex enum. Unit "
 "variants aren't supported at present (the recommendation is to use an empty "
 "tuple enum instead)."
 msgstr ""
 
-#: src/class.md:1421
+#: src/class.md:1429
 msgid ""
 "PyO3 adds a class attribute for each variant, which may be used to construct "
 "values and in match patterns. PyO3 also provides getter methods for all "
 "fields of each variant."
 msgstr ""
 
-#: src/class.md:1439
+#: src/class.md:1447
 msgid ""
 "r#\"\n"
 "        assert isinstance(circle, cls)\n"
@@ -1709,14 +1720,14 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1468
+#: src/class.md:1476
 msgid ""
 "WARNING: `Py::new` and `.into_pyobject` are currently inconsistent. Note how "
 "the constructed value is _not_ an instance of the specific variant. For this "
 "reason, constructing values is only recommended using `.into_pyobject`."
 msgstr ""
 
-#: src/class.md:1482
+#: src/class.md:1490
 msgid ""
 "r#\"\n"
 "        assert isinstance(x, cls)\n"
@@ -1724,7 +1735,7 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1489
+#: src/class.md:1497
 msgid ""
 "The constructor of each generated class can be customized using the "
 "`#[pyo3(constructor = (...))]` attribute. This uses the same syntax as the "
@@ -1733,7 +1744,7 @@ msgid ""
 "place it on top of a variant in a `#[pyclass]` complex enum as shown below:"
 msgstr ""
 
-#: src/class.md:1509
+#: src/class.md:1517
 msgid ""
 "r#\"\n"
 "        circle = cls.Circle()\n"
@@ -1755,17 +1766,17 @@ msgid ""
 "    \"#"
 msgstr ""
 
-#: src/class.md:1530
+#: src/class.md:1538
 msgid "Implementation details"
 msgstr ""
 
-#: src/class.md:1532
+#: src/class.md:1540
 msgid ""
 "The `#[pyclass]` macros rely on a lot of conditional code generation: each "
 "`#[pyclass]` can optionally have a `#[pymethods]` block."
 msgstr ""
 
-#: src/class.md:1534
+#: src/class.md:1542
 msgid ""
 "To support this flexibility the `#[pyclass]` macro expands to a blob of "
 "boilerplate code which sets up the structure for [\"dtolnay specialization\"]"
@@ -1775,7 +1786,7 @@ msgid ""
 "default (empty) definitions when they are not."
 msgstr ""
 
-#: src/class.md:1537
+#: src/class.md:1545
 msgid ""
 "This simple technique works for the case when there is zero or one "
 "implementations. To support multiple `#[pymethods]` for a `#[pyclass]` (in "
@@ -1786,27 +1797,27 @@ msgid ""
 "(https://github.com/dtolnay/inventory#how-it-works) for more details."
 msgstr ""
 
-#: src/class.md:1542
+#: src/class.md:1550
 msgid ""
 "The `#[pyclass]` macro expands to roughly the code seen below. The "
 "`PyClassImplCollector` is the type used internally by PyO3 for dtolnay "
 "specialization:"
 msgstr ""
 
-#: src/class.md:1546
+#: src/class.md:1554
 msgid "\"multiple-pymethods\""
 msgstr ""
 
-#: src/class.md:1547
+#: src/class.md:1555
 msgid ""
 "// Note: the implementation differs slightly with the `multiple-pymethods` "
 "feature enabled.\n"
 msgstr ""
 
-#: src/class.md:1593 src/class.md:1594
+#: src/class.md:1601 src/class.md:1602
 msgid "\"...\""
 msgstr ""
 
-#: src/class.md:1612
+#: src/class.md:1620
 msgid "\"assert cls.__name__ == 'MyClass'\""
 msgstr ""
