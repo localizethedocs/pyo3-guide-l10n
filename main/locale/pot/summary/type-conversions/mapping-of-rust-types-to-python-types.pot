@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -517,8 +517,8 @@ msgstr ""
 
 #: src/conversions/tables.md:81
 msgid ""
-"When returning values from functions callable from Python, [PyO3's smart "
-"pointers](../types.md#pyo3s-smart-pointers) (`Py<T>`, `Bound<'py, T>`, and "
+"When returning values from functions callable from Python, PyO3's [smart "
+"pointers](../glossary.md#smart-pointer) (`Py<T>`, `Bound<'py, T>`, and "
 "`Borrowed<'a, 'py, T>`) can be used with zero cost."
 msgstr ""
 

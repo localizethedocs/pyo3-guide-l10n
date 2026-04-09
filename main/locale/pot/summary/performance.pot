@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,12 +58,13 @@ msgstr ""
 
 #: src/performance.md:61
 msgid ""
-"Calling `Python::attach` is effectively a no-op when we're already attached "
-"to the interpreter, but checking that this is the case still has a cost. If "
-"an existing Python token can not be accessed, for example when implementing "
-"a pre-existing trait, but a Python-bound reference is available, this cost "
-"can be avoided by exploiting that access to Python-bound reference gives "
-"zero-cost access to a Python token via `Bound::py`."
+"Calling `Python::attach` is effectively a no-op when we're already [attached]"
+"(glossary.md#attached) to the interpreter, but checking that this is the "
+"case still has a cost. If an existing [Python token](glossary.md#python-"
+"token) can not be accessed, for example when implementing a pre-existing "
+"trait, but a Python-bound reference is available, this cost can be avoided "
+"by exploiting that access to Python-bound reference gives zero-cost access "
+"to a Python token via `Bound::py`."
 msgstr ""
 
 #: src/performance.md:64
@@ -132,15 +133,17 @@ msgstr ""
 
 #: src/performance.md:127
 msgid ""
-"On the GIL-enabled build, this is crucial for best performance as only a "
-"single thread may ever be attached at a time."
+"On the [GIL](https://docs.python.org/3/glossary.html#term-GIL)\\-enabled "
+"build, this is crucial for best performance as only a single thread may ever "
+"be attached at a time."
 msgstr ""
 
 #: src/performance.md:129
 msgid ""
 "On the free-threaded build, this is still best practice as there are several "
-"\"stop the world\" events (such as garbage collection) where all threads "
-"attached to the Python interpreter are forced to wait."
+"\"stop the world\" events (such as [garbage collection](https://docs.python."
+"org/3/glossary.html#term-garbage-collection)) where all threads attached to "
+"the Python interpreter are forced to wait."
 msgstr ""
 
 #: src/performance.md:131
