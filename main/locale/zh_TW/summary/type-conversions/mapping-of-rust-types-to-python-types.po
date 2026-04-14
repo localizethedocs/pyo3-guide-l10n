@@ -690,12 +690,3 @@ msgstr "需要 `rust_decimal` 選用功能。"
 #: src/conversions/tables.md:129
 msgid "Requires the `bigdecimal` optional feature."
 msgstr "需要 `bigdecimal` 選用功能。"
-
-#~ msgid ""
-#~ "When returning values from functions callable from Python, [PyO3's smart "
-#~ "pointers](../types.md#pyo3s-smart-pointers) (`Py<T>`, `Bound<'py, T>`, "
-#~ "and `Borrowed<'a, 'py, T>`) can be used with zero cost."
-#~ msgstr ""
-#~ "當從可由 Python 呼叫的函式回傳值時，可零成本使用 [PyO3 的智慧指標](../"
-#~ "types.md#pyo3s-smart-pointers)（`Py<T>`、`Bound<'py, T>` 與 `Borrowed<'a, "
-#~ "'py, T>`）。"

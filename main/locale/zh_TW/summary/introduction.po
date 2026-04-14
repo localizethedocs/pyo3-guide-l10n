@@ -1147,6 +1147,3 @@ msgid ""
 "[![Deploys by Netlify](https://www.netlify.com/assets/badges/netlify-badge-"
 "color-accent.svg)](https://www.netlify.com)"
 msgstr ""
-
-#~ msgid "CPython 3.7 or greater"
-#~ msgstr "CPython 3.7 或更高版本"
