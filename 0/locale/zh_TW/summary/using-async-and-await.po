@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:29Z\n"
+"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -89,9 +89,6 @@ msgid ""
 "future – the same as for a regular `fn` without `Python<'py>`/`Bound<'py, "
 "PyAny>` parameter"
 msgstr ""
-"即使無法將 `py: Python<'py>` token 傳給 `async fn`，我們在 future 執行期間仍"
-"會附加到直譯器——就像一般不帶 `Python<'py>`/`Bound<'py, PyAny>` 參數的 `fn` 一"
-"樣。"
 
 #: src/async-await.md:46
 msgid ""

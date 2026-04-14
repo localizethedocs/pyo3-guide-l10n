@@ -105,7 +105,7 @@ msgstr "PyO3 支援以下 Python 散布版："
 
 #: src/index.md:38
 msgid "CPython 3.7 or greater"
-msgstr "CPython 3.7 或更高版本"
+msgstr ""
 
 #: src/index.md:39
 msgid "PyPy 7.3 (Python 3.11+)"

@@ -63,8 +63,6 @@ msgid ""
 "default Python interpreter on your system, it is recommended to use a "
 "virtual environment."
 msgstr ""
-"要使用 PyO3，至少需要 Python 3.7。雖然可直接使用系統預設的 Python 直譯器，但"
-"建議使用虛擬環境。"
 
 #: src/getting-started.md:23
 msgid "Virtualenvs"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:29Z\n"
+"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -41,15 +41,12 @@ msgid ""
 "can introduce additional locks (the Python GIL and GC can both require all "
 "other threads to pause) this can lead to deadlocks in the following way:"
 msgstr ""
-"`OnceLock`、`LazyLock` 以及其第三方前身會透過阻塞來確保只有一個執行緒進行初始"
-"化。由於 Python 直譯器可能引入額外鎖（Python 的 GIL 與 GC 都可能要求其他執行"
-"緒暫停），因此可能以以下方式造成死鎖："
 
 #: src/faq.md:11
 msgid ""
 "A thread (thread A) which is attached to the Python interpreter starts "
 "initialization of a `OnceLock` value."
-msgstr "已附著到 Python 直譯器的執行緒（執行緒 A）開始初始化 `OnceLock` 值。"
+msgstr ""
 
 #: src/faq.md:12
 msgid ""
@@ -77,8 +74,6 @@ msgid ""
 "to re-attach to the interpreter (by taking the GIL which thread B still "
 "holds)."
 msgstr ""
-"在非自由執行緒的 Python 中，執行緒 A 現在也會被阻塞，因為它等待重新附著到直譯"
-"器（必須取得執行緒 B 仍持有的 GIL）。"
 
 #: src/faq.md:16
 msgid "Deadlock."

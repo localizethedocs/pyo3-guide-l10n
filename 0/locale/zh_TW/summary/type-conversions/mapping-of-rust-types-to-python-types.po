@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:29Z\n"
+"POT-Creation-Date: 2026-04-07T09:55:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -540,9 +540,6 @@ msgid ""
 "pointers](../types.md#pyo3s-smart-pointers) (`Py<T>`, `Bound<'py, T>`, and "
 "`Borrowed<'a, 'py, T>`) can be used with zero cost."
 msgstr ""
-"當從可由 Python 呼叫的函式回傳值時，可零成本使用 [PyO3 的智慧指標](../types."
-"md#pyo3s-smart-pointers)（`Py<T>`、`Bound<'py, T>` 與 `Borrowed<'a, 'py, "
-"T>`）。"
 
 #: src/conversions/tables.md:83
 msgid ""

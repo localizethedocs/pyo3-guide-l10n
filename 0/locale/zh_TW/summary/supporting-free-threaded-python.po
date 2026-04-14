@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:29Z\n"
+"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,10 +24,6 @@ msgid ""
 "extensions for the free-threaded Python build and calling into free-threaded "
 "Python from Rust."
 msgstr ""
-"CPython 3.14 宣告支援不依賴[全域直譯器鎖](https://docs.python.org/3/glossary."
-"html#term-global-interpreter-lock)（通常稱為 GIL）來提供執行緒安全的「自由執"
-"行緒」建置。自 0.23 版起，PyO3 支援為自由執行緒的 Python 建置 Rust 擴充，並可"
-"從 Rust 呼叫自由執行緒的 Python。"
 
 #: src/free-threading.md:6
 msgid ""
@@ -42,14 +38,6 @@ msgid ""
 "[PEP 703](https://peps.python.org/pep-0703/), which provides the technical "
 "background for the free-threading implementation in CPython."
 msgstr ""
-"若想了解自由執行緒 Python 的更多背景，可參考 3.13 版更新說明中[What's New]"
-"(https://docs.python.org/3/whatsnew/3.13.html#whatsnew313-free-threaded-"
-"cpython) 的條目（首次以實驗模式加入「自由執行緒」建置）、CPython 文件中的[自"
-"由執行緒 HOWTO 指南](https://docs.python.org/3/howto/free-threading-"
-"extensions.html#freethreading-extensions-howto)、社群維護的自由執行緒指南中的"
-"[擴充移植指南](https://py-free-threading.github.io/porting-extensions/)，以及"
-"提供 CPython 自由執行緒實作技術背景的 [PEP 703](https://peps.python.org/"
-"pep-0703/)。"
 
 #: src/free-threading.md:8
 msgid ""
@@ -92,11 +80,6 @@ msgid ""
 "the native Python runtime by building on the Rust [`Send` and `Sync`]"
 "(https://doc.rust-lang.org/nomicon/send-and-sync.html) traits."
 msgstr ""
-"PyO3 對自由執行緒 Python 的支援，將能撰寫天生就具備執行緒安全的原生 Python 擴"
-"充，並提供比 C 擴充更強的安全保證。我們的目標是以 Rust 的 [`Send` 與 `Sync`]"
-"(https://doc.rust-lang.org/nomicon/send-and-sync.html) 特徵為基礎，在原生 "
-"Python 執行環境中實現[無畏並行](https://doc.rust-lang.org/book/ch16-00-"
-"concurrency.html)。"
 
 #: src/free-threading.md:18
 msgid ""
@@ -142,9 +125,6 @@ msgid ""
 "interpreter to see at runtime that the author of the extension thinks the "
 "extension is thread-safe."
 msgstr ""
-"在較低層級，為模組加註會將擴充所定義模組的 `Py_MOD_GIL` slot 設為 "
-"`Py_MOD_GIL_NOT_USED`，讓直譯器在執行期得知擴充作者認為該擴充具備執行緒安全"
-"性。"
 
 #: src/free-threading.md:31
 msgid ""
@@ -241,8 +221,6 @@ msgid ""
 "providing mutable data structures relied on the GIL to lock Python objects "
 "and make interior mutability thread-safe."
 msgstr ""
-"自由執行緒直譯器沒有 GIL。許多既有擴充提供可變資料結構時仰賴 GIL 來鎖住 "
-"Python 物件，使內部可變性具備執行緒安全。"
 
 #: src/free-threading.md:79
 msgid ""
@@ -256,12 +234,6 @@ msgid ""
 "threads can be attached and detached from the interpreter runtime, in a "
 "manner analogous to releasing and acquiring the GIL in the GIL-enabled build."
 msgstr ""
-"只有在作業系統執行緒明確附加到直譯器執行環境時，呼叫 CPython C API 才是合法"
-"的。在啟用 GIL 的建置中，這會在取得 GIL 時發生。自由執行緒建置中沒有 GIL，但"
-"在啟用 GIL 的建置裡負責釋放或取得 GIL 的同一組 C 巨集，會改為要求直譯器將該執"
-"行緒附加到 Python 執行環境，且可能同時附加多個執行緒。更多關於執行緒如何附加/"
-"分離直譯器執行環境（類似於在啟用 GIL 建置中釋放或取得 GIL）的背景，請參考 "
-"[PEP 703](https://peps.python.org/pep-0703/#thread-states)。"
 
 #: src/free-threading.md:84
 msgid ""
@@ -292,12 +264,6 @@ msgid ""
 "up the [`Python<'py>`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
 "html) token when CPython calls into your extension."
 msgstr ""
-"你仍需要取得 `'py` 生命週期才能與 Python 物件互動或呼叫 CPython C API。若尚未"
-"附加到 Python 執行環境，可使用 [`Python::attach`](https://pyo3.rs/main/doc/"
-"pyo3/marker/struct.Python.html#method.attach) 註冊執行緒。由 Python 的 "
-"[`threading`](https://docs.python.org/3/library/threading.html) 模組建立的執"
-"行緒不需要這麼做，當 CPython 呼叫你的擴充時，pyo3 會負責設定 [`Python<'py>`]"
-"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html) token。"
 
 #: src/free-threading.md:93
 msgid "Detaching to avoid hangs and deadlocks"
@@ -313,7 +279,7 @@ msgstr "自由執行緒建置在以下情況會觸發全域同步事件："
 msgid ""
 "During garbage collection in order to get a globally consistent view of "
 "reference counts and references between objects"
-msgstr "垃圾回收時，為取得參考計數與物件間參考的一致全域視圖"
+msgstr ""
 
 #: src/free-threading.md:99
 msgid ""
@@ -436,7 +402,7 @@ msgstr ""
 
 #: src/free-threading.md:169
 msgid "Cannot build extensions using the limited API"
-msgstr "無法使用 limited API 建置擴充"
+msgstr ""
 
 #: src/free-threading.md:171
 msgid ""
@@ -446,9 +412,6 @@ msgid ""
 "PyO3 will print a warning and ignore that setting when building extensions "
 "using the free-threaded interpreter."
 msgstr ""
-"自由執行緒建置使用全新的 ABI，目前尚無與自由執行緒 ABI 對應的 limited API。這"
-"表示若你的軟體箱依賴 PyO3 並使用 `abi3` 功能或 `abi3-pyxx` 功能，PyO3 在使用"
-"自由執行緒直譯器建置擴充時會輸出警告並忽略該設定。"
 
 #: src/free-threading.md:174
 msgid ""
@@ -457,8 +420,6 @@ msgid ""
 "your package, you will need to update your release procedure to also upload "
 "a version-specific free-threaded wheel."
 msgstr ""
-"這表示若你的軟體包利用 limited API 提供的 ABI 向前相容性，只在每次發行時上傳"
-"一個 wheel，你就需要更新發佈流程，另外上傳針對自由執行緒版本的特定 wheel。"
 
 #: src/free-threading.md:176
 msgid ""
