@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:33Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -40,8 +40,8 @@ msgstr ""
 
 #: src/class/call.md:13
 msgid ""
-"An example crate containing this pyclass can be found [here](https://github."
-"com/PyO3/pyo3/tree/main/examples/decorator)"
+"An example crate containing this pyclass can be found [in the PyO3 GitHub "
+"repository](https://github.com/PyO3/pyo3/tree/main/examples/decorator)"
 msgstr ""
 
 #: src/class/call.md:19
@@ -185,7 +185,7 @@ msgid ""
 "straightforward way to implement thread-safe interior mutability (e.g. the "
 "type does not need to accept `&mut self` to modify the \"interior\" state) "
 "for a `u64` is to use [`AtomicU64`](https://doc.rust-lang.org/std/sync/"
-"atomic/struct.AtomicU64.html \"AtomicU64 in std::sync::atomic - Rust\"), so "
+"atomic/type.AtomicU64.html \"AtomicU64 in std::sync::atomic - Rust\"), so "
 "that's what is used here."
 msgstr ""
 
