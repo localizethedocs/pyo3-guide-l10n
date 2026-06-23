@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,9 +17,10 @@ msgstr ""
 
 #: src/ecosystem/tracing.md:3
 msgid ""
-"Python projects that write extension modules for performance reasons may "
-"want to tap into [Rust's `tracing` ecosystem](https://crates.io/crates/"
-"tracing) to gain insight into the performance of their extension module."
+"Python projects that write [extension modules](../glossary.md#extension-"
+"module) for performance reasons may want to tap into [Rust's `tracing` "
+"ecosystem](https://crates.io/crates/tracing) to gain insight into the "
+"performance of their extension module."
 msgstr ""
 
 #: src/ecosystem/tracing.md:5
