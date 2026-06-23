@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr "使用 `async` 和 `await`"
 
 #: src/ecosystem/async-await.md:3
 msgid ""
-"_`async`/`await` support is currently being integrated in PyO3. See the "
+"_`async`/`await` support is currently being integrated in PyO3._ _See the "
 "[dedicated documentation](../async-await.md)_"
 msgstr ""
 
-#: src/ecosystem/async-await.md:5
+#: src/ecosystem/async-await.md:6
 msgid ""
 "If you are working with a Python library that makes use of async functions "
 "or wish to provide Python bindings for an async Rust library, [`pyo3-async-"
@@ -41,11 +41,11 @@ msgstr ""
 "預設的 `asyncio` 事件迴圈上執行，因此 `pyo3-async-runtimes` 應可與既有 "
 "Python 函式庫順利運作。"
 
-#: src/ecosystem/async-await.md:9
+#: src/ecosystem/async-await.md:10
 msgid "Additional Information"
 msgstr "補充資訊"
 
-#: src/ecosystem/async-await.md:11
+#: src/ecosystem/async-await.md:12
 msgid ""
 "Managing event loop references can be tricky with `pyo3-async-runtimes`. See "
 "[Event Loop References](https://docs.rs/pyo3-async-runtimes/#event-loop-"
@@ -56,7 +56,7 @@ msgstr ""
 "[Event Loop References](https://docs.rs/pyo3-async-runtimes/#event-loop-"
 "references-and-contextvars)，以更了解此函式庫如何管理事件迴圈參照。"
 
-#: src/ecosystem/async-await.md:13
+#: src/ecosystem/async-await.md:14
 msgid ""
 "Testing `pyo3-async-runtimes` libraries and applications requires a custom "
 "test harness since Python requires control over the main thread. You can "

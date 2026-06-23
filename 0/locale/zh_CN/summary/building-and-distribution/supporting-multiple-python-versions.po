@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -80,16 +80,14 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:39
 msgid ""
-"Add `pyo3-build-config` with the [`resolve-config`](../features.md#resolve-"
-"config) feature enabled to your crate's build dependencies in `Cargo.toml`:"
+"Add `pyo3-build-config` to your crate's build dependencies in `Cargo.toml`:"
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:41
 msgid ""
 "```toml\n"
 "[build-dependencies]\n"
-"pyo3-build-config = { git = \"https://github.com/pyo3/pyo3\", features = "
-"[\"resolve-config\"] }\n"
+"pyo3-build-config = git = \"https://github.com/pyo3/pyo3\"\n"
 "```"
 msgstr ""
 
@@ -121,27 +119,36 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:66
 msgid ""
-"This `#[cfg]` marks code that will only be present on Python 3.7 and "
-"upwards. There are similar options `Py_3_8`, `Py_3_9`, `Py_3_10` and so on "
+"This `#[cfg]` marks code that will only be present on Python 3.8 and "
+"upwards. There are similar options `Py_3_9`, `Py_3_10`, `Py_3_11` and so on "
 "for each minor version."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:73
 msgid ""
 "This `#[cfg]` marks code that will only be present on Python versions before "
-"(but not including) Python 3.7."
+"(but not including) Python 3.8."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:79
 msgid ""
-"This `#[cfg]` marks code that is only available when building for the "
-"unlimited Python API (i.e. PyO3's `abi3` feature is not enabled). This might "
-"be useful if you want to ship your extension module as an `abi3` wheel and "
-"also allow users to compile it from source to make use of optimizations only "
-"possible with the unlimited API."
+"This `#[cfg]` marks code that will only be present for free-threaded builds "
+"of CPython. You might use this in situations where the [GIL](https://docs."
+"python.org/3/glossary.html#term-GIL) provides thread safety but the free-"
+"threaded build needs extra synchronization logic."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:86
+msgid ""
+"This `#[cfg]` marks code that is only available when building for the "
+"unlimited Python API (i.e. PyO3's `abi3` or `abi3t` features are not "
+"enabled). This might be useful if you want to ship your [extension module]"
+"(../glossary.md#extension-module) as an `abi3` or `abi3t` [wheel](../"
+"glossary.md#wheel) and also allow users to compile it from source to make "
+"use of optimizations only possible with the unlimited API."
+msgstr ""
+
+#: src/building-and-distribution/multiple-python-versions.md:93
 msgid ""
 "This `#[cfg]` marks code which is available when running Python 3.9 or "
 "newer, or when using the unlimited API with an older Python version. "
@@ -149,37 +156,45 @@ msgid ""
 "limited Python API in a specific minor version."
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:93
+#: src/building-and-distribution/multiple-python-versions.md:100
+msgid ""
+"This marks code which is available only for the free-threaded `abi3t` stable "
+"ABI. You might use this if you need some sort of custom locking "
+"implementation in code that makes strong assumptions about the GIL providing "
+"thread safety."
+msgstr ""
+
+#: src/building-and-distribution/multiple-python-versions.md:107
 msgid "This `#[cfg]` marks code which is running on PyPy."
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:95
+#: src/building-and-distribution/multiple-python-versions.md:109
 msgid "Checking the Python version at runtime"
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:97
+#: src/building-and-distribution/multiple-python-versions.md:111
 msgid ""
-"When building with PyO3's `abi3` feature, your extension module will be "
-"compiled against a specific [minimum version](../building-and-distribution."
-"md#minimum-python-version-for-abi3) of Python, but may be running on newer "
-"Python versions."
+"When building with PyO3's `abi3` or `abi3t` features, your extension module "
+"will be compiled against a specific [minimum version](../building-and-"
+"distribution.md#minimum-python-version-for-abi3-and-abi3t-builds) of Python, "
+"but may be running on newer Python versions."
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:99
+#: src/building-and-distribution/multiple-python-versions.md:113
 msgid ""
-"For example with PyO3's `abi3-py38` feature, your extension will be compiled "
-"as if it were for Python 3.8. If you were using `pyo3-build-config`, "
-"`#[cfg(Py_3_8)]` would be present. Your user could freely install and run "
-"your abi3 extension on Python 3.9."
+"For example with PyO3's `abi3-py38` feature, your extension module will be "
+"compiled as if it were for Python 3.8. If you were using `pyo3-build-"
+"config`, `#[cfg(Py_3_8)]` would be present. Your user could freely install "
+"and run your abi3 extension module on Python 3.9."
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:103
+#: src/building-and-distribution/multiple-python-versions.md:117
 msgid ""
 "There's no way to detect your user doing that at compile time, so instead "
 "you need to fall back to runtime checks."
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:105
+#: src/building-and-distribution/multiple-python-versions.md:119
 msgid ""
 "PyO3 provides the APIs [`Python::version()`](https://pyo3.rs/main/doc/pyo3/"
 "marker/struct.Python.html#method.version) and [`Python::version_info()`]"
@@ -188,6 +203,6 @@ msgid ""
 "following, for example:"
 msgstr ""
 
-#: src/building-and-distribution/multiple-python-versions.md:112
-msgid "// PyO3 supports Python 3.7 and up.\n"
+#: src/building-and-distribution/multiple-python-versions.md:126
+msgid "// PyO3 supports Python 3.8 and up.\n"
 msgstr ""

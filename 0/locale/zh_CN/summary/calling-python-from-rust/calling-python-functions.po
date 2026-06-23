@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:33Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,8 +17,9 @@ msgstr ""
 
 #: src/python-from-rust/function-calls.md:3
 msgid ""
-"The `Bound<'py, T>` smart pointer (such as `Bound<'py, PyAny>`, `Bound<'py, "
-"PyList>`, or `Bound<'py, MyClass>`) can be used to call Python functions."
+"The `Bound<'py, T>` [smart pointer](../glossary.md#smart-pointer) (such as "
+"`Bound<'py, PyAny>`, `Bound<'py, PyList>`, or `Bound<'py, MyClass>`) can be "
+"used to call Python functions."
 msgstr ""
 
 #: src/python-from-rust/function-calls.md:5
@@ -63,7 +64,8 @@ msgstr ""
 msgid ""
 "For convenience the [`Py<T>`](../types.md#pyt) smart pointer also exposes "
 "these same six API methods, but needs a `Python` token as an additional "
-"first argument to prove the thread is attached to the Python interpreter."
+"first argument to prove the thread is [attached](../glossary.md#attached) to "
+"the Python interpreter."
 msgstr ""
 
 #: src/python-from-rust/function-calls.md:18

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,11 +18,11 @@ msgstr "平行化"
 #: src/parallelism.md:3
 msgid ""
 "Historically, CPython was limited by the [global interpreter lock](https://"
-"docs.python.org/3/glossary.html#term-global-interpreter-lock) (GIL), which "
-"only allowed a single thread to drive the Python interpreter at a time. This "
-"made threading in Python a bad fit for [CPU-bound](https://en.wikipedia.org/"
-"wiki/CPU-bound) tasks and often forced developers to accept the overhead of "
-"multiprocessing."
+"docs.python.org/3/glossary.html#term-global-interpreter-lock) ([GIL](https://"
+"docs.python.org/3/glossary.html#term-GIL)), which only allowed a single "
+"thread to drive the Python interpreter at a time. This made threading in "
+"Python a bad fit for [CPU-bound](https://en.wikipedia.org/wiki/CPU-bound) "
+"tasks and often forced developers to accept the overhead of multiprocessing."
 msgstr ""
 
 #: src/parallelism.md:6
@@ -138,9 +138,10 @@ msgstr "Rust 序列版本在兩個 Python 執行緒中執行兩次"
 
 #: src/parallelism.md:118
 msgid ""
-"The benchmark script can be found [here](https://github.com/PyO3/pyo3/blob/"
-"main/examples/word-count/tests/test_word_count.py), and we can run `nox` in "
-"the `word-count` folder to benchmark these functions."
+"The benchmark script can be found [in the PyO3 GitHub repository](https://"
+"github.com/PyO3/pyo3/blob/main/examples/word-count/tests/test_word_count."
+"py), and we can run `nox` in the `word-count` folder to benchmark these "
+"functions."
 msgstr ""
 
 #: src/parallelism.md:120
@@ -203,10 +204,10 @@ msgstr "// 這些特徵讓我們可以使用 int_par_iter 和 map\n"
 
 #: src/parallelism.md:174
 msgid ""
-"It's important to note that there is an `outer_py` Python token as well as "
-"an `inner_py` token. Sharing Python tokens between threads is not allowed "
-"and threads must individually attach to the interpreter to access data "
-"wrapped by a Python object."
+"It's important to note that there is an `outer_py` [Python token](glossary."
+"md#python-token) as well as an `inner_py` token. Sharing Python tokens "
+"between threads is not allowed and threads must individually attach to the "
+"interpreter to access data wrapped by a Python object."
 msgstr ""
 
 #: src/parallelism.md:177

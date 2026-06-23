@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,3 +34,17 @@ msgstr ""
 "C API 天生不安全，必須由你自行管理引用計數、錯誤與特定不變式。在使用該 API 中"
 "的任何函式之前，請參考 [C API 參考手冊](https://docs.python.org/3/c-api/) 以"
 "及 [The Rustonomicon](https://doc.rust-lang.org/nightly/nomicon/ffi.html)。"
+
+#: src/advanced.md:10
+msgid "Sharing types between multiple PyO3 modules"
+msgstr ""
+
+#: src/advanced.md:12
+msgid ""
+"It is possible (but complicated) to share types between multiple PyO3 "
+"packages which can be compiled and installed separately. This allows for "
+"ecosystems of functionality to be built similar to the many packages built "
+"on top of NumPy. While PyO3 does not yet have any built-in support for doing "
+"this, the next sub-chapter of this guide describes the general approach to "
+"doing this, as well as the safety limitations to be aware of."
+msgstr ""

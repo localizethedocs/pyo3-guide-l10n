@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:33Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:45Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -97,9 +97,10 @@ msgstr ""
 
 #: src/module.md:75
 msgid ""
-"You can create a module hierarchy within a single extension module by just "
-"`use`ing modules like functions or classes. For example, you could define "
-"the modules `parent_module` and `parent_module.child_module`:"
+"You can create a module hierarchy within a single [extension module]"
+"(glossary.md#extension-module) by just `use`ing modules like functions or "
+"classes. For example, you could define the modules `parent_module` and "
+"`parent_module.child_module`:"
 msgstr ""
 
 #: src/module.md:95

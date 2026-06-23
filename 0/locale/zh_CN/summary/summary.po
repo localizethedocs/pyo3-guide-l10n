@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:33Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:45Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Conversion traits"
 msgstr ""
 
-#: src/SUMMARY.md:27 src/SUMMARY.md:40
+#: src/SUMMARY.md:27 src/SUMMARY.md:41
 msgid "Using `async` and `await`"
 msgstr ""
 
@@ -132,45 +132,53 @@ msgid "Advanced topics"
 msgstr ""
 
 #: src/SUMMARY.md:35
-msgid "Building and distribution"
+msgid "Sharing types between packages"
 msgstr ""
 
 #: src/SUMMARY.md:36
-msgid "Supporting multiple Python versions"
+msgid "Building and distribution"
 msgstr ""
 
 #: src/SUMMARY.md:37
-msgid "Useful crates"
+msgid "Supporting multiple Python versions"
 msgstr ""
 
 #: src/SUMMARY.md:38
-msgid "Logging"
+msgid "Useful crates"
 msgstr ""
 
 #: src/SUMMARY.md:39
+msgid "Logging"
+msgstr ""
+
+#: src/SUMMARY.md:40
 msgid "Tracing"
 msgstr ""
 
-#: src/SUMMARY.md:41
+#: src/SUMMARY.md:42
 msgid "FAQ and troubleshooting"
 msgstr ""
 
-#: src/SUMMARY.md:45
+#: src/SUMMARY.md:46
 msgid "Appendix A: Migration guide"
 msgstr ""
 
-#: src/SUMMARY.md:47
+#: src/SUMMARY.md:48
+msgid "Appendix B: Glossary"
+msgstr ""
+
+#: src/SUMMARY.md:50
 msgid "Appendix B: Trait bounds"
 msgstr ""
 
-#: src/SUMMARY.md:49
+#: src/SUMMARY.md:52
 msgid "Appendix C: Python typing hints"
 msgstr ""
 
-#: src/SUMMARY.md:51
+#: src/SUMMARY.md:54
 msgid "CHANGELOG"
 msgstr ""
 
-#: src/SUMMARY.md:55
+#: src/SUMMARY.md:58
 msgid "Contributing"
 msgstr ""

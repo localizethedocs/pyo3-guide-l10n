@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:33Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -51,8 +51,9 @@ msgstr ""
 
 #: src/exception.md:40
 msgid ""
-"When using PyO3 to create an extension module, you can add the new exception "
-"to the module like this, so that it is importable from Python:"
+"When using PyO3 to create an [extension module](glossary.md#extension-"
+"module), you can add the new exception to the module like this, so that it "
+"is importable from Python:"
 msgstr ""
 
 #: src/exception.md:54
@@ -161,6 +162,6 @@ msgstr ""
 
 #: src/exception.md:175
 msgid ""
-"Note that this is not possible when the `abi3` feature is enabled, as that "
-"prevents subclassing `PyException`."
+"Note that when the `abi3` feature is enabled, subclassing `PyException` is "
+"only possible on Python 3.12 or greater."
 msgstr ""

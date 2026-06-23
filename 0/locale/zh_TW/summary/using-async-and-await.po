@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:55:34Z\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,30 +17,30 @@ msgstr "使用 `async` 和 `await`"
 
 #: src/async-await.md:3
 msgid ""
-"_This feature is still in active development. See [the related issue]"
+"_This feature is still in active development._ _See [the related issue]"
 "(https://github.com/PyO3/pyo3/issues/1632)._"
 msgstr ""
 
-#: src/async-await.md:5
+#: src/async-await.md:6
 msgid "`#[pyfunction]` and `#[pymethods]` attributes also support `async fn`."
 msgstr "`#[pyfunction]` 與 `#[pymethods]` 屬性也支援 `async fn`。"
 
-#: src/async-await.md:9 src/async-await.md:86
+#: src/async-await.md:10 src/async-await.md:88
 msgid "\"experimental-async\""
 msgstr ""
 
-#: src/async-await.md:28
+#: src/async-await.md:29
 msgid ""
 "_Python awaitables instantiated with this method can only be awaited in "
-"`asyncio` context. Other Python async runtime may be supported in the future."
-"_"
+"`asyncio` context._ _Other Python async runtime may be supported in the "
+"future._"
 msgstr ""
 
-#: src/async-await.md:30
+#: src/async-await.md:32
 msgid "`Send + 'static` constraint"
 msgstr "`Send + 'static` 限制"
 
-#: src/async-await.md:32
+#: src/async-await.md:34
 msgid ""
 "Resulting future of an `async fn` decorated by `#[pyfunction]` must be `Send "
 "+ 'static` to be embedded in a Python object."
@@ -48,7 +48,7 @@ msgstr ""
 "由 `#[pyfunction]` 修飾的 `async fn` 所產生的 future 必須是 `Send + "
 "'static`，才能嵌入為 Python 物件。"
 
-#: src/async-await.md:34
+#: src/async-await.md:36
 msgid ""
 "As a consequence, `async fn` parameters and return types must also be `Send "
 "+ 'static`, so it is not possible to have a signature like `async fn "
@@ -58,7 +58,7 @@ msgstr ""
 "`async fn does_not_compile<'py>(arg: Bound<'py, PyAny>) -> Bound<'py, "
 "PyAny>` 的簽名。"
 
-#: src/async-await.md:36
+#: src/async-await.md:38
 msgid ""
 "However, there is an exception for method receivers, so async methods can "
 "accept `&self`/ `&mut self`. Note that this means that the class instance is "
@@ -78,19 +78,19 @@ msgstr ""
 "Rust 程式碼而言問題更大。強烈建議優先使用共享借用 `&self` 而非獨占借用 `&mut "
 "self`，以避免執行期的競態借用檢查失敗。"
 
-#: src/async-await.md:42
+#: src/async-await.md:44
 msgid "Implicitly attached to the interpreter"
 msgstr "隱式附加到直譯器"
 
-#: src/async-await.md:44
+#: src/async-await.md:46
 msgid ""
 "Even if it is not possible to pass a `py: Python<'py>` token to an `async "
-"fn`, we're still attached to the interpreter during the execution of the "
-"future – the same as for a regular `fn` without `Python<'py>`/`Bound<'py, "
-"PyAny>` parameter"
+"fn`, we're still [attached](glossary.md#attached) to the interpreter during "
+"the execution of the future – the same as for a regular `fn` without "
+"`Python<'py>`/`Bound<'py, PyAny>` parameter"
 msgstr ""
 
-#: src/async-await.md:46
+#: src/async-await.md:48
 msgid ""
 "It is still possible to get a `Python` marker using [`Python::attach`]"
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.attach); "
@@ -100,25 +100,25 @@ msgstr ""
 "Python.html#method.attach) 取得 `Python` 標記；由於 `attach` 具備可重入性且已"
 "最佳化，其成本可忽略不計。"
 
-#: src/async-await.md:48
+#: src/async-await.md:50
 msgid "Detaching from the interpreter across `.await`"
 msgstr "跨越 `.await` 時從直譯器分離"
 
-#: src/async-await.md:50
+#: src/async-await.md:52
 msgid ""
 "There is currently no simple way to detach from the interpreter when "
 "awaiting a future, _but solutions are currently in development_."
 msgstr "目前沒有簡單的方法在等待 future 時從直譯器分離，_但解法正在開發中_。"
 
-#: src/async-await.md:52
+#: src/async-await.md:54
 msgid "Here is the advised workaround for now:"
 msgstr "目前建議的替代作法如下："
 
-#: src/async-await.md:80
+#: src/async-await.md:82
 msgid "Cancellation"
 msgstr "取消"
 
-#: src/async-await.md:82
+#: src/async-await.md:84
 msgid ""
 "Cancellation on the Python side can be caught using [`CancelHandle`](https://"
 "pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle.html) type, by "
@@ -128,19 +128,19 @@ msgstr ""
 "CancelHandle.html) 型別捕捉 Python 端的取消事件，方法是在函式參數上加註 "
 "`#[pyo3(cancel_handle)]`。"
 
-#: src/async-await.md:94
+#: src/async-await.md:96
 msgid "/* _ = ... => println!(\"done\"), */"
 msgstr ""
 
-#: src/async-await.md:95
+#: src/async-await.md:97
 msgid "\"cancelled\""
 msgstr ""
 
-#: src/async-await.md:101
+#: src/async-await.md:103
 msgid "The `Coroutine` type"
 msgstr "`Coroutine` 型別"
 
-#: src/async-await.md:103
+#: src/async-await.md:105
 msgid ""
 "To make a Rust future awaitable in Python, PyO3 defines a [`Coroutine`]"
 "(https://pyo3.rs/main/doc/pyo3/coroutine/struct.Coroutine.html) type, which "
@@ -152,7 +152,7 @@ msgstr ""
 "的[協程協定](https://docs.python.org/3/library/collections.abc."
 "html#collections.abc.Coroutine)。"
 
-#: src/async-await.md:105
+#: src/async-await.md:107
 msgid ""
 "Each `coroutine.send` call is translated to a `Future::poll` call. If a "
 "[`CancelHandle`](https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle."
@@ -169,7 +169,7 @@ msgstr ""
 "CancelHandle.html#method.cancelled) 取得；否則會取消 Rust future，並重新拋出"
 "該例外；"
 
-#: src/async-await.md:108
+#: src/async-await.md:110
 msgid ""
 "_The type does not yet have a public constructor until the design is "
 "finalized._"
