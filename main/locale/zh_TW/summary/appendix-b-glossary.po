@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-06-23T11:17:13Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -47,7 +47,7 @@ msgstr ""
 
 #: src/glossary.md:12
 msgid ""
-"extension module : A Python module which is implemeted using native code (e."
+"extension module : A Python module which is implemented using native code (e."
 "g. C, C++ or Rust) instead of Python. See also [CPython's documentation on "
 "creating extension modules](https://docs.python.org/3/extending/extending."
 "html)."

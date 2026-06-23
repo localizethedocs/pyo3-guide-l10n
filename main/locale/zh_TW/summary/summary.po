@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -99,7 +99,7 @@ msgstr "Rust 型別對應到 Python 型別"
 msgid "Conversion traits"
 msgstr "轉換特徵"
 
-#: src/SUMMARY.md:27 src/SUMMARY.md:40
+#: src/SUMMARY.md:27 src/SUMMARY.md:41
 msgid "Using `async` and `await`"
 msgstr "使用 `async` 和 `await`"
 
@@ -132,49 +132,53 @@ msgid "Advanced topics"
 msgstr "進階主題"
 
 #: src/SUMMARY.md:35
+msgid "Sharing types between packages"
+msgstr ""
+
+#: src/SUMMARY.md:36
 msgid "Building and distribution"
 msgstr "建置與散布"
 
-#: src/SUMMARY.md:36
+#: src/SUMMARY.md:37
 msgid "Supporting multiple Python versions"
 msgstr "支援多個 Python 版本"
 
-#: src/SUMMARY.md:37
+#: src/SUMMARY.md:38
 msgid "Useful crates"
 msgstr "實用 crate"
 
-#: src/SUMMARY.md:38
+#: src/SUMMARY.md:39
 msgid "Logging"
 msgstr "日誌"
 
-#: src/SUMMARY.md:39
+#: src/SUMMARY.md:40
 msgid "Tracing"
 msgstr "追蹤"
 
-#: src/SUMMARY.md:41
+#: src/SUMMARY.md:42
 msgid "FAQ and troubleshooting"
 msgstr "常見問題與疑難排解"
 
-#: src/SUMMARY.md:45
+#: src/SUMMARY.md:46
 msgid "Appendix A: Migration guide"
 msgstr "附錄 A：遷移指南"
 
-#: src/SUMMARY.md:47
+#: src/SUMMARY.md:48
 msgid "Appendix B: Glossary"
 msgstr ""
 
-#: src/SUMMARY.md:49
+#: src/SUMMARY.md:50
 msgid "Appendix B: Trait bounds"
 msgstr "附錄 B：特徵邊界"
 
-#: src/SUMMARY.md:51
+#: src/SUMMARY.md:52
 msgid "Appendix C: Python typing hints"
 msgstr "附錄 C：Python 型別提示"
 
-#: src/SUMMARY.md:53
+#: src/SUMMARY.md:54
 msgid "CHANGELOG"
 msgstr "變更日誌"
 
-#: src/SUMMARY.md:57
+#: src/SUMMARY.md:58
 msgid "Contributing"
 msgstr "參與貢獻"

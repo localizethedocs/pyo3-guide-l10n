@@ -16,9 +16,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2026-04-07 07:44:26 +0000",
-        "hash" : "cd87dcf519b52d7aada2e7d768707eca42d20c78",
-        "title" : "ffi-check: ignore mingw types (#5954)"
+        "date" : "2026-06-22 21:03:07 +0000",
+        "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
+        "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
       }
     },
     "zh_TW" : 
@@ -26,9 +26,9 @@
       "branch" : "main",
       "commit" : 
       {
-        "date" : "2026-04-07 07:44:26 +0000",
-        "hash" : "cd87dcf519b52d7aada2e7d768707eca42d20c78",
-        "title" : "ffi-check: ignore mingw types (#5954)"
+        "date" : "2026-06-22 21:03:07 +0000",
+        "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
+        "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
       }
     }
   },

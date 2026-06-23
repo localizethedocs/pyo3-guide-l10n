@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -252,29 +252,26 @@ msgid "Type annotations in the signature"
 msgstr "簽章中的型別註解"
 
 #: src/function/signature.md:268
-msgid ""
-"When the `experimental-inspect` Cargo feature is enabled, the `signature` "
-"attribute can also contain type hints:"
+msgid "The `signature` attribute can also contain type hints:"
 msgstr ""
 
-#: src/function/signature.md:271
-msgid "\"experimental-inspect\""
-msgstr ""
-
-#: src/function/signature.md:279
+#: src/function/signature.md:278 src/function/signature.md:288
 msgid "\"list[int]\""
 msgstr ""
 
-#: src/function/signature.md:287
+#: src/function/signature.md:285
 msgid ""
 "It enables the [work-in-progress capacity of PyO3 to autogenerate type stubs]"
 "(../type-stub.md) to generate a file with the correct type hints:"
 msgstr ""
 
-#: src/function/signature.md:293
+#: src/function/signature.md:291
 msgid "instead of the generic:"
 msgstr ""
 
-#: src/function/signature.md:301
-msgid "Note that currently type annotations must be written as Rust strings."
+#: src/function/signature.md:299
+msgid ""
+"Note that currently type annotations must be written as strings. Future "
+"enhancements of PyO3's typing support may include the ability to parse a "
+"limited subset of Python's type expression syntax."
 msgstr ""

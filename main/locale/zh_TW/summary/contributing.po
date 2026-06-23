@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-01-19T08:26:00Z\n"
+"POT-Creation-Date: 2026-06-23T11:17:13Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -197,12 +197,10 @@ msgstr "UI 測試"
 
 #: src/contributing.md:48
 msgid ""
-"PyO3 uses [`trybuild`](https://github.com/dtolnay/trybuild) to develop UI "
+"PyO3 uses [`ui_test`](https://github.com/oli-obk/ui_test) to develop UI "
 "tests to capture error messages from the Rust compiler for some of the macro "
 "functionality."
 msgstr ""
-"PyO3 使用 [`trybuild`](https://github.com/dtolnay/trybuild) 來開發 UI 測試，"
-"以擷取某些巨集功能的 Rust 編譯器錯誤訊息。"
 
 #: src/contributing.md:50
 msgid ""
@@ -491,9 +489,9 @@ msgstr "`fixed` - 用於被歸類為錯誤修復的「變更」功能"
 
 #: src/contributing.md:150
 msgid ""
-"Docs-only PRs do not need news items; start your PR title with `docs:` to "
-"skip the check."
-msgstr "僅文件的 PR 不需要新聞項目；將 PR 標題以 `docs:` 開頭即可略過檢查。"
+"If your PR is a documentation, refactor, or internal change, prefix your PR "
+"title with `docs:`, `refactor:`, or `internal:` to skip this check."
+msgstr ""
 
 #: src/contributing.md:152
 msgid "Style guide"
@@ -838,3 +836,16 @@ msgstr "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 #: src/contributing.md:261
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr "[messense](https://github.com/sponsors/messense)"
+
+#~ msgid ""
+#~ "PyO3 uses [`trybuild`](https://github.com/dtolnay/trybuild) to develop UI "
+#~ "tests to capture error messages from the Rust compiler for some of the "
+#~ "macro functionality."
+#~ msgstr ""
+#~ "PyO3 使用 [`trybuild`](https://github.com/dtolnay/trybuild) 來開發 UI 測"
+#~ "試，以擷取某些巨集功能的 Rust 編譯器錯誤訊息。"
+
+#~ msgid ""
+#~ "Docs-only PRs do not need news items; start your PR title with `docs:` to "
+#~ "skip the check."
+#~ msgstr "僅文件的 PR 不需要新聞項目；將 PR 標題以 `docs:` 開頭即可略過檢查。"

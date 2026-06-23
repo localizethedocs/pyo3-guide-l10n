@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -104,7 +104,7 @@ msgid "PyO3 supports the following Python distributions:"
 msgstr "PyO3 支援以下 Python 散布版："
 
 #: src/index.md:38
-msgid "CPython 3.8 or greater"
+msgid "CPython 3.9 or greater"
 msgstr ""
 
 #: src/index.md:39
@@ -199,7 +199,7 @@ msgid ""
 "crate-type = [\"cdylib\"]\n"
 "\n"
 "[dependencies]\n"
-"pyo3 = \"0.28.3\"\n"
+"pyo3 = \"0.29.0\"\n"
 "```"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr "使用 `cargo new` 建立新專案，並在 `Cargo.toml` 中加入 `pyo3
 msgid ""
 "```toml\n"
 "[dependencies.pyo3]\n"
-"version = \"0.28.3\"\n"
+"version = \"0.29.0\"\n"
 "# Enabling this cargo feature will cause PyO3 to start a Python interpreter "
 "on first call to `Python::attach`\n"
 "features = [\"auto-initialize\"]\n"
@@ -857,13 +857,19 @@ msgstr ""
 
 #: src/index.md:249
 msgid ""
+"[tibs](https://github.com/scott-griffiths/tibs) _A sleek Python library for "
+"binary data._"
+msgstr ""
+
+#: src/index.md:250
+msgid ""
 "[tiktoken](https://github.com/openai/tiktoken) _A fast BPE tokeniser for use "
 "with OpenAI's models._"
 msgstr ""
 "[tiktoken](https://github.com/openai/tiktoken) _可搭配 OpenAI 模型使用的快速 "
 "BPE 分詞器_"
 
-#: src/index.md:250
+#: src/index.md:251
 msgid ""
 "[tokenizers](https://github.com/huggingface/tokenizers/tree/main/bindings/"
 "python) _Python bindings to the Hugging Face tokenizers (NLP) written in "
@@ -872,7 +878,7 @@ msgstr ""
 "[tokenizers](https://github.com/huggingface/tokenizers/tree/main/bindings/"
 "python) _Rust 撰寫的 Hugging Face tokenizers（NLP）的 Python 綁定_"
 
-#: src/index.md:251
+#: src/index.md:252
 msgid ""
 "[tzfpy](http://github.com/ringsaturn/tzfpy) _A fast package to convert "
 "longitude/latitude to timezone name._"
@@ -880,7 +886,7 @@ msgstr ""
 "[tzfpy](http://github.com/ringsaturn/tzfpy) _快速將經緯度轉為時區名稱的軟體包"
 "_"
 
-#: src/index.md:252
+#: src/index.md:253
 msgid ""
 "[toml-rs](https://github.com/lava-sh/toml-rs) _A High-Performance TOML "
 "v1.0.0 and v1.1.0 parser for Python written in Rust._"
@@ -888,7 +894,7 @@ msgstr ""
 "[toml-rs](https://github.com/lava-sh/toml-rs) _以 Rust 撰寫的 Python 高效能 "
 "TOML v1.0.0 與 v1.1.0 解析器_"
 
-#: src/index.md:253
+#: src/index.md:254
 msgid ""
 "[utiles](https://github.com/jessekrubin/utiles) _Fast Python web-map tile "
 "utilities_"
@@ -896,11 +902,11 @@ msgstr ""
 "[utiles](https://github.com/jessekrubin/utiles) _快速的 Python 網路地圖磚工具"
 "_"
 
-#: src/index.md:255
+#: src/index.md:256
 msgid "Articles and other media"
 msgstr "文章及其他媒體"
 
-#: src/index.md:257
+#: src/index.md:258
 msgid ""
 "[(Video) Using Rust in Free-Threaded vs Regular Python 3.13](https://www."
 "youtube.com/watch?v=J7phN_M4GLM) - Jun 4, 2025"
@@ -908,7 +914,7 @@ msgstr ""
 "[(影片) 在 Free-Threaded 與一般 Python 3.13 中使用 Rust](https://www.youtube."
 "com/watch?v=J7phN_M4GLM) - 2025/06/04"
 
-#: src/index.md:258
+#: src/index.md:259
 msgid ""
 "[(Video) Techniques learned from five years finding the way for Rust in "
 "Python](https://www.youtube.com/watch?v=KTQn_PTHNCw) - Feb 26, 2025"
@@ -916,7 +922,7 @@ msgstr ""
 "[(影片) 五年探索 Rust 在 Python 中的技巧與心得](https://www.youtube.com/"
 "watch?v=KTQn_PTHNCw) - 2025/02/26"
 
-#: src/index.md:259
+#: src/index.md:260
 msgid ""
 "[(Podcast) Bridging Python and Rust: An Interview with PyO3 Maintainer David "
 "Hewitt](https://www.youtube.com/watch?v=P47JUMSQagU) - Aug 30, 2024"
@@ -924,7 +930,7 @@ msgstr ""
 "[(Podcast) Bridging Python and Rust：訪談 PyO3 維護者 David Hewitt](https://"
 "www.youtube.com/watch?v=P47JUMSQagU) - 2024/08/30"
 
-#: src/index.md:260
+#: src/index.md:261
 msgid ""
 "[(Video) PyO3: From Python to Rust and Back Again](https://www.youtube.com/"
 "watch?v=UmL_CA-v3O8) - Jul 3, 2024"
@@ -932,7 +938,7 @@ msgstr ""
 "[(影片) PyO3：從 Python 到 Rust 再回來](https://www.youtube.com/watch?"
 "v=UmL_CA-v3O8) - 2024/07/03"
 
-#: src/index.md:261
+#: src/index.md:262
 msgid ""
 "[Parsing Python ASTs 20x Faster with Rust](https://www.gauge.sh/blog/parsing-"
 "python-asts-20x-faster-with-rust) - Jun 17, 2024"
@@ -940,7 +946,7 @@ msgstr ""
 "[用 Rust 解析 Python AST 快 20 倍](https://www.gauge.sh/blog/parsing-python-"
 "asts-20x-faster-with-rust) - 2024/06/17"
 
-#: src/index.md:262
+#: src/index.md:263
 msgid ""
 "[(Video) How Python Harnesses Rust through PyO3](https://www.youtube.com/"
 "watch?v=UilujdubqVU) - May 18, 2024"
@@ -948,7 +954,7 @@ msgstr ""
 "[(影片) Python 如何透過 PyO3 結合 Rust](https://www.youtube.com/watch?"
 "v=UilujdubqVU) - 2024/05/18"
 
-#: src/index.md:263
+#: src/index.md:264
 msgid ""
 "[(Video) Combining Rust and Python: The Best of Both Worlds?](https://www."
 "youtube.com/watch?v=lyG6AKzu4ew) - Mar 1, 2024"
@@ -956,7 +962,7 @@ msgstr ""
 "[(影片) 結合 Rust 與 Python：兩全其美？](https://www.youtube.com/watch?"
 "v=lyG6AKzu4ew) - 2024/03/01"
 
-#: src/index.md:264
+#: src/index.md:265
 msgid ""
 "[(Video) Extending Python with Rust using PyO3](https://www.youtube.com/"
 "watch?v=T45ZEmSR1-s) - Dec 16, 2023"
@@ -964,7 +970,7 @@ msgstr ""
 "[(影片) 使用 PyO3 以 Rust 擴充 Python](https://www.youtube.com/watch?"
 "v=T45ZEmSR1-s) - 2023/12/16"
 
-#: src/index.md:265
+#: src/index.md:266
 msgid ""
 "[A Week of PyO3 + rust-numpy (How to Speed Up Your Data Pipeline X Times)]"
 "(https://terencezl.github.io/blog/2023/06/06/a-week-of-pyo3-rust-numpy/) - "
@@ -973,7 +979,7 @@ msgstr ""
 "[一週 PyO3 + rust-numpy（如何讓資料管線加速 X 倍）](https://terencezl.github."
 "io/blog/2023/06/06/a-week-of-pyo3-rust-numpy/) - 2023/06/06"
 
-#: src/index.md:266
+#: src/index.md:267
 msgid ""
 "[(Podcast) PyO3 with David Hewitt](https://rustacean-station.org/episode/"
 "david-hewitt/) - May 19, 2023"
@@ -981,7 +987,7 @@ msgstr ""
 "[(Podcast) PyO3 與 David Hewitt](https://rustacean-station.org/episode/david-"
 "hewitt/) - 2023/05/19"
 
-#: src/index.md:267
+#: src/index.md:268
 msgid ""
 "[Making Python 100x faster with less than 100 lines of Rust](https://"
 "ohadravid.github.io/posts/2023-03-rusty-python/) - Mar 28, 2023"
@@ -989,7 +995,7 @@ msgstr ""
 "[不到 100 行 Rust 讓 Python 快 100 倍](https://ohadravid.github.io/"
 "posts/2023-03-rusty-python/) - 2023/03/28"
 
-#: src/index.md:268
+#: src/index.md:269
 msgid ""
 "[How Pydantic V2 leverages Rust's Superpowers](https://fosdem.org/2023/"
 "schedule/event/rust_how_pydantic_v2_leverages_rusts_superpowers/) - Feb 4, "
@@ -998,7 +1004,7 @@ msgstr ""
 "[Pydantic V2 如何運用 Rust 的超能力](https://fosdem.org/2023/schedule/event/"
 "rust_how_pydantic_v2_leverages_rusts_superpowers/) - 2023/02/04"
 
-#: src/index.md:269
+#: src/index.md:270
 msgid ""
 "[How we extended the River stats module with Rust using PyO3](https://boring-"
 "guy.sh/posts/river-rust/) - Dec 23, 2022"
@@ -1006,7 +1012,7 @@ msgstr ""
 "[我們如何使用 PyO3 以 Rust 擴充 River 統計模組](https://boring-guy.sh/posts/"
 "river-rust/) - 2022/12/23"
 
-#: src/index.md:270
+#: src/index.md:271
 msgid ""
 "[Nine Rules for Writing Python Extensions in Rust](https://"
 "towardsdatascience.com/nine-rules-for-writing-python-extensions-in-rust-"
@@ -1016,7 +1022,7 @@ msgstr ""
 "rules-for-writing-python-extensions-in-rust-d35ea3a4ec29?"
 "sk=f8d808d5f414154fdb811e4137011437) - 2021/12/31"
 
-#: src/index.md:271
+#: src/index.md:272
 msgid ""
 "[Calling Rust from Python using PyO3](https://saidvandeklundert.net/"
 "learn/2021-11-18-calling-rust-from-python-using-pyo3/) - Nov 18, 2021"
@@ -1024,7 +1030,7 @@ msgstr ""
 "[使用 PyO3 從 Python 呼叫 Rust](https://saidvandeklundert.net/"
 "learn/2021-11-18-calling-rust-from-python-using-pyo3/) - 2021/11/18"
 
-#: src/index.md:272
+#: src/index.md:273
 msgid ""
 "[davidhewitt's 2021 talk at Rust Manchester meetup](https://www.youtube.com/"
 "watch?v=-XyWG_klSAw&t=320s) - Aug 19, 2021"
@@ -1032,7 +1038,7 @@ msgstr ""
 "[davidhewitt 在 Rust Manchester meetup 的 2021 演講](https://www.youtube.com/"
 "watch?v=-XyWG_klSAw&t=320s) - 2021/08/19"
 
-#: src/index.md:273
+#: src/index.md:274
 msgid ""
 "[Incrementally porting a small Python project to Rust](https://blog."
 "waleedkhan.name/port-python-to-rust/) - Apr 29, 2021"
@@ -1040,7 +1046,7 @@ msgstr ""
 "[逐步將小型 Python 專案移植到 Rust](https://blog.waleedkhan.name/port-python-"
 "to-rust/) - 2021/04/29"
 
-#: src/index.md:274
+#: src/index.md:275
 msgid ""
 "[Vortexa - Integrating Rust into Python](https://www.vortexa.com/blog/"
 "integrating-rust-into-python) - Apr 12, 2021"
@@ -1048,7 +1054,7 @@ msgstr ""
 "[Vortexa - 將 Rust 整合進 Python](https://www.vortexa.com/blog/integrating-"
 "rust-into-python) - 2021/04/12"
 
-#: src/index.md:275
+#: src/index.md:276
 msgid ""
 "[Writing and publishing a Python module in Rust](https://blog.yossarian."
 "net/2020/08/02/Writing-and-publishing-a-python-module-in-rust) - Aug 2, 2020"
@@ -1056,17 +1062,17 @@ msgstr ""
 "[以 Rust 撰寫並發布 Python 模組](https://blog.yossarian.net/2020/08/02/"
 "Writing-and-publishing-a-python-module-in-rust) - 2020/08/02"
 
-#: src/index.md:277
+#: src/index.md:278
 msgid "Contributing"
 msgstr "參與貢獻"
 
-#: src/index.md:279
+#: src/index.md:280
 msgid ""
 "Everyone is welcomed to contribute to PyO3! There are many ways to support "
 "the project, such as:"
 msgstr "歡迎大家參與 PyO3！你可以用許多方式支持專案，例如："
 
-#: src/index.md:281
+#: src/index.md:282
 msgid ""
 "help PyO3 users with issues on GitHub and [Discord](https://discord."
 "gg/33kcChzH7f)"
@@ -1074,19 +1080,19 @@ msgstr ""
 "在 GitHub 與 [Discord](https://discord.gg/33kcChzH7f) 協助 PyO3 使用者解決問"
 "題"
 
-#: src/index.md:282
+#: src/index.md:283
 msgid "improve documentation"
 msgstr "改善文件"
 
-#: src/index.md:283
+#: src/index.md:284
 msgid "write features and bugfixes"
 msgstr "撰寫功能與修復錯誤"
 
-#: src/index.md:284
+#: src/index.md:285
 msgid "publish blogs and examples of how to use PyO3"
 msgstr "發表如何使用 PyO3 的部落格與範例"
 
-#: src/index.md:286
+#: src/index.md:287
 msgid ""
 "Our [contributing notes](https://github.com/PyO3/pyo3/blob/main/Contributing."
 "md) and [architecture guide](https://github.com/PyO3/pyo3/blob/main/"
@@ -1097,7 +1103,7 @@ msgstr ""
 "(https://github.com/PyO3/pyo3/blob/main/Contributing.md)與[架構指南](https://"
 "github.com/PyO3/pyo3/blob/main/Architecture.md)取得更多資源。"
 
-#: src/index.md:288
+#: src/index.md:289
 msgid ""
 "If you don't have time to contribute yourself but still wish to support the "
 "project's future success, some of our maintainers have GitHub sponsorship "
@@ -1106,19 +1112,19 @@ msgstr ""
 "如果你沒有時間親自貢獻，但仍想支持專案的長期發展，部分維護者有 GitHub 贊助頁"
 "面："
 
-#: src/index.md:290
+#: src/index.md:291
 msgid "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 msgstr ""
 
-#: src/index.md:291
+#: src/index.md:292
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr ""
 
-#: src/index.md:293
+#: src/index.md:294
 msgid "License"
 msgstr "授權條款"
 
-#: src/index.md:295
+#: src/index.md:296
 msgid ""
 "PyO3 is licensed under the [Apache-2.0 license](LICENSE-APACHE) or the [MIT "
 "license](LICENSE-MIT), at your option."
@@ -1126,14 +1132,14 @@ msgstr ""
 "PyO3 採用 [Apache-2.0 授權](LICENSE-APACHE) 或 [MIT 授權](LICENSE-MIT)，可自"
 "行選擇。"
 
-#: src/index.md:297
+#: src/index.md:298
 msgid ""
 "Python is licensed under the [Python License](https://docs.python.org/3/"
 "license.html)."
 msgstr ""
 "Python 採用 [Python License](https://docs.python.org/3/license.html) 授權。"
 
-#: src/index.md:299
+#: src/index.md:300
 msgid ""
 "Unless you explicitly state otherwise, any contribution intentionally "
 "submitted for inclusion in PyO3 by you, as defined in the Apache License, "
@@ -1142,7 +1148,7 @@ msgstr ""
 "除非你明確另行說明，否則你提交且意圖納入 PyO3 的任何貢獻（依 Apache License "
 "定義）將採用上述雙重授權，不附加任何額外條款或條件。"
 
-#: src/index.md:301
+#: src/index.md:302
 msgid ""
 "[![Deploys by Netlify](https://www.netlify.com/assets/badges/netlify-badge-"
 "color-accent.svg)](https://www.netlify.com)"
