@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-03-15T20:35:33Z\n"
+"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -319,7 +319,8 @@ msgid ""
 "Named functions, e.g. `fn foo()`: add `#[pyfunction]` and then use "
 "[`wrap_pyfunction!`](https://pyo3.rs/main/doc/pyo3/macro.wrap_pyfunction."
 "html) to get the corresponding [`PyCFunction`](https://pyo3.rs/main/doc/pyo3/"
-"types/struct.PyCFunction.html)."
+"types/struct.PyCFunction.html); see [`wrap_pyfunction!`](https://pyo3.rs/"
+"main/doc/pyo3/macro.wrap_pyfunction.html) for an example."
 msgstr ""
 
 #: src/function.md:254
