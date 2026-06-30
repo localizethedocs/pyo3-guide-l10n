@@ -836,16 +836,3 @@ msgstr "[davidhewitt](https://github.com/sponsors/davidhewitt)"
 #: src/contributing.md:261
 msgid "[messense](https://github.com/sponsors/messense)"
 msgstr "[messense](https://github.com/sponsors/messense)"
-
-#~ msgid ""
-#~ "PyO3 uses [`trybuild`](https://github.com/dtolnay/trybuild) to develop UI "
-#~ "tests to capture error messages from the Rust compiler for some of the "
-#~ "macro functionality."
-#~ msgstr ""
-#~ "PyO3 使用 [`trybuild`](https://github.com/dtolnay/trybuild) 來開發 UI 測"
-#~ "試，以擷取某些巨集功能的 Rust 編譯器錯誤訊息。"
-
-#~ msgid ""
-#~ "Docs-only PRs do not need news items; start your PR title with `docs:` to "
-#~ "skip the check."
-#~ msgstr "僅文件的 PR 不需要新聞項目；將 PR 標題以 `docs:` 開頭即可略過檢查。"
