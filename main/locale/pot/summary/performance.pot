@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -53,10 +53,52 @@ msgid ""
 msgstr ""
 
 #: src/performance.md:59
-msgid "Access to Bound implies access to Python token"
+msgid "String interning"
 msgstr ""
 
 #: src/performance.md:61
+msgid ""
+"Every time a Rust `&str` is converted into a Python string, for example via "
+"`PyString::new` or through an `IntoPyObject` implementation, PyO3 allocates "
+"a new `PyString` object. For strings that are reused repeatedly at the same "
+"call site, e.g. as dictionary keys or attribute names, this repeated "
+"allocation is unnecessary overhead."
+msgstr ""
+
+#: src/performance.md:64
+msgid ""
+"The [`intern!`](https://pyo3.rs/main/doc/pyo3/macro.intern.html) macro "
+"caches a `PyString` in static storage the first time it is evaluated for a "
+"given call site, and returns a reference to that same object on every "
+"subsequent call, avoiding the repeated allocation."
+msgstr ""
+
+#: src/performance.md:66 src/performance.md:105
+msgid "For example, instead of writing"
+msgstr ""
+
+#: src/performance.md:76
+msgid "// A new `PyString` is created for every call of this function.\n"
+msgstr ""
+
+#: src/performance.md:77 src/performance.md:93
+msgid "\"foo\""
+msgstr ""
+
+#: src/performance.md:82 src/performance.md:126
+msgid "use the more efficient"
+msgstr ""
+
+#: src/performance.md:92
+msgid ""
+"// A `PyString` is created once and reused for the lifetime of the program.\n"
+msgstr ""
+
+#: src/performance.md:100
+msgid "Access to Bound implies access to Python token"
+msgstr ""
+
+#: src/performance.md:102
 msgid ""
 "Calling `Python::attach` is effectively a no-op when we're already [attached]"
 "(glossary.md#attached) to the interpreter, but checking that this is the "
@@ -67,23 +109,15 @@ msgid ""
 "to a Python token via `Bound::py`."
 msgstr ""
 
-#: src/performance.md:64
-msgid "For example, instead of writing"
-msgstr ""
-
-#: src/performance.md:85
-msgid "use the more efficient"
-msgstr ""
-
-#: src/performance.md:96
+#: src/performance.md:137
 msgid "// Access to `&Bound<'py, PyAny>` implies access to `Python<'py>`.\n"
 msgstr ""
 
-#: src/performance.md:104
+#: src/performance.md:145
 msgid "Calling Python callables (`__call__`)"
 msgstr ""
 
-#: src/performance.md:106
+#: src/performance.md:147
 msgid ""
 "CPython support multiple calling protocols: [`tp_call`](https://docs.python."
 "org/3/c-api/call.html#the-tp-call-protocol) and [`vectorcall`](https://docs."
@@ -91,26 +125,26 @@ msgid ""
 "(https://docs.python.org/3/c-api/call.html#the-vectorcall-protocol) is a "
 "more efficient protocol unlocking faster calls. PyO3 will try to dispatch "
 "Python `call`s using the [`vectorcall`](https://docs.python.org/3/c-api/call."
-"html#the-vectorcall-protocol) calling convention to archive maximum "
+"html#the-vectorcall-protocol) calling convention to achieve maximum "
 "performance if possible and falling back to [`tp_call`](https://docs.python."
 "org/3/c-api/call.html#the-tp-call-protocol) otherwise. This is implemented "
 "using the (internal) `PyCallArgs` trait. It defines how Rust types can be "
 "used as Python `call` arguments. This trait is currently implemented for"
 msgstr ""
 
-#: src/performance.md:113
+#: src/performance.md:154
 msgid "Rust tuples, where each member implements `IntoPyObject`,"
 msgstr ""
 
-#: src/performance.md:114
+#: src/performance.md:155
 msgid "`Bound<'_, PyTuple>`"
 msgstr ""
 
-#: src/performance.md:115
+#: src/performance.md:156
 msgid "`Py<PyTuple>`"
 msgstr ""
 
-#: src/performance.md:117
+#: src/performance.md:158
 msgid ""
 "Rust tuples may make use of [`vectorcall`](https://docs.python.org/3/c-api/"
 "call.html#the-vectorcall-protocol) where as `Bound<'_, PyTuple>` and "
@@ -119,11 +153,11 @@ msgid ""
 "as arguments."
 msgstr ""
 
-#: src/performance.md:123
+#: src/performance.md:164
 msgid "Detach from the interpreter for long-running Rust-only work"
 msgstr ""
 
-#: src/performance.md:125
+#: src/performance.md:166
 msgid ""
 "When executing Rust code which does not need to interact with the Python "
 "interpreter, use [`Python::detach`](https://pyo3.rs/main/doc/pyo3/marker/"
@@ -131,14 +165,14 @@ msgid ""
 "without waiting for the current thread."
 msgstr ""
 
-#: src/performance.md:127
+#: src/performance.md:168
 msgid ""
 "On the [GIL](https://docs.python.org/3/glossary.html#term-GIL)\\-enabled "
 "build, this is crucial for best performance as only a single thread may ever "
 "be attached at a time."
 msgstr ""
 
-#: src/performance.md:129
+#: src/performance.md:170
 msgid ""
 "On the free-threaded build, this is still best practice as there are several "
 "\"stop the world\" events (such as [garbage collection](https://docs.python."
@@ -146,18 +180,18 @@ msgid ""
 "the Python interpreter are forced to wait."
 msgstr ""
 
-#: src/performance.md:131
+#: src/performance.md:172
 msgid ""
 "As a rule of thumb, attaching and detaching from the Python interpreter "
 "takes less than a millisecond, so any work which is expected to take "
 "multiple milliseconds can likely benefit from detaching from the interpreter."
 msgstr ""
 
-#: src/performance.md:135
+#: src/performance.md:176
 msgid "Disable the global reference pool"
 msgstr ""
 
-#: src/performance.md:137
+#: src/performance.md:178
 msgid ""
 "PyO3 uses global mutable state to keep track of deferred reference count "
 "updates implied by `impl<T> Drop for Py<T>` being called without being "
@@ -167,7 +201,7 @@ msgid ""
 "the cost of crossing the Python-Rust boundary."
 msgstr ""
 
-#: src/performance.md:140
+#: src/performance.md:181
 msgid ""
 "This functionality can be avoided by setting the "
 "`pyo3_disable_reference_pool` conditional compilation flag. This removes the "
@@ -182,7 +216,7 @@ msgid ""
 "effects like resource exhaustion in the long term."
 msgstr ""
 
-#: src/performance.md:146
+#: src/performance.md:187
 msgid ""
 "This limitation is important to keep in mind when this setting is used, "
 "especially when embedding Python code into a Rust application as it is quite "
@@ -191,6 +225,6 @@ msgid ""
 "making sure to re-attach beforehand. For example, the following code"
 msgstr ""
 
-#: src/performance.md:163
+#: src/performance.md:204
 msgid "will abort if the list not explicitly disposed via"
 msgstr ""

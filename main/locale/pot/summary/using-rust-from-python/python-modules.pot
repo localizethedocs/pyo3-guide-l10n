@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:50Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -186,4 +186,37 @@ msgstr ""
 
 #: src/module.md:172
 msgid "\"double\""
+msgstr ""
+
+#: src/module.md:178
+msgid ""
+"The module argument may be omitted if the initialization does not need it, "
+"for example when it only installs some global state. The return type may "
+"then be omitted too:"
+msgstr ""
+
+#: src/module.md:187
+msgid "// Arbitrary code which does not touch the module\n"
+msgstr ""
+
+#: src/module.md:193
+msgid ""
+"A `Python<'_>` marker may be taken as the first argument, either on its own "
+"or followed by the module. This suits an initializer which needs the "
+"interpreter but not the module itself:"
+msgstr ""
+
+#: src/module.md:204
+msgid "// Arbitrary code which needs the interpreter but not the module\n"
+msgstr ""
+
+#: src/module.md:205
+msgid "\"decimal\""
+msgstr ""
+
+#: src/module.md:212
+msgid ""
+"Prefer a form which does not take the module where possible: an initializer "
+"which is not handed the module does not add attributes to it, so [type stub "
+"generation](type-stub.md) can keep describing the module in full."
 msgstr ""

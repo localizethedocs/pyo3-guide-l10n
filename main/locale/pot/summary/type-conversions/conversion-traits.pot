@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -536,10 +536,17 @@ msgid ""
 msgstr ""
 
 #: src/conversions/traits.md:551
+msgid ""
+"As of PyO3 0.30.0 `skip_from_py_object` is the new default behavior. Setting "
+"the option is now deprecated and can be safely removed without changes in "
+"behavior. PyO3 will remove this option entirely in a future release."
+msgstr ""
+
+#: src/conversions/traits.md:555
 msgid "`IntoPyObject`"
 msgstr ""
 
-#: src/conversions/traits.md:553
+#: src/conversions/traits.md:557
 msgid ""
 "The [`IntoPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
 "IntoPyObject.html) trait defines the to-python conversion for a Rust type. "
@@ -547,7 +554,7 @@ msgid ""
 "use `extends`."
 msgstr ""
 
-#: src/conversions/traits.md:556
+#: src/conversions/traits.md:560
 msgid ""
 "This trait defines a single method, `into_pyobject()`, which returns a "
 "[`Result`](https://doc.rust-lang.org/stable/std/result/enum.Result.html) "
@@ -558,145 +565,145 @@ msgid ""
 "types (in the case of `into_py_any()`, `Py<PyAny>` and `PyErr` respectively)."
 msgstr ""
 
-#: src/conversions/traits.md:559
+#: src/conversions/traits.md:563
 msgid ""
 "Occasionally you may choose to implement this for custom types which are "
 "mapped to Python types _without_ having a unique python type."
 msgstr ""
 
-#: src/conversions/traits.md:561
+#: src/conversions/traits.md:565
 msgid "derive macro"
 msgstr ""
 
-#: src/conversions/traits.md:563
+#: src/conversions/traits.md:567
 msgid ""
 "`IntoPyObject` can be implemented using our derive macro. Both `struct`s and "
 "`enum`s are supported."
 msgstr ""
 
-#: src/conversions/traits.md:566
+#: src/conversions/traits.md:570
 msgid ""
 "`struct`s will turn into a `PyDict` using the field names as keys, tuple "
 "`struct`s will turn convert into `PyTuple` with the fields in declaration "
 "order."
 msgstr ""
 
-#: src/conversions/traits.md:573
+#: src/conversions/traits.md:579
 msgid "// structs convert into `PyDict` with field names as keys\n"
 msgstr ""
 
-#: src/conversions/traits.md:580
+#: src/conversions/traits.md:586
 msgid ""
 "// tuple structs convert into `PyTuple`\n"
 "// lifetimes and generics are supported, the impl will be bounded by\n"
 "// `K: IntoPyObject, V: IntoPyObject`\n"
 msgstr ""
 
-#: src/conversions/traits.md:588
+#: src/conversions/traits.md:595
 msgid ""
 "For structs with a single field (newtype pattern) the `#[pyo3(transparent)]` "
 "option can be used to forward the implementation to the inner type."
 msgstr ""
 
-#: src/conversions/traits.md:593
+#: src/conversions/traits.md:600
 msgid "// newtype tuple structs are implicitly `transparent`\n"
 msgstr ""
 
-#: src/conversions/traits.md:601
+#: src/conversions/traits.md:608
 msgid "// `'py` lifetime will be used as the Python lifetime\n"
 msgstr ""
 
-#: src/conversions/traits.md:605
+#: src/conversions/traits.md:612
 msgid ""
 "For `enum`s each variant is converted according to the rules for `struct`s "
 "above."
 msgstr ""
 
-#: src/conversions/traits.md:614
+#: src/conversions/traits.md:624
 msgid "// enums are supported and convert using the same\n"
 msgstr ""
 
-#: src/conversions/traits.md:615
+#: src/conversions/traits.md:625
 msgid "// rules on the variants as the structs above\n"
 msgstr ""
 
-#: src/conversions/traits.md:623
+#: src/conversions/traits.md:633
 msgid ""
 "Additionally `IntoPyObject` can be derived for a reference to a struct or "
 "enum using the `IntoPyObjectRef` derive macro. All the same rules from above "
 "apply as well."
 msgstr ""
 
-#: src/conversions/traits.md:626
+#: src/conversions/traits.md:636
 msgid "`#[derive(IntoPyObject)]`/`#[derive(IntoPyObjectRef)]` Field Attributes"
 msgstr ""
 
-#: src/conversions/traits.md:628
+#: src/conversions/traits.md:638
 msgid "`pyo3(into_py_with = ...)`"
 msgstr ""
 
-#: src/conversions/traits.md:629
+#: src/conversions/traits.md:639
 msgid "apply a custom function to convert the field from Rust into Python."
 msgstr ""
 
-#: src/conversions/traits.md:630
+#: src/conversions/traits.md:640
 msgid "the argument must be the function identifier"
 msgstr ""
 
-#: src/conversions/traits.md:631
+#: src/conversions/traits.md:641
 msgid ""
 "the function signature must be `fn(Cow<'_, T>, Python<'py>) -> "
 "PyResult<Bound<'py, PyAny>>` where `T` is the Rust type of the argument."
 msgstr ""
 
-#: src/conversions/traits.md:632
+#: src/conversions/traits.md:642
 msgid "`#[derive(IntoPyObject)]` will invoke the function with `Cow::Owned`"
 msgstr ""
 
-#: src/conversions/traits.md:633
+#: src/conversions/traits.md:643
 msgid ""
 "`#[derive(IntoPyObjectRef)]` will invoke the function with `Cow::Borrowed`"
 msgstr ""
 
-#: src/conversions/traits.md:648
+#: src/conversions/traits.md:661
 msgid "/// Convert `NotIntoPy` into Python\n"
 msgstr ""
 
-#: src/conversions/traits.md:654
+#: src/conversions/traits.md:668
 msgid "manual implementation"
 msgstr ""
 
-#: src/conversions/traits.md:656
+#: src/conversions/traits.md:670
 msgid ""
 "If the derive macro is not suitable for your use case, `IntoPyObject` can be "
 "implemented manually as demonstrated below."
 msgstr ""
 
-#: src/conversions/traits.md:664
+#: src/conversions/traits.md:678
 msgid "// the Python type\n"
 msgstr ""
 
-#: src/conversions/traits.md:665
+#: src/conversions/traits.md:679
 msgid "// in most cases this will be `Bound`\n"
 msgstr ""
 
-#: src/conversions/traits.md:666
+#: src/conversions/traits.md:680
 msgid "// the conversion error type, has to be convertible to `PyErr`\n"
 msgstr ""
 
-#: src/conversions/traits.md:672
+#: src/conversions/traits.md:686
 msgid "// equivalent to former `ToPyObject` implementations\n"
 msgstr ""
 
-#: src/conversions/traits.md:676
+#: src/conversions/traits.md:690
 msgid "// `Borrowed` can be used to optimized reference counting\n"
 msgstr ""
 
-#: src/conversions/traits.md:685
+#: src/conversions/traits.md:699
 msgid "`BoundObject` for conversions that may be `Bound` or `Borrowed`"
 msgstr ""
 
-#: src/conversions/traits.md:687
+#: src/conversions/traits.md:701
 msgid ""
 "`IntoPyObject::into_py_object` returns either `Bound` or `Borrowed` "
 "depending on the implementation for a concrete type. For example, the "
@@ -704,7 +711,7 @@ msgid ""
 "the `bool` implementation produces a `Borrowed<'py, 'py, PyBool>`:"
 msgstr ""
 
-#: src/conversions/traits.md:713
+#: src/conversions/traits.md:727
 msgid ""
 "In this example if we wanted to combine `ints_as_pyints` and "
 "`bools_as_pybool` into a single `Vec<Py<PyAny>>` to return from the `Python::"
@@ -712,20 +719,20 @@ msgid ""
 "the [smart pointers](../glossary.md#smart-pointer) and the python types."
 msgstr ""
 
-#: src/conversions/traits.md:715
+#: src/conversions/traits.md:729
 msgid ""
 "Instead, we can write a function that generically converts vectors of either "
 "integers or bools into a vector of `Py<PyAny>` using the [`BoundObject`]"
 "(https://pyo3.rs/main/doc/pyo3/instance/trait.BoundObject.html) trait:"
 msgstr ""
 
-#: src/conversions/traits.md:732
+#: src/conversions/traits.md:746
 msgid ""
 "// Note: the below is equivalent to `x.into_py_any()`\n"
 "                // from the `IntoPyObjectExt` trait\n"
 msgstr ""
 
-#: src/conversions/traits.md:753
+#: src/conversions/traits.md:767
 msgid ""
 "In the example above we used `BoundObject::into_any` and `BoundObject::"
 "unbind` to manipulate the python types and smart pointers into the result "

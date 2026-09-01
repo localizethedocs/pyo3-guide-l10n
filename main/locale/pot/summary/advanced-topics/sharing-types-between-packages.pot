@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/advanced/sharing-types.md:1
@@ -637,136 +637,136 @@ msgid ""
 "be shared across the boundary."
 msgstr ""
 
-#: src/advanced/sharing-types.md:345
+#: src/advanced/sharing-types.md:344
 msgid ""
 "The `BaseApi` struct defined in the previous sections is extended to include "
 "functions to manipulate this struct (these functions will later be provided "
 "by `base-package`)."
 msgstr ""
 
-#: src/advanced/sharing-types.md:347
+#: src/advanced/sharing-types.md:346
 msgid "At a minimum, this will probably include:"
 msgstr ""
 
-#: src/advanced/sharing-types.md:349
+#: src/advanced/sharing-types.md:348
 msgid ""
 "`get_shared_type: extern \"C\" fn() -> Py<PyType>` - a function to get the "
 "`#[pyclass]` Python type object for `SharedType`."
 msgstr ""
 
-#: src/advanced/sharing-types.md:351
+#: src/advanced/sharing-types.md:350
 msgid ""
 "`create_shared_type: unsafe extern \"C\" fn(SharedType) -> "
 "Option<Py<SharedType>>` - a function to create a new instance of the "
 "`SharedType` struct and return it as a Python object."
 msgstr ""
 
-#: src/advanced/sharing-types.md:353
+#: src/advanced/sharing-types.md:352
 msgid ""
 "This function is `unsafe` because the caller must ensure that the thread is "
 "[attached](../glossary.md#attached) to the interpreter (`Python<'py>` is a "
 "zero-sized type and not FFI-safe)."
 msgstr ""
 
-#: src/advanced/sharing-types.md:355
+#: src/advanced/sharing-types.md:354
 msgid ""
 "The return type on this function is wrapped in `Option` to allow for failure "
 "- see [the error handling section](#error-handling) for more details."
 msgstr ""
 
-#: src/advanced/sharing-types.md:357
+#: src/advanced/sharing-types.md:356
 msgid ""
 "`cast_shared_type: for<'a> extern \"C\" fn(Borrowed<'a, '_, SharedType>) -> "
 "&'a SharedType` - a function to extract a reference to the `SharedType` Rust "
 "struct from inside a Python object."
 msgstr ""
 
-#: src/advanced/sharing-types.md:359
+#: src/advanced/sharing-types.md:358
 msgid ""
 "With the API struct extended to include these functions, the `base-package-"
 "core` crate can now implement PyO3 traits for `SharedType` in terms of those "
 "functions."
 msgstr ""
 
-#: src/advanced/sharing-types.md:361
+#: src/advanced/sharing-types.md:360
 msgid "The crucial traits are:"
 msgstr ""
 
-#: src/advanced/sharing-types.md:363
+#: src/advanced/sharing-types.md:362
 msgid ""
 "`PyTypeInfo` - the `get_type` function can delegate to the `get_shared_type` "
 "function pointer in the API struct."
 msgstr ""
 
-#: src/advanced/sharing-types.md:365
+#: src/advanced/sharing-types.md:364
 msgid ""
 "`IntoPyPyObject` - the `into_pyobject` function can delegate to the "
 "`create_shared_type` function pointer in the API struct."
 msgstr ""
 
-#: src/advanced/sharing-types.md:367
+#: src/advanced/sharing-types.md:366
 msgid ""
 "`FromPyObject<'_>` - the `extract` function can delegate to the "
 "`cast_shared_type` function pointer in the API struct."
 msgstr ""
 
-#: src/advanced/sharing-types.md:370
+#: src/advanced/sharing-types.md:368
 msgid ""
 "`base-package` implements a `#[pyclass]` which is a thin wrapper around the "
 "`SharedType` struct, defining its Python functionality."
 msgstr ""
 
-#: src/advanced/sharing-types.md:372
+#: src/advanced/sharing-types.md:370
 msgid ""
 "`base-package` implements the functions defined in the API struct to "
 "manipulate the `SharedType`, and populates the API struct with pointers to "
 "these functions as part of creating the `capsule`."
 msgstr ""
 
-#: src/advanced/sharing-types.md:374
+#: src/advanced/sharing-types.md:372
 msgid ""
 "`derived-package` uses the existing `import_base_package()` function to load "
 "the API struct, and then can interact with it as a Python type via PyO3's "
 "[smart pointers](../glossary.md#smart-pointer)."
 msgstr ""
 
-#: src/advanced/sharing-types.md:376
+#: src/advanced/sharing-types.md:374
 msgid ""
 "The [example project](https://github.com/davidhewitt/pyo3-1444-prototype) "
 "demonstrates how to do this with a `Series` type implementing a \"mini "
 "DataFrame API\", to show how to use these stages to perform real work."
 msgstr ""
 
-#: src/advanced/sharing-types.md:378
+#: src/advanced/sharing-types.md:376
 msgid "Practical considerations for sharing data across the package boundary"
 msgstr ""
 
-#: src/advanced/sharing-types.md:380
+#: src/advanced/sharing-types.md:378
 msgid ""
 "As a reminder, there are two key restrictions to data which is shared across "
 "the package boundary:"
 msgstr ""
 
-#: src/advanced/sharing-types.md:382
+#: src/advanced/sharing-types.md:380
 msgid ""
 "Only types with a stable layout, such as `#[repr(C)]` types, can be shared."
 msgstr ""
 
-#: src/advanced/sharing-types.md:383
+#: src/advanced/sharing-types.md:381
 msgid ""
 "Global variables are not shared across the boundary, and in particular for "
 "data sharing, the `#[global_allocator]` is not shared, so data allocated by "
 "one package must be freed by the same package."
 msgstr ""
 
-#: src/advanced/sharing-types.md:385
+#: src/advanced/sharing-types.md:383
 msgid ""
 "This means that all Rust standard library types, such as `Vec`, `String`, "
 "and `Box`, cannot be shared across the boundary. Even Rust tuples do not "
 "have a stable layout and cannot be shared."
 msgstr ""
 
-#: src/advanced/sharing-types.md:388
+#: src/advanced/sharing-types.md:386
 msgid ""
 "There [is a proposal for a `#[repr(crabi)]` ABI](https://github.com/rust-"
 "lang/rust/issues/111423) which would define stable layouts for many Rust "
@@ -774,7 +774,7 @@ msgid ""
 "types which contain heap allocations."
 msgstr ""
 
-#: src/advanced/sharing-types.md:391
+#: src/advanced/sharing-types.md:389
 msgid ""
 "For now, a practical solution is to use the [`abi_stable`](https://github."
 "com/rodrimati1992/abi_stable_crates/) crate, which provides many equivalents "
@@ -786,24 +786,24 @@ msgid ""
 "the boundary."
 msgstr ""
 
-#: src/advanced/sharing-types.md:395
+#: src/advanced/sharing-types.md:393
 msgid ""
 "Using vtables introduces overhead (e.g. prevents inlining), however this is "
 "a necessary consequence of the limitations of sharing data across the "
 "package boundary."
 msgstr ""
 
-#: src/advanced/sharing-types.md:397
+#: src/advanced/sharing-types.md:395
 msgid "Error handling across the boundary"
 msgstr ""
 
-#: src/advanced/sharing-types.md:399
+#: src/advanced/sharing-types.md:397
 msgid ""
 "Similar to many other types, PyO3's `PyErr` type is not currently "
 "`#[repr(C)]`, so cannot be shared across the package boundary."
 msgstr ""
 
-#: src/advanced/sharing-types.md:401
+#: src/advanced/sharing-types.md:399
 msgid ""
 "The simplest approach to handling errors across the boundary is to use "
 "`Option` return types in the API struct, and to return `None` on error. This "
@@ -811,13 +811,13 @@ msgid ""
 "davidhewitt/pyo3-1444-prototype)."
 msgstr ""
 
-#: src/advanced/sharing-types.md:404
+#: src/advanced/sharing-types.md:402
 msgid ""
 "The downside of this approach is that `?` does not trivially work in the "
 "implementation of the API functions. The suggested strategy is:"
 msgstr ""
 
-#: src/advanced/sharing-types.md:407
+#: src/advanced/sharing-types.md:405
 msgid ""
 "Inside the API function implementations, convert `PyResult` to `Option` by "
 "using `PyErr::restore` to write the error to the Python [thread state]"
@@ -825,18 +825,18 @@ msgid ""
 "`None` on error."
 msgstr ""
 
-#: src/advanced/sharing-types.md:408
+#: src/advanced/sharing-types.md:406
 msgid ""
 "The wrappers in `base-package-core` which delegate to the API functions can "
 "then convert the `Option` back to `PyResult` by using `PyErr::fetch` to read "
 "the error from the Python thread state."
 msgstr ""
 
-#: src/advanced/sharing-types.md:410
+#: src/advanced/sharing-types.md:408
 msgid "Wrap-up, limitations & future work"
 msgstr ""
 
-#: src/advanced/sharing-types.md:412
+#: src/advanced/sharing-types.md:410
 msgid ""
 "This subchapter has attempted to detail how to use `capsule` objects to "
 "create an API for sharing Rust data between multiple PyO3 extension modules. "
@@ -844,7 +844,7 @@ msgid ""
 "this functionality."
 msgstr ""
 
-#: src/advanced/sharing-types.md:415
+#: src/advanced/sharing-types.md:413
 msgid ""
 "PyO3 does not yet offer any particular support for this use case and will "
 "likely be unable to provide a fully safe API to achieve this while data "
@@ -853,15 +853,15 @@ msgid ""
 "pieces of this process."
 msgstr ""
 
-#: src/advanced/sharing-types.md:418
+#: src/advanced/sharing-types.md:416
 msgid "Some places where this process process easier in the future include:"
 msgstr ""
 
-#: src/advanced/sharing-types.md:420
+#: src/advanced/sharing-types.md:418
 msgid "Better `#[pyclass]` support"
 msgstr ""
 
-#: src/advanced/sharing-types.md:422
+#: src/advanced/sharing-types.md:420
 msgid ""
 "At the moment the `base-package-core` Rust API cannot use PyO3's "
 "`#[pyclass]` macro, because of the global variable backing the `#[pyclass]` "
@@ -869,7 +869,7 @@ msgid ""
 "`derived-package`."
 msgstr ""
 
-#: src/advanced/sharing-types.md:424
+#: src/advanced/sharing-types.md:422
 msgid ""
 "A possible solution is that PyO3 could have an option like "
 "`#[pyclass(shareable)]`, which could automatically generate the kind of "
@@ -877,7 +877,7 @@ msgid ""
 "be hand-rolled at present."
 msgstr ""
 
-#: src/advanced/sharing-types.md:426
+#: src/advanced/sharing-types.md:424
 msgid ""
 "To make this work, PyO3 would probably need to support [module state]"
 "(https://github.com/PyO3/pyo3/pull/5600), and require the `base-package` "
@@ -885,23 +885,23 @@ msgid ""
 "module state."
 msgstr ""
 
-#: src/advanced/sharing-types.md:428
+#: src/advanced/sharing-types.md:426
 msgid ""
 "There are many open design questions about how to make that work elegantly."
 msgstr ""
 
-#: src/advanced/sharing-types.md:430
+#: src/advanced/sharing-types.md:428
 msgid "`#[repr(C)]` error handling"
 msgstr ""
 
-#: src/advanced/sharing-types.md:432
+#: src/advanced/sharing-types.md:430
 msgid ""
 "At present, PyO3's `PyErr` type is a complex internal state machine which "
 "allows for lazy creation of Python exceptions. This was convenient in early "
 "implementations of PyO3 but carried internal complexity and overhead."
 msgstr ""
 
-#: src/advanced/sharing-types.md:435
+#: src/advanced/sharing-types.md:433
 msgid ""
 "PyO3's APIs have been trending in recent years towards allowing Rust code to "
 "use Rust error types for full control of overhead, e.g. the `IntoPyObject` "
@@ -910,7 +910,7 @@ msgid ""
 "conversion to `PyErr`."
 msgstr ""
 
-#: src/advanced/sharing-types.md:437
+#: src/advanced/sharing-types.md:435
 msgid ""
 "It is likely that PyO3 will eventually transition the `PyErr` type to be a "
 "thin wrapper around `Py<PyBaseException>`, which would allow it to have a "
@@ -919,11 +919,11 @@ msgid ""
 "`PyErr`'s \"lazy\" internals towards better practices."
 msgstr ""
 
-#: src/advanced/sharing-types.md:440
+#: src/advanced/sharing-types.md:438
 msgid "Better support for stable-layout types"
 msgstr ""
 
-#: src/advanced/sharing-types.md:442
+#: src/advanced/sharing-types.md:440
 msgid ""
 "The restriction of needing `#[repr(C)]` types to achieve a stable ABI for "
 "data sharing creates a lot of friction at the boundary. It can also have "
@@ -931,7 +931,7 @@ msgid ""
 "core` types."
 msgstr ""
 
-#: src/advanced/sharing-types.md:445
+#: src/advanced/sharing-types.md:443
 msgid ""
 "The author's experience is that the Rust compiler doesn't yet have a "
 "mechanism to comprehensively lint against accidentally sharing types with "
@@ -940,7 +940,7 @@ msgid ""
 "avoid easy mistakes."
 msgstr ""
 
-#: src/advanced/sharing-types.md:448
+#: src/advanced/sharing-types.md:446
 msgid ""
 "Outside of the Rust project itself, [`abi_stable`](https://github.com/"
 "rodrimati1992/abi_stable_crates/) crate is the most complete solution "
@@ -950,7 +950,7 @@ msgid ""
 "forking it."
 msgstr ""
 
-#: src/advanced/sharing-types.md:451
+#: src/advanced/sharing-types.md:449
 msgid ""
 "Furthermore, PyO3 currently doesn't implement `FromPyObject` or "
 "`IntoPyObject` conversions for `abi_stable` types. This makes working with "

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -88,37 +88,37 @@ msgid ""
 "which usually makes multi-threading in Python only good for IO-bound tasks:"
 msgstr ""
 
-#: src/parallelism.md:107
+#: src/parallelism.md:103
 msgid "Benchmark"
 msgstr ""
 
-#: src/parallelism.md:109
+#: src/parallelism.md:105
 msgid ""
 "Let's benchmark the `word-count` example to verify that we really did unlock "
 "parallelism with PyO3."
 msgstr ""
 
-#: src/parallelism.md:111
+#: src/parallelism.md:107
 msgid "We are using `pytest-benchmark` to benchmark four word count functions:"
 msgstr ""
 
-#: src/parallelism.md:113
+#: src/parallelism.md:109
 msgid "Pure Python version"
 msgstr ""
 
-#: src/parallelism.md:114
+#: src/parallelism.md:110
 msgid "Rust parallel version"
 msgstr ""
 
-#: src/parallelism.md:115
+#: src/parallelism.md:111
 msgid "Rust sequential version"
 msgstr ""
 
-#: src/parallelism.md:116
+#: src/parallelism.md:112
 msgid "Rust sequential version executed twice with two Python threads"
 msgstr ""
 
-#: src/parallelism.md:118
+#: src/parallelism.md:114
 msgid ""
 "The benchmark script can be found [in the PyO3 GitHub repository](https://"
 "github.com/PyO3/pyo3/blob/main/examples/word-count/tests/test_word_count."
@@ -126,24 +126,24 @@ msgid ""
 "functions."
 msgstr ""
 
-#: src/parallelism.md:120
+#: src/parallelism.md:116
 msgid ""
 "While the results of the benchmark of course depend on your machine, the "
 "relative results should be similar to this (mid 2020):"
 msgstr ""
 
-#: src/parallelism.md:133
+#: src/parallelism.md:129
 msgid ""
 "You can see that the Python threaded version is not much slower than the "
 "Rust sequential version, which means compared to an execution on a single "
 "CPU core the speed has doubled."
 msgstr ""
 
-#: src/parallelism.md:135
+#: src/parallelism.md:131
 msgid "Sharing Python objects between Rust threads"
 msgstr ""
 
-#: src/parallelism.md:137
+#: src/parallelism.md:133
 msgid ""
 "In the example above we made a Python interface to a low-level rust "
 "function, and then leveraged the python `threading` module to run the low-"
@@ -152,28 +152,28 @@ msgid ""
 "taken to avoid writing code that deadlocks with the GIL in these cases."
 msgstr ""
 
-#: src/parallelism.md:141
+#: src/parallelism.md:137
 msgid ""
-"Note: This example is meant to illustrate how to drop and re-acquire the GIL "
-"to avoid creating deadlocks. Unless the spawned threads subsequently release "
-"the GIL or you are using the free-threaded build of CPython, you will not "
-"see any speedups due to multi-threaded parallelism using `rayon` to "
+"\\[!NOTE\\] This example is meant to illustrate how to drop and re-acquire "
+"the GIL to avoid creating deadlocks. Unless the spawned threads subsequently "
+"release the GIL or you are using the free-threaded build of CPython, you "
+"will not see any speedups due to multi-threaded parallelism using `rayon` to "
 "parallelize code that acquires and holds the GIL for the entire execution of "
 "the spawned thread."
 msgstr ""
 
-#: src/parallelism.md:148
+#: src/parallelism.md:141
 msgid ""
 "In the example below, we share a `Vec` of User ID objects defined using the "
 "`pyclass` macro and spawn threads to process the collection of data into a "
 "`Vec` of booleans based on a predicate using a `rayon` parallel iterator:"
 msgstr ""
 
-#: src/parallelism.md:152
+#: src/parallelism.md:145
 msgid "// These traits let us use int_par_iter and map\n"
 msgstr ""
 
-#: src/parallelism.md:174
+#: src/parallelism.md:167
 msgid ""
 "It's important to note that there is an `outer_py` [Python token](glossary."
 "md#python-token) as well as an `inner_py` token. Sharing Python tokens "
@@ -181,7 +181,7 @@ msgid ""
 "interpreter to access data wrapped by a Python object."
 msgstr ""
 
-#: src/parallelism.md:177
+#: src/parallelism.md:170
 msgid ""
 "It's also important to see that this example uses [`Python::detach`](https://"
 "pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.detach) to wrap the "

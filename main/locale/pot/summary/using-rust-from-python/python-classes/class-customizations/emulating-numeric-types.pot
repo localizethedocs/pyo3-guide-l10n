@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,31 +30,31 @@ msgstr ""
 msgid "We can have infinite precision just like Python's `int`."
 msgstr ""
 
-#: src/class/numeric.md:10
+#: src/class/numeric.md:11
 msgid "However that would be quite boring - we'd be reinventing the wheel."
 msgstr ""
 
-#: src/class/numeric.md:11
+#: src/class/numeric.md:12
 msgid ""
 "We can raise exceptions whenever `Number` overflows, but that makes the API "
 "painful to use."
 msgstr ""
 
-#: src/class/numeric.md:12
+#: src/class/numeric.md:13
 msgid ""
 "We can wrap around the boundary of `i32`. This is the approach we'll take "
 "here. To do that we'll just forward to `i32`'s `wrapping_*` methods."
 msgstr ""
 
-#: src/class/numeric.md:16
+#: src/class/numeric.md:17
 msgid "Fixing our constructor"
 msgstr ""
 
-#: src/class/numeric.md:18
+#: src/class/numeric.md:19
 msgid "Let's address the first overflow, in `Number`'s constructor:"
 msgstr ""
 
-#: src/class/numeric.md:26
+#: src/class/numeric.md:27
 msgid ""
 "```text\n"
 "Traceback (most recent call last):\n"
@@ -64,7 +64,7 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/class/numeric.md:33
+#: src/class/numeric.md:34
 msgid ""
 "Instead of relying on the default [`FromPyObject`](https://pyo3.rs/main/doc/"
 "pyo3/conversion/trait.FromPyObject.html) extraction to parse arguments, we "
@@ -74,54 +74,54 @@ msgid ""
 "to an `i32`."
 msgstr ""
 
-#: src/class/numeric.md:41 src/class/numeric.md:55 src/class/numeric.md:218
+#: src/class/numeric.md:42 src/class/numeric.md:56 src/class/numeric.md:221
 msgid "\"__and__\""
 msgstr ""
 
-#: src/class/numeric.md:43
+#: src/class/numeric.md:44
 msgid "//     👇 This intentionally overflows!\n"
 msgstr ""
 
-#: src/class/numeric.md:48
+#: src/class/numeric.md:49
 msgid ""
 "We also add documentation, via `///` comments, which are visible to Python "
 "users."
 msgstr ""
 
-#: src/class/numeric.md:59 src/class/numeric.md:221
+#: src/class/numeric.md:60 src/class/numeric.md:224
 msgid ""
 "/// Did you ever hear the tragedy of Darth Signed The Overfloweth? I thought "
 "not.\n"
 "/// It's not a story C would tell you. It's a Rust legend.\n"
 msgstr ""
 
-#: src/class/numeric.md:62 src/class/numeric.md:224
+#: src/class/numeric.md:63 src/class/numeric.md:227
 msgid "\"my_module\""
 msgstr ""
 
-#: src/class/numeric.md:74
+#: src/class/numeric.md:75
 msgid "With that out of the way, let's implement some operators:"
 msgstr ""
 
-#: src/class/numeric.md:101 src/class/numeric.md:108 src/class/numeric.md:280
-#: src/class/numeric.md:287
+#: src/class/numeric.md:102 src/class/numeric.md:109 src/class/numeric.md:283
+#: src/class/numeric.md:290
 msgid "\"division by zero\""
 msgstr ""
 
-#: src/class/numeric.md:115 src/class/numeric.md:122 src/class/numeric.md:294
-#: src/class/numeric.md:301
+#: src/class/numeric.md:116 src/class/numeric.md:123 src/class/numeric.md:297
+#: src/class/numeric.md:304
 msgid "\"negative shift count\""
 msgstr ""
 
-#: src/class/numeric.md:128
+#: src/class/numeric.md:129
 msgid "Unary arithmetic operations"
 msgstr ""
 
-#: src/class/numeric.md:156
+#: src/class/numeric.md:157
 msgid "Support for the `complex()`, `int()` and `float()` built-in functions"
 msgstr ""
 
-#: src/class/numeric.md:182
+#: src/class/numeric.md:183
 msgid ""
 "We do not implement the in-place operations like `__iadd__` because we do "
 "not wish to mutate `Number`. Similarly we're not interested in supporting "
@@ -129,35 +129,35 @@ msgid ""
 "operations like `__radd__` either."
 msgstr ""
 
-#: src/class/numeric.md:185
+#: src/class/numeric.md:186
 msgid "Now Python can use our `Number` class:"
 msgstr ""
 
-#: src/class/numeric.md:191
+#: src/class/numeric.md:193
 msgid ""
-"'''\n"
-"\tA version of Daniel J. Bernstein's djb2 string hashing algorithm\n"
-"\tLike many hashing algorithms, it relies on integer wrapping.\n"
-"\t'''"
-msgstr ""
-
-#: src/class/numeric.md:203
-msgid "'l50_50'"
+"\"\"\"\n"
+"    A version of Daniel J. Bernstein's djb2 string hashing algorithm\n"
+"    Like many hashing algorithms, it relies on integer wrapping.\n"
+"    \"\"\""
 msgstr ""
 
 #: src/class/numeric.md:206
+msgid "\"l50_50\""
+msgstr ""
+
+#: src/class/numeric.md:209
 msgid "Final code"
 msgstr ""
 
-#: src/class/numeric.md:235
+#: src/class/numeric.md:238
 msgid "// Get the class name dynamically in case `Number` is subclassed\n"
 msgstr ""
 
-#: src/class/numeric.md:237
+#: src/class/numeric.md:240
 msgid "\"{}({})\""
 msgstr ""
 
-#: src/class/numeric.md:335
+#: src/class/numeric.md:338
 msgid ""
 "r#\"\n"
 "# def hash_djb2(s: str):\n"
@@ -213,26 +213,26 @@ msgid ""
 "\"#"
 msgstr ""
 
-#: src/class/numeric.md:391
+#: src/class/numeric.md:394
 msgid "\"__main__\""
 msgstr ""
 
-#: src/class/numeric.md:392
+#: src/class/numeric.md:395
 msgid "\"Number\""
 msgstr ""
 
-#: src/class/numeric.md:400
+#: src/class/numeric.md:403
 msgid "Appendix: Writing some unsafe code"
 msgstr ""
 
-#: src/class/numeric.md:402
+#: src/class/numeric.md:405
 msgid ""
 "At the beginning of this chapter we said that PyO3 doesn't provide a way to "
 "wrap Python integers out of the box but that's a half truth. There's not a "
 "PyO3 API for it, but there's a Python C API function that does:"
 msgstr ""
 
-#: src/class/numeric.md:409
+#: src/class/numeric.md:412
 msgid ""
 "We can call this function from Rust by using [`pyo3::ffi::"
 "PyLong_AsUnsignedLongMask`](https://pyo3.rs/main/doc/pyo3/ffi/fn."
@@ -241,31 +241,31 @@ msgid ""
 "upholding the contracts of this function. Let's review those contracts:"
 msgstr ""
 
-#: src/class/numeric.md:413
+#: src/class/numeric.md:416
 msgid ""
 "We must be [attached](../glossary.md#attached) to the interpreter. If we're "
 "not, calling this function causes a data race."
 msgstr ""
 
-#: src/class/numeric.md:415
+#: src/class/numeric.md:418
 msgid ""
 "The pointer must be valid, i.e. it must be properly aligned and point to a "
 "valid Python object."
 msgstr ""
 
-#: src/class/numeric.md:417
+#: src/class/numeric.md:420
 msgid ""
 "Let's create that helper function. The signature has to be `fn(&Bound<'_, "
 "PyAny>) -> PyResult<T>`."
 msgstr ""
 
-#: src/class/numeric.md:420
+#: src/class/numeric.md:423
 msgid ""
 "`&Bound<'_, PyAny>` represents a checked bound reference, so the pointer "
 "derived from it is valid (and not null)."
 msgstr ""
 
-#: src/class/numeric.md:421
+#: src/class/numeric.md:424
 msgid ""
 "Whenever we have bound references to Python objects in scope, it is "
 "guaranteed that we're attached to the interpreter. This reference is also "

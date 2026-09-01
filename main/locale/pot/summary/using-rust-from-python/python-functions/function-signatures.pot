@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:50Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -269,7 +269,7 @@ msgstr ""
 msgid "instead of the generic:"
 msgstr ""
 
-#: src/function/signature.md:299
+#: src/function/signature.md:300
 msgid ""
 "Note that currently type annotations must be written as strings. Future "
 "enhancements of PyO3's typing support may include the ability to parse a "

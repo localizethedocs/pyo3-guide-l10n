@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -177,356 +177,356 @@ msgstr ""
 
 #: src/debugging.md:77
 msgid ""
-"**Note**: When using debuggers, make sure that `python` resolves to an "
+"\\[!NOTE\\] When using debuggers, make sure that `python` resolves to an "
 "actual Python binary or symlink and not a shim script. Some tools like pyenv "
 "use shim scripts which can interfere with debugging."
 msgstr ""
 
-#: src/debugging.md:80
+#: src/debugging.md:81
 msgid "Debugger specific setup"
 msgstr ""
 
-#: src/debugging.md:82
+#: src/debugging.md:83
 msgid ""
 "Depending on your OS and your preferences you can use two different "
 "debuggers, `rust-gdb` or `rust-lldb`."
 msgstr ""
 
-#: src/debugging.md:91
+#: src/debugging.md:92
 msgid "Launch rust-gdb with the Python interpreter:"
 msgstr ""
 
-#: src/debugging.md:97
+#: src/debugging.md:98
 msgid "Once in gdb, set a breakpoint in your Rust code:"
 msgstr ""
 
-#: src/debugging.md:103
+#: src/debugging.md:104
 msgid ""
 "Run your Python script that imports and uses your Rust extension module:"
 msgstr ""
 
-#: src/debugging.md:106 src/debugging.md:136
+#: src/debugging.md:107 src/debugging.md:137
 msgid "# Option 1: Run an inline Python command\n"
 msgstr ""
 
-#: src/debugging.md:107 src/debugging.md:137
+#: src/debugging.md:108 src/debugging.md:138
 msgid "\"import your_module; your_module.your_function()\""
 msgstr ""
 
-#: src/debugging.md:109 src/debugging.md:139
+#: src/debugging.md:110 src/debugging.md:140
 msgid "# Option 2: Run a Python script\n"
 msgstr ""
 
-#: src/debugging.md:112 src/debugging.md:142
+#: src/debugging.md:113 src/debugging.md:143
 msgid "# Option 3: Run pytest tests\n"
 msgstr ""
 
-#: src/debugging.md:121
+#: src/debugging.md:122
 msgid "Start rust-lldb with Python:"
 msgstr ""
 
-#: src/debugging.md:127
+#: src/debugging.md:128
 msgid "Set breakpoints in your Rust code:"
 msgstr ""
 
-#: src/debugging.md:133
+#: src/debugging.md:134
 msgid "Run your Python script:"
 msgstr ""
 
-#: src/debugging.md:151
+#: src/debugging.md:152
 msgid "Using VS Code"
 msgstr ""
 
-#: src/debugging.md:153
+#: src/debugging.md:154
 msgid ""
 "VS Code with the Rust and Python extensions provides an integrated debugging "
 "experience:"
 msgstr ""
 
-#: src/debugging.md:155
+#: src/debugging.md:156
 msgid "First, install the necessary VS Code extensions:"
 msgstr ""
 
-#: src/debugging.md:156
+#: src/debugging.md:157
 msgid ""
 "[Rust Analyzer](https://marketplace.visualstudio.com/items?itemName=rust-"
 "lang.rust-analyzer)"
 msgstr ""
 
-#: src/debugging.md:157
+#: src/debugging.md:158
 msgid ""
 "[CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn."
 "vscode-lldb)"
 msgstr ""
 
-#: src/debugging.md:158
+#: src/debugging.md:159
 msgid ""
 "[Python](https://marketplace.visualstudio.com/items?itemName=ms-python."
 "python)"
 msgstr ""
 
-#: src/debugging.md:160
+#: src/debugging.md:161
 msgid ""
 "Create a `.vscode/launch.json` file with a configuration that uses the LLDB "
 "Debug Launcher:"
 msgstr ""
 
-#: src/debugging.md:164 src/debugging.md:279
+#: src/debugging.md:165 src/debugging.md:280
 msgid "\"version\""
 msgstr ""
 
-#: src/debugging.md:164 src/debugging.md:279
+#: src/debugging.md:165 src/debugging.md:280
 msgid "\"0.2.0\""
 msgstr ""
 
-#: src/debugging.md:165 src/debugging.md:280 src/debugging.md:313
-#: src/debugging.md:320
+#: src/debugging.md:166 src/debugging.md:281 src/debugging.md:314
+#: src/debugging.md:321 src/debugging.md:322
 msgid "\"configurations\""
 msgstr ""
 
-#: src/debugging.md:167 src/debugging.md:175 src/debugging.md:184
-#: src/debugging.md:193 src/debugging.md:232 src/debugging.md:282
-#: src/debugging.md:290 src/debugging.md:314
+#: src/debugging.md:168 src/debugging.md:176 src/debugging.md:185
+#: src/debugging.md:194 src/debugging.md:233 src/debugging.md:283
+#: src/debugging.md:291 src/debugging.md:315
 msgid "\"name\""
 msgstr ""
 
-#: src/debugging.md:167
+#: src/debugging.md:168
 msgid "\"Debug PyO3\""
-msgstr ""
-
-#: src/debugging.md:168 src/debugging.md:176 src/debugging.md:185
-#: src/debugging.md:194 src/debugging.md:233 src/debugging.md:283
-#: src/debugging.md:291
-msgid "\"type\""
-msgstr ""
-
-#: src/debugging.md:168 src/debugging.md:176 src/debugging.md:185
-#: src/debugging.md:194 src/debugging.md:233 src/debugging.md:283
-#: src/debugging.md:291
-msgid "\"lldb\""
 msgstr ""
 
 #: src/debugging.md:169 src/debugging.md:177 src/debugging.md:186
 #: src/debugging.md:195 src/debugging.md:234 src/debugging.md:284
 #: src/debugging.md:292
-msgid "\"request\""
+msgid "\"type\""
 msgstr ""
 
-#: src/debugging.md:169 src/debugging.md:284
-msgid "\"attach\""
+#: src/debugging.md:169 src/debugging.md:177 src/debugging.md:186
+#: src/debugging.md:195 src/debugging.md:234 src/debugging.md:284
+#: src/debugging.md:292
+msgid "\"lldb\""
 msgstr ""
 
 #: src/debugging.md:170 src/debugging.md:178 src/debugging.md:187
 #: src/debugging.md:196 src/debugging.md:235 src/debugging.md:285
-#: src/debugging.md:293 src/debugging.md:316
+#: src/debugging.md:293
+msgid "\"request\""
+msgstr ""
+
+#: src/debugging.md:170 src/debugging.md:285
+msgid "\"attach\""
+msgstr ""
+
+#: src/debugging.md:171 src/debugging.md:179 src/debugging.md:188
+#: src/debugging.md:197 src/debugging.md:236 src/debugging.md:286
+#: src/debugging.md:294 src/debugging.md:317
 msgid "\"program\""
 msgstr ""
 
-#: src/debugging.md:170 src/debugging.md:178 src/debugging.md:187
-#: src/debugging.md:196 src/debugging.md:235
+#: src/debugging.md:171 src/debugging.md:179 src/debugging.md:188
+#: src/debugging.md:197 src/debugging.md:236
 msgid "\"${workspaceFolder}/.venv/bin/python\""
 msgstr ""
 
-#: src/debugging.md:171 src/debugging.md:286 src/debugging.md:315
+#: src/debugging.md:172 src/debugging.md:287 src/debugging.md:316
 msgid "\"pid\""
 msgstr ""
 
-#: src/debugging.md:171
+#: src/debugging.md:172
 msgid "\"${command:pickProcess}\""
 msgstr ""
 
-#: src/debugging.md:172 src/debugging.md:181 src/debugging.md:190
-#: src/debugging.md:199 src/debugging.md:241 src/debugging.md:287
-#: src/debugging.md:296
+#: src/debugging.md:173 src/debugging.md:182 src/debugging.md:191
+#: src/debugging.md:200 src/debugging.md:242 src/debugging.md:288
+#: src/debugging.md:297
 msgid "\"sourceLanguages\""
 msgstr ""
 
-#: src/debugging.md:172 src/debugging.md:181 src/debugging.md:190
-#: src/debugging.md:199 src/debugging.md:241 src/debugging.md:287
-#: src/debugging.md:296
+#: src/debugging.md:173 src/debugging.md:182 src/debugging.md:191
+#: src/debugging.md:200 src/debugging.md:242 src/debugging.md:288
+#: src/debugging.md:297
 msgid "\"rust\""
 msgstr ""
 
-#: src/debugging.md:175 src/debugging.md:290
+#: src/debugging.md:176 src/debugging.md:291
 msgid "\"Launch Python with PyO3\""
 msgstr ""
 
-#: src/debugging.md:177 src/debugging.md:186 src/debugging.md:195
-#: src/debugging.md:234 src/debugging.md:292
+#: src/debugging.md:178 src/debugging.md:187 src/debugging.md:196
+#: src/debugging.md:235 src/debugging.md:293
 msgid "\"launch\""
 msgstr ""
 
-#: src/debugging.md:179 src/debugging.md:188 src/debugging.md:197
-#: src/debugging.md:236 src/debugging.md:294
+#: src/debugging.md:180 src/debugging.md:189 src/debugging.md:198
+#: src/debugging.md:237 src/debugging.md:295
 msgid "\"args\""
 msgstr ""
 
-#: src/debugging.md:179 src/debugging.md:236 src/debugging.md:294
+#: src/debugging.md:180 src/debugging.md:237 src/debugging.md:295
 msgid "\"${file}\""
 msgstr ""
 
-#: src/debugging.md:180 src/debugging.md:189 src/debugging.md:198
-#: src/debugging.md:295
+#: src/debugging.md:181 src/debugging.md:190 src/debugging.md:199
+#: src/debugging.md:296
 msgid "\"cwd\""
 msgstr ""
 
-#: src/debugging.md:180 src/debugging.md:189 src/debugging.md:198
-#: src/debugging.md:239 src/debugging.md:295
+#: src/debugging.md:181 src/debugging.md:190 src/debugging.md:199
+#: src/debugging.md:240 src/debugging.md:296
 msgid "\"${workspaceFolder}\""
 msgstr ""
 
-#: src/debugging.md:184
+#: src/debugging.md:185
 msgid "\"Debug PyO3 with Args\""
 msgstr ""
 
-#: src/debugging.md:188
+#: src/debugging.md:189
 msgid "\"path/to/your/script.py\""
 msgstr ""
 
-#: src/debugging.md:188
+#: src/debugging.md:189
 msgid "\"arg1\""
 msgstr ""
 
-#: src/debugging.md:188
+#: src/debugging.md:189
 msgid "\"arg2\""
 msgstr ""
 
-#: src/debugging.md:193
+#: src/debugging.md:194
 msgid "\"Debug PyO3 Tests\""
 msgstr ""
 
-#: src/debugging.md:197
+#: src/debugging.md:198
 msgid "\"-m\""
 msgstr ""
 
-#: src/debugging.md:197
+#: src/debugging.md:198
 msgid "\"pytest\""
 msgstr ""
 
-#: src/debugging.md:197
+#: src/debugging.md:198
 msgid "\"tests/your_test.py::test_function\""
 msgstr ""
 
-#: src/debugging.md:197
+#: src/debugging.md:198
 msgid "\"-v\""
 msgstr ""
 
-#: src/debugging.md:205
+#: src/debugging.md:206
 msgid "This configuration supports multiple debugging scenarios:"
 msgstr ""
 
-#: src/debugging.md:206
+#: src/debugging.md:207
 msgid "Attaching to a running Python process"
 msgstr ""
 
-#: src/debugging.md:207
+#: src/debugging.md:208
 msgid "Launching the currently open Python file"
 msgstr ""
 
-#: src/debugging.md:208
+#: src/debugging.md:209
 msgid "Running a specific script with command-line arguments"
 msgstr ""
 
-#: src/debugging.md:209
+#: src/debugging.md:210
 msgid "Running pytest tests"
 msgstr ""
 
-#: src/debugging.md:211
+#: src/debugging.md:212
 msgid ""
 "Set breakpoints in your Rust code by clicking in the gutter next to line "
 "numbers."
 msgstr ""
 
-#: src/debugging.md:213
+#: src/debugging.md:214
 msgid "Start debugging:"
 msgstr ""
 
-#: src/debugging.md:214
+#: src/debugging.md:215
 msgid ""
 "For attaching to a running Python process: First start the process, then "
 "select the \"Debug PyO3\" configuration and click Start Debugging (F5). "
 "You'll be prompted to select the Python process to attach to."
 msgstr ""
 
-#: src/debugging.md:216
+#: src/debugging.md:217
 msgid ""
 "For launching a Python script: Open your Python script, select the \"Launch "
 "Python with PyO3\" configuration and click Start Debugging (F5)."
 msgstr ""
 
-#: src/debugging.md:217
+#: src/debugging.md:218
 msgid ""
 "For running with arguments: Select \"Debug PyO3 with Args\" (remember to "
 "edit the configuration with your actual script path and arguments)."
 msgstr ""
 
-#: src/debugging.md:218
+#: src/debugging.md:219
 msgid ""
 "For running tests: Select \"Debug PyO3 Tests\" (edit the test path as "
 "needed)."
 msgstr ""
 
-#: src/debugging.md:220
+#: src/debugging.md:221
 msgid "When debugging PyO3 code:"
 msgstr ""
 
-#: src/debugging.md:221
+#: src/debugging.md:222
 msgid "You can inspect Rust variables and data structures"
 msgstr ""
 
-#: src/debugging.md:222
+#: src/debugging.md:223
 msgid "Use the debug console to evaluate expressions"
 msgstr ""
 
-#: src/debugging.md:223
+#: src/debugging.md:224
 msgid "Step through Rust code line by line using the step controls"
 msgstr ""
 
-#: src/debugging.md:224
+#: src/debugging.md:225
 msgid "Set conditional breakpoints for more complex debugging scenarios"
 msgstr ""
 
-#: src/debugging.md:226
+#: src/debugging.md:227
 msgid "Advanced Debugging Configurations"
 msgstr ""
 
-#: src/debugging.md:228
+#: src/debugging.md:229
 msgid ""
 "For advanced debugging scenarios, you might want to add environment "
 "variables or enable specific Rust debug flags:"
 msgstr ""
 
-#: src/debugging.md:232
+#: src/debugging.md:233
 msgid "\"Debug PyO3 with Environment\""
 msgstr ""
 
-#: src/debugging.md:237
+#: src/debugging.md:238
 msgid "\"env\""
 msgstr ""
 
-#: src/debugging.md:238
+#: src/debugging.md:239
 msgid "\"RUST_BACKTRACE\""
 msgstr ""
 
-#: src/debugging.md:238
+#: src/debugging.md:239
 msgid "\"1\""
 msgstr ""
 
-#: src/debugging.md:239
+#: src/debugging.md:240
 msgid "\"PYTHONPATH\""
 msgstr ""
 
-#: src/debugging.md:245
+#: src/debugging.md:246
 msgid "Debugging from Jupyter Notebooks"
 msgstr ""
 
-#: src/debugging.md:247
+#: src/debugging.md:248
 msgid ""
 "For Jupyter Notebooks run from VS Code, you can use the following helper "
 "functions to automate the launch configuration:"
 msgstr ""
 
-#: src/debugging.md:257
+#: src/debugging.md:258
 msgid ""
 "\"\"\"Update VSCode launch.json with the correct Jupyter kernel PID.\n"
 "\n"
@@ -537,76 +537,76 @@ msgid ""
 "    \"\"\""
 msgstr ""
 
-#: src/debugging.md:265
+#: src/debugging.md:266
 msgid "\"Could not determine Jupyter kernel PID.\""
 msgstr ""
 
-#: src/debugging.md:268
+#: src/debugging.md:269
 msgid "# Determine launch.json path\n"
 msgstr ""
 
-#: src/debugging.md:272
+#: src/debugging.md:273
 msgid "\".vscode\""
 msgstr ""
 
-#: src/debugging.md:272
+#: src/debugging.md:273
 msgid "\"launch.json\""
 msgstr ""
 
-#: src/debugging.md:274
+#: src/debugging.md:275
 msgid "# Get Python interpreter path\n"
 msgstr ""
 
-#: src/debugging.md:277
+#: src/debugging.md:278
 msgid "# Default debugger config\n"
 msgstr ""
 
-#: src/debugging.md:282 src/debugging.md:314
+#: src/debugging.md:283 src/debugging.md:315
 msgid "\"Debug PyO3 (Jupyter)\""
 msgstr ""
 
-#: src/debugging.md:301
+#: src/debugging.md:302
 msgid "# Create .vscode directory if it doesn't exist\n"
 msgstr ""
 
-#: src/debugging.md:305
+#: src/debugging.md:306
 msgid ""
 "# If launch.json already exists, try to update it instead of overwriting\n"
 msgstr ""
 
-#: src/debugging.md:308
+#: src/debugging.md:309
 msgid "\"r\""
 msgstr ""
 
-#: src/debugging.md:311
+#: src/debugging.md:312
 msgid "# Check if our configuration already exists\n"
 msgstr ""
 
-#: src/debugging.md:324
+#: src/debugging.md:327
 msgid "# If reading fails, we'll just overwrite with our new configuration\n"
 msgstr ""
 
-#: src/debugging.md:327
+#: src/debugging.md:330
 msgid "\"w\""
 msgstr ""
 
-#: src/debugging.md:329
+#: src/debugging.md:332
 msgid "\"Updated launch.json with PID: "
 msgstr ""
 
-#: src/debugging.md:329
+#: src/debugging.md:332
 msgid " at "
 msgstr ""
 
-#: src/debugging.md:329 src/debugging.md:331 src/debugging.md:343
+#: src/debugging.md:332 src/debugging.md:334 src/debugging.md:346
 msgid "\""
 msgstr ""
 
-#: src/debugging.md:331
+#: src/debugging.md:334
 msgid "\"Error updating launch.json: "
 msgstr ""
 
-#: src/debugging.md:335
+#: src/debugging.md:338
 msgid ""
 "\"\"\"Find the process ID (PID) of the running Jupyter kernel.\n"
 "\n"
@@ -615,45 +615,45 @@ msgid ""
 "    \"\"\""
 msgstr ""
 
-#: src/debugging.md:340
+#: src/debugging.md:343
 msgid "# Check if we're running in a Jupyter environment\n"
 msgstr ""
 
-#: src/debugging.md:341
-msgid "'ipykernel'"
-msgstr ""
-
-#: src/debugging.md:343
-msgid "\"Jupyter kernel PID: "
+#: src/debugging.md:344
+msgid "\"ipykernel\""
 msgstr ""
 
 #: src/debugging.md:346
+msgid "\"Jupyter kernel PID: "
+msgstr ""
+
+#: src/debugging.md:349
 msgid "\"Not running in a Jupyter environment.\""
 msgstr ""
 
-#: src/debugging.md:350
+#: src/debugging.md:353
 msgid "To use these functions:"
 msgstr ""
 
-#: src/debugging.md:352
+#: src/debugging.md:355
 msgid "Run the cell containing these functions in your Jupyter notebook"
 msgstr ""
 
-#: src/debugging.md:353
+#: src/debugging.md:356
 msgid "Run `update_launch_json()` in a cell"
 msgstr ""
 
-#: src/debugging.md:354
+#: src/debugging.md:357
 msgid ""
 "In VS Code, select the \"Debug PyO3 (Jupyter)\" configuration and start "
 "debugging"
 msgstr ""
 
-#: src/debugging.md:356
+#: src/debugging.md:359
 msgid "Thread Safety and Compiler Sanitizers"
 msgstr ""
 
-#: src/debugging.md:358
+#: src/debugging.md:361
 msgid ""
 "PyO3 attempts to match the Rust language-level guarantees for thread safety, "
 "but that does not preclude other code outside of the control of PyO3 or "
@@ -664,7 +664,7 @@ msgid ""
 "thread safety issues can often be more fruitful than code analysis."
 msgstr ""
 
-#: src/debugging.md:362
+#: src/debugging.md:365
 msgid ""
 "[ThreadSanitizer](https://clang.llvm.org/docs/ThreadSanitizer.html) is a "
 "thread safety checking runtime that can be used to detect [data races]"
@@ -674,21 +674,21 @@ msgid ""
 "something the reports often point to exactly where the problem is happening."
 msgstr ""
 
-#: src/debugging.md:365
+#: src/debugging.md:368
 msgid ""
 "To use `ThreadSanitizer` with a library that depends on PyO3, you will need "
 "to install a nightly Rust toolchain, along with the `rust-src` component, "
 "since you will need to compile the Rust standard library:"
 msgstr ""
 
-#: src/debugging.md:373
+#: src/debugging.md:376
 msgid ""
 "You will also need a version of CPython compiled using LLVM/Clang with the "
 "same major version of LLVM as is currently used to compile nightly Rust. As "
 "of March 2025, Rust nightly uses LLVM 20."
 msgstr ""
 
-#: src/debugging.md:376
+#: src/debugging.md:379
 msgid ""
 "The [cpython_sanity docker images](https://github.com/nascheme/"
 "cpython_sanity) contain a development environment with a pre-compiled "
@@ -696,17 +696,17 @@ msgid ""
 "compiled using LLVM 20 and ThreadSanitizer."
 msgstr ""
 
-#: src/debugging.md:378
+#: src/debugging.md:381
 msgid ""
 "After activating a nightly Rust toolchain, you can build your project using "
 "`ThreadSanitizer` with the following command:"
 msgstr ""
 
-#: src/debugging.md:381
+#: src/debugging.md:384
 msgid "\"-Zsanitizer=thread\""
 msgstr ""
 
-#: src/debugging.md:384
+#: src/debugging.md:387
 msgid ""
 "If you are not running on an x86_64 Linux machine, you should replace "
 "`x86_64-unknown-linux-gnu` with the [target triple](https://doc.rust-lang."
@@ -716,7 +716,7 @@ msgid ""
 "tests can be a good way to find thread safety issues."
 msgstr ""
 
-#: src/debugging.md:388
+#: src/debugging.md:391
 msgid ""
 "You can also replace `-Zsanitizer=thread` with `-Zsanitizer=address` or any "
 "of the other sanitizers that are [supported by Rust](https://doc.rust-lang."
