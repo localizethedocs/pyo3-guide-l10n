@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -77,7 +77,7 @@ msgid ""
 "raise\n"
 msgstr ""
 
-#: src/class/call.md:62 src/class/call.md:156
+#: src/class/call.md:62 src/class/call.md:158
 msgid "\"__name__\""
 msgstr ""
 
@@ -85,7 +85,7 @@ msgstr ""
 msgid "\"{name} has been called {new_count} time(s).\""
 msgstr ""
 
-#: src/class/call.md:66 src/class/call.md:160
+#: src/class/call.md:66 src/class/call.md:162
 msgid ""
 "// After doing something, we finally forward the call to the wrapped "
 "function\n"
@@ -117,15 +117,15 @@ msgstr ""
 msgid "A Python implementation of this looks similar to the Rust version:"
 msgstr ""
 
-#: src/class/call.md:126 src/class/call.md:138
+#: src/class/call.md:126 src/class/call.md:139
 msgid "\""
 msgstr ""
 
-#: src/class/call.md:126 src/class/call.md:138
+#: src/class/call.md:126 src/class/call.md:139
 msgid " has been called "
 msgstr ""
 
-#: src/class/call.md:126 src/class/call.md:138
+#: src/class/call.md:126 src/class/call.md:139
 msgid " time(s)\""
 msgstr ""
 
@@ -133,11 +133,11 @@ msgstr ""
 msgid "Note that it can also be implemented as a higher order function:"
 msgstr ""
 
-#: src/class/call.md:143
+#: src/class/call.md:145
 msgid "What is the `AtomicU64` for?"
 msgstr ""
 
-#: src/class/call.md:145
+#: src/class/call.md:147
 msgid ""
 "A [previous implementation](https://github.com/PyO3/pyo3/discussions/2598 "
 "\"Thread Safe Decorator <Help Wanted> · Discussion #2598 · PyO3/pyo3\") used "
@@ -145,17 +145,17 @@ msgid ""
 "count:"
 msgstr ""
 
-#: src/class/call.md:158
+#: src/class/call.md:160
 msgid "\"{} has been called {} time(s).\""
 msgstr ""
 
-#: src/class/call.md:163
+#: src/class/call.md:165
 msgid ""
 "// We could do something with the return value of\n"
 "    // the function before returning it\n"
 msgstr ""
 
-#: src/class/call.md:169
+#: src/class/call.md:171
 msgid ""
 "The problem with this is that the `&mut self` receiver means PyO3 has to "
 "borrow it exclusively, and hold this borrow across the `self.wraps.call(py, "
@@ -165,19 +165,19 @@ msgid ""
 "forced to raise an exception."
 msgstr ""
 
-#: src/class/call.md:173
+#: src/class/call.md:175
 msgid "As a result, something innocent like this will raise an exception:"
 msgstr ""
 
-#: src/class/call.md:179
+#: src/class/call.md:181
 msgid "\"hello from decorator\""
 msgstr ""
 
-#: src/class/call.md:181
+#: src/class/call.md:184
 msgid "# RuntimeError: Already borrowed\n"
 msgstr ""
 
-#: src/class/call.md:185
+#: src/class/call.md:188
 msgid ""
 "The implementation in this chapter fixes that by never borrowing "
 "exclusively; all the methods take `&self` as receivers, of which multiple "
@@ -189,39 +189,39 @@ msgid ""
 "that's what is used here."
 msgstr ""
 
-#: src/class/call.md:188
+#: src/class/call.md:191
 msgid ""
 "This shows the dangers of running arbitrary Python code - note that "
 "\"running arbitrary Python code\" can be far more subtle than the example "
 "above:"
 msgstr ""
 
-#: src/class/call.md:190
+#: src/class/call.md:193
 msgid ""
 "Python's asynchronous executor may park the current thread in the middle of "
 "Python code, even in Python code that _you_ control, and let other Python "
 "code run."
 msgstr ""
 
-#: src/class/call.md:191
+#: src/class/call.md:194
 msgid ""
 "Dropping arbitrary Python objects may invoke destructors defined in Python "
 "(`__del__` methods)."
 msgstr ""
 
-#: src/class/call.md:192
+#: src/class/call.md:195
 msgid ""
 "Calling Python's C-api (most PyO3 apis call C-api functions internally) may "
 "raise exceptions, which may allow Python code in signal handlers to run."
 msgstr ""
 
-#: src/class/call.md:193
+#: src/class/call.md:196
 msgid ""
 "On the free-threaded build, users might use Python's `threading` module to "
 "work with your types simultaneously from multiple OS threads."
 msgstr ""
 
-#: src/class/call.md:195
+#: src/class/call.md:198
 msgid ""
 "This is especially important if you are writing unsafe code; Python code "
 "must never be able to cause undefined behavior. You must ensure that your "

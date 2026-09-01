@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -328,7 +328,7 @@ msgid ""
 "visible to existing shells. Restart it for changes to take effect."
 msgstr ""
 
-#: src/faq.md:199
+#: src/faq.md:200
 msgid ""
 "For advanced troubleshooting, [Dependency Walker](https://www."
 "dependencywalker.com/) can be used to diagnose linking errors."

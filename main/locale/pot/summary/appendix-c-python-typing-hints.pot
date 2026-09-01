@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:22Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -70,24 +70,24 @@ msgid ""
 "the definitions of a few standard exceptions look like this:"
 msgstr ""
 
-#: src/python-typing-hints.md:45
+#: src/python-typing-hints.md:49
 msgid ""
 "As we can see, those are not full definitions containing implementation, but "
 "just a description of the interface. It is usually all that the user of the "
 "library needs."
 msgstr ""
 
-#: src/python-typing-hints.md:48
+#: src/python-typing-hints.md:52
 msgid "What do the PEPs say?"
 msgstr ""
 
-#: src/python-typing-hints.md:50
+#: src/python-typing-hints.md:54
 msgid ""
 "At the time of writing this documentation, the `pyi` files are referenced in "
 "four PEPs."
 msgstr ""
 
-#: src/python-typing-hints.md:52
+#: src/python-typing-hints.md:56
 msgid ""
 "[PEP8 - Style Guide for Python Code - #Function Annotations](https://www."
 "python.org/dev/peps/pep-0008/#function-annotations) (last point) recommends "
@@ -95,7 +95,7 @@ msgid ""
 "knowledge about the package for type checker tools."
 msgstr ""
 
-#: src/python-typing-hints.md:54
+#: src/python-typing-hints.md:58
 msgid ""
 "(...) it is expected that users of third party library packages may want to "
 "run type checkers over those packages. For this purpose [PEP 484](https://"
@@ -104,26 +104,26 @@ msgid ""
 "py files. (...)"
 msgstr ""
 
-#: src/python-typing-hints.md:56
+#: src/python-typing-hints.md:61
 msgid ""
 "[PEP484 - Type Hints - #Stub Files](https://www.python.org/dev/peps/pep-0484/"
 "#stub-files) defines stub files as follows."
 msgstr ""
 
-#: src/python-typing-hints.md:58
+#: src/python-typing-hints.md:63
 msgid ""
 "Stub files are files containing type hints that are only for use by the type "
 "checker, not at runtime."
 msgstr ""
 
-#: src/python-typing-hints.md:60
+#: src/python-typing-hints.md:65
 msgid ""
 "It contains a specification for them (highly recommended reading, since it "
 "contains at least one thing that is not used in normal Python code) and also "
 "some general information about where to store the stub files."
 msgstr ""
 
-#: src/python-typing-hints.md:62
+#: src/python-typing-hints.md:67
 msgid ""
 "[PEP561 - Distributing and Packaging Type Information](https://www.python."
 "org/dev/peps/pep-0561/) describes in detail how to build packages that will "
@@ -131,7 +131,7 @@ msgid ""
 "stub files must be distributed in order for type checkers to use them."
 msgstr ""
 
-#: src/python-typing-hints.md:65
+#: src/python-typing-hints.md:70
 msgid ""
 "[PEP560 - Core support for typing module and generic types](https://www."
 "python.org/dev/peps/pep-0560/) describes the details on how Python's type "
@@ -139,40 +139,40 @@ msgid ""
 "integration with static type checkers."
 msgstr ""
 
-#: src/python-typing-hints.md:67
+#: src/python-typing-hints.md:72
 msgid "How to do it?"
 msgstr ""
 
-#: src/python-typing-hints.md:69
+#: src/python-typing-hints.md:74
 msgid ""
 "[PEP561](https://www.python.org/dev/peps/pep-0561/) recognizes three ways of "
 "distributing type information:"
 msgstr ""
 
-#: src/python-typing-hints.md:71
+#: src/python-typing-hints.md:76
 msgid "`inline` - the typing is placed directly in source (`py`) files;"
 msgstr ""
 
-#: src/python-typing-hints.md:72
+#: src/python-typing-hints.md:77
 msgid ""
 "`separate package with stub files` - the typing is placed in `pyi` files "
 "distributed in their own, separate package;"
 msgstr ""
 
-#: src/python-typing-hints.md:73
+#: src/python-typing-hints.md:78
 msgid ""
 "`in-package stub files` - the typing is placed in `pyi` files distributed in "
 "the same package as source files."
 msgstr ""
 
-#: src/python-typing-hints.md:75
+#: src/python-typing-hints.md:80
 msgid ""
 "The first way is tricky with PyO3 since we do not have `py` files. When it "
 "has been investigated and necessary changes are implemented, this document "
 "will be updated."
 msgstr ""
 
-#: src/python-typing-hints.md:78
+#: src/python-typing-hints.md:83
 msgid ""
 "The second way is easy to do, and the whole work can be fully separated from "
 "the main library code. The example repo for the package with stub files can "
@@ -181,15 +181,15 @@ msgid ""
 "stub-package)"
 msgstr ""
 
-#: src/python-typing-hints.md:81
+#: src/python-typing-hints.md:86
 msgid "The third way is described below."
 msgstr ""
 
-#: src/python-typing-hints.md:83
+#: src/python-typing-hints.md:88
 msgid "Including `pyi` files in your PyO3/Maturin build package"
 msgstr ""
 
-#: src/python-typing-hints.md:85
+#: src/python-typing-hints.md:90
 msgid ""
 "When source files are in the same package as stub files, they should be "
 "placed next to each other. We need a way to do that with Maturin. Also, in "
@@ -197,11 +197,11 @@ msgid ""
 "named `py.typed` to the package."
 msgstr ""
 
-#: src/python-typing-hints.md:89
+#: src/python-typing-hints.md:94
 msgid "If you do not have other Python files"
 msgstr ""
 
-#: src/python-typing-hints.md:91
+#: src/python-typing-hints.md:96
 msgid ""
 "If you do not need to add any other Python files apart from `pyi` to the "
 "package, Maturin provides a way to do most of the work for you. As "
@@ -211,17 +211,17 @@ msgid ""
 "will do the rest."
 msgstr ""
 
-#: src/python-typing-hints.md:103
+#: src/python-typing-hints.md:108
 msgid ""
 "For an example `pyi` file see the [`my_project.pyi` content](#my_projectpyi-"
 "content) section."
 msgstr ""
 
-#: src/python-typing-hints.md:105
+#: src/python-typing-hints.md:110
 msgid "If you need other Python files"
 msgstr ""
 
-#: src/python-typing-hints.md:107
+#: src/python-typing-hints.md:112
 msgid ""
 "If you need to add other Python files apart from `pyi` to the package, you "
 "can do it also, but that requires some more work. Maturin provides an easy "
@@ -232,21 +232,21 @@ msgid ""
 "documentation linked above)."
 msgstr ""
 
-#: src/python-typing-hints.md:111
+#: src/python-typing-hints.md:116
 msgid "The folder structure would be:"
 msgstr ""
 
-#: src/python-typing-hints.md:127
+#: src/python-typing-hints.md:132
 msgid ""
 "Let's go a little bit more into detail regarding the files inside the "
 "package folder."
 msgstr ""
 
-#: src/python-typing-hints.md:129
+#: src/python-typing-hints.md:134
 msgid "`__init__.py` content"
 msgstr ""
 
-#: src/python-typing-hints.md:131
+#: src/python-typing-hints.md:136
 msgid ""
 "As we now specify our own package content, we have to provide the `__init__."
 "py` file, so the folder is treated as a package and we can import things "
@@ -254,21 +254,21 @@ msgid ""
 "we do not specify a Python source folder. For PyO3 bindings it would be:"
 msgstr ""
 
-#: src/python-typing-hints.md:139
+#: src/python-typing-hints.md:144
 msgid ""
 "That way everything that is exposed by our [extension module](glossary."
 "md#extension-module) can be imported directly from the package."
 msgstr ""
 
-#: src/python-typing-hints.md:141
+#: src/python-typing-hints.md:146
 msgid "`py.typed` requirement"
 msgstr ""
 
-#: src/python-typing-hints.md:143
+#: src/python-typing-hints.md:148
 msgid "As stated in [PEP561](https://www.python.org/dev/peps/pep-0561/):"
 msgstr ""
 
-#: src/python-typing-hints.md:144
+#: src/python-typing-hints.md:149
 msgid ""
 "Package maintainers who wish to support type checking of their code MUST add "
 "a marker file named py.typed to their package supporting typing. This marker "
@@ -276,14 +276,14 @@ msgid ""
 "packages MUST support type checking as well."
 msgstr ""
 
-#: src/python-typing-hints.md:146
+#: src/python-typing-hints.md:152
 msgid ""
 "If we do not include that file, some IDEs might still use our `pyi` files to "
 "show hints, but the type checkers might not. MyPy will raise an error in "
 "this situation:"
 msgstr ""
 
-#: src/python-typing-hints.md:149
+#: src/python-typing-hints.md:155
 msgid ""
 "```text\n"
 "error: Skipping analyzing \"my_project\": found module but no type hints or "
@@ -291,15 +291,15 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/python-typing-hints.md:153
+#: src/python-typing-hints.md:159
 msgid "The file is just a marker file, so it should be empty."
 msgstr ""
 
-#: src/python-typing-hints.md:155
+#: src/python-typing-hints.md:161
 msgid "`my_project.pyi` content"
 msgstr ""
 
-#: src/python-typing-hints.md:157
+#: src/python-typing-hints.md:163
 msgid ""
 "Our module stub file. This document does not aim at describing how to write "
 "them, since you can find a lot of documentation on it, starting from the "
@@ -307,11 +307,11 @@ msgid ""
 "files)."
 msgstr ""
 
-#: src/python-typing-hints.md:160
+#: src/python-typing-hints.md:166
 msgid "The example can look like this:"
 msgstr ""
 
-#: src/python-typing-hints.md:164
+#: src/python-typing-hints.md:170
 msgid ""
 "\"\"\"\n"
 "    A class representing a car.\n"
@@ -321,11 +321,11 @@ msgid ""
 "    \"\"\""
 msgstr ""
 
-#: src/python-typing-hints.md:173
-msgid "'Car'"
+#: src/python-typing-hints.md:180
+msgid "\"Car\""
 msgstr ""
 
-#: src/python-typing-hints.md:174
+#: src/python-typing-hints.md:181
 msgid ""
 "\"\"\"\n"
 "        Creates a Car based on unique name\n"
@@ -335,7 +335,7 @@ msgid ""
 "        \"\"\""
 msgstr ""
 
-#: src/python-typing-hints.md:182
+#: src/python-typing-hints.md:189
 msgid ""
 "\"\"\"\n"
 "        Gets the best color for the car.\n"
@@ -345,67 +345,67 @@ msgid ""
 "        \"\"\""
 msgstr ""
 
-#: src/python-typing-hints.md:189
+#: src/python-typing-hints.md:196
 msgid "Supporting Generics"
 msgstr ""
 
-#: src/python-typing-hints.md:191
+#: src/python-typing-hints.md:198
 msgid ""
 "Type annotations can also be made generic in Python. They are useful for "
 "working with different types while maintaining type safety. Usually, generic "
 "classes inherit from the `typing.Generic` metaclass."
 msgstr ""
 
-#: src/python-typing-hints.md:196
+#: src/python-typing-hints.md:203
 msgid ""
 "Take for example the following `.pyi` file that specifies a `Car` that can "
 "accept multiple types of wheels:"
 msgstr ""
 
-#: src/python-typing-hints.md:201
-msgid "'W'"
+#: src/python-typing-hints.md:208
+msgid "\"W\""
 msgstr ""
 
-#: src/python-typing-hints.md:211
+#: src/python-typing-hints.md:219
 msgid ""
 "This way, the end-user can specify the type with variables such as `truck: "
 "Car[SteelWheel] = ...` and `f1_car: Car[AlloyWheel] = ...`."
 msgstr ""
 
-#: src/python-typing-hints.md:213
+#: src/python-typing-hints.md:221
 msgid ""
 "There is also a special syntax for specifying generic types in Python 3.12+:"
 msgstr ""
 
-#: src/python-typing-hints.md:222
+#: src/python-typing-hints.md:230
 msgid "Runtime Behaviour"
 msgstr ""
 
-#: src/python-typing-hints.md:224
+#: src/python-typing-hints.md:232
 msgid ""
 "Stub files (`pyi`) are only useful for static type checkers and ignored at "
 "runtime. Therefore, PyO3 classes do not inherit from `typing.Generic` even "
 "if specified in the stub files."
 msgstr ""
 
-#: src/python-typing-hints.md:227
+#: src/python-typing-hints.md:235
 msgid ""
 "This can cause some runtime issues, as annotating a variable like `f1_car: "
 "Car[AlloyWheel] = ...` can make Python call magic methods that are not "
 "defined."
 msgstr ""
 
-#: src/python-typing-hints.md:229
+#: src/python-typing-hints.md:237
 msgid ""
 "To overcome this limitation, implementers can pass the `generic` parameter "
 "to `pyclass` in Rust:"
 msgstr ""
 
-#: src/python-typing-hints.md:235
+#: src/python-typing-hints.md:243
 msgid "Advanced Users"
 msgstr ""
 
-#: src/python-typing-hints.md:237
+#: src/python-typing-hints.md:245
 msgid ""
 "`#[pyclass(generic)]` implements a very simple runtime behavior that accepts "
 "any generic argument. Advanced users can opt to manually implement "
@@ -413,7 +413,7 @@ msgid ""
 "html#emulating-generic-types) for the generic class to have more control."
 msgstr ""
 
-#: src/python-typing-hints.md:253
+#: src/python-typing-hints.md:261
 msgid ""
 "Note that [`pyo3::types::PyGenericAlias`](https://pyo3.rs/main/doc/pyo3/"
 "types/struct.PyGenericAlias.html) can be helpful when implementing "

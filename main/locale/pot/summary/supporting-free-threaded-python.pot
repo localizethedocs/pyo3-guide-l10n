@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -319,11 +319,11 @@ msgstr ""
 msgid "And then if we do something like this in Python:"
 msgstr ""
 
-#: src/free-threading.md:157
+#: src/free-threading.md:159
 msgid "We will see an exception:"
 msgstr ""
 
-#: src/free-threading.md:159
+#: src/free-threading.md:161
 msgid ""
 "```text\n"
 "Traceback (most recent call last)\n"
@@ -333,7 +333,7 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/free-threading.md:166
+#: src/free-threading.md:168
 msgid ""
 "We may allow user-selectable semantics for mutable pyclass definitions in a "
 "future version of PyO3, allowing some form of opt-in locking to emulate the "
@@ -342,20 +342,20 @@ msgid ""
 "creating deadlocks with the GIL."
 msgstr ""
 
-#: src/free-threading.md:169
+#: src/free-threading.md:171
 msgid "Cannot build extension modules using the limited API"
 msgstr ""
 
-#: src/free-threading.md:171
+#: src/free-threading.md:173
 msgid ""
 "The free-threaded build uses a completely new ABI and there is not yet an "
 "equivalent to the limited API for the free-threaded ABI. That means if your "
-"crate depends on PyO3 using the `abi3` feature or an an `abi3-pyxx` feature, "
+"crate depends on PyO3 using the `abi3` feature or an `abi3-pyxx` feature, "
 "PyO3 will print a warning and ignore that setting when building extension "
 "modules using the free-threaded interpreter."
 msgstr ""
 
-#: src/free-threading.md:174
+#: src/free-threading.md:176
 msgid ""
 "This means that if your package makes use of the ABI forward compatibility "
 "provided by the limited API to upload only one [wheel](glossary.md#wheel) "
@@ -363,18 +363,18 @@ msgid ""
 "procedure to also upload a version-specific free-threaded wheel."
 msgstr ""
 
-#: src/free-threading.md:176
+#: src/free-threading.md:178
 msgid ""
 "See [the guide section](./building-and-distribution/multiple-python-versions."
 "md) for more details about supporting multiple different Python versions, "
 "including the free-threaded build."
 msgstr ""
 
-#: src/free-threading.md:178
+#: src/free-threading.md:180
 msgid "Thread-safe single initialization"
 msgstr ""
 
-#: src/free-threading.md:180
+#: src/free-threading.md:182
 msgid ""
 "To initialize data exactly once, use the [`PyOnceLock`](https://pyo3.rs/main/"
 "doc/pyo3/sync/struct.PyOnceLock.html) type, which is a close equivalent to "
@@ -394,11 +394,11 @@ msgid ""
 "single-initialize a runtime cache holding a `Py<PyDict>`:"
 msgstr ""
 
-#: src/free-threading.md:192 src/free-threading.md:221
+#: src/free-threading.md:194 src/free-threading.md:227
 msgid "// guaranteed to be called once and only once\n"
 msgstr ""
 
-#: src/free-threading.md:197
+#: src/free-threading.md:199
 msgid ""
 "In cases where a function must run exactly once, you can bring the "
 "[`OnceExt`](https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html) trait "
@@ -422,11 +422,11 @@ msgid ""
 "(https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html):"
 msgstr ""
 
-#: src/free-threading.md:228
+#: src/free-threading.md:234
 msgid "`GILProtected` has been removed"
 msgstr ""
 
-#: src/free-threading.md:230
+#: src/free-threading.md:236
 msgid ""
 "[`GILProtected`](https://docs.rs/pyo3/0.22/pyo3/sync/struct.GILProtected."
 "html) was a PyO3 type that allowed mutable access to static data by "
@@ -437,25 +437,25 @@ msgid ""
 "Mutex`](https://doc.rust-lang.org/std/sync/struct.Mutex.html) was sufficient."
 msgstr ""
 
-#: src/free-threading.md:234
+#: src/free-threading.md:240
 msgid "Before:"
 msgstr ""
 
-#: src/free-threading.md:248 src/free-threading.md:267
+#: src/free-threading.md:257 src/free-threading.md:278
 msgid "// stand-in for something that executes arbitrary Python code\n"
 msgstr ""
 
-#: src/free-threading.md:256
+#: src/free-threading.md:265
 msgid "After (using a `Mutex`):"
 msgstr ""
 
-#: src/free-threading.md:270
+#: src/free-threading.md:281
 msgid ""
 "// as with any `Mutex` usage, lock the mutex for as little time as possible\n"
 "    // in this case, we do it just while pushing into the `Vec`\n"
 msgstr ""
 
-#: src/free-threading.md:277
+#: src/free-threading.md:289
 msgid ""
 "If you are executing arbitrary Python code while holding the lock, then you "
 "should import the [`MutexExt`](https://pyo3.rs/main/doc/pyo3/sync/trait."

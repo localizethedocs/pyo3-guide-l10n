@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-01T13:02:51Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -135,46 +135,46 @@ msgstr ""
 msgid "A dummy `Layer` implementation may look like this:"
 msgstr ""
 
-#: src/ecosystem/tracing.md:62
+#: src/ecosystem/tracing.md:63
 msgid "# `on_new_span` can return some state\n"
 msgstr ""
 
-#: src/ecosystem/tracing.md:64
+#: src/ecosystem/tracing.md:65
 msgid "\"[on_new_span]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:64 src/ecosystem/tracing.md:69
-#: src/ecosystem/tracing.md:72 src/ecosystem/tracing.md:75
+#: src/ecosystem/tracing.md:65 src/ecosystem/tracing.md:70
+#: src/ecosystem/tracing.md:73 src/ecosystem/tracing.md:76
 msgid " | "
 msgstr ""
 
-#: src/ecosystem/tracing.md:64 src/ecosystem/tracing.md:69
-#: src/ecosystem/tracing.md:72 src/ecosystem/tracing.md:75
+#: src/ecosystem/tracing.md:65 src/ecosystem/tracing.md:70
+#: src/ecosystem/tracing.md:73 src/ecosystem/tracing.md:76
 msgid "\""
 msgstr ""
 
-#: src/ecosystem/tracing.md:67
+#: src/ecosystem/tracing.md:68
 msgid ""
 "# The state from `on_new_span` is passed back into other trait methods\n"
 msgstr ""
 
-#: src/ecosystem/tracing.md:69
+#: src/ecosystem/tracing.md:70
 msgid "\"[on_event]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:72
+#: src/ecosystem/tracing.md:73
 msgid "\"[on_close]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:75
+#: src/ecosystem/tracing.md:76
 msgid "\"[on_record]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:80
+#: src/ecosystem/tracing.md:82
 msgid "\"10th fibonacci number: \""
 msgstr ""
 
-#: src/ecosystem/tracing.md:83
+#: src/ecosystem/tracing.md:85
 msgid ""
 "`pyo3-python-tracing-subscriber` has [working examples](https://github.com/"
 "getsentry/pyo3-python-tracing-subscriber/tree/main/demo) showing both the "
