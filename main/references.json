@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-22 21:03:07 +0000",
-      "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
-      "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
+      "date" : "2026-09-07 15:08:10 +0000",
+      "hash" : "fe2eb7abe275f58d14ee83d7ff31e0d0a6b4b66c",
+      "title" : "Fix empty tuple type hints rendering as invalid `tuple[]` (#6393)"
     }
   },
   "type" : "branch",
