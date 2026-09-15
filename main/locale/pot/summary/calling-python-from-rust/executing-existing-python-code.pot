@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-09-15T13:07:38Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -200,7 +200,7 @@ msgid "// Import and get sys.modules\n"
 msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:184
-#: src/python-from-rust/calling-existing-code.md:290
+#: src/python-from-rust/calling-existing-code.md:301
 msgid "\"sys\""
 msgstr ""
 
@@ -255,7 +255,7 @@ msgid "\"baz\""
 msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:236
-#: src/python-from-rust/calling-existing-code.md:267
+#: src/python-from-rust/calling-existing-code.md:270
 msgid "The example below shows:"
 msgstr ""
 
@@ -265,89 +265,89 @@ msgid ""
 msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:239
-#: src/python-from-rust/calling-existing-code.md:271
+#: src/python-from-rust/calling-existing-code.md:274
 msgid ""
 "how to call function `run()` (declared in `app.py`) that needs function "
 "imported from `utils/foo.py`"
 msgstr ""
 
 #: src/python-from-rust/calling-existing-code.md:242
-#: src/python-from-rust/calling-existing-code.md:276
+#: src/python-from-rust/calling-existing-code.md:279
 msgid "`src/main.rs`:"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:250
 #: src/python-from-rust/calling-existing-code.md:253
+#: src/python-from-rust/calling-existing-code.md:256
 msgid "\"CARGO_MANIFEST_DIR\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:251
+#: src/python-from-rust/calling-existing-code.md:254
 msgid "\"/python_app/utils/foo.py\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:253
+#: src/python-from-rust/calling-existing-code.md:256
 msgid "\"/python_app/app.py\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:255
+#: src/python-from-rust/calling-existing-code.md:258
 msgid "\"foo.py\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:255
+#: src/python-from-rust/calling-existing-code.md:258
 msgid "\"utils.foo\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:256
-#: src/python-from-rust/calling-existing-code.md:287
-#: src/python-from-rust/calling-existing-code.md:294
+#: src/python-from-rust/calling-existing-code.md:259
+#: src/python-from-rust/calling-existing-code.md:298
+#: src/python-from-rust/calling-existing-code.md:305
 msgid "\"app.py\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:256
-#: src/python-from-rust/calling-existing-code.md:294
+#: src/python-from-rust/calling-existing-code.md:259
+#: src/python-from-rust/calling-existing-code.md:305
 msgid "\"\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:257
-#: src/python-from-rust/calling-existing-code.md:295
+#: src/python-from-rust/calling-existing-code.md:260
+#: src/python-from-rust/calling-existing-code.md:306
 msgid "\"run\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:262
-#: src/python-from-rust/calling-existing-code.md:300
+#: src/python-from-rust/calling-existing-code.md:265
+#: src/python-from-rust/calling-existing-code.md:311
 msgid "\"py: {}\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:269
+#: src/python-from-rust/calling-existing-code.md:272
 msgid ""
 "how to load content of `app.py` at runtime so that it sees its dependencies "
 "automatically"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:274
+#: src/python-from-rust/calling-existing-code.md:277
 msgid ""
 "It is recommended to use absolute paths because then your binary can be run "
 "from anywhere as long as your `app.py` is in the expected directory (in this "
 "example that directory is `/usr/share/python_app`)."
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:286
+#: src/python-from-rust/calling-existing-code.md:297
 msgid "\"/usr/share/python_app\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:291
+#: src/python-from-rust/calling-existing-code.md:302
 msgid "\"path\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:305
+#: src/python-from-rust/calling-existing-code.md:316
 msgid "Need to use a context manager from Rust?"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:307
+#: src/python-from-rust/calling-existing-code.md:318
 msgid "Use context managers by directly invoking `__enter__` and `__exit__`."
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:316
+#: src/python-from-rust/calling-existing-code.md:327
 msgid ""
 "r#\"\n"
 "class House(object):\n"
@@ -365,31 +365,31 @@ msgid ""
 "        \"#"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:329
+#: src/python-from-rust/calling-existing-code.md:340
 msgid "\"house.py\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:330
+#: src/python-from-rust/calling-existing-code.md:341
 msgid "\"house\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:334
+#: src/python-from-rust/calling-existing-code.md:345
 msgid "\"House\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:335
+#: src/python-from-rust/calling-existing-code.md:346
 msgid "\"123 Main Street\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:337
+#: src/python-from-rust/calling-existing-code.md:348
 msgid "\"__enter__\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:339
+#: src/python-from-rust/calling-existing-code.md:350
 msgid "\"undefined_variable + 1\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:341
+#: src/python-from-rust/calling-existing-code.md:352
 msgid ""
 "// If the eval threw an exception we'll pass it through to the context "
 "manager.\n"
@@ -397,16 +397,16 @@ msgid ""
 "\"None\").\n"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:347
-#: src/python-from-rust/calling-existing-code.md:353
+#: src/python-from-rust/calling-existing-code.md:358
+#: src/python-from-rust/calling-existing-code.md:364
 msgid "\"__exit__\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:367
+#: src/python-from-rust/calling-existing-code.md:378
 msgid "Handling system signals/interrupts (Ctrl-C)"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:369
+#: src/python-from-rust/calling-existing-code.md:380
 msgid ""
 "The best way to handle system signals when running Rust code is to "
 "periodically call `Python::check_signals` to handle any signals captured by "
@@ -414,25 +414,25 @@ msgid ""
 "anything-while-my-rust-code-is-executing)."
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:372
+#: src/python-from-rust/calling-existing-code.md:383
 msgid ""
 "Alternatively, set Python's `signal` module to take the default action for a "
 "signal:"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:379
-#: src/python-from-rust/calling-existing-code.md:382
+#: src/python-from-rust/calling-existing-code.md:390
+#: src/python-from-rust/calling-existing-code.md:393
 msgid "\"signal\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:380
+#: src/python-from-rust/calling-existing-code.md:391
 msgid "// Set SIGINT to have the default action\n"
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:383
+#: src/python-from-rust/calling-existing-code.md:394
 msgid "\"SIGINT\""
 msgstr ""
 
-#: src/python-from-rust/calling-existing-code.md:383
+#: src/python-from-rust/calling-existing-code.md:394
 msgid "\"SIG_DFL\""
 msgstr ""
