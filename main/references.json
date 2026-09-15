@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-22 21:03:07 +0000",
-      "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
-      "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
+      "date" : "2026-09-15 06:01:23 +0000",
+      "hash" : "ff1316b5101a63791dcb6ba81759457dee329515",
+      "title" : "internal: feature gate pyerr conversion impls (#6372)"
     }
   },
   "type" : "branch",
