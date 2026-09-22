@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-09-22T13:04:19Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -66,8 +66,9 @@ msgstr ""
 #: src/conversions/tables.md:31 src/conversions/tables.md:32
 #: src/conversions/tables.md:38 src/conversions/tables.md:39
 #: src/conversions/tables.md:40 src/conversions/tables.md:41
-#: src/conversions/tables.md:44 src/conversions/tables.md:47
-#: src/conversions/tables.md:48
+#: src/conversions/tables.md:44 src/conversions/tables.md:46
+#: src/conversions/tables.md:47 src/conversions/tables.md:48
+#: src/conversions/tables.md:50 src/conversions/tables.md:51
 msgid "\\-"
 msgstr ""
 
@@ -75,8 +76,8 @@ msgstr ""
 msgid "`PyAny`"
 msgstr ""
 
-#: src/conversions/tables.md:16 src/conversions/tables.md:93
-#: src/conversions/tables.md:94
+#: src/conversions/tables.md:16 src/conversions/tables.md:96
+#: src/conversions/tables.md:97
 msgid "`str`"
 msgstr ""
 
@@ -89,7 +90,7 @@ msgstr ""
 msgid "`PyString`"
 msgstr ""
 
-#: src/conversions/tables.md:17 src/conversions/tables.md:101
+#: src/conversions/tables.md:17 src/conversions/tables.md:104
 msgid "`bytes`"
 msgstr ""
 
@@ -101,7 +102,7 @@ msgstr ""
 msgid "`PyBytes`"
 msgstr ""
 
-#: src/conversions/tables.md:18 src/conversions/tables.md:95
+#: src/conversions/tables.md:18 src/conversions/tables.md:98
 msgid "`bool`"
 msgstr ""
 
@@ -109,7 +110,7 @@ msgstr ""
 msgid "`PyBool`"
 msgstr ""
 
-#: src/conversions/tables.md:19 src/conversions/tables.md:96
+#: src/conversions/tables.md:19 src/conversions/tables.md:99
 msgid "`int`"
 msgstr ""
 
@@ -123,7 +124,7 @@ msgstr ""
 msgid "`PyInt`"
 msgstr ""
 
-#: src/conversions/tables.md:20 src/conversions/tables.md:97
+#: src/conversions/tables.md:20 src/conversions/tables.md:100
 msgid "`float`"
 msgstr ""
 
@@ -161,7 +162,7 @@ msgid "`list[T]`"
 msgstr ""
 
 #: src/conversions/tables.md:23 src/conversions/tables.md:45
-#: src/conversions/tables.md:100
+#: src/conversions/tables.md:103
 msgid "`Vec<T>`"
 msgstr ""
 
@@ -173,7 +174,7 @@ msgstr ""
 msgid "`dict[K, V]`"
 msgstr ""
 
-#: src/conversions/tables.md:24 src/conversions/tables.md:46
+#: src/conversions/tables.md:24 src/conversions/tables.md:49
 msgid ""
 "`HashMap<K, V>`, `BTreeMap<K, V>`, `hashbrown::HashMap<K, V>`[^5], "
 "`indexmap::IndexMap<K, V>`[^6]"
@@ -363,7 +364,7 @@ msgstr ""
 msgid "`typing.Optional[T]`"
 msgstr ""
 
-#: src/conversions/tables.md:44 src/conversions/tables.md:98
+#: src/conversions/tables.md:44 src/conversions/tables.md:101
 msgid "`Option<T>`"
 msgstr ""
 
@@ -376,97 +377,121 @@ msgid "`PySequence`"
 msgstr ""
 
 #: src/conversions/tables.md:46
-msgid "`typing.Mapping[K, V]`"
+msgid "`_typeshed.SupportsGetItem[int, T]`"
 msgstr ""
 
 #: src/conversions/tables.md:46
+msgid "`Vec<T>`, `smallvec::SmallVec<[T; N]>`[^11]"
+msgstr ""
+
+#: src/conversions/tables.md:47
+msgid "`_typeshed.SupportsGetItem[int, typing.SupportsIndex]`"
+msgstr ""
+
+#: src/conversions/tables.md:47 src/conversions/tables.md:104
+msgid "`Cow<[u8]>`"
+msgstr ""
+
+#: src/conversions/tables.md:48
+msgid "`_typeshed.SupportsLenAndGetItem[T]`"
+msgstr ""
+
+#: src/conversions/tables.md:48
+msgid "`[T; N]`"
+msgstr ""
+
+#: src/conversions/tables.md:49
+msgid "`typing.Mapping[K, V]`"
+msgstr ""
+
+#: src/conversions/tables.md:49
 msgid "`&PyMapping`"
 msgstr ""
 
-#: src/conversions/tables.md:47
+#: src/conversions/tables.md:50
 msgid "`typing.Iterator[Any]`"
 msgstr ""
 
-#: src/conversions/tables.md:47
+#: src/conversions/tables.md:50
 msgid "`PyIterator`"
 msgstr ""
 
-#: src/conversions/tables.md:48
+#: src/conversions/tables.md:51
 msgid "`typing.Union[...]`"
 msgstr ""
 
-#: src/conversions/tables.md:48
+#: src/conversions/tables.md:51
 msgid ""
 "See [`#[derive(FromPyObject)]`](traits.md#deriving-frompyobject-for-enums)"
 msgstr ""
 
-#: src/conversions/tables.md:50
+#: src/conversions/tables.md:53
 msgid "It is also worth remembering the following special types:"
 msgstr ""
 
-#: src/conversions/tables.md:52
+#: src/conversions/tables.md:55
 msgid "What"
 msgstr ""
 
-#: src/conversions/tables.md:52
+#: src/conversions/tables.md:55
 msgid "Description"
 msgstr ""
 
-#: src/conversions/tables.md:54
+#: src/conversions/tables.md:57
 msgid "`Python<'py>`"
 msgstr ""
 
-#: src/conversions/tables.md:54
+#: src/conversions/tables.md:57
 msgid "A token used to prove attachment to the Python interpreter."
 msgstr ""
 
-#: src/conversions/tables.md:55
+#: src/conversions/tables.md:58
 msgid "`Bound<'py, T>`"
 msgstr ""
 
-#: src/conversions/tables.md:55
+#: src/conversions/tables.md:58
 msgid ""
 "A Python object with a lifetime which binds it to the attachment to the "
 "Python interpreter. This provides access to most of PyO3's APIs."
 msgstr ""
 
-#: src/conversions/tables.md:56 src/conversions/tables.md:106
+#: src/conversions/tables.md:59 src/conversions/tables.md:109
 msgid "`Py<T>`"
 msgstr ""
 
-#: src/conversions/tables.md:56
+#: src/conversions/tables.md:59
 msgid ""
 "A Python object not connected to any lifetime of attachment to the Python "
 "interpreter. This can be sent to other threads."
 msgstr ""
 
-#: src/conversions/tables.md:57
+#: src/conversions/tables.md:60
 msgid "`PyRef<T>`"
 msgstr ""
 
-#: src/conversions/tables.md:57
+#: src/conversions/tables.md:60
 msgid "A `#[pyclass]` borrowed immutably."
 msgstr ""
 
-#: src/conversions/tables.md:58
+#: src/conversions/tables.md:61
 msgid "`PyRefMut<T>`"
 msgstr ""
 
-#: src/conversions/tables.md:58
+#: src/conversions/tables.md:61
 msgid "A `#[pyclass]` borrowed mutably."
 msgstr ""
 
-#: src/conversions/tables.md:60
+#: src/conversions/tables.md:63
 msgid ""
 "For more detail on accepting `#[pyclass]` values as function arguments, see "
 "[the section of this guide on Python Classes](../class.md)."
 msgstr ""
 
-#: src/conversions/tables.md:62
+#: src/conversions/tables.md:65
 msgid "Using Rust library types vs Python-native types"
 msgstr ""
 
-#: src/conversions/tables.md:64
+#: src/conversions/tables.md:67
 msgid ""
 "Using Rust library types as function arguments will incur a conversion cost "
 "compared to using the Python-native types. Using the Python-native types is "
@@ -474,29 +499,29 @@ msgid ""
 "builtin function `isinstance()`)."
 msgstr ""
 
-#: src/conversions/tables.md:67
+#: src/conversions/tables.md:70
 msgid ""
 "However, once that conversion cost has been paid, the Rust standard library "
 "types offer a number of benefits:"
 msgstr ""
 
-#: src/conversions/tables.md:69
+#: src/conversions/tables.md:72
 msgid ""
 "You can write functionality in native-speed Rust code (free of Python's "
 "runtime costs)."
 msgstr ""
 
-#: src/conversions/tables.md:70
+#: src/conversions/tables.md:73
 msgid "You get better interoperability with the rest of the Rust ecosystem."
 msgstr ""
 
-#: src/conversions/tables.md:71
+#: src/conversions/tables.md:74
 msgid ""
 "You can use `Python::detach` to detach from the interpreter and let other "
 "Python threads make progress while your Rust code is executing."
 msgstr ""
 
-#: src/conversions/tables.md:72
+#: src/conversions/tables.md:75
 msgid ""
 "You also benefit from stricter type checking. For example you can specify "
 "`Vec<i32>`, which will only accept a Python `list` containing integers. The "
@@ -504,25 +529,25 @@ msgid ""
 "Python objects of any type."
 msgstr ""
 
-#: src/conversions/tables.md:76
+#: src/conversions/tables.md:79
 msgid ""
 "For most PyO3 usage the conversion cost is worth paying to get these "
 "benefits. As always, if you're not sure it's worth it in your case, "
 "benchmark it!"
 msgstr ""
 
-#: src/conversions/tables.md:79
+#: src/conversions/tables.md:82
 msgid "Returning Rust values to Python"
 msgstr ""
 
-#: src/conversions/tables.md:81
+#: src/conversions/tables.md:84
 msgid ""
 "When returning values from functions callable from Python, PyO3's [smart "
 "pointers](../glossary.md#smart-pointer) (`Py<T>`, `Bound<'py, T>`, and "
 "`Borrowed<'a, 'py, T>`) can be used with zero cost."
 msgstr ""
 
-#: src/conversions/tables.md:83
+#: src/conversions/tables.md:86
 msgid ""
 "Because `Bound<'py, T>` and `Borrowed<'a, 'py, T>` have lifetime parameters, "
 "the Rust compiler may ask for lifetime annotations to be added to your "
@@ -530,140 +555,140 @@ msgid ""
 "md#function-argument-lifetimes)."
 msgstr ""
 
-#: src/conversions/tables.md:86
+#: src/conversions/tables.md:89
 msgid ""
 "If your function is fallible, it should return `PyResult<T>` or `Result<T, "
 "E>` where `E` implements `From<E> for PyErr`. This will raise a `Python` "
 "exception if the `Err` variant is returned."
 msgstr ""
 
-#: src/conversions/tables.md:89
+#: src/conversions/tables.md:92
 msgid ""
 "Finally, the following Rust types are also able to convert to Python as "
 "return values:"
 msgstr ""
 
-#: src/conversions/tables.md:91
+#: src/conversions/tables.md:94
 msgid "Rust type"
 msgstr ""
 
-#: src/conversions/tables.md:91
+#: src/conversions/tables.md:94
 msgid "Resulting Python Type"
 msgstr ""
 
-#: src/conversions/tables.md:93
+#: src/conversions/tables.md:96
 msgid "`String`"
 msgstr ""
 
-#: src/conversions/tables.md:94
+#: src/conversions/tables.md:97
 msgid "`&str`"
 msgstr ""
 
-#: src/conversions/tables.md:96
+#: src/conversions/tables.md:99
 msgid "Any integer type (`i32`, `u32`, `usize`, etc)"
 msgstr ""
 
-#: src/conversions/tables.md:97
+#: src/conversions/tables.md:100
 msgid "`f32`, `f64`"
 msgstr ""
 
-#: src/conversions/tables.md:98
+#: src/conversions/tables.md:101
 msgid "`Optional[T]`"
 msgstr ""
 
-#: src/conversions/tables.md:99
+#: src/conversions/tables.md:102
 msgid "`(T, U)`"
 msgstr ""
 
-#: src/conversions/tables.md:99
+#: src/conversions/tables.md:102
 msgid "`Tuple[T, U]`"
 msgstr ""
 
-#: src/conversions/tables.md:100
+#: src/conversions/tables.md:103
 msgid "`List[T]`"
 msgstr ""
 
-#: src/conversions/tables.md:101
-msgid "`Cow<[u8]>`"
-msgstr ""
-
-#: src/conversions/tables.md:102
+#: src/conversions/tables.md:105
 msgid "`HashMap<K, V>`"
 msgstr ""
 
-#: src/conversions/tables.md:102 src/conversions/tables.md:103
+#: src/conversions/tables.md:105 src/conversions/tables.md:106
 msgid "`Dict[K, V]`"
 msgstr ""
 
-#: src/conversions/tables.md:103
+#: src/conversions/tables.md:106
 msgid "`BTreeMap<K, V>`"
 msgstr ""
 
-#: src/conversions/tables.md:104
+#: src/conversions/tables.md:107
 msgid "`HashSet<T>`"
 msgstr ""
 
-#: src/conversions/tables.md:104 src/conversions/tables.md:105
+#: src/conversions/tables.md:107 src/conversions/tables.md:108
 msgid "`Set[T]`"
 msgstr ""
 
-#: src/conversions/tables.md:105
+#: src/conversions/tables.md:108
 msgid "`BTreeSet<T>`"
 msgstr ""
 
-#: src/conversions/tables.md:106 src/conversions/tables.md:107
-#: src/conversions/tables.md:108 src/conversions/tables.md:109
+#: src/conversions/tables.md:109 src/conversions/tables.md:110
+#: src/conversions/tables.md:111 src/conversions/tables.md:112
 msgid "`T`"
 msgstr ""
 
-#: src/conversions/tables.md:107
+#: src/conversions/tables.md:110
 msgid "`Bound<T>`"
 msgstr ""
 
-#: src/conversions/tables.md:108
+#: src/conversions/tables.md:111
 msgid "`PyRef<T: PyClass>`"
 msgstr ""
 
-#: src/conversions/tables.md:109
+#: src/conversions/tables.md:112
 msgid "`PyRefMut<T: PyClass>`"
 msgstr ""
 
-#: src/conversions/tables.md:111
+#: src/conversions/tables.md:114
 msgid "Requires the `num-bigint` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:113
+#: src/conversions/tables.md:116
 msgid "Requires the `ordered-float` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:115
+#: src/conversions/tables.md:118
 msgid "Requires the `num-complex` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:117
+#: src/conversions/tables.md:120
 msgid "Requires the `num-rational` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:119
+#: src/conversions/tables.md:122
 msgid "Requires the `hashbrown` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:121
+#: src/conversions/tables.md:124
 msgid "Requires the `indexmap` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:123
+#: src/conversions/tables.md:126
 msgid "Requires the `chrono` (and maybe `chrono-local`) optional feature(s)."
 msgstr ""
 
-#: src/conversions/tables.md:125
+#: src/conversions/tables.md:128
 msgid "Requires the `chrono-tz` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:127
+#: src/conversions/tables.md:130
 msgid "Requires the `rust_decimal` optional feature."
 msgstr ""
 
-#: src/conversions/tables.md:129
+#: src/conversions/tables.md:132
 msgid "Requires the `bigdecimal` optional feature."
+msgstr ""
+
+#: src/conversions/tables.md:134
+msgid "Requires the `smallvec` optional feature."
 msgstr ""
