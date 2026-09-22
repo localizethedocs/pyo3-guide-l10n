@@ -1,0 +1,961 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/advanced/sharing-types.md:1
+msgid "Sharing `#[pyclass]` types between multiple PyO3 extension modules"
+msgstr ""
+
+#: src/advanced/sharing-types.md:3
+msgid ""
+"\\[!WARNING\\] This is an advanced topic which requires reaching deeply into "
+"`unsafe` code. PyO3 does not have a stable API for doing this, and the "
+"approach documented here may break when updating to newer versions of PyO3. "
+"See [issue #1444](https://github.com/pyo3/pyo3/issues/1444) for ongoing "
+"discussion about this topic."
+msgstr ""
+
+#: src/advanced/sharing-types.md:8
+msgid ""
+"Some Python [extension modules](../glossary.md#extension-module) such as "
+"NumPy expose a C API which can be consumed by other extension modules to "
+"build functionality which directly exchanges native data without needing to "
+"go via Python objects. This allows for higher performance than continually "
+"moving data in and out of Python objects."
+msgstr ""
+
+#: src/advanced/sharing-types.md:11
+msgid ""
+"It is a common request for PyO3 extension modules to be able to share "
+"`#[pyclass]` types (and other native data) across multiple crate/package "
+"boundaries in a similar fashion to NumPy. Because PyO3 extension modules are "
+"each compiled as individual `cdylib` binaries, they cannot depend on each "
+"other in the typical Rust way of adding a Cargo dependency (which typically "
+"just includes the dependency statically inside the final compiled binary)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:14
+msgid ""
+"Instead, the correct way to share `#[pyclass]` data between separate PyO3 "
+"extension modules is to use `#[repr(C)]` Rust types and an FFI-like API to "
+"exchange data across the `cdylib` boundaries. The solution in this "
+"subchapter will explain how to do this correctly."
+msgstr ""
+
+#: src/advanced/sharing-types.md:17
+msgid "Quick summary"
+msgstr ""
+
+#: src/advanced/sharing-types.md:19
+msgid ""
+"The solution which this subchapter describes shares types across extension "
+"module boundaries by defining three Rust crates (see also the [example "
+"project](https://github.com/davidhewitt/pyo3-1444-prototype) on GitHub)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:21
+msgid "A crate `base-package-core` contains:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:22
+msgid ""
+"`#[repr(C)]` Rust types and APIs to be shared with downstream extension "
+"modules (not `#[pyclass]` types or `#[pymethods]`)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:23
+msgid ""
+"An API struct which contains function pointers to the API functions, version "
+"information, and any additional data."
+msgstr ""
+
+#: src/advanced/sharing-types.md:24
+msgid ""
+"A global static variable which stores the API struct, and a function to "
+"initialise this at runtime by importing from the `base_package` Python "
+"package. The implementations of the APIs defined in step 1 will delegate to "
+"the function pointers in the API struct."
+msgstr ""
+
+#: src/advanced/sharing-types.md:26
+msgid ""
+"A crate `base-package` which is a PyO3 project containing `#[pyclass]` thin "
+"wrappers around the types exposed in `base-package-core`."
+msgstr ""
+
+#: src/advanced/sharing-types.md:27
+msgid ""
+"Implement the API functionality defined in `base-package-core` and populate "
+"the API struct accordingly."
+msgstr ""
+
+#: src/advanced/sharing-types.md:28
+msgid ""
+"As part of the Python module, export the API struct inside a Python "
+"`capsule` object. The initialisation function defined in `base-package-core` "
+"will import this capsule and populate the global static copy of the API "
+"struct backing the shared APIs."
+msgstr ""
+
+#: src/advanced/sharing-types.md:31
+msgid ""
+"A crate `derived-package` which is a PyO3 project depending on `base-package-"
+"core` (not `base-package`)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:32
+msgid ""
+"As part of the Python module, import the API struct from the `capule` "
+"exposed by the `base_package` Python package and store it in `derived-"
+"package`'s copy of the global static variable defined in `base-package-core`."
+msgstr ""
+
+#: src/advanced/sharing-types.md:33
+msgid ""
+"Use the APIs from `base-package-core` to implement functionality which "
+"directly uses the shared types."
+msgstr ""
+
+#: src/advanced/sharing-types.md:35
+msgid ""
+"The sections below go into more detail about how to implement various parts "
+"of this solution and why the solution is architected this way."
+msgstr ""
+
+#: src/advanced/sharing-types.md:37
+msgid "Technical background & limitations"
+msgstr ""
+
+#: src/advanced/sharing-types.md:39
+msgid ""
+"The Python ecosystem provides a well-established mechanism for sharing C "
+"APIs between native extension modules using [Python `capsule` objects]"
+"(#capsules). This avoids traditional \"dynamic linking\" between native "
+"extension modules, which would rely on system-specific behavior to locate "
+"and load `base_package` during import of `derived_package` and to resolve "
+"any errors in version mismatch between the two packages."
+msgstr ""
+
+#: src/advanced/sharing-types.md:42
+msgid "The `capsule` mechanism works as follows:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:44
+msgid ""
+"`base_package` defines a `#[repr(C)]` \"API\" struct which is exported in a "
+"Python `capsule` at runtime."
+msgstr ""
+
+#: src/advanced/sharing-types.md:45
+msgid ""
+"`derived_package` delegates to Python's extension loading mechanism to "
+"locate `base_package` and load the API from the capsule."
+msgstr ""
+
+#: src/advanced/sharing-types.md:46
+msgid ""
+"`derived_package` then contains its own logic to [check a compatible version]"
+"(#api-versioning) of `base_package` was loaded; this is necessary to ensure "
+"safe exchange of the API struct."
+msgstr ""
+
+#: src/advanced/sharing-types.md:48
+msgid ""
+"When sharing types between multiple PyO3 extension modules through a "
+"`capsule`, the complexity arises from two main sources:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:50
+msgid ""
+"Each Rust extension module may be built with completely separate Rust "
+"toolchains and build settings."
+msgstr ""
+
+#: src/advanced/sharing-types.md:51
+msgid ""
+"This means anything which is implementation-defined, such as the layout of "
+"`#[repr(Rust)] struct`s, the implementation of `std`, and even "
+"optimizations, might disagree between the two extension modules."
+msgstr ""
+
+#: src/advanced/sharing-types.md:52
+msgid ""
+"Each Rust extension module contains a full statically-linked copy of its own "
+"dependencies."
+msgstr ""
+
+#: src/advanced/sharing-types.md:53
+msgid ""
+"Any `static` global variables which are compiled in the `base-package` will "
+"have a **completely independent** copy in the `derived-package`. This "
+"includes all `std` globals such as the [global allocator](https://doc.rust-"
+"lang.org/stable/std/alloc/trait.GlobalAlloc.html) and [panic hook](https://"
+"doc.rust-lang.org/stable/std/panic/fn.set_hook.html)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:55
+msgid ""
+"Any dependency version mismatches might mean that bugs in dependencies of "
+"`base-package` may not reproduce in the copy in `derived-package`, (e.g. if "
+"the common dependency `base-package-core` depends on `foo` 0.1, it is "
+"possible `base-package` will compile with `foo` 0.1.1 and `base-package-"
+"core` will compile with `foo` 0.1.2)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:57
+msgid ""
+"Practically speaking, this introduces the following limitations on extension "
+"modules wanting to share data in this way:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:59
+msgid ""
+"Extensions must take extreme care to ensure that only `#[repr(C)]` types are "
+"shared across the package boundary."
+msgstr ""
+
+#: src/advanced/sharing-types.md:61
+msgid ""
+"In particular the default `#[repr(Rust)]` layout has no stability guarantee; "
+"_two extension modules sharing a `#[repr(Rust)]` data type is undefined "
+"behavior_. It is also very easy to accidentally share `#[repr(Rust)]` types, "
+"see the [safety note on the `PyCapsule` type documentation](https://pyo3.rs/"
+"main/doc/pyo3/types/struct.PyCapsule.html) for cases to consider when "
+"sharing data."
+msgstr ""
+
+#: src/advanced/sharing-types.md:64
+msgid ""
+"\\[!WARNING\\] > Beware that PyO3's error type, `PyErr`, is not `#[repr(C)]` "
+"and cannot be shared across the package boundary > This is an easy mistake "
+"to make when exposing fallible APIs which cross the boundary. > There is a "
+"[later section on error handling](#error-handling) which suggests "
+"alternative strategies"
+msgstr ""
+
+#: src/advanced/sharing-types.md:66
+msgid ""
+"APIs which rely on global variables will not work as expected across the "
+"package boundary. For example:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:68
+msgid ""
+"The `#[global_allocator]` used by each extension will likely be different - "
+"each will need to ensure that any allocations are freed by the same "
+"allocator."
+msgstr ""
+
+#: src/advanced/sharing-types.md:69
+msgid ""
+"The `std::io` locks (e.g. for `stdout`) will not be shared, so concurrent "
+"output from the two extensions may interleave in unexpected ways."
+msgstr ""
+
+#: src/advanced/sharing-types.md:71
+msgid ""
+"PyO3 currently stores `#[pyclass]` types as global variables in static "
+"storage in each `cdylib` crate which compiles them. This means that directly "
+"sharing a `#[pyclass]` type across multiple `cdylib` crates will currently "
+"silently create multiple distinct Python types. To avoid this, the shared "
+"types cannot be `#[pyclass]`, instead the package exporting the type to "
+"Python needs to make private `#[pyclass]` which wraps the shared type. PyO3 "
+"may remove this limitation in future."
+msgstr ""
+
+#: src/advanced/sharing-types.md:76
+msgid "Using a capsule to create a shared API"
+msgstr ""
+
+#: src/advanced/sharing-types.md:78
+msgid ""
+"Let's start with the example of NumPy as an extension which wants to offer a "
+"C API for other native extensions to consume. The section above already "
+"established that Python native extensions can reuse data using the Python "
+"`capsule` type. It is an opaque wrapper which can be used to exchange "
+"arbitrary native data between Python extension modules. PyO3 provides the "
+"[`PyCapsule` type](https://pyo3.rs/main/doc/pyo3/types/struct.PyCapsule."
+"html) to create and consume capsules from Rust code."
+msgstr ""
+
+#: src/advanced/sharing-types.md:83
+msgid ""
+"NumPy creates a `capsule` which contains a pointer to the structure mapping "
+"the implementation of the [\"NumPy C API\"](https://numpy.org/doc/stable/"
+"reference/c-api/index.html). While the [exact contents of this structure are "
+"generated](https://github.com/numpy/numpy/"
+"blob/40a1b0283beacb0d723f51e2046c8dc049da6eee/numpy/_core/code_generators/"
+"generate_numpy_api.py#L202-L210), the resulting API structure looks "
+"something like the following C code:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:87
+msgid ""
+"// The API is defined as a fully type-erased array of \"void pointers\".\n"
+"//\n"
+"// This copy of the array is not public API, but internal to the NumPy "
+"implementation.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:91
+msgid "// Some fields contain function pointers, type erased\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:93
+msgid "// Some fields are empty\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:95
+msgid "// Some fields point to Python type objects\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:98
+msgid ""
+"// ... the real API is a few hundred elements long. contents and length are "
+"version specific.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:102
+msgid ""
+"To consume this array from downstream C projects, NumPy also defines a C "
+"header file which uses C macros to define the downstream API in terms of "
+"cast indexing into this API structure:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:106
+msgid "// cast function pointers back to their correct type\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:109
+msgid "// cast type objects back to `PyTypeObject *`\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:112
+msgid ""
+"// downstream packages must call this function before using any of the other "
+"APIS\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:116
+msgid "/* ... */"
+msgstr ""
+
+#: src/advanced/sharing-types.md:121
+msgid ""
+"To expose an API from Rust code, we'll need to take a similar approach. We "
+"have the choice of either matching NumPy and using an array of opaque "
+"pointers, or using a more typed API `struct` (\\[as long as it is "
+"`#[repr(C)]` - see the safety docs on the [`PyCapsule` type](https://pyo3.rs/"
+"main/doc/pyo3/types/struct.PyCapsule.html)). A typed `struct` helps to avoid "
+"mistakes in casting fields to the wrong type incorrectly, however additional "
+"care needs to be taken to ensure that the layout of the struct does not "
+"change incompatibly across non-breaking versions of the API. This is "
+"discussed further in [the next section](#api-versioning)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:126
+msgid ""
+"The snippets below sketch out what the NumPy approach looks like in Rust, "
+"using either an array of opaque pointers or a typed API struct. In both "
+"cases the public API functions are thin wrappers around the function "
+"pointers in the API struct, to provide ergonomics similar to the C macros in "
+"the NumPy example."
+msgstr ""
+
+#: src/advanced/sharing-types.md:136
+msgid ""
+"If using a pointer array, `base-package-core` will define the pointer array, "
+"`BaseApi`, which contains function pointers and other data as opaque `*mut "
+"c_void` pointers:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:139
+msgid ""
+"// The number of fields in the API will grow over time as future\n"
+"// versions add more APIs.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:142
+msgid "// The pointer array itself\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:146
+msgid ""
+"// SAFETY: BaseApi never changes once loaded, so it will be shared between "
+"threads.\n"
+"// (Manual implementations necessary due to `*mut c_void` not being `Send` "
+"or `Sync`).\n"
+"// \n"
+"// (This is likely not necessary if using the typed struct approach, as the "
+"compiler can see the real function pointers which are likely `Send` / "
+"`Sync`).\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:153 src/advanced/sharing-types.md:202
+msgid "/// Global variable which will be used by the API functions\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:158 src/advanced/sharing-types.md:207
+msgid ""
+"/// Internal method used by the public methods to read pointers from the "
+"API\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:160 src/advanced/sharing-types.md:209
+msgid "\"`base_package` not yet imported\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:163 src/advanced/sharing-types.md:212
+#: src/advanced/sharing-types.md:265
+msgid "/// Version identifiers for the API, returned by `get_api_version`.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:167 src/advanced/sharing-types.md:216
+msgid ""
+"/* details omitted for now, see below section regarding API versioning */"
+msgstr ""
+
+#: src/advanced/sharing-types.md:169 src/advanced/sharing-types.md:218
+#: src/advanced/sharing-types.md:274
+msgid ""
+"/// Downstream packages must call this method to initialise the library API "
+"before\n"
+"/// calling other functions.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:173 src/advanced/sharing-types.md:222
+msgid "/* details of importing omitted for now, see future sections */"
+msgstr ""
+
+#: src/advanced/sharing-types.md:175 src/advanced/sharing-types.md:224
+msgid ""
+"// Public functions exported by `base_package-core` are thin wrappers around "
+"the function pointers\n"
+"// in the API struct.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:178 src/advanced/sharing-types.md:227
+msgid ""
+"/// Returns the version of the `base_package` API loaded. `ApiVersion` is a "
+"`#[repr(C)]` struct\n"
+"/// so can be safely shared across package boundaries.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:183
+msgid ""
+"// SAFETY: BASE_API slot 0 is known to be the `get_api_version` function "
+"(`base_package` will set it).\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:184 src/advanced/sharing-types.md:286
+msgid "\"C\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:192
+msgid ""
+"If using a typed struct, `base-package-core` will define `BaseApi` as a "
+"`#[repr(C)]` struct with typed fields:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:195
+msgid ""
+"// The API struct #[repr(C)] to ensure a stable layout across package "
+"boundaries.\n"
+"// IMPORTANT: all fields must also be `repr(C)`, function pointers must be "
+"`extern \"C\"`,\n"
+"// and fields can only be added to the end of the struct in non-breaking "
+"versions of the API.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:239
+msgid ""
+"The consumers of the API struct will be compiled against a specific version "
+"of the `base-package-core` crate. It will only be safe to use the API struct "
+"if the version in the API struct matches the version expected by the "
+"consumer. Regardless of the choice made, due to backwards compatibility, the "
+"API struct can only grow over time, except when the version signals a "
+"breaking change."
+msgstr ""
+
+#: src/advanced/sharing-types.md:243
+msgid ""
+"The [example project](https://github.com/davidhewitt/pyo3-1444-prototype) "
+"demonstrates how to do this with Rust."
+msgstr ""
+
+#: src/advanced/sharing-types.md:245
+msgid "API versioning"
+msgstr ""
+
+#: src/advanced/sharing-types.md:247
+msgid ""
+"To safely consume the API struct from downstream packages it is first "
+"necessary to perform a version check. This version check needs to establish "
+"that the ABI (Application Binary Interface), i.e. the layout of the API "
+"struct, matches the expectations of the consumer."
+msgstr ""
+
+#: src/advanced/sharing-types.md:250
+msgid ""
+"This means that the `ApiVersion` type exposed by `base-package` in the "
+"example uses four fields: the three `major`, `minor`, and `patch` version "
+"fields from semver, plus an additional `abi_version` field which is only "
+"incremented for breaking changes to the ABI. Having the `abi_version` field "
+"allows for consumers potentially be compatible even across semver-breaking "
+"versions of the API. This means that e.g. `derived-package` compiled with "
+"version `0.0.3` of `base-package` could potentially be compatible with `base-"
+"package` version `0.0.2` if the API struct layout did not change between "
+"these versions, and the `abi_version` field was not incremented."
+msgstr ""
+
+#: src/advanced/sharing-types.md:254
+msgid ""
+"To make the version check straightforward, it is recommended to place the "
+"version information at the start of the API struct. This allows the consumer "
+"to first read the capsule data as an `ApiVersion` structure, and only if the "
+"version check passes, reinterpret the rest of the data as the full API "
+"struct."
+msgstr ""
+
+#: src/advanced/sharing-types.md:257
+msgid ""
+"To demonstrate, the following code shows the approximate implementation of "
+"the `import_base_package` function from the [example project](https://github."
+"com/davidhewitt/pyo3-1444-prototype), which performs the version check and "
+"if successful reads the API struct from the capsule:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:263
+msgid ""
+"// real code will contain additional fields to satisfy all functionality\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:282
+msgid ""
+"// First: import the capsule as a pointer to retrieve version information. "
+"It is necessary to validate the API version\n"
+"    // before attempting to access any of the rest of the API.\n"
+"    //\n"
+"    // SAFETY: The function to get the version info is the first field in "
+"the API struct.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:286
+msgid "\"base_package._BASE_API\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:288
+msgid "// Read the version information via the function pointer.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:291
+msgid ""
+"// Use environment variables set by Cargo to validate the API is\n"
+"    // compatible with the version of the base package that is currently "
+"running.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:293 src/advanced/sharing-types.md:316
+msgid "\"CARGO_PKG_VERSION_MAJOR\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:295 src/advanced/sharing-types.md:298
+msgid "\"invalid cargo package version\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:296 src/advanced/sharing-types.md:317
+msgid "\"CARGO_PKG_VERSION_MINOR\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:300
+msgid ""
+"// Critical: the ABI version must match exactly, otherwise the layout of the "
+"API struct\n"
+"    // is not known by this consumer\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:304
+msgid "\"base_package ABI version mismatch: expected {}, got {}\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:310
+msgid ""
+"// In this example, the consumer allows for newer versions of the API to be "
+"used, as long\n"
+"    // as they had a compatible ABI version. Real projects may have "
+"different policies on breakage\n"
+"    // and forwards/backwards compatibility they are prepared to maintain.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:315
+msgid ""
+"\"base_package API version mismatch: expected at least {}.{}, got {}.{}\""
+msgstr ""
+
+#: src/advanced/sharing-types.md:323
+msgid ""
+"// SAFETY: The version fields have been validated, so it is now known it\n"
+"    // is safe to cast the data to the known struct.\n"
+"    // \n"
+"    // The capsule contains a pointer to the full API struct, so this cast "
+"is sound.\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:330
+msgid ""
+"// all fields in the API are function pointers, so are copied trivially\n"
+msgstr ""
+
+#: src/advanced/sharing-types.md:336
+msgid "Creating a shared `#[pyclass]` type"
+msgstr ""
+
+#: src/advanced/sharing-types.md:338
+msgid ""
+"Once the version checks are complete and the API struct loading is "
+"established, this technique can be expanded to share `#[pyclass]` types "
+"across the package boundary."
+msgstr ""
+
+#: src/advanced/sharing-types.md:340
+msgid ""
+"For a type named `SharedType`, the steps to achieve this are as follows:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:342
+msgid ""
+"`base-package-core` defines a `#[repr(C)]` struct which contains the data to "
+"be shared across the boundary."
+msgstr ""
+
+#: src/advanced/sharing-types.md:345
+msgid ""
+"The `BaseApi` struct defined in the previous sections is extended to include "
+"functions to manipulate this struct (these functions will later be provided "
+"by `base-package`)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:347
+msgid "At a minimum, this will probably include:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:349
+msgid ""
+"`get_shared_type: extern \"C\" fn() -> Py<PyType>` - a function to get the "
+"`#[pyclass]` Python type object for `SharedType`."
+msgstr ""
+
+#: src/advanced/sharing-types.md:351
+msgid ""
+"`create_shared_type: unsafe extern \"C\" fn(SharedType) -> "
+"Option<Py<SharedType>>` - a function to create a new instance of the "
+"`SharedType` struct and return it as a Python object."
+msgstr ""
+
+#: src/advanced/sharing-types.md:353
+msgid ""
+"This function is `unsafe` because the caller must ensure that the thread is "
+"[attached](../glossary.md#attached) to the interpreter (`Python<'py>` is a "
+"zero-sized type and not FFI-safe)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:355
+msgid ""
+"The return type on this function is wrapped in `Option` to allow for failure "
+"- see [the error handling section](#error-handling) for more details."
+msgstr ""
+
+#: src/advanced/sharing-types.md:357
+msgid ""
+"`cast_shared_type: for<'a> extern \"C\" fn(Borrowed<'a, '_, SharedType>) -> "
+"&'a SharedType` - a function to extract a reference to the `SharedType` Rust "
+"struct from inside a Python object."
+msgstr ""
+
+#: src/advanced/sharing-types.md:359
+msgid ""
+"With the API struct extended to include these functions, the `base-package-"
+"core` crate can now implement PyO3 traits for `SharedType` in terms of those "
+"functions."
+msgstr ""
+
+#: src/advanced/sharing-types.md:361
+msgid "The crucial traits are:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:363
+msgid ""
+"`PyTypeInfo` - the `get_type` function can delegate to the `get_shared_type` "
+"function pointer in the API struct."
+msgstr ""
+
+#: src/advanced/sharing-types.md:365
+msgid ""
+"`IntoPyPyObject` - the `into_pyobject` function can delegate to the "
+"`create_shared_type` function pointer in the API struct."
+msgstr ""
+
+#: src/advanced/sharing-types.md:367
+msgid ""
+"`FromPyObject<'_>` - the `extract` function can delegate to the "
+"`cast_shared_type` function pointer in the API struct."
+msgstr ""
+
+#: src/advanced/sharing-types.md:370
+msgid ""
+"`base-package` implements a `#[pyclass]` which is a thin wrapper around the "
+"`SharedType` struct, defining its Python functionality."
+msgstr ""
+
+#: src/advanced/sharing-types.md:372
+msgid ""
+"`base-package` implements the functions defined in the API struct to "
+"manipulate the `SharedType`, and populates the API struct with pointers to "
+"these functions as part of creating the `capsule`."
+msgstr ""
+
+#: src/advanced/sharing-types.md:374
+msgid ""
+"`derived-package` uses the existing `import_base_package()` function to load "
+"the API struct, and then can interact with it as a Python type via PyO3's "
+"[smart pointers](../glossary.md#smart-pointer)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:376
+msgid ""
+"The [example project](https://github.com/davidhewitt/pyo3-1444-prototype) "
+"demonstrates how to do this with a `Series` type implementing a \"mini "
+"DataFrame API\", to show how to use these stages to perform real work."
+msgstr ""
+
+#: src/advanced/sharing-types.md:378
+msgid "Practical considerations for sharing data across the package boundary"
+msgstr ""
+
+#: src/advanced/sharing-types.md:380
+msgid ""
+"As a reminder, there are two key restrictions to data which is shared across "
+"the package boundary:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:382
+msgid ""
+"Only types with a stable layout, such as `#[repr(C)]` types, can be shared."
+msgstr ""
+
+#: src/advanced/sharing-types.md:383
+msgid ""
+"Global variables are not shared across the boundary, and in particular for "
+"data sharing, the `#[global_allocator]` is not shared, so data allocated by "
+"one package must be freed by the same package."
+msgstr ""
+
+#: src/advanced/sharing-types.md:385
+msgid ""
+"This means that all Rust standard library types, such as `Vec`, `String`, "
+"and `Box`, cannot be shared across the boundary. Even Rust tuples do not "
+"have a stable layout and cannot be shared."
+msgstr ""
+
+#: src/advanced/sharing-types.md:388
+msgid ""
+"There [is a proposal for a `#[repr(crabi)]` ABI](https://github.com/rust-"
+"lang/rust/issues/111423) which would define stable layouts for many Rust "
+"types, which would make it easier to share data. This would still not solve "
+"types which contain heap allocations."
+msgstr ""
+
+#: src/advanced/sharing-types.md:391
+msgid ""
+"For now, a practical solution is to use the [`abi_stable`](https://github."
+"com/rodrimati1992/abi_stable_crates/) crate, which provides many equivalents "
+"to Rust standard library types with stable internal layouts. It uses vtables "
+"to allow for heap-allocated data to be shared, automatically ensuring the "
+"same allocator is used to free data as was used to allocate it. This is the "
+"solution used in the [example project](https://github.com/davidhewitt/"
+"pyo3-1444-prototype) to share `Vec`\\-like and `String`\\-like data across "
+"the boundary."
+msgstr ""
+
+#: src/advanced/sharing-types.md:395
+msgid ""
+"Using vtables introduces overhead (e.g. prevents inlining), however this is "
+"a necessary consequence of the limitations of sharing data across the "
+"package boundary."
+msgstr ""
+
+#: src/advanced/sharing-types.md:397
+msgid "Error handling across the boundary"
+msgstr ""
+
+#: src/advanced/sharing-types.md:399
+msgid ""
+"Similar to many other types, PyO3's `PyErr` type is not currently "
+"`#[repr(C)]`, so cannot be shared across the package boundary."
+msgstr ""
+
+#: src/advanced/sharing-types.md:401
+msgid ""
+"The simplest approach to handling errors across the boundary is to use "
+"`Option` return types in the API struct, and to return `None` on error. This "
+"is the approach taken in the [example project](https://github.com/"
+"davidhewitt/pyo3-1444-prototype)."
+msgstr ""
+
+#: src/advanced/sharing-types.md:404
+msgid ""
+"The downside of this approach is that `?` does not trivially work in the "
+"implementation of the API functions. The suggested strategy is:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:407
+msgid ""
+"Inside the API function implementations, convert `PyResult` to `Option` by "
+"using `PyErr::restore` to write the error to the Python [thread state]"
+"(https://docs.python.org/3/glossary.html#term-thread-state), and returning "
+"`None` on error."
+msgstr ""
+
+#: src/advanced/sharing-types.md:408
+msgid ""
+"The wrappers in `base-package-core` which delegate to the API functions can "
+"then convert the `Option` back to `PyResult` by using `PyErr::fetch` to read "
+"the error from the Python thread state."
+msgstr ""
+
+#: src/advanced/sharing-types.md:410
+msgid "Wrap-up, limitations & future work"
+msgstr ""
+
+#: src/advanced/sharing-types.md:412
+msgid ""
+"This subchapter has attempted to detail how to use `capsule` objects to "
+"create an API for sharing Rust data between multiple PyO3 extension modules. "
+"While complex, this is a workable technique for projects which need to have "
+"this functionality."
+msgstr ""
+
+#: src/advanced/sharing-types.md:415
+msgid ""
+"PyO3 does not yet offer any particular support for this use case and will "
+"likely be unable to provide a fully safe API to achieve this while data "
+"exchange is limited to `#[repr(C)]` types with pitfalls such as duplicate "
+"global variables. Over time PyO3 might accumulate utilities for common "
+"pieces of this process."
+msgstr ""
+
+#: src/advanced/sharing-types.md:418
+msgid "Some places where this process process easier in the future include:"
+msgstr ""
+
+#: src/advanced/sharing-types.md:420
+msgid "Better `#[pyclass]` support"
+msgstr ""
+
+#: src/advanced/sharing-types.md:422
+msgid ""
+"At the moment the `base-package-core` Rust API cannot use PyO3's "
+"`#[pyclass]` macro, because of the global variable backing the `#[pyclass]` "
+"implementation being a problem when duplicated into `base-package` and "
+"`derived-package`."
+msgstr ""
+
+#: src/advanced/sharing-types.md:424
+msgid ""
+"A possible solution is that PyO3 could have an option like "
+"`#[pyclass(shareable)]`, which could automatically generate the kind of "
+"`PyTypeInfo` / `IntoPyObject` / `FromPyObject` implementations which need to "
+"be hand-rolled at present."
+msgstr ""
+
+#: src/advanced/sharing-types.md:426
+msgid ""
+"To make this work, PyO3 would probably need to support [module state]"
+"(https://github.com/PyO3/pyo3/pull/5600), and require the `base-package` "
+"which exports the shared type to manually initialize it and store it in "
+"module state."
+msgstr ""
+
+#: src/advanced/sharing-types.md:428
+msgid ""
+"There are many open design questions about how to make that work elegantly."
+msgstr ""
+
+#: src/advanced/sharing-types.md:430
+msgid "`#[repr(C)]` error handling"
+msgstr ""
+
+#: src/advanced/sharing-types.md:432
+msgid ""
+"At present, PyO3's `PyErr` type is a complex internal state machine which "
+"allows for lazy creation of Python exceptions. This was convenient in early "
+"implementations of PyO3 but carried internal complexity and overhead."
+msgstr ""
+
+#: src/advanced/sharing-types.md:435
+msgid ""
+"PyO3's APIs have been trending in recent years towards allowing Rust code to "
+"use Rust error types for full control of overhead, e.g. the `IntoPyObject` "
+"and `FromPyObject` traits have a `type Error`, and the `#[pyfunction]` "
+"macros accept any `Result<T, E>` as long as the error type implements a "
+"conversion to `PyErr`."
+msgstr ""
+
+#: src/advanced/sharing-types.md:437
+msgid ""
+"It is likely that PyO3 will eventually transition the `PyErr` type to be a "
+"thin wrapper around `Py<PyBaseException>`, which would allow it to have a "
+"stable layout and participate in error handling across the boundary. This "
+"primarily requires consideration about how to nudge existing dependents of "
+"`PyErr`'s \"lazy\" internals towards better practices."
+msgstr ""
+
+#: src/advanced/sharing-types.md:440
+msgid "Better support for stable-layout types"
+msgstr ""
+
+#: src/advanced/sharing-types.md:442
+msgid ""
+"The restriction of needing `#[repr(C)]` types to achieve a stable ABI for "
+"data sharing creates a lot of friction at the boundary. It can also have "
+"implications for both efficiency and implementation of the `base-package-"
+"core` types."
+msgstr ""
+
+#: src/advanced/sharing-types.md:445
+msgid ""
+"The author's experience is that the Rust compiler doesn't yet have a "
+"mechanism to comprehensively lint against accidentally sharing types with "
+"unstable layouts across the boundary. There may be value in an upstream "
+"effort to implement this so that projects using this `capsule` mechanism can "
+"avoid easy mistakes."
+msgstr ""
+
+#: src/advanced/sharing-types.md:448
+msgid ""
+"Outside of the Rust project itself, [`abi_stable`](https://github.com/"
+"rodrimati1992/abi_stable_crates/) crate is the most complete solution "
+"currently available to have a convenient way to correctly create a stable "
+"ABI. However, `abi_stable` also appears to be largely unmaintained, so users "
+"wanting to depend on its functionality may need to consider reviving or "
+"forking it."
+msgstr ""
+
+#: src/advanced/sharing-types.md:451
+msgid ""
+"Furthermore, PyO3 currently doesn't implement `FromPyObject` or "
+"`IntoPyObject` conversions for `abi_stable` types. This makes working with "
+"these types somewhat awkward / inefficient at the Python boundary. PyO3 "
+"_could_ add an optional feature for this, however given the API surface "
+"involved it would be better to resolve the question of maintenance of "
+"`abi_stable` before adding such functionality to PyO3."
+msgstr ""
