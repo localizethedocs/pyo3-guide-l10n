@@ -1,0 +1,103 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/glossary.md:1
+msgid "Glossary"
+msgstr ""
+
+#: src/glossary.md:3
+msgid ""
+"Many of the terms used in this guide are common to the Python or Rust "
+"ecosystem, and accordingly can be found in the [Python Glossary](https://"
+"docs.python.org/3/glossary.html), [Rust Glossary](https://doc.rust-lang.org/"
+"reference/glossary.html), or [Cargo Glossary](https://doc.rust-lang.org/"
+"cargo/appendix/glossary.html)."
+msgstr ""
+
+#: src/glossary.md:5
+msgid ""
+"Below are some terms that are particularly relevant to PyO3 and either are "
+"not found in the above glossaries or have a specific meaning in the context "
+"of PyO3:"
+msgstr ""
+
+#: src/glossary.md:7
+msgid ""
+"attached : To call into the Python interpreter from Rust, the Rust thread "
+"must have an associated Python [thread state](https://docs.python.org/3/"
+"glossary.html#term-thread-state) which is \"attached\" to the Python "
+"interpreter. This is a safety invariant required by the Python C API, which "
+"ensures that the Python interpreter can handle exceptions, avoid [data races]"
+"(https://docs.python.org/3/glossary.html#term-data-race) with the garbage "
+"collector, etc. The [`Python::attach`](https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html#method.attach) method is used to attach the current "
+"thread to the Python interpreter and obtain a `Python` token which can be "
+"used to call Python APIs."
+msgstr ""
+
+#: src/glossary.md:12
+msgid ""
+"extension module : A Python module which is implemeted using native code (e."
+"g. C, C++ or Rust) instead of Python. See also [CPython's documentation on "
+"creating extension modules](https://docs.python.org/3/extending/extending."
+"html)."
+msgstr ""
+
+#: src/glossary.md:16
+msgid ""
+"GIL-enabled Python : The (current, as of Python 3.14) default build of "
+"Python, which depends on the [GIL](https://docs.python.org/3/glossary."
+"html#term-GIL) for thread safety."
+msgstr ""
+
+#: src/glossary.md:19
+msgid ""
+"    This was historically the only thread safety strategy before the "
+"introduction of [free-threaded Python](https://docs.python.org/3/glossary."
+"html#term-free-threaded-build).\n"
+"    "
+msgstr ""
+
+#: src/glossary.md:21
+msgid ""
+"Python token : PyO3's [`Python<'py>`](https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html) type, which can only exist when the current thread is "
+"[attached](#attached) to the Python interpreter. This type is used to call "
+"Python APIs and ensures that the safety invariants required by the Python C "
+"API are upheld."
+msgstr ""
+
+#: src/glossary.md:25
+msgid ""
+"smart pointer : Pointers which automatically manage the memory they point "
+"to. In particular this guide refers to [PyO3's smart pointers](types."
+"md#pyo3s-smart-pointers) `Py<T>`, `Bound<'py, T>`, and `Borrowed<'a, 'py, "
+"T>` which point to Python objects and use Python reference counting to "
+"ensure correct memory management."
+msgstr ""
+
+#: src/glossary.md:29
+msgid ""
+"    See also the [Rust book's chapter on smart pointers](https://doc.rust-"
+"lang.org/book/ch15-00-smart-pointers.html).\n"
+"    "
+msgstr ""
+
+#: src/glossary.md:31
+msgid ""
+"wheel : A precompiled Python package format. Wheels are the standard way to "
+"distribute native code in Python packages for common operating systems and "
+"Python versions, which avoid the need for users to compile from source. The "
+"alternative is known as the \"source distribution\", or \"sdist\", which "
+"requires users to compile the code as part of package installation."
+msgstr ""
