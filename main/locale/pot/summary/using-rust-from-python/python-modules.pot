@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-10-06T14:41:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,33 +23,37 @@ msgstr ""
 msgid "/// This module is implemented in Rust.\n"
 msgstr ""
 
-#: src/module.md:20
+#: src/module.md:16
+msgid "\"example\""
+msgstr ""
+
+#: src/module.md:21
 msgid ""
 "// The double function is made available from Python, works also with "
 "classes\n"
 msgstr ""
 
-#: src/module.md:22
+#: src/module.md:23
 msgid "// Inline definition of a pyfunction, also made available to Python\n"
 msgstr ""
 
-#: src/module.md:30
+#: src/module.md:31
 msgid ""
 "The `#[pymodule]` procedural macro takes care of creating the initialization "
 "function of your module and exposing it to Python."
 msgstr ""
 
-#: src/module.md:32
+#: src/module.md:33
 msgid ""
 "The module's name defaults to the name of the Rust module. You can override "
 "the module name by using `#[pyo3(name = \"custom_name\")]`:"
 msgstr ""
 
-#: src/module.md:44
+#: src/module.md:45
 msgid "\"custom_name\""
 msgstr ""
 
-#: src/module.md:52
+#: src/module.md:53
 msgid ""
 "The name of the module must match the name of the `.so` or `.pyd` file. "
 "Otherwise, you will get an import error in Python with the following "
@@ -57,45 +61,45 @@ msgid ""
 "(PyInit_name_of_your_module)`"
 msgstr ""
 
-#: src/module.md:55
+#: src/module.md:56
 msgid "To import the module, either:"
 msgstr ""
 
-#: src/module.md:57
+#: src/module.md:58
 msgid ""
 "copy the shared library as described in [Manual builds](building-and-"
 "distribution.md#manual-builds), or"
 msgstr ""
 
-#: src/module.md:58
+#: src/module.md:59
 msgid ""
 "use a tool, e.g. `maturin develop` with [maturin](https://github.com/PyO3/"
 "maturin) or `python setup.py develop` with [setuptools-rust](https://github."
 "com/PyO3/setuptools-rust)."
 msgstr ""
 
-#: src/module.md:61
+#: src/module.md:62
 msgid "Documentation"
 msgstr ""
 
-#: src/module.md:63
+#: src/module.md:64
 msgid ""
 "The [Rust doc comments](https://doc.rust-lang.org/stable/book/ch03-04-"
 "comments.html) of the Rust module will be applied automatically as the "
 "Python docstring of your module."
 msgstr ""
 
-#: src/module.md:65
+#: src/module.md:66
 msgid ""
 "For example, building off of the above code, this will print `This module is "
 "implemented in Rust.`:"
 msgstr ""
 
-#: src/module.md:73
+#: src/module.md:74
 msgid "Python submodules"
 msgstr ""
 
-#: src/module.md:75
+#: src/module.md:76
 msgid ""
 "You can create a module hierarchy within a single [extension module]"
 "(glossary.md#extension-module) by just `use`ing modules like functions or "
@@ -103,19 +107,19 @@ msgid ""
 "`parent_module.child_module`:"
 msgstr ""
 
-#: src/module.md:95
+#: src/module.md:96
 msgid "\"func\""
 msgstr ""
 
-#: src/module.md:103
+#: src/module.md:104
 msgid "\"parent_module\""
 msgstr ""
 
-#: src/module.md:105
+#: src/module.md:106
 msgid "\"assert parent_module.child_module.func() == 'func'\""
 msgstr ""
 
-#: src/module.md:110
+#: src/module.md:111
 msgid ""
 "Note that this does not define a package, so this won’t allow Python code to "
 "directly import submodules by using `from parent_module import "
@@ -124,36 +128,40 @@ msgid ""
 "issues/1517#issuecomment-808664021)."
 msgstr ""
 
-#: src/module.md:113
+#: src/module.md:114
 msgid ""
 "You can provide the `submodule` argument to `#[pymodule()]` for modules that "
 "are not top-level modules in order for them to properly generate the "
 "`#[pyclass]` `module` attribute automatically."
 msgstr ""
 
-#: src/module.md:115
+#: src/module.md:116
 msgid "Inline declaration"
 msgstr ""
 
-#: src/module.md:117
+#: src/module.md:118
 msgid ""
 "It is possible to declare functions, classes, sub-modules and constants "
 "inline in a module:"
 msgstr ""
 
-#: src/module.md:119
+#: src/module.md:120
 msgid "For example:"
 msgstr ""
 
-#: src/module.md:128
+#: src/module.md:124
+msgid "\"example_inline_declarations\""
+msgstr ""
+
+#: src/module.md:129
 msgid "// Exports PI constant as part of the module\n"
 msgstr ""
 
-#: src/module.md:130 src/module.md:135
+#: src/module.md:131 src/module.md:136
 msgid "// This will be part of the module\n"
 msgstr ""
 
-#: src/module.md:140
+#: src/module.md:141
 msgid "// This is a submodule\n"
 msgstr ""
 
@@ -176,6 +184,10 @@ msgid ""
 "the module initialization:"
 msgstr ""
 
+#: src/module.md:160
+msgid "\"example_module_init\""
+msgstr ""
+
 #: src/module.md:171
 msgid "// Arbitrary code to run at the module initialization\n"
 msgstr ""
@@ -186,4 +198,45 @@ msgstr ""
 
 #: src/module.md:172
 msgid "\"double\""
+msgstr ""
+
+#: src/module.md:177
+msgid ""
+"The module argument may be omitted if the initialization does not need it, "
+"for example when it only installs some global state. The return type may "
+"then be omitted too:"
+msgstr ""
+
+#: src/module.md:182
+msgid "\"example_module_init_no_module_arg\""
+msgstr ""
+
+#: src/module.md:186
+msgid "// Arbitrary code which does not touch the module\n"
+msgstr ""
+
+#: src/module.md:191
+msgid ""
+"A `Python<'_>` marker may be taken as the first argument, either on its own "
+"or followed by the module. This suits an initializer which needs the "
+"interpreter but not the module itself:"
+msgstr ""
+
+#: src/module.md:196
+msgid "\"example_module_init_python_arg\""
+msgstr ""
+
+#: src/module.md:202
+msgid "// Arbitrary code which needs the interpreter but not the module\n"
+msgstr ""
+
+#: src/module.md:203
+msgid "\"decimal\""
+msgstr ""
+
+#: src/module.md:209
+msgid ""
+"Prefer a form which does not take the module where possible: an initializer "
+"which is not handed the module does not add attributes to it, so [type stub "
+"generation](type-stub.md) can keep describing the module in full."
 msgstr ""

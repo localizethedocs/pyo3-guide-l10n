@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-10-06T14:41:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -50,31 +50,35 @@ msgid ""
 "its configuration (mostly to tune its performance)."
 msgstr ""
 
-#: src/ecosystem/logging.md:25
+#: src/ecosystem/logging.md:19
+msgid "\"example_logging\""
+msgstr ""
+
+#: src/ecosystem/logging.md:26
 msgid ""
 "// This will use the logger installed in `my_module` to send the `info`\n"
 "        // message to the Python logging facilities.\n"
 msgstr ""
 
-#: src/ecosystem/logging.md:27
+#: src/ecosystem/logging.md:28
 msgid "\"Something!\""
 msgstr ""
 
-#: src/ecosystem/logging.md:32
+#: src/ecosystem/logging.md:33
 msgid "// A good place to install the Rust -> Python logger.\n"
 msgstr ""
 
-#: src/ecosystem/logging.md:38
+#: src/ecosystem/logging.md:39
 msgid ""
 "Then it is up to the Python side to actually output the messages somewhere."
 msgstr ""
 
-#: src/ecosystem/logging.md:44
+#: src/ecosystem/logging.md:45
 msgid ""
-"'%(levelname)s %(name)s %(asctime)-15s %(filename)s:%(lineno)d %(message)s'"
+"\"%(levelname)s %(name)s %(asctime)-15s %(filename)s:%(lineno)d %(message)s\""
 msgstr ""
 
-#: src/ecosystem/logging.md:50
+#: src/ecosystem/logging.md:51
 msgid ""
 "It is important to initialize the Python loggers first, before calling any "
 "Rust functions that may log. This limitation can be worked around if it is "
@@ -82,57 +86,57 @@ msgid ""
 "rs/pyo3-log/*/pyo3_log/#performance-filtering-and-caching)."
 msgstr ""
 
-#: src/ecosystem/logging.md:53
+#: src/ecosystem/logging.md:54
 msgid "The Python to Rust direction"
 msgstr ""
 
-#: src/ecosystem/logging.md:55
+#: src/ecosystem/logging.md:56
 msgid ""
 "To have python logs be handled by Rust, one need only register a rust "
 "function to handle logs emitted from the core python logging module."
 msgstr ""
 
-#: src/ecosystem/logging.md:57
+#: src/ecosystem/logging.md:58
 msgid ""
 "This has been implemented within the [pyo3-pylogger](https://crates.io/"
 "crates/pyo3-pylogger) crate."
 msgstr ""
 
-#: src/ecosystem/logging.md:64
+#: src/ecosystem/logging.md:65
 msgid ""
 "// register the host handler with python logger, providing a logger target\n"
 "    // set the name here to something appropriate for your application\n"
 msgstr ""
 
-#: src/ecosystem/logging.md:66
+#: src/ecosystem/logging.md:67
 msgid "\"example_application_py_logger\""
 msgstr ""
 
-#: src/ecosystem/logging.md:68
+#: src/ecosystem/logging.md:69
 msgid "// initialize up a logger\n"
 msgstr ""
 
-#: src/ecosystem/logging.md:69
+#: src/ecosystem/logging.md:70
 msgid "\"trace\""
 msgstr ""
 
-#: src/ecosystem/logging.md:71
+#: src/ecosystem/logging.md:72
 msgid "// Log some messages from Rust.\n"
 msgstr ""
 
-#: src/ecosystem/logging.md:72
+#: src/ecosystem/logging.md:73
 msgid "\"Just some normal information!\""
 msgstr ""
 
-#: src/ecosystem/logging.md:73
+#: src/ecosystem/logging.md:74
 msgid "\"Something spooky happened!\""
 msgstr ""
 
-#: src/ecosystem/logging.md:75
+#: src/ecosystem/logging.md:76
 msgid "// Log some messages from Python\n"
 msgstr ""
 
-#: src/ecosystem/logging.md:78
+#: src/ecosystem/logging.md:79
 msgid ""
 "\"\n"
 "import logging\n"

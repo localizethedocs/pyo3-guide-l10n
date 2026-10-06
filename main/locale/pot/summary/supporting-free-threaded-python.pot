@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-10-06T14:41:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -145,23 +145,27 @@ msgstr ""
 msgid "/// This module relies on the GIL for thread safety\n"
 msgstr ""
 
-#: src/free-threading.md:47
+#: src/free-threading.md:44
+msgid "\"example_thread_unsafe_module\""
+msgstr ""
+
+#: src/free-threading.md:48
 msgid "// this type is not thread-safe\n"
 msgstr ""
 
-#: src/free-threading.md:50
+#: src/free-threading.md:51
 msgid "// insert not thread-safe code\n"
 msgstr ""
 
-#: src/free-threading.md:55
+#: src/free-threading.md:56
 msgid "Or for a module that is set up without using the `pymodule` macro:"
 msgstr ""
 
-#: src/free-threading.md:62
+#: src/free-threading.md:63
 msgid "\"child_module\""
 msgstr ""
 
-#: src/free-threading.md:69
+#: src/free-threading.md:70
 msgid ""
 "See the [`string-sum`](https://github.com/PyO3/pyo3/tree/main/pyo3-ffi/"
 "examples/string-sum) example for how to declare free-threaded support using "
@@ -170,7 +174,7 @@ msgid ""
 "sequential) example for modules using multi-phase initialization."
 msgstr ""
 
-#: src/free-threading.md:71
+#: src/free-threading.md:72
 msgid ""
 "If you would like to use conditional compilation to trigger different code "
 "paths under the free-threaded build, you can use the `Py_GIL_DISABLED` "
@@ -180,18 +184,18 @@ msgid ""
 "multiple different Python versions, including the free-threaded build."
 msgstr ""
 
-#: src/free-threading.md:74
+#: src/free-threading.md:75
 msgid "Special considerations for the free-threaded build"
 msgstr ""
 
-#: src/free-threading.md:76
+#: src/free-threading.md:77
 msgid ""
 "The free-threaded interpreter does not have a GIL. Many existing extension "
 "modules providing mutable data structures relied on the GIL to lock Python "
 "objects and make interior mutability thread-safe."
 msgstr ""
 
-#: src/free-threading.md:79
+#: src/free-threading.md:80
 msgid ""
 "Calling into the CPython C API is only legal when an OS thread is explicitly "
 "[attached](glossary.md#attached) to the interpreter runtime. In the GIL-"
@@ -205,7 +209,7 @@ msgid ""
 "GIL in the GIL-enabled build."
 msgstr ""
 
-#: src/free-threading.md:84
+#: src/free-threading.md:85
 msgid ""
 "In the GIL-enabled build, PyO3 uses the [`Python<'py>`](https://pyo3.rs/main/"
 "doc/pyo3/marker/struct.Python.html) type and the `'py` lifetime to signify "
@@ -215,11 +219,11 @@ msgid ""
 "the interpreter."
 msgstr ""
 
-#: src/free-threading.md:87
+#: src/free-threading.md:88
 msgid "Attaching to the runtime"
 msgstr ""
 
-#: src/free-threading.md:89
+#: src/free-threading.md:90
 msgid ""
 "You still need to obtain a `'py` lifetime to interact with Python objects or "
 "call into the CPython C API. If you are not yet attached to the Python "
@@ -231,47 +235,47 @@ msgid ""
 "html) token when CPython calls into your extension module."
 msgstr ""
 
-#: src/free-threading.md:93
+#: src/free-threading.md:94
 msgid "Detaching to avoid hangs and deadlocks"
 msgstr ""
 
-#: src/free-threading.md:95
+#: src/free-threading.md:96
 msgid ""
 "The free-threaded build triggers global synchronization events in the "
 "following situations:"
 msgstr ""
 
-#: src/free-threading.md:97
+#: src/free-threading.md:98
 msgid ""
 "During [garbage collection](https://docs.python.org/3/glossary.html#term-"
 "garbage-collection) in order to get a globally consistent view of reference "
 "counts and references between objects"
 msgstr ""
 
-#: src/free-threading.md:99
+#: src/free-threading.md:100
 msgid ""
 "In Python 3.13, when the first background thread is started in order to mark "
 "certain objects as immortal"
 msgstr ""
 
-#: src/free-threading.md:101
+#: src/free-threading.md:102
 msgid ""
 "When either `sys.settrace` or `sys.setprofile` are called in order to "
 "instrument running code objects and threads"
 msgstr ""
 
-#: src/free-threading.md:103
+#: src/free-threading.md:104
 msgid ""
 "During a call to `os.fork()`, to ensure a process-wide consistent state."
 msgstr ""
 
-#: src/free-threading.md:105
+#: src/free-threading.md:106
 msgid ""
 "This is a non-exhaustive list and there may be other situations in future "
 "Python versions that can trigger global synchronization events."
 msgstr ""
 
-#: src/free-threading.md:107
+#: src/free-threading.md:108
 msgid ""
 "This means that you should detach from the interpreter runtime using "
 "[`Python::detach`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
@@ -286,12 +290,12 @@ msgid ""
 "but the spawning thread prevents the synchronization event from completing."
 msgstr ""
 
-#: src/free-threading.md:110
+#: src/free-threading.md:111
 msgid ""
 "Exceptions and panics for multithreaded access of mutable `pyclass` instances"
 msgstr ""
 
-#: src/free-threading.md:112
+#: src/free-threading.md:113
 msgid ""
 "Data attached to `pyclass` instances is protected from concurrent access by "
 "a `RefCell`\\-like pattern of runtime borrow checking. Like a `RefCell`, "
@@ -306,7 +310,7 @@ msgid ""
 "borrowed data from Python."
 msgstr ""
 
-#: src/free-threading.md:116
+#: src/free-threading.md:117
 msgid ""
 "The most straightforward way to trigger this problem is to use the Python "
 "[`threading`](https://docs.python.org/3/library/threading.html) module to "
@@ -315,15 +319,15 @@ msgid ""
 "example, consider the following implementation:"
 msgstr ""
 
-#: src/free-threading.md:141
+#: src/free-threading.md:142
 msgid "And then if we do something like this in Python:"
 msgstr ""
 
-#: src/free-threading.md:157
+#: src/free-threading.md:160
 msgid "We will see an exception:"
 msgstr ""
 
-#: src/free-threading.md:159
+#: src/free-threading.md:162
 msgid ""
 "```text\n"
 "Traceback (most recent call last)\n"
@@ -333,7 +337,7 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/free-threading.md:166
+#: src/free-threading.md:169
 msgid ""
 "We may allow user-selectable semantics for mutable pyclass definitions in a "
 "future version of PyO3, allowing some form of opt-in locking to emulate the "
@@ -342,20 +346,20 @@ msgid ""
 "creating deadlocks with the GIL."
 msgstr ""
 
-#: src/free-threading.md:169
+#: src/free-threading.md:172
 msgid "Cannot build extension modules using the limited API"
 msgstr ""
 
-#: src/free-threading.md:171
+#: src/free-threading.md:174
 msgid ""
 "The free-threaded build uses a completely new ABI and there is not yet an "
 "equivalent to the limited API for the free-threaded ABI. That means if your "
-"crate depends on PyO3 using the `abi3` feature or an an `abi3-pyxx` feature, "
+"crate depends on PyO3 using the `abi3` feature or an `abi3-pyxx` feature, "
 "PyO3 will print a warning and ignore that setting when building extension "
 "modules using the free-threaded interpreter."
 msgstr ""
 
-#: src/free-threading.md:174
+#: src/free-threading.md:177
 msgid ""
 "This means that if your package makes use of the ABI forward compatibility "
 "provided by the limited API to upload only one [wheel](glossary.md#wheel) "
@@ -363,18 +367,18 @@ msgid ""
 "procedure to also upload a version-specific free-threaded wheel."
 msgstr ""
 
-#: src/free-threading.md:176
+#: src/free-threading.md:179
 msgid ""
 "See [the guide section](./building-and-distribution/multiple-python-versions."
 "md) for more details about supporting multiple different Python versions, "
 "including the free-threaded build."
 msgstr ""
 
-#: src/free-threading.md:178
+#: src/free-threading.md:181
 msgid "Thread-safe single initialization"
 msgstr ""
 
-#: src/free-threading.md:180
+#: src/free-threading.md:183
 msgid ""
 "To initialize data exactly once, use the [`PyOnceLock`](https://pyo3.rs/main/"
 "doc/pyo3/sync/struct.PyOnceLock.html) type, which is a close equivalent to "
@@ -394,11 +398,11 @@ msgid ""
 "single-initialize a runtime cache holding a `Py<PyDict>`:"
 msgstr ""
 
-#: src/free-threading.md:192 src/free-threading.md:221
+#: src/free-threading.md:195 src/free-threading.md:228
 msgid "// guaranteed to be called once and only once\n"
 msgstr ""
 
-#: src/free-threading.md:197
+#: src/free-threading.md:200
 msgid ""
 "In cases where a function must run exactly once, you can bring the "
 "[`OnceExt`](https://pyo3.rs/main/doc/pyo3/sync/trait.OnceExt.html) trait "
@@ -422,11 +426,11 @@ msgid ""
 "(https://pyo3.rs/main/doc/pyo3/sync/struct.PyOnceLock.html):"
 msgstr ""
 
-#: src/free-threading.md:228
+#: src/free-threading.md:235
 msgid "`GILProtected` has been removed"
 msgstr ""
 
-#: src/free-threading.md:230
+#: src/free-threading.md:237
 msgid ""
 "[`GILProtected`](https://docs.rs/pyo3/0.22/pyo3/sync/struct.GILProtected."
 "html) was a PyO3 type that allowed mutable access to static data by "
@@ -437,25 +441,25 @@ msgid ""
 "Mutex`](https://doc.rust-lang.org/std/sync/struct.Mutex.html) was sufficient."
 msgstr ""
 
-#: src/free-threading.md:234
+#: src/free-threading.md:241
 msgid "Before:"
 msgstr ""
 
-#: src/free-threading.md:248 src/free-threading.md:267
+#: src/free-threading.md:258 src/free-threading.md:279
 msgid "// stand-in for something that executes arbitrary Python code\n"
 msgstr ""
 
-#: src/free-threading.md:256
+#: src/free-threading.md:266
 msgid "After (using a `Mutex`):"
 msgstr ""
 
-#: src/free-threading.md:270
+#: src/free-threading.md:282
 msgid ""
 "// as with any `Mutex` usage, lock the mutex for as little time as possible\n"
 "    // in this case, we do it just while pushing into the `Vec`\n"
 msgstr ""
 
-#: src/free-threading.md:277
+#: src/free-threading.md:290
 msgid ""
 "If you are executing arbitrary Python code while holding the lock, then you "
 "should import the [`MutexExt`](https://pyo3.rs/main/doc/pyo3/sync/trait."

@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-22 21:03:07 +0000",
-      "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
-      "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
+      "date" : "2026-10-06 05:53:41 +0000",
+      "hash" : "ee37e5c6e2cb52b822ca34eb38d4295bde5cd968",
+      "title" : "ci: fix missing MSRV input to build from cache-warmup job (#6485)"
     }
   },
   "type" : "branch",
