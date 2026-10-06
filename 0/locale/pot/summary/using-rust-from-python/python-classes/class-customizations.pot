@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
+"POT-Creation-Date: 2026-10-06T15:27:38Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -332,8 +332,8 @@ msgstr ""
 
 #: src/class/protocols.md:181
 msgid ""
-"`__next__(<self>) -> Option<object> or IterNextOutput` ([see details]"
-"(#returning-a-value-from-iteration))"
+"`__next__(<self>) -> Option<object>` ([see details](#returning-a-value-from-"
+"iteration))"
 msgstr ""
 
 #: src/class/protocols.md:183
