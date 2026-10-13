@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-22 21:03:07 +0000",
-      "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
-      "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
+      "date" : "2026-10-13 14:23:15 +0000",
+      "hash" : "3ee4e5658a5e7a3f95c90968646a5916bb8b0d5e",
+      "title" : "`experimental-inspect`: emit `__all__` in the generated stubs (#6242)"
     }
   },
   "type" : "branch",
