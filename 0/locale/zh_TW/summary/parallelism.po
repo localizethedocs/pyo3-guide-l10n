@@ -58,8 +58,8 @@ msgid ""
 "count words in parallel."
 msgstr ""
 "我們來看看 [word-count](https://github.com/PyO3/pyo3/blob/main/examples/word-"
-"count/src/lib.rs) 範例，其中的 `search` 函式使用 [`rayon`](https://github."
-"com/rayon-rs/rayon) 軟體箱以平行方式計算字數。"
+"count/src/lib.rs) 範例，其中的 `search` 函式使用 [`rayon`](https://"
+"github.com/rayon-rs/rayon) 軟體箱以平行方式計算字數。"
 
 #: src/parallelism.md:18
 msgid "// These traits let us use `par_lines` and `map`.\n"
@@ -139,9 +139,9 @@ msgstr "Rust 序列版本在兩個 Python 執行緒中執行兩次"
 #: src/parallelism.md:118
 msgid ""
 "The benchmark script can be found [in the PyO3 GitHub repository](https://"
-"github.com/PyO3/pyo3/blob/main/examples/word-count/tests/test_word_count."
-"py), and we can run `nox` in the `word-count` folder to benchmark these "
-"functions."
+"github.com/PyO3/pyo3/blob/main/examples/word-count/tests/"
+"test_word_count.py), and we can run `nox` in the `word-count` folder to "
+"benchmark these functions."
 msgstr ""
 
 #: src/parallelism.md:120
@@ -204,10 +204,10 @@ msgstr "// 這些特徵讓我們可以使用 int_par_iter 和 map\n"
 
 #: src/parallelism.md:174
 msgid ""
-"It's important to note that there is an `outer_py` [Python token](glossary."
-"md#python-token) as well as an `inner_py` token. Sharing Python tokens "
-"between threads is not allowed and threads must individually attach to the "
-"interpreter to access data wrapped by a Python object."
+"It's important to note that there is an `outer_py` [Python token]"
+"(glossary.md#python-token) as well as an `inner_py` token. Sharing Python "
+"tokens between threads is not allowed and threads must individually attach "
+"to the interpreter to access data wrapped by a Python object."
 msgstr ""
 
 #: src/parallelism.md:177

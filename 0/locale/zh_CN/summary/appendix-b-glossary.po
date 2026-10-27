@@ -47,24 +47,24 @@ msgstr ""
 
 #: src/glossary.md:12
 msgid ""
-"extension module : A Python module which is implemeted using native code (e."
-"g. C, C++ or Rust) instead of Python. See also [CPython's documentation on "
-"creating extension modules](https://docs.python.org/3/extending/extending."
-"html)."
+"extension module : A Python module which is implemeted using native code "
+"(e.g. C, C++ or Rust) instead of Python. See also [CPython's documentation "
+"on creating extension modules](https://docs.python.org/3/extending/"
+"extending.html)."
 msgstr ""
 
 #: src/glossary.md:16
 msgid ""
 "GIL-enabled Python : The (current, as of Python 3.14) default build of "
-"Python, which depends on the [GIL](https://docs.python.org/3/glossary."
-"html#term-GIL) for thread safety."
+"Python, which depends on the [GIL](https://docs.python.org/3/"
+"glossary.html#term-GIL) for thread safety."
 msgstr ""
 
 #: src/glossary.md:19
 msgid ""
 "    This was historically the only thread safety strategy before the "
-"introduction of [free-threaded Python](https://docs.python.org/3/glossary."
-"html#term-free-threaded-build).\n"
+"introduction of [free-threaded Python](https://docs.python.org/3/"
+"glossary.html#term-free-threaded-build).\n"
 "    "
 msgstr ""
 
@@ -80,9 +80,9 @@ msgstr ""
 #: src/glossary.md:25
 msgid ""
 "smart pointer : Pointers which automatically manage the memory they point "
-"to. In particular this guide refers to [PyO3's smart pointers](types."
-"md#pyo3s-smart-pointers) `Py<T>`, `Bound<'py, T>`, and `Borrowed<'a, 'py, "
-"T>` which point to Python objects and use Python reference counting to "
+"to. In particular this guide refers to [PyO3's smart pointers]"
+"(types.md#pyo3s-smart-pointers) `Py<T>`, `Bound<'py, T>`, and `Borrowed<'a, "
+"'py, T>` which point to Python objects and use Python reference counting to "
 "ensure correct memory management."
 msgstr ""
 

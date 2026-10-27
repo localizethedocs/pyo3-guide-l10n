@@ -93,8 +93,8 @@ msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:46
 msgid ""
-"Add a [`build.rs`](https://doc.rust-lang.org/cargo/reference/build-scripts."
-"html) file to your crate with the following contents:"
+"Add a [`build.rs`](https://doc.rust-lang.org/cargo/reference/build-"
+"scripts.html) file to your crate with the following contents:"
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:50
@@ -133,9 +133,9 @@ msgstr ""
 #: src/building-and-distribution/multiple-python-versions.md:79
 msgid ""
 "This `#[cfg]` marks code that will only be present for free-threaded builds "
-"of CPython. You might use this in situations where the [GIL](https://docs."
-"python.org/3/glossary.html#term-GIL) provides thread safety but the free-"
-"threaded build needs extra synchronization logic."
+"of CPython. You might use this in situations where the [GIL](https://"
+"docs.python.org/3/glossary.html#term-GIL) provides thread safety but the "
+"free-threaded build needs extra synchronization logic."
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:86
@@ -198,9 +198,9 @@ msgstr ""
 msgid ""
 "PyO3 provides the APIs [`Python::version()`](https://pyo3.rs/main/doc/pyo3/"
 "marker/struct.Python.html#method.version) and [`Python::version_info()`]"
-"(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method."
-"version_info) to query the running Python version. This allows you to do the "
-"following, for example:"
+"(https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html#method.version_info) to query the running Python version. "
+"This allows you to do the following, for example:"
 msgstr ""
 
 #: src/building-and-distribution/multiple-python-versions.md:126

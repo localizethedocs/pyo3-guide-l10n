@@ -59,8 +59,8 @@ msgstr ""
 #: src/python-typing-hints.md:19
 msgid ""
 "There is also [extensive documentation on type stubs on the official Python "
-"typing documentation](https://typing.readthedocs.io/en/latest/source/stubs."
-"html)."
+"typing documentation](https://typing.readthedocs.io/en/latest/source/"
+"stubs.html)."
 msgstr ""
 
 #: src/python-typing-hints.md:21
@@ -89,10 +89,10 @@ msgstr ""
 
 #: src/python-typing-hints.md:52
 msgid ""
-"[PEP8 - Style Guide for Python Code - #Function Annotations](https://www."
-"python.org/dev/peps/pep-0008/#function-annotations) (last point) recommends "
-"all third party library creators to provide stub files as the source of "
-"knowledge about the package for type checker tools."
+"[PEP8 - Style Guide for Python Code - #Function Annotations](https://"
+"www.python.org/dev/peps/pep-0008/#function-annotations) (last point) "
+"recommends all third party library creators to provide stub files as the "
+"source of knowledge about the package for type checker tools."
 msgstr ""
 
 #: src/python-typing-hints.md:54
@@ -100,8 +100,8 @@ msgid ""
 "(...) it is expected that users of third party library packages may want to "
 "run type checkers over those packages. For this purpose [PEP 484](https://"
 "www.python.org/dev/peps/pep-0484) recommends the use of stub files: .pyi "
-"files that are read by the type checker in preference of the corresponding ."
-"py files. (...)"
+"files that are read by the type checker in preference of the "
+"corresponding .py files. (...)"
 msgstr ""
 
 #: src/python-typing-hints.md:56
@@ -125,18 +125,19 @@ msgstr ""
 
 #: src/python-typing-hints.md:62
 msgid ""
-"[PEP561 - Distributing and Packaging Type Information](https://www.python."
-"org/dev/peps/pep-0561/) describes in detail how to build packages that will "
-"enable type checking. In particular it contains information about how the "
-"stub files must be distributed in order for type checkers to use them."
+"[PEP561 - Distributing and Packaging Type Information](https://"
+"www.python.org/dev/peps/pep-0561/) describes in detail how to build packages "
+"that will enable type checking. In particular it contains information about "
+"how the stub files must be distributed in order for type checkers to use "
+"them."
 msgstr ""
 
 #: src/python-typing-hints.md:65
 msgid ""
-"[PEP560 - Core support for typing module and generic types](https://www."
-"python.org/dev/peps/pep-0560/) describes the details on how Python's type "
-"system internally supports generics, including both runtime behavior and "
-"integration with static type checkers."
+"[PEP560 - Core support for typing module and generic types](https://"
+"www.python.org/dev/peps/pep-0560/) describes the details on how Python's "
+"type system internally supports generics, including both runtime behavior "
+"and integration with static type checkers."
 msgstr ""
 
 #: src/python-typing-hints.md:67
@@ -248,16 +249,17 @@ msgstr ""
 
 #: src/python-typing-hints.md:131
 msgid ""
-"As we now specify our own package content, we have to provide the `__init__."
-"py` file, so the folder is treated as a package and we can import things "
-"from it. We can always use the same content that Maturin creates for us if "
-"we do not specify a Python source folder. For PyO3 bindings it would be:"
+"As we now specify our own package content, we have to provide the "
+"`__init__.py` file, so the folder is treated as a package and we can import "
+"things from it. We can always use the same content that Maturin creates for "
+"us if we do not specify a Python source folder. For PyO3 bindings it would "
+"be:"
 msgstr ""
 
 #: src/python-typing-hints.md:139
 msgid ""
-"That way everything that is exposed by our [extension module](glossary."
-"md#extension-module) can be imported directly from the package."
+"That way everything that is exposed by our [extension module]"
+"(glossary.md#extension-module) can be imported directly from the package."
 msgstr ""
 
 #: src/python-typing-hints.md:141
@@ -409,14 +411,15 @@ msgstr ""
 msgid ""
 "`#[pyclass(generic)]` implements a very simple runtime behavior that accepts "
 "any generic argument. Advanced users can opt to manually implement "
-"[`__class_getitem__`](https://docs.python.org/3/reference/datamodel."
-"html#emulating-generic-types) for the generic class to have more control."
+"[`__class_getitem__`](https://docs.python.org/3/reference/"
+"datamodel.html#emulating-generic-types) for the generic class to have more "
+"control."
 msgstr ""
 
 #: src/python-typing-hints.md:253
 msgid ""
 "Note that [`pyo3::types::PyGenericAlias`](https://pyo3.rs/main/doc/pyo3/"
 "types/struct.PyGenericAlias.html) can be helpful when implementing "
-"`__class_getitem__` as it can create [`types.GenericAlias`](https://docs."
-"python.org/3/library/types.html#types.GenericAlias) objects from Rust."
+"`__class_getitem__` as it can create [`types.GenericAlias`](https://"
+"docs.python.org/3/library/types.html#types.GenericAlias) objects from Rust."
 msgstr ""

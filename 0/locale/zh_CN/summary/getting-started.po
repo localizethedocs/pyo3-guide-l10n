@@ -24,9 +24,9 @@ msgstr ""
 #: src/getting-started.md:6
 msgid ""
 "\\[!TIP\\] If you'd like to chat to the PyO3 maintainers and other PyO3 "
-"users, consider joining the [PyO3 Discord server](https://discord."
-"gg/33kcChzH7f). We're keen to hear about your experience getting started, so "
-"we can make PyO3 as accessible as possible for everyone!"
+"users, consider joining the [PyO3 Discord server](https://discord.gg/"
+"33kcChzH7f). We're keen to hear about your experience getting started, so we "
+"can make PyO3 as accessible as possible for everyone!"
 msgstr ""
 
 #: src/getting-started.md:9

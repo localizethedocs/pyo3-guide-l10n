@@ -134,12 +134,12 @@ msgstr ""
 #: src/async-await.md:107
 msgid ""
 "Each `coroutine.send` call is translated to a `Future::poll` call. If a "
-"[`CancelHandle`](https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle."
-"html) parameter is declared, the exception passed to `coroutine.throw` call "
-"is stored in it and can be retrieved with [`CancelHandle::cancelled`]"
-"(https://pyo3.rs/main/doc/pyo3/coroutine/struct.CancelHandle.html#method."
-"cancelled); otherwise, it cancels the Rust future, and the exception is "
-"reraised;"
+"[`CancelHandle`](https://pyo3.rs/main/doc/pyo3/coroutine/"
+"struct.CancelHandle.html) parameter is declared, the exception passed to "
+"`coroutine.throw` call is stored in it and can be retrieved with "
+"[`CancelHandle::cancelled`](https://pyo3.rs/main/doc/pyo3/coroutine/"
+"struct.CancelHandle.html#method.cancelled); otherwise, it cancels the Rust "
+"future, and the exception is reraised;"
 msgstr ""
 
 #: src/async-await.md:110

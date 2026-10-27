@@ -138,10 +138,10 @@ msgstr ""
 
 #: src/class.md:76
 msgid ""
-"The above example generates implementations for [`PyTypeInfo`](https://pyo3."
-"rs/main/doc/pyo3/type_object/trait.PyTypeInfo.html) and [`PyClass`](https://"
-"pyo3.rs/main/doc/pyo3/pyclass/trait.PyClass.html) for `MyClass`, `Number`, "
-"`MyEnum`, `HttpResponse`, and `Shape`. To see these generated "
+"The above example generates implementations for [`PyTypeInfo`](https://"
+"pyo3.rs/main/doc/pyo3/type_object/trait.PyTypeInfo.html) and [`PyClass`]"
+"(https://pyo3.rs/main/doc/pyo3/pyclass/trait.PyClass.html) for `MyClass`, "
+"`Number`, `MyEnum`, `HttpResponse`, and `Shape`. To see these generated "
 "implementations, refer to the [implementation details](#implementation-"
 "details) at the end of this chapter."
 msgstr ""
@@ -362,11 +362,11 @@ msgstr ""
 #: src/class.md:287
 msgid ""
 "It is often useful to turn a `#[pyclass]` type `T` into a Python object and "
-"access it from Rust code. The [`Py<T>`](https://pyo3.rs/main/doc/pyo3/struct."
-"Py.html) and [`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/struct.Bound."
-"html) smart pointers are the ways to represent a Python object in PyO3's "
-"API. More detail can be found about them [in the Python objects](./types."
-"md#pyo3s-smart-pointers) section of the guide."
+"access it from Rust code. The [`Py<T>`](https://pyo3.rs/main/doc/pyo3/"
+"struct.Py.html) and [`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/"
+"struct.Bound.html) smart pointers are the ways to represent a Python object "
+"in PyO3's API. More detail can be found about them [in the Python objects](./"
+"types.md#pyo3s-smart-pointers) section of the guide."
 msgstr ""
 
 #: src/class.md:291
@@ -469,8 +469,8 @@ msgstr ""
 #: src/class.md:365
 msgid ""
 "Classes which are `frozen` and also `Sync`, e.g. they do use `Mutex` but not "
-"`RefCell`, can be accessed without needing a `Python` token via the `Bound::"
-"get` and `Py::get` methods:"
+"`RefCell`, can be accessed without needing a `Python` token via the "
+"`Bound::get` and `Py::get` methods:"
 msgstr ""
 
 #: src/class.md:389
@@ -504,8 +504,8 @@ msgstr ""
 
 #: src/class.md:398
 msgid ""
-"This is currently only allowed on [variants of complex enums](https://pyo3."
-"rs/latest/class.html#complex-enums). It allows customization of the "
+"This is currently only allowed on [variants of complex enums](https://"
+"pyo3.rs/latest/class.html#complex-enums). It allows customization of the "
 "generated class constructor for each variant. It uses the same syntax and "
 "supports the same options as the `signature` attribute of functions and "
 "methods."
@@ -837,8 +837,8 @@ msgstr ""
 
 #: src/class.md:460
 msgid ""
-"[`PyClassInitializer<T>`](https://pyo3.rs/main/doc/pyo3/pyclass_init/struct."
-"PyClassInitializer.html)"
+"[`PyClassInitializer<T>`](https://pyo3.rs/main/doc/pyo3/pyclass_init/"
+"struct.PyClassInitializer.html)"
 msgstr ""
 
 #: src/class.md:460
@@ -870,9 +870,9 @@ msgid ""
 "To get a parent class from a child, use [`PyRef`](https://pyo3.rs/main/doc/"
 "pyo3/pycell/struct.PyRef.html) instead of `&self` for methods, or "
 "[`PyRefMut`](https://pyo3.rs/main/doc/pyo3/pycell/struct.PyRefMut.html) "
-"instead of `&mut self`. Then you can access a parent class by `self_."
-"as_super()` as `&PyRef<Self::BaseClass>`, or by `self_.into_super()` as "
-"`PyRef<Self::BaseClass>` (and similar for the `PyRefMut` case). For "
+"instead of `&mut self`. Then you can access a parent class by "
+"`self_.as_super()` as `&PyRef<Self::BaseClass>`, or by `self_.into_super()` "
+"as `PyRef<Self::BaseClass>` (and similar for the `PyRefMut` case). For "
 "convenience, `self_.as_ref()` can also be used to get `&Self::BaseClass` "
 "directly; however, this approach does not let you access base classes higher "
 "in the inheritance hierarchy, for which you would need to chain multiple "
@@ -930,9 +930,9 @@ msgstr ""
 #: src/class.md:577
 msgid ""
 "You can inherit native types such as `PyDict`, if they implement "
-"[`PySizedLayout`](https://pyo3.rs/main/doc/pyo3/type_object/trait."
-"PySizedLayout.html). This is not supported when building for the Python "
-"limited API (aka the `abi3` feature of PyO3)."
+"[`PySizedLayout`](https://pyo3.rs/main/doc/pyo3/type_object/"
+"trait.PySizedLayout.html). This is not supported when building for the "
+"Python limited API (aka the `abi3` feature of PyO3)."
 msgstr ""
 
 #: src/class.md:580
@@ -1126,8 +1126,8 @@ msgid ""
 "Since Rust allows any number of `impl` blocks, you can easily split methods "
 "between those accessible to Python (and Rust) and those accessible only to "
 "Rust. However to have multiple `#[pymethods]`\\-annotated `impl` blocks for "
-"the same struct you must enable the [`multiple-pymethods`](features."
-"md#multiple-pymethods) feature of PyO3."
+"the same struct you must enable the [`multiple-pymethods`]"
+"(features.md#multiple-pymethods) feature of PyO3."
 msgstr ""
 
 #: src/class.md:842
@@ -1229,8 +1229,8 @@ msgstr ""
 
 #: src/class.md:941
 msgid ""
-"To create a class attribute (also called [class variable](https://docs."
-"python.org/3/tutorial/classes.html#class-and-instance-variables)), an "
+"To create a class attribute (also called [class variable](https://"
+"docs.python.org/3/tutorial/classes.html#class-and-instance-variables)), an "
 "associated constant can be annotated with the `#[classattr]` attribute."
 msgstr ""
 
@@ -1281,8 +1281,8 @@ msgstr ""
 #: src/class.md:991
 msgid ""
 "Class objects can be used as arguments to `#[pyfunction]`s and "
-"`#[pymethods]` in the same way as the self parameters of instance methods, i."
-"e. they can be passed as:"
+"`#[pymethods]` in the same way as the self parameters of instance methods, "
+"i.e. they can be passed as:"
 msgstr ""
 
 #: src/class.md:993
@@ -1493,9 +1493,9 @@ msgstr ""
 msgid ""
 "PyO3 supports writing instance methods using the normal method receivers for "
 "shared `&self` and unique `&mut self` references. This interacts with "
-"[lifetime elision](https://doc.rust-lang.org/reference/lifetime-elision."
-"html) insofar as the lifetime of a such a receiver is assigned to all elided "
-"output lifetime parameters."
+"[lifetime elision](https://doc.rust-lang.org/reference/lifetime-"
+"elision.html) insofar as the lifetime of a such a receiver is assigned to "
+"all elided output lifetime parameters."
 msgstr ""
 
 #: src/class.md:1216
@@ -1532,8 +1532,8 @@ msgstr ""
 
 #: src/class.md:1249
 msgid ""
-"will yield compiler error [E0106 \"missing lifetime specifier\"](https://doc."
-"rust-lang.org/error_codes/E0106.html)."
+"will yield compiler error [E0106 \"missing lifetime specifier\"](https://"
+"doc.rust-lang.org/error_codes/E0106.html)."
 msgstr ""
 
 #: src/class.md:1251

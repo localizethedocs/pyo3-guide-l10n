@@ -70,8 +70,8 @@ msgstr ""
 #: src/module.md:58
 msgid ""
 "use a tool, e.g. `maturin develop` with [maturin](https://github.com/PyO3/"
-"maturin) or `python setup.py develop` with [setuptools-rust](https://github."
-"com/PyO3/setuptools-rust)."
+"maturin) or `python setup.py develop` with [setuptools-rust](https://"
+"github.com/PyO3/setuptools-rust)."
 msgstr ""
 
 #: src/module.md:61
@@ -120,8 +120,8 @@ msgid ""
 "Note that this does not define a package, so this won’t allow Python code to "
 "directly import submodules by using `from parent_module import "
 "child_module`. For more information, see [\\#759](https://github.com/PyO3/"
-"pyo3/issues/759) and [\\#1517](https://github.com/PyO3/pyo3/"
-"issues/1517#issuecomment-808664021)."
+"pyo3/issues/759) and [\\#1517](https://github.com/PyO3/pyo3/issues/"
+"1517#issuecomment-808664021)."
 msgstr ""
 
 #: src/module.md:113
@@ -162,8 +162,8 @@ msgid ""
 "In this case, `#[pymodule]` macro automatically sets the `module` attribute "
 "of the `#[pyclass]` macros declared inside of it with its name. For nested "
 "modules, the name of the parent module is automatically added. In the "
-"previous example, the `Nested` class will have for `module` `my_extension."
-"submodule`."
+"previous example, the `Nested` class will have for `module` "
+"`my_extension.submodule`."
 msgstr ""
 
 #: src/module.md:154

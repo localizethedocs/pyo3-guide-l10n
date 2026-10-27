@@ -50,8 +50,8 @@ msgstr ""
 
 #: src/contributing.md:14
 msgid ""
-"You can browse the API of the non-public parts of PyO3 [here](https://pyo3."
-"netlify.app/internal/doc/pyo3/index.html)."
+"You can browse the API of the non-public parts of PyO3 [here](https://"
+"pyo3.netlify.app/internal/doc/pyo3/index.html)."
 msgstr ""
 
 #: src/contributing.md:16
@@ -260,15 +260,14 @@ msgstr ""
 #: src/contributing.md:82
 msgid ""
 "Not all APIs had docs or examples when they were made. The goal is to have "
-"documentation on all PyO3 APIs ([\\#306](https://github.com/PyO3/pyo3/"
-"issues/306)). If you see an API lacking a doc, please write one and open a "
-"PR!"
+"documentation on all PyO3 APIs ([\\#306](https://github.com/PyO3/pyo3/issues/"
+"306)). If you see an API lacking a doc, please write one and open a PR!"
 msgstr ""
 
 #: src/contributing.md:84
 msgid ""
-"To build the docs (including all features), install [`nox`](https://github."
-"com/theacodes/nox) and then run"
+"To build the docs (including all features), install [`nox`](https://"
+"github.com/theacodes/nox) and then run"
 msgstr ""
 
 #: src/contributing.md:90
@@ -293,9 +292,9 @@ msgstr ""
 
 #: src/contributing.md:100
 msgid ""
-"First, install [`mdbook`](https://rust-lang.github.io/mdBook/cli/index."
-"html), the [`mdbook-tabs`](https://mdbook-plugins.rustforweb.org/tabs.html) "
-"plugin and [`nox`](https://github.com/theacodes/nox). Then, run"
+"First, install [`mdbook`](https://rust-lang.github.io/mdBook/cli/"
+"index.html), the [`mdbook-tabs`](https://mdbook-plugins.rustforweb.org/"
+"tabs.html) plugin and [`nox`](https://github.com/theacodes/nox). Then, run"
 msgstr ""
 
 #: src/contributing.md:106

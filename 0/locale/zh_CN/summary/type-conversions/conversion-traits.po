@@ -27,8 +27,8 @@ msgstr ""
 
 #: src/conversions/traits.md:7
 msgid ""
-"The easiest way to convert a Python object to a Rust value is using `."
-"extract()`. It returns a `PyResult` with a type error if the conversion "
+"The easiest way to convert a Python object to a Rust value is using "
+"`.extract()`. It returns a `PyResult` with a type error if the conversion "
 "fails, so usually you will use something like"
 msgstr ""
 
@@ -40,42 +40,42 @@ msgstr ""
 msgid ""
 "This method is available for many Python object types, and can produce a "
 "wide variety of Rust types, which you can check out in the implementor list "
-"of [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"FromPyObject.html)."
+"of [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html)."
 msgstr ""
 
 #: src/conversions/traits.md:25
 msgid ""
-"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
-"html) is also implemented for your own Rust types wrapped as Python objects "
-"(see [the chapter about classes](../class.md)). There, in order to both be "
-"able to operate on mutable references _and_ satisfy Rust's rules of non-"
-"aliasing mutable references, you have to extract the PyO3 reference wrappers "
-"[`PyRef`](https://pyo3.rs/main/doc/pyo3/pycell/struct.PyRef.html) and "
-"[`PyRefMut`](https://pyo3.rs/main/doc/pyo3/pycell/struct.PyRefMut.html). "
-"They work like the reference wrappers of `std::cell::RefCell` and ensure (at "
-"runtime) that Rust borrows are allowed."
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) is also implemented for your own Rust types wrapped "
+"as Python objects (see [the chapter about classes](../class.md)). There, in "
+"order to both be able to operate on mutable references _and_ satisfy Rust's "
+"rules of non-aliasing mutable references, you have to extract the PyO3 "
+"reference wrappers [`PyRef`](https://pyo3.rs/main/doc/pyo3/pycell/"
+"struct.PyRef.html) and [`PyRefMut`](https://pyo3.rs/main/doc/pyo3/pycell/"
+"struct.PyRefMut.html). They work like the reference wrappers of "
+"`std::cell::RefCell` and ensure (at runtime) that Rust borrows are allowed."
 msgstr ""
 
 #: src/conversions/traits.md:29
 msgid ""
-"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"FromPyObject.html)"
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html)"
 msgstr ""
 
 #: src/conversions/traits.md:31
 msgid ""
-"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
-"html) can be automatically derived for many kinds of structs and enums if "
-"the member types themselves implement `FromPyObject`. This even includes "
-"members with a generic type `T: FromPyObject`. Derivation for empty enums, "
-"enum variants and structs is not supported."
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) can be automatically derived for many kinds of "
+"structs and enums if the member types themselves implement `FromPyObject`. "
+"This even includes members with a generic type `T: FromPyObject`. Derivation "
+"for empty enums, enum variants and structs is not supported."
 msgstr ""
 
 #: src/conversions/traits.md:35
 msgid ""
-"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"FromPyObject.html) for structs"
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) for structs"
 msgstr ""
 
 #: src/conversions/traits.md:37
@@ -179,8 +179,8 @@ msgstr ""
 
 #: src/conversions/traits.md:159
 msgid ""
-"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"FromPyObject.html) for tuple structs"
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) for tuple structs"
 msgstr ""
 
 #: src/conversions/traits.md:161
@@ -200,23 +200,23 @@ msgstr ""
 
 #: src/conversions/traits.md:206
 msgid ""
-"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"FromPyObject.html) for wrapper types"
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) for wrapper types"
 msgstr ""
 
 #: src/conversions/traits.md:208
 msgid ""
 "The `pyo3(transparent)` attribute can be used on structs with exactly one "
-"field. This results in extracting directly from the input object, i.e. `obj."
-"extract()`, rather than trying to access an item or attribute. This "
+"field. This results in extracting directly from the input object, i.e. "
+"`obj.extract()`, rather than trying to access an item or attribute. This "
 "behaviour is enabled per default for newtype structs and tuple-variants with "
 "a single field."
 msgstr ""
 
 #: src/conversions/traits.md:240
 msgid ""
-"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"FromPyObject.html) for enums"
+"Deriving [`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) for enums"
 msgstr ""
 
 #: src/conversions/traits.md:242
@@ -541,10 +541,10 @@ msgstr ""
 
 #: src/conversions/traits.md:553
 msgid ""
-"The [`IntoPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait."
-"IntoPyObject.html) trait defines the to-python conversion for a Rust type. "
-"All types in PyO3 implement this trait, as does a `#[pyclass]` which doesn't "
-"use `extends`."
+"The [`IntoPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.IntoPyObject.html) trait defines the to-python conversion for a Rust "
+"type. All types in PyO3 implement this trait, as does a `#[pyclass]` which "
+"doesn't use `extends`."
 msgstr ""
 
 #: src/conversions/traits.md:556
@@ -707,9 +707,10 @@ msgstr ""
 #: src/conversions/traits.md:713
 msgid ""
 "In this example if we wanted to combine `ints_as_pyints` and "
-"`bools_as_pybool` into a single `Vec<Py<PyAny>>` to return from the `Python::"
-"attach` closure, we would have to manually convert the concrete types for "
-"the [smart pointers](../glossary.md#smart-pointer) and the python types."
+"`bools_as_pybool` into a single `Vec<Py<PyAny>>` to return from the "
+"`Python::attach` closure, we would have to manually convert the concrete "
+"types for the [smart pointers](../glossary.md#smart-pointer) and the python "
+"types."
 msgstr ""
 
 #: src/conversions/traits.md:715
@@ -727,7 +728,7 @@ msgstr ""
 
 #: src/conversions/traits.md:753
 msgid ""
-"In the example above we used `BoundObject::into_any` and `BoundObject::"
-"unbind` to manipulate the python types and smart pointers into the result "
-"type we wanted to produce from the function."
+"In the example above we used `BoundObject::into_any` and "
+"`BoundObject::unbind` to manipulate the python types and smart pointers into "
+"the result type we wanted to produce from the function."
 msgstr ""

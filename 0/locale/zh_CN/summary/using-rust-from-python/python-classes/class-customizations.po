@@ -87,9 +87,10 @@ msgstr ""
 #: src/class/protocols.md:25
 msgid ""
 "The magic methods handled by PyO3 are very similar to the standard Python "
-"ones on [this page](https://docs.python.org/3/reference/datamodel."
-"html#special-method-names) - in particular they are the subset which have "
-"slots as [defined here](https://docs.python.org/3/c-api/typeobj.html)."
+"ones on [this page](https://docs.python.org/3/reference/"
+"datamodel.html#special-method-names) - in particular they are the subset "
+"which have slots as [defined here](https://docs.python.org/3/c-api/"
+"typeobj.html)."
 msgstr ""
 
 #: src/class/protocols.md:27
@@ -239,9 +240,9 @@ msgstr ""
 msgid ""
 "Implements Python comparison operations (`==`, `!=`, `<`, `<=`, `>`, and "
 "`>=`) in a single method. The `CompareOp` argument indicates the comparison "
-"operation being performed. You can use [`CompareOp::matches`](https://pyo3."
-"rs/main/doc/pyo3/pyclass/enum.CompareOp.html#method.matches) to adapt a Rust "
-"`std::cmp::Ordering` result to the requested comparison."
+"operation being performed. You can use [`CompareOp::matches`](https://"
+"pyo3.rs/main/doc/pyo3/pyclass/enum.CompareOp.html#method.matches) to adapt a "
+"Rust `std::cmp::Ordering` result to the requested comparison."
 msgstr ""
 
 #: src/class/protocols.md:112
@@ -265,8 +266,8 @@ msgstr ""
 
 #: src/class/protocols.md:121
 msgid ""
-"If you want to leave some operations unimplemented, you can return `py."
-"NotImplemented()` for some of the operations:"
+"If you want to leave some operations unimplemented, you can return "
+"`py.NotImplemented()` for some of the operations:"
 msgstr ""
 
 #: src/class/protocols.md:146
@@ -852,8 +853,8 @@ msgstr ""
 
 #: src/class/protocols.md:459
 msgid ""
-"`__traverse__(<self>, pyo3::class::gc::PyVisit<'_>) -> Result<(), pyo3::"
-"class::gc::PyTraverseError>`"
+"`__traverse__(<self>, pyo3::class::gc::PyVisit<'_>) -> Result<(), "
+"pyo3::class::gc::PyTraverseError>`"
 msgstr ""
 
 #: src/class/protocols.md:460
