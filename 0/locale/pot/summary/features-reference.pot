@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
+"POT-Creation-Date: 2026-10-27T14:41:12Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -35,26 +35,26 @@ msgid ""
 "particular to that version. Extensions built for this \"version-specific\" "
 "ABI can only be imported by Python interpreters with the same major version, "
 "since the Python C API and ABI are subject to change in every major release. "
-"Python also supports a [limited API](https://docs.python.org/3/c-api/stable."
-"html#limited-c-api) and [stable ABI](https://docs.python.org/3/c-api/stable."
-"html#stable-abi). Extensions targeting the stable ABI defined by Python 3.X "
-"can be imported by any subsequent Python version newer than Python 3.X, but "
-"not older versions."
+"Python also supports a [limited API](https://docs.python.org/3/c-api/"
+"stable.html#limited-c-api) and [stable ABI](https://docs.python.org/3/c-api/"
+"stable.html#stable-abi). Extensions targeting the stable ABI defined by "
+"Python 3.X can be imported by any subsequent Python version newer than "
+"Python 3.X, but not older versions."
 msgstr ""
 
 #: src/features.md:15
 msgid ""
 "There are two \"flavors\" of stable ABI: `abi3`, supported on Python 3.2 and "
 "newer but _not_ the free-threaded builds and `abi3t`, supported on Python "
-"3.15 and newer for both the [GIL](https://docs.python.org/3/glossary."
-"html#term-GIL)\\-enabled and free-threaded builds of Python. PyO3 supports "
-"building extensions targeting both flavors of stable ABI."
+"3.15 and newer for both the [GIL](https://docs.python.org/3/"
+"glossary.html#term-GIL)\\-enabled and free-threaded builds of Python. PyO3 "
+"supports building extensions targeting both flavors of stable ABI."
 msgstr ""
 
 #: src/features.md:18
 msgid ""
 "When PyO3 finds a \"host\" python interpreter and no `abi3` or `abi3t` "
-"feature is active, it will generate extensions targetting the version-"
+"feature is active, it will generate extensions targeting the version-"
 "specific ABI for the host Python version. For example, when `pip` or `uv` "
 "installs a Python package that includes Rust dependencies that depend on "
 "PyO3, the host interpreter is the interpreter running `pip` or the "
@@ -75,9 +75,9 @@ msgstr ""
 
 #: src/features.md:27
 msgid ""
-"This feature is used when building Python [extension modules](glossary."
-"md#extension-module) to create [wheels](glossary.md#wheel) which are "
-"compatible with multiple Python versions but not the free-threaded build."
+"This feature is used when building Python [extension modules]"
+"(glossary.md#extension-module) to create [wheels](glossary.md#wheel) which "
+"are compatible with multiple Python versions but not the free-threaded build."
 msgstr ""
 
 #: src/features.md:29
@@ -106,8 +106,8 @@ msgstr ""
 
 #: src/features.md:37 src/features.md:64
 msgid ""
-"See the [building and distribution](building-and-distribution."
-"md#py_limited_apiabi3abi3t) section for further detail."
+"See the [building and distribution](building-and-"
+"distribution.md#py_limited_apiabi3abi3t) section for further detail."
 msgstr ""
 
 #: src/features.md:39
@@ -116,8 +116,8 @@ msgstr ""
 
 #: src/features.md:41
 msgid ""
-"(`abi3-py38`, `abi3-py39`, `abi3-py310`, `abi3-py311`, `abi3-py312`, `abi3-"
-"py313` and `abi3-py314`)"
+"(`abi3-py39`, `abi3-py310`, `abi3-py311`, `abi3-py312`, `abi3-py313`, `abi3-"
+"py314` and `abi3-py315`)"
 msgstr ""
 
 #: src/features.md:43
@@ -228,8 +228,8 @@ msgstr ""
 #: src/features.md:93
 msgid ""
 "The feature has some unfinished refinements and performance improvements. To "
-"help finish this off, see [issue #1632](https://github.com/PyO3/pyo3/"
-"issues/1632) and its associated draft PRs."
+"help finish this off, see [issue #1632](https://github.com/PyO3/pyo3/issues/"
+"1632) and its associated draft PRs."
 msgstr ""
 
 #: src/features.md:96
@@ -245,17 +245,17 @@ msgstr ""
 
 #: src/features.md:100
 msgid ""
-"Also, this feature adds the `pyo3::inspect` module, as well as `IntoPy::"
-"type_output` and `FromPyObject::type_input` APIs to produce Python type "
-"\"annotations\" for Rust types."
+"Also, this feature adds the `pyo3::inspect` module, as well as "
+"`IntoPy::type_output` and `FromPyObject::type_input` APIs to produce Python "
+"type \"annotations\" for Rust types."
 msgstr ""
 
 #: src/features.md:102
 msgid ""
 "This is a first step towards adding first-class support for generating type "
 "annotations automatically in PyO3, however work is needed to finish this "
-"off. All feedback and offers of help welcome on [issue #2454](https://github."
-"com/PyO3/pyo3/issues/2454)."
+"off. All feedback and offers of help welcome on [issue #2454](https://"
+"github.com/PyO3/pyo3/issues/2454)."
 msgstr ""
 
 #: src/features.md:105
@@ -279,11 +279,11 @@ msgstr ""
 #: src/features.md:113
 msgid ""
 "This is a performance-oriented conditional compilation flag, e.g. [set via "
-"`$RUSTFLAGS`](https://doc.rust-lang.org/reference/conditional-compilation."
-"html#set-configuration-options), which disabled the global reference pool "
-"and the associated overhead for the crossing the Python-Rust boundary. "
-"However, if enabled, `Drop`ping an instance of `Py<T>` when not attached to "
-"the Python interpreter will abort the process."
+"`$RUSTFLAGS`](https://doc.rust-lang.org/reference/conditional-"
+"compilation.html#set-configuration-options), which disabled the global "
+"reference pool and the associated overhead for the crossing the Python-Rust "
+"boundary. However, if enabled, `Drop`ping an instance of `Py<T>` when not "
+"attached to the Python interpreter will abort the process."
 msgstr ""
 
 #: src/features.md:116
@@ -366,8 +366,8 @@ msgstr ""
 #: src/features.md:147
 msgid ""
 "The `nightly` feature needs the nightly Rust compiler. This allows PyO3 to "
-"use the `auto_traits` and `negative_impls` features to fix the `Python::"
-"detach` function."
+"use the `auto_traits` and `negative_impls` features to fix the "
+"`Python::detach` function."
 msgstr ""
 
 #: src/features.md:150
@@ -398,13 +398,13 @@ msgstr ""
 
 #: src/features.md:161
 msgid ""
-"Enables Pyo3's `MutexExt` trait for all Mutexes that extend on [`lock_api::"
-"Mutex`](https://docs.rs/lock_api/latest/lock_api/struct.Mutex.html) or "
-"[`parking_lot::ReentrantMutex`](https://docs.rs/lock_api/latest/lock_api/"
-"struct.ReentrantMutex.html) and are wrapped in an [`Arc`](https://doc.rust-"
-"lang.org/std/sync/struct.Arc.html) type. Like [`Arc<parking_lot::Mutex>`]"
-"(https://docs.rs/parking_lot/latest/parking_lot/type.Mutex.html#method."
-"lock_arc)"
+"Enables Pyo3's `MutexExt` trait for all Mutexes that extend on "
+"[`lock_api::Mutex`](https://docs.rs/lock_api/latest/lock_api/"
+"struct.Mutex.html) or [`parking_lot::ReentrantMutex`](https://docs.rs/"
+"lock_api/latest/lock_api/struct.ReentrantMutex.html) and are wrapped in an "
+"[`Arc`](https://doc.rust-lang.org/std/sync/struct.Arc.html) type. Like "
+"[`Arc<parking_lot::Mutex>`](https://docs.rs/parking_lot/latest/parking_lot/"
+"type.Mutex.html#method.lock_arc)"
 msgstr ""
 
 #: src/features.md:164
@@ -425,8 +425,8 @@ msgstr ""
 #: src/features.md:170
 msgid ""
 "Adds a dependency on [bytes](https://docs.rs/bytes/latest/bytes) and enables "
-"conversions into its [`Bytes`](https://docs.rs/bytes/latest/bytes/struct."
-"Bytes.html) type."
+"conversions into its [`Bytes`](https://docs.rs/bytes/latest/bytes/"
+"struct.Bytes.html) type."
 msgstr ""
 
 #: src/features.md:172
@@ -447,8 +447,9 @@ msgstr ""
 
 #: src/features.md:178
 msgid ""
-"[FixedOffset](https://docs.rs/chrono/latest/chrono/offset/struct.FixedOffset."
-"html) -> [`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
+"[FixedOffset](https://docs.rs/chrono/latest/chrono/offset/"
+"struct.FixedOffset.html) -> [`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/"
+"struct.PyDelta.html)"
 msgstr ""
 
 #: src/features.md:179
@@ -459,14 +460,16 @@ msgstr ""
 
 #: src/features.md:180
 msgid ""
-"[NaiveDate](https://docs.rs/chrono/latest/chrono/naive/struct.NaiveDate."
-"html) -> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
+"[NaiveDate](https://docs.rs/chrono/latest/chrono/naive/"
+"struct.NaiveDate.html) -> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/"
+"struct.PyDate.html)"
 msgstr ""
 
 #: src/features.md:181
 msgid ""
-"[NaiveTime](https://docs.rs/chrono/latest/chrono/naive/struct.NaiveTime."
-"html) -> [`PyTime`](https://pyo3.rs/main/doc/pyo3/types/struct.PyTime.html)"
+"[NaiveTime](https://docs.rs/chrono/latest/chrono/naive/"
+"struct.NaiveTime.html) -> [`PyTime`](https://pyo3.rs/main/doc/pyo3/types/"
+"struct.PyTime.html)"
 msgstr ""
 
 #: src/features.md:182
@@ -505,8 +508,8 @@ msgstr ""
 
 #: src/features.md:194
 msgid ""
-"When converting to Python, `Local` tzinfo is converted to a `zoneinfo."
-"ZoneInfo` matching the current system timezone."
+"When converting to Python, `Local` tzinfo is converted to a "
+"`zoneinfo.ZoneInfo` matching the current system timezone."
 msgstr ""
 
 #: src/features.md:196
@@ -539,8 +542,8 @@ msgstr ""
 msgid ""
 "Adds a dependency on [eyre](https://docs.rs/eyre). Enables a conversion from "
 "[eyre](https://docs.rs/eyre)’s [`Report`](https://docs.rs/eyre/latest/eyre/"
-"struct.Report.html) type to [`PyErr`](https://pyo3.rs/main/doc/pyo3/struct."
-"PyErr.html), for easy error handling."
+"struct.Report.html) type to [`PyErr`](https://pyo3.rs/main/doc/pyo3/"
+"struct.PyErr.html), for easy error handling."
 msgstr ""
 
 #: src/features.md:211
@@ -578,8 +581,8 @@ msgstr ""
 
 #: src/features.md:224
 msgid ""
-"[SignedDuration](https://docs.rs/jiff/0.2/jiff/struct.SignedDuration.html) -"
-"> [`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
+"[SignedDuration](https://docs.rs/jiff/0.2/jiff/struct.SignedDuration.html) "
+"-> [`PyDelta`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDelta.html)"
 msgstr ""
 
 #: src/features.md:225
@@ -626,8 +629,8 @@ msgstr ""
 
 #: src/features.md:232
 msgid ""
-"[ISOWeekDate](https://docs.rs/jiff/0.2/jiff/civil/struct.ISOWeekDate.html) -"
-"> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
+"[ISOWeekDate](https://docs.rs/jiff/0.2/jiff/civil/struct.ISOWeekDate.html) "
+"-> [`PyDate`](https://pyo3.rs/main/doc/pyo3/types/struct.PyDate.html)"
 msgstr ""
 
 #: src/features.md:234
@@ -638,9 +641,9 @@ msgstr ""
 msgid ""
 "Adds a dependency on [lock_api](https://docs.rs/lock_api) and enables Pyo3's "
 "`MutexExt` trait for all mutexes that extend on [`lock_api::Mutex`](https://"
-"docs.rs/lock_api/latest/lock_api/struct.Mutex.html) and [`parking_lot::"
-"ReentrantMutex`](https://docs.rs/lock_api/latest/lock_api/struct."
-"ReentrantMutex.html) (like `parking_lot` or `spin`)."
+"docs.rs/lock_api/latest/lock_api/struct.Mutex.html) and "
+"[`parking_lot::ReentrantMutex`](https://docs.rs/lock_api/latest/lock_api/"
+"struct.ReentrantMutex.html) (like `parking_lot` or `spin`)."
 msgstr ""
 
 #: src/features.md:238
@@ -690,15 +693,16 @@ msgstr ""
 
 #: src/features.md:254
 msgid ""
-"[NotNan](https://docs.rs/ordered-float/latest/ordered_float/struct.NotNan."
-"html) -> [`PyFloat`](https://pyo3.rs/main/doc/pyo3/types/struct.PyFloat.html)"
+"[NotNan](https://docs.rs/ordered-float/latest/ordered_float/"
+"struct.NotNan.html) -> [`PyFloat`](https://pyo3.rs/main/doc/pyo3/types/"
+"struct.PyFloat.html)"
 msgstr ""
 
 #: src/features.md:255
 msgid ""
-"[OrderedFloat](https://docs.rs/ordered-float/latest/ordered_float/struct."
-"OrderedFloat.html) -> [`PyFloat`](https://pyo3.rs/main/doc/pyo3/types/struct."
-"PyFloat.html)"
+"[OrderedFloat](https://docs.rs/ordered-float/latest/ordered_float/"
+"struct.OrderedFloat.html) -> [`PyFloat`](https://pyo3.rs/main/doc/pyo3/types/"
+"struct.PyFloat.html)"
 msgstr ""
 
 #: src/features.md:257
@@ -708,11 +712,11 @@ msgstr ""
 #: src/features.md:259
 msgid ""
 "Adds a dependency on [parking_lot](https://docs.rs/parking_lot) and enables "
-"Pyo3's `OnceExt` & `MutexExt` traits for [`parking_lot::Once`](https://docs."
-"rs/parking_lot/latest/parking_lot/struct.Once.html) [`parking_lot::Mutex`]"
-"(https://docs.rs/parking_lot/latest/parking_lot/type.Mutex.html) and "
-"[`parking_lot::ReentrantMutex`](https://docs.rs/parking_lot/latest/"
-"parking_lot/type.ReentrantMutex.html) types."
+"Pyo3's `OnceExt` & `MutexExt` traits for [`parking_lot::Once`](https://"
+"docs.rs/parking_lot/latest/parking_lot/struct.Once.html) "
+"[`parking_lot::Mutex`](https://docs.rs/parking_lot/latest/parking_lot/"
+"type.Mutex.html) and [`parking_lot::ReentrantMutex`](https://docs.rs/"
+"parking_lot/latest/parking_lot/type.ReentrantMutex.html) types."
 msgstr ""
 
 #: src/features.md:261
@@ -750,16 +754,16 @@ msgstr ""
 
 #: src/features.md:272
 msgid ""
-"[OffsetDateTime](https://docs.rs/time/0.3.38/time/struct.OffsetDateTime."
-"html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/types/struct."
-"PyDateTime.html)"
+"[OffsetDateTime](https://docs.rs/time/0.3.38/time/"
+"struct.OffsetDateTime.html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/"
+"types/struct.PyDateTime.html)"
 msgstr ""
 
 #: src/features.md:273
 msgid ""
-"[PrimitiveDateTime](https://docs.rs/time/0.3.38/time/struct."
-"PrimitiveDateTime.html) -> [`PyDateTime`](https://pyo3.rs/main/doc/pyo3/"
-"types/struct.PyDateTime.html)"
+"[PrimitiveDateTime](https://docs.rs/time/0.3.38/time/"
+"struct.PrimitiveDateTime.html) -> [`PyDateTime`](https://pyo3.rs/main/doc/"
+"pyo3/types/struct.PyDateTime.html)"
 msgstr ""
 
 #: src/features.md:274
@@ -841,9 +845,5 @@ msgid "`generate-import-lib`"
 msgstr ""
 
 #: src/features.md:325
-msgid ""
-"This feature is deprecated and has no effect. PyO3 now uses Rust's `raw-"
-"dylib` linking feature to link against the Python DLL on Windows, "
-"eliminating the need for import library (`.lib`) files entirely. Cross-"
-"compiling for Windows targets works without any additional setup."
+msgid "This feature is deprecated and has no effect."
 msgstr ""
