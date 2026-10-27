@@ -78,8 +78,8 @@ msgstr ""
 msgid ""
 "It is important to initialize the Python loggers first, before calling any "
 "Rust functions that may log. This limitation can be worked around if it is "
-"not possible to satisfy, read the documentation about [caching](https://docs."
-"rs/pyo3-log/*/pyo3_log/#performance-filtering-and-caching)."
+"not possible to satisfy, read the documentation about [caching](https://"
+"docs.rs/pyo3-log/*/pyo3_log/#performance-filtering-and-caching)."
 msgstr ""
 
 #: src/ecosystem/logging.md:53

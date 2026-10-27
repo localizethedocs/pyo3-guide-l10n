@@ -272,8 +272,8 @@ msgstr ""
 #: src/trait-bounds.md:292
 msgid ""
 "Let's assume in the first case that you will use in your Python file "
-"`my_rust_model.set_variables(2.0)` instead of `my_rust_model."
-"set_variables([2.0])`."
+"`my_rust_model.set_variables(2.0)` instead of "
+"`my_rust_model.set_variables([2.0])`."
 msgstr ""
 
 #: src/trait-bounds.md:294

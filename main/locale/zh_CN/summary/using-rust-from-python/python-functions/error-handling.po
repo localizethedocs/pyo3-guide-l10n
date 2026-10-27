@@ -29,8 +29,8 @@ msgstr ""
 
 #: src/function/error-handling.md:7
 msgid ""
-"There is a later section of the guide on [Python exceptions](../exception."
-"md) which covers exception types in more detail."
+"There is a later section of the guide on [Python exceptions](../"
+"exception.md) which covers exception types in more detail."
 msgstr ""
 
 #: src/function/error-handling.md:9
@@ -131,8 +131,8 @@ msgid ""
 "PyO3 will automatically convert a `Result<T, E>` returned by a "
 "`#[pyfunction]` into a `PyResult<T>` as long as there is an implementation "
 "of `std::from::From<E> for PyErr`. Many error types in the Rust standard "
-"library have a [`From`](https://doc.rust-lang.org/stable/std/convert/trait."
-"From.html) conversion defined in this way."
+"library have a [`From`](https://doc.rust-lang.org/stable/std/convert/"
+"trait.From.html) conversion defined in this way."
 msgstr ""
 
 #: src/function/error-handling.md:66

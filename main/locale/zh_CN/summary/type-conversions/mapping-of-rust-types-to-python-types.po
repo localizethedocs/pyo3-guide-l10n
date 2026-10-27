@@ -526,8 +526,8 @@ msgstr ""
 msgid ""
 "Because `Bound<'py, T>` and `Borrowed<'a, 'py, T>` have lifetime parameters, "
 "the Rust compiler may ask for lifetime annotations to be added to your "
-"function. See the [section of the guide dedicated to this](../types."
-"md#function-argument-lifetimes)."
+"function. See the [section of the guide dedicated to this](../"
+"types.md#function-argument-lifetimes)."
 msgstr ""
 
 #: src/conversions/tables.md:86

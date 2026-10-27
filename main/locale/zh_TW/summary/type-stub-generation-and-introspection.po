@@ -122,8 +122,8 @@ msgid ""
 "Lots of features are not implemented yet. See [the related issue](https://"
 "github.com/PyO3/pyo3/issues/5137) for a list of them."
 msgstr ""
-"許多功能尚未實作。清單請參考[相關議題](https://github.com/PyO3/pyo3/"
-"issues/5137)。"
+"許多功能尚未實作。清單請參考[相關議題](https://github.com/PyO3/pyo3/issues/"
+"5137)。"
 
 #: src/type-stub.md:85
 msgid ""

@@ -65,8 +65,8 @@ msgstr ""
 
 #: src/types.md:24
 msgid ""
-"Python objects are reference counted, like [`std::sync::Arc`](https://doc."
-"rust-lang.org/stable/std/sync/struct.Arc.html). A major reason for these "
+"Python objects are reference counted, like [`std::sync::Arc`](https://"
+"doc.rust-lang.org/stable/std/sync/struct.Arc.html). A major reason for these "
 "smart pointers is to bring Python's reference counting to a Rust API."
 msgstr ""
 
@@ -112,8 +112,8 @@ msgstr ""
 
 #: src/types.md:42
 msgid ""
-"Because `Py<T>` is not bound to [the `'py` lifetime](./python-from-rust."
-"md#the-py-lifetime), it is the type to use when storing a Python object "
+"Because `Py<T>` is not bound to [the `'py` lifetime](./python-from-"
+"rust.md#the-py-lifetime), it is the type to use when storing a Python object "
 "inside a Rust `struct` or `enum` which do not want to have a lifetime "
 "parameter. In particular, [`#[pyclass]`](class.md) types are not permitted "
 "to have a lifetime, so `Py<T>` is the correct type to store Python objects "
@@ -145,10 +145,10 @@ msgstr ""
 
 #: src/types.md:53
 msgid ""
-"To convert a `Py<T>` into a `Bound<'py, T>`, the `Py::bind` and `Py::"
-"into_bound` methods are available. `Bound<'py, T>` can be converted back "
-"into `Py<T>` using [`Bound::unbind`](https://pyo3.rs/main/doc/pyo3/struct."
-"Bound.html#method.unbind)."
+"To convert a `Py<T>` into a `Bound<'py, T>`, the `Py::bind` and "
+"`Py::into_bound` methods are available. `Bound<'py, T>` can be converted "
+"back into `Py<T>` using [`Bound::unbind`](https://pyo3.rs/main/doc/pyo3/"
+"struct.Bound.html#method.unbind)."
 msgstr ""
 
 #: src/types.md:55
@@ -300,9 +300,9 @@ msgstr ""
 
 #: src/types.md:170
 msgid ""
-"An example where `Borrowed<'a, 'py, T>` is used is in [`PyTupleMethods::"
-"get_borrowed_item`](https://pyo3.rs/main/doc/pyo3/types/trait.PyTupleMethods."
-"html#tymethod.get_item):"
+"An example where `Borrowed<'a, 'py, T>` is used is in "
+"[`PyTupleMethods::get_borrowed_item`](https://pyo3.rs/main/doc/pyo3/types/"
+"trait.PyTupleMethods.html#tymethod.get_item):"
 msgstr ""
 
 #: src/types.md:176
@@ -346,9 +346,9 @@ msgstr ""
 #: src/types.md:220
 msgid ""
 "To convert between `Py<T>` and `Borrowed<'a, 'py, T>` use the "
-"`bind_borrowed()` method. Use either `as_unbound()` or `.to_owned()."
-"unbind()` to go back to `Py<T>` from `Borrowed<'a, 'py, T>`, via `Bound<'py, "
-"T>`."
+"`bind_borrowed()` method. Use either `as_unbound()` or "
+"`.to_owned().unbind()` to go back to `Py<T>` from `Borrowed<'a, 'py, T>`, "
+"via `Bound<'py, T>`."
 msgstr ""
 
 #: src/types.md:226
@@ -474,14 +474,15 @@ msgstr ""
 
 #: src/types.md:282
 msgid ""
-"To cast `Bound<'py, T>` smart pointers to some other type, use the [`."
-"cast()`](https://pyo3.rs/main/doc/pyo3/struct.Bound.html#method.cast) family "
-"of functions. This converts `&Bound<'py, T>` to a different `&Bound<'py, "
-"U>`, without transferring ownership. There is also [`.cast_into()`](https://"
-"pyo3.rs/main/doc/pyo3/struct.Bound.html#method.cast_into) to convert "
-"`Bound<'py, T>` to `Bound<'py, U>` with transfer of ownership. These methods "
-"are available for all types `T` which implement the [`PyTypeCheck`](https://"
-"pyo3.rs/main/doc/pyo3/type_object/trait.PyTypeCheck.html) trait."
+"To cast `Bound<'py, T>` smart pointers to some other type, use the "
+"[`.cast()`](https://pyo3.rs/main/doc/pyo3/struct.Bound.html#method.cast) "
+"family of functions. This converts `&Bound<'py, T>` to a different "
+"`&Bound<'py, U>`, without transferring ownership. There is also "
+"[`.cast_into()`](https://pyo3.rs/main/doc/pyo3/"
+"struct.Bound.html#method.cast_into) to convert `Bound<'py, T>` to "
+"`Bound<'py, U>` with transfer of ownership. These methods are available for "
+"all types `T` which implement the [`PyTypeCheck`](https://pyo3.rs/main/doc/"
+"pyo3/type_object/trait.PyTypeCheck.html) trait."
 msgstr ""
 
 #: src/types.md:287
@@ -510,8 +511,8 @@ msgstr ""
 
 #: src/types.md:308
 msgid ""
-"Custom [`#[pyclass]`](class.md) types implement [`PyTypeCheck`](https://pyo3."
-"rs/main/doc/pyo3/type_object/trait.PyTypeCheck.html), so `.cast()` also "
+"Custom [`#[pyclass]`](class.md) types implement [`PyTypeCheck`](https://"
+"pyo3.rs/main/doc/pyo3/type_object/trait.PyTypeCheck.html), so `.cast()` also "
 "works for these types. The snippet below is the same as the snippet above "
 "casting instead to a custom type `MyClass`:"
 msgstr ""
@@ -531,10 +532,10 @@ msgstr ""
 #: src/types.md:333
 msgid ""
 "To extract Rust data from Python objects, use [`.extract()`](https://pyo3.rs/"
-"main/doc/pyo3/types/trait.PyAnyMethods.html#tymethod.extract) instead of `."
-"cast()`. This method is available for all types which implement the "
-"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/trait.FromPyObject."
-"html) trait."
+"main/doc/pyo3/types/trait.PyAnyMethods.html#tymethod.extract) instead of "
+"`.cast()`. This method is available for all types which implement the "
+"[`FromPyObject`](https://pyo3.rs/main/doc/pyo3/conversion/"
+"trait.FromPyObject.html) trait."
 msgstr ""
 
 #: src/types.md:336

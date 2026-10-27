@@ -25,8 +25,8 @@ msgstr ""
 
 #: src/faq.md:6
 msgid ""
-"I'm experiencing deadlocks using PyO3 with `std::sync::OnceLock`, `std::"
-"sync::LazyLock`, `lazy_static`, and `once_cell`"
+"I'm experiencing deadlocks using PyO3 with `std::sync::OnceLock`, "
+"`std::sync::LazyLock`, `lazy_static`, and `once_cell`"
 msgstr ""
 
 #: src/faq.md:8
@@ -330,6 +330,6 @@ msgstr ""
 
 #: src/faq.md:199
 msgid ""
-"For advanced troubleshooting, [Dependency Walker](https://www."
-"dependencywalker.com/) can be used to diagnose linking errors."
+"For advanced troubleshooting, [Dependency Walker](https://"
+"www.dependencywalker.com/) can be used to diagnose linking errors."
 msgstr ""

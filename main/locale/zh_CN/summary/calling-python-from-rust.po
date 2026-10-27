@@ -53,8 +53,8 @@ msgstr ""
 
 #: src/python-from-rust.md:16
 msgid ""
-"To safely interact with the Python interpreter a Rust thread must be "
-"\\[[attached](glossary.md#attached)\\] to the Python interpreter. PyO3 has a "
+"To safely interact with the Python interpreter a Rust thread must be \\"
+"[[attached](glossary.md#attached)\\] to the Python interpreter. PyO3 has a "
 "`Python<'py>` token that is used to prove that these conditions are met. Its "
 "lifetime `'py` is a central part of PyO3's API."
 msgstr ""
@@ -67,22 +67,22 @@ msgstr ""
 msgid ""
 "It provides global APIs for the Python interpreter, such as [`py.eval()`]"
 "(https://pyo3.rs/main/doc/pyo3/marker/struct.Python.html#method.eval) and "
-"[`py.import()`](https://pyo3.rs/main/doc/pyo3/marker/struct.Python."
-"html#method.import)."
+"[`py.import()`](https://pyo3.rs/main/doc/pyo3/marker/"
+"struct.Python.html#method.import)."
 msgstr ""
 
 #: src/python-from-rust.md:23
 msgid ""
 "It can be passed to functions that require a proof of attachment, such as "
-"[`Py::clone_ref`](https://pyo3.rs/main/doc/pyo3/prelude/struct.Py."
-"html#method.clone_ref)."
+"[`Py::clone_ref`](https://pyo3.rs/main/doc/pyo3/prelude/"
+"struct.Py.html#method.clone_ref)."
 msgstr ""
 
 #: src/python-from-rust.md:24
 msgid ""
 "Its lifetime `'py` is used to bind many of PyO3's types to the Python "
-"interpreter, such as [`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/struct."
-"Bound.html)."
+"interpreter, such as [`Bound<'py, T>`](https://pyo3.rs/main/doc/pyo3/"
+"struct.Bound.html)."
 msgstr ""
 
 #: src/python-from-rust.md:26
@@ -106,9 +106,9 @@ msgstr ""
 
 #: src/python-from-rust.md:33
 msgid ""
-"Prior to the introduction of [free-threaded Python](https://docs.python."
-"org/3/glossary.html#term-free-threaded-build) (first available in 3.13, "
-"fully supported in 3.14), the Python interpreter was made thread-safe by the "
+"Prior to the introduction of [free-threaded Python](https://docs.python.org/"
+"3/glossary.html#term-free-threaded-build) (first available in 3.13, fully "
+"supported in 3.14), the Python interpreter was made thread-safe by the "
 "[global interpreter lock](https://docs.python.org/3/glossary.html#term-"
 "global-interpreter-lock). This ensured that only one Python thread can use "
 "the Python interpreter and its API at the same time. Historically, Rust code "

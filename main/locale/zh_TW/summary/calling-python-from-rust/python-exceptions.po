@@ -21,8 +21,8 @@ msgstr ""
 
 #: src/exception.md:5
 msgid ""
-"Use the [`create_exception!`](https://pyo3.rs/main/doc/pyo3/macro."
-"create_exception.html) macro:"
+"Use the [`create_exception!`](https://pyo3.rs/main/doc/pyo3/"
+"macro.create_exception.html) macro:"
 msgstr ""
 
 #: src/exception.md:13
@@ -88,12 +88,13 @@ msgstr ""
 
 #: src/exception.md:78
 msgid ""
-"Python has an [`isinstance`](https://docs.python.org/3/library/functions."
-"html#isinstance) method to check an object's type. In PyO3 every object has "
-"the [`PyAny::is_instance`](https://pyo3.rs/main/doc/pyo3/types/trait."
-"PyAnyMethods.html#tymethod.is_instance) and [`PyAny::is_instance_of`]"
-"(https://pyo3.rs/main/doc/pyo3/types/trait.PyAnyMethods.html#tymethod."
-"is_instance_of) methods which do the same thing."
+"Python has an [`isinstance`](https://docs.python.org/3/library/"
+"functions.html#isinstance) method to check an object's type. In PyO3 every "
+"object has the [`PyAny::is_instance`](https://pyo3.rs/main/doc/pyo3/types/"
+"trait.PyAnyMethods.html#tymethod.is_instance) and [`PyAny::is_instance_of`]"
+"(https://pyo3.rs/main/doc/pyo3/types/"
+"trait.PyAnyMethods.html#tymethod.is_instance_of) methods which do the same "
+"thing."
 msgstr ""
 
 #: src/exception.md:96
@@ -107,9 +108,9 @@ msgstr "使用 Python 程式碼中定義的例外狀況"
 #: src/exception.md:109
 msgid ""
 "It is possible to use an exception defined in Python code as a native Rust "
-"type. The [`import_exception!`](https://pyo3.rs/main/doc/pyo3/macro."
-"import_exception.html) macro allows importing a specific exception class and "
-"defines a Rust type for that exception."
+"type. The [`import_exception!`](https://pyo3.rs/main/doc/pyo3/"
+"macro.import_exception.html) macro allows importing a specific exception "
+"class and defines a Rust type for that exception."
 msgstr ""
 
 #: src/exception.md:121
