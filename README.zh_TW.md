@@ -1,5 +1,5 @@
 <div align="center">
-<h1 id="localization-of-the-pyo3-user-guide">Localization of The PyO3 User Guide</h1>
+<h1 id="localization-of-the-pyo3-user-guide">PyO3 使用者指南的在地化</h1>
 </div>
 
 <details><summary><strong>切換語言</strong></summary>
@@ -332,7 +332,7 @@ The goal of this project is to translate The PyO3 User Guide into multiple langu
 
 <h2 id="preview-translations"><a href="#table-of-contents">預覽翻譯</a></h2>
 
-You can preview translations in <a href="https://projects.localizethedocs.org/pyo3-guide-l10n">GitHub Pages</a>:
+您可以在 <a href="https://projects.localizethedocs.org/pyo3-guide-l10n">GitHub Pages</a> 中預覽翻譯：
 
 <div align="center">
 <table>
