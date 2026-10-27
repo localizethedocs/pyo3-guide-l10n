@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-06-23T11:17:12Z\n"
+"POT-Creation-Date: 2026-10-27T13:55:05Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,8 +21,8 @@ msgid ""
 "projects using PyO3. The way to achieve this is very different depending on "
 "whether the project is a Python module implemented in Rust, or a Rust binary "
 "embedding Python. For both types of project there are also common problems "
-"such as the Python version to build for and the [linker](https://en."
-"wikipedia.org/wiki/Linker_(computing)) arguments to use."
+"such as the Python version to build for and the [linker](https://"
+"en.wikipedia.org/wiki/Linker_(computing)) arguments to use."
 msgstr ""
 
 #: src/building-and-distribution.md:7
@@ -45,10 +45,10 @@ msgstr ""
 
 #: src/building-and-distribution.md:15
 msgid ""
-"PyO3 uses a build script (backed by the [`pyo3-build-config`](https://github."
-"com/PyO3/pyo3/tree/main/pyo3-build-config) crate) to determine the Python "
-"version and set the correct linker arguments. By default it will attempt to "
-"use the following in order:"
+"PyO3 uses a build script (backed by the [`pyo3-build-config`](https://"
+"github.com/PyO3/pyo3/tree/main/pyo3-build-config) crate) to determine the "
+"Python version and set the correct linker arguments. By default it will "
+"attempt to use the following in order:"
 msgstr ""
 
 #: src/building-and-distribution.md:18
@@ -88,8 +88,8 @@ msgstr ""
 msgid ""
 "```console\n"
 "$ PYO3_PRINT_CONFIG=1 cargo build\n"
-"   Compiling pyo3-ffi v0.29.0 (/Users/goldbaum/Documents/pyo3/pyo3-ffi)\n"
-"error: failed to run custom build command for `pyo3-ffi v0.29.0 (/Users/"
+"   Compiling pyo3-ffi v0.30.0 (/Users/goldbaum/Documents/pyo3/pyo3-ffi)\n"
+"   error: failed to run custom build command for `pyo3-ffi v0.30.0 (/Users/"
 "goldbaum/Documents/pyo3/pyo3-ffi)`\n"
 "\n"
 "Caused by:\n"
@@ -112,14 +112,6 @@ msgid ""
 "  cargo:rustc-check-cfg=cfg(Py_3_14)\n"
 "  cargo:rustc-check-cfg=cfg(Py_3_15)\n"
 "  cargo:rustc-check-cfg=cfg(Py_3_16)\n"
-"  cargo:rustc-check-cfg=cfg(pyo3_dll, values(\"python3\", \"python3_d\", "
-"\"python3t\", \"python3t_d\", \"python38\", \"python38_d\", \"python39\", "
-"\"python39_d\", \"python310\", \"python310_d\", \"python311\", "
-"\"python311_d\", \"python312\", \"python312_d\", \"python313\", "
-"\"python313_d\", \"python313t\", \"python313t_d\", \"python314\", "
-"\"python314_d\", \"python314t\", \"python314t_d\", \"python315\", "
-"\"python315_d\", \"python315t\", \"python315t_d\", \"python316\", "
-"\"python316_d\", \"python316t\", \"python316t_d\", \"libpypy3.11-c\"))\n"
 "  cargo:rerun-if-env-changed=PYO3_CONFIG_FILE\n"
 "  cargo:rerun-if-env-changed=PYO3_CROSS\n"
 "  cargo:rerun-if-env-changed=PYO3_CROSS_LIB_DIR\n"
@@ -152,38 +144,38 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/building-and-distribution.md:81
+#: src/building-and-distribution.md:80
 msgid ""
 "The `PYO3_ENVIRONMENT_SIGNATURE` environment variable can be used to trigger "
 "rebuilds when its value changes, it has no other effect."
 msgstr ""
 
-#: src/building-and-distribution.md:83
+#: src/building-and-distribution.md:82
 msgid "Advanced: config files"
 msgstr ""
 
-#: src/building-and-distribution.md:85
+#: src/building-and-distribution.md:84
 msgid ""
 "If you save the above output config from `PYO3_PRINT_CONFIG` to a file, it "
 "is possible to manually override the contents and feed it back into PyO3 "
 "using the `PYO3_CONFIG_FILE` env var."
 msgstr ""
 
-#: src/building-and-distribution.md:87
+#: src/building-and-distribution.md:86
 msgid ""
 "If your build environment is unusual enough that PyO3's regular "
 "configuration detection doesn't work, using a config file like this will "
 "give you the flexibility to make PyO3 work for you. To see the full set of "
 "options supported, see the documentation for the [`InterpreterConfig` struct]"
-"(https://docs.rs/pyo3-build-config/latest/pyo3_build_config/struct."
-"InterpreterConfig.html)."
+"(https://docs.rs/pyo3-build-config/latest/pyo3_build_config/"
+"struct.InterpreterConfig.html)."
 msgstr ""
 
-#: src/building-and-distribution.md:90
+#: src/building-and-distribution.md:89
 msgid "Building Python extension modules"
 msgstr ""
 
-#: src/building-and-distribution.md:92
+#: src/building-and-distribution.md:91
 msgid ""
 "Python [extension modules](glossary.md#extension-module) need to be compiled "
 "differently depending on the OS (and architecture) that they are being "
@@ -198,7 +190,7 @@ msgid ""
 "functionality they can use."
 msgstr ""
 
-#: src/building-and-distribution.md:97
+#: src/building-and-distribution.md:96
 msgid ""
 "There are many ways to go about this: it is possible to use `cargo` to build "
 "the extension module (along with some manual work, which varies with OS). "
@@ -208,13 +200,13 @@ msgid ""
 "wheels for PyPI upload."
 msgstr ""
 
-#: src/building-and-distribution.md:100
+#: src/building-and-distribution.md:99
 msgid ""
 "PyO3 has some functionality for configuring projects when building Python "
 "extension modules:"
 msgstr ""
 
-#: src/building-and-distribution.md:102
+#: src/building-and-distribution.md:101
 msgid ""
 "The `PYO3_BUILD_EXTENSION_MODULE` environment variable, which must be set "
 "when building Python extension modules. `maturin` and `setuptools-rust` set "
@@ -411,26 +403,26 @@ msgid ""
 "support macOS."
 msgstr ""
 
-#: src/building-and-distribution.md:174
+#: src/building-and-distribution.md:175
 msgid ""
 "The easiest way to set the correct linker arguments is to add a [`build.rs`]"
 "(https://doc.rust-lang.org/cargo/reference/build-scripts.html) with the "
 "following content:"
 msgstr ""
 
-#: src/building-and-distribution.md:182
+#: src/building-and-distribution.md:183
 msgid ""
 "Remember to also add `pyo3-build-config` to the `build-dependencies` section "
 "in `Cargo.toml`."
 msgstr ""
 
-#: src/building-and-distribution.md:184
+#: src/building-and-distribution.md:185
 msgid ""
 "An alternative to using `pyo3-build-config` is add the following to a cargo "
 "configuration file (e.g. `.cargo/config.toml`):"
 msgstr ""
 
-#: src/building-and-distribution.md:186
+#: src/building-and-distribution.md:187
 msgid ""
 "```toml\n"
 "[target.x86_64-apple-darwin]\n"
@@ -447,26 +439,26 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/building-and-distribution.md:200
+#: src/building-and-distribution.md:201
 msgid ""
 "Using the MacOS system python3 (`/usr/bin/python3`, as opposed to python "
 "installed via homebrew, pyenv, nix, etc.) may result in runtime errors such "
 "as `Library not loaded: @rpath/Python3.framework/Versions/3.8/Python3`."
 msgstr ""
 
-#: src/building-and-distribution.md:202
+#: src/building-and-distribution.md:203
 msgid ""
 "The easiest way to set the correct linker arguments is to add a `build.rs` "
 "with the following content:"
 msgstr ""
 
-#: src/building-and-distribution.md:210
+#: src/building-and-distribution.md:211
 msgid ""
-"Alternatively it can be resolved with another addition to `.cargo/config."
-"toml`:"
+"Alternatively it can be resolved with another addition to `.cargo/"
+"config.toml`:"
 msgstr ""
 
-#: src/building-and-distribution.md:212
+#: src/building-and-distribution.md:213
 msgid ""
 "```toml\n"
 "[build]\n"
@@ -477,13 +469,13 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/building-and-distribution.md:219
+#: src/building-and-distribution.md:220
 msgid ""
 "For more discussion on and workarounds for MacOS linking problems [see this "
 "issue](https://github.com/PyO3/pyo3/issues/1800#issuecomment-906786649)."
 msgstr ""
 
-#: src/building-and-distribution.md:221
+#: src/building-and-distribution.md:222
 msgid ""
 "Finally, don't forget that on MacOS the `extension-module` feature will "
 "cause `cargo test` to fail without the `--no-default-features` flag (see "
@@ -492,17 +484,17 @@ msgid ""
 "undefined-reference-to-_pyexc_systemerror))."
 msgstr ""
 
-#: src/building-and-distribution.md:223
+#: src/building-and-distribution.md:224
 msgid "The `PYO3_BUILD_EXTENSION_MODULE` environment variable"
 msgstr ""
 
-#: src/building-and-distribution.md:225
+#: src/building-and-distribution.md:226
 msgid ""
 "<a name=\"the-extension-module-feature\"></a> <!-- for backwards "
 "compatibility -->"
 msgstr ""
 
-#: src/building-and-distribution.md:227
+#: src/building-and-distribution.md:228
 msgid ""
 "By default PyO3 links to `libpython`. This makes binaries, tests, and "
 "examples \"just work\". However, Python extension modules on Unix must not "
@@ -510,7 +502,7 @@ msgid ""
 "compliance."
 msgstr ""
 
-#: src/building-and-distribution.md:231
+#: src/building-and-distribution.md:232
 msgid ""
 "The downside of not linking to `libpython` is that binaries, tests, and "
 "examples (which usually embed Python) will fail to build. As a result, PyO3 "
@@ -520,7 +512,7 @@ msgid ""
 "for you automatically."
 msgstr ""
 
-#: src/building-and-distribution.md:236
+#: src/building-and-distribution.md:237
 msgid ""
 "\\[!NOTE\\] Historically PyO3 used an `extension-module` feature to perform "
 "the same function now done by the `PYO3_BUILD_EXTENSION_MODULE` env var. "
@@ -528,7 +520,7 @@ msgid ""
 "including Rust tests and benchmarks."
 msgstr ""
 
-#: src/building-and-distribution.md:240
+#: src/building-and-distribution.md:241
 msgid ""
 "Projects are encouraged to migrate off the feature, as it caused [major "
 "development pain](faq.md#i-cant-run-cargo-test-or-i-cant-build-in-a-cargo-"
@@ -536,29 +528,56 @@ msgid ""
 "reference-to-_pyexc_systemerror) due to the lack of linking."
 msgstr ""
 
-#: src/building-and-distribution.md:242
+#: src/building-and-distribution.md:243
+msgid "The `PYO3_USE_RAW_DYLIB` environment variable"
+msgstr ""
+
+#: src/building-and-distribution.md:245
+msgid ""
+"When targeting Windows, PyO3 will attempt to use [`raw-dylib` linking]"
+"(https://doc.rust-lang.org/reference/items/external-blocks.html#dylib-versus-"
+"raw-dylib) to avoid the need for users to provide an actual import library "
+"to link against."
+msgstr ""
+
+#: src/building-and-distribution.md:247
+msgid ""
+"On occasion the full Python import library may be needed (e.g. mixed C/Rust "
+"projects where the C code uses symbols not defined by `pyo3-ffi`). In these "
+"cases, setting `PYO3_USE_RAW_DYLIB=0` can be used to disable `raw-dylib` "
+"linking."
+msgstr ""
+
+#: src/building-and-distribution.md:250
+msgid ""
+"\\[!NOTE\\] Historically PyO3 used a `generate-import-lib` feature which "
+"needed external machinery to achieve the same result of `raw-dylib` linking."
+msgstr ""
+
+#: src/building-and-distribution.md:253
 msgid "`Py_LIMITED_API`/`abi3`/`abi3t`"
 msgstr ""
 
-#: src/building-and-distribution.md:244
+#: src/building-and-distribution.md:255
 msgid ""
 "By default, Python extension modules can only be used with the same Python "
 "version they were compiled against. For example, an extension module built "
-"for Python 3.5 can't be imported in Python 3.8. [PEP 384](https://www.python."
-"org/dev/peps/pep-0384/) introduced the idea of the limited Python API, which "
-"would have a stable ABI enabling extension modules built with it to be used "
-"against multiple Python versions. The ABI defined by PEP 384 is called "
-"`abi3`, since it's stable for all Python 3.X releases. In 2026, the steering "
-"council approved [PEP 803](https://www.python.org/dev/peps/pep-0803/)) which "
-"defines a new stable ABI, `abi3t`, that can be used on the free-threaded "
-"build of CPython. Extensions built using the `abit3` ABI are importable on "
-"both the [GIL](https://docs.python.org/3/glossary.html#term-GIL)\\-enabled "
-"and free-threaded builds of any CPython version newer than the target "
-"version. So, `abi3t` extensions built for the Python 3.15 limited API will "
-"be importable on Python 3.15, 3.16, 3.17, and all future Python 3.X versions."
+"for Python 3.5 can't be imported in Python 3.8. [PEP 384](https://"
+"www.python.org/dev/peps/pep-0384/) introduced the idea of the limited Python "
+"API, which would have a stable ABI enabling extension modules built with it "
+"to be used against multiple Python versions. The ABI defined by PEP 384 is "
+"called `abi3`, since it's stable for all Python 3.X releases. In 2026, the "
+"steering council approved [PEP 803](https://www.python.org/dev/peps/"
+"pep-0803/)) which defines a new stable ABI, `abi3t`, that can be used on the "
+"free-threaded build of CPython. Extensions built using the `abit3` ABI are "
+"importable on both the [GIL](https://docs.python.org/3/glossary.html#term-"
+"GIL)\\-enabled and free-threaded builds of any CPython version newer than "
+"the target version. So, `abi3t` extensions built for the Python 3.15 limited "
+"API will be importable on Python 3.15, 3.16, 3.17, and all future Python 3.X "
+"versions."
 msgstr ""
 
-#: src/building-and-distribution.md:252
+#: src/building-and-distribution.md:263
 msgid ""
 "The advantage of building extension modules using the limited Python API is "
 "that package vendors only need to build and distribute a single copy (for "
@@ -574,13 +593,13 @@ msgid ""
 "guide, in particular the `#[cfg(Py_LIMITED_API)]` flag."
 msgstr ""
 
-#: src/building-and-distribution.md:257
+#: src/building-and-distribution.md:268
 msgid ""
 "There are three steps involved in targeting `abi3` or `abi3t` when building "
 "Python packages as wheels:"
 msgstr ""
 
-#: src/building-and-distribution.md:259
+#: src/building-and-distribution.md:270
 msgid ""
 "Enable the `abi3` and/or `abi3t` feature in `pyo3`. This ensures `pyo3` only "
 "calls Python C-API functions which are part of the stable API, and on "
@@ -588,7 +607,7 @@ msgid ""
 "object (no special behavior is required on other platforms):"
 msgstr ""
 
-#: src/building-and-distribution.md:262
+#: src/building-and-distribution.md:273
 msgid ""
 "```toml\n"
 "[dependencies]\n"
@@ -597,7 +616,7 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/building-and-distribution.md:267
+#: src/building-and-distribution.md:278
 msgid ""
 "Enabling both the `\"abi3\"` and `\"abi3t\"` features will produce an `abi3` "
 "extension if targeting Python 3.14 or older and an `abi3t` extension if "
@@ -610,7 +629,7 @@ msgid ""
 "extensions otherwise."
 msgstr ""
 
-#: src/building-and-distribution.md:271
+#: src/building-and-distribution.md:282
 msgid ""
 "We suggest enabling both features and using multiple python interpreters to "
 "build several wheels. You can build an `abi3` wheel for your minimum "
@@ -621,7 +640,7 @@ msgid ""
 "PyO3 supports."
 msgstr ""
 
-#: src/building-and-distribution.md:275
+#: src/building-and-distribution.md:286
 msgid ""
 "Ensure that the built shared objects are correctly marked as `abi3` and "
 "`abi3t`. This is accomplished by telling your build system that you're using "
@@ -631,19 +650,19 @@ msgid ""
 "1.14 supports `abi3t` wheels."
 msgstr ""
 
-#: src/building-and-distribution.md:279
+#: src/building-and-distribution.md:290
 msgid ""
 "Ensure that the `.whl` is correctly marked as `abi3` or `abi3t`. For "
 "projects using `setuptools`, this is accomplished by passing `--py-limited-"
-"api=cp3x` (where `x` is the minimum Python version supported by the wheel, e."
-"g. `--py-limited-api=cp35` for Python 3.5) to `setup.py bdist_wheel`."
+"api=cp3x` (where `x` is the minimum Python version supported by the wheel, "
+"e.g. `--py-limited-api=cp35` for Python 3.5) to `setup.py bdist_wheel`."
 msgstr ""
 
-#: src/building-and-distribution.md:282
+#: src/building-and-distribution.md:293
 msgid "Minimum Python version for `abi3` and `abi3t` builds"
 msgstr ""
 
-#: src/building-and-distribution.md:284
+#: src/building-and-distribution.md:295
 msgid ""
 "Because a single `abi3` wheel can be used with many different Python "
 "versions, PyO3 has feature flags `abi3-py39`, `abi3-py310`, `abi3-py311` "
@@ -654,13 +673,13 @@ msgid ""
 "manylinux2020_x86_64.whl`."
 msgstr ""
 
-#: src/building-and-distribution.md:288
+#: src/building-and-distribution.md:299
 msgid ""
 "Similarly, there is an `abi3t-py315` feature and future PyO3 versions will "
 "offer `abi3t-py316` and so on."
 msgstr ""
 
-#: src/building-and-distribution.md:290
+#: src/building-and-distribution.md:301
 msgid ""
 "As your extension module may be run with multiple different Python versions "
 "you may occasionally find you need to check the Python version at runtime to "
@@ -669,25 +688,25 @@ msgid ""
 "runtime) on supporting multiple Python versions at runtime."
 msgstr ""
 
-#: src/building-and-distribution.md:293
+#: src/building-and-distribution.md:304
 msgid ""
 "PyO3 is only able to link your extension module to abi3 version up to and "
 "including your host Python version. E.g., if you set `abi3-py310` and try to "
 "compile the crate with a host of Python 3.9, the build will fail."
 msgstr ""
 
-#: src/building-and-distribution.md:296
+#: src/building-and-distribution.md:307
 msgid ""
 "\\[!NOTE\\] If you set more that one of these `abi3` version feature flags "
 "the lowest version always wins. For example, with both `abi3-py39` and `abi3-"
 "py310` set, PyO3 would build a wheel which supports Python 3.9 and up."
 msgstr ""
 
-#: src/building-and-distribution.md:300
+#: src/building-and-distribution.md:311
 msgid "Building stable ABI extension modules without a Python interpreter"
 msgstr ""
 
-#: src/building-and-distribution.md:302
+#: src/building-and-distribution.md:313
 msgid ""
 "As an advanced feature, you can build a PyO3 wheel without calling Python "
 "interpreter with the environment variable `PYO3_NO_PYTHON` set. Also, if the "
@@ -696,60 +715,60 @@ msgid ""
 "after displaying a warning message."
 msgstr ""
 
-#: src/building-and-distribution.md:305
+#: src/building-and-distribution.md:316
 msgid "Missing features"
 msgstr ""
 
-#: src/building-and-distribution.md:307
+#: src/building-and-distribution.md:318
 msgid ""
 "Due to limitations in the Python API, there are a few `pyo3` features that "
 "do not work when compiling for the stable ABI. These are:"
 msgstr ""
 
-#: src/building-and-distribution.md:310
+#: src/building-and-distribution.md:321
 msgid ""
 "`#[pyo3(text_signature = \"...\")]` does not work on classes until Python "
 "3.10 or greater."
 msgstr ""
 
-#: src/building-and-distribution.md:311
+#: src/building-and-distribution.md:322
 msgid ""
 "The `dict` and `weakref` options on classes are not supported until Python "
 "3.9 or greater."
 msgstr ""
 
-#: src/building-and-distribution.md:312
+#: src/building-and-distribution.md:323
 msgid "The buffer API is not supported until Python 3.11 or greater."
 msgstr ""
 
-#: src/building-and-distribution.md:313
+#: src/building-and-distribution.md:324
 msgid ""
 "Subclassing native types (e.g. `PyException`) is not supported until Python "
 "3.12 or greater."
 msgstr ""
 
-#: src/building-and-distribution.md:314
+#: src/building-and-distribution.md:325
 msgid ""
 "Optimizations which rely on knowledge of the exact Python version compiled "
 "against."
 msgstr ""
 
-#: src/building-and-distribution.md:316
+#: src/building-and-distribution.md:327
 msgid "Embedding Python in Rust"
 msgstr ""
 
-#: src/building-and-distribution.md:318
+#: src/building-and-distribution.md:329
 msgid ""
 "If you want to embed the Python interpreter inside a Rust program, there are "
 "two modes in which this can be done: dynamically and statically. We'll cover "
 "each of these modes in the following sections. Each of them affect how you "
 "must distribute your program. Instead of learning how to do this yourself, "
-"you might want to consider using a project like [PyOxidizer](https://github."
-"com/indygreg/PyOxidizer) to ship your application and all of its "
+"you might want to consider using a project like [PyOxidizer](https://"
+"github.com/indygreg/PyOxidizer) to ship your application and all of its "
 "dependencies in a single file."
 msgstr ""
 
-#: src/building-and-distribution.md:323
+#: src/building-and-distribution.md:334
 msgid ""
 "PyO3 automatically switches between the two linking modes depending on "
 "whether the Python distribution you have configured PyO3 to use ([see above]"
@@ -758,11 +777,11 @@ msgid ""
 "compiled from source without the `--enable-shared` configuration option."
 msgstr ""
 
-#: src/building-and-distribution.md:326
+#: src/building-and-distribution.md:337
 msgid "Dynamically embedding the Python interpreter"
 msgstr ""
 
-#: src/building-and-distribution.md:328
+#: src/building-and-distribution.md:339
 msgid ""
 "Embedding the Python interpreter dynamically is much easier than doing so "
 "statically. This is done by linking your program against a Python shared "
@@ -772,7 +791,7 @@ msgid ""
 "be able to find the Python shared library."
 msgstr ""
 
-#: src/building-and-distribution.md:333
+#: src/building-and-distribution.md:344
 msgid ""
 "This mode of embedding works well for Rust tests which need access to the "
 "Python interpreter. It is also great for Rust software which is installed "
@@ -780,7 +799,7 @@ msgid ""
 "environment variables to locate the correct Python shared library."
 msgstr ""
 
-#: src/building-and-distribution.md:336
+#: src/building-and-distribution.md:347
 msgid ""
 "For distributing your program to non-technical users, you will have to "
 "consider including the Python shared library in your distribution as well as "
@@ -788,18 +807,18 @@ msgid ""
 "`LD_LIBRARY_PATH` on UNIX, or `PATH` on Windows)."
 msgstr ""
 
-#: src/building-and-distribution.md:338
+#: src/building-and-distribution.md:349
 msgid ""
 "Note that PyPy cannot be embedded in Rust (or any other software). Support "
 "for this is tracked on the [PyPy issue tracker](https://github.com/pypy/pypy/"
 "issues/3836)."
 msgstr ""
 
-#: src/building-and-distribution.md:341
+#: src/building-and-distribution.md:352
 msgid "Statically embedding the Python interpreter"
 msgstr ""
 
-#: src/building-and-distribution.md:343
+#: src/building-and-distribution.md:354
 msgid ""
 "Embedding the Python interpreter statically means including the contents of "
 "a Python static library directly inside your Rust binary. This means that to "
@@ -807,18 +826,18 @@ msgid ""
 "the Python interpreter inside the binary!"
 msgstr ""
 
-#: src/building-and-distribution.md:346
+#: src/building-and-distribution.md:357
 msgid ""
 "On Windows static linking is almost never done, so Python distributions "
 "don't usually include a static library. The information below applies only "
 "to UNIX."
 msgstr ""
 
-#: src/building-and-distribution.md:349
+#: src/building-and-distribution.md:360
 msgid "The Python static library is usually called `libpython.a`."
 msgstr ""
 
-#: src/building-and-distribution.md:351
+#: src/building-and-distribution.md:362
 msgid ""
 "Static linking has a lot of complications, listed below. For these reasons "
 "PyO3 does not yet have first-class support for this embedding mode. See "
@@ -826,7 +845,7 @@ msgid ""
 "more information and to discuss any issues you encounter."
 msgstr ""
 
-#: src/building-and-distribution.md:355
+#: src/building-and-distribution.md:366
 msgid ""
 "The [`auto-initialize`](features.md#auto-initialize) feature is deliberately "
 "disabled when embedding the interpreter statically because this is often "
@@ -834,11 +853,11 @@ msgid ""
 "PyO3 is much easier using dynamic embedding."
 msgstr ""
 
-#: src/building-and-distribution.md:358
+#: src/building-and-distribution.md:369
 msgid "The known complications are:"
 msgstr ""
 
-#: src/building-and-distribution.md:360
+#: src/building-and-distribution.md:371
 msgid ""
 "To import compiled extension modules (such as other Rust extension modules, "
 "or those written in C), your binary must have the correct linker flags set "
@@ -846,22 +865,22 @@ msgid ""
 "extensions can use them (e.g. `-Wl,--export-dynamic`)."
 msgstr ""
 
-#: src/building-and-distribution.md:361
+#: src/building-and-distribution.md:372
 msgid ""
 "The C compiler and flags which were used to create `libpython.a` must be "
 "compatible with your Rust compiler and flags, else you will experience "
 "compilation failures."
 msgstr ""
 
-#: src/building-and-distribution.md:363
+#: src/building-and-distribution.md:374
 msgid "Significantly different compiler versions may see errors like this:"
 msgstr ""
 
-#: src/building-and-distribution.md:369
+#: src/building-and-distribution.md:380
 msgid "Mismatching flags may lead to errors like this:"
 msgstr ""
 
-#: src/building-and-distribution.md:375
+#: src/building-and-distribution.md:386
 msgid ""
 "If you encounter these or other complications when linking the interpreter "
 "statically, discuss them on [issue 416 on PyO3's GitHub](https://github.com/"
@@ -870,60 +889,60 @@ msgid ""
 "support for static embedding."
 msgstr ""
 
-#: src/building-and-distribution.md:378
+#: src/building-and-distribution.md:389
 msgid "Import your module when embedding the Python interpreter"
 msgstr ""
 
-#: src/building-and-distribution.md:380
+#: src/building-and-distribution.md:391
 msgid ""
 "When you run your Rust binary with an embedded interpreter, any "
 "`#[pymodule]` created modules won't be accessible to import unless added to "
 "a table called `PyImport_Inittab` before the embedded interpreter is "
 "initialized. This will cause Python statements in your embedded interpreter "
 "such as `import your_new_module` to fail. You can call the macro "
-"[`append_to_inittab`](https://pyo3.rs/main/doc/pyo3/macro.append_to_inittab."
-"html) with your module before initializing the Python interpreter to add the "
-"module function into that table. (The Python interpreter will be initialized "
-"by calling `Python::initialize`, `with_embedded_python_interpreter`, or "
-"`Python::attach` with the [`auto-initialize`](features.md#auto-initialize) "
-"feature enabled.)"
+"[`append_to_inittab`](https://pyo3.rs/main/doc/pyo3/"
+"macro.append_to_inittab.html) with your module before initializing the "
+"Python interpreter to add the module function into that table. (The Python "
+"interpreter will be initialized by calling `Python::initialize`, "
+"`with_embedded_python_interpreter`, or `Python::attach` with the [`auto-"
+"initialize`](features.md#auto-initialize) feature enabled.)"
 msgstr ""
 
-#: src/building-and-distribution.md:384
+#: src/building-and-distribution.md:395
 msgid "Cross Compiling"
 msgstr ""
 
-#: src/building-and-distribution.md:386
+#: src/building-and-distribution.md:397
 msgid ""
 "Thanks to Rust's great cross-compilation support, cross-compiling using PyO3 "
 "is relatively straightforward. To get started, you'll need a few pieces of "
 "software:"
 msgstr ""
 
-#: src/building-and-distribution.md:389
+#: src/building-and-distribution.md:400
 msgid "A toolchain for your target."
 msgstr ""
 
-#: src/building-and-distribution.md:390
+#: src/building-and-distribution.md:401
 msgid ""
 "The appropriate options in your Cargo `.config` for the platform you're "
 "targeting and the toolchain you are using."
 msgstr ""
 
-#: src/building-and-distribution.md:391
+#: src/building-and-distribution.md:402
 msgid ""
 "A Python interpreter that's already been compiled for your target (optional "
 "when building \"abi3\" extension modules)."
 msgstr ""
 
-#: src/building-and-distribution.md:392
+#: src/building-and-distribution.md:403
 msgid ""
 "A Python interpreter that is built for your host and available through the "
 "`PATH` or setting the [`PYO3_PYTHON`](#configuring-the-python-version) "
 "variable (optional when building \"abi3\" extension modules)."
 msgstr ""
 
-#: src/building-and-distribution.md:394
+#: src/building-and-distribution.md:405
 msgid ""
 "After you've obtained the above, you can build a cross-compiled PyO3 module "
 "by using Cargo's `--target` flag. PyO3's build script will detect that you "
@@ -931,31 +950,31 @@ msgid ""
 "target."
 msgstr ""
 
-#: src/building-and-distribution.md:397
+#: src/building-and-distribution.md:408
 msgid ""
 "When cross-compiling, PyO3's build script cannot execute the target Python "
 "interpreter to query the configuration, so there are a few additional "
 "environment variables you may need to set:"
 msgstr ""
 
-#: src/building-and-distribution.md:399
+#: src/building-and-distribution.md:410
 msgid ""
 "`PYO3_CROSS`: If present this variable forces PyO3 to configure as a cross-"
 "compilation."
 msgstr ""
 
-#: src/building-and-distribution.md:400
+#: src/building-and-distribution.md:411
 msgid ""
 "`PYO3_CROSS_LIB_DIR`: This variable can be set to the directory containing "
 "the target's libpython DSO and the associated `_sysconfigdata*.py` file for "
 "Unix-like targets. This variable is only needed when the output binary must "
-"link to libpython explicitly (e.g. when targeting Android or embedding a "
-"Python interpreter), or when it is absolutely required to get the "
-"interpreter configuration from `_sysconfigdata*.py`. On Windows, this "
-"variable is not needed because PyO3 uses `raw-dylib` linking."
+"link to libpython explicitly (e.g. when targeting Android, Windows when `raw-"
+"dylib` linking is unavailable, or embedding a Python interpreter), or when "
+"it is absolutely required to get the interpreter configuration from "
+"`_sysconfigdata*.py`."
 msgstr ""
 
-#: src/building-and-distribution.md:403
+#: src/building-and-distribution.md:413
 msgid ""
 "`PYO3_CROSS_PYTHON_VERSION`: Major and minor version (e.g. 3.9) of the "
 "target Python installation. This variable is only needed if PyO3 cannot "
@@ -964,7 +983,7 @@ msgid ""
 "present in `PYO3_CROSS_LIB_DIR`."
 msgstr ""
 
-#: src/building-and-distribution.md:405
+#: src/building-and-distribution.md:415
 msgid ""
 "`PYO3_CROSS_PYTHON_IMPLEMENTATION`: Python implementation name (\"CPython\" "
 "or \"PyPy\") of the target Python installation. CPython is assumed by "
@@ -973,56 +992,50 @@ msgid ""
 "`_sysconfigdata*.py`."
 msgstr ""
 
-#: src/building-and-distribution.md:408
+#: src/building-and-distribution.md:418
 msgid ""
 "An example might look like the following (assuming your target's sysroot is "
 "at `/home/pyo3/cross/sysroot` and that your target is `armv7`):"
 msgstr ""
 
-#: src/building-and-distribution.md:411 src/building-and-distribution.md:420
+#: src/building-and-distribution.md:421 src/building-and-distribution.md:430
 msgid "\"/home/pyo3/cross/sysroot/usr/lib\""
 msgstr ""
 
-#: src/building-and-distribution.md:416
+#: src/building-and-distribution.md:426
 msgid ""
 "If there are multiple python versions at the cross lib directory and you "
 "cannot set a more precise location to include both the `libpython` DSO and "
 "`_sysconfigdata*.py` files, you can set the required version:"
 msgstr ""
 
-#: src/building-and-distribution.md:419 src/building-and-distribution.md:428
+#: src/building-and-distribution.md:429
 msgid "3.9"
 msgstr ""
 
-#: src/building-and-distribution.md:425
-msgid ""
-"Or another example building for Windows (no `PYO3_CROSS_LIB_DIR` needed "
-"thanks to `raw-dylib`):"
-msgstr ""
-
-#: src/building-and-distribution.md:433
+#: src/building-and-distribution.md:435
 msgid ""
 "Any of the `abi3-py3*` features can be enabled instead of setting "
 "`PYO3_CROSS_PYTHON_VERSION` in the above examples."
 msgstr ""
 
-#: src/building-and-distribution.md:435
+#: src/building-and-distribution.md:437
 msgid ""
 "`PYO3_CROSS_LIB_DIR` can often be omitted when cross compiling extension "
 "modules for Unix, macOS, and Windows targets."
 msgstr ""
 
-#: src/building-and-distribution.md:437
+#: src/building-and-distribution.md:439
 msgid "The following resources may also be useful for cross-compiling:"
 msgstr ""
 
-#: src/building-and-distribution.md:439
+#: src/building-and-distribution.md:441
 msgid ""
 "[github.com/japaric/rust-cross](https://github.com/japaric/rust-cross) is a "
 "primer on cross compiling Rust."
 msgstr ""
 
-#: src/building-and-distribution.md:440
+#: src/building-and-distribution.md:442
 msgid ""
 "[github.com/rust-embedded/cross](https://github.com/rust-embedded/cross) "
 "uses Docker to make Rust cross-compilation easier."
