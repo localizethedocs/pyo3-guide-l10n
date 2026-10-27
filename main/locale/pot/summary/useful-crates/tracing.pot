@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PyO3 user guide\n"
-"POT-Creation-Date: 2026-04-07T09:09:21Z\n"
+"POT-Creation-Date: 2026-10-27T13:55:05Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -62,8 +62,8 @@ msgstr ""
 #: src/ecosystem/tracing.md:18
 msgid ""
 "The extension module must call [`pyo3_tracing_subscriber::add_submodule`]"
-"(https://docs.rs/pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/fn."
-"add_submodule.html) to export the Python classes needed to configure and "
+"(https://docs.rs/pyo3-tracing-subscriber/*/pyo3_tracing_subscriber/"
+"fn.add_submodule.html) to export the Python classes needed to configure and "
 "initialize `tracing`."
 msgstr ""
 
@@ -74,19 +74,19 @@ msgid ""
 "`GlobalTracingConfig` instance describing the layers to be used."
 msgstr ""
 
-#: src/ecosystem/tracing.md:22
+#: src/ecosystem/tracing.md:23
 msgid ""
 "See [the README on crates.io](https://crates.io/crates/pyo3-tracing-"
 "subscriber) for example code."
 msgstr ""
 
-#: src/ecosystem/tracing.md:24
+#: src/ecosystem/tracing.md:25
 msgid ""
 "`pyo3-python-tracing-subscriber` ([documentation](https://docs.rs/pyo3-"
 "python-tracing-subscriber))"
 msgstr ""
 
-#: src/ecosystem/tracing.md:26
+#: src/ecosystem/tracing.md:27
 msgid ""
 "The similarly-named [`pyo3-python-tracing-subscriber`](https://crates.io/"
 "crates/pyo3-python-tracing-subscriber) implements a shim in Rust that "
@@ -94,87 +94,87 @@ msgid ""
 "from Python."
 msgstr ""
 
-#: src/ecosystem/tracing.md:28
+#: src/ecosystem/tracing.md:29
 msgid ""
 "There are many ways an extension module could integrate `pyo3-python-tracing-"
 "subscriber` but a simple one may look something like this:"
 msgstr ""
 
-#: src/ecosystem/tracing.md:34
+#: src/ecosystem/tracing.md:35
 msgid "// ...\n"
 msgstr ""
 
-#: src/ecosystem/tracing.md:45
+#: src/ecosystem/tracing.md:46
 msgid ""
 "The extension module must provide some way for Python to pass in one or more "
 "Python objects that implement [the `Layer` interface](https://docs.rs/"
 "tracing-subscriber/*/tracing_subscriber/layer/trait.Layer.html). Then it "
-"should construct [`pyo3_python_tracing_subscriber::"
-"PythonCallbackLayerBridge`](https://docs.rs/pyo3-python-tracing-subscriber/*/"
-"pyo3_python_tracing_subscriber/struct.PythonCallbackLayerBridge.html) "
-"instances with each of those Python objects and initialize "
-"`tracing_subscriber` as shown above."
+"should construct "
+"[`pyo3_python_tracing_subscriber::PythonCallbackLayerBridge`](https://"
+"docs.rs/pyo3-python-tracing-subscriber/*/pyo3_python_tracing_subscriber/"
+"struct.PythonCallbackLayerBridge.html) instances with each of those Python "
+"objects and initialize `tracing_subscriber` as shown above."
 msgstr ""
 
-#: src/ecosystem/tracing.md:48
+#: src/ecosystem/tracing.md:49
 msgid ""
 "The Python objects implement a modified version of the `Layer` interface:"
 msgstr ""
 
-#: src/ecosystem/tracing.md:50
+#: src/ecosystem/tracing.md:51
 msgid ""
 "`on_new_span()` may return some state that will stored inside the Rust span"
 msgstr ""
 
-#: src/ecosystem/tracing.md:51
+#: src/ecosystem/tracing.md:52
 msgid ""
 "other callbacks will be given that state as an additional positional argument"
 msgstr ""
 
-#: src/ecosystem/tracing.md:53
+#: src/ecosystem/tracing.md:54
 msgid "A dummy `Layer` implementation may look like this:"
 msgstr ""
 
-#: src/ecosystem/tracing.md:62
+#: src/ecosystem/tracing.md:64
 msgid "# `on_new_span` can return some state\n"
 msgstr ""
 
-#: src/ecosystem/tracing.md:64
+#: src/ecosystem/tracing.md:66
 msgid "\"[on_new_span]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:64 src/ecosystem/tracing.md:69
-#: src/ecosystem/tracing.md:72 src/ecosystem/tracing.md:75
+#: src/ecosystem/tracing.md:66 src/ecosystem/tracing.md:71
+#: src/ecosystem/tracing.md:74 src/ecosystem/tracing.md:77
 msgid " | "
 msgstr ""
 
-#: src/ecosystem/tracing.md:64 src/ecosystem/tracing.md:69
-#: src/ecosystem/tracing.md:72 src/ecosystem/tracing.md:75
+#: src/ecosystem/tracing.md:66 src/ecosystem/tracing.md:71
+#: src/ecosystem/tracing.md:74 src/ecosystem/tracing.md:77
 msgid "\""
 msgstr ""
 
-#: src/ecosystem/tracing.md:67
+#: src/ecosystem/tracing.md:69
 msgid ""
 "# The state from `on_new_span` is passed back into other trait methods\n"
 msgstr ""
 
-#: src/ecosystem/tracing.md:69
+#: src/ecosystem/tracing.md:71
 msgid "\"[on_event]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:72
+#: src/ecosystem/tracing.md:74
 msgid "\"[on_close]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:75
+#: src/ecosystem/tracing.md:77
 msgid "\"[on_record]: "
 msgstr ""
 
-#: src/ecosystem/tracing.md:80
+#: src/ecosystem/tracing.md:83
 msgid "\"10th fibonacci number: \""
 msgstr ""
 
-#: src/ecosystem/tracing.md:83
+#: src/ecosystem/tracing.md:86
 msgid ""
 "`pyo3-python-tracing-subscriber` has [working examples](https://github.com/"
 "getsentry/pyo3-python-tracing-subscriber/tree/main/demo) showing both the "
