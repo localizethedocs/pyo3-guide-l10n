@@ -37,9 +37,9 @@
     "branch" : "main",
     "commit" : 
     {
-      "date" : "2026-06-22 21:03:07 +0000",
-      "hash" : "d01e6183e6cc45aa5d56bb3e1dddd0991dd3412e",
-      "title" : "build(deps): bump actions/checkout from 6.0.3 to 7.0.0 (#6156)"
+      "date" : "2026-11-02 16:30:45 +0000",
+      "hash" : "f41d7e8799cad7f1c393d00276a4fa7b83acf885",
+      "title" : "feat: introduce stack-allocated `PyBuffer` (#5894)"
     }
   },
   "type" : "branch",
