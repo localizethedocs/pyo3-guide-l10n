@@ -1,0 +1,137 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PyO3 user guide\n"
+"POT-Creation-Date: 2026-06-23T12:11:46Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/type-stub.md:1
+msgid "Type stub generation (`*.pyi` files) and introspection"
+msgstr ""
+
+#: src/type-stub.md:3
+msgid ""
+"_This feature is still in active development._ _See [the related issue]"
+"(https://github.com/PyO3/pyo3/issues/5137)._"
+msgstr ""
+
+#: src/type-stub.md:6
+msgid ""
+"_For documentation on type stubs and how to use them with stable PyO3, refer "
+"to [this page](python-typing-hints.md)_"
+msgstr ""
+
+#: src/type-stub.md:8
+msgid ""
+"PyO3 has a work in progress support to generate [type stub files](https://"
+"typing.python.org/en/latest/spec/distributing.html#stub-files)."
+msgstr ""
+
+#: src/type-stub.md:10
+msgid "It works using:"
+msgstr ""
+
+#: src/type-stub.md:12
+msgid ""
+"PyO3 macros (`#[pyclass]`) that generate constant JSON strings that are then "
+"included in the built binaries by rustc if the `experimental-inspect` "
+"feature is enabled."
+msgstr ""
+
+#: src/type-stub.md:13
+msgid ""
+"The `pyo3-introspection` crate that can parse the generated binaries, "
+"extract the JSON strings and build stub files from it."
+msgstr ""
+
+#: src/type-stub.md:14
+msgid ""
+"Build tools like `maturin` exposing options in their CLI API to generate the "
+"stubs file."
+msgstr ""
+
+#: src/type-stub.md:16
+msgid "For example, the following Rust code"
+msgstr ""
+
+#: src/type-stub.md:24 src/type-stub.md:58
+msgid "\"FOO\""
+msgstr ""
+
+#: src/type-stub.md:46 src/type-stub.md:69
+msgid "\"list[int]\""
+msgstr ""
+
+#: src/type-stub.md:53
+msgid "will generate the following stub file:"
+msgstr ""
+
+#: src/type-stub.md:72
+msgid ""
+"The only piece of new syntax is that the `#[pyo3(signature = ...)]` "
+"attribute can contain type annotations like `#[pyo3(signature = (arg: "
+"\"list[int]\") -> \"list[int]\")]` (note the `\"\"` around type "
+"annotations). This is useful when PyO3 is not able to derive proper type "
+"annotations by itself."
+msgstr ""
+
+#: src/type-stub.md:75
+msgid ""
+"To generate stubs file with `maturin` you can use `maturin generate-stubs --"
+"output stubs` that will build the project then generate the stubs in the "
+"`stubs` directory. You can also directly integrate the stubs in the built "
+"[wheels](glossary.md#wheel) by doing `maturin build --generate-stubs` (works "
+"also with `maturin develop`)."
+msgstr ""
+
+#: src/type-stub.md:78
+msgid ""
+"PyO3 also provides the smaller `pyo3-introspection` binary that allows to "
+"generate stubs from an existing built extension using something like `pyo3-"
+"introspection my_module_binary.so my_module_name output` to introspect the "
+"`my_module_binary.so` dynamic library for the `my_module_name` Python module "
+"and generate its stubs in the `output` directory."
+msgstr ""
+
+#: src/type-stub.md:80
+msgid "Constraints and limitations"
+msgstr ""
+
+#: src/type-stub.md:82
+msgid ""
+"The `experimental-inspect` feature is required to generate the introspection "
+"fragments."
+msgstr ""
+
+#: src/type-stub.md:83
+msgid ""
+"Lots of features are not implemented yet. See [the related issue](https://"
+"github.com/PyO3/pyo3/issues/5137) for a list of them."
+msgstr ""
+
+#: src/type-stub.md:85
+msgid ""
+"Introspection only works with Python modules declared with an inline Rust "
+"module. Modules declared using a function are not supported."
+msgstr ""
+
+#: src/type-stub.md:87
+msgid ""
+"`FromPyObject::INPUT_TYPE` and `IntoPyObject::OUTPUT_TYPE` must be "
+"implemented for PyO3 to get the proper input/output type annotations to use."
+msgstr ""
+
+#: src/type-stub.md:88
+msgid ""
+"PyO3 is not able to introspect the content of `#[pymodule]` and "
+"`#[pymodule_init]` functions. If they are present, the module is tagged as "
+"incomplete using a fake `def __getattr__(name: str) -> Incomplete: ...` "
+"function [following best practices](https://typing.python.org/en/latest/"
+"guides/writing_stubs.html#incomplete-stubs)."
+msgstr ""
